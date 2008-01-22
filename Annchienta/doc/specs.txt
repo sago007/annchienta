@@ -1,0 +1,219 @@
+GAME-SPECIFIC SETTINGS
+======================
+Universal Map Engine Settings:
+* Tile Size
+
+
+MAP ENGINE
+==========
+
+* Isometric, featuring pixel by pixel movement and obstruction.
+
+* 8 Directions - as in the following rose (where N is isometric north):
+
+               W U N
+                \|/
+              L - - R
+                /|\
+               S D E
+
+Or, in terms of map files (which aren't isometric)
+
+               U N R
+               W + E
+               L S D
+
+
+Each Map file, includes, via XML:
+
+* A <map> tag that includes attributes:
+   * name (mandatory) - Name by which the map is referred to in script.
+   * onLoad, onRender, onUpdate, onExit - python code/callbacks.
+  
+  Within the map tag, there is a <layer> tag with attributes:
+       * name (mandatory) - Name by which the layer is referred to in script.
+       All Optional:
+       * position - height offset at which the layer is placed, default 0.
+       * z -Relative value that Specifies whether the layer is drawn before or after other layers, default is equal to the order of the layers in the XML file.
+       * opacity - 0-255 value demonstrating the visibility of the layer, default 255.
+       * height_difference - Maximum height difference where a default-obstruction tile will allow the player to pass through.
+   
+       Within the layer tag, there is a <tiles> tag which includes no attributes:
+
+            The <tiles> tag includes a set of tile numbers.
+
+       Within the layer tag, there is also an optional <obstruction> tag which includes no attributes:
+
+
+
+             The obstruction tag includes a set of numerical obstruction codes, where:
+
+                        * 0 - No Obstruction, regardless of any consideration.
+                        * 1 - Default Obstruction - Only obstruct if height difference is too great.
+                        * 2 - Full Obstruction
+                        * 3 - b/w Bitmap-based pixel-by-pixel obstruction - based on tile47_obstruct.png?
+
+             These codes may be appended with one or more letters, (N, S, E, W, U, D, L, R) which specify that the given obstruction rule is to be ignored if the player is walking in that direction.
+ 
+                        Example: 1NUR means default obstruction, except where the player is walking up, right, or up-right (north).
+
+        Within the layer tag, there is also an optional <heightmap> tag which includes no attributes:
+
+             The heightmap tag includes a set of height overrides, for example:
+
+             ~     ~      ~      ~     ~     ~     ~
+             ~     ~  *to34U  *to34N *to34R  ~     22
+             ~     ~  *to34W  *to43  *to34E  ~  22to64S
+             ~     ~  *to34L  *to34S *to34D  ~     64
+             ~     ~      ~      ~     ~     ~     ~
+
+           
+             A height override may take a variety of forms. The EBNF syntax is as follows:
+
+             NUMBER[toNUMBER[DIRECTION]]
+
+             Where NUMBER is a number or ~, or *, where ~ equals the height the engine deduces from the tile provided.
+
+             "*" is only used when including the ramp format (see examples).
+             
+             and DIRECTION is N|S|E|W|U|D|L|R.
+
+             These height overrides produce a variety of effects as to the way the player moves, but do not change the appearance of the tile:
+\
+             * Examples:
+           
+                    - ~ = Default Height derived from tile image height.
+                    - -45 = Sets the height of the tile to -45.
+                    - 42 = Sets the height of the tile to 42.
+                    - 0to24E = Creates an Eastward "ramp" that makes the player/person gradually change height from 0 to 24 px as the player walks east. Note that if these ramps are too steep, they will be impassable, subject to the maximum height difference attribute.
+                    - ~to34U = Creates an upward "ramp", which makes the player/person gradually change height from ~ to 34 px, if the player is walking up.
+                    - *to34W = Creates a Westward "ramp, which makes the player/person gradually change height from the height of the tile in the direct opposite direction to the ramp (so for *-34W it would be a transition from the height of the tile to the E, to 34.)
+                    - 0to*W = Creates a Westward "ramp, which makes the player/person gradually change height from zero to the height of the tile in the same direction to the ramp (so for 0-*W it would be a transition from zero to the height of the tile to the W.)
+                    - *to*S = Creates a "ramp" from the height of the tile in the north, to the height of the tile to the south.
+                    - 0to24 = Creates a pyramidal shape, with a base size of one tile, with an apex height of 24.
+                    - 24to0 = Creates a pyramidal dent that sinks to 0 from a height of 24 in one tile.
+                    - 24to* = Invalid
+                    - *to24 = Invalid
+                    
+ 
+  Within the map tag, there is a <person> tag with attributes:
+          * x - X position in isopixels/tiles
+          * y - Y position in isopixels/tiles
+          * coords - Can be tile or isopixel depending on what is desired. Defaults to isopixel.
+          * name - internal use name of person.
+          * layer - name of the layer in which the person is placed.
+          * onCollision/onTalk/onCreate/onMovementQueueEmpty = python code to run? or a function callback.
+          * sprite - sprite XML definition file to use for person.
+          * hasinput - boolean Whether to automatically assign input control on map load to this NPC.
+ 
+
+Any <layer> or <person> tag can be enclosed with:
+
+<if conditional="python conditional here">
+
+</if>
+
+This will allow for more customisable maps.
+
+Script Interfaces to these
+==========================
+
+(CamelCase can be converted to _ if you prefer)
+
+Multi-Instance ScreenPoint object:
+
+  Constructor: ScreenPoint(x,y);
+
+Methods:
+
+ScreenPoint.toIsoPixelPoint() returns IsoPixelPoint object
+ScreenPoint.toTilePoint() returns TilePoint object
+
+Multi-Instance TilePoint object:
+
+  Constructor: TilePoint(x,y);
+
+Methods:
+
+ScreenPoint.toScreenPoint() returns ScreenPoint object
+ScreenPoint.toIsoPixelPoint() returns IsoPixelPoint object
+
+Multi-Instance IsoPixelPoint object:
+
+  Constructor: IsoPixelPoint(x,y);
+
+Methods:
+
+ScreenPoint.toScreenPoint() returns ScreenPoint object
+ScreenPoint.toTilePoint() returns TilePoint object
+
+
+
+
+
+Single-Instance MapEngine object.
+
+Methods:
+MapEngine.run(map object)
+MapEngine.renderFrame
+MapEngine.renderFrameTo(Buffer)
+MapEngine.switchMap(map file)
+MapEngine.setTalkKey(key constant)
+
+Properties:
+
+MapEngine.isRunning
+MapEngine.currentMap = reference to current map object.
+
+Multi-instance Map object:
+
+Constructor: Map(map xml file)              
+
+Methods:
+
+Map.add(EITHER a layer or a person object); 
+Map.getPersonAt(EITHER an Isopixel point object, or a Tile point object, or a screen pixel point object)
+Map.getTileAt(EITHER an Isopixel point object, or a Tile point object, or a screen pixel point object)
+
+Properties:
+
+Map.name
+Map.isoPixelWidth
+Map.isoPixelHeight
+Map.tileWidth
+map.tileHeight
+Map.persons[]
+Map.layers[]
+
+Multi-instance Layer object:
+
+Constructor: Layer(name, tiles[] array of strings, [obstruction[] array of strings, heightMap[] array of strings, heightOffset, opacity, heightDifference])
+
+Properties:
+
+Layer.name
+Layer.tiles[]
+Layer.obstruction[]
+Layer.heightMap[]
+Layer.heightOffset
+Layer.opacity
+Layer.heightDifference
+
+No Methods.
+
+Multi-instance Person object:
+
+Constructor: Person(name,x,y,layer,xml_file);
+
+Properties:
+
+Person.name
+Person.isoPixelPosition = isoPixelPoint
+Person.ScreenPosition = ScreenPoint
+Person.
+
+
+
+
+
+
