@@ -54,28 +54,23 @@ class Device(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, Device, name)
     __repr__ = _swig_repr
+    def setVideoMode(*args): return _annchienta.Device_setVideoMode(*args)
     def __init__(self, *args): 
         this = _annchienta.new_Device(*args)
         try: self.this.append(this)
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Device
     __del__ = lambda self : None;
-    def setVideoMode(*args): return _annchienta.Device_setVideoMode(*args)
 Device_swigregister = _annchienta.Device_swigregister
 Device_swigregister(Device)
 
+getDevice = _annchienta.getDevice
 class Painter(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Painter, name, value)
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, Painter, name)
     __repr__ = _swig_repr
-    def __init__(self, *args): 
-        this = _annchienta.new_Painter(*args)
-        try: self.this.append(this)
-        except: self.this = this
-    __swig_destroy__ = _annchienta.delete_Painter
-    __del__ = lambda self : None;
     def reset(*args): return _annchienta.Painter_reset(*args)
     def translate(*args): return _annchienta.Painter_translate(*args)
     def rotate(*args): return _annchienta.Painter_rotate(*args)
@@ -85,9 +80,32 @@ class Painter(_object):
     def flip(*args): return _annchienta.Painter_flip(*args)
     def setColor(*args): return _annchienta.Painter_setColor(*args)
     def drawLine(*args): return _annchienta.Painter_drawLine(*args)
+    def __init__(self, *args): 
+        this = _annchienta.new_Painter(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Painter
+    __del__ = lambda self : None;
 Painter_swigregister = _annchienta.Painter_swigregister
 Painter_swigregister(Painter)
 
+getPainter = _annchienta.getPainter
+class InputManager(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, InputManager, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, InputManager, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_InputManager(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_InputManager
+    __del__ = lambda self : None;
+InputManager_swigregister = _annchienta.InputManager_swigregister
+InputManager_swigregister(InputManager)
+
+getInputManager = _annchienta.getInputManager
 class Surface(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Surface, name, value)

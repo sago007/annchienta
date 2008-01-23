@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+          PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <title>Annchienta - Python API</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+
+    <body>
+
+
+        <h1> Single-Instance and Multi-Instance Classes </h1>
+        <p>
+            All Single-Instance classes can be accessed using annchienta.getClassName().
+            <code>
+                import annchienta <br />
+                <br />
+                device = annchienta.getDevice() <br />
+            </code>
+            You should never use direct constructors for Single-Instance classes.
+
+            For Multi-Instance classes, you need the contructor. This is always annchienta.ClassName().
+            <code>
+                import annchienta <br />
+                <br />
+                surface = annchienta.Surface( "path/to/surface.png" ) <br />
+            </code>
+        </p>
+
+        <h1> Class List </h1>
+        <ul>
+            <li> <a href="#device"> Device </a> </li>
+            <li> <a href="#painter"> Painter </a> </li>
+            <li> <a href="#mapengine"> MapEngine </a> </li>
+            <li> <a href="#surface"> Surface </a> </li>
+            <li> <a href="#person"> Person </a> </li>
+        </ul>
+
+        <a name="device"> <h2> Device </h2> </a>
+        <a name="painter"> <h2> Painter </h2> </a>
+        <p>
+            Members:
+            <code>
+                import annchienta <br />
+                <br />
+                painter = annchienta.getPainter() <br />
+                painter.reset() <br />
+                painter.translate( x, y ) <br />
+                painter.rotate( degrees ) <br />
+                painter.scale( x, y ) <br />
+                painter.pushMatrix() <br />
+                painter.popMatrix() <br />
+                painter.setColor( r, g, b, a ) <br />
+                painter.drawLine( x1, y1, x2, y2 ) <br />
+            </code>
+            Note that you should ALWAYS reset the painter after obtaining it for the first time.
+        </p>
+
+        <a name="mapengine"> <h2> MapEngine </h2> </a>
+
+        <a name="surface"> <h2> Surface </h2> </a>
+        <a name="person"> <h2> Person </h2> </a>
+
+    </body>
+
+</html>

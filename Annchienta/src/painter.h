@@ -12,8 +12,10 @@ namespace Annchienta
         private:
 
         public:
-            Painter();
-            ~Painter();
+            #ifndef SWIG
+                Painter();
+                ~Painter();
+            #endif
 
             /** Resets matrix and colors.
              */
@@ -40,6 +42,9 @@ namespace Annchienta
              */
             void drawLine( int x1, int y1, int x2, int y2 );
     };
+
+    Painter *getPainter();
+
 };
 
 #endif

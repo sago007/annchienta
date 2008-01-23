@@ -1,14 +1,13 @@
 #include <Python.h>
 #include <SDL.h>
 
+#include "device.h"
+
 extern "C" void init_annchienta(void);
 
 int main( int argc, char **argv )
 {
-    /* Init various things.
-     */
-    Py_Initialize();
-    SDL_Init( SDL_INIT_EVERYTHING );
+    Annchienta::Device *device = new Annchienta::Device();
 
     char gameToRun[512];
 
@@ -31,17 +30,21 @@ int main( int argc, char **argv )
      */
     FILE *f = fopen( gameToRun, "r" );
 
-    /* Run it...
-     */
-    PyRun_SimpleFile( f, gameToRun );
+    if( f )
+    { 
+        /* Run it...
+        */
+        PyRun_SimpleFile( f, gameToRun );
 
-    /* Make sure we close the file we opened.
-     */
-    fclose( f );
+        /* Make sure we close the file we opened.
+        */
+        fclose( f );
+    }
+    else
+    {
+        printf( "Error - could not open %s\n", gameToRun );
+    }
 
-    /* Quit the things we initialized.
-     */
-    Py_Finalize();
-    SDL_Quit();
+    delete device;
 
 };

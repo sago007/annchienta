@@ -57,10 +57,8 @@ namespace Annchienta
             case 3:
                 format = GL_RGB;
                 break;
-            case 4:
+            case 4: default:
                 format = GL_RGBA;
-                break;
-            default:
                 break;
         }
 

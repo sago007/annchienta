@@ -9,8 +9,12 @@
 
 namespace Annchienta
 {
+    Painter *painter;
+
     Painter::Painter()
     {
+        painter = this;
+
         reset();
     }
 
@@ -73,10 +77,19 @@ namespace Annchienta
 
     void Painter::drawLine( int x1, int x2, int y1, int y2 )
     {
+        glDisable( GL_TEXTURE_2D );
+
         glBegin( GL_LINES );
             glVertex2f( x1, x2 );
             glVertex2f( y1, y2 );
         glEnd();
+
+        glEnable( GL_TEXTURE_2D );
+    }
+
+    Painter *getPainter()
+    {
+        return painter;
     }
 
 };

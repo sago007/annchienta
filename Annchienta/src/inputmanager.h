@@ -12,10 +12,15 @@ namespace Annchienta
         private:
 
         public:
-            InputManager();
-            ~InputManager();
+            #ifndef SWIG
+                InputManager();
+                ~InputManager();
+            #endif
 
     };
+
+    InputManager *getInputManager();
+
 };
 
 #endif

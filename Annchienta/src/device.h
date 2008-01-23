@@ -7,17 +7,27 @@
 
 namespace Annchienta
 {
+
+    class Painter;
+    class InputManager;
+
     class Device
     {
         private:
+            Painter *painter;
+            InputManager *inputManager;
 
         public:
-            Device();
-            ~Device();
+            #ifndef SWIG
+                Device();
+                ~Device();
+            #endif
 
-            void setVideoMode( int w, int h, bool fullscreen );
+            void setVideoMode( int w, int h, bool fullscreen=false );
 
     };
+
+    Device *getDevice();
 };
 
 #endif
