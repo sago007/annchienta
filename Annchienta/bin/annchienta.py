@@ -56,6 +56,7 @@ class Device(_object):
     __repr__ = _swig_repr
     def setVideoMode(*args): return _annchienta.Device_setVideoMode(*args)
     def runPythonScript(*args): return _annchienta.Device_runPythonScript(*args)
+    def _print(*args): return _annchienta.Device__print(*args)
     def __init__(self, *args): 
         this = _annchienta.new_Device(*args)
         try: self.this.append(this)

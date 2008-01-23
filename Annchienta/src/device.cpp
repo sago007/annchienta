@@ -74,6 +74,11 @@ namespace Annchienta
         PyRun_SimpleString( buffer );
     }
 
+    void Device::print( const char *text ) const
+    {
+        printf( text );
+    }
+
     Device *getDevice()
     {
         return device;

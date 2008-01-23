@@ -40,24 +40,39 @@
         </ul>
 
         <a name="device"> <h2> Device </h2> </a>
+            <p>
+                The device is the main class in the Annchienta engine. You can perform some global actions with it.
+            </p>
+
+            <h3>annchienta.getDevice()</h3>
+            <p>
+                Returns the device.
+            </p>
+
+            <h3>device.setVideoMode( screenwidth, screenheight, fullscreen )</h3>
+            <p>
+                Sets the current video mode. Fullscreen is by default set to False.
+            </p>
+
         <a name="painter"> <h2> Painter </h2> </a>
-        <p>
-            Members:
-            <code>
-                import annchienta <br />
-                <br />
-                painter = annchienta.getPainter() <br />
-                painter.reset() <br />
-                painter.translate( x, y ) <br />
-                painter.rotate( degrees ) <br />
-                painter.scale( x, y ) <br />
-                painter.pushMatrix() <br />
-                painter.popMatrix() <br />
-                painter.setColor( r, g, b, a ) <br />
-                painter.drawLine( x1, y1, x2, y2 ) <br />
-            </code>
-            Note that you should ALWAYS reset the painter after obtaining it for the first time.
-        </p>
+            <p>
+                The painter class is used for basic drawing functions.
+            </p>
+
+            <h3>annchienta.getPainter()</h3>
+            <p>
+                Returns the painter. After this, you usually want to call painter.reset().
+            </p>
+
+            <h3>painter.reset()</h3>
+            <p>
+                Resets the painter's attributes: matrix, color...
+            </p>
+
+            <h3>painter.translate( x, y )</h3>
+            <p>
+                Multiplies the current matrix with a translation matrix.
+            </p>
 
         <a name="mapengine"> <h2> MapEngine </h2> </a>
 

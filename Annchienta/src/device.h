@@ -30,6 +30,12 @@ namespace Annchienta
              */
             void runPythonScript( const char *filename ) const;
 
+            /** Simply prints some text to stdout. This should be preferred
+             *  over the regular Python 'print' statement, because else, the
+             *  text might not appear when compiled under certain conditions.
+             */
+            void print( const char *text ) const;
+
     };
 
     Device *getDevice();
