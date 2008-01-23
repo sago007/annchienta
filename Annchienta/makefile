@@ -1,7 +1,7 @@
 #makefile for annchienta
 
-C_FLAGS = $(shell python-config --includes) $(shell sdl-config --cflags)
-LD_FLAGS = $(shell python-config --libs) $(shell sdl-config --libs) -lGL -lpng
+C_FLAGS = $(shell python-config --includes) $(shell sdl-config --cflags) -I/usr/include/freetype2
+LD_FLAGS = $(shell python-config --libs) $(shell sdl-config --libs) -lGL -lpng -lfreetype
 
 SWIG_CPP_FILE = src/annchienta_wrap.cpp
 SWIG_INTERFACE_FILE = src/annchienta_interface.i

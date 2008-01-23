@@ -124,5 +124,21 @@ class Surface(_object):
 Surface_swigregister = _annchienta.Surface_swigregister
 Surface_swigregister(Surface)
 
+class Font(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Font, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Font, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_Font(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Font
+    __del__ = lambda self : None;
+    def draw(*args): return _annchienta.Font_draw(*args)
+Font_swigregister = _annchienta.Font_swigregister
+Font_swigregister(Font)
+
 
 
