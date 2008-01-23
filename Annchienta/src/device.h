@@ -25,6 +25,11 @@ namespace Annchienta
 
             void setVideoMode( int w, int h, bool fullscreen=false );
 
+            /** Simply does what PyRun_SimpleFile does, but this is a
+             *  safer way...
+             */
+            void runPythonScript( const char *filename ) const;
+
     };
 
     Device *getDevice();

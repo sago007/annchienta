@@ -66,6 +66,14 @@ namespace Annchienta
         glMatrixMode( GL_MODELVIEW );
     }
 
+    void Device::runPythonScript( const char *filename ) const
+    {
+        char buffer[ strlen(filename)+32 ];
+        sprintf( buffer, "execfile(\"%s\")\n", filename );
+
+        PyRun_SimpleString( buffer );
+    }
+
     Device *getDevice()
     {
         return device;

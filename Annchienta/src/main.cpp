@@ -26,25 +26,10 @@ int main( int argc, char **argv )
      */
     PyRun_SimpleString( "from sys import path\nfrom os import getcwdu\npath.append( getcwdu() )" );
 
-    /* Open the file for reading.
+    /* Run our game.
      */
-    FILE *f = fopen( gameToRun, "r" );
-
-    if( f )
-    { 
-        /* Run it...
-        */
-        PyRun_SimpleFile( f, gameToRun );
-
-        /* Make sure we close the file we opened.
-        */
-        fclose( f );
-    }
-    else
-    {
-        printf( "Error - could not open %s\n", gameToRun );
-    }
-
+    device->runPythonScript( gameToRun );
+ 
     delete device;
 
 };

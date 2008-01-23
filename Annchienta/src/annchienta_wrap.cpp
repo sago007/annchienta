@@ -2732,22 +2732,6 @@ SWIG_AsVal_bool (PyObject *obj, bool *val)
 }
 
 
-SWIGINTERN int
-SWIG_AsVal_float (PyObject * obj, float *val)
-{
-  double v;
-  int res = SWIG_AsVal_double (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v < -FLT_MAX || v > FLT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< float >(v);
-    }
-  }  
-  return res;
-}
-
-
 SWIGINTERN swig_type_info*
 SWIG_pchar_descriptor(void)
 {
@@ -2814,6 +2798,22 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 
 
 
+
+
+SWIGINTERN int
+SWIG_AsVal_float (PyObject * obj, float *val)
+{
+  double v;
+  int res = SWIG_AsVal_double (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v < -FLT_MAX || v > FLT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< float >(v);
+    }
+  }  
+  return res;
+}
 
 #ifdef __cplusplus
 extern "C" {
@@ -2970,6 +2970,39 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Device_runPythonScript(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Device *arg1 = (Annchienta::Device *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Device_runPythonScript",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Device, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Device_runPythonScript" "', argument " "1"" of type '" "Annchienta::Device const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Device * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Device_runPythonScript" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ((Annchienta::Device const *)arg1)->runPythonScript((char const *)arg2);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_Device(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Device *result = 0 ;
@@ -3064,7 +3097,7 @@ SWIGINTERN PyObject *_wrap_Painter_translate(PyObject *SWIGUNUSEDPARM(self), PyO
   if (!PyArg_ParseTuple(args,(char *)"OOO:Painter_translate",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_translate" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_translate" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
@@ -3077,7 +3110,7 @@ SWIGINTERN PyObject *_wrap_Painter_translate(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_translate" "', argument " "3"" of type '" "float""'");
   } 
   arg3 = static_cast< float >(val3);
-  (arg1)->translate(arg2,arg3);
+  ((Annchienta::Painter const *)arg1)->translate(arg2,arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3099,7 +3132,7 @@ SWIGINTERN PyObject *_wrap_Painter_rotate(PyObject *SWIGUNUSEDPARM(self), PyObje
   if (!PyArg_ParseTuple(args,(char *)"OO:Painter_rotate",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_rotate" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_rotate" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
@@ -3107,7 +3140,7 @@ SWIGINTERN PyObject *_wrap_Painter_rotate(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_rotate" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->rotate(arg2);
+  ((Annchienta::Painter const *)arg1)->rotate(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3133,7 +3166,7 @@ SWIGINTERN PyObject *_wrap_Painter_scale(PyObject *SWIGUNUSEDPARM(self), PyObjec
   if (!PyArg_ParseTuple(args,(char *)"OOO:Painter_scale",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_scale" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_scale" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
@@ -3146,7 +3179,7 @@ SWIGINTERN PyObject *_wrap_Painter_scale(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_scale" "', argument " "3"" of type '" "float""'");
   } 
   arg3 = static_cast< float >(val3);
-  (arg1)->scale(arg2,arg3);
+  ((Annchienta::Painter const *)arg1)->scale(arg2,arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3164,10 +3197,10 @@ SWIGINTERN PyObject *_wrap_Painter_pushMatrix(PyObject *SWIGUNUSEDPARM(self), Py
   if (!PyArg_ParseTuple(args,(char *)"O:Painter_pushMatrix",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_pushMatrix" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_pushMatrix" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
-  (arg1)->pushMatrix();
+  ((Annchienta::Painter const *)arg1)->pushMatrix();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3185,10 +3218,10 @@ SWIGINTERN PyObject *_wrap_Painter_popMatrix(PyObject *SWIGUNUSEDPARM(self), PyO
   if (!PyArg_ParseTuple(args,(char *)"O:Painter_popMatrix",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_popMatrix" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_popMatrix" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
-  (arg1)->popMatrix();
+  ((Annchienta::Painter const *)arg1)->popMatrix();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3206,10 +3239,10 @@ SWIGINTERN PyObject *_wrap_Painter_flip(PyObject *SWIGUNUSEDPARM(self), PyObject
   if (!PyArg_ParseTuple(args,(char *)"O:Painter_flip",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_flip" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_flip" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
-  (arg1)->flip();
+  ((Annchienta::Painter const *)arg1)->flip();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3243,7 +3276,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_0(PyObject *SWIGUNUSEDPARM(sel
   if (!PyArg_ParseTuple(args,(char *)"OOOOO:Painter_setColor",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
@@ -3266,7 +3299,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_0(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Painter_setColor" "', argument " "5"" of type '" "int""'");
   } 
   arg5 = static_cast< int >(val5);
-  (arg1)->setColor(arg2,arg3,arg4,arg5);
+  ((Annchienta::Painter const *)arg1)->setColor(arg2,arg3,arg4,arg5);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3296,7 +3329,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_1(PyObject *SWIGUNUSEDPARM(sel
   if (!PyArg_ParseTuple(args,(char *)"OOOO:Painter_setColor",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
@@ -3314,7 +3347,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_1(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Painter_setColor" "', argument " "4"" of type '" "int""'");
   } 
   arg4 = static_cast< int >(val4);
-  (arg1)->setColor(arg2,arg3,arg4);
+  ((Annchienta::Painter const *)arg1)->setColor(arg2,arg3,arg4);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3340,7 +3373,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_2(PyObject *SWIGUNUSEDPARM(sel
   if (!PyArg_ParseTuple(args,(char *)"OOO:Painter_setColor",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
@@ -3353,7 +3386,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_2(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_setColor" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  (arg1)->setColor(arg2,arg3);
+  ((Annchienta::Painter const *)arg1)->setColor(arg2,arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3375,7 +3408,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_3(PyObject *SWIGUNUSEDPARM(sel
   if (!PyArg_ParseTuple(args,(char *)"OO:Painter_setColor",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
@@ -3383,7 +3416,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_3(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_setColor" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setColor(arg2);
+  ((Annchienta::Painter const *)arg1)->setColor(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3401,10 +3434,10 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_4(PyObject *SWIGUNUSEDPARM(sel
   if (!PyArg_ParseTuple(args,(char *)"O:Painter_setColor",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
-  (arg1)->setColor();
+  ((Annchienta::Painter const *)arg1)->setColor();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3560,7 +3593,7 @@ SWIGINTERN PyObject *_wrap_Painter_drawLine(PyObject *SWIGUNUSEDPARM(self), PyOb
   if (!PyArg_ParseTuple(args,(char *)"OOOOO:Painter_drawLine",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_drawLine" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_drawLine" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
@@ -3583,7 +3616,82 @@ SWIGINTERN PyObject *_wrap_Painter_drawLine(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Painter_drawLine" "', argument " "5"" of type '" "int""'");
   } 
   arg5 = static_cast< int >(val5);
-  (arg1)->drawLine(arg2,arg3,arg4,arg5);
+  ((Annchienta::Painter const *)arg1)->drawLine(arg2,arg3,arg4,arg5);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Painter_drawTriangle(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  int arg7 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  PyObject * obj6 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOOO:Painter_drawTriangle",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_drawTriangle" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_drawTriangle" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_drawTriangle" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Painter_drawTriangle" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Painter_drawTriangle" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "Painter_drawTriangle" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_int(obj6, &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "Painter_drawTriangle" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  ((Annchienta::Painter const *)arg1)->drawTriangle(arg2,arg3,arg4,arg5,arg6,arg7);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3930,6 +4038,7 @@ SWIGINTERN PyObject *Surface_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
 
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"Device_setVideoMode", _wrap_Device_setVideoMode, METH_VARARGS, NULL},
+	 { (char *)"Device_runPythonScript", _wrap_Device_runPythonScript, METH_VARARGS, NULL},
 	 { (char *)"new_Device", _wrap_new_Device, METH_VARARGS, NULL},
 	 { (char *)"delete_Device", _wrap_delete_Device, METH_VARARGS, NULL},
 	 { (char *)"Device_swigregister", Device_swigregister, METH_VARARGS, NULL},
@@ -3943,6 +4052,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Painter_flip", _wrap_Painter_flip, METH_VARARGS, NULL},
 	 { (char *)"Painter_setColor", _wrap_Painter_setColor, METH_VARARGS, NULL},
 	 { (char *)"Painter_drawLine", _wrap_Painter_drawLine, METH_VARARGS, NULL},
+	 { (char *)"Painter_drawTriangle", _wrap_Painter_drawTriangle, METH_VARARGS, NULL},
 	 { (char *)"new_Painter", _wrap_new_Painter, METH_VARARGS, NULL},
 	 { (char *)"delete_Painter", _wrap_delete_Painter, METH_VARARGS, NULL},
 	 { (char *)"Painter_swigregister", Painter_swigregister, METH_VARARGS, NULL},

@@ -55,6 +55,7 @@ class Device(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, Device, name)
     __repr__ = _swig_repr
     def setVideoMode(*args): return _annchienta.Device_setVideoMode(*args)
+    def runPythonScript(*args): return _annchienta.Device_runPythonScript(*args)
     def __init__(self, *args): 
         this = _annchienta.new_Device(*args)
         try: self.this.append(this)
@@ -80,6 +81,7 @@ class Painter(_object):
     def flip(*args): return _annchienta.Painter_flip(*args)
     def setColor(*args): return _annchienta.Painter_setColor(*args)
     def drawLine(*args): return _annchienta.Painter_drawLine(*args)
+    def drawTriangle(*args): return _annchienta.Painter_drawTriangle(*args)
     def __init__(self, *args): 
         this = _annchienta.new_Painter(*args)
         try: self.this.append(this)
