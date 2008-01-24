@@ -32,7 +32,15 @@ namespace Annchienta
 
             ~Surface();
 
-            void draw( int x, int y );
+            int getWidth() const;
+            int getHeight() const;
+
+            #ifndef SWIG
+                void draw( int x, int y ) const;
+                GLuint getTexture() const;
+                int getGlWidth() const;
+                int getGlHeight() const;
+            #endif
 
     };
 };

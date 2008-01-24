@@ -8,13 +8,13 @@
 namespace Annchienta
 {
 
-    class Painter;
+    class VideoManager;
     class InputManager;
 
     class Device
     {
         private:
-            Painter *painter;
+            VideoManager *videoManager;
             InputManager *inputManager;
 
         public:
@@ -22,8 +22,6 @@ namespace Annchienta
                 Device();
                 ~Device();
             #endif
-
-            void setVideoMode( int w, int h, const char *title="Annchienta RPG Engine", bool fullscreen=false );
 
             /** Simply does what PyRun_SimpleFile does, but this is a
              *  safer way...

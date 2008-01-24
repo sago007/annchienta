@@ -8,6 +8,16 @@
 namespace Annchienta
 {
     const int nearestPowerOfTwo( const int &input );
+
+    #ifndef SWIG
+        template <class T>
+        void swap( T &a, T &b )
+        {
+            T temp = a;
+            a = b;
+            b = temp;
+        }
+    #endif
 };
 
 #endif

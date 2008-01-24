@@ -24,7 +24,13 @@ namespace Annchienta
             Font( const char *filename, int height );
             ~Font();
 
-            void draw( int x, int y, const char *text );
+            int getHeight() const;
+            int getLineHeight() const;
+            int getStringWidth( const char *text ) const;
+
+            #ifndef SWIG
+                void draw( const char *text, int x, int y ) const;
+            #endif
     };
 };
 

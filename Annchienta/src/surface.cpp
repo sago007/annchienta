@@ -19,9 +19,9 @@ namespace Annchienta
         /* Find out texture coords.
          */
         leftTexCoord = 0.0f;
-        topTexCoord = 0.0f;
-        rightTexCoord = (float)width/(float)glWidth;
-        bottomTexCoord = (float)height/(float)glHeight;
+        topTexCoord = 1.0f;
+        rightTexCoord = (float)(width)/(float)(glWidth);
+        bottomTexCoord = 1.0 - (float)(height)/(float)(glHeight);
 
         /* If there already is a texture, delete it.
          */
@@ -201,9 +201,10 @@ namespace Annchienta
             {
                 png_byte *row = row_pointers[y];
                 unsigned int firstByte = x * pixelSize;
+                int my = glHeight - y - 1;
                 for( unsigned int b=0; b<pixelSize; b++ )
                 {
-                    pixels[ glWidth*pixelSize*y + x*pixelSize + b ] = row[ firstByte + b ];
+                    pixels[ glWidth*pixelSize*my + x*pixelSize + b ] = row[ firstByte + b ];
                 }
             }
         }
@@ -225,7 +226,17 @@ namespace Annchienta
         delete[] pixels;
     }
 
-    void Surface::draw( int x, int y )
+    int Surface::getWidth() const
+    {
+        return width;
+    }
+
+    int Surface::getHeight() const
+    {
+        return height;
+    }
+
+    void Surface::draw( int x, int y ) const
     {
         glPushMatrix();
 
@@ -235,5 +246,19 @@ namespace Annchienta
         glPopMatrix();
     }
 
+    GLuint Surface::getTexture() const
+    {
+        return texture;
+    }
+
+    int Surface::getGlWidth() const
+    {
+        return glWidth;
+    }
+
+    int Surface::getGlHeight() const
+    {
+        return glHeight;
+    }
 
 };

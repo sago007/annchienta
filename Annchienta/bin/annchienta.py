@@ -54,7 +54,6 @@ class Device(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, Device, name)
     __repr__ = _swig_repr
-    def setVideoMode(*args): return _annchienta.Device_setVideoMode(*args)
     def runPythonScript(*args): return _annchienta.Device_runPythonScript(*args)
     def write(*args): return _annchienta.Device_write(*args)
     def __init__(self, *args): 
@@ -67,32 +66,38 @@ Device_swigregister = _annchienta.Device_swigregister
 Device_swigregister(Device)
 
 getDevice = _annchienta.getDevice
-class Painter(_object):
+class VideoManager(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Painter, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, VideoManager, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Painter, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, VideoManager, name)
     __repr__ = _swig_repr
-    def reset(*args): return _annchienta.Painter_reset(*args)
-    def translate(*args): return _annchienta.Painter_translate(*args)
-    def rotate(*args): return _annchienta.Painter_rotate(*args)
-    def scale(*args): return _annchienta.Painter_scale(*args)
-    def pushMatrix(*args): return _annchienta.Painter_pushMatrix(*args)
-    def popMatrix(*args): return _annchienta.Painter_popMatrix(*args)
-    def flip(*args): return _annchienta.Painter_flip(*args)
-    def setColor(*args): return _annchienta.Painter_setColor(*args)
-    def drawLine(*args): return _annchienta.Painter_drawLine(*args)
-    def drawTriangle(*args): return _annchienta.Painter_drawTriangle(*args)
+    def setVideoMode(*args): return _annchienta.VideoManager_setVideoMode(*args)
+    def getScreenWidth(*args): return _annchienta.VideoManager_getScreenWidth(*args)
+    def getScreenHeight(*args): return _annchienta.VideoManager_getScreenHeight(*args)
+    def reset(*args): return _annchienta.VideoManager_reset(*args)
+    def translate(*args): return _annchienta.VideoManager_translate(*args)
+    def rotate(*args): return _annchienta.VideoManager_rotate(*args)
+    def scale(*args): return _annchienta.VideoManager_scale(*args)
+    def pushMatrix(*args): return _annchienta.VideoManager_pushMatrix(*args)
+    def popMatrix(*args): return _annchienta.VideoManager_popMatrix(*args)
+    def flip(*args): return _annchienta.VideoManager_flip(*args)
+    def setColor(*args): return _annchienta.VideoManager_setColor(*args)
+    def drawLine(*args): return _annchienta.VideoManager_drawLine(*args)
+    def drawTriangle(*args): return _annchienta.VideoManager_drawTriangle(*args)
+    def drawSurface(*args): return _annchienta.VideoManager_drawSurface(*args)
+    def drawText(*args): return _annchienta.VideoManager_drawText(*args)
+    def grabBuffer(*args): return _annchienta.VideoManager_grabBuffer(*args)
     def __init__(self, *args): 
-        this = _annchienta.new_Painter(*args)
+        this = _annchienta.new_VideoManager(*args)
         try: self.this.append(this)
         except: self.this = this
-    __swig_destroy__ = _annchienta.delete_Painter
+    __swig_destroy__ = _annchienta.delete_VideoManager
     __del__ = lambda self : None;
-Painter_swigregister = _annchienta.Painter_swigregister
-Painter_swigregister(Painter)
+VideoManager_swigregister = _annchienta.VideoManager_swigregister
+VideoManager_swigregister(VideoManager)
 
-getPainter = _annchienta.getPainter
+getVideoManager = _annchienta.getVideoManager
 class InputManager(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, InputManager, name, value)
@@ -126,7 +131,8 @@ class Surface(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Surface
     __del__ = lambda self : None;
-    def draw(*args): return _annchienta.Surface_draw(*args)
+    def getWidth(*args): return _annchienta.Surface_getWidth(*args)
+    def getHeight(*args): return _annchienta.Surface_getHeight(*args)
 Surface_swigregister = _annchienta.Surface_swigregister
 Surface_swigregister(Surface)
 
@@ -142,7 +148,9 @@ class Font(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Font
     __del__ = lambda self : None;
-    def draw(*args): return _annchienta.Font_draw(*args)
+    def getHeight(*args): return _annchienta.Font_getHeight(*args)
+    def getLineHeight(*args): return _annchienta.Font_getLineHeight(*args)
+    def getStringWidth(*args): return _annchienta.Font_getStringWidth(*args)
 Font_swigregister = _annchienta.Font_swigregister
 Font_swigregister(Font)
 

@@ -2468,8 +2468,8 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__Device swig_types[0]
 #define SWIGTYPE_p_Annchienta__Font swig_types[1]
 #define SWIGTYPE_p_Annchienta__InputManager swig_types[2]
-#define SWIGTYPE_p_Annchienta__Painter swig_types[3]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[4]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[3]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[4]
 #define SWIGTYPE_p_SDLKey swig_types[5]
 #define SWIGTYPE_p_SDLMod swig_types[6]
 #define SWIGTYPE_p_char swig_types[7]
@@ -2565,10 +2565,78 @@ namespace swig {
 
 
 #include "device.h"
-#include "painter.h"
+#include "videomanager.h"
 #include "inputmanager.h"
 #include "surface.h"
 #include "font.h"
+
+
+SWIGINTERN swig_type_info*
+SWIG_pchar_descriptor(void)
+{
+  static int init = 0;
+  static swig_type_info* info = 0;
+  if (!init) {
+    info = SWIG_TypeQuery("_p_char");
+    init = 1;
+  }
+  return info;
+}
+
+
+SWIGINTERN int
+SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
+{
+  if (PyString_Check(obj)) {
+    char *cstr; Py_ssize_t len;
+    PyString_AsStringAndSize(obj, &cstr, &len);
+    if (cptr)  {
+      if (alloc) {
+	/* 
+	   In python the user should not be able to modify the inner
+	   string representation. To warranty that, if you define
+	   SWIG_PYTHON_SAFE_CSTRINGS, a new/copy of the python string
+	   buffer is always returned.
+
+	   The default behavior is just to return the pointer value,
+	   so, be careful.
+	*/ 
+#if defined(SWIG_PYTHON_SAFE_CSTRINGS)
+	if (*alloc != SWIG_OLDOBJ) 
+#else
+	if (*alloc == SWIG_NEWOBJ) 
+#endif
+	  {
+	    *cptr = reinterpret_cast< char* >(memcpy((new char[len + 1]), cstr, sizeof(char)*(len + 1)));
+	    *alloc = SWIG_NEWOBJ;
+	  }
+	else {
+	  *cptr = cstr;
+	  *alloc = SWIG_OLDOBJ;
+	}
+      } else {
+	*cptr = PyString_AsString(obj);
+      }
+    }
+    if (psize) *psize = len + 1;
+    return SWIG_OK;
+  } else {
+    swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+    if (pchar_descriptor) {
+      void* vptr = 0;
+      if (SWIG_ConvertPtr(obj, &vptr, pchar_descriptor, 0) == SWIG_OK) {
+	if (cptr) *cptr = (char *) vptr;
+	if (psize) *psize = vptr ? (strlen((char *)vptr) + 1) : 0;
+	if (alloc) *alloc = SWIG_OLDOBJ;
+	return SWIG_OK;
+      }
+    }
+  }
+  return SWIG_TypeError;
+}
+
+
+
 
 
 #include <limits.h>
@@ -2718,74 +2786,6 @@ SWIG_AsVal_int (PyObject * obj, int *val)
 }
 
 
-SWIGINTERN swig_type_info*
-SWIG_pchar_descriptor(void)
-{
-  static int init = 0;
-  static swig_type_info* info = 0;
-  if (!init) {
-    info = SWIG_TypeQuery("_p_char");
-    init = 1;
-  }
-  return info;
-}
-
-
-SWIGINTERN int
-SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
-{
-  if (PyString_Check(obj)) {
-    char *cstr; Py_ssize_t len;
-    PyString_AsStringAndSize(obj, &cstr, &len);
-    if (cptr)  {
-      if (alloc) {
-	/* 
-	   In python the user should not be able to modify the inner
-	   string representation. To warranty that, if you define
-	   SWIG_PYTHON_SAFE_CSTRINGS, a new/copy of the python string
-	   buffer is always returned.
-
-	   The default behavior is just to return the pointer value,
-	   so, be careful.
-	*/ 
-#if defined(SWIG_PYTHON_SAFE_CSTRINGS)
-	if (*alloc != SWIG_OLDOBJ) 
-#else
-	if (*alloc == SWIG_NEWOBJ) 
-#endif
-	  {
-	    *cptr = reinterpret_cast< char* >(memcpy((new char[len + 1]), cstr, sizeof(char)*(len + 1)));
-	    *alloc = SWIG_NEWOBJ;
-	  }
-	else {
-	  *cptr = cstr;
-	  *alloc = SWIG_OLDOBJ;
-	}
-      } else {
-	*cptr = PyString_AsString(obj);
-      }
-    }
-    if (psize) *psize = len + 1;
-    return SWIG_OK;
-  } else {
-    swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-    if (pchar_descriptor) {
-      void* vptr = 0;
-      if (SWIG_ConvertPtr(obj, &vptr, pchar_descriptor, 0) == SWIG_OK) {
-	if (cptr) *cptr = (char *) vptr;
-	if (psize) *psize = vptr ? (strlen((char *)vptr) + 1) : 0;
-	if (alloc) *alloc = SWIG_OLDOBJ;
-	return SWIG_OK;
-      }
-    }
-  }
-  return SWIG_TypeError;
-}
-
-
-
-
-
 SWIGINTERN int
 SWIG_AsVal_bool (PyObject *obj, bool *val)
 {
@@ -2801,6 +2801,16 @@ SWIG_AsVal_bool (PyObject *obj, bool *val)
     if (SWIG_IsOK(res) && val) *val = v ? true : false;
     return res;
   }
+}
+
+
+  #define SWIG_From_long   PyInt_FromLong 
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_int  (int value)
+{    
+  return SWIG_From_long  (value);
 }
 
 
@@ -2826,263 +2836,9 @@ SWIGINTERNINLINE PyObject*
   return PyBool_FromLong(value ? 1 : 0);
 }
 
-
-  #define SWIG_From_long   PyInt_FromLong 
-
-
-SWIGINTERNINLINE PyObject *
-SWIG_From_int  (int value)
-{    
-  return SWIG_From_long  (value);
-}
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-SWIGINTERN PyObject *_wrap_Device_setVideoMode__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::Device *arg1 = (Annchienta::Device *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  char *arg4 = (char *) 0 ;
-  bool arg5 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int res4 ;
-  char *buf4 = 0 ;
-  int alloc4 = 0 ;
-  bool val5 ;
-  int ecode5 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:Device_setVideoMode",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Device, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Device_setVideoMode" "', argument " "1"" of type '" "Annchienta::Device *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::Device * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Device_setVideoMode" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Device_setVideoMode" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Device_setVideoMode" "', argument " "4"" of type '" "char const *""'");
-  }
-  arg4 = reinterpret_cast< char * >(buf4);
-  ecode5 = SWIG_AsVal_bool(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Device_setVideoMode" "', argument " "5"" of type '" "bool""'");
-  } 
-  arg5 = static_cast< bool >(val5);
-  (arg1)->setVideoMode(arg2,arg3,(char const *)arg4,arg5);
-  resultobj = SWIG_Py_Void();
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
-  return resultobj;
-fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Device_setVideoMode__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::Device *arg1 = (Annchienta::Device *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  char *arg4 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int res4 ;
-  char *buf4 = 0 ;
-  int alloc4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:Device_setVideoMode",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Device, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Device_setVideoMode" "', argument " "1"" of type '" "Annchienta::Device *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::Device * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Device_setVideoMode" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Device_setVideoMode" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Device_setVideoMode" "', argument " "4"" of type '" "char const *""'");
-  }
-  arg4 = reinterpret_cast< char * >(buf4);
-  (arg1)->setVideoMode(arg2,arg3,(char const *)arg4);
-  resultobj = SWIG_Py_Void();
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
-  return resultobj;
-fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Device_setVideoMode__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::Device *arg1 = (Annchienta::Device *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Device_setVideoMode",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Device, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Device_setVideoMode" "', argument " "1"" of type '" "Annchienta::Device *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::Device * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Device_setVideoMode" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Device_setVideoMode" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  (arg1)->setVideoMode(arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Device_setVideoMode(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[6];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 5); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Device, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_Device_setVideoMode__SWIG_2(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Device, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            return _wrap_Device_setVideoMode__SWIG_1(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Device, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            {
-              int res = SWIG_AsVal_bool(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              return _wrap_Device_setVideoMode__SWIG_0(self, args);
-            }
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Device_setVideoMode'.\n  Possible C/C++ prototypes are:\n    setVideoMode(int,int,char const *,bool)\n    setVideoMode(int,int,char const *)\n    setVideoMode(int,int)\n");
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Device_runPythonScript(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Device *arg1 = (Annchienta::Device *) 0 ;
@@ -3204,19 +2960,307 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_reset(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_setVideoMode__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  char *arg4 = (char *) 0 ;
+  bool arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  bool val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:VideoManager_setVideoMode",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_setVideoMode" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_setVideoMode" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_setVideoMode" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "VideoManager_setVideoMode" "', argument " "4"" of type '" "char const *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  ecode5 = SWIG_AsVal_bool(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_setVideoMode" "', argument " "5"" of type '" "bool""'");
+  } 
+  arg5 = static_cast< bool >(val5);
+  (arg1)->setVideoMode(arg2,arg3,(char const *)arg4,arg5);
+  resultobj = SWIG_Py_Void();
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return resultobj;
+fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_setVideoMode__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  char *arg4 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:VideoManager_setVideoMode",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_setVideoMode" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_setVideoMode" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_setVideoMode" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "VideoManager_setVideoMode" "', argument " "4"" of type '" "char const *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  (arg1)->setVideoMode(arg2,arg3,(char const *)arg4);
+  resultobj = SWIG_Py_Void();
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return resultobj;
+fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_setVideoMode__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:VideoManager_setVideoMode",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_setVideoMode" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_setVideoMode" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_setVideoMode" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  (arg1)->setVideoMode(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_setVideoMode(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[6];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 5); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__VideoManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_VideoManager_setVideoMode__SWIG_2(self, args);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__VideoManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_VideoManager_setVideoMode__SWIG_1(self, args);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__VideoManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            {
+              int res = SWIG_AsVal_bool(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              return _wrap_VideoManager_setVideoMode__SWIG_0(self, args);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'VideoManager_setVideoMode'.\n  Possible C/C++ prototypes are:\n    setVideoMode(int,int,char const *,bool)\n    setVideoMode(int,int,char const *)\n    setVideoMode(int,int)\n");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_getScreenWidth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  int result;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Painter_reset",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_getScreenWidth",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_reset" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_getScreenWidth" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  result = (int)((Annchienta::VideoManager const *)arg1)->getScreenWidth();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_getScreenHeight(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_getScreenHeight",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_getScreenHeight" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  result = (int)((Annchienta::VideoManager const *)arg1)->getScreenHeight();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_reset(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_reset",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_reset" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   (arg1)->reset();
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -3225,9 +3269,9 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_translate(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_translate(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   float arg2 ;
   float arg3 ;
   void *argp1 = 0 ;
@@ -3240,23 +3284,23 @@ SWIGINTERN PyObject *_wrap_Painter_translate(PyObject *SWIGUNUSEDPARM(self), PyO
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Painter_translate",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:VideoManager_translate",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_translate" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_translate" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_translate" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_translate" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
   ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_translate" "', argument " "3"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_translate" "', argument " "3"" of type '" "float""'");
   } 
   arg3 = static_cast< float >(val3);
-  ((Annchienta::Painter const *)arg1)->translate(arg2,arg3);
+  ((Annchienta::VideoManager const *)arg1)->translate(arg2,arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3264,9 +3308,9 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_rotate(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_rotate(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   float arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -3275,18 +3319,18 @@ SWIGINTERN PyObject *_wrap_Painter_rotate(PyObject *SWIGUNUSEDPARM(self), PyObje
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Painter_rotate",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:VideoManager_rotate",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_rotate" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_rotate" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_rotate" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_rotate" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  ((Annchienta::Painter const *)arg1)->rotate(arg2);
+  ((Annchienta::VideoManager const *)arg1)->rotate(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3294,9 +3338,9 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_scale(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_scale(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   float arg2 ;
   float arg3 ;
   void *argp1 = 0 ;
@@ -3309,23 +3353,23 @@ SWIGINTERN PyObject *_wrap_Painter_scale(PyObject *SWIGUNUSEDPARM(self), PyObjec
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Painter_scale",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:VideoManager_scale",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_scale" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_scale" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_scale" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_scale" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
   ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_scale" "', argument " "3"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_scale" "', argument " "3"" of type '" "float""'");
   } 
   arg3 = static_cast< float >(val3);
-  ((Annchienta::Painter const *)arg1)->scale(arg2,arg3);
+  ((Annchienta::VideoManager const *)arg1)->scale(arg2,arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3333,20 +3377,20 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_pushMatrix(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_pushMatrix(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Painter_pushMatrix",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_pushMatrix",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_pushMatrix" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_pushMatrix" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
-  ((Annchienta::Painter const *)arg1)->pushMatrix();
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  ((Annchienta::VideoManager const *)arg1)->pushMatrix();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3354,20 +3398,20 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_popMatrix(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_popMatrix(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Painter_popMatrix",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_popMatrix",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_popMatrix" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_popMatrix" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
-  ((Annchienta::Painter const *)arg1)->popMatrix();
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  ((Annchienta::VideoManager const *)arg1)->popMatrix();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3375,20 +3419,20 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_flip(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_flip(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Painter_flip",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_flip",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_flip" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_flip" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
-  ((Annchienta::Painter const *)arg1)->flip();
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  ((Annchienta::VideoManager const *)arg1)->flip();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3396,9 +3440,9 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_setColor__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   int arg2 ;
   int arg3 ;
   int arg4 ;
@@ -3419,33 +3463,33 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_0(PyObject *SWIGUNUSEDPARM(sel
   PyObject * obj3 = 0 ;
   PyObject * obj4 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:Painter_setColor",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:VideoManager_setColor",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_setColor" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_setColor" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_setColor" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_setColor" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_setColor" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Painter_setColor" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_setColor" "', argument " "4"" of type '" "int""'");
   } 
   arg4 = static_cast< int >(val4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Painter_setColor" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_setColor" "', argument " "5"" of type '" "int""'");
   } 
   arg5 = static_cast< int >(val5);
-  ((Annchienta::Painter const *)arg1)->setColor(arg2,arg3,arg4,arg5);
+  ((Annchienta::VideoManager const *)arg1)->setColor(arg2,arg3,arg4,arg5);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3453,9 +3497,9 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_setColor__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   int arg2 ;
   int arg3 ;
   int arg4 ;
@@ -3472,28 +3516,28 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_1(PyObject *SWIGUNUSEDPARM(sel
   PyObject * obj2 = 0 ;
   PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:Painter_setColor",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:VideoManager_setColor",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_setColor" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_setColor" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_setColor" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_setColor" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_setColor" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Painter_setColor" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_setColor" "', argument " "4"" of type '" "int""'");
   } 
   arg4 = static_cast< int >(val4);
-  ((Annchienta::Painter const *)arg1)->setColor(arg2,arg3,arg4);
+  ((Annchienta::VideoManager const *)arg1)->setColor(arg2,arg3,arg4);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3501,9 +3545,9 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_setColor__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   int arg2 ;
   int arg3 ;
   void *argp1 = 0 ;
@@ -3516,23 +3560,23 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_2(PyObject *SWIGUNUSEDPARM(sel
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Painter_setColor",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:VideoManager_setColor",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_setColor" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_setColor" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_setColor" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_setColor" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_setColor" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  ((Annchienta::Painter const *)arg1)->setColor(arg2,arg3);
+  ((Annchienta::VideoManager const *)arg1)->setColor(arg2,arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3540,9 +3584,9 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_setColor__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -3551,18 +3595,18 @@ SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_3(PyObject *SWIGUNUSEDPARM(sel
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Painter_setColor",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:VideoManager_setColor",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_setColor" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_setColor" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_setColor" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  ((Annchienta::Painter const *)arg1)->setColor(arg2);
+  ((Annchienta::VideoManager const *)arg1)->setColor(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3570,20 +3614,20 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_setColor__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_setColor__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Painter_setColor",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_setColor",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_setColor" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_setColor" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
-  ((Annchienta::Painter const *)arg1)->setColor();
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  ((Annchienta::VideoManager const *)arg1)->setColor();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3591,7 +3635,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_setColor(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_setColor(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[6];
   int ii;
@@ -3604,16 +3648,16 @@ SWIGINTERN PyObject *_wrap_Painter_setColor(PyObject *self, PyObject *args) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Painter, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__VideoManager, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Painter_setColor__SWIG_4(self, args);
+      return _wrap_VideoManager_setColor__SWIG_4(self, args);
     }
   }
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Painter, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__VideoManager, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -3621,14 +3665,14 @@ SWIGINTERN PyObject *_wrap_Painter_setColor(PyObject *self, PyObject *args) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Painter_setColor__SWIG_3(self, args);
+        return _wrap_VideoManager_setColor__SWIG_3(self, args);
       }
     }
   }
   if (argc == 3) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Painter, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__VideoManager, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -3641,7 +3685,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor(PyObject *self, PyObject *args) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Painter_setColor__SWIG_2(self, args);
+          return _wrap_VideoManager_setColor__SWIG_2(self, args);
         }
       }
     }
@@ -3649,7 +3693,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor(PyObject *self, PyObject *args) {
   if (argc == 4) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Painter, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__VideoManager, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -3667,7 +3711,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor(PyObject *self, PyObject *args) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Painter_setColor__SWIG_1(self, args);
+            return _wrap_VideoManager_setColor__SWIG_1(self, args);
           }
         }
       }
@@ -3676,7 +3720,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor(PyObject *self, PyObject *args) {
   if (argc == 5) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Painter, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__VideoManager, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -3699,7 +3743,7 @@ SWIGINTERN PyObject *_wrap_Painter_setColor(PyObject *self, PyObject *args) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Painter_setColor__SWIG_0(self, args);
+              return _wrap_VideoManager_setColor__SWIG_0(self, args);
             }
           }
         }
@@ -3708,14 +3752,14 @@ SWIGINTERN PyObject *_wrap_Painter_setColor(PyObject *self, PyObject *args) {
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Painter_setColor'.\n  Possible C/C++ prototypes are:\n    setColor(int,int,int,int)\n    setColor(int,int,int)\n    setColor(int,int)\n    setColor(int)\n    setColor()\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'VideoManager_setColor'.\n  Possible C/C++ prototypes are:\n    setColor(int,int,int,int)\n    setColor(int,int,int)\n    setColor(int,int)\n    setColor(int)\n    setColor()\n");
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_drawLine(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_drawLine(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   int arg2 ;
   int arg3 ;
   int arg4 ;
@@ -3736,33 +3780,33 @@ SWIGINTERN PyObject *_wrap_Painter_drawLine(PyObject *SWIGUNUSEDPARM(self), PyOb
   PyObject * obj3 = 0 ;
   PyObject * obj4 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:Painter_drawLine",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:VideoManager_drawLine",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_drawLine" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_drawLine" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_drawLine" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawLine" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_drawLine" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawLine" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Painter_drawLine" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawLine" "', argument " "4"" of type '" "int""'");
   } 
   arg4 = static_cast< int >(val4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Painter_drawLine" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawLine" "', argument " "5"" of type '" "int""'");
   } 
   arg5 = static_cast< int >(val5);
-  ((Annchienta::Painter const *)arg1)->drawLine(arg2,arg3,arg4,arg5);
+  ((Annchienta::VideoManager const *)arg1)->drawLine(arg2,arg3,arg4,arg5);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3770,9 +3814,9 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Painter_drawTriangle(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_drawTriangle(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   int arg2 ;
   int arg3 ;
   int arg4 ;
@@ -3801,43 +3845,43 @@ SWIGINTERN PyObject *_wrap_Painter_drawTriangle(PyObject *SWIGUNUSEDPARM(self), 
   PyObject * obj5 = 0 ;
   PyObject * obj6 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOO:Painter_drawTriangle",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOOO:VideoManager_drawTriangle",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Painter_drawTriangle" "', argument " "1"" of type '" "Annchienta::Painter const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_drawTriangle" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Painter_drawTriangle" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawTriangle" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Painter_drawTriangle" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawTriangle" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Painter_drawTriangle" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawTriangle" "', argument " "4"" of type '" "int""'");
   } 
   arg4 = static_cast< int >(val4);
   ecode5 = SWIG_AsVal_int(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Painter_drawTriangle" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawTriangle" "', argument " "5"" of type '" "int""'");
   } 
   arg5 = static_cast< int >(val5);
   ecode6 = SWIG_AsVal_int(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "Painter_drawTriangle" "', argument " "6"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawTriangle" "', argument " "6"" of type '" "int""'");
   } 
   arg6 = static_cast< int >(val6);
   ecode7 = SWIG_AsVal_int(obj6, &val7);
   if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "Painter_drawTriangle" "', argument " "7"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "VideoManager_drawTriangle" "', argument " "7"" of type '" "int""'");
   } 
   arg7 = static_cast< int >(val7);
-  ((Annchienta::Painter const *)arg1)->drawTriangle(arg2,arg3,arg4,arg5,arg6,arg7);
+  ((Annchienta::VideoManager const *)arg1)->drawTriangle(arg2,arg3,arg4,arg5,arg6,arg7);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3845,32 +3889,292 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_new_Painter(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_drawSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *result = 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  Annchienta::Surface *arg2 = (Annchienta::Surface *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)":new_Painter")) SWIG_fail;
-  result = (Annchienta::Painter *)new Annchienta::Painter();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Painter, SWIG_POINTER_NEW |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:VideoManager_drawSurface",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_drawSurface" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "VideoManager_drawSurface" "', argument " "2"" of type '" "Annchienta::Surface *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Surface * >(argp2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawSurface" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawSurface" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ((Annchienta::VideoManager const *)arg1)->drawSurface(arg2,arg3,arg4);
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_delete_Painter(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_drawText(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *arg1 = (Annchienta::Painter *) 0 ;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  Annchienta::Font *arg2 = (Annchienta::Font *) 0 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:VideoManager_drawText",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_drawText" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Font, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "VideoManager_drawText" "', argument " "2"" of type '" "Annchienta::Font *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Font * >(argp2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "VideoManager_drawText" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawText" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawText" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ((Annchienta::VideoManager const *)arg1)->drawText(arg2,(char const *)arg3,arg4,arg5);
+  resultobj = SWIG_Py_Void();
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_grabBuffer__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  Annchienta::Surface *arg2 = (Annchienta::Surface *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:VideoManager_grabBuffer",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_grabBuffer" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "VideoManager_grabBuffer" "', argument " "2"" of type '" "Annchienta::Surface *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Surface * >(argp2);
+  ((Annchienta::VideoManager const *)arg1)->grabBuffer(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_grabBuffer__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  Annchienta::Surface *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:VideoManager_grabBuffer",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_grabBuffer" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_grabBuffer" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_grabBuffer" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_grabBuffer" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_grabBuffer" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  result = (Annchienta::Surface *)((Annchienta::VideoManager const *)arg1)->grabBuffer(arg2,arg3,arg4,arg5);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_grabBuffer(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[6];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 5); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__VideoManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Annchienta__Surface, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_VideoManager_grabBuffer__SWIG_0(self, args);
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__VideoManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            {
+              int res = SWIG_AsVal_int(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              return _wrap_VideoManager_grabBuffer__SWIG_1(self, args);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'VideoManager_grabBuffer'.\n  Possible C/C++ prototypes are:\n    grabBuffer(Annchienta::Surface *)\n    grabBuffer(int,int,int,int)\n");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_VideoManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_VideoManager")) SWIG_fail;
+  result = (Annchienta::VideoManager *)new Annchienta::VideoManager();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__VideoManager, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_VideoManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_Painter",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Painter, SWIG_POINTER_DISOWN |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_VideoManager",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, SWIG_POINTER_DISOWN |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Painter" "', argument " "1"" of type '" "Annchienta::Painter *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_VideoManager" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::Painter * >(argp1);
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
   delete arg1;
   
   resultobj = SWIG_Py_Void();
@@ -3880,20 +4184,20 @@ fail:
 }
 
 
-SWIGINTERN PyObject *Painter_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *VideoManager_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__Painter, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__VideoManager, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_getPainter(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_getVideoManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Painter *result = 0 ;
+  Annchienta::VideoManager *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)":getPainter")) SWIG_fail;
-  result = (Annchienta::Painter *)Annchienta::getPainter();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Painter, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)":getVideoManager")) SWIG_fail;
+  result = (Annchienta::VideoManager *)Annchienta::getVideoManager();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -4262,39 +4566,44 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Surface_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Surface_getWidth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Surface *arg1 = (Annchienta::Surface *) 0 ;
-  int arg2 ;
-  int arg3 ;
+  int result;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Surface_draw",&obj0,&obj1,&obj2)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:Surface_getWidth",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Surface_draw" "', argument " "1"" of type '" "Annchienta::Surface *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Surface_getWidth" "', argument " "1"" of type '" "Annchienta::Surface const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Surface * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Surface_draw" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Surface_draw" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  (arg1)->draw(arg2,arg3);
-  resultobj = SWIG_Py_Void();
+  result = (int)((Annchienta::Surface const *)arg1)->getWidth();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Surface_getHeight(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Surface *arg1 = (Annchienta::Surface *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Surface_getHeight",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Surface_getHeight" "', argument " "1"" of type '" "Annchienta::Surface const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Surface * >(argp1);
+  result = (int)((Annchienta::Surface const *)arg1)->getHeight();
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -4364,53 +4673,80 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Font_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Font_getHeight(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Font *arg1 = (Annchienta::Font *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  char *arg4 = (char *) 0 ;
+  int result;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int res4 ;
-  char *buf4 = 0 ;
-  int alloc4 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:Font_draw",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:Font_getHeight",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Font, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Font_draw" "', argument " "1"" of type '" "Annchienta::Font *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Font_getHeight" "', argument " "1"" of type '" "Annchienta::Font const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Font * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Font_draw" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Font_draw" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Font_draw" "', argument " "4"" of type '" "char const *""'");
-  }
-  arg4 = reinterpret_cast< char * >(buf4);
-  (arg1)->draw(arg2,arg3,(char const *)arg4);
-  resultobj = SWIG_Py_Void();
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  result = (int)((Annchienta::Font const *)arg1)->getHeight();
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Font_getLineHeight(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Font *arg1 = (Annchienta::Font *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Font_getLineHeight",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Font, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Font_getLineHeight" "', argument " "1"" of type '" "Annchienta::Font const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Font * >(argp1);
+  result = (int)((Annchienta::Font const *)arg1)->getLineHeight();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Font_getStringWidth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Font *arg1 = (Annchienta::Font *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Font_getStringWidth",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Font, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Font_getStringWidth" "', argument " "1"" of type '" "Annchienta::Font const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Font * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Font_getStringWidth" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  result = (int)((Annchienta::Font const *)arg1)->getStringWidth((char const *)arg2);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return NULL;
 }
 
@@ -4423,27 +4759,32 @@ SWIGINTERN PyObject *Font_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject 
 }
 
 static PyMethodDef SwigMethods[] = {
-	 { (char *)"Device_setVideoMode", _wrap_Device_setVideoMode, METH_VARARGS, NULL},
 	 { (char *)"Device_runPythonScript", _wrap_Device_runPythonScript, METH_VARARGS, NULL},
 	 { (char *)"Device_write", _wrap_Device_write, METH_VARARGS, NULL},
 	 { (char *)"new_Device", _wrap_new_Device, METH_VARARGS, NULL},
 	 { (char *)"delete_Device", _wrap_delete_Device, METH_VARARGS, NULL},
 	 { (char *)"Device_swigregister", Device_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getDevice", _wrap_getDevice, METH_VARARGS, NULL},
-	 { (char *)"Painter_reset", _wrap_Painter_reset, METH_VARARGS, NULL},
-	 { (char *)"Painter_translate", _wrap_Painter_translate, METH_VARARGS, NULL},
-	 { (char *)"Painter_rotate", _wrap_Painter_rotate, METH_VARARGS, NULL},
-	 { (char *)"Painter_scale", _wrap_Painter_scale, METH_VARARGS, NULL},
-	 { (char *)"Painter_pushMatrix", _wrap_Painter_pushMatrix, METH_VARARGS, NULL},
-	 { (char *)"Painter_popMatrix", _wrap_Painter_popMatrix, METH_VARARGS, NULL},
-	 { (char *)"Painter_flip", _wrap_Painter_flip, METH_VARARGS, NULL},
-	 { (char *)"Painter_setColor", _wrap_Painter_setColor, METH_VARARGS, NULL},
-	 { (char *)"Painter_drawLine", _wrap_Painter_drawLine, METH_VARARGS, NULL},
-	 { (char *)"Painter_drawTriangle", _wrap_Painter_drawTriangle, METH_VARARGS, NULL},
-	 { (char *)"new_Painter", _wrap_new_Painter, METH_VARARGS, NULL},
-	 { (char *)"delete_Painter", _wrap_delete_Painter, METH_VARARGS, NULL},
-	 { (char *)"Painter_swigregister", Painter_swigregister, METH_VARARGS, NULL},
-	 { (char *)"getPainter", _wrap_getPainter, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_setVideoMode", _wrap_VideoManager_setVideoMode, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_getScreenWidth", _wrap_VideoManager_getScreenWidth, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_getScreenHeight", _wrap_VideoManager_getScreenHeight, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_reset", _wrap_VideoManager_reset, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_translate", _wrap_VideoManager_translate, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_rotate", _wrap_VideoManager_rotate, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_scale", _wrap_VideoManager_scale, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_pushMatrix", _wrap_VideoManager_pushMatrix, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_popMatrix", _wrap_VideoManager_popMatrix, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_flip", _wrap_VideoManager_flip, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_setColor", _wrap_VideoManager_setColor, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_drawLine", _wrap_VideoManager_drawLine, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_drawTriangle", _wrap_VideoManager_drawTriangle, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_drawSurface", _wrap_VideoManager_drawSurface, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_drawText", _wrap_VideoManager_drawText, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_grabBuffer", _wrap_VideoManager_grabBuffer, METH_VARARGS, NULL},
+	 { (char *)"new_VideoManager", _wrap_new_VideoManager, METH_VARARGS, NULL},
+	 { (char *)"delete_VideoManager", _wrap_delete_VideoManager, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_swigregister", VideoManager_swigregister, METH_VARARGS, NULL},
+	 { (char *)"getVideoManager", _wrap_getVideoManager, METH_VARARGS, NULL},
 	 { (char *)"InputManager_update", _wrap_InputManager_update, METH_VARARGS, NULL},
 	 { (char *)"InputManager_running", _wrap_InputManager_running, METH_VARARGS, NULL},
 	 { (char *)"InputManager_stop", _wrap_InputManager_stop, METH_VARARGS, NULL},
@@ -4455,11 +4796,14 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"getInputManager", _wrap_getInputManager, METH_VARARGS, NULL},
 	 { (char *)"new_Surface", _wrap_new_Surface, METH_VARARGS, NULL},
 	 { (char *)"delete_Surface", _wrap_delete_Surface, METH_VARARGS, NULL},
-	 { (char *)"Surface_draw", _wrap_Surface_draw, METH_VARARGS, NULL},
+	 { (char *)"Surface_getWidth", _wrap_Surface_getWidth, METH_VARARGS, NULL},
+	 { (char *)"Surface_getHeight", _wrap_Surface_getHeight, METH_VARARGS, NULL},
 	 { (char *)"Surface_swigregister", Surface_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Font", _wrap_new_Font, METH_VARARGS, NULL},
 	 { (char *)"delete_Font", _wrap_delete_Font, METH_VARARGS, NULL},
-	 { (char *)"Font_draw", _wrap_Font_draw, METH_VARARGS, NULL},
+	 { (char *)"Font_getHeight", _wrap_Font_getHeight, METH_VARARGS, NULL},
+	 { (char *)"Font_getLineHeight", _wrap_Font_getLineHeight, METH_VARARGS, NULL},
+	 { (char *)"Font_getStringWidth", _wrap_Font_getStringWidth, METH_VARARGS, NULL},
 	 { (char *)"Font_swigregister", Font_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
@@ -4470,8 +4814,8 @@ static PyMethodDef SwigMethods[] = {
 static swig_type_info _swigt__p_Annchienta__Device = {"_p_Annchienta__Device", "Annchienta::Device *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Font = {"_p_Annchienta__Font", "Annchienta::Font *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__InputManager = {"_p_Annchienta__InputManager", "Annchienta::InputManager *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Annchienta__Painter = {"_p_Annchienta__Painter", "Annchienta::Painter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Surface = {"_p_Annchienta__Surface", "Annchienta::Surface *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__VideoManager = {"_p_Annchienta__VideoManager", "Annchienta::VideoManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDLKey = {"_p_SDLKey", "enum SDLKey *|SDLKey *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDLMod = {"_p_SDLMod", "enum SDLMod *|SDLMod *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
@@ -4480,8 +4824,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Device,
   &_swigt__p_Annchienta__Font,
   &_swigt__p_Annchienta__InputManager,
-  &_swigt__p_Annchienta__Painter,
   &_swigt__p_Annchienta__Surface,
+  &_swigt__p_Annchienta__VideoManager,
   &_swigt__p_SDLKey,
   &_swigt__p_SDLMod,
   &_swigt__p_char,
@@ -4490,8 +4834,8 @@ static swig_type_info *swig_type_initial[] = {
 static swig_cast_info _swigc__p_Annchienta__Device[] = {  {&_swigt__p_Annchienta__Device, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__Font, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__InputManager[] = {  {&_swigt__p_Annchienta__InputManager, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Annchienta__Painter[] = {  {&_swigt__p_Annchienta__Painter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Surface[] = {  {&_swigt__p_Annchienta__Surface, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__VideoManager[] = {  {&_swigt__p_Annchienta__VideoManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDLKey[] = {  {&_swigt__p_SDLKey, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDLMod[] = {  {&_swigt__p_SDLMod, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
@@ -4500,8 +4844,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Device,
   _swigc__p_Annchienta__Font,
   _swigc__p_Annchienta__InputManager,
-  _swigc__p_Annchienta__Painter,
   _swigc__p_Annchienta__Surface,
+  _swigc__p_Annchienta__VideoManager,
   _swigc__p_SDLKey,
   _swigc__p_SDLMod,
   _swigc__p_char,

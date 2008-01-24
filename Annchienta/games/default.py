@@ -1,26 +1,25 @@
-import annchienta
+from annchienta import *
 
-device = annchienta.getDevice()
-device.setVideoMode( 400, 300, "Annchienta", False )
+video = getVideoManager()
+video.setVideoMode( 400, 300, "Annchienta", False )
 
-painter = annchienta.getPainter()
-painter.reset()
+inputManager = getInputManager()
 
-inputManager = annchienta.getInputManager()
+surface = Surface( "../testdata/img2.png" )
 
-surface = annchienta.Surface( "../testdata/img.png" )
+video.drawSurface( surface, 0, 0 )
 
-font = annchienta.Font( "../testdata/font.ttf", 50 )
+font = Font( "../testdata/font.ttf", 50 )
+
+part = video.grabBuffer( 50, 25, 75, 50 )
 
 while inputManager.running():
     
     inputManager.update()
     
-    painter.setColor()
-    surface.draw( 0, 0 )
-    painter.setColor(255,255,0,30)
+    video.drawSurface( part, 0, 0 )
     
-    if inputManager.keyDown( annchienta.SDLK_a ):
-        font.draw(10,10,"Hello world!")
+    video.drawText( font, "Hello", 400 - font.getStringWidth("Hello"), 0 )
     
-    painter.flip()
+    video.flip()
+    

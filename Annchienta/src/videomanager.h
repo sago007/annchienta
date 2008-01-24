@@ -2,20 +2,31 @@
  * Please consult the license and copyright details in Annchienta/license.txt
  */
 
-#ifndef ANNCHIENTA_PAINTER_H
-#define ANNCHIENTA_PAINTER_H
+#ifndef ANNCHIENTA_VIDEOMANAGER_H
+#define ANNCHIENTA_VIDEOMANAGER_H
 
 namespace Annchienta
 {
-    class Painter
+
+    class Surface;
+    class Font;
+
+    class VideoManager
     {
         private:
+            int screenWidth, screenHeight;
 
         public:
             #ifndef SWIG
-                Painter();
-                ~Painter();
+                VideoManager();
+                ~VideoManager();
             #endif
+
+            /** Sets the video mode.
+             */
+            void setVideoMode( int w, int h, const char *title="Annchienta RPG Engine", bool fullscreen=false );
+            int getScreenWidth() const;
+            int getScreenHeight() const;
 
             /** Resets matrix and colors.
              */
@@ -38,13 +49,20 @@ namespace Annchienta
              */
             void setColor( int red=0xff, int green=0xff, int blue=0xff, int alpha=0xff ) const;
 
-            /** Drawing primitives.
+            /** Drawing functions.
              */
             void drawLine( int x1, int y1, int x2, int y2 ) const;
             void drawTriangle( int x1, int y1, int x2, int y2, int x3, int y3 ) const;
+            void drawSurface( Surface *surface, int x, int y ) const;
+            void drawText( Font *font, const char *text, int x, int y ) const;
+
+            /** Copies the buffer to a surface.
+             */
+            void grabBuffer( Surface* ) const;
+            Surface *grabBuffer( int x1, int y1, int x2, int y2 ) const;
     };
 
-    Painter *getPainter();
+    VideoManager *getVideoManager();
 
 };
 

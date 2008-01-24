@@ -156,7 +156,28 @@ namespace Annchienta
         delete[] advance;
     }
 
-    void Font::draw( int x, int y, const char *text )
+    int Font::getHeight() const
+    {
+        return height;
+    }
+
+    int Font::getLineHeight() const
+    {
+        return lineHeight;
+    }
+
+    int Font::getStringWidth( const char *text ) const
+    {
+        int width = 0;
+        while( *text )
+        {
+            width += advance[*text];
+            text++;
+        }
+        return width;
+    }
+
+    void Font::draw( const char *text, int x, int y ) const
     {
         glPushMatrix();
 
