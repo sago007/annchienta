@@ -129,6 +129,14 @@ namespace Annchienta
         glColor4ub( red, green, blue, alpha );
     }
 
+    void VideoManager::setAlpha( int alpha ) const
+    {
+        GLfloat colors[4];
+        glGetFloatv( GL_CURRENT_COLOR, colors );
+        colors[3] = (float)alpha/255.0f;
+        glColor4fv( colors );
+    }
+
     void VideoManager::drawLine( int x1, int y1, int x2, int y2 ) const
     {
         glDisable( GL_TEXTURE_2D );

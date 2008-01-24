@@ -19,6 +19,8 @@ while inputManager.running():
     
     video.drawSurface( part, 0, 0 )
     
+    video.setAlpha( 100 )
+    
     video.drawText( font, "Hello", 400 - font.getStringWidth("Hello"), 0 )
     
     video.flip()

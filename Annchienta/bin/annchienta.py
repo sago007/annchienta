@@ -83,6 +83,7 @@ class VideoManager(_object):
     def popMatrix(*args): return _annchienta.VideoManager_popMatrix(*args)
     def flip(*args): return _annchienta.VideoManager_flip(*args)
     def setColor(*args): return _annchienta.VideoManager_setColor(*args)
+    def setAlpha(*args): return _annchienta.VideoManager_setAlpha(*args)
     def drawLine(*args): return _annchienta.VideoManager_drawLine(*args)
     def drawTriangle(*args): return _annchienta.VideoManager_drawTriangle(*args)
     def drawSurface(*args): return _annchienta.VideoManager_drawSurface(*args)
