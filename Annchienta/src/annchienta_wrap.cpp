@@ -2470,9 +2470,11 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__InputManager swig_types[2]
 #define SWIGTYPE_p_Annchienta__Painter swig_types[3]
 #define SWIGTYPE_p_Annchienta__Surface swig_types[4]
-#define SWIGTYPE_p_char swig_types[5]
-static swig_type_info *swig_types[7];
-static swig_module_info swig_module = {swig_types, 6, 0, 0, 0, 0};
+#define SWIGTYPE_p_SDLKey swig_types[5]
+#define SWIGTYPE_p_SDLMod swig_types[6]
+#define SWIGTYPE_p_char swig_types[7]
+static swig_type_info *swig_types[9];
+static swig_module_info swig_module = {swig_types, 8, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2716,24 +2718,6 @@ SWIG_AsVal_int (PyObject * obj, int *val)
 }
 
 
-SWIGINTERN int
-SWIG_AsVal_bool (PyObject *obj, bool *val)
-{
-  if (obj == Py_True) {
-    if (val) *val = true;
-    return SWIG_OK;
-  } else if (obj == Py_False) {
-    if (val) *val = false;
-    return SWIG_OK;
-  } else {
-    long v = 0;
-    int res = SWIG_AddCast(SWIG_AsVal_long (obj, val ? &v : 0));
-    if (SWIG_IsOK(res) && val) *val = v ? true : false;
-    return res;
-  }
-}
-
-
 SWIGINTERN swig_type_info*
 SWIG_pchar_descriptor(void)
 {
@@ -2803,6 +2787,24 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 
 
 SWIGINTERN int
+SWIG_AsVal_bool (PyObject *obj, bool *val)
+{
+  if (obj == Py_True) {
+    if (val) *val = true;
+    return SWIG_OK;
+  } else if (obj == Py_False) {
+    if (val) *val = false;
+    return SWIG_OK;
+  } else {
+    long v = 0;
+    int res = SWIG_AddCast(SWIG_AsVal_long (obj, val ? &v : 0));
+    if (SWIG_IsOK(res) && val) *val = v ? true : false;
+    return res;
+  }
+}
+
+
+SWIGINTERN int
 SWIG_AsVal_float (PyObject * obj, float *val)
 {
   double v;
@@ -2817,6 +2819,23 @@ SWIG_AsVal_float (PyObject * obj, float *val)
   return res;
 }
 
+
+SWIGINTERNINLINE PyObject*
+  SWIG_From_bool  (bool value)
+{
+  return PyBool_FromLong(value ? 1 : 0);
+}
+
+
+  #define SWIG_From_long   PyInt_FromLong 
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_int  (int value)
+{    
+  return SWIG_From_long  (value);
+}
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -2825,15 +2844,76 @@ SWIGINTERN PyObject *_wrap_Device_setVideoMode__SWIG_0(PyObject *SWIGUNUSEDPARM(
   Annchienta::Device *arg1 = (Annchienta::Device *) 0 ;
   int arg2 ;
   int arg3 ;
-  bool arg4 ;
+  char *arg4 = (char *) 0 ;
+  bool arg5 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
-  bool val4 ;
-  int ecode4 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  bool val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:Device_setVideoMode",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Device, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Device_setVideoMode" "', argument " "1"" of type '" "Annchienta::Device *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Device * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Device_setVideoMode" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Device_setVideoMode" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Device_setVideoMode" "', argument " "4"" of type '" "char const *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  ecode5 = SWIG_AsVal_bool(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Device_setVideoMode" "', argument " "5"" of type '" "bool""'");
+  } 
+  arg5 = static_cast< bool >(val5);
+  (arg1)->setVideoMode(arg2,arg3,(char const *)arg4,arg5);
+  resultobj = SWIG_Py_Void();
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return resultobj;
+fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Device_setVideoMode__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Device *arg1 = (Annchienta::Device *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  char *arg4 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
@@ -2855,20 +2935,22 @@ SWIGINTERN PyObject *_wrap_Device_setVideoMode__SWIG_0(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Device_setVideoMode" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_bool(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Device_setVideoMode" "', argument " "4"" of type '" "bool""'");
-  } 
-  arg4 = static_cast< bool >(val4);
-  (arg1)->setVideoMode(arg2,arg3,arg4);
+  res4 = SWIG_AsCharPtrAndSize(obj3, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Device_setVideoMode" "', argument " "4"" of type '" "char const *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  (arg1)->setVideoMode(arg2,arg3,(char const *)arg4);
   resultobj = SWIG_Py_Void();
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return resultobj;
 fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_Device_setVideoMode__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Device_setVideoMode__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Device *arg1 = (Annchienta::Device *) 0 ;
   int arg2 ;
@@ -2909,12 +2991,12 @@ fail:
 
 SWIGINTERN PyObject *_wrap_Device_setVideoMode(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[5];
+  PyObject *argv[6];
   int ii;
   
   if (!PyTuple_Check(args)) SWIG_fail;
   argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
+  for (ii = 0; (ii < argc) && (ii < 5); ii++) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
   if (argc == 3) {
@@ -2933,7 +3015,7 @@ SWIGINTERN PyObject *_wrap_Device_setVideoMode(PyObject *self, PyObject *args) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Device_setVideoMode__SWIG_1(self, args);
+          return _wrap_Device_setVideoMode__SWIG_2(self, args);
         }
       }
     }
@@ -2954,12 +3036,41 @@ SWIGINTERN PyObject *_wrap_Device_setVideoMode(PyObject *self, PyObject *args) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          {
-            int res = SWIG_AsVal_bool(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
+          int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
+          _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_Device_setVideoMode__SWIG_0(self, args);
+            return _wrap_Device_setVideoMode__SWIG_1(self, args);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Device, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            {
+              int res = SWIG_AsVal_bool(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              return _wrap_Device_setVideoMode__SWIG_0(self, args);
+            }
           }
         }
       }
@@ -2967,7 +3078,7 @@ SWIGINTERN PyObject *_wrap_Device_setVideoMode(PyObject *self, PyObject *args) {
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Device_setVideoMode'.\n  Possible C/C++ prototypes are:\n    setVideoMode(int,int,bool)\n    setVideoMode(int,int)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Device_setVideoMode'.\n  Possible C/C++ prototypes are:\n    setVideoMode(int,int,char const *,bool)\n    setVideoMode(int,int,char const *)\n    setVideoMode(int,int)\n");
   return NULL;
 }
 
@@ -3005,7 +3116,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Device__print(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Device_write(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Device *arg1 = (Annchienta::Device *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -3017,18 +3128,18 @@ SWIGINTERN PyObject *_wrap_Device__print(PyObject *SWIGUNUSEDPARM(self), PyObjec
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Device__print",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Device_write",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Device, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Device__print" "', argument " "1"" of type '" "Annchienta::Device const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Device_write" "', argument " "1"" of type '" "Annchienta::Device const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Device * >(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Device__print" "', argument " "2"" of type '" "char const *""'");
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Device_write" "', argument " "2"" of type '" "char const *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  ((Annchienta::Device const *)arg1)->print((char const *)arg2);
+  ((Annchienta::Device const *)arg1)->write((char const *)arg2);
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -3789,6 +3900,132 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_InputManager_update(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_update",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_update" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  (arg1)->update();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_running(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_running",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_running" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  result = (bool)(arg1)->running();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_stop(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_stop",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_stop" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  (arg1)->stop();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_keyDown(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  int arg2 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_keyDown",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_keyDown" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_keyDown" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (bool)(arg1)->keyDown(arg2);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_keyTicked(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  int arg2 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_keyTicked",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_keyTicked" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_keyTicked" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (bool)(arg1)->keyTicked(arg2);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_InputManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::InputManager *result = 0 ;
@@ -4188,7 +4425,7 @@ SWIGINTERN PyObject *Font_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject 
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"Device_setVideoMode", _wrap_Device_setVideoMode, METH_VARARGS, NULL},
 	 { (char *)"Device_runPythonScript", _wrap_Device_runPythonScript, METH_VARARGS, NULL},
-	 { (char *)"Device__print", _wrap_Device__print, METH_VARARGS, NULL},
+	 { (char *)"Device_write", _wrap_Device_write, METH_VARARGS, NULL},
 	 { (char *)"new_Device", _wrap_new_Device, METH_VARARGS, NULL},
 	 { (char *)"delete_Device", _wrap_delete_Device, METH_VARARGS, NULL},
 	 { (char *)"Device_swigregister", Device_swigregister, METH_VARARGS, NULL},
@@ -4207,6 +4444,11 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_Painter", _wrap_delete_Painter, METH_VARARGS, NULL},
 	 { (char *)"Painter_swigregister", Painter_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getPainter", _wrap_getPainter, METH_VARARGS, NULL},
+	 { (char *)"InputManager_update", _wrap_InputManager_update, METH_VARARGS, NULL},
+	 { (char *)"InputManager_running", _wrap_InputManager_running, METH_VARARGS, NULL},
+	 { (char *)"InputManager_stop", _wrap_InputManager_stop, METH_VARARGS, NULL},
+	 { (char *)"InputManager_keyDown", _wrap_InputManager_keyDown, METH_VARARGS, NULL},
+	 { (char *)"InputManager_keyTicked", _wrap_InputManager_keyTicked, METH_VARARGS, NULL},
 	 { (char *)"new_InputManager", _wrap_new_InputManager, METH_VARARGS, NULL},
 	 { (char *)"delete_InputManager", _wrap_delete_InputManager, METH_VARARGS, NULL},
 	 { (char *)"InputManager_swigregister", InputManager_swigregister, METH_VARARGS, NULL},
@@ -4230,6 +4472,8 @@ static swig_type_info _swigt__p_Annchienta__Font = {"_p_Annchienta__Font", "Annc
 static swig_type_info _swigt__p_Annchienta__InputManager = {"_p_Annchienta__InputManager", "Annchienta::InputManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Painter = {"_p_Annchienta__Painter", "Annchienta::Painter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Surface = {"_p_Annchienta__Surface", "Annchienta::Surface *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_SDLKey = {"_p_SDLKey", "enum SDLKey *|SDLKey *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_SDLMod = {"_p_SDLMod", "enum SDLMod *|SDLMod *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
@@ -4238,6 +4482,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__InputManager,
   &_swigt__p_Annchienta__Painter,
   &_swigt__p_Annchienta__Surface,
+  &_swigt__p_SDLKey,
+  &_swigt__p_SDLMod,
   &_swigt__p_char,
 };
 
@@ -4246,6 +4492,8 @@ static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__
 static swig_cast_info _swigc__p_Annchienta__InputManager[] = {  {&_swigt__p_Annchienta__InputManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Painter[] = {  {&_swigt__p_Annchienta__Painter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Surface[] = {  {&_swigt__p_Annchienta__Surface, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_SDLKey[] = {  {&_swigt__p_SDLKey, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_SDLMod[] = {  {&_swigt__p_SDLMod, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
@@ -4254,6 +4502,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__InputManager,
   _swigc__p_Annchienta__Painter,
   _swigc__p_Annchienta__Surface,
+  _swigc__p_SDLKey,
+  _swigc__p_SDLMod,
   _swigc__p_char,
 };
 
@@ -4775,5 +5025,252 @@ SWIGEXPORT void SWIG_init(void) {
   SWIG_InstallConstants(d,swig_const_table);
   
   
+  SWIG_Python_SetConstant(d, "SDLK_UNKNOWN",SWIG_From_int(static_cast< int >(SDLK_UNKNOWN)));
+  SWIG_Python_SetConstant(d, "SDLK_FIRST",SWIG_From_int(static_cast< int >(SDLK_FIRST)));
+  SWIG_Python_SetConstant(d, "SDLK_BACKSPACE",SWIG_From_int(static_cast< int >(SDLK_BACKSPACE)));
+  SWIG_Python_SetConstant(d, "SDLK_TAB",SWIG_From_int(static_cast< int >(SDLK_TAB)));
+  SWIG_Python_SetConstant(d, "SDLK_CLEAR",SWIG_From_int(static_cast< int >(SDLK_CLEAR)));
+  SWIG_Python_SetConstant(d, "SDLK_RETURN",SWIG_From_int(static_cast< int >(SDLK_RETURN)));
+  SWIG_Python_SetConstant(d, "SDLK_PAUSE",SWIG_From_int(static_cast< int >(SDLK_PAUSE)));
+  SWIG_Python_SetConstant(d, "SDLK_ESCAPE",SWIG_From_int(static_cast< int >(SDLK_ESCAPE)));
+  SWIG_Python_SetConstant(d, "SDLK_SPACE",SWIG_From_int(static_cast< int >(SDLK_SPACE)));
+  SWIG_Python_SetConstant(d, "SDLK_EXCLAIM",SWIG_From_int(static_cast< int >(SDLK_EXCLAIM)));
+  SWIG_Python_SetConstant(d, "SDLK_QUOTEDBL",SWIG_From_int(static_cast< int >(SDLK_QUOTEDBL)));
+  SWIG_Python_SetConstant(d, "SDLK_HASH",SWIG_From_int(static_cast< int >(SDLK_HASH)));
+  SWIG_Python_SetConstant(d, "SDLK_DOLLAR",SWIG_From_int(static_cast< int >(SDLK_DOLLAR)));
+  SWIG_Python_SetConstant(d, "SDLK_AMPERSAND",SWIG_From_int(static_cast< int >(SDLK_AMPERSAND)));
+  SWIG_Python_SetConstant(d, "SDLK_QUOTE",SWIG_From_int(static_cast< int >(SDLK_QUOTE)));
+  SWIG_Python_SetConstant(d, "SDLK_LEFTPAREN",SWIG_From_int(static_cast< int >(SDLK_LEFTPAREN)));
+  SWIG_Python_SetConstant(d, "SDLK_RIGHTPAREN",SWIG_From_int(static_cast< int >(SDLK_RIGHTPAREN)));
+  SWIG_Python_SetConstant(d, "SDLK_ASTERISK",SWIG_From_int(static_cast< int >(SDLK_ASTERISK)));
+  SWIG_Python_SetConstant(d, "SDLK_PLUS",SWIG_From_int(static_cast< int >(SDLK_PLUS)));
+  SWIG_Python_SetConstant(d, "SDLK_COMMA",SWIG_From_int(static_cast< int >(SDLK_COMMA)));
+  SWIG_Python_SetConstant(d, "SDLK_MINUS",SWIG_From_int(static_cast< int >(SDLK_MINUS)));
+  SWIG_Python_SetConstant(d, "SDLK_PERIOD",SWIG_From_int(static_cast< int >(SDLK_PERIOD)));
+  SWIG_Python_SetConstant(d, "SDLK_SLASH",SWIG_From_int(static_cast< int >(SDLK_SLASH)));
+  SWIG_Python_SetConstant(d, "SDLK_0",SWIG_From_int(static_cast< int >(SDLK_0)));
+  SWIG_Python_SetConstant(d, "SDLK_1",SWIG_From_int(static_cast< int >(SDLK_1)));
+  SWIG_Python_SetConstant(d, "SDLK_2",SWIG_From_int(static_cast< int >(SDLK_2)));
+  SWIG_Python_SetConstant(d, "SDLK_3",SWIG_From_int(static_cast< int >(SDLK_3)));
+  SWIG_Python_SetConstant(d, "SDLK_4",SWIG_From_int(static_cast< int >(SDLK_4)));
+  SWIG_Python_SetConstant(d, "SDLK_5",SWIG_From_int(static_cast< int >(SDLK_5)));
+  SWIG_Python_SetConstant(d, "SDLK_6",SWIG_From_int(static_cast< int >(SDLK_6)));
+  SWIG_Python_SetConstant(d, "SDLK_7",SWIG_From_int(static_cast< int >(SDLK_7)));
+  SWIG_Python_SetConstant(d, "SDLK_8",SWIG_From_int(static_cast< int >(SDLK_8)));
+  SWIG_Python_SetConstant(d, "SDLK_9",SWIG_From_int(static_cast< int >(SDLK_9)));
+  SWIG_Python_SetConstant(d, "SDLK_COLON",SWIG_From_int(static_cast< int >(SDLK_COLON)));
+  SWIG_Python_SetConstant(d, "SDLK_SEMICOLON",SWIG_From_int(static_cast< int >(SDLK_SEMICOLON)));
+  SWIG_Python_SetConstant(d, "SDLK_LESS",SWIG_From_int(static_cast< int >(SDLK_LESS)));
+  SWIG_Python_SetConstant(d, "SDLK_EQUALS",SWIG_From_int(static_cast< int >(SDLK_EQUALS)));
+  SWIG_Python_SetConstant(d, "SDLK_GREATER",SWIG_From_int(static_cast< int >(SDLK_GREATER)));
+  SWIG_Python_SetConstant(d, "SDLK_QUESTION",SWIG_From_int(static_cast< int >(SDLK_QUESTION)));
+  SWIG_Python_SetConstant(d, "SDLK_AT",SWIG_From_int(static_cast< int >(SDLK_AT)));
+  SWIG_Python_SetConstant(d, "SDLK_LEFTBRACKET",SWIG_From_int(static_cast< int >(SDLK_LEFTBRACKET)));
+  SWIG_Python_SetConstant(d, "SDLK_BACKSLASH",SWIG_From_int(static_cast< int >(SDLK_BACKSLASH)));
+  SWIG_Python_SetConstant(d, "SDLK_RIGHTBRACKET",SWIG_From_int(static_cast< int >(SDLK_RIGHTBRACKET)));
+  SWIG_Python_SetConstant(d, "SDLK_CARET",SWIG_From_int(static_cast< int >(SDLK_CARET)));
+  SWIG_Python_SetConstant(d, "SDLK_UNDERSCORE",SWIG_From_int(static_cast< int >(SDLK_UNDERSCORE)));
+  SWIG_Python_SetConstant(d, "SDLK_BACKQUOTE",SWIG_From_int(static_cast< int >(SDLK_BACKQUOTE)));
+  SWIG_Python_SetConstant(d, "SDLK_a",SWIG_From_int(static_cast< int >(SDLK_a)));
+  SWIG_Python_SetConstant(d, "SDLK_b",SWIG_From_int(static_cast< int >(SDLK_b)));
+  SWIG_Python_SetConstant(d, "SDLK_c",SWIG_From_int(static_cast< int >(SDLK_c)));
+  SWIG_Python_SetConstant(d, "SDLK_d",SWIG_From_int(static_cast< int >(SDLK_d)));
+  SWIG_Python_SetConstant(d, "SDLK_e",SWIG_From_int(static_cast< int >(SDLK_e)));
+  SWIG_Python_SetConstant(d, "SDLK_f",SWIG_From_int(static_cast< int >(SDLK_f)));
+  SWIG_Python_SetConstant(d, "SDLK_g",SWIG_From_int(static_cast< int >(SDLK_g)));
+  SWIG_Python_SetConstant(d, "SDLK_h",SWIG_From_int(static_cast< int >(SDLK_h)));
+  SWIG_Python_SetConstant(d, "SDLK_i",SWIG_From_int(static_cast< int >(SDLK_i)));
+  SWIG_Python_SetConstant(d, "SDLK_j",SWIG_From_int(static_cast< int >(SDLK_j)));
+  SWIG_Python_SetConstant(d, "SDLK_k",SWIG_From_int(static_cast< int >(SDLK_k)));
+  SWIG_Python_SetConstant(d, "SDLK_l",SWIG_From_int(static_cast< int >(SDLK_l)));
+  SWIG_Python_SetConstant(d, "SDLK_m",SWIG_From_int(static_cast< int >(SDLK_m)));
+  SWIG_Python_SetConstant(d, "SDLK_n",SWIG_From_int(static_cast< int >(SDLK_n)));
+  SWIG_Python_SetConstant(d, "SDLK_o",SWIG_From_int(static_cast< int >(SDLK_o)));
+  SWIG_Python_SetConstant(d, "SDLK_p",SWIG_From_int(static_cast< int >(SDLK_p)));
+  SWIG_Python_SetConstant(d, "SDLK_q",SWIG_From_int(static_cast< int >(SDLK_q)));
+  SWIG_Python_SetConstant(d, "SDLK_r",SWIG_From_int(static_cast< int >(SDLK_r)));
+  SWIG_Python_SetConstant(d, "SDLK_s",SWIG_From_int(static_cast< int >(SDLK_s)));
+  SWIG_Python_SetConstant(d, "SDLK_t",SWIG_From_int(static_cast< int >(SDLK_t)));
+  SWIG_Python_SetConstant(d, "SDLK_u",SWIG_From_int(static_cast< int >(SDLK_u)));
+  SWIG_Python_SetConstant(d, "SDLK_v",SWIG_From_int(static_cast< int >(SDLK_v)));
+  SWIG_Python_SetConstant(d, "SDLK_w",SWIG_From_int(static_cast< int >(SDLK_w)));
+  SWIG_Python_SetConstant(d, "SDLK_x",SWIG_From_int(static_cast< int >(SDLK_x)));
+  SWIG_Python_SetConstant(d, "SDLK_y",SWIG_From_int(static_cast< int >(SDLK_y)));
+  SWIG_Python_SetConstant(d, "SDLK_z",SWIG_From_int(static_cast< int >(SDLK_z)));
+  SWIG_Python_SetConstant(d, "SDLK_DELETE",SWIG_From_int(static_cast< int >(SDLK_DELETE)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_0",SWIG_From_int(static_cast< int >(SDLK_WORLD_0)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_1",SWIG_From_int(static_cast< int >(SDLK_WORLD_1)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_2",SWIG_From_int(static_cast< int >(SDLK_WORLD_2)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_3",SWIG_From_int(static_cast< int >(SDLK_WORLD_3)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_4",SWIG_From_int(static_cast< int >(SDLK_WORLD_4)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_5",SWIG_From_int(static_cast< int >(SDLK_WORLD_5)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_6",SWIG_From_int(static_cast< int >(SDLK_WORLD_6)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_7",SWIG_From_int(static_cast< int >(SDLK_WORLD_7)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_8",SWIG_From_int(static_cast< int >(SDLK_WORLD_8)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_9",SWIG_From_int(static_cast< int >(SDLK_WORLD_9)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_10",SWIG_From_int(static_cast< int >(SDLK_WORLD_10)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_11",SWIG_From_int(static_cast< int >(SDLK_WORLD_11)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_12",SWIG_From_int(static_cast< int >(SDLK_WORLD_12)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_13",SWIG_From_int(static_cast< int >(SDLK_WORLD_13)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_14",SWIG_From_int(static_cast< int >(SDLK_WORLD_14)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_15",SWIG_From_int(static_cast< int >(SDLK_WORLD_15)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_16",SWIG_From_int(static_cast< int >(SDLK_WORLD_16)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_17",SWIG_From_int(static_cast< int >(SDLK_WORLD_17)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_18",SWIG_From_int(static_cast< int >(SDLK_WORLD_18)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_19",SWIG_From_int(static_cast< int >(SDLK_WORLD_19)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_20",SWIG_From_int(static_cast< int >(SDLK_WORLD_20)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_21",SWIG_From_int(static_cast< int >(SDLK_WORLD_21)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_22",SWIG_From_int(static_cast< int >(SDLK_WORLD_22)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_23",SWIG_From_int(static_cast< int >(SDLK_WORLD_23)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_24",SWIG_From_int(static_cast< int >(SDLK_WORLD_24)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_25",SWIG_From_int(static_cast< int >(SDLK_WORLD_25)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_26",SWIG_From_int(static_cast< int >(SDLK_WORLD_26)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_27",SWIG_From_int(static_cast< int >(SDLK_WORLD_27)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_28",SWIG_From_int(static_cast< int >(SDLK_WORLD_28)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_29",SWIG_From_int(static_cast< int >(SDLK_WORLD_29)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_30",SWIG_From_int(static_cast< int >(SDLK_WORLD_30)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_31",SWIG_From_int(static_cast< int >(SDLK_WORLD_31)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_32",SWIG_From_int(static_cast< int >(SDLK_WORLD_32)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_33",SWIG_From_int(static_cast< int >(SDLK_WORLD_33)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_34",SWIG_From_int(static_cast< int >(SDLK_WORLD_34)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_35",SWIG_From_int(static_cast< int >(SDLK_WORLD_35)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_36",SWIG_From_int(static_cast< int >(SDLK_WORLD_36)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_37",SWIG_From_int(static_cast< int >(SDLK_WORLD_37)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_38",SWIG_From_int(static_cast< int >(SDLK_WORLD_38)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_39",SWIG_From_int(static_cast< int >(SDLK_WORLD_39)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_40",SWIG_From_int(static_cast< int >(SDLK_WORLD_40)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_41",SWIG_From_int(static_cast< int >(SDLK_WORLD_41)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_42",SWIG_From_int(static_cast< int >(SDLK_WORLD_42)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_43",SWIG_From_int(static_cast< int >(SDLK_WORLD_43)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_44",SWIG_From_int(static_cast< int >(SDLK_WORLD_44)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_45",SWIG_From_int(static_cast< int >(SDLK_WORLD_45)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_46",SWIG_From_int(static_cast< int >(SDLK_WORLD_46)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_47",SWIG_From_int(static_cast< int >(SDLK_WORLD_47)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_48",SWIG_From_int(static_cast< int >(SDLK_WORLD_48)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_49",SWIG_From_int(static_cast< int >(SDLK_WORLD_49)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_50",SWIG_From_int(static_cast< int >(SDLK_WORLD_50)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_51",SWIG_From_int(static_cast< int >(SDLK_WORLD_51)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_52",SWIG_From_int(static_cast< int >(SDLK_WORLD_52)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_53",SWIG_From_int(static_cast< int >(SDLK_WORLD_53)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_54",SWIG_From_int(static_cast< int >(SDLK_WORLD_54)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_55",SWIG_From_int(static_cast< int >(SDLK_WORLD_55)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_56",SWIG_From_int(static_cast< int >(SDLK_WORLD_56)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_57",SWIG_From_int(static_cast< int >(SDLK_WORLD_57)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_58",SWIG_From_int(static_cast< int >(SDLK_WORLD_58)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_59",SWIG_From_int(static_cast< int >(SDLK_WORLD_59)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_60",SWIG_From_int(static_cast< int >(SDLK_WORLD_60)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_61",SWIG_From_int(static_cast< int >(SDLK_WORLD_61)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_62",SWIG_From_int(static_cast< int >(SDLK_WORLD_62)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_63",SWIG_From_int(static_cast< int >(SDLK_WORLD_63)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_64",SWIG_From_int(static_cast< int >(SDLK_WORLD_64)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_65",SWIG_From_int(static_cast< int >(SDLK_WORLD_65)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_66",SWIG_From_int(static_cast< int >(SDLK_WORLD_66)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_67",SWIG_From_int(static_cast< int >(SDLK_WORLD_67)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_68",SWIG_From_int(static_cast< int >(SDLK_WORLD_68)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_69",SWIG_From_int(static_cast< int >(SDLK_WORLD_69)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_70",SWIG_From_int(static_cast< int >(SDLK_WORLD_70)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_71",SWIG_From_int(static_cast< int >(SDLK_WORLD_71)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_72",SWIG_From_int(static_cast< int >(SDLK_WORLD_72)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_73",SWIG_From_int(static_cast< int >(SDLK_WORLD_73)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_74",SWIG_From_int(static_cast< int >(SDLK_WORLD_74)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_75",SWIG_From_int(static_cast< int >(SDLK_WORLD_75)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_76",SWIG_From_int(static_cast< int >(SDLK_WORLD_76)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_77",SWIG_From_int(static_cast< int >(SDLK_WORLD_77)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_78",SWIG_From_int(static_cast< int >(SDLK_WORLD_78)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_79",SWIG_From_int(static_cast< int >(SDLK_WORLD_79)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_80",SWIG_From_int(static_cast< int >(SDLK_WORLD_80)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_81",SWIG_From_int(static_cast< int >(SDLK_WORLD_81)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_82",SWIG_From_int(static_cast< int >(SDLK_WORLD_82)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_83",SWIG_From_int(static_cast< int >(SDLK_WORLD_83)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_84",SWIG_From_int(static_cast< int >(SDLK_WORLD_84)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_85",SWIG_From_int(static_cast< int >(SDLK_WORLD_85)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_86",SWIG_From_int(static_cast< int >(SDLK_WORLD_86)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_87",SWIG_From_int(static_cast< int >(SDLK_WORLD_87)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_88",SWIG_From_int(static_cast< int >(SDLK_WORLD_88)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_89",SWIG_From_int(static_cast< int >(SDLK_WORLD_89)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_90",SWIG_From_int(static_cast< int >(SDLK_WORLD_90)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_91",SWIG_From_int(static_cast< int >(SDLK_WORLD_91)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_92",SWIG_From_int(static_cast< int >(SDLK_WORLD_92)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_93",SWIG_From_int(static_cast< int >(SDLK_WORLD_93)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_94",SWIG_From_int(static_cast< int >(SDLK_WORLD_94)));
+  SWIG_Python_SetConstant(d, "SDLK_WORLD_95",SWIG_From_int(static_cast< int >(SDLK_WORLD_95)));
+  SWIG_Python_SetConstant(d, "SDLK_KP0",SWIG_From_int(static_cast< int >(SDLK_KP0)));
+  SWIG_Python_SetConstant(d, "SDLK_KP1",SWIG_From_int(static_cast< int >(SDLK_KP1)));
+  SWIG_Python_SetConstant(d, "SDLK_KP2",SWIG_From_int(static_cast< int >(SDLK_KP2)));
+  SWIG_Python_SetConstant(d, "SDLK_KP3",SWIG_From_int(static_cast< int >(SDLK_KP3)));
+  SWIG_Python_SetConstant(d, "SDLK_KP4",SWIG_From_int(static_cast< int >(SDLK_KP4)));
+  SWIG_Python_SetConstant(d, "SDLK_KP5",SWIG_From_int(static_cast< int >(SDLK_KP5)));
+  SWIG_Python_SetConstant(d, "SDLK_KP6",SWIG_From_int(static_cast< int >(SDLK_KP6)));
+  SWIG_Python_SetConstant(d, "SDLK_KP7",SWIG_From_int(static_cast< int >(SDLK_KP7)));
+  SWIG_Python_SetConstant(d, "SDLK_KP8",SWIG_From_int(static_cast< int >(SDLK_KP8)));
+  SWIG_Python_SetConstant(d, "SDLK_KP9",SWIG_From_int(static_cast< int >(SDLK_KP9)));
+  SWIG_Python_SetConstant(d, "SDLK_KP_PERIOD",SWIG_From_int(static_cast< int >(SDLK_KP_PERIOD)));
+  SWIG_Python_SetConstant(d, "SDLK_KP_DIVIDE",SWIG_From_int(static_cast< int >(SDLK_KP_DIVIDE)));
+  SWIG_Python_SetConstant(d, "SDLK_KP_MULTIPLY",SWIG_From_int(static_cast< int >(SDLK_KP_MULTIPLY)));
+  SWIG_Python_SetConstant(d, "SDLK_KP_MINUS",SWIG_From_int(static_cast< int >(SDLK_KP_MINUS)));
+  SWIG_Python_SetConstant(d, "SDLK_KP_PLUS",SWIG_From_int(static_cast< int >(SDLK_KP_PLUS)));
+  SWIG_Python_SetConstant(d, "SDLK_KP_ENTER",SWIG_From_int(static_cast< int >(SDLK_KP_ENTER)));
+  SWIG_Python_SetConstant(d, "SDLK_KP_EQUALS",SWIG_From_int(static_cast< int >(SDLK_KP_EQUALS)));
+  SWIG_Python_SetConstant(d, "SDLK_UP",SWIG_From_int(static_cast< int >(SDLK_UP)));
+  SWIG_Python_SetConstant(d, "SDLK_DOWN",SWIG_From_int(static_cast< int >(SDLK_DOWN)));
+  SWIG_Python_SetConstant(d, "SDLK_RIGHT",SWIG_From_int(static_cast< int >(SDLK_RIGHT)));
+  SWIG_Python_SetConstant(d, "SDLK_LEFT",SWIG_From_int(static_cast< int >(SDLK_LEFT)));
+  SWIG_Python_SetConstant(d, "SDLK_INSERT",SWIG_From_int(static_cast< int >(SDLK_INSERT)));
+  SWIG_Python_SetConstant(d, "SDLK_HOME",SWIG_From_int(static_cast< int >(SDLK_HOME)));
+  SWIG_Python_SetConstant(d, "SDLK_END",SWIG_From_int(static_cast< int >(SDLK_END)));
+  SWIG_Python_SetConstant(d, "SDLK_PAGEUP",SWIG_From_int(static_cast< int >(SDLK_PAGEUP)));
+  SWIG_Python_SetConstant(d, "SDLK_PAGEDOWN",SWIG_From_int(static_cast< int >(SDLK_PAGEDOWN)));
+  SWIG_Python_SetConstant(d, "SDLK_F1",SWIG_From_int(static_cast< int >(SDLK_F1)));
+  SWIG_Python_SetConstant(d, "SDLK_F2",SWIG_From_int(static_cast< int >(SDLK_F2)));
+  SWIG_Python_SetConstant(d, "SDLK_F3",SWIG_From_int(static_cast< int >(SDLK_F3)));
+  SWIG_Python_SetConstant(d, "SDLK_F4",SWIG_From_int(static_cast< int >(SDLK_F4)));
+  SWIG_Python_SetConstant(d, "SDLK_F5",SWIG_From_int(static_cast< int >(SDLK_F5)));
+  SWIG_Python_SetConstant(d, "SDLK_F6",SWIG_From_int(static_cast< int >(SDLK_F6)));
+  SWIG_Python_SetConstant(d, "SDLK_F7",SWIG_From_int(static_cast< int >(SDLK_F7)));
+  SWIG_Python_SetConstant(d, "SDLK_F8",SWIG_From_int(static_cast< int >(SDLK_F8)));
+  SWIG_Python_SetConstant(d, "SDLK_F9",SWIG_From_int(static_cast< int >(SDLK_F9)));
+  SWIG_Python_SetConstant(d, "SDLK_F10",SWIG_From_int(static_cast< int >(SDLK_F10)));
+  SWIG_Python_SetConstant(d, "SDLK_F11",SWIG_From_int(static_cast< int >(SDLK_F11)));
+  SWIG_Python_SetConstant(d, "SDLK_F12",SWIG_From_int(static_cast< int >(SDLK_F12)));
+  SWIG_Python_SetConstant(d, "SDLK_F13",SWIG_From_int(static_cast< int >(SDLK_F13)));
+  SWIG_Python_SetConstant(d, "SDLK_F14",SWIG_From_int(static_cast< int >(SDLK_F14)));
+  SWIG_Python_SetConstant(d, "SDLK_F15",SWIG_From_int(static_cast< int >(SDLK_F15)));
+  SWIG_Python_SetConstant(d, "SDLK_NUMLOCK",SWIG_From_int(static_cast< int >(SDLK_NUMLOCK)));
+  SWIG_Python_SetConstant(d, "SDLK_CAPSLOCK",SWIG_From_int(static_cast< int >(SDLK_CAPSLOCK)));
+  SWIG_Python_SetConstant(d, "SDLK_SCROLLOCK",SWIG_From_int(static_cast< int >(SDLK_SCROLLOCK)));
+  SWIG_Python_SetConstant(d, "SDLK_RSHIFT",SWIG_From_int(static_cast< int >(SDLK_RSHIFT)));
+  SWIG_Python_SetConstant(d, "SDLK_LSHIFT",SWIG_From_int(static_cast< int >(SDLK_LSHIFT)));
+  SWIG_Python_SetConstant(d, "SDLK_RCTRL",SWIG_From_int(static_cast< int >(SDLK_RCTRL)));
+  SWIG_Python_SetConstant(d, "SDLK_LCTRL",SWIG_From_int(static_cast< int >(SDLK_LCTRL)));
+  SWIG_Python_SetConstant(d, "SDLK_RALT",SWIG_From_int(static_cast< int >(SDLK_RALT)));
+  SWIG_Python_SetConstant(d, "SDLK_LALT",SWIG_From_int(static_cast< int >(SDLK_LALT)));
+  SWIG_Python_SetConstant(d, "SDLK_RMETA",SWIG_From_int(static_cast< int >(SDLK_RMETA)));
+  SWIG_Python_SetConstant(d, "SDLK_LMETA",SWIG_From_int(static_cast< int >(SDLK_LMETA)));
+  SWIG_Python_SetConstant(d, "SDLK_LSUPER",SWIG_From_int(static_cast< int >(SDLK_LSUPER)));
+  SWIG_Python_SetConstant(d, "SDLK_RSUPER",SWIG_From_int(static_cast< int >(SDLK_RSUPER)));
+  SWIG_Python_SetConstant(d, "SDLK_MODE",SWIG_From_int(static_cast< int >(SDLK_MODE)));
+  SWIG_Python_SetConstant(d, "SDLK_COMPOSE",SWIG_From_int(static_cast< int >(SDLK_COMPOSE)));
+  SWIG_Python_SetConstant(d, "SDLK_HELP",SWIG_From_int(static_cast< int >(SDLK_HELP)));
+  SWIG_Python_SetConstant(d, "SDLK_PRINT",SWIG_From_int(static_cast< int >(SDLK_PRINT)));
+  SWIG_Python_SetConstant(d, "SDLK_SYSREQ",SWIG_From_int(static_cast< int >(SDLK_SYSREQ)));
+  SWIG_Python_SetConstant(d, "SDLK_BREAK",SWIG_From_int(static_cast< int >(SDLK_BREAK)));
+  SWIG_Python_SetConstant(d, "SDLK_MENU",SWIG_From_int(static_cast< int >(SDLK_MENU)));
+  SWIG_Python_SetConstant(d, "SDLK_POWER",SWIG_From_int(static_cast< int >(SDLK_POWER)));
+  SWIG_Python_SetConstant(d, "SDLK_EURO",SWIG_From_int(static_cast< int >(SDLK_EURO)));
+  SWIG_Python_SetConstant(d, "SDLK_UNDO",SWIG_From_int(static_cast< int >(SDLK_UNDO)));
+  SWIG_Python_SetConstant(d, "SDLK_LAST",SWIG_From_int(static_cast< int >(SDLK_LAST)));
+  SWIG_Python_SetConstant(d, "KMOD_NONE",SWIG_From_int(static_cast< int >(KMOD_NONE)));
+  SWIG_Python_SetConstant(d, "KMOD_LSHIFT",SWIG_From_int(static_cast< int >(KMOD_LSHIFT)));
+  SWIG_Python_SetConstant(d, "KMOD_RSHIFT",SWIG_From_int(static_cast< int >(KMOD_RSHIFT)));
+  SWIG_Python_SetConstant(d, "KMOD_LCTRL",SWIG_From_int(static_cast< int >(KMOD_LCTRL)));
+  SWIG_Python_SetConstant(d, "KMOD_RCTRL",SWIG_From_int(static_cast< int >(KMOD_RCTRL)));
+  SWIG_Python_SetConstant(d, "KMOD_LALT",SWIG_From_int(static_cast< int >(KMOD_LALT)));
+  SWIG_Python_SetConstant(d, "KMOD_RALT",SWIG_From_int(static_cast< int >(KMOD_RALT)));
+  SWIG_Python_SetConstant(d, "KMOD_LMETA",SWIG_From_int(static_cast< int >(KMOD_LMETA)));
+  SWIG_Python_SetConstant(d, "KMOD_RMETA",SWIG_From_int(static_cast< int >(KMOD_RMETA)));
+  SWIG_Python_SetConstant(d, "KMOD_NUM",SWIG_From_int(static_cast< int >(KMOD_NUM)));
+  SWIG_Python_SetConstant(d, "KMOD_CAPS",SWIG_From_int(static_cast< int >(KMOD_CAPS)));
+  SWIG_Python_SetConstant(d, "KMOD_MODE",SWIG_From_int(static_cast< int >(KMOD_MODE)));
+  SWIG_Python_SetConstant(d, "KMOD_RESERVED",SWIG_From_int(static_cast< int >(KMOD_RESERVED)));
 }
 

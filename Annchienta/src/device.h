@@ -23,7 +23,7 @@ namespace Annchienta
                 ~Device();
             #endif
 
-            void setVideoMode( int w, int h, bool fullscreen=false );
+            void setVideoMode( int w, int h, const char *title="Annchienta RPG Engine", bool fullscreen=false );
 
             /** Simply does what PyRun_SimpleFile does, but this is a
              *  safer way...
@@ -34,7 +34,7 @@ namespace Annchienta
              *  over the regular Python 'print' statement, because else, the
              *  text might not appear when compiled under certain conditions.
              */
-            void print( const char *text ) const;
+            void write( const char *text ) const;
 
     };
 

@@ -1,34 +1,26 @@
 import annchienta
-import time
 
 device = annchienta.getDevice()
-device.setVideoMode( 400, 300, False )
+device.setVideoMode( 400, 300, "Annchienta", False )
 
 painter = annchienta.getPainter()
 painter.reset()
+
+inputManager = annchienta.getInputManager()
 
 surface = annchienta.Surface( "../testdata/img.png" )
 
 font = annchienta.Font( "../testdata/font.ttf", 50 )
 
-start = time.time()
-
-rotation = 0
-
-while start+10>time.time():
+while inputManager.running():
+    
+    inputManager.update()
     
     painter.setColor()
     surface.draw( 0, 0 )
-    painter.pushMatrix()
-    painter.translate( 200, 150 )
-    painter.rotate( rotation )
-    painter.scale( 100, 100 )
-    painter.drawTriangle( -1, 1, 0, -1, 1, 1 )
-    painter.popMatrix()
     painter.setColor(255,255,0,30)
-    font.draw(10,10,"Hello world!")
     
-    rotation += 1
+    if inputManager.keyDown( annchienta.SDLK_a ):
+        font.draw(10,10,"Hello world!")
     
     painter.flip()
-    time.sleep(0.01)

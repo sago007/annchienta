@@ -13,3 +13,4 @@
 %include "inputmanager.h"
 %include "surface.h"
 %include "font.h"
+%include "/usr/include/SDL/SDL_keysym.h"
