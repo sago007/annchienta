@@ -1,13 +1,13 @@
 #include <Python.h>
 #include <SDL.h>
 
-#include "device.h"
+#include "engine.h"
 
 extern "C" void init_annchienta(void);
 
 int main( int argc, char **argv )
 {
-    Annchienta::Device *device = new Annchienta::Device();
+    Annchienta::Engine *engine = new Annchienta::Engine();
 
     char gameToRun[512];
 
@@ -28,8 +28,8 @@ int main( int argc, char **argv )
 
     /* Run our game.
      */
-    device->runPythonScript( gameToRun );
+    engine->runPythonScript( gameToRun );
  
-    delete device;
+    delete engine;
 
 };

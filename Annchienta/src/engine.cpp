@@ -2,7 +2,7 @@
  * Please consult the license and copyright details in Annchienta/license.txt
  */
 
-#include "device.h"
+#include "engine.h"
 
 #include <SDL.h>
 #include <GL/gl.h>
@@ -13,13 +13,13 @@
 
 namespace Annchienta
 {
-    Device *device;
+    Engine *engine;
 
-    Device::Device()
+    Engine::Engine()
     {
-        /* Set global device...
+        /* Set global engine...
          */
-        device = this;
+        engine = this;
 
         /* Init some things...
          */
@@ -32,7 +32,7 @@ namespace Annchienta
         inputManager = new InputManager();
     }
 
-    Device::~Device()
+    Engine::~Engine()
     {
 
         /* Free up other Single-Instance classes.
@@ -46,7 +46,7 @@ namespace Annchienta
         SDL_Quit();
     }
 
-    void Device::runPythonScript( const char *filename ) const
+    void Engine::runPythonScript( const char *filename ) const
     {
         char buffer[ strlen(filename)+32 ];
         sprintf( buffer, "execfile(\"%s\")\n", filename );
@@ -54,14 +54,14 @@ namespace Annchienta
         PyRun_SimpleString( buffer );
     }
 
-    void Device::write( const char *text ) const
+    void Engine::write( const char *text ) const
     {
         printf( text );
     }
 
-    Device *getDevice()
+    Engine *getEngine()
     {
-        return device;
+        return engine;
     }
 
 };

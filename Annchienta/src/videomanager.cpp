@@ -167,9 +167,9 @@ namespace Annchienta
         surface->draw( x, y );
     }
 
-    void VideoManager::drawText( Font *font, const char *text, int x, int y ) const
+    void VideoManager::drawString( Font *font, const char *str, int x, int y ) const
     {
-        font->draw( text, x, y );
+        font->draw( str, x, y );
     }
 
     void VideoManager::grabBuffer( Surface *surface ) const
@@ -179,19 +179,19 @@ namespace Annchienta
         glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-surface->getHeight(), 0, 0, surface->getWidth(), surface->getHeight() );
     }
 
-    Surface *VideoManager::grabBuffer( int x1, int y1, int x2, int y2 ) const
+    void VideoManager::grabBuffer( Surface *surface, int x1, int y1, int x2, int y2 ) const
     {
         if( x1>x2 )
             swap<int>(x1, x2);
         if( y1>y2 )
             swap<int>(y1, y2);
 
-        Surface *surface = new Surface( x2-x1, y2-y1, 3 );
+        int width  = x2 - x1,
+            height = y2 - y1;
+
         glBindTexture( GL_TEXTURE_2D, surface->getTexture() );
 
-        glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-surface->getHeight(), x1, getScreenHeight()-surface->getHeight()-y1, surface->getWidth(), surface->getHeight() );
-
-        return surface;
+        glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-surface->getHeight(), x1, getScreenHeight()-surface->getHeight()-y1, width, height );
     }
 
     VideoManager *getVideoManager()

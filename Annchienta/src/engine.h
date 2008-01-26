@@ -2,8 +2,8 @@
  * Please consult the license and copyright details in Annchienta/license.txt
  */
 
-#ifndef ANNCHIENTA_DEVICE_H
-#define ANNCHIENTA_DEVICE_H
+#ifndef ANNCHIENTA_ENGINE_H
+#define ANNCHIENTA_ENGINE_H
 
 namespace Annchienta
 {
@@ -11,7 +11,7 @@ namespace Annchienta
     class VideoManager;
     class InputManager;
 
-    class Device
+    class Engine
     {
         private:
             VideoManager *videoManager;
@@ -19,14 +19,10 @@ namespace Annchienta
 
         public:
             #ifndef SWIG
-                Device();
-                ~Device();
+                Engine();
+                ~Engine();
+                void runPythonScript( const char *filename ) const;
             #endif
-
-            /** Simply does what PyRun_SimpleFile does, but this is a
-             *  safer way...
-             */
-            void runPythonScript( const char *filename ) const;
 
             /** Simply prints some text to stdout. This should be preferred
              *  over the regular Python 'print' statement, because else, the
@@ -36,7 +32,7 @@ namespace Annchienta
 
     };
 
-    Device *getDevice();
+    Engine *getEngine();
 };
 
 #endif

@@ -48,24 +48,23 @@ except AttributeError:
 del types
 
 
-class Device(_object):
+class Engine(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Device, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Engine, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Device, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, Engine, name)
     __repr__ = _swig_repr
-    def runPythonScript(*args): return _annchienta.Device_runPythonScript(*args)
-    def write(*args): return _annchienta.Device_write(*args)
+    def write(*args): return _annchienta.Engine_write(*args)
     def __init__(self, *args): 
-        this = _annchienta.new_Device(*args)
+        this = _annchienta.new_Engine(*args)
         try: self.this.append(this)
         except: self.this = this
-    __swig_destroy__ = _annchienta.delete_Device
+    __swig_destroy__ = _annchienta.delete_Engine
     __del__ = lambda self : None;
-Device_swigregister = _annchienta.Device_swigregister
-Device_swigregister(Device)
+Engine_swigregister = _annchienta.Engine_swigregister
+Engine_swigregister(Engine)
 
-getDevice = _annchienta.getDevice
+getEngine = _annchienta.getEngine
 class VideoManager(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, VideoManager, name, value)
@@ -87,7 +86,7 @@ class VideoManager(_object):
     def drawLine(*args): return _annchienta.VideoManager_drawLine(*args)
     def drawTriangle(*args): return _annchienta.VideoManager_drawTriangle(*args)
     def drawSurface(*args): return _annchienta.VideoManager_drawSurface(*args)
-    def drawText(*args): return _annchienta.VideoManager_drawText(*args)
+    def drawString(*args): return _annchienta.VideoManager_drawString(*args)
     def grabBuffer(*args): return _annchienta.VideoManager_grabBuffer(*args)
     def __init__(self, *args): 
         this = _annchienta.new_VideoManager(*args)

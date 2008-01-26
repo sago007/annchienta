@@ -55,12 +55,12 @@ namespace Annchienta
             void drawLine( int x1, int y1, int x2, int y2 ) const;
             void drawTriangle( int x1, int y1, int x2, int y2, int x3, int y3 ) const;
             void drawSurface( Surface *surface, int x, int y ) const;
-            void drawText( Font *font, const char *text, int x, int y ) const;
+            void drawString( Font *font, const char *str, int x, int y ) const;
 
             /** Copies the buffer to a surface.
              */
             void grabBuffer( Surface* ) const;
-            Surface *grabBuffer( int x1, int y1, int x2, int y2 ) const;
+            void grabBuffer( Surface*, int x1, int y1, int x2, int y2 ) const;
     };
 
     VideoManager *getVideoManager();
