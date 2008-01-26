@@ -10,12 +10,14 @@ namespace Annchienta
 
     class VideoManager;
     class InputManager;
+    class MapManager;
 
     class Engine
     {
         private:
             VideoManager *videoManager;
             InputManager *inputManager;
+            MapManager *mapManager;
 
         public:
             #ifndef SWIG

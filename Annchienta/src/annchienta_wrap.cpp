@@ -2468,13 +2468,14 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__Engine swig_types[0]
 #define SWIGTYPE_p_Annchienta__Font swig_types[1]
 #define SWIGTYPE_p_Annchienta__InputManager swig_types[2]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[3]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[4]
-#define SWIGTYPE_p_SDLKey swig_types[5]
-#define SWIGTYPE_p_SDLMod swig_types[6]
-#define SWIGTYPE_p_char swig_types[7]
-static swig_type_info *swig_types[9];
-static swig_module_info swig_module = {swig_types, 8, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__MapManager swig_types[3]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[4]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[5]
+#define SWIGTYPE_p_SDLKey swig_types[6]
+#define SWIGTYPE_p_SDLMod swig_types[7]
+#define SWIGTYPE_p_char swig_types[8]
+static swig_type_info *swig_types[10];
+static swig_module_info swig_module = {swig_types, 9, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2567,6 +2568,7 @@ namespace swig {
 #include "engine.h"
 #include "videomanager.h"
 #include "inputmanager.h"
+#include "mapmanager.h"
 #include "surface.h"
 #include "font.h"
 
@@ -4457,6 +4459,61 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_new_MapManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_MapManager")) SWIG_fail;
+  result = (Annchienta::MapManager *)new Annchienta::MapManager();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__MapManager, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MapManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MapManager",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MapManager" "', argument " "1"" of type '" "Annchienta::MapManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  delete arg1;
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MapManager_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__MapManager, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_getMapManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":getMapManager")) SWIG_fail;
+  result = (Annchienta::MapManager *)Annchienta::getMapManager();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_Surface__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
@@ -4866,6 +4923,10 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_InputManager", _wrap_delete_InputManager, METH_VARARGS, NULL},
 	 { (char *)"InputManager_swigregister", InputManager_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getInputManager", _wrap_getInputManager, METH_VARARGS, NULL},
+	 { (char *)"new_MapManager", _wrap_new_MapManager, METH_VARARGS, NULL},
+	 { (char *)"delete_MapManager", _wrap_delete_MapManager, METH_VARARGS, NULL},
+	 { (char *)"MapManager_swigregister", MapManager_swigregister, METH_VARARGS, NULL},
+	 { (char *)"getMapManager", _wrap_getMapManager, METH_VARARGS, NULL},
 	 { (char *)"new_Surface", _wrap_new_Surface, METH_VARARGS, NULL},
 	 { (char *)"delete_Surface", _wrap_delete_Surface, METH_VARARGS, NULL},
 	 { (char *)"Surface_getWidth", _wrap_Surface_getWidth, METH_VARARGS, NULL},
@@ -4886,6 +4947,7 @@ static PyMethodDef SwigMethods[] = {
 static swig_type_info _swigt__p_Annchienta__Engine = {"_p_Annchienta__Engine", "Annchienta::Engine *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Font = {"_p_Annchienta__Font", "Annchienta::Font *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__InputManager = {"_p_Annchienta__InputManager", "Annchienta::InputManager *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__MapManager = {"_p_Annchienta__MapManager", "Annchienta::MapManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Surface = {"_p_Annchienta__Surface", "Annchienta::Surface *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__VideoManager = {"_p_Annchienta__VideoManager", "Annchienta::VideoManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDLKey = {"_p_SDLKey", "enum SDLKey *|SDLKey *", 0, 0, (void*)0, 0};
@@ -4896,6 +4958,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Engine,
   &_swigt__p_Annchienta__Font,
   &_swigt__p_Annchienta__InputManager,
+  &_swigt__p_Annchienta__MapManager,
   &_swigt__p_Annchienta__Surface,
   &_swigt__p_Annchienta__VideoManager,
   &_swigt__p_SDLKey,
@@ -4906,6 +4969,7 @@ static swig_type_info *swig_type_initial[] = {
 static swig_cast_info _swigc__p_Annchienta__Engine[] = {  {&_swigt__p_Annchienta__Engine, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__Font, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__InputManager[] = {  {&_swigt__p_Annchienta__InputManager, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__MapManager[] = {  {&_swigt__p_Annchienta__MapManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Surface[] = {  {&_swigt__p_Annchienta__Surface, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__VideoManager[] = {  {&_swigt__p_Annchienta__VideoManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDLKey[] = {  {&_swigt__p_SDLKey, 0, 0, 0},{0, 0, 0, 0}};
@@ -4916,6 +4980,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Engine,
   _swigc__p_Annchienta__Font,
   _swigc__p_Annchienta__InputManager,
+  _swigc__p_Annchienta__MapManager,
   _swigc__p_Annchienta__Surface,
   _swigc__p_Annchienta__VideoManager,
   _swigc__p_SDLKey,

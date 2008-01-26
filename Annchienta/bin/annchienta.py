@@ -119,6 +119,22 @@ InputManager_swigregister = _annchienta.InputManager_swigregister
 InputManager_swigregister(InputManager)
 
 getInputManager = _annchienta.getInputManager
+class MapManager(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MapManager, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, MapManager, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_MapManager(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_MapManager
+    __del__ = lambda self : None;
+MapManager_swigregister = _annchienta.MapManager_swigregister
+MapManager_swigregister(MapManager)
+
+getMapManager = _annchienta.getMapManager
 class Surface(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Surface, name, value)
