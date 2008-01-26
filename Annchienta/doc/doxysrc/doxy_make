@@ -1,2 +1,3 @@
+rm ../api/html/*
 cat fake_sources/*.py > annchienta.py
 doxygen Doxyfile

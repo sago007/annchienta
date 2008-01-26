@@ -1,27 +1,27 @@
-from annchienta import *
+import annchienta
 
-video = getVideoManager()
-video.setVideoMode( 400, 300, "Annchienta", False )
+videoMgr = annchienta.getVideoManager()
+videoMgr.setVideoMode( 400, 300, "Annchienta", False )
 
-inputManager = getInputManager()
+inputMgr = annchienta.getInputManager()
 
-surface = Surface( "../testdata/img2.png" )
+surface = annchienta.Surface( "../testdata/img.png" )
 
-video.drawSurface( surface, 0, 0 )
+videoMgr.drawSurface( surface, 0, 0 )
 
-font = Font( "../testdata/font.ttf", 50 )
+font = annchienta.Font( "../testdata/font.ttf", 50 )
 
-part = video.grabBuffer( 50, 25, 75, 50 )
-
-while inputManager.running():
+while inputMgr.running():
     
-    inputManager.update()
+    inputMgr.update()
     
-    video.drawSurface( part, 0, 0 )
+    videoMgr.setColor()
     
-    video.setAlpha( 100 )
+    videoMgr.drawSurface( surface, 0, 0 )
     
-    video.drawText( font, "Hello", 400 - font.getStringWidth("Hello"), 0 )
+    videoMgr.setColor( 255, 255, 0, 60 )
     
-    video.flip()
+    videoMgr.drawString( font, "Hello World!", 200 - font.getStringWidth("Hello World!")/2, 10 )
+    
+    videoMgr.flip()
     
