@@ -12,7 +12,7 @@ namespace Annchienta
 
     }
 
-    ~Map()
+    Map::~Map()
     {
 
     }

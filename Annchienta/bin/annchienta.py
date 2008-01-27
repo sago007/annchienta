@@ -125,6 +125,12 @@ class MapManager(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, MapManager, name)
     __repr__ = _swig_repr
+    def setTileWidth(*args): return _annchienta.MapManager_setTileWidth(*args)
+    def getTileWidth(*args): return _annchienta.MapManager_getTileWidth(*args)
+    def setTileHeight(*args): return _annchienta.MapManager_setTileHeight(*args)
+    def getTileHeight(*args): return _annchienta.MapManager_getTileHeight(*args)
+    def getCameraX(*args): return _annchienta.MapManager_getCameraX(*args)
+    def getCameraY(*args): return _annchienta.MapManager_getCameraY(*args)
     def __init__(self, *args): 
         this = _annchienta.new_MapManager(*args)
         try: self.this.append(this)
@@ -169,6 +175,81 @@ class Font(_object):
     def getStringWidth(*args): return _annchienta.Font_getStringWidth(*args)
 Font_swigregister = _annchienta.Font_swigregister
 Font_swigregister(Font)
+
+class Layer(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Layer, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Layer, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_Layer(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Layer
+    __del__ = lambda self : None;
+Layer_swigregister = _annchienta.Layer_swigregister
+Layer_swigregister(Layer)
+
+class Map(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Map, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Map, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_Map(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Map
+    __del__ = lambda self : None;
+Map_swigregister = _annchienta.Map_swigregister
+Map_swigregister(Map)
+
+TilePoint = _annchienta.TilePoint
+IsometricPoint = _annchienta.IsometricPoint
+MapPoint = _annchienta.MapPoint
+ScreenPoint = _annchienta.ScreenPoint
+class Point(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Point, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Point, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["x"] = _annchienta.Point_x_set
+    __swig_getmethods__["x"] = _annchienta.Point_x_get
+    if _newclass:x = _swig_property(_annchienta.Point_x_get, _annchienta.Point_x_set)
+    __swig_setmethods__["y"] = _annchienta.Point_y_set
+    __swig_getmethods__["y"] = _annchienta.Point_y_get
+    if _newclass:y = _swig_property(_annchienta.Point_y_get, _annchienta.Point_y_set)
+    __swig_setmethods__["z"] = _annchienta.Point_z_set
+    __swig_getmethods__["z"] = _annchienta.Point_z_get
+    if _newclass:z = _swig_property(_annchienta.Point_z_get, _annchienta.Point_z_set)
+    def __init__(self, *args): 
+        this = _annchienta.new_Point(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Point
+    __del__ = lambda self : None;
+    def getType(*args): return _annchienta.Point_getType(*args)
+    def to(*args): return _annchienta.Point_to(*args)
+Point_swigregister = _annchienta.Point_swigregister
+Point_swigregister(Point)
+
+class Tile(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Tile, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Tile, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_Tile(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Tile
+    __del__ = lambda self : None;
+Tile_swigregister = _annchienta.Tile_swigregister
+Tile_swigregister(Tile)
 
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN
 SDLK_FIRST = _annchienta.SDLK_FIRST

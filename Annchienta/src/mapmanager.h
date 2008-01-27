@@ -10,6 +10,8 @@ namespace Annchienta
     class MapManager
     {
         private:
+            int tileWidth, tileHeight;
+            int cameraX, cameraY;
 
         public:
             #ifndef SWIG
@@ -17,6 +19,13 @@ namespace Annchienta
                 ~MapManager();
             #endif
 
+            void setTileWidth( int tileWidth );
+            int getTileWidth() const;
+            void setTileHeight( int tileHeight );
+            int getTileHeight() const;
+
+            int getCameraX() const;
+            int getCameraY() const;
     };
 
     MapManager *getMapManager();

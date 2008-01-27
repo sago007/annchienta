@@ -12,7 +12,7 @@ namespace Annchienta
 
     }
 
-    ~Layer()
+    Layer::~Layer()
     {
 
     }
