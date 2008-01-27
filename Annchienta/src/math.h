@@ -9,6 +9,10 @@ namespace Annchienta
 {
     const int nearestPowerOfTwo( const int &input );
 
+    /* return will be beneath maximum
+     */
+    const int randInt( const int &maximum );
+
     #ifndef SWIG
         template <class T>
         void swap( T &a, T &b )

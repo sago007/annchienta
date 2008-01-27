@@ -7,14 +7,20 @@
 
 namespace Annchienta
 {
+
+    class Tile;
+
     class Map
     {
         private:
+            Tile **tiles;
 
         public:
 
             Map( const char *filename );
             ~Map();
+
+            void draw();
 
     };
 };

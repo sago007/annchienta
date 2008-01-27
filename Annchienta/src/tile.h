@@ -22,6 +22,8 @@ namespace Annchienta
             Tile( Point, Surface*, Point, Surface*, Point, Surface*, Point, Surface* );
             ~Tile();
 
+            void draw();
+
     };
 };
 

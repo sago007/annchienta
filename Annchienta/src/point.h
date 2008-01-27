@@ -29,6 +29,7 @@ namespace Annchienta
 
             #ifndef SWIG /* Gets ignored anyway. */
                 Point &operator=(const Point &other);
+                void setType( PointType type );
             #endif
 
             PointType getType() const;

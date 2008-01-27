@@ -203,6 +203,7 @@ class Map(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Map
     __del__ = lambda self : None;
+    def draw(*args): return _annchienta.Map_draw(*args)
 Map_swigregister = _annchienta.Map_swigregister
 Map_swigregister(Map)
 
@@ -248,6 +249,7 @@ class Tile(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Tile
     __del__ = lambda self : None;
+    def draw(*args): return _annchienta.Tile_draw(*args)
 Tile_swigregister = _annchienta.Tile_swigregister
 Tile_swigregister(Tile)
 

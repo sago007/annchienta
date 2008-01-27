@@ -4,6 +4,7 @@
 
 #include "point.h"
 
+#include <stdio.h>
 #include "mapmanager.h"
 
 namespace Annchienta
@@ -30,6 +31,11 @@ namespace Annchienta
         return *this;
     }
 
+    void Point::setType( PointType _type )
+    {
+        type = _type;
+    }
+
     PointType Point::getType() const
     {
         return type;
@@ -44,6 +50,8 @@ namespace Annchienta
         if( !mapMgr )
             return;
 
+        int nx, ny;
+
         switch( type )
         {
             case TilePoint:
@@ -54,8 +62,10 @@ namespace Annchienta
                         y *= mapMgr->getTileHeight();
                         break;
                     case MapPoint: default:
-                        x = x*mapMgr->getTileWidth()/2 - y*mapMgr->getTileWidth()/2;
-                        y = x*mapMgr->getTileHeight()/2 + y*mapMgr->getTileHeight()/2 - z;
+                        nx = x*mapMgr->getTileWidth()/2 - y*mapMgr->getTileWidth()/2;
+                        ny = x*mapMgr->getTileHeight()/2 + y*mapMgr->getTileHeight()/2 - z;
+                        x = nx;
+                        y = ny;
                         break;
                     case ScreenPoint:
                         this->to( MapPoint );
@@ -72,8 +82,10 @@ namespace Annchienta
                         y /= mapMgr->getTileHeight();
                         break;
                     case MapPoint: default:
-                        x = x*2 - y*2;
-                        y = x+y - z;
+                        nx = x*2 - y*2;
+                        ny = x+y - z;
+                        x = nx;
+                        y = ny;
                         break;
                     case ScreenPoint:
                         this->to( MapPoint );

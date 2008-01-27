@@ -4,6 +4,8 @@
 
 #include "math.h"
 
+#include <stdlib.h>
+
 namespace Annchienta
 {
     const int nearestPowerOfTwo( const int &input )
@@ -12,5 +14,10 @@ namespace Annchienta
         while( value<input )
             value <<= 1;
         return value;
+    }
+
+    const int randInt( const int &max )
+    {
+        return rand()%max;
     }
 };

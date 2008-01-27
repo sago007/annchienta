@@ -5132,6 +5132,27 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Map_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Map_draw",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_draw" "', argument " "1"" of type '" "Annchienta::Map *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  (arg1)->draw();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Map_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -5802,6 +5823,27 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tile_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_draw",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_draw" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  (arg1)->draw();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Tile_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -5871,6 +5913,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Layer_swigregister", Layer_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Map", _wrap_new_Map, METH_VARARGS, NULL},
 	 { (char *)"delete_Map", _wrap_delete_Map, METH_VARARGS, NULL},
+	 { (char *)"Map_draw", _wrap_Map_draw, METH_VARARGS, NULL},
 	 { (char *)"Map_swigregister", Map_swigregister, METH_VARARGS, NULL},
 	 { (char *)"Point_x_set", _wrap_Point_x_set, METH_VARARGS, NULL},
 	 { (char *)"Point_x_get", _wrap_Point_x_get, METH_VARARGS, NULL},
@@ -5885,6 +5928,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Point_swigregister", Point_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Tile", _wrap_new_Tile, METH_VARARGS, NULL},
 	 { (char *)"delete_Tile", _wrap_delete_Tile, METH_VARARGS, NULL},
+	 { (char *)"Tile_draw", _wrap_Tile_draw, METH_VARARGS, NULL},
 	 { (char *)"Tile_swigregister", Tile_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };

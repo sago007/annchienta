@@ -1,5 +1,7 @@
 #include <Python.h>
 #include <SDL.h>
+#include <time.h>
+#include <stdlib.h>
 
 #include "engine.h"
 
@@ -7,6 +9,8 @@ extern "C" void init_annchienta(void);
 
 int main( int argc, char **argv )
 {
+    srand( time(NULL) );
+
     Annchienta::Engine *engine = new Annchienta::Engine();
 
     char gameToRun[512];
