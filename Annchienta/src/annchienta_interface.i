@@ -11,6 +11,7 @@
 #include "map.h"
 #include "point.h"
 #include "tile.h"
+#include "tileset.h"
 %}
 
 %include "engine.h"
@@ -23,4 +24,5 @@
 %include "map.h"
 %include "point.h"
 %include "tile.h"
+%include "tileset.h"
 %include "/usr/include/SDL/SDL_keysym.h"

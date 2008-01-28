@@ -9,11 +9,13 @@ namespace Annchienta
 {
 
     class Tile;
+    class TileSet;
 
     class Map
     {
         private:
             Tile **tiles;
+            TileSet *tileSet;
 
         public:
 

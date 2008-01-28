@@ -9,7 +9,7 @@
 
 #include "surface.h"
 #include "font.h"
-#include "math.h"
+#include "auxfunc.h"
 
 namespace Annchienta
 {

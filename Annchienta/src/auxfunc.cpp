@@ -2,9 +2,10 @@
  * Please consult the license and copyright details in Annchienta/license.txt
  */
 
-#include "math.h"
+#include "auxfunc.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 namespace Annchienta
 {
@@ -19,5 +20,16 @@ namespace Annchienta
     const int randInt( const int &max )
     {
         return rand()%max;
+    }
+
+    bool isValidFile( const char *filename )
+    {
+        FILE *f = fopen( filename, "r" );
+
+        if( f==NULL )
+            return false;
+
+        fclose( f );
+        return true;
     }
 };

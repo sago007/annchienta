@@ -7,7 +7,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include "math.h"
+#include "auxfunc.h"
 
 #define NUM_CHARACTERS 128
 

@@ -5,6 +5,7 @@
 #ifndef ANNCHIENTA_TILE_H
 #define ANNCHIENTA_TILE_H
 
+#include <GL/gl.h>
 #include "point.h"
 
 namespace Annchienta
@@ -17,12 +18,15 @@ namespace Annchienta
         private:
             Point points[4];
             Surface *surfaces[4];
+            GLuint list;
+
+            void makeList();
 
         public:
             Tile( Point, Surface*, Point, Surface*, Point, Surface*, Point, Surface* );
             ~Tile();
 
-            void draw();
+            void callList();
 
     };
 };

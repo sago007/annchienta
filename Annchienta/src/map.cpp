@@ -6,7 +6,8 @@
 
 #include <GL/gl.h>
 #include "tile.h"
-#include "math.h"
+#include "tileset.h"
+#include "auxfunc.h"
 
 #define MAP_S 20
 
@@ -15,7 +16,10 @@ namespace Annchienta
 
     Map::Map( const char *filename )
     {
+        tileSet = new TileSet( filename );
+
         tiles = new Tile*[MAP_S*MAP_S];
+
         for( int y=0; y<MAP_S; y++ )
         {
             for( int x=0; x<MAP_S; x++ )
@@ -29,13 +33,17 @@ namespace Annchienta
                 for( int i=0; i<4; i++ )
                     points[i].z = 0;//randInt( 20 );
 
-                tiles[y*MAP_S+x] = new Tile( points[0], 0, points[1], 0, points[2], 0, points[3], 0 );
+                Surface *surface = tileSet->getSurface( randInt(2) );
+
+                tiles[y*MAP_S+x] = new Tile( points[0], surface, points[1], surface, points[2], surface, points[3], surface );
             }
         }
     }
 
     Map::~Map()
     {
+        delete tileSet;
+
         for( int i=0; i<MAP_S*MAP_S; i++ )
         {
             delete tiles[i];
@@ -48,20 +56,13 @@ namespace Annchienta
 
         glPushMatrix();
 
-        glDisable( GL_TEXTURE_2D );
-        glBegin( GL_QUADS );
-
         for( int y=0; y<MAP_S; y++ )
         {
             for( int x=0; x<MAP_S; x++ )
             {
-                glColor3ub( randInt(255), randInt(255), randInt(255) );
-                tiles[y*MAP_S+x]->draw();
+                tiles[y*MAP_S+x]->callList();
             }
         }
-
-        glEnd();
-        glEnable( GL_TEXTURE_2D );
 
         glPopMatrix();
     }

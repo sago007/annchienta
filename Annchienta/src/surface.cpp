@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <png.h>
 
-#include "math.h"
+#include "auxfunc.h"
 
 #define PNG_BYTES_TO_CHECK 4
 
@@ -259,6 +259,26 @@ namespace Annchienta
     int Surface::getGlHeight() const
     {
         return glHeight;
+    }
+
+    float Surface::getLeftTexCoord() const
+    {
+        return leftTexCoord;
+    }
+
+    float Surface::getRightTexCoord() const
+    {
+        return rightTexCoord;
+    }
+
+    float Surface::getTopTexCoord() const
+    {
+        return topTexCoord;
+    }
+
+    float Surface::getBottomTexCoord() const
+    {
+        return bottomTexCoord;
     }
 
 };

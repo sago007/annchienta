@@ -249,9 +249,25 @@ class Tile(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Tile
     __del__ = lambda self : None;
-    def draw(*args): return _annchienta.Tile_draw(*args)
+    def callList(*args): return _annchienta.Tile_callList(*args)
 Tile_swigregister = _annchienta.Tile_swigregister
 Tile_swigregister(Tile)
+
+class TileSet(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, TileSet, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, TileSet, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_TileSet(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_TileSet
+    __del__ = lambda self : None;
+    def getSurface(*args): return _annchienta.TileSet_getSurface(*args)
+TileSet_swigregister = _annchienta.TileSet_swigregister
+TileSet_swigregister(TileSet)
 
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN
 SDLK_FIRST = _annchienta.SDLK_FIRST

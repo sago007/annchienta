@@ -2474,12 +2474,13 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__Point swig_types[6]
 #define SWIGTYPE_p_Annchienta__Surface swig_types[7]
 #define SWIGTYPE_p_Annchienta__Tile swig_types[8]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[9]
-#define SWIGTYPE_p_SDLKey swig_types[10]
-#define SWIGTYPE_p_SDLMod swig_types[11]
-#define SWIGTYPE_p_char swig_types[12]
-static swig_type_info *swig_types[14];
-static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[9]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[10]
+#define SWIGTYPE_p_SDLKey swig_types[11]
+#define SWIGTYPE_p_SDLMod swig_types[12]
+#define SWIGTYPE_p_char swig_types[13]
+static swig_type_info *swig_types[15];
+static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2579,6 +2580,7 @@ namespace swig {
 #include "map.h"
 #include "point.h"
 #include "tile.h"
+#include "tileset.h"
 
 
 SWIGINTERN swig_type_info*
@@ -5823,20 +5825,20 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Tile_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Tile_callList(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Tile_draw",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_callList",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_draw" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_callList" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
-  (arg1)->draw();
+  (arg1)->callList();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -5848,6 +5850,91 @@ SWIGINTERN PyObject *Tile_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject 
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__Tile, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_TileSet(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  Annchienta::TileSet *result = 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_TileSet",&obj0)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_TileSet" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  result = (Annchienta::TileSet *)new Annchienta::TileSet((char const *)arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__TileSet, SWIG_POINTER_NEW |  0 );
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_TileSet(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::TileSet *arg1 = (Annchienta::TileSet *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_TileSet",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__TileSet, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_TileSet" "', argument " "1"" of type '" "Annchienta::TileSet *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::TileSet * >(argp1);
+  delete arg1;
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TileSet_getSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::TileSet *arg1 = (Annchienta::TileSet *) 0 ;
+  int arg2 ;
+  Annchienta::Surface *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:TileSet_getSurface",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__TileSet, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TileSet_getSurface" "', argument " "1"" of type '" "Annchienta::TileSet const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::TileSet * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "TileSet_getSurface" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (Annchienta::Surface *)((Annchienta::TileSet const *)arg1)->getSurface(arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *TileSet_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__TileSet, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -5928,8 +6015,12 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Point_swigregister", Point_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Tile", _wrap_new_Tile, METH_VARARGS, NULL},
 	 { (char *)"delete_Tile", _wrap_delete_Tile, METH_VARARGS, NULL},
-	 { (char *)"Tile_draw", _wrap_Tile_draw, METH_VARARGS, NULL},
+	 { (char *)"Tile_callList", _wrap_Tile_callList, METH_VARARGS, NULL},
 	 { (char *)"Tile_swigregister", Tile_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_TileSet", _wrap_new_TileSet, METH_VARARGS, NULL},
+	 { (char *)"delete_TileSet", _wrap_delete_TileSet, METH_VARARGS, NULL},
+	 { (char *)"TileSet_getSurface", _wrap_TileSet_getSurface, METH_VARARGS, NULL},
+	 { (char *)"TileSet_swigregister", TileSet_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -5945,6 +6036,7 @@ static swig_type_info _swigt__p_Annchienta__MapManager = {"_p_Annchienta__MapMan
 static swig_type_info _swigt__p_Annchienta__Point = {"_p_Annchienta__Point", "Annchienta::Point *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Surface = {"_p_Annchienta__Surface", "Annchienta::Surface *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Tile = {"_p_Annchienta__Tile", "Annchienta::Tile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__TileSet = {"_p_Annchienta__TileSet", "Annchienta::TileSet *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__VideoManager = {"_p_Annchienta__VideoManager", "Annchienta::VideoManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDLKey = {"_p_SDLKey", "enum SDLKey *|SDLKey *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDLMod = {"_p_SDLMod", "enum SDLMod *|SDLMod *", 0, 0, (void*)0, 0};
@@ -5960,6 +6052,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Point,
   &_swigt__p_Annchienta__Surface,
   &_swigt__p_Annchienta__Tile,
+  &_swigt__p_Annchienta__TileSet,
   &_swigt__p_Annchienta__VideoManager,
   &_swigt__p_SDLKey,
   &_swigt__p_SDLMod,
@@ -5975,6 +6068,7 @@ static swig_cast_info _swigc__p_Annchienta__MapManager[] = {  {&_swigt__p_Annchi
 static swig_cast_info _swigc__p_Annchienta__Point[] = {  {&_swigt__p_Annchienta__Point, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Surface[] = {  {&_swigt__p_Annchienta__Surface, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Tile[] = {  {&_swigt__p_Annchienta__Tile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__TileSet[] = {  {&_swigt__p_Annchienta__TileSet, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__VideoManager[] = {  {&_swigt__p_Annchienta__VideoManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDLKey[] = {  {&_swigt__p_SDLKey, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDLMod[] = {  {&_swigt__p_SDLMod, 0, 0, 0},{0, 0, 0, 0}};
@@ -5990,6 +6084,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Point,
   _swigc__p_Annchienta__Surface,
   _swigc__p_Annchienta__Tile,
+  _swigc__p_Annchienta__TileSet,
   _swigc__p_Annchienta__VideoManager,
   _swigc__p_SDLKey,
   _swigc__p_SDLMod,

@@ -40,6 +40,11 @@ namespace Annchienta
                 GLuint getTexture() const;
                 int getGlWidth() const;
                 int getGlHeight() const;
+
+                float getLeftTexCoord() const;
+                float getRightTexCoord() const;
+                float getTopTexCoord() const;
+                float getBottomTexCoord() const;
             #endif
 
     };

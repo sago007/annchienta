@@ -2,8 +2,8 @@
  * Please consult the license and copyright details in Annchienta/license.txt
  */
 
-#ifndef ANNCHIENTA_MATH_H
-#define ANNCHIENTA_MATH_H
+#ifndef ANNCHIENTA_AUXFUNC_H
+#define ANNCHIENTA_AUXFUNC_H
 
 namespace Annchienta
 {
@@ -12,6 +12,8 @@ namespace Annchienta
     /* return will be beneath maximum
      */
     const int randInt( const int &maximum );
+
+    bool isValidFile( const char *filename );
 
     #ifndef SWIG
         template <class T>
