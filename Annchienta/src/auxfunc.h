@@ -23,6 +23,12 @@ namespace Annchienta
             a = b;
             b = temp;
         }
+
+        template <class T>
+        void sort( T *array, int size )
+        {
+
+        }
     #endif
 };
 

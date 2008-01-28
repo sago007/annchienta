@@ -30,12 +30,15 @@ namespace Annchienta
                 points[0].y = points[3].y = y;
                 points[1].y = points[2].y = y+1;
 
+                Surface *surfaces[4];
+
                 for( int i=0; i<4; i++ )
-                    points[i].z = 0;//randInt( 20 );
+                {
+                    points[i].z = 0;//randInt( 10 );
+                    surfaces[i] = tileSet->getSurface( randInt(2) );
+                }
 
-                Surface *surface = tileSet->getSurface( randInt(2) );
-
-                tiles[y*MAP_S+x] = new Tile( points[0], surface, points[1], surface, points[2], surface, points[3], surface );
+                tiles[y*MAP_S+x] = new Tile( points[0], surfaces[0], points[1], surfaces[1], points[2], surfaces[2], points[3], surfaces[3] );
             }
         }
     }
@@ -63,6 +66,8 @@ namespace Annchienta
                 tiles[y*MAP_S+x]->callList();
             }
         }
+
+        glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
 
         glPopMatrix();
     }
