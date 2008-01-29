@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <time.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "engine.h"
 
@@ -27,8 +28,23 @@ int main( int argc, char **argv )
      * piece of code fixes it: it adds the current working directory
      * to the "path"... while it should already be there. Not running
      * this will result in an error, though.
+     *
+     * Then, we set the current working directory to the one in which
+     * the game script is located.
      */
-    PyRun_SimpleString( "from sys import path\nfrom os import getcwdu\npath.append( getcwdu() )" );
+    char initScript[1024];
+
+    sprintf( initScript,
+"\
+import sys\n\
+import os\n\
+\n\
+sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
+os.chdir( os.path.dirname( \"%s\" ) )\n\
+",
+    gameToRun );
+
+    PyRun_SimpleString( initScript );
 
     /* Run our game.
      */

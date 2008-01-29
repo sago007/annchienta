@@ -14,7 +14,7 @@ all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(SWIG_CPP_FILE)
 	@echo "Compiling the executable..."
-	@$(CXX) $(C_FLAGS) $(LD_FLAGS) -o bin/annchienta src/*.cpp
+	@$(CXX) $(C_FLAGS) $(LD_FLAGS) -o $(EXECUTABLE) src/*.cpp
 
 
 $(SWIG_CPP_FILE):
@@ -23,15 +23,9 @@ $(SWIG_CPP_FILE):
 
 
 clean:
-	@echo "Removing all..."
-	@$(RM) $(SWIG_CPP_FILE) bin/* scripts/annchienta.py
+	@echo "Removing binaries..."
+	@$(RM) $(EXECUTABLE)
 
-
-recompile:
-	@$(RM) bin/*
-	@make all
-
-
-rewrap:
-	@$(RM) $(SWIG_CPP_FILE)
-	@make all
+cleanall:
+	@echo "Removing binaries and python wrappers..."
+	@$(RM) bin/* $(SWIG_CPP_FILE)

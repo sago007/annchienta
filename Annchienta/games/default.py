@@ -9,7 +9,7 @@ mapMgr = annchienta.getMapManager()
 mapMgr.setTileWidth(64)
 mapMgr.setTileHeight(32)
 
-mymap = annchienta.Map( "../games/tileset/" )
+mymap = annchienta.Map( "tileset/" )
 
 while inputMgr.running():
     
