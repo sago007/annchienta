@@ -17,6 +17,10 @@ namespace Annchienta
     class Map
     {
         private:
+            /* Number of tiles.
+             */
+            int width, height;
+
             Tile **tiles;
             TileSet *tileSet;
 

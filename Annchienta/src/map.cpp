@@ -10,24 +10,25 @@
 #include "auxfunc.h"
 #include "entity.h"
 
-#define MAP_S 20
-
 namespace Annchienta
 {
 
     Map::Map( const char *filename )
     {
+        width = 5;
+        height = 20;
+
         tileSet = new TileSet( filename );
 
-        tiles = new Tile*[MAP_S*MAP_S];
+        tiles = new Tile*[width*height];
 
         /* Create some extra space.
          */
-        entities.resize( MAP_S*MAP_S );
+        entities.resize( width*height );
 
-        for( int y=0; y<MAP_S; y++ )
+        for( int y=0; y<height; y++ )
         {
-            for( int x=0; x<MAP_S; x++ )
+            for( int x=0; x<width; x++ )
             {
                 Point points[4];
                 points[0].x = points[1].x = x;
@@ -43,7 +44,7 @@ namespace Annchienta
                     surfaces[i] = tileSet->getSurface( randInt(2) );
                 }
 
-                entities[y*MAP_S+x] = tiles[y*MAP_S+x] = new Tile( points[0], surfaces[0], points[1], surfaces[1], points[2], surfaces[2], points[3], surfaces[3] );
+                entities[y*width+x] = tiles[y*width+x] = new Tile( points[0], surfaces[0], points[1], surfaces[1], points[2], surfaces[2], points[3], surfaces[3] );
             }
         }
     }
@@ -52,7 +53,7 @@ namespace Annchienta
     {
         delete tileSet;
 
-        for( int i=0; i<MAP_S*MAP_S; i++ )
+        for( int i=0; i<width*height; i++ )
         {
             delete tiles[i];
         }
