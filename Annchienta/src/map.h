@@ -5,11 +5,14 @@
 #ifndef ANNCHIENTA_MAP_H
 #define ANNCHIENTA_MAP_H
 
+#include <vector>
+
 namespace Annchienta
 {
 
     class Tile;
     class TileSet;
+    class Entity;
 
     class Map
     {
@@ -17,12 +20,18 @@ namespace Annchienta
             Tile **tiles;
             TileSet *tileSet;
 
+            /* This is another list that holds ALL entities in the
+             * level. This even includes tiles.
+             */
+            std::vector<Entity*> entities;
+
         public:
 
             Map( const char *filename );
             ~Map();
 
-            void draw();
+            void draw() const;
+            void depthSort();
 
     };
 };

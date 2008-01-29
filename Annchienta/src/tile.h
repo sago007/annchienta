@@ -7,13 +7,14 @@
 
 #include <GL/gl.h>
 #include "point.h"
+#include "entity.h"
 
 namespace Annchienta
 {
 
     class Surface;
 
-    class Tile
+    class Tile: public Entity
     {
         private:
             Point points[4];
@@ -26,7 +27,8 @@ namespace Annchienta
             Tile( Point, Surface*, Point, Surface*, Point, Surface*, Point, Surface* );
             ~Tile();
 
-            void callList();
+            virtual void draw() const;
+            virtual int getDepthSortY() const;
 
     };
 };

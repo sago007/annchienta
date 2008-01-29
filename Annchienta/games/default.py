@@ -24,6 +24,7 @@ while inputMgr.running():
     if( inputMgr.keyDown( annchienta.SDLK_DOWN ) ):
         videoMgr.translate( 0, -1 )
     
+    mymap.depthSort()
     mymap.draw()
     
     videoMgr.flip()

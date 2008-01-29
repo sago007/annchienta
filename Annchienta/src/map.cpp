@@ -8,6 +8,7 @@
 #include "tile.h"
 #include "tileset.h"
 #include "auxfunc.h"
+#include "entity.h"
 
 #define MAP_S 20
 
@@ -19,6 +20,10 @@ namespace Annchienta
         tileSet = new TileSet( filename );
 
         tiles = new Tile*[MAP_S*MAP_S];
+
+        /* Create some extra space.
+         */
+        entities.resize( MAP_S*MAP_S );
 
         for( int y=0; y<MAP_S; y++ )
         {
@@ -34,11 +39,11 @@ namespace Annchienta
 
                 for( int i=0; i<4; i++ )
                 {
-                    points[i].z = 0;//randInt( 10 );
+                    points[i].z = 0;//randInt( 20 );
                     surfaces[i] = tileSet->getSurface( randInt(2) );
                 }
 
-                tiles[y*MAP_S+x] = new Tile( points[0], surfaces[0], points[1], surfaces[1], points[2], surfaces[2], points[3], surfaces[3] );
+                entities[y*MAP_S+x] = tiles[y*MAP_S+x] = new Tile( points[0], surfaces[0], points[1], surfaces[1], points[2], surfaces[2], points[3], surfaces[3] );
             }
         }
     }
@@ -54,22 +59,39 @@ namespace Annchienta
         delete[] tiles;
     }
 
-    void Map::draw()
+    void Map::draw() const
     {
 
         glPushMatrix();
 
-        for( int y=0; y<MAP_S; y++ )
-        {
-            for( int x=0; x<MAP_S; x++ )
-            {
-                tiles[y*MAP_S+x]->callList();
-            }
-        }
+        for( unsigned int i=0; i<entities.size(); i++ )
+            entities[i]->draw();
 
         glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
 
         glPopMatrix();
+    }
+
+    void Map::depthSort()
+    {
+        /* The map should be more or less sorted already, that's
+         * why we use a form of gnome sort.
+         */
+        unsigned int i=1, c=1;
+        while( i<entities.size() )
+        {
+            if( entities[i-1]->getDepthSortY() > entities[i]->getDepthSortY() )
+            {
+                swap<Entity*>( entities[i-1], entities[i] );
+                if( i>1 )
+                    i--;
+            }
+            else
+            {
+                i = i>=c?i+1:c;
+                c = i;
+            }
+        }
     }
 
 };

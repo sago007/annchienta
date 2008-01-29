@@ -77,19 +77,19 @@ namespace Annchienta
             glBindTexture( GL_TEXTURE_2D, orderedSurfaces[i]->getTexture() );
             glBegin( GL_QUADS );
     
-                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[0]?1.0f:0.0f );
+                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[0] || i==0?1.0f:0.0f );
                 glTexCoord2f( xCoord, surfaces[0]->getTopTexCoord() );
                 glVertex2f( points[0].x, points[0].y );
     
-                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[1]?1.0f:0.0f );
+                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[1] || i==0?1.0f:0.0f );
                 glTexCoord2f( surfaces[0]->getLeftTexCoord(), yCoord );
                 glVertex2f( points[1].x, points[1].y );
     
-                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[2]?1.0f:0.0f );
+                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[2] || i==0?1.0f:0.0f );
                 glTexCoord2f( xCoord, surfaces[0]->getBottomTexCoord() );
                 glVertex2f( points[2].x, points[2].y );
     
-                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[3]?1.0f:0.0f );
+                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[3] || i==0?1.0f:0.0f );
                 glTexCoord2f( surfaces[0]->getRightTexCoord(), yCoord );
                 glVertex2f( points[3].x, points[3].y );
 
@@ -125,9 +125,14 @@ namespace Annchienta
     {
     }
 
-    void Tile::callList()
+    void Tile::draw() const
     {
         glCallList( list );
+    }
+
+    int Tile::getDepthSortY() const
+    {
+        return points[2].y;
     }
 
 };

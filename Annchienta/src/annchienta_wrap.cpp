@@ -5144,10 +5144,31 @@ SWIGINTERN PyObject *_wrap_Map_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
   if (!PyArg_ParseTuple(args,(char *)"O:Map_draw",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_draw" "', argument " "1"" of type '" "Annchienta::Map *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_draw" "', argument " "1"" of type '" "Annchienta::Map const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
-  (arg1)->draw();
+  ((Annchienta::Map const *)arg1)->draw();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Map_depthSort(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Map_depthSort",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_depthSort" "', argument " "1"" of type '" "Annchienta::Map *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  (arg1)->depthSort();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -5825,21 +5846,43 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Tile_callList(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Tile_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Tile_callList",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_draw",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_callList" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_draw" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
-  (arg1)->callList();
+  ((Annchienta::Tile const *)arg1)->draw();
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tile_getDepthSortY(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_getDepthSortY",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_getDepthSortY" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  result = (int)((Annchienta::Tile const *)arg1)->getDepthSortY();
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -6001,6 +6044,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_Map", _wrap_new_Map, METH_VARARGS, NULL},
 	 { (char *)"delete_Map", _wrap_delete_Map, METH_VARARGS, NULL},
 	 { (char *)"Map_draw", _wrap_Map_draw, METH_VARARGS, NULL},
+	 { (char *)"Map_depthSort", _wrap_Map_depthSort, METH_VARARGS, NULL},
 	 { (char *)"Map_swigregister", Map_swigregister, METH_VARARGS, NULL},
 	 { (char *)"Point_x_set", _wrap_Point_x_set, METH_VARARGS, NULL},
 	 { (char *)"Point_x_get", _wrap_Point_x_get, METH_VARARGS, NULL},
@@ -6015,7 +6059,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Point_swigregister", Point_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Tile", _wrap_new_Tile, METH_VARARGS, NULL},
 	 { (char *)"delete_Tile", _wrap_delete_Tile, METH_VARARGS, NULL},
-	 { (char *)"Tile_callList", _wrap_Tile_callList, METH_VARARGS, NULL},
+	 { (char *)"Tile_draw", _wrap_Tile_draw, METH_VARARGS, NULL},
+	 { (char *)"Tile_getDepthSortY", _wrap_Tile_getDepthSortY, METH_VARARGS, NULL},
 	 { (char *)"Tile_swigregister", Tile_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_TileSet", _wrap_new_TileSet, METH_VARARGS, NULL},
 	 { (char *)"delete_TileSet", _wrap_delete_TileSet, METH_VARARGS, NULL},
