@@ -7,11 +7,14 @@
 
 namespace Annchienta
 {
+    class Map;
+
     class MapManager
     {
         private:
             int tileWidth, tileHeight;
             int cameraX, cameraY;
+            Map *currentMap;
 
         public:
             #ifndef SWIG
@@ -26,6 +29,14 @@ namespace Annchienta
 
             int getCameraX() const;
             int getCameraY() const;
+
+            void setCurrentMap( Map *map );
+
+            /* This function should basically run the game.
+             */
+            void run();
+
+            void renderFrame() const;
     };
 
     MapManager *getMapManager();

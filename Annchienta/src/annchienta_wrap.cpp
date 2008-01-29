@@ -4617,6 +4617,78 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_MapManager_setCurrentMap(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  Annchienta::Map *arg2 = (Annchienta::Map *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MapManager_setCurrentMap",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_setCurrentMap" "', argument " "1"" of type '" "Annchienta::MapManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MapManager_setCurrentMap" "', argument " "2"" of type '" "Annchienta::Map *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Map * >(argp2);
+  (arg1)->setCurrentMap(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MapManager_run(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_run",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_run" "', argument " "1"" of type '" "Annchienta::MapManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  (arg1)->run();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MapManager_renderFrame(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_renderFrame",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_renderFrame" "', argument " "1"" of type '" "Annchienta::MapManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  ((Annchienta::MapManager const *)arg1)->renderFrame();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_MapManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::MapManager *result = 0 ;
@@ -6023,6 +6095,9 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_getTileHeight", _wrap_MapManager_getTileHeight, METH_VARARGS, NULL},
 	 { (char *)"MapManager_getCameraX", _wrap_MapManager_getCameraX, METH_VARARGS, NULL},
 	 { (char *)"MapManager_getCameraY", _wrap_MapManager_getCameraY, METH_VARARGS, NULL},
+	 { (char *)"MapManager_setCurrentMap", _wrap_MapManager_setCurrentMap, METH_VARARGS, NULL},
+	 { (char *)"MapManager_run", _wrap_MapManager_run, METH_VARARGS, NULL},
+	 { (char *)"MapManager_renderFrame", _wrap_MapManager_renderFrame, METH_VARARGS, NULL},
 	 { (char *)"new_MapManager", _wrap_new_MapManager, METH_VARARGS, NULL},
 	 { (char *)"delete_MapManager", _wrap_delete_MapManager, METH_VARARGS, NULL},
 	 { (char *)"MapManager_swigregister", MapManager_swigregister, METH_VARARGS, NULL},

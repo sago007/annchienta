@@ -131,6 +131,9 @@ class MapManager(_object):
     def getTileHeight(*args): return _annchienta.MapManager_getTileHeight(*args)
     def getCameraX(*args): return _annchienta.MapManager_getCameraX(*args)
     def getCameraY(*args): return _annchienta.MapManager_getCameraY(*args)
+    def setCurrentMap(*args): return _annchienta.MapManager_setCurrentMap(*args)
+    def run(*args): return _annchienta.MapManager_run(*args)
+    def renderFrame(*args): return _annchienta.MapManager_renderFrame(*args)
     def __init__(self, *args): 
         this = _annchienta.new_MapManager(*args)
         try: self.this.append(this)
