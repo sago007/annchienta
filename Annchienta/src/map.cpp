@@ -15,7 +15,7 @@ namespace Annchienta
 
     Map::Map( const char *filename )
     {
-        width = 5;
+        width = 20;
         height = 20;
 
         tileSet = new TileSet( filename );
@@ -40,7 +40,9 @@ namespace Annchienta
 
                 for( int i=0; i<4; i++ )
                 {
-                    points[i].z = 0;//randInt( 20 );
+                    points[i].z = randInt( 5 );
+                    if( x==4 && y==0 )
+                        points[i].z = 16 + randInt(20);
                     surfaces[i] = tileSet->getSurface( randInt(2) );
                 }
 

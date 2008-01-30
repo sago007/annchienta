@@ -7,17 +7,17 @@
 #include <GL/gl.h>
 #include <stdio.h>
 #include "surface.h"
+#include "mapmanager.h"
 
 namespace Annchienta
 {
 
     void Tile::makeList()
     {
-
-        /* Get the texture coordinates.
+        /* Obtain a reference to the map manager, because we
+         * we need to know tile width and height.
          */
-        float xCoord = 0.5f*( surfaces[0]->getRightTexCoord() + surfaces[0]->getLeftTexCoord() );
-        float yCoord = 0.5f*( surfaces[0]->getTopTexCoord() + surfaces[0]->getBottomTexCoord() );
+        MapManager *mapMgr = getMapManager();
 
         /* Set some more values.
          */
@@ -61,8 +61,6 @@ namespace Annchienta
             }
         }
 
-        //printf( "Surface count: %d, %d, %d, %d.\n", surfaceCount[0], surfaceCount[1], surfaceCount[2], surfaceCount[3] );
-
         /* Create a new display list for this tile.
          */
         list = glGenLists( 1 );
@@ -74,26 +72,82 @@ namespace Annchienta
         for( int i=0; i<numberOfSurfaces; i++ )
         {
 
+            Surface *s = orderedSurfaces[i];
+
+            /* Get texture coordinates.
+             */
+            float p0x = 0.5f*( s->getLeftTexCoord() + s->getRightTexCoord() );
+            float p1y = 1.0f - (float)(mapMgr->getTileHeight()>>1)/(float)s->getGlHeight();
+            float p2y = 1.0f - (float)(mapMgr->getTileHeight())/(float)s->getGlHeight();
+
             glBindTexture( GL_TEXTURE_2D, orderedSurfaces[i]->getTexture() );
             glBegin( GL_QUADS );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[0] || i==0?1.0f:0.0f );
-                glTexCoord2f( xCoord, surfaces[0]->getTopTexCoord() );
+                glTexCoord2f( p0x, s->getTopTexCoord() );
                 glVertex2f( points[0].x, points[0].y );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[1] || i==0?1.0f:0.0f );
-                glTexCoord2f( surfaces[0]->getLeftTexCoord(), yCoord );
+                glTexCoord2f( s->getLeftTexCoord(), p1y );
                 glVertex2f( points[1].x, points[1].y );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[2] || i==0?1.0f:0.0f );
-                glTexCoord2f( xCoord, surfaces[0]->getBottomTexCoord() );
+                glTexCoord2f( p0x, p2y );
                 glVertex2f( points[2].x, points[2].y );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[3] || i==0?1.0f:0.0f );
-                glTexCoord2f( surfaces[0]->getRightTexCoord(), yCoord );
+                glTexCoord2f( s->getRightTexCoord(), p1y );
                 glVertex2f( points[3].x, points[3].y );
 
             glEnd();
+        }
+
+        /* If there is a Z coordinate, we want to draw a wall-like thing.
+         */
+        if( points[1].z || points[2].z || points[3].z )
+        {
+            Surface *s = surfaces[2];
+
+            /* Get texture coords.
+             */
+            float p0x = 0.5f*( s->getLeftTexCoord() + s->getRightTexCoord() );
+            float p1y = 1.0f - (float)(mapMgr->getTileHeight()>>1)/(float)s->getGlHeight();
+            float p2y = 1.0f - (float)(mapMgr->getTileHeight())/(float)s->getGlHeight();
+            float dy = 1.0f - (float)( (mapMgr->getTileHeight()>>1) + s->getHeight() - mapMgr->getTileHeight() )/(float)s->getGlHeight();
+
+            /* Take the texture of point 2 and draw the wall to both sides.
+             */
+            glBindTexture( GL_TEXTURE_2D, s->getTexture() );
+            glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
+            glBegin( GL_QUAD_STRIP );
+
+                glTexCoord2f(s->getLeftTexCoord(), p1y );
+                glVertex2f( points[1].x, points[1].y );
+
+                glTexCoord2f( s->getLeftTexCoord(), dy );
+                glVertex2f( points[1].x, points[1].y + points[1].z );
+
+                glTexCoord2f( p0x, s->getBottomTexCoord() );
+                glVertex2f( points[2].x, points[2].y + points[2].z );
+
+                glTexCoord2f( p0x, p2y );
+                glVertex2f( points[2].x, points[2].y );
+
+                // second
+                glTexCoord2f( p0x, p2y );
+                glVertex2f( points[2].x, points[2].y );
+
+                glTexCoord2f( p0x, s->getBottomTexCoord() );
+                glVertex2f( points[2].x, points[2].y + points[2].z );
+
+                glTexCoord2f( s->getRightTexCoord(), dy );
+                glVertex2f( points[3].x, points[3].y + points[3].z );
+
+                glTexCoord2f(s->getRightTexCoord(), p1y );
+                glVertex2f( points[3].x, points[3].y );
+
+            glEnd();
+
         }
 
         /* End the display list.

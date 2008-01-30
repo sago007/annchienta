@@ -3,6 +3,9 @@
  */
 
 #include "mapmanager.h"
+
+#include <SDL.h>
+#include <GL/gl.h>
 #include "map.h"
 #include "inputmanager.h"
 #include "videomanager.h"
@@ -62,17 +65,35 @@ namespace Annchienta
         InputManager *inputManager = getInputManager();
         VideoManager *videoManager = getVideoManager();
 
+        unsigned int lastFpsUpdate = SDL_GetTicks();
+        unsigned int frames = 0;
+
         while( inputManager->running() )
         {
+
             inputManager->update();
 
             renderFrame();
             videoManager->flip();
+
+            frames++;
+            if( lastFpsUpdate+1000<=SDL_GetTicks() )
+            {
+                char title[256];
+                sprintf( title, "Annchienta FPS: %d", frames );
+                SDL_WM_SetCaption( title, NULL );
+
+                lastFpsUpdate = SDL_GetTicks();
+                frames = 0;
+            }
         }
     }
 
     void MapManager::renderFrame() const
     {
+        glLoadIdentity();
+        glTranslatef( -cameraX, -cameraY, 0.0f );
+
         if( currentMap )
             currentMap->draw();
     }
