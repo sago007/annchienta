@@ -9,22 +9,18 @@
 #include "tileset.h"
 #include "auxfunc.h"
 #include "entity.h"
+#include "layer.h"
 
 namespace Annchienta
 {
 
     Map::Map( const char *filename )
     {
-        width = 20;
-        height = 20;
+        int width = 20, height = 20;
 
         tileSet = new TileSet( filename );
 
-        tiles = new Tile*[width*height];
-
-        /* Create some extra space.
-         */
-        entities.resize( width*height );
+        Tile **tiles = new Tile*[width*height];
 
         for( int y=0; y<height; y++ )
         {
@@ -40,61 +36,35 @@ namespace Annchienta
 
                 for( int i=0; i<4; i++ )
                 {
-                    points[i].z = randInt( 5 );
-                    if( x==4 && y==0 )
-                        points[i].z = 16 + randInt(20);
+                    points[i].z = randInt(30);
                     surfaces[i] = tileSet->getSurface( randInt(2) );
                 }
 
-                entities[y*width+x] = tiles[y*width+x] = new Tile( points[0], surfaces[0], points[1], surfaces[1], points[2], surfaces[2], points[3], surfaces[3] );
+                tiles[y*width+x] = new Tile( points[0], surfaces[0], points[1], surfaces[1], points[2], surfaces[2], points[3], surfaces[3] );
             }
         }
+
+        layers.push_back( new Layer( width, height, tiles ) );
+
     }
 
     Map::~Map()
     {
+        for( unsigned int i=0; i<layers.size(); i++ )
+            delete layers[i];
         delete tileSet;
-
-        for( int i=0; i<width*height; i++ )
-        {
-            delete tiles[i];
-        }
-        delete[] tiles;
     }
 
     void Map::draw() const
     {
-
-        glPushMatrix();
-
-        for( unsigned int i=0; i<entities.size(); i++ )
-            entities[i]->draw();
-
-        glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
-
-        glPopMatrix();
+        for( unsigned int i=0; i<layers.size(); i++ )
+            layers[i]->draw();
     }
 
     void Map::depthSort()
     {
-        /* The map should be more or less sorted already, that's
-         * why we use a form of gnome sort.
-         */
-        unsigned int i=1, c=1;
-        while( i<entities.size() )
-        {
-            if( entities[i-1]->getDepthSortY() > entities[i]->getDepthSortY() )
-            {
-                swap<Entity*>( entities[i-1], entities[i] );
-                if( i>1 )
-                    i--;
-            }
-            else
-            {
-                i = i>=c?i+1:c;
-                c = i;
-            }
-        }
+        for( unsigned int i=0; i<layers.size(); i++ )
+            layers[i]->draw();
     }
 
 };

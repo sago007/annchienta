@@ -5,17 +5,39 @@
 #ifndef ANNCHIENTA_LAYER_H
 #define ANNCHIENTA_LAYER_H
 
+#include <vector>
+
 namespace Annchienta
 {
+    class Tile;
+    class Entity;
+
     class Layer
     {
         private:
+            /* Number of tiles.
+             */
+            int width, height;
+
+            Tile **tiles;
+
+            /* This is another list that holds ALL entities in the
+             * layer. This even includes tiles.
+             */
+            std::vector<Entity*> entities;
 
         public:
 
-            Layer();
+            Layer( int width, int height, Tile **tiles=0 );
             ~Layer();
 
+            void draw() const;
+            void depthSort();
+
+            #ifndef SWIG
+                void makeEmpty();
+                Tile **getTilePointer( int x, int y );
+            #endif
     };
 };
 

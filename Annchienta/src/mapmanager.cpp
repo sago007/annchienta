@@ -14,7 +14,7 @@ namespace Annchienta
 {
     MapManager *mapManager;
 
-    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0), currentMap(0)
+    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(-150), cameraY(120), currentMap(0)
     {
         /* Set reference to single-instance class.
          */

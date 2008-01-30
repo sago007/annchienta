@@ -191,6 +191,8 @@ class Layer(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Layer
     __del__ = lambda self : None;
+    def draw(*args): return _annchienta.Layer_draw(*args)
+    def depthSort(*args): return _annchienta.Layer_depthSort(*args)
 Layer_swigregister = _annchienta.Layer_swigregister
 Layer_swigregister(Layer)
 

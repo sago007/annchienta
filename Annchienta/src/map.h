@@ -10,24 +10,18 @@
 namespace Annchienta
 {
 
-    class Tile;
     class TileSet;
-    class Entity;
+    class Layer;
 
     class Map
     {
         private:
-            /* Number of tiles.
-             */
-            int width, height;
-
-            Tile **tiles;
             TileSet *tileSet;
 
-            /* This is another list that holds ALL entities in the
-             * level. This even includes tiles.
+            /* All layers in the level.
              */
-            std::vector<Entity*> entities;
+            std::vector<Layer*> layers;
+
 
         public:
 

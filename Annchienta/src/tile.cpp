@@ -225,7 +225,8 @@ namespace Annchienta
             points[i].to( MapPoint );
         }
 
-        makeList();
+        if( surfaces[0] )
+            makeList();
     }
 
     Tile::~Tile()
@@ -234,7 +235,8 @@ namespace Annchienta
 
     void Tile::draw() const
     {
-        glCallList( list );
+        if( surfaces[0] )
+            glCallList( list );
     }
 
     int Tile::getDepthSortY() const
