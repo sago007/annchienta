@@ -21,6 +21,7 @@ namespace Annchienta
             Surface *surfaces[4];
             GLuint list;
 
+            void getTexCoords( Surface*, float *xCenter, float *topYCenter, float *topYDown, float *wallYDown ) const;
             void makeList();
 
         public:
