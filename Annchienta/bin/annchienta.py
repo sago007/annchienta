@@ -129,9 +129,12 @@ class MapManager(_object):
     def getTileWidth(*args): return _annchienta.MapManager_getTileWidth(*args)
     def setTileHeight(*args): return _annchienta.MapManager_setTileHeight(*args)
     def getTileHeight(*args): return _annchienta.MapManager_getTileHeight(*args)
+    def setCameraX(*args): return _annchienta.MapManager_setCameraX(*args)
     def getCameraX(*args): return _annchienta.MapManager_getCameraX(*args)
+    def setCameraY(*args): return _annchienta.MapManager_setCameraY(*args)
     def getCameraY(*args): return _annchienta.MapManager_getCameraY(*args)
     def setCurrentMap(*args): return _annchienta.MapManager_setCurrentMap(*args)
+    def getCurrentMap(*args): return _annchienta.MapManager_getCurrentMap(*args)
     def run(*args): return _annchienta.MapManager_run(*args)
     def renderFrame(*args): return _annchienta.MapManager_renderFrame(*args)
     def __init__(self, *args): 
@@ -275,6 +278,22 @@ class TileSet(_object):
     def getSurface(*args): return _annchienta.TileSet_getSurface(*args)
 TileSet_swigregister = _annchienta.TileSet_swigregister
 TileSet_swigregister(TileSet)
+
+class Editor(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Editor, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Editor, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_Editor(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Editor
+    __del__ = lambda self : None;
+    def run(*args): return _annchienta.Editor_run(*args)
+Editor_swigregister = _annchienta.Editor_swigregister
+Editor_swigregister(Editor)
 
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN
 SDLK_FIRST = _annchienta.SDLK_FIRST

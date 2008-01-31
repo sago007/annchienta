@@ -5,7 +5,9 @@
 #include "point.h"
 
 #include <stdio.h>
+#include <math.h>
 #include "mapmanager.h"
+#include "auxfunc.h"
 
 namespace Annchienta
 {
@@ -97,6 +99,13 @@ namespace Annchienta
             case MapPoint:
                 switch( newtype )
                 {
+                    case TilePoint:
+                        this->MapToIsometric();
+                        this->to( TilePoint );
+                        break;
+                    case IsometricPoint:
+                        this->MapToIsometric();
+                        break;
                     case ScreenPoint: default:
                         x -= mapMgr->getCameraX();
                         y -= mapMgr->getCameraY();
@@ -107,6 +116,15 @@ namespace Annchienta
             case ScreenPoint:
                 switch( newtype )
                 {
+                    case TilePoint:
+                        this->to( MapPoint );
+                        this->to( IsometricPoint );
+                        this->to( TilePoint );
+                        break;
+                    case IsometricPoint:
+                        this->to( MapPoint );
+                        this->to( IsometricPoint );
+                        break;
                     case MapPoint: default:
                         x += mapMgr->getCameraX();
                         y += mapMgr->getCameraY();
@@ -118,6 +136,27 @@ namespace Annchienta
 
         type = newtype;
 
+    }
+
+    void Point::MapToIsometric()
+    {
+        /* Calculate the distance to the map origin.
+         */
+        float originDist = distance( 0, 0, x, y );
+
+        /* Calculate the angle to the map point.
+         */
+        float angle = atan2( (float)y, (float)x );
+
+        /* Subtract iso angle from the angle.
+         */
+        angle -= 0.4636476f;
+        angle /= 1.41f;
+
+        /* Calculate the x and y coordinate
+         */
+        x = (int) (cos( angle ) * originDist );
+        y = (int) (sin( angle ) * originDist );
     }
 
 };

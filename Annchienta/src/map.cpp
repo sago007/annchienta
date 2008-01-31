@@ -14,7 +14,7 @@
 namespace Annchienta
 {
 
-    Map::Map( const char *filename )
+    Map::Map( const char *filename ): currentLayer(0)
     {
         int width = 20, height = 20;
 
@@ -36,8 +36,8 @@ namespace Annchienta
 
                 for( int i=0; i<4; i++ )
                 {
-                    points[i].z = randInt(30);
-                    surfaces[i] = tileSet->getSurface( randInt(2) );
+                    points[i].z = 0;//randInt(30);
+                    surfaces[i] = tileSet->getSurface( 1+randInt(2) );
                 }
 
                 tiles[y*width+x] = new Tile( points[0], surfaces[0], points[1], surfaces[1], points[2], surfaces[2], points[3], surfaces[3] );
@@ -55,6 +55,16 @@ namespace Annchienta
         delete tileSet;
     }
 
+    Layer *Map::getCurrentLayer() const
+    {
+        return layers[currentLayer];
+    }
+
+    void Map::setCurrentLayer( int index )
+    {
+        currentLayer = index;
+    }
+
     void Map::draw() const
     {
         for( unsigned int i=0; i<layers.size(); i++ )
@@ -64,7 +74,7 @@ namespace Annchienta
     void Map::depthSort()
     {
         for( unsigned int i=0; i<layers.size(); i++ )
-            layers[i]->draw();
+            layers[i]->depthSort();
     }
 
 };

@@ -6,6 +6,7 @@
 #define ANNCHIENTA_LAYER_H
 
 #include <vector>
+#include "editor.h"
 
 namespace Annchienta
 {
@@ -14,6 +15,8 @@ namespace Annchienta
 
     class Layer
     {
+        friend class Editor;
+
         private:
             /* Number of tiles.
              */

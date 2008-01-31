@@ -14,7 +14,11 @@ namespace Annchienta
         private:
             bool run;
             bool tickedKeys[ SDLK_LAST ];
+            bool tickedButtons[ 2 ];
             Uint8 *keyState;
+            int mouseX, mouseY;
+            Uint8 mouseState;
+            bool supportMouse;
 
         public:
             #ifndef SWIG
@@ -27,8 +31,14 @@ namespace Annchienta
             bool running();
             void stop();
 
-            bool keyDown( int );
-            bool keyTicked( int );
+            bool keyDown( int ) const;
+            bool keyTicked( int ) const;
+
+            int getMouseX() const;
+            int getMouseY() const;
+
+            bool buttonDown( int ) const;
+            bool buttonTicked( int ) const;
 
     };
 

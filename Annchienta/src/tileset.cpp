@@ -18,11 +18,9 @@ namespace Annchienta
 
         do
         {
-            sprintf( buffer, "%s/%d.png", directory, numberOfSurfaces++ );
+            sprintf( buffer, "%s/%d.png", directory, ++numberOfSurfaces );
         }
         while( isValidFile( buffer ) );
-
-        numberOfSurfaces--;
 
         /* Allocate room for (numberOfTiles) Surface pointers.
          */
@@ -30,7 +28,9 @@ namespace Annchienta
 
         /* Load the actual surfaces.
          */
-        for( int i=0; i<numberOfSurfaces; i++ )
+        surfaces[0] = 0;
+
+        for( int i=1; i<numberOfSurfaces; i++ )
         {
             sprintf( buffer, "%s/%d.png", directory, i );
             surfaces[i] = new Surface( buffer );
@@ -39,7 +39,7 @@ namespace Annchienta
 
     TileSet::~TileSet()
     {
-        for( int i=0; i<numberOfSurfaces; i++ )
+        for( int i=1; i<numberOfSurfaces; i++ )
             delete surfaces[i];
 
         delete[] surfaces;

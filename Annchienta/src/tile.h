@@ -8,6 +8,7 @@
 #include <GL/gl.h>
 #include "point.h"
 #include "entity.h"
+#include "editor.h"
 
 namespace Annchienta
 {
@@ -16,10 +17,15 @@ namespace Annchienta
 
     class Tile: public Entity
     {
+        friend class Editor;
+
         private:
             Point points[4];
+            Point isoPoints[4];
             Surface *surfaces[4];
             GLuint list;
+
+            bool nullTile;
 
             void getTexCoords( Surface*, float *xCenter, float *topYCenter, float *topYDown, float *wallYDown ) const;
             void makeList();

@@ -23,6 +23,8 @@ namespace Annchienta
         for (int i(0); i < SDLK_LAST; i++)
             tickedKeys[i] = false;
 
+        tickedButtons[0] = tickedButtons[1] = mouseState = mouseX = mouseY = 0;
+
         /* Get the keys address.
          */
         keyState = SDL_GetKeyState( NULL );
@@ -38,6 +40,8 @@ namespace Annchienta
          */
         for (int i(0); i < SDLK_LAST; i++)
             tickedKeys[i] = false;
+
+        tickedButtons[0] = tickedButtons[1] = 0;
 
         SDL_Event event;
 
@@ -55,10 +59,22 @@ namespace Annchienta
                     tickedKeys[ event.key.keysym.sym ] = true;
                     break;
 
+                case SDL_MOUSEBUTTONDOWN:
+                    if( event.button.button == SDL_BUTTON_LEFT )
+                        tickedButtons[0] = true;
+                    if( event.button.button == SDL_BUTTON_RIGHT )
+                        tickedButtons[1] = true;
+                    break;
+
                 default:
                     break;
             }
         }
+
+        /* Take a little look at the mouse.
+         */
+        mouseState = SDL_GetMouseState( &mouseX, &mouseY );
+
     }
 
     bool InputManager::running()
@@ -71,14 +87,39 @@ namespace Annchienta
         run = false;
     }
 
-    bool InputManager::keyDown( int keyCode )
+    bool InputManager::keyDown( int keyCode ) const
     {
         return keyState[keyCode];
     }
     
-    bool InputManager::keyTicked( int keyCode )
+    bool InputManager::keyTicked( int keyCode ) const
     {
         return tickedKeys[keyCode];
+    }
+
+    int InputManager::getMouseX() const
+    {
+        return mouseX;
+    }
+
+    int InputManager::getMouseY() const
+    {
+        return mouseY;
+    }
+
+    bool InputManager::buttonDown( int buttonCode ) const
+    {
+        if( buttonCode==0 )
+            buttonCode = SDL_BUTTON_LEFT;
+        else
+            buttonCode = SDL_BUTTON_RIGHT;
+
+        return ( mouseState & SDL_BUTTON( buttonCode ) );
+    }
+
+    bool InputManager::buttonTicked( int buttonCode ) const
+    {
+        return tickedButtons[ buttonCode ];
     }
 
     InputManager *getInputManager()

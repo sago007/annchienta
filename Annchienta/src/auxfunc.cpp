@@ -6,6 +6,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 namespace Annchienta
 {
@@ -32,4 +33,16 @@ namespace Annchienta
         fclose( f );
         return true;
     }
+
+    float distance( float x1, float y1, float x2, float y2 )
+    {
+        return sqrt( square(x2-x1) + square(y2-y1) );
+    }
+
+
+    float squaredDistance( float x1, float y1, float x2, float y2 )
+    {
+        return ( square(x2-x1) + square(y2-y1) );
+    }
+
 };

@@ -6,6 +6,7 @@
 #define ANNCHIENTA_MAP_H
 
 #include <vector>
+#include "editor.h"
 
 namespace Annchienta
 {
@@ -15,18 +16,24 @@ namespace Annchienta
 
     class Map
     {
+        friend class Editor;
+
         private:
             TileSet *tileSet;
 
             /* All layers in the level.
              */
             std::vector<Layer*> layers;
+            int currentLayer;
 
 
         public:
 
             Map( const char *filename );
             ~Map();
+
+            Layer *getCurrentLayer() const;
+            void setCurrentLayer( int index );
 
             void draw() const;
             void depthSort();

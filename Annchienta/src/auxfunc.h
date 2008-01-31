@@ -7,6 +7,8 @@
 
 namespace Annchienta
 {
+    #define square( a ) ((a)*(a))
+
     const int nearestPowerOfTwo( const int &input );
 
     /* return will be beneath maximum
@@ -14,6 +16,9 @@ namespace Annchienta
     const int randInt( const int &maximum );
 
     bool isValidFile( const char *filename );
+
+    float distance( float x2, float y2, float x2, float y2 );
+    float squaredDistance( float x2, float y2, float x2, float y2 );
 
     #ifndef SWIG
         template <class T>

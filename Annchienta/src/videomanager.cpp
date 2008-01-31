@@ -164,6 +164,34 @@ namespace Annchienta
         glEnable( GL_TEXTURE_2D );
     }
 
+    void VideoManager::drawRectangle( int x1, int y1, int x2, int y2 ) const
+    {
+        glDisable( GL_TEXTURE_2D );
+
+        glBegin( GL_QUADS );
+            glVertex2f( x1, y1 );
+            glVertex2f( x1, y2 );
+            glVertex2f( x2, y2 );
+            glVertex2f( x2, y1 );
+        glEnd();
+
+        glEnable( GL_TEXTURE_2D );
+    }
+
+    void VideoManager::drawQuad( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4 ) const
+    {
+        glDisable( GL_TEXTURE_2D );
+
+        glBegin( GL_QUADS );
+            glVertex2f( x1, y1 );
+            glVertex2f( x2, y2 );
+            glVertex2f( x3, y3 );
+            glVertex2f( x4, y4 );
+        glEnd();
+
+        glEnable( GL_TEXTURE_2D );
+    }
+
     void VideoManager::drawSurface( Surface *surface, int x, int y ) const
     {
         surface->draw( x, y );

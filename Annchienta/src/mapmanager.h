@@ -27,10 +27,13 @@ namespace Annchienta
             void setTileHeight( int tileHeight );
             int getTileHeight() const;
 
+            void setCameraX( int );
             int getCameraX() const;
+            void setCameraY( int );
             int getCameraY() const;
 
             void setCurrentMap( Map *map );
+            Map *getCurrentMap() const;
 
             /* This function should basically run the game.
              */

@@ -72,7 +72,8 @@ namespace Annchienta
 
         /* Create a new display list for this tile.
          */
-        list = glGenLists( 1 );
+        if( !list )
+            list = glGenLists( 1 );
         glNewList( list, GL_COMPILE );
 
         float xCenter, topYCenter, topYDown, wallYDown;
@@ -208,7 +209,7 @@ namespace Annchienta
         glEndList();
     }
 
-    Tile::Tile( Point p1, Surface *s1, Point p2, Surface *s2, Point p3, Surface *s3, Point p4, Surface *s4 ): list(0)
+    Tile::Tile( Point p1, Surface *s1, Point p2, Surface *s2, Point p3, Surface *s3, Point p4, Surface *s4 ): list(0), nullTile(false)
     {
         points[0] = p1;
         surfaces[0] = s1;
@@ -222,11 +223,15 @@ namespace Annchienta
         for( int i=0; i<4; i++ )
         {
             points[i].setType( TilePoint );
+            isoPoints[i] = points[i];
             points[i].to( MapPoint );
+            isoPoints[i].to( IsometricPoint );
         }
 
-        if( surfaces[0] )
+        if( surfaces[0] && surfaces[1] && surfaces[2] && surfaces[3] )
             makeList();
+        else
+            nullTile = true;
     }
 
     Tile::~Tile()
@@ -235,13 +240,13 @@ namespace Annchienta
 
     void Tile::draw() const
     {
-        if( surfaces[0] )
+        if( !nullTile )
             glCallList( list );
     }
 
     int Tile::getDepthSortY() const
     {
-        return points[2].y;
+        return points[2].y+points[2].z;
     }
 
 };

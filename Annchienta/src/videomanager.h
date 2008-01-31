@@ -54,6 +54,8 @@ namespace Annchienta
              */
             void drawLine( int x1, int y1, int x2, int y2 ) const;
             void drawTriangle( int x1, int y1, int x2, int y2, int x3, int y3 ) const;
+            void drawRectangle( int x1, int y1, int x2, int y2 ) const;
+            void drawQuad( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4 ) const;
             void drawSurface( Surface *surface, int x, int y ) const;
             void drawString( Font *font, const char *str, int x, int y ) const;
 
