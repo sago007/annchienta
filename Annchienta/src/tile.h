@@ -34,7 +34,7 @@ namespace Annchienta
             Tile( Point, Surface*, Point, Surface*, Point, Surface*, Point, Surface* );
             ~Tile();
 
-            virtual void draw() const;
+            virtual void draw();
             virtual int getDepthSortY() const;
 
     };

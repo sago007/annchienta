@@ -9,11 +9,15 @@ namespace Annchienta
 {
     class Entity
     {
-        private:
+        protected:
+            bool drawn;
 
         public:
-            virtual void draw() const = 0;
+            virtual void draw() = 0;
             virtual int getDepthSortY() const = 0;
+
+            void setDrawn( bool drawn );
+            bool isDrawn() const;
 
     };
 };

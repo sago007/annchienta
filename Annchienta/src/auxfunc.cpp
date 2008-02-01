@@ -45,4 +45,28 @@ namespace Annchienta
         return ( square(x2-x1) + square(y2-y1) );
     }
 
+    void copyFile( const char *srcFname, const char *dstFname )
+    {
+        FILE *src = fopen( srcFname, "r" );
+        FILE *dst = fopen( dstFname, "w" );
+
+        if( !src )
+            return;
+
+        if( !dst )
+            return;
+
+        char ch;
+
+        while( !feof(src) )
+        {
+            ch = getc( src );
+            if( !feof(src) )
+                putc( ch, dst );
+        }
+
+        fclose( src );
+        fclose( dst );
+    }
+
 };

@@ -2465,24 +2465,23 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_Annchienta__Editor swig_types[0]
-#define SWIGTYPE_p_Annchienta__Engine swig_types[1]
-#define SWIGTYPE_p_Annchienta__Font swig_types[2]
-#define SWIGTYPE_p_Annchienta__InputManager swig_types[3]
-#define SWIGTYPE_p_Annchienta__Layer swig_types[4]
-#define SWIGTYPE_p_Annchienta__Map swig_types[5]
-#define SWIGTYPE_p_Annchienta__MapManager swig_types[6]
-#define SWIGTYPE_p_Annchienta__Point swig_types[7]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[8]
-#define SWIGTYPE_p_Annchienta__Tile swig_types[9]
-#define SWIGTYPE_p_Annchienta__TileSet swig_types[10]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[11]
-#define SWIGTYPE_p_SDLKey swig_types[12]
-#define SWIGTYPE_p_SDLMod swig_types[13]
-#define SWIGTYPE_p_char swig_types[14]
-#define SWIGTYPE_p_p_Annchienta__Tile swig_types[15]
-static swig_type_info *swig_types[17];
-static swig_module_info swig_module = {swig_types, 16, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__Engine swig_types[0]
+#define SWIGTYPE_p_Annchienta__Font swig_types[1]
+#define SWIGTYPE_p_Annchienta__InputManager swig_types[2]
+#define SWIGTYPE_p_Annchienta__Layer swig_types[3]
+#define SWIGTYPE_p_Annchienta__Map swig_types[4]
+#define SWIGTYPE_p_Annchienta__MapManager swig_types[5]
+#define SWIGTYPE_p_Annchienta__Point swig_types[6]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[7]
+#define SWIGTYPE_p_Annchienta__Tile swig_types[8]
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[9]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[10]
+#define SWIGTYPE_p_SDLKey swig_types[11]
+#define SWIGTYPE_p_SDLMod swig_types[12]
+#define SWIGTYPE_p_char swig_types[13]
+#define SWIGTYPE_p_p_Annchienta__Tile swig_types[14]
+static swig_type_info *swig_types[16];
+static swig_module_info swig_module = {swig_types, 15, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2583,7 +2582,6 @@ namespace swig {
 #include "point.h"
 #include "tile.h"
 #include "tileset.h"
-#include "editor.h"
 
 
 SWIGINTERN swig_type_info*
@@ -3963,6 +3961,156 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_VideoManager_drawRectangle(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:VideoManager_drawRectangle",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_drawRectangle" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawRectangle" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawRectangle" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawRectangle" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawRectangle" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ((Annchienta::VideoManager const *)arg1)->drawRectangle(arg2,arg3,arg4,arg5);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_drawQuad(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  int arg7 ;
+  int arg8 ;
+  int arg9 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  int val8 ;
+  int ecode8 = 0 ;
+  int val9 ;
+  int ecode9 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  PyObject * obj6 = 0 ;
+  PyObject * obj7 = 0 ;
+  PyObject * obj8 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOOO:VideoManager_drawQuad",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7,&obj8)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_drawQuad" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawQuad" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawQuad" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawQuad" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawQuad" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawQuad" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_int(obj6, &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "VideoManager_drawQuad" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  ecode8 = SWIG_AsVal_int(obj7, &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "VideoManager_drawQuad" "', argument " "8"" of type '" "int""'");
+  } 
+  arg8 = static_cast< int >(val8);
+  ecode9 = SWIG_AsVal_int(obj8, &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "VideoManager_drawQuad" "', argument " "9"" of type '" "int""'");
+  } 
+  arg9 = static_cast< int >(val9);
+  ((Annchienta::VideoManager const *)arg1)->drawQuad(arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_VideoManager_drawSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
@@ -4370,7 +4518,7 @@ SWIGINTERN PyObject *_wrap_InputManager_keyDown(PyObject *SWIGUNUSEDPARM(self), 
   if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_keyDown",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_keyDown" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_keyDown" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
@@ -4378,7 +4526,7 @@ SWIGINTERN PyObject *_wrap_InputManager_keyDown(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_keyDown" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (bool)(arg1)->keyDown(arg2);
+  result = (bool)((Annchienta::InputManager const *)arg1)->keyDown(arg2);
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -4401,7 +4549,7 @@ SWIGINTERN PyObject *_wrap_InputManager_keyTicked(PyObject *SWIGUNUSEDPARM(self)
   if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_keyTicked",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_keyTicked" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_keyTicked" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
@@ -4409,7 +4557,113 @@ SWIGINTERN PyObject *_wrap_InputManager_keyTicked(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_keyTicked" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (bool)(arg1)->keyTicked(arg2);
+  result = (bool)((Annchienta::InputManager const *)arg1)->keyTicked(arg2);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_getMouseX(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_getMouseX",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_getMouseX" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  result = (int)((Annchienta::InputManager const *)arg1)->getMouseX();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_getMouseY(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_getMouseY",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_getMouseY" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  result = (int)((Annchienta::InputManager const *)arg1)->getMouseY();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_buttonDown(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  int arg2 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_buttonDown",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_buttonDown" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_buttonDown" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (bool)((Annchienta::InputManager const *)arg1)->buttonDown(arg2);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_buttonTicked(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  int arg2 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_buttonTicked",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_buttonTicked" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_buttonTicked" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (bool)((Annchienta::InputManager const *)arg1)->buttonTicked(arg2);
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -5398,7 +5652,7 @@ SWIGINTERN PyObject *Layer_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_new_Map(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_Map__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   char *arg1 = (char *) 0 ;
   Annchienta::Map *result = 0 ;
@@ -5423,6 +5677,94 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_new_Map__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  int arg2 ;
+  char *arg3 = (char *) 0 ;
+  Annchienta::Map *result = 0 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:new_Map",&obj0,&obj1,&obj2)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Map" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Map" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "new_Map" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  result = (Annchienta::Map *)new Annchienta::Map(arg1,arg2,(char const *)arg3);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Map, SWIG_POINTER_NEW |  0 );
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Map(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[4];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_Map__SWIG_0(self, args);
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      int res = SWIG_AsVal_int(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_new_Map__SWIG_1(self, args);
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Map'.\n  Possible C/C++ prototypes are:\n    Annchienta::Map(char const *)\n    Annchienta::Map(int,int,char const *)\n");
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_delete_Map(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
@@ -5438,6 +5780,58 @@ SWIGINTERN PyObject *_wrap_delete_Map(PyObject *SWIGUNUSEDPARM(self), PyObject *
   arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
   delete arg1;
   
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Map_getCurrentLayer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  Annchienta::Layer *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Map_getCurrentLayer",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_getCurrentLayer" "', argument " "1"" of type '" "Annchienta::Map const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  result = (Annchienta::Layer *)((Annchienta::Map const *)arg1)->getCurrentLayer();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Map_setCurrentLayer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Map_setCurrentLayer",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_setCurrentLayer" "', argument " "1"" of type '" "Annchienta::Map *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Map_setCurrentLayer" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setCurrentLayer(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6167,10 +6561,10 @@ SWIGINTERN PyObject *_wrap_Tile_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *a
   if (!PyArg_ParseTuple(args,(char *)"O:Tile_draw",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_draw" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_draw" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
-  ((Annchienta::Tile const *)arg1)->draw();
+  (arg1)->draw();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6292,122 +6686,6 @@ SWIGINTERN PyObject *TileSet_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_new_Editor__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  char *arg1 = (char *) 0 ;
-  Annchienta::Editor *result = 0 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_Editor",&obj0)) SWIG_fail;
-  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Editor" "', argument " "1"" of type '" "char const *""'");
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  result = (Annchienta::Editor *)new Annchienta::Editor((char const *)arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Editor, SWIG_POINTER_NEW |  0 );
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return resultobj;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Editor__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::Editor *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_Editor")) SWIG_fail;
-  result = (Annchienta::Editor *)new Annchienta::Editor();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Editor, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Editor(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[2];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 1); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 0) {
-    return _wrap_new_Editor__SWIG_1(self, args);
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_Editor__SWIG_0(self, args);
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Editor'.\n  Possible C/C++ prototypes are:\n    Annchienta::Editor(char const *)\n    Annchienta::Editor()\n");
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_Editor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::Editor *arg1 = (Annchienta::Editor *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_Editor",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Editor, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Editor" "', argument " "1"" of type '" "Annchienta::Editor *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::Editor * >(argp1);
-  delete arg1;
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Editor_run(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::Editor *arg1 = (Annchienta::Editor *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Editor_run",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Editor, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Editor_run" "', argument " "1"" of type '" "Annchienta::Editor *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::Editor * >(argp1);
-  (arg1)->run();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *Editor_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__Editor, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"Engine_write", _wrap_Engine_write, METH_VARARGS, NULL},
 	 { (char *)"new_Engine", _wrap_new_Engine, METH_VARARGS, NULL},
@@ -6428,6 +6706,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"VideoManager_setAlpha", _wrap_VideoManager_setAlpha, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_drawLine", _wrap_VideoManager_drawLine, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_drawTriangle", _wrap_VideoManager_drawTriangle, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_drawRectangle", _wrap_VideoManager_drawRectangle, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_drawQuad", _wrap_VideoManager_drawQuad, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_drawSurface", _wrap_VideoManager_drawSurface, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_drawString", _wrap_VideoManager_drawString, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_grabBuffer", _wrap_VideoManager_grabBuffer, METH_VARARGS, NULL},
@@ -6440,6 +6720,10 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"InputManager_stop", _wrap_InputManager_stop, METH_VARARGS, NULL},
 	 { (char *)"InputManager_keyDown", _wrap_InputManager_keyDown, METH_VARARGS, NULL},
 	 { (char *)"InputManager_keyTicked", _wrap_InputManager_keyTicked, METH_VARARGS, NULL},
+	 { (char *)"InputManager_getMouseX", _wrap_InputManager_getMouseX, METH_VARARGS, NULL},
+	 { (char *)"InputManager_getMouseY", _wrap_InputManager_getMouseY, METH_VARARGS, NULL},
+	 { (char *)"InputManager_buttonDown", _wrap_InputManager_buttonDown, METH_VARARGS, NULL},
+	 { (char *)"InputManager_buttonTicked", _wrap_InputManager_buttonTicked, METH_VARARGS, NULL},
 	 { (char *)"new_InputManager", _wrap_new_InputManager, METH_VARARGS, NULL},
 	 { (char *)"delete_InputManager", _wrap_delete_InputManager, METH_VARARGS, NULL},
 	 { (char *)"InputManager_swigregister", InputManager_swigregister, METH_VARARGS, NULL},
@@ -6478,6 +6762,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Layer_swigregister", Layer_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Map", _wrap_new_Map, METH_VARARGS, NULL},
 	 { (char *)"delete_Map", _wrap_delete_Map, METH_VARARGS, NULL},
+	 { (char *)"Map_getCurrentLayer", _wrap_Map_getCurrentLayer, METH_VARARGS, NULL},
+	 { (char *)"Map_setCurrentLayer", _wrap_Map_setCurrentLayer, METH_VARARGS, NULL},
 	 { (char *)"Map_draw", _wrap_Map_draw, METH_VARARGS, NULL},
 	 { (char *)"Map_depthSort", _wrap_Map_depthSort, METH_VARARGS, NULL},
 	 { (char *)"Map_swigregister", Map_swigregister, METH_VARARGS, NULL},
@@ -6501,17 +6787,12 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_TileSet", _wrap_delete_TileSet, METH_VARARGS, NULL},
 	 { (char *)"TileSet_getSurface", _wrap_TileSet_getSurface, METH_VARARGS, NULL},
 	 { (char *)"TileSet_swigregister", TileSet_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_Editor", _wrap_new_Editor, METH_VARARGS, NULL},
-	 { (char *)"delete_Editor", _wrap_delete_Editor, METH_VARARGS, NULL},
-	 { (char *)"Editor_run", _wrap_Editor_run, METH_VARARGS, NULL},
-	 { (char *)"Editor_swigregister", Editor_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static swig_type_info _swigt__p_Annchienta__Editor = {"_p_Annchienta__Editor", "Annchienta::Editor *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Engine = {"_p_Annchienta__Engine", "Annchienta::Engine *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Font = {"_p_Annchienta__Font", "Annchienta::Font *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__InputManager = {"_p_Annchienta__InputManager", "Annchienta::InputManager *", 0, 0, (void*)0, 0};
@@ -6529,7 +6810,6 @@ static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_Annchienta__Tile = {"_p_p_Annchienta__Tile", "Annchienta::Tile **", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_Annchienta__Editor,
   &_swigt__p_Annchienta__Engine,
   &_swigt__p_Annchienta__Font,
   &_swigt__p_Annchienta__InputManager,
@@ -6547,7 +6827,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_p_Annchienta__Tile,
 };
 
-static swig_cast_info _swigc__p_Annchienta__Editor[] = {  {&_swigt__p_Annchienta__Editor, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Engine[] = {  {&_swigt__p_Annchienta__Engine, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__Font, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__InputManager[] = {  {&_swigt__p_Annchienta__InputManager, 0, 0, 0},{0, 0, 0, 0}};
@@ -6565,7 +6844,6 @@ static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0,
 static swig_cast_info _swigc__p_p_Annchienta__Tile[] = {  {&_swigt__p_p_Annchienta__Tile, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_Annchienta__Editor,
   _swigc__p_Annchienta__Engine,
   _swigc__p_Annchienta__Font,
   _swigc__p_Annchienta__InputManager,

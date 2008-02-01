@@ -40,6 +40,9 @@ namespace Annchienta
         glPushMatrix();
 
         for( unsigned int i=0; i<entities.size(); i++ )
+            entities[i]->setDrawn( false );
+
+        for( unsigned int i=0; i<entities.size(); i++ )
             entities[i]->draw();
 
         glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
@@ -70,6 +73,8 @@ namespace Annchienta
 
     void Layer::makeEmpty()
     {
+        tiles = new Tile*[width*height];
+
         for( int y=0; y<height; y++ )
         {
             for( int x=0; x<width; x++ )
@@ -81,7 +86,10 @@ namespace Annchienta
                 points[1].y = points[2].y = y+1;
 
                 for( int i=0; i<4; i++ )
+                {
+                    points[i].setType( TilePoint );
                     points[i].z = 0;
+                }
 
                 tiles[y*width+x] = new Tile( points[0], 0, points[1], 0, points[2], 0, points[3], 0 );
             }

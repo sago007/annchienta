@@ -237,10 +237,17 @@ namespace Annchienta
     {
     }
 
-    void Tile::draw() const
+    void Tile::draw()
     {
+        /* Tile is already drawn...
+         */
+        if( drawn )
+            return;
+
         if( !nullTile )
             glCallList( list );
+
+        setDrawn( true );
     }
 
     int Tile::getDepthSortY() const

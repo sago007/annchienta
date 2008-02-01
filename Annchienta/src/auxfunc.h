@@ -20,6 +20,8 @@ namespace Annchienta
     float distance( float x2, float y2, float x2, float y2 );
     float squaredDistance( float x2, float y2, float x2, float y2 );
 
+    void copyFile( const char *src, const char dst );
+
     #ifndef SWIG
         template <class T>
         void swap( T &a, T &b )

@@ -5,53 +5,78 @@
 #include "map.h"
 
 #include <GL/gl.h>
+#include <sstream>
+#include "xml/irrXML.h"
+using namespace irr;
+using namespace io;
 #include "tile.h"
 #include "tileset.h"
 #include "auxfunc.h"
 #include "entity.h"
 #include "layer.h"
+#include "mapmanager.h"
 
 namespace Annchienta
 {
 
     Map::Map( const char *filename ): currentLayer(0)
     {
-        width = 20, height = 20;
+        Tile **tiles = 0;
+        Layer *layer = 0;
 
-        tileSet = new TileSet( filename );
+        IrrXMLReader *xml = createIrrXMLReader( filename );
 
-        Tile **tiles = new Tile*[width*height];
+        if( !xml )
+            printf("Could not open level file %s\n", filename );
 
-        for( int y=0; y<height; y++ )
+        while( xml && xml->read() )
         {
-            for( int x=0; x<width; x++ )
+            switch( xml->getNodeType() )
             {
-                Point points[4];
-                points[0].x = points[1].x = x;
-                points[2].x = points[3].x = x+1;
-                points[0].y = points[3].y = y;
-                points[1].y = points[2].y = y+1;
+                case EXN_ELEMENT:
+                    if( !strcmp("map", xml->getNodeName()) )
+                    {
+                        width = xml->getAttributeValueAsInt("width");
+                        height = xml->getAttributeValueAsInt("height");
 
-                Surface *surfaces[4];
+                        tiles = new Tile*[width*height];
 
-                for( int i=0; i<4; i++ )
-                {
-                    points[i].setType( TilePoint );
-                    points[i].z = 0;//randInt(30);
-                    surfaces[i] = tileSet->getSurface( 1+randInt(2) );
-                }
+                        getMapManager()->setTileWidth( xml->getAttributeValueAsInt("tilewidth") );
+                        getMapManager()->setTileHeight( xml->getAttributeValueAsInt("tileheight") );
 
-                tiles[y*width+x] = new Tile( points[0], surfaces[0], points[1], surfaces[1], points[2], surfaces[2], points[3], surfaces[3] );
+                        tileSet = new TileSet( xml->getAttributeValue("tileset") );
+                    }
+                    if( !strcmp("layer", xml->getNodeName()) )
+                    {
+                        tiles = 0;
+                    }
+                    if( !strcmp("tiles", xml->getNodeName()) )
+                    {
+                        xml->read();
+                        std::stringstream data( xml->getNodeData() );
+                        printf( "%s\n", data.str().c_str() );
+                    }
+                    break;
+
+                case EXN_ELEMENT_END:
+                    if( !strcmp("layer", xml->getNodeName()) )
+                    {
+                        layers.push_back( new Layer( width, height, tiles ) );
+                    }
+                    break;
             }
         }
+
+        delete xml;
 
         layers.push_back( new Layer( width, height, tiles ) );
 
     }
 
-    Map::Map( int w, int h, const char *tileset )
+    Map::Map( int w, int h, const char *tileSetFilename )
     {
-
+        tileSet = new TileSet( tileSetFilename );
+        layers.push_back( new Layer( w, h, 0 ) );
     }
 
     Map::~Map()

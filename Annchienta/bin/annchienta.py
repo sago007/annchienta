@@ -85,6 +85,8 @@ class VideoManager(_object):
     def setAlpha(*args): return _annchienta.VideoManager_setAlpha(*args)
     def drawLine(*args): return _annchienta.VideoManager_drawLine(*args)
     def drawTriangle(*args): return _annchienta.VideoManager_drawTriangle(*args)
+    def drawRectangle(*args): return _annchienta.VideoManager_drawRectangle(*args)
+    def drawQuad(*args): return _annchienta.VideoManager_drawQuad(*args)
     def drawSurface(*args): return _annchienta.VideoManager_drawSurface(*args)
     def drawString(*args): return _annchienta.VideoManager_drawString(*args)
     def grabBuffer(*args): return _annchienta.VideoManager_grabBuffer(*args)
@@ -109,6 +111,10 @@ class InputManager(_object):
     def stop(*args): return _annchienta.InputManager_stop(*args)
     def keyDown(*args): return _annchienta.InputManager_keyDown(*args)
     def keyTicked(*args): return _annchienta.InputManager_keyTicked(*args)
+    def getMouseX(*args): return _annchienta.InputManager_getMouseX(*args)
+    def getMouseY(*args): return _annchienta.InputManager_getMouseY(*args)
+    def buttonDown(*args): return _annchienta.InputManager_buttonDown(*args)
+    def buttonTicked(*args): return _annchienta.InputManager_buttonTicked(*args)
     def __init__(self, *args): 
         this = _annchienta.new_InputManager(*args)
         try: self.this.append(this)
@@ -211,6 +217,8 @@ class Map(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Map
     __del__ = lambda self : None;
+    def getCurrentLayer(*args): return _annchienta.Map_getCurrentLayer(*args)
+    def setCurrentLayer(*args): return _annchienta.Map_setCurrentLayer(*args)
     def draw(*args): return _annchienta.Map_draw(*args)
     def depthSort(*args): return _annchienta.Map_depthSort(*args)
 Map_swigregister = _annchienta.Map_swigregister
@@ -278,22 +286,6 @@ class TileSet(_object):
     def getSurface(*args): return _annchienta.TileSet_getSurface(*args)
 TileSet_swigregister = _annchienta.TileSet_swigregister
 TileSet_swigregister(TileSet)
-
-class Editor(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Editor, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Editor, name)
-    __repr__ = _swig_repr
-    def __init__(self, *args): 
-        this = _annchienta.new_Editor(*args)
-        try: self.this.append(this)
-        except: self.this = this
-    __swig_destroy__ = _annchienta.delete_Editor
-    __del__ = lambda self : None;
-    def run(*args): return _annchienta.Editor_run(*args)
-Editor_swigregister = _annchienta.Editor_swigregister
-Editor_swigregister(Editor)
 
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN
 SDLK_FIRST = _annchienta.SDLK_FIRST
