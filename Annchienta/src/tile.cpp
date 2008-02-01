@@ -222,7 +222,6 @@ namespace Annchienta
 
         for( int i=0; i<4; i++ )
         {
-            points[i].setType( TilePoint );
             isoPoints[i] = points[i];
             points[i].to( MapPoint );
             isoPoints[i].to( IsometricPoint );

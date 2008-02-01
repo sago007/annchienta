@@ -100,11 +100,14 @@ namespace Annchienta
                 switch( newtype )
                 {
                     case TilePoint:
-                        this->MapToIsometric();
+                        this->to( IsometricPoint );
                         this->to( TilePoint );
                         break;
                     case IsometricPoint:
-                        this->MapToIsometric();
+                        nx = y/2 + x/4;
+                        ny = y/2 - x/4;
+                        x = nx;
+                        y = ny;
                         break;
                     case ScreenPoint: default:
                         x -= mapMgr->getCameraX();
@@ -136,27 +139,6 @@ namespace Annchienta
 
         type = newtype;
 
-    }
-
-    void Point::MapToIsometric()
-    {
-        /* Calculate the distance to the map origin.
-         */
-        float originDist = distance( 0, 0, x, y );
-
-        /* Calculate the angle to the map point.
-         */
-        float angle = atan2( (float)y, (float)x );
-
-        /* Subtract iso angle from the angle.
-         */
-        angle -= 0.4636476f;
-        angle /= 1.41f;
-
-        /* Calculate the x and y coordinate
-         */
-        x = (int) (cos( angle ) * originDist );
-        y = (int) (sin( angle ) * originDist );
     }
 
 };

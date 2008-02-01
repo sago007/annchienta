@@ -59,9 +59,7 @@ namespace Annchienta
         if( inputManager->buttonTicked(0) )
         {
             getSelectedPoints();
-            printf("Selected points...\n");
             applyActions();
-            printf("Took actions...\n");
         }
 
         /* Scroll if right mouse button is pressed.

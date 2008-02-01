@@ -34,8 +34,6 @@ namespace Annchienta
 
             PointType getType() const;
             void to( PointType newtype );
-            /* Kind of complicated, so gets a seperate one. */
-            void MapToIsometric();
 
     };
 

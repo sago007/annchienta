@@ -21,6 +21,8 @@ namespace Annchienta
         private:
             TileSet *tileSet;
 
+            int width, height;
+
             /* All layers in the level.
              */
             std::vector<Layer*> layers;
