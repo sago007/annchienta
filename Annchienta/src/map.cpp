@@ -54,7 +54,36 @@ namespace Annchienta
                     {
                         xml->read();
                         std::stringstream data( xml->getNodeData() );
-                        printf( "%s\n", data.str().c_str() );
+
+                        tiles = new Tile*[width*height];
+
+                        for( int y=0; y<height; y++ )
+                        {
+                            for( int x=0; x<width; x++ )
+                            {
+                                Point points[4];
+                                int surfaces[4];
+
+                                points[0].y = points[3].y = y;
+                                points[1].y = points[2].y = y+1;
+                                points[0].x = points[1].x = x;
+                                points[2].x = points[3].x = x+1;
+
+                                for( int p=0; p<4; p++ )
+                                {
+                                    points[p].setType( TilePoint );
+                                    data >> points[p].z;
+                                    data >> surfaces[p];
+                                }
+
+                                tiles[y*width+x] = new Tile( points[0], tileSet->getSurface( surfaces[0] ),
+                                                             points[1], tileSet->getSurface( surfaces[1] ),
+                                                             points[2], tileSet->getSurface( surfaces[2] ),
+                                                             points[3], tileSet->getSurface( surfaces[3] ) );
+
+                            }
+                        }
+
                     }
                     break;
 

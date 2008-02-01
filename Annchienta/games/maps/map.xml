@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
-<map width="20" height="20" tilewidth="64" tileheight="32" tileset="tileset/">
+<map width="3" height="3" tilewidth="64" tileheight="32" tileset="tileset/">
     
+    <layer>
     
+        <tiles>
+            0 1 0 1 16 2 0 1  0 1 16 2 16 2 0 1  0 1 16 2 0 1 0 1
+            0 1 0 1 16 2 16 2  16 2 16 2 16 2 16 2  16 2 16 2 0 1 0 1
+            0 1 0 1 0 1 16 2  16 2 0 1 0 1 16 2  16 2 0 1 0 1 0 1
+        </tiles
     
-    
-    
+    </layer>
     
 </map>
