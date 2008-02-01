@@ -35,7 +35,7 @@ namespace Annchienta
             std::list<Tile*> affectedTiles;
 
         public:
-            Editor( const char *map=0 );
+            Editor( const char *map=0, int tw=64, int th=32, int w=20, int h=20, const char *tileset=0 );
             ~Editor();
 
             void run();

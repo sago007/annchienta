@@ -18,7 +18,7 @@
 namespace Annchienta
 {
 
-    Editor::Editor( const char *fname ): selectWholeTiles( true )
+    Editor::Editor( const char *fname, int tw, int th, int w, int h, const char *tileset): selectWholeTiles( true )
     {
         sprintf( filename, fname );
 
@@ -27,15 +27,27 @@ namespace Annchienta
         mapManager = getMapManager();
 
         videoManager->setVideoMode( 800, 600, "Annchienta Map Editor" );
+        mapManager->setTileWidth( tw );
+        mapManager->setTileHeight( th );
 
-        Map *map = new Map( filename );
+        Map *map;
+
+        if( isValidFile( filename ) )
+            map = new Map( filename );
+        else
+        {
+            mapManager->setTileWidth( tw );
+            mapManager->setTileHeight( th );
+            map = new Map( w, h, tileset );
+        }
+
         mapManager->setCurrentMap( map );
 
         inputManager->update();
         prevMouseX = inputManager->getMouseX();
         prevMouseY = inputManager->getMouseY();
 
-        font = new Font("editor/font.ttf", 16);
+        font = new Font("../editor/font.ttf", 16);
     }
 
     Editor::~Editor()

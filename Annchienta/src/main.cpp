@@ -5,21 +5,14 @@
 #include <stdio.h>
 
 #include "engine.h"
+#include "editor.h"
 
 extern "C" void init_annchienta(void);
 
-int main( int argc, char **argv )
+Annchienta::Engine *engine;
+
+void runGame( const char *filename )
 {
-    srand( time(NULL) );
-
-    Annchienta::Engine *engine = new Annchienta::Engine();
-
-    char gameToRun[512];
-
-    if( argc<2 )
-        strcpy( gameToRun, "../games/default.py" );
-    else
-        strcpy( gameToRun, argv[1] );
 
     init_annchienta();
 
@@ -42,14 +35,58 @@ import os\n\
 sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
 os.chdir( os.path.dirname( \"%s\" ) )\n\
 ",
-    gameToRun );
+    filename );
 
     PyRun_SimpleString( initScript );
 
     /* Run our game.
      */
-    engine->runPythonScript( gameToRun );
- 
+    engine->runPythonScript( filename );
+}
+
+void runEditor( int argc, char **argv )
+{
+    Annchienta::Editor *editor;
+    if( (argc != 3) && (argc != 8) )
+    {
+        printf("Usage: ./annchienta -e [filename]\nor\n./annchienta -e [filename] [tilewidth] [tileheight] [mapwidth] [mapheight] [tileset]\n");
+        return;
+    }
+    else
+    {
+        if( argc==3 )
+            editor = new Annchienta::Editor( argv[2] );
+        else
+            editor = new Annchienta::Editor( argv[2], atoi(argv[3]), atoi(argv[4]), atoi(argv[5]), atoi(argv[6]), argv[7] );
+    }
+
+    editor->run();
+
+    delete editor;
+}
+
+int main( int argc, char **argv )
+{
+    srand( time(NULL) );
+
+    engine = new Annchienta::Engine();
+
+    char gameToRun[512];
+
+    if( argc>=2 && !strcmp("-e", argv[1]) )
+    {
+        runEditor( argc, argv );
+    }
+    else
+    {
+        if( argc<2 )
+            strcpy( gameToRun, "../games/default.py" );
+        else
+            strcpy( gameToRun, argv[1] );
+    
+        runGame( gameToRun );
+    }
+
     delete engine;
 
 };

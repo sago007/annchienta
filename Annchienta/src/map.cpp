@@ -49,6 +49,11 @@ namespace Annchienta
 
     }
 
+    Map::Map( int w, int h, const char *tileset )
+    {
+
+    }
+
     Map::~Map()
     {
         for( unsigned int i=0; i<layers.size(); i++ )

@@ -32,6 +32,7 @@ namespace Annchienta
         public:
 
             Map( const char *filename );
+            Map( int w, int h, const char *tileset );
             ~Map();
 
             Layer *getCurrentLayer() const;
