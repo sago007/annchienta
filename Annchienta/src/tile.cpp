@@ -76,7 +76,7 @@ namespace Annchienta
             list = glGenLists( 1 );
         glNewList( list, GL_COMPILE );
 
-        float xCenter, topYCenter, topYDown, wallYDown;
+        float xCenter, yCenter;
 
         /* For every surface, draw with thee correct alpha value
          * at the correct points.
@@ -88,7 +88,8 @@ namespace Annchienta
 
             /* Get texture coordinates.
              */
-            this->getTexCoords( s, &xCenter, &topYCenter, &topYDown, &wallYDown );
+            xCenter = 0.5f*( s->getLeftTexCoord() + s->getRightTexCoord() );
+            yCenter = 0.5f*( s->getTopTexCoord() + s->getBottomTexCoord() );
 
             glBindTexture( GL_TEXTURE_2D, orderedSurfaces[i]->getTexture() );
             glBegin( GL_QUADS );
@@ -98,15 +99,15 @@ namespace Annchienta
                 glVertex2f( points[0].x, points[0].y );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[1] || i==0?1.0f:0.0f );
-                glTexCoord2f( s->getLeftTexCoord(), topYCenter );
+                glTexCoord2f( s->getLeftTexCoord(), yCenter );
                 glVertex2f( points[1].x, points[1].y );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[2] || i==0?1.0f:0.0f );
-                glTexCoord2f( xCenter, topYDown );
+                glTexCoord2f( xCenter, s->getBottomTexCoord() );
                 glVertex2f( points[2].x, points[2].y );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[3] || i==0?1.0f:0.0f );
-                glTexCoord2f( s->getRightTexCoord(), topYCenter );
+                glTexCoord2f( s->getRightTexCoord(), yCenter );
                 glVertex2f( points[3].x, points[3].y );
 
             glEnd();
@@ -115,94 +116,9 @@ namespace Annchienta
         /* If there is a Z coordinate and a wall-like thing,
          * we want to draw a wall-like thing.
          */
-        if( (points[1].z || points[2].z || points[3].z) && surfaces[1]->getHeight()>mapMgr->getTileHeight() )
+        if( (points[1].z || points[2].z || points[3].z) && sideSurface )
         {
-            Surface *s = surfaces[2];
-
-            /* Get texture coords.
-             */
-            this->getTexCoords( s, &xCenter, &topYCenter, &topYDown, &wallYDown );
-
-            /* Take the texture of point 2 and draw the wall to both sides.
-             */
-            glBindTexture( GL_TEXTURE_2D, s->getTexture() );
-            glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
-            glBegin( GL_TRIANGLE_STRIP );
-
-                glTexCoord2f(s->getLeftTexCoord(), topYCenter );
-                glVertex2f( points[1].x, points[1].y );
-
-                glTexCoord2f( s->getLeftTexCoord(), wallYDown );
-                glVertex2f( points[1].x, points[1].y + points[1].z );
-
-                glTexCoord2f( xCenter, topYDown );
-                glVertex2f( points[2].x, points[2].y );
-
-                glTexCoord2f( xCenter, s->getBottomTexCoord() );
-                glVertex2f( points[2].x, points[2].y + points[2].z );
-
-                glTexCoord2f(s->getRightTexCoord(), topYCenter );
-                glVertex2f( points[3].x, points[3].y );
-
-                glTexCoord2f( s->getRightTexCoord(), wallYDown );
-                glVertex2f( points[3].x, points[3].y + points[3].z );
-
-            glEnd();
-
-            /* Now the left wall, if needed.
-             */
-            if( surfaces[1] != surfaces[2] )
-            {
-                s = surfaces[1];
-                this->getTexCoords( s, &xCenter, &topYCenter, &topYDown, &wallYDown );
-
-                glBindTexture( GL_TEXTURE_2D, s->getTexture() );
-                glBegin( GL_QUADS );
-
-                    glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
-                    glTexCoord2f(s->getLeftTexCoord(), topYCenter );
-                    glVertex2f( points[1].x, points[1].y );
-    
-                    glTexCoord2f( s->getLeftTexCoord(), wallYDown );
-                    glVertex2f( points[1].x, points[1].y + points[1].z );
-    
-                    glColor4f( 1.0f, 1.0f, 1.0f, 0.0f );
-                    glTexCoord2f( xCenter, s->getBottomTexCoord() );
-                    glVertex2f( points[2].x, points[2].y + points[2].z );
-
-                    glTexCoord2f( xCenter, topYDown );
-                    glVertex2f( points[2].x, points[2].y );
-    
-                glEnd();
-            }
-
-            /* Now the right wall, if needed.
-             */
-            if( surfaces[3] != surfaces[2] )
-            {
-                s = surfaces[3];
-                this->getTexCoords( s, &xCenter, &topYCenter, &topYDown, &wallYDown );
-
-                glBindTexture( GL_TEXTURE_2D, s->getTexture() );
-                glBegin( GL_QUADS );
-
-                    glColor4f( 1.0f, 1.0f, 1.0f, 0.0f );
-                    glTexCoord2f( xCenter, topYDown );
-                    glVertex2f( points[2].x, points[2].y );
-    
-                    glTexCoord2f( xCenter, s->getBottomTexCoord() );
-                    glVertex2f( points[2].x, points[2].y + points[2].z );
-    
-                    glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
-                    glTexCoord2f( s->getRightTexCoord(), wallYDown );
-                    glVertex2f( points[3].x, points[3].y + points[3].z );
-
-                    glTexCoord2f(s->getRightTexCoord(), topYCenter );
-                    glVertex2f( points[3].x, points[3].y );
-    
-                glEnd();
-            }
-
+            sideSurface->draw( points[1].x, points[1].y+1 );
         }
 
         /* End the display list.
@@ -210,7 +126,7 @@ namespace Annchienta
         glEndList();
     }
 
-    Tile::Tile( Point p1, Surface *s1, Point p2, Surface *s2, Point p3, Surface *s3, Point p4, Surface *s4 ): list(0), nullTile(false)
+    Tile::Tile( Point p1, Surface *s1, Point p2, Surface *s2, Point p3, Surface *s3, Point p4, Surface *s4, Surface *side ): list(0), nullTile(false)
     {
         points[0] = p1;
         surfaces[0] = s1;
@@ -220,6 +136,7 @@ namespace Annchienta
         surfaces[2] = s3;
         points[3] = p4;
         surfaces[3] = s4;
+        sideSurface = side;
 
         for( int i=0; i<4; i++ )
         {

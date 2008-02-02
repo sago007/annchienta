@@ -63,6 +63,7 @@ namespace Annchienta
                             {
                                 Point points[4];
                                 int surfaces[4];
+                                int sideSurface;
 
                                 points[0].y = points[3].y = y;
                                 points[1].y = points[2].y = y+1;
@@ -76,10 +77,13 @@ namespace Annchienta
                                     data >> surfaces[p];
                                 }
 
+                                data >> sideSurface;
+
                                 tiles[y*width+x] = new Tile( points[0], tileSet->getSurface( surfaces[0] ),
                                                              points[1], tileSet->getSurface( surfaces[1] ),
                                                              points[2], tileSet->getSurface( surfaces[2] ),
-                                                             points[3], tileSet->getSurface( surfaces[3] ) );
+                                                             points[3], tileSet->getSurface( surfaces[3] ),
+                                                             tileSet->getSideSurface( sideSurface ) );
 
                             }
                         }

@@ -12,10 +12,12 @@
 namespace Annchienta
 {
 
-    TileSet::TileSet( const char *directory ): numberOfSurfaces(0)
+    TileSet::TileSet( const char *directory ): numberOfSurfaces(0), numberOfSideSurfaces(0)
     {
-        char buffer[ strlen(directory)+10 ];
+        char buffer[ strlen(directory)+16 ];
 
+        /* Count the regular surfaces.
+         */
         do
         {
             sprintf( buffer, "%s/%d.png", directory, ++numberOfSurfaces );
@@ -35,6 +37,28 @@ namespace Annchienta
             sprintf( buffer, "%s/%d.png", directory, i );
             surfaces[i] = new Surface( buffer );
         }
+
+        /* Repeat it all for the side surfaces.
+         */
+        do
+        {
+            sprintf( buffer, "%s/side%d.png", directory, ++numberOfSideSurfaces );
+        }
+        while( isValidFile( buffer ) );
+
+        /* Allocate room for (numberOfTiles) Surface pointers.
+         */
+        sideSurfaces = new Surface*[numberOfSideSurfaces];
+
+        /* Load the actual surfaces.
+         */
+        sideSurfaces[0] = 0;
+
+        for( int i=1; i<numberOfSideSurfaces; i++ )
+        {
+            sprintf( buffer, "%s/side%d.png", directory, i );
+            sideSurfaces[i] = new Surface( buffer );
+        }
     }
 
     TileSet::~TileSet()
@@ -43,11 +67,21 @@ namespace Annchienta
             delete surfaces[i];
 
         delete[] surfaces;
+
+        for( int i=1; i<numberOfSideSurfaces; i++ )
+            delete sideSurfaces[i];
+
+        delete[] sideSurfaces;
     }
 
     Surface *TileSet::getSurface( int tileNumber ) const
     {
         return surfaces[ tileNumber ];
+    }
+
+    Surface *TileSet::getSideSurface( int tileNumber ) const
+    {
+        return sideSurfaces[ tileNumber ];
     }
 
 };

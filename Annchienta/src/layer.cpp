@@ -91,7 +91,7 @@ namespace Annchienta
                     points[i].z = 0;
                 }
 
-                tiles[y*width+x] = new Tile( points[0], 0, points[1], 0, points[2], 0, points[3], 0 );
+                tiles[y*width+x] = new Tile( points[0], 0, points[1], 0, points[2], 0, points[3], 0, 0 );
             }
         }
     }

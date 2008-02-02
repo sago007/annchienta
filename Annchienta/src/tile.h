@@ -23,6 +23,7 @@ namespace Annchienta
             Point points[4];
             Point isoPoints[4];
             Surface *surfaces[4];
+            Surface *sideSurface;
             GLuint list;
 
             bool nullTile;
@@ -31,7 +32,7 @@ namespace Annchienta
             void makeList();
 
         public:
-            Tile( Point, Surface*, Point, Surface*, Point, Surface*, Point, Surface* );
+            Tile( Point, Surface*, Point, Surface*, Point, Surface*, Point, Surface*, Surface *side=0 );
             ~Tile();
 
             virtual void draw();

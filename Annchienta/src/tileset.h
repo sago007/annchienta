@@ -16,11 +16,15 @@ namespace Annchienta
             Surface **surfaces;
             int numberOfSurfaces;
 
+            Surface **sideSurfaces;
+            int numberOfSideSurfaces;
+
         public:
             TileSet( const char *directory );
             ~TileSet();
 
             Surface *getSurface( int tileNumber ) const;
+            Surface *getSideSurface( int sideNumber ) const;
 
     };
 };
