@@ -22,6 +22,10 @@ namespace Annchienta
              */
             int width, height;
 
+            /* Z offset
+             */
+            int z;
+
             Tile **tiles;
 
             /* This is another list that holds ALL entities in the
@@ -31,7 +35,7 @@ namespace Annchienta
 
         public:
 
-            Layer( int width, int height, Tile **tiles=0 );
+            Layer( int width, int height, Tile **tiles=0, int z=0 );
             ~Layer();
 
             void draw() const;

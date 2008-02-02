@@ -11,7 +11,7 @@
 namespace Annchienta
 {
 
-    Layer::Layer( int w, int h, Tile **_tiles ): width(w), height(h)
+    Layer::Layer( int w, int h, Tile **_tiles, int _z ): width(w), height(h), z(_z)
     {
         /* Create some extra space.
          */
@@ -38,6 +38,10 @@ namespace Annchienta
     void Layer::draw() const
     {
         glPushMatrix();
+
+        glTranslatef( 0.0f, -z, 0.0f );
+
+        glPixelTransferf( GL_ALPHA_SCALE, 0.0f );
 
         for( unsigned int i=0; i<entities.size(); i++ )
             entities[i]->setDrawn( false );

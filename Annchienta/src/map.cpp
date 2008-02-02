@@ -23,6 +23,7 @@ namespace Annchienta
     {
         Tile **tiles = 0;
         Layer *layer = 0;
+        int layerZ = 0;
 
         IrrXMLReader *xml = createIrrXMLReader( filename );
 
@@ -49,6 +50,7 @@ namespace Annchienta
                     if( !strcmp("layer", xml->getNodeName()) )
                     {
                         tiles = 0;
+                        layerZ = xml->getAttributeValueAsInt("z");
                     }
                     if( !strcmp("tiles", xml->getNodeName()) )
                     {
@@ -94,7 +96,7 @@ namespace Annchienta
                 case EXN_ELEMENT_END:
                     if( !strcmp("layer", xml->getNodeName()) )
                     {
-                        layers.push_back( new Layer( width, height, tiles ) );
+                        layers.push_back( new Layer( width, height, tiles, layerZ ) );
                     }
                     break;
             }
