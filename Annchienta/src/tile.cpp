@@ -112,9 +112,10 @@ namespace Annchienta
             glEnd();
         }
 
-        /* If there is a Z coordinate, we want to draw a wall-like thing.
+        /* If there is a Z coordinate and a wall-like thing,
+         * we want to draw a wall-like thing.
          */
-        if( points[1].z || points[2].z || points[3].z )
+        if( (points[1].z || points[2].z || points[3].z) && surfaces[1]->getHeight()>mapMgr->getTileHeight() )
         {
             Surface *s = surfaces[2];
 
@@ -235,6 +236,7 @@ namespace Annchienta
 
     Tile::~Tile()
     {
+        glDeleteLists( list, 1 );
     }
 
     void Tile::draw()

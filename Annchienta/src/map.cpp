@@ -97,9 +97,6 @@ namespace Annchienta
         }
 
         delete xml;
-
-        layers.push_back( new Layer( width, height, tiles ) );
-
     }
 
     Map::Map( int w, int h, const char *tileSetFilename )
