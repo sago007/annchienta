@@ -5,6 +5,8 @@
 #ifndef ANNCHIENTA_AUDIOMANAGER_H
 #define ANNCHIENTA_AUDIOMANAGER_H
 
+#include <SDL_mixer.h>
+
 namespace Annchienta
 {
 
@@ -13,6 +15,8 @@ namespace Annchienta
     class AudioManager
     {
         private:
+            Mix_Music *music;
+            char musicFilename[512];
 
         public:
             #ifndef SWIG
@@ -21,6 +25,7 @@ namespace Annchienta
             #endif
 
             void playSound( Sound *sound ) const;
+            void playMusic( const char *filename );
 
     };
 

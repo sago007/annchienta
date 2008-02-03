@@ -16,7 +16,7 @@ all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(SWIG_CPP_FILE) $(XML_LIBRARY)
 	@echo "Compiling the executable..."
-	@$(CXX) $(C_FLAGS) $(LD_FLAGS) -o $(EXECUTABLE) src/*.cpp src/xml/*.cpp
+	@$(CXX) $(C_FLAGS) -o $(EXECUTABLE) src/*.cpp $(LD_FLAGS)
 
 
 $(SWIG_CPP_FILE):

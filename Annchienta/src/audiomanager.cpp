@@ -10,7 +10,7 @@ namespace Annchienta
 {
     AudioManager *audioManager;
 
-    AudioManager::AudioManager()
+    AudioManager::AudioManager(): music(0)
     {
         /* Set reference to single-instance class.
          */
@@ -18,6 +18,8 @@ namespace Annchienta
 
         if( Mix_OpenAudio( MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024 ) )
             printf( "Could not init SDL_mixer: %s\n", SDL_GetError() );
+
+        sprintf( musicFilename, "none" );
     }
 
     AudioManager::~AudioManager()
@@ -28,6 +30,29 @@ namespace Annchienta
     void AudioManager::playSound( Sound *sound ) const
     {
         sound->play();
+    }
+
+    void AudioManager::playMusic( const char *filename )
+    {
+        if( !strcmp(filename, musicFilename) )
+            return;
+
+        sprintf( musicFilename, filename );
+
+        if( Mix_PlayingMusic() )
+            Mix_FadeOutMusic( 100 );
+
+        if( music )
+        {
+            Mix_FreeMusic( music );
+            music = 0;
+        }
+
+        music = Mix_LoadMUS( filename );
+        if( !music )
+            printf( "Error - Could not open music: %s\n", filename );
+
+        Mix_PlayMusic( music, -1 );
     }
 
     AudioManager *getAudioManager()

@@ -18,4 +18,11 @@ audioMgr = annchienta.getAudioManager()
 sound = annchienta.Sound("maps/drum.ogg")
 audioMgr.playSound( sound )
 
-mapMgr.run()
+player = annchienta.Surface("maps/persontest.png")
+
+while inputMgr.running():
+    inputMgr.update()
+    mapMgr.renderFrame()
+    videoMgr.drawSurface( player, 10, 10 )
+    videoMgr.flip()
+    
