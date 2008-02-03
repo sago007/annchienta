@@ -11,6 +11,7 @@
 #include "videomanager.h"
 #include "inputmanager.h"
 #include "mapmanager.h"
+#include "audiomanager.h"
 
 namespace Annchienta
 {
@@ -32,6 +33,7 @@ namespace Annchienta
         videoManager = new VideoManager();
         inputManager = new InputManager();
         mapManager = new MapManager();
+        audioManager = new AudioManager();
     }
 
     Engine::~Engine()
@@ -42,6 +44,7 @@ namespace Annchienta
         delete videoManager;
         delete inputManager;
         delete mapManager;
+        delete audioManager;
 
         /* Quit our libraries.
          */

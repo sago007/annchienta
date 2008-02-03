@@ -14,4 +14,8 @@ mymap = annchienta.Map( "maps/map.xml" )
 
 mapMgr.setCurrentMap( mymap )
 
+audioMgr = annchienta.getAudioManager()
+sound = annchienta.Sound("maps/drum.ogg")
+audioMgr.playSound( sound )
+
 mapMgr.run()

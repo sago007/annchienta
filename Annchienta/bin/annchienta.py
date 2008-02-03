@@ -90,6 +90,8 @@ class VideoManager(_object):
     def drawSurface(*args): return _annchienta.VideoManager_drawSurface(*args)
     def drawString(*args): return _annchienta.VideoManager_drawString(*args)
     def grabBuffer(*args): return _annchienta.VideoManager_grabBuffer(*args)
+    def pushBuffer(*args): return _annchienta.VideoManager_pushBuffer(*args)
+    def popBuffer(*args): return _annchienta.VideoManager_popBuffer(*args)
     def __init__(self, *args): 
         this = _annchienta.new_VideoManager(*args)
         try: self.this.append(this)
@@ -153,6 +155,23 @@ MapManager_swigregister = _annchienta.MapManager_swigregister
 MapManager_swigregister(MapManager)
 
 getMapManager = _annchienta.getMapManager
+class AudioManager(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AudioManager, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AudioManager, name)
+    __repr__ = _swig_repr
+    def playSound(*args): return _annchienta.AudioManager_playSound(*args)
+    def __init__(self, *args): 
+        this = _annchienta.new_AudioManager(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_AudioManager
+    __del__ = lambda self : None;
+AudioManager_swigregister = _annchienta.AudioManager_swigregister
+AudioManager_swigregister(AudioManager)
+
+getAudioManager = _annchienta.getAudioManager
 class Surface(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Surface, name, value)
@@ -187,6 +206,21 @@ class Font(_object):
     def getStringWidth(*args): return _annchienta.Font_getStringWidth(*args)
 Font_swigregister = _annchienta.Font_swigregister
 Font_swigregister(Font)
+
+class Sound(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Sound, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Sound, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_Sound(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Sound
+    __del__ = lambda self : None;
+Sound_swigregister = _annchienta.Sound_swigregister
+Sound_swigregister(Sound)
 
 class Layer(_object):
     __swig_setmethods__ = {}
@@ -284,6 +318,7 @@ class TileSet(_object):
     __swig_destroy__ = _annchienta.delete_TileSet
     __del__ = lambda self : None;
     def getSurface(*args): return _annchienta.TileSet_getSurface(*args)
+    def getSideSurface(*args): return _annchienta.TileSet_getSideSurface(*args)
 TileSet_swigregister = _annchienta.TileSet_swigregister
 TileSet_swigregister(TileSet)
 
