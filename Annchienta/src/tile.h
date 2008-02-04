@@ -28,7 +28,6 @@ namespace Annchienta
 
             bool nullTile;
 
-            void getTexCoords( Surface*, float *xCenter, float *topYCenter, float *topYDown, float *wallYDown ) const;
             void makeList();
 
         public:

@@ -12,14 +12,14 @@
 namespace Annchienta
 {
 
-    void Tile::getTexCoords( Surface *surf, float *xCenter, float *topYCenter, float *topYDown, float *wallYDown ) const
+    /*void Tile::getTexCoords( Surface *surf, float *xCenter, float *topYCenter, float *topYDown, float *wallYDown ) const
     {
         MapManager *mapMgr = getMapManager();
         *xCenter = 0.5f*( surf->getLeftTexCoord() + surf->getRightTexCoord() );
         *topYCenter = 1.0f - (float)(mapMgr->getTileHeight()>>1)/(float)surf->getGlHeight();
         *topYDown = 1.0f - (float)(mapMgr->getTileHeight())/(float)surf->getGlHeight();
         *wallYDown = 1.0f - (float)( (mapMgr->getTileHeight()>>1) + surf->getHeight() - mapMgr->getTileHeight() )/(float)surf->getGlHeight();
-    }
+    }*/
 
     void Tile::makeList()
     {
@@ -76,8 +76,6 @@ namespace Annchienta
             list = glGenLists( 1 );
         glNewList( list, GL_COMPILE );
 
-        float xCenter, yCenter;
-
         /* For every surface, draw with thee correct alpha value
          * at the correct points.
          */
@@ -86,11 +84,13 @@ namespace Annchienta
 
             Surface *s = orderedSurfaces[i];
 
-            /* Get texture coordinates.
+            /* Get specific texture coordinates.
              */
-            xCenter = 0.5f*( s->getLeftTexCoord() + s->getRightTexCoord() );
-            yCenter = 0.5f*( s->getTopTexCoord() + s->getBottomTexCoord() );
+            float xCenter = 0.5f*( s->getLeftTexCoord() + s->getRightTexCoord() );
+            float yCenter = 0.5f*( s->getTopTexCoord() + s->getBottomTexCoord() );
 
+            /* Draw the top surface.
+             */
             glBindTexture( GL_TEXTURE_2D, orderedSurfaces[i]->getTexture() );
             glBegin( GL_QUADS );
     
@@ -113,12 +113,47 @@ namespace Annchienta
             glEnd();
         }
 
-        /* If there is a Z coordinate and a wall-like thing,
+        /* If there is a Z coordinate and a wall-like thing surface,
          * we want to draw a wall-like thing.
          */
         if( (points[1].z || points[2].z || points[3].z) && sideSurface )
         {
-            sideSurface->draw( points[1].x, points[1].y+1 );
+            /* Get come specific texture coords.
+             */
+            float centerX = 0.5f*( sideSurface->getLeftTexCoord() + sideSurface->getRightTexCoord() );
+            float centerY = 1.0f -  (float)(sideSurface->getHeight()+1-mapMgr->getTileHeight()/2)/(float)sideSurface->getGlHeight();
+            float centerYMinusOne = 1.0f -  (float)(sideSurface->getHeight()-mapMgr->getTileHeight()/2)/(float)sideSurface->getGlHeight();
+
+            /* Use a triangle strip to draw a
+             *     -       -
+             *     ||-   -||
+             *     -|||-|||-   - like thingy.
+             *       -|||-
+             *         -
+             */
+            glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
+            glBindTexture( GL_TEXTURE_2D, sideSurface->getTexture() );
+            glBegin( GL_TRIANGLE_STRIP );
+
+                glTexCoord2f( sideSurface->getLeftTexCoord(), sideSurface->getTopTexCoord() );
+                glVertex2f( points[1].x, points[1].y );
+
+                glTexCoord2f( sideSurface->getLeftTexCoord(), centerYMinusOne );
+                glVertex2f( points[1].x, points[1].y + points[1].z );
+
+                glTexCoord2f( centerX, centerY );
+                glVertex2f( points[2].x, points[2].y );
+
+                glTexCoord2f( centerX, sideSurface->getBottomTexCoord() );
+                glVertex2f( points[2].x, points[2].y + points[2].z );
+
+                glTexCoord2f( sideSurface->getRightTexCoord(), sideSurface->getTopTexCoord() );
+                glVertex2f( points[3].x, points[3].y );
+
+                glTexCoord2f( sideSurface->getRightTexCoord(), centerYMinusOne );
+                glVertex2f( points[3].x, points[3].y + points[3].z );
+
+            glEnd();
         }
 
         /* End the display list.
