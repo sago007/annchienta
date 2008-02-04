@@ -15,9 +15,8 @@ namespace Annchienta
     {
         private:
             int screenWidth, screenHeight;
-            static const int bufferStackSize = 8;
-            int bufferStackUsed;
-            Surface **bufferStack;
+            static const int numberOfBackBuffers = 8;
+            Surface **backBuffers;
 
         public:
             #ifndef SWIG
@@ -67,8 +66,8 @@ namespace Annchienta
             void grabBuffer( Surface* ) const;
             void grabBuffer( Surface*, int x1, int y1, int x2, int y2 ) const;
 
-            void pushBuffer();
-            void popBuffer();
+            void storeBuffer( int slot );
+            void restoreBuffer( int slot ) const;
     };
 
     VideoManager *getVideoManager();

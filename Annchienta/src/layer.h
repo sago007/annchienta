@@ -12,6 +12,14 @@ namespace Annchienta
 {
     class Tile;
     class Entity;
+    struct LayerInfo;
+
+    #ifndef SWIG
+        struct LayerInfo
+        {
+            int width, height, opacity, z;
+        };
+    #endif
 
     class Layer
     {
@@ -21,6 +29,7 @@ namespace Annchienta
             /* Number of tiles.
              */
             int width, height;
+            int opacity;
 
             /* Z offset
              */
@@ -35,8 +44,11 @@ namespace Annchienta
 
         public:
 
-            Layer( int width, int height, Tile **tiles=0, int z=0 );
+            Layer( LayerInfo *info, Tile **tiles=0 );
             ~Layer();
+
+            void setOpacity( int opacity=0xff );
+            int getOpacity() const;
 
             void draw() const;
             void depthSort();

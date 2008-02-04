@@ -2470,20 +2470,21 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__Font swig_types[2]
 #define SWIGTYPE_p_Annchienta__InputManager swig_types[3]
 #define SWIGTYPE_p_Annchienta__Layer swig_types[4]
-#define SWIGTYPE_p_Annchienta__Map swig_types[5]
-#define SWIGTYPE_p_Annchienta__MapManager swig_types[6]
-#define SWIGTYPE_p_Annchienta__Point swig_types[7]
-#define SWIGTYPE_p_Annchienta__Sound swig_types[8]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[9]
-#define SWIGTYPE_p_Annchienta__Tile swig_types[10]
-#define SWIGTYPE_p_Annchienta__TileSet swig_types[11]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[12]
-#define SWIGTYPE_p_SDLKey swig_types[13]
-#define SWIGTYPE_p_SDLMod swig_types[14]
-#define SWIGTYPE_p_char swig_types[15]
-#define SWIGTYPE_p_p_Annchienta__Tile swig_types[16]
-static swig_type_info *swig_types[18];
-static swig_module_info swig_module = {swig_types, 17, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__LayerInfo swig_types[5]
+#define SWIGTYPE_p_Annchienta__Map swig_types[6]
+#define SWIGTYPE_p_Annchienta__MapManager swig_types[7]
+#define SWIGTYPE_p_Annchienta__Point swig_types[8]
+#define SWIGTYPE_p_Annchienta__Sound swig_types[9]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[10]
+#define SWIGTYPE_p_Annchienta__Tile swig_types[11]
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[12]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[13]
+#define SWIGTYPE_p_SDLKey swig_types[14]
+#define SWIGTYPE_p_SDLMod swig_types[15]
+#define SWIGTYPE_p_char swig_types[16]
+#define SWIGTYPE_p_p_Annchienta__Tile swig_types[17]
+static swig_type_info *swig_types[19];
+static swig_module_info swig_module = {swig_types, 18, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4388,20 +4389,29 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_VideoManager_pushBuffer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_storeBuffer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_pushBuffer",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:VideoManager_storeBuffer",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_pushBuffer" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_storeBuffer" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
-  (arg1)->pushBuffer();
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_storeBuffer" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->storeBuffer(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4409,20 +4419,29 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_VideoManager_popBuffer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_restoreBuffer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_popBuffer",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:VideoManager_restoreBuffer",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_popBuffer" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_restoreBuffer" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
-  (arg1)->popBuffer();
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_restoreBuffer" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ((Annchienta::VideoManager const *)arg1)->restoreBuffer(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -5676,46 +5695,28 @@ SWIGINTERN PyObject *Sound_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject
 
 SWIGINTERN PyObject *_wrap_new_Layer__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int arg2 ;
-  Annchienta::Tile **arg3 = (Annchienta::Tile **) 0 ;
-  int arg4 ;
+  Annchienta::LayerInfo *arg1 = (Annchienta::LayerInfo *) 0 ;
+  Annchienta::Tile **arg2 = (Annchienta::Tile **) 0 ;
   Annchienta::Layer *result = 0 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:new_Layer",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Layer" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Layer" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_p_Annchienta__Tile, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "new_Layer" "', argument " "3"" of type '" "Annchienta::Tile **""'"); 
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_Layer",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LayerInfo, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Layer" "', argument " "1"" of type '" "Annchienta::LayerInfo *""'"); 
   }
-  arg3 = reinterpret_cast< Annchienta::Tile ** >(argp3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_Layer" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  result = (Annchienta::Layer *)new Annchienta::Layer(arg1,arg2,arg3,arg4);
+  arg1 = reinterpret_cast< Annchienta::LayerInfo * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Layer" "', argument " "2"" of type '" "Annchienta::Tile **""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Tile ** >(argp2);
+  result = (Annchienta::Layer *)new Annchienta::Layer(arg1,arg2);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Layer, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -5725,68 +5726,19 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_Layer__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int arg2 ;
-  Annchienta::Tile **arg3 = (Annchienta::Tile **) 0 ;
+  Annchienta::LayerInfo *arg1 = (Annchienta::LayerInfo *) 0 ;
   Annchienta::Layer *result = 0 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:new_Layer",&obj0,&obj1,&obj2)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Layer" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Layer" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_p_Annchienta__Tile, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "new_Layer" "', argument " "3"" of type '" "Annchienta::Tile **""'"); 
+  if (!PyArg_ParseTuple(args,(char *)"O:new_Layer",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LayerInfo, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Layer" "', argument " "1"" of type '" "Annchienta::LayerInfo *""'"); 
   }
-  arg3 = reinterpret_cast< Annchienta::Tile ** >(argp3);
-  result = (Annchienta::Layer *)new Annchienta::Layer(arg1,arg2,arg3);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Layer, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Layer__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  int arg2 ;
-  Annchienta::Layer *result = 0 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_Layer",&obj0,&obj1)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Layer" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Layer" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  result = (Annchienta::Layer *)new Annchienta::Layer(arg1,arg2);
+  arg1 = reinterpret_cast< Annchienta::LayerInfo * >(argp1);
+  result = (Annchienta::Layer *)new Annchienta::Layer(arg1);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Layer, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -5796,81 +5748,40 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_Layer(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[5];
+  PyObject *argv[3];
   int ii;
   
   if (!PyTuple_Check(args)) SWIG_fail;
   argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 4); ii++) {
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__LayerInfo, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_Layer__SWIG_1(self, args);
+    }
   }
   if (argc == 2) {
     int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__LayerInfo, 0);
+    _v = SWIG_CheckState(res);
     if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_new_Layer__SWIG_2(self, args);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_p_Annchienta__Tile, 0);
       _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
       if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_p_Annchienta__Tile, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_new_Layer__SWIG_1(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_p_Annchienta__Tile, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_new_Layer__SWIG_0(self, args);
-          }
-        }
+        return _wrap_new_Layer__SWIG_0(self, args);
       }
     }
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Layer'.\n  Possible C/C++ prototypes are:\n    Annchienta::Layer(int,int,Annchienta::Tile **,int)\n    Annchienta::Layer(int,int,Annchienta::Tile **)\n    Annchienta::Layer(int,int)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Layer'.\n  Possible C/C++ prototypes are:\n    Annchienta::Layer(Annchienta::LayerInfo *,Annchienta::Tile **)\n    Annchienta::Layer(Annchienta::LayerInfo *)\n");
   return NULL;
 }
 
@@ -5891,6 +5802,120 @@ SWIGINTERN PyObject *_wrap_delete_Layer(PyObject *SWIGUNUSEDPARM(self), PyObject
   delete arg1;
   
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Layer_setOpacity__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Layer_setOpacity",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_setOpacity" "', argument " "1"" of type '" "Annchienta::Layer *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Layer_setOpacity" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setOpacity(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Layer_setOpacity__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Layer_setOpacity",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_setOpacity" "', argument " "1"" of type '" "Annchienta::Layer *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
+  (arg1)->setOpacity();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Layer_setOpacity(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Layer, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_Layer_setOpacity__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Layer, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Layer_setOpacity__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Layer_setOpacity'.\n  Possible C/C++ prototypes are:\n    setOpacity(int)\n    setOpacity()\n");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Layer_getOpacity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Layer_getOpacity",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_getOpacity" "', argument " "1"" of type '" "Annchienta::Layer const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
+  result = (int)((Annchienta::Layer const *)arg1)->getOpacity();
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -7264,8 +7289,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"VideoManager_drawSurface", _wrap_VideoManager_drawSurface, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_drawString", _wrap_VideoManager_drawString, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_grabBuffer", _wrap_VideoManager_grabBuffer, METH_VARARGS, NULL},
-	 { (char *)"VideoManager_pushBuffer", _wrap_VideoManager_pushBuffer, METH_VARARGS, NULL},
-	 { (char *)"VideoManager_popBuffer", _wrap_VideoManager_popBuffer, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_storeBuffer", _wrap_VideoManager_storeBuffer, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_restoreBuffer", _wrap_VideoManager_restoreBuffer, METH_VARARGS, NULL},
 	 { (char *)"new_VideoManager", _wrap_new_VideoManager, METH_VARARGS, NULL},
 	 { (char *)"delete_VideoManager", _wrap_delete_VideoManager, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_swigregister", VideoManager_swigregister, METH_VARARGS, NULL},
@@ -7321,6 +7346,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Sound_swigregister", Sound_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Layer", _wrap_new_Layer, METH_VARARGS, NULL},
 	 { (char *)"delete_Layer", _wrap_delete_Layer, METH_VARARGS, NULL},
+	 { (char *)"Layer_setOpacity", _wrap_Layer_setOpacity, METH_VARARGS, NULL},
+	 { (char *)"Layer_getOpacity", _wrap_Layer_getOpacity, METH_VARARGS, NULL},
 	 { (char *)"Layer_draw", _wrap_Layer_draw, METH_VARARGS, NULL},
 	 { (char *)"Layer_depthSort", _wrap_Layer_depthSort, METH_VARARGS, NULL},
 	 { (char *)"Layer_swigregister", Layer_swigregister, METH_VARARGS, NULL},
@@ -7363,6 +7390,7 @@ static swig_type_info _swigt__p_Annchienta__Engine = {"_p_Annchienta__Engine", "
 static swig_type_info _swigt__p_Annchienta__Font = {"_p_Annchienta__Font", "Annchienta::Font *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__InputManager = {"_p_Annchienta__InputManager", "Annchienta::InputManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Layer = {"_p_Annchienta__Layer", "Annchienta::Layer *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__LayerInfo = {"_p_Annchienta__LayerInfo", "Annchienta::LayerInfo *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Map = {"_p_Annchienta__Map", "Annchienta::Map *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__MapManager = {"_p_Annchienta__MapManager", "Annchienta::MapManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Point = {"_p_Annchienta__Point", "Annchienta::Point *", 0, 0, (void*)0, 0};
@@ -7382,6 +7410,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Font,
   &_swigt__p_Annchienta__InputManager,
   &_swigt__p_Annchienta__Layer,
+  &_swigt__p_Annchienta__LayerInfo,
   &_swigt__p_Annchienta__Map,
   &_swigt__p_Annchienta__MapManager,
   &_swigt__p_Annchienta__Point,
@@ -7401,6 +7430,7 @@ static swig_cast_info _swigc__p_Annchienta__Engine[] = {  {&_swigt__p_Annchienta
 static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__Font, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__InputManager[] = {  {&_swigt__p_Annchienta__InputManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Layer[] = {  {&_swigt__p_Annchienta__Layer, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__LayerInfo[] = {  {&_swigt__p_Annchienta__LayerInfo, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Map[] = {  {&_swigt__p_Annchienta__Map, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__MapManager[] = {  {&_swigt__p_Annchienta__MapManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Point[] = {  {&_swigt__p_Annchienta__Point, 0, 0, 0},{0, 0, 0, 0}};
@@ -7420,6 +7450,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Font,
   _swigc__p_Annchienta__InputManager,
   _swigc__p_Annchienta__Layer,
+  _swigc__p_Annchienta__LayerInfo,
   _swigc__p_Annchienta__Map,
   _swigc__p_Annchienta__MapManager,
   _swigc__p_Annchienta__Point,

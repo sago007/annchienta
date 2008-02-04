@@ -21,17 +21,17 @@ namespace Annchienta
 
         reset();
 
-        bufferStack = new Surface*[bufferStackSize];
-        for( int i=0; i<bufferStackSize; i++ )
-            bufferStack[i] = 0;
+        backBuffers = new Surface*[numberOfBackBuffers];
+        for( int i=0; i<numberOfBackBuffers; i++ )
+            backBuffers[i] = 0;
     }
 
     VideoManager::~VideoManager()
     {
-        for( int i=0; i<bufferStackSize; i++ )
-            if( bufferStack[i] )
-                delete bufferStack[i];
-        delete[] bufferStack;
+        for( int i=0; i<numberOfBackBuffers; i++ )
+            if( backBuffers[i] )
+                delete backBuffers[i];
+        delete[] backBuffers;
     }
     
     void VideoManager::setVideoMode( int w, int h, const char *title, bool fullscreen )
@@ -76,14 +76,12 @@ namespace Annchienta
         glCullFace( GL_BACK );
 
 
-        for( int i=0; i<bufferStackSize; i++ )
+        for( int i=0; i<numberOfBackBuffers; i++ )
         {
-            if( bufferStack[i] )
-                delete bufferStack[i];
-            bufferStack[i] = new Surface( screenWidth, screenHeight );
+            if( backBuffers[i] )
+                delete backBuffers[i];
+            backBuffers[i] = new Surface( screenWidth, screenHeight );
         }
-
-        bufferStackUsed = 0;
     }
 
     int VideoManager::getScreenWidth() const
@@ -242,22 +240,16 @@ namespace Annchienta
         glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-surface->getHeight(), x1, getScreenHeight()-surface->getHeight()-y1, width, height );
     }
 
-    void VideoManager::pushBuffer()
+    void VideoManager::storeBuffer( int slot )
     {
-        if( bufferStackUsed<bufferStackSize )
-        {
-            this->grabBuffer( bufferStack[bufferStackUsed] );
-            bufferStackUsed++;
-        }
+        if( slot>=0 && slot<numberOfBackBuffers )
+            this->grabBuffer( backBuffers[slot] );
     }
 
-    void VideoManager::popBuffer()
+    void VideoManager::restoreBuffer( int slot ) const
     {
-        if( bufferStackUsed>0 )
-        {
-            bufferStack[ bufferStackUsed-1 ]->draw( 0, 0 );
-            bufferStackUsed--;
-        }
+        if( slot>=0 && slot<numberOfBackBuffers )
+            backBuffers[slot]->draw( 0, 0 );
     }
 
     VideoManager *getVideoManager()

@@ -15,10 +15,11 @@ mymap = annchienta.Map( "maps/map.xml" )
 mapMgr.setCurrentMap( mymap )
 
 audioMgr = annchienta.getAudioManager()
-sound = annchienta.Sound("maps/drum.ogg")
-audioMgr.playSound( sound )
+audioMgr.playMusic( "maps/drum_intro.ogg" )
 
 player = annchienta.Surface("maps/persontest.png")
+
+mapMgr.run()
 
 while inputMgr.running():
     inputMgr.update()

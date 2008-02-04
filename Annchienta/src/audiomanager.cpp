@@ -27,6 +27,11 @@ namespace Annchienta
         Mix_CloseAudio();
     }
 
+    Mix_Music *AudioManager::getMusic() const
+    {
+        return music;
+    }
+
     void AudioManager::playSound( Sound *sound ) const
     {
         sound->play();

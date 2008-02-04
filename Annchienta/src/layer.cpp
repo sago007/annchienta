@@ -7,11 +7,12 @@
 #include "entity.h"
 #include "auxfunc.h"
 #include "tile.h"
+#include "videomanager.h"
 
 namespace Annchienta
 {
 
-    Layer::Layer( int w, int h, Tile **_tiles, int _z ): width(w), height(h), z(_z)
+    Layer::Layer( LayerInfo *info, Tile **_tiles ): width(info->width), height(info->height), z(info->z), opacity(info->opacity)
     {
         /* Create some extra space.
          */
@@ -35,19 +36,45 @@ namespace Annchienta
         delete[] tiles;
     }
 
+    void Layer::setOpacity( int o )
+    {
+        opacity = o;
+    }
+
+    int Layer::getOpacity() const
+    {
+        return opacity;
+    }
+
     void Layer::draw() const
     {
+        VideoManager *videoManager = getVideoManager();
+
         glPushMatrix();
 
         glTranslatef( 0.0f, -z, 0.0f );
 
-        glPixelTransferf( GL_ALPHA_SCALE, 0.0f );
+        if( opacity < 0xff )
+        {
+            glDrawBuffer( GL_AUX0 );
+            glReadBuffer( GL_AUX0 );
+            glClear( GL_COLOR_BUFFER_BIT );
+        }
 
         for( unsigned int i=0; i<entities.size(); i++ )
             entities[i]->setDrawn( false );
 
         for( unsigned int i=0; i<entities.size(); i++ )
             entities[i]->draw();
+
+        if( opacity < 0xff )
+        {
+            videoManager->storeBuffer(7);
+            glDrawBuffer( GL_BACK );
+            glReadBuffer( GL_BACK );
+            glColor4f( 1.0f, 1.0f, 1.0f, (float)opacity/(float)0xff );
+            videoManager->restoreBuffer(7);
+        }
 
         glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
 

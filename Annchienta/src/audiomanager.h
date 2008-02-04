@@ -22,6 +22,7 @@ namespace Annchienta
             #ifndef SWIG
                 AudioManager();
                 ~AudioManager();
+                Mix_Music *getMusic() const;
             #endif
 
             void playSound( Sound *sound ) const;

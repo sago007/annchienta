@@ -90,8 +90,8 @@ class VideoManager(_object):
     def drawSurface(*args): return _annchienta.VideoManager_drawSurface(*args)
     def drawString(*args): return _annchienta.VideoManager_drawString(*args)
     def grabBuffer(*args): return _annchienta.VideoManager_grabBuffer(*args)
-    def pushBuffer(*args): return _annchienta.VideoManager_pushBuffer(*args)
-    def popBuffer(*args): return _annchienta.VideoManager_popBuffer(*args)
+    def storeBuffer(*args): return _annchienta.VideoManager_storeBuffer(*args)
+    def restoreBuffer(*args): return _annchienta.VideoManager_restoreBuffer(*args)
     def __init__(self, *args): 
         this = _annchienta.new_VideoManager(*args)
         try: self.this.append(this)
@@ -235,6 +235,8 @@ class Layer(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Layer
     __del__ = lambda self : None;
+    def setOpacity(*args): return _annchienta.Layer_setOpacity(*args)
+    def getOpacity(*args): return _annchienta.Layer_getOpacity(*args)
     def draw(*args): return _annchienta.Layer_draw(*args)
     def depthSort(*args): return _annchienta.Layer_depthSort(*args)
 Layer_swigregister = _annchienta.Layer_swigregister

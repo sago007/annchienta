@@ -23,7 +23,7 @@ namespace Annchienta
     {
         Tile **tiles = 0;
         Layer *layer = 0;
-        int layerZ = 0;
+        Annchienta::LayerInfo *layerInfo;
 
         IrrXMLReader *xml = createIrrXMLReader( filename );
 
@@ -49,8 +49,12 @@ namespace Annchienta
                     }
                     if( !strcmp("layer", xml->getNodeName()) )
                     {
+                        layerInfo = new LayerInfo;
+                        layerInfo->z = xml->getAttributeValue("z") ? xml->getAttributeValueAsInt("z"):0;
+                        layerInfo->width = width;
+                        layerInfo->height = height;
+                        layerInfo->opacity = xml->getAttributeValue("opacity") ? xml->getAttributeValueAsInt("opacity"):0xff;
                         tiles = 0;
-                        layerZ = xml->getAttributeValueAsInt("z");
                     }
                     if( !strcmp("tiles", xml->getNodeName()) )
                     {
@@ -96,7 +100,8 @@ namespace Annchienta
                 case EXN_ELEMENT_END:
                     if( !strcmp("layer", xml->getNodeName()) )
                     {
-                        layers.push_back( new Layer( width, height, tiles, layerZ ) );
+                        layers.push_back( new Layer( layerInfo, tiles ) );
+                        delete layerInfo;
                     }
                     break;
             }
@@ -108,7 +113,13 @@ namespace Annchienta
     Map::Map( int w, int h, const char *tileSetFilename )
     {
         tileSet = new TileSet( tileSetFilename );
-        layers.push_back( new Layer( w, h, 0 ) );
+        LayerInfo *layerInfo = new LayerInfo;
+        layerInfo->z = 0;
+        layerInfo->width = width;
+        layerInfo->height = height;
+        layerInfo->opacity = 0xff;
+        layers.push_back( new Layer( layerInfo, 0 ) );
+        delete layerInfo;
     }
 
     Map::~Map()
