@@ -214,6 +214,30 @@ namespace Annchienta
         surface->draw( x, y );
     }
 
+    void VideoManager::drawSurface( Surface *surface, int dx, int dy, int sx1, int sy1, int sx2, int sy2 ) const
+    {
+        float left = (float)sy1/(float)surface->getGlWidth(),
+              right = (float)sx2/(float)surface->getGlWidth(),
+              top = 1.0f - (float)sy1/(float)surface->getGlHeight(),
+              bottom = 1.0f - (float)sy2/(float)surface->getGlHeight();
+
+        glBindTexture( GL_TEXTURE_2D, surface->getTexture() );
+        glBegin( GL_QUADS );
+
+            glTexCoord2f( left, top );
+            glVertex2f( dx, dy );
+
+            glTexCoord2f( left, bottom );
+            glVertex2f( dx, dy+sy2-sy1 );
+
+            glTexCoord2f( right, bottom );
+            glVertex2f( dx+sx2-sx1, dy+sy2-sy1 );
+
+            glTexCoord2f( right, top );
+            glVertex2f( dx+sx2-sx1, dy );
+        glEnd();
+    }
+
     void VideoManager::drawString( Font *font, const char *str, int x, int y ) const
     {
         font->draw( str, x, y );

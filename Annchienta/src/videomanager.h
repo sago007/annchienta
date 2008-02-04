@@ -59,6 +59,7 @@ namespace Annchienta
             void drawRectangle( int x1, int y1, int x2, int y2 ) const;
             void drawQuad( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4 ) const;
             void drawSurface( Surface *surface, int x, int y ) const;
+            void drawSurface( Surface *surface, int dx, int dy, int sx1, int sy1, int sx2, int sy2 ) const;
             void drawString( Font *font, const char *str, int x, int y ) const;
 
             /** Copies the buffer to a surface.
