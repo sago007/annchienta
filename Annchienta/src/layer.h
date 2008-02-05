@@ -53,6 +53,8 @@ namespace Annchienta
             void draw() const;
             void depthSort();
 
+            void addEntity( Entity *entity );
+
             #ifndef SWIG
                 void makeEmpty();
                 Tile **getTilePointer( int x, int y );

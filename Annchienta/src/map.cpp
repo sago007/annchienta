@@ -6,6 +6,7 @@
 
 #include <GL/gl.h>
 #include <sstream>
+#include <vector>
 #include "xml/irrXML.h"
 using namespace irr;
 using namespace io;
@@ -15,6 +16,7 @@ using namespace io;
 #include "entity.h"
 #include "layer.h"
 #include "mapmanager.h"
+#include "staticobject.h"
 
 namespace Annchienta
 {
@@ -24,6 +26,7 @@ namespace Annchienta
         Tile **tiles = 0;
         Layer *layer = 0;
         Annchienta::LayerInfo *layerInfo;
+        std::vector<Entity*> entities;
 
         IrrXMLReader *xml = createIrrXMLReader( filename );
 
@@ -93,6 +96,11 @@ namespace Annchienta
 
                             }
                         }
+                    }
+                    if( !strcmp("staticobject", xml->getNodeName() ) )
+                    {
+                        StaticObject *staticObject = new StaticObject();
+                        entities.push_back( staticObject );
 
                     }
                     break;
@@ -100,8 +108,15 @@ namespace Annchienta
                 case EXN_ELEMENT_END:
                     if( !strcmp("layer", xml->getNodeName()) )
                     {
-                        layers.push_back( new Layer( layerInfo, tiles ) );
+                        Layer *layer = new Layer( layerInfo, tiles );
                         delete layerInfo;
+
+                        for( unsigned int i=0; i<entities.size(); i++ )
+                            layer->addEntity( entities[i] );
+
+                        entities.clear();
+
+                        layers.push_back( layer );
                     }
                     break;
             }

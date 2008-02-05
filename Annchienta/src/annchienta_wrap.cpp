@@ -2467,24 +2467,25 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 
 #define SWIGTYPE_p_Annchienta__AudioManager swig_types[0]
 #define SWIGTYPE_p_Annchienta__Engine swig_types[1]
-#define SWIGTYPE_p_Annchienta__Font swig_types[2]
-#define SWIGTYPE_p_Annchienta__InputManager swig_types[3]
-#define SWIGTYPE_p_Annchienta__Layer swig_types[4]
-#define SWIGTYPE_p_Annchienta__LayerInfo swig_types[5]
-#define SWIGTYPE_p_Annchienta__Map swig_types[6]
-#define SWIGTYPE_p_Annchienta__MapManager swig_types[7]
-#define SWIGTYPE_p_Annchienta__Point swig_types[8]
-#define SWIGTYPE_p_Annchienta__Sound swig_types[9]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[10]
-#define SWIGTYPE_p_Annchienta__Tile swig_types[11]
-#define SWIGTYPE_p_Annchienta__TileSet swig_types[12]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[13]
-#define SWIGTYPE_p_SDLKey swig_types[14]
-#define SWIGTYPE_p_SDLMod swig_types[15]
-#define SWIGTYPE_p_char swig_types[16]
-#define SWIGTYPE_p_p_Annchienta__Tile swig_types[17]
-static swig_type_info *swig_types[19];
-static swig_module_info swig_module = {swig_types, 18, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__Entity swig_types[2]
+#define SWIGTYPE_p_Annchienta__Font swig_types[3]
+#define SWIGTYPE_p_Annchienta__InputManager swig_types[4]
+#define SWIGTYPE_p_Annchienta__Layer swig_types[5]
+#define SWIGTYPE_p_Annchienta__LayerInfo swig_types[6]
+#define SWIGTYPE_p_Annchienta__Map swig_types[7]
+#define SWIGTYPE_p_Annchienta__MapManager swig_types[8]
+#define SWIGTYPE_p_Annchienta__Point swig_types[9]
+#define SWIGTYPE_p_Annchienta__Sound swig_types[10]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[11]
+#define SWIGTYPE_p_Annchienta__Tile swig_types[12]
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[13]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[14]
+#define SWIGTYPE_p_SDLKey swig_types[15]
+#define SWIGTYPE_p_SDLMod swig_types[16]
+#define SWIGTYPE_p_char swig_types[17]
+#define SWIGTYPE_p_p_Annchienta__Tile swig_types[18]
+static swig_type_info *swig_types[20];
+static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -6141,6 +6142,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Layer_addEntity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
+  Annchienta::Entity *arg2 = (Annchienta::Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Layer_addEntity",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_addEntity" "', argument " "1"" of type '" "Annchienta::Layer *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Layer_addEntity" "', argument " "2"" of type '" "Annchienta::Entity *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Entity * >(argp2);
+  (arg1)->addEntity(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Layer_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -7558,6 +7589,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Layer_getOpacity", _wrap_Layer_getOpacity, METH_VARARGS, NULL},
 	 { (char *)"Layer_draw", _wrap_Layer_draw, METH_VARARGS, NULL},
 	 { (char *)"Layer_depthSort", _wrap_Layer_depthSort, METH_VARARGS, NULL},
+	 { (char *)"Layer_addEntity", _wrap_Layer_addEntity, METH_VARARGS, NULL},
 	 { (char *)"Layer_swigregister", Layer_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Map", _wrap_new_Map, METH_VARARGS, NULL},
 	 { (char *)"delete_Map", _wrap_delete_Map, METH_VARARGS, NULL},
@@ -7596,6 +7628,7 @@ static PyMethodDef SwigMethods[] = {
 
 static swig_type_info _swigt__p_Annchienta__AudioManager = {"_p_Annchienta__AudioManager", "Annchienta::AudioManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Engine = {"_p_Annchienta__Engine", "Annchienta::Engine *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__Entity = {"_p_Annchienta__Entity", "Annchienta::Entity *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Font = {"_p_Annchienta__Font", "Annchienta::Font *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__InputManager = {"_p_Annchienta__InputManager", "Annchienta::InputManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Layer = {"_p_Annchienta__Layer", "Annchienta::Layer *", 0, 0, (void*)0, 0};
@@ -7616,6 +7649,7 @@ static swig_type_info _swigt__p_p_Annchienta__Tile = {"_p_p_Annchienta__Tile", "
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__AudioManager,
   &_swigt__p_Annchienta__Engine,
+  &_swigt__p_Annchienta__Entity,
   &_swigt__p_Annchienta__Font,
   &_swigt__p_Annchienta__InputManager,
   &_swigt__p_Annchienta__Layer,
@@ -7636,6 +7670,7 @@ static swig_type_info *swig_type_initial[] = {
 
 static swig_cast_info _swigc__p_Annchienta__AudioManager[] = {  {&_swigt__p_Annchienta__AudioManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Engine[] = {  {&_swigt__p_Annchienta__Engine, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__Entity[] = {  {&_swigt__p_Annchienta__Entity, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__Font, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__InputManager[] = {  {&_swigt__p_Annchienta__InputManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Layer[] = {  {&_swigt__p_Annchienta__Layer, 0, 0, 0},{0, 0, 0, 0}};
@@ -7656,6 +7691,7 @@ static swig_cast_info _swigc__p_p_Annchienta__Tile[] = {  {&_swigt__p_p_Annchien
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__AudioManager,
   _swigc__p_Annchienta__Engine,
+  _swigc__p_Annchienta__Entity,
   _swigc__p_Annchienta__Font,
   _swigc__p_Annchienta__InputManager,
   _swigc__p_Annchienta__Layer,

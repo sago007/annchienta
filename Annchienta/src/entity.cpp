@@ -11,7 +11,8 @@ namespace Annchienta
 
     Entity::Entity( const char *_name )
     {
-        strcpy( name, _name );
+        if( _name )
+            strcpy( name, _name );
     }
 
     void Entity::setDrawn( bool d )

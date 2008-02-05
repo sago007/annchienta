@@ -239,6 +239,7 @@ class Layer(_object):
     def getOpacity(*args): return _annchienta.Layer_getOpacity(*args)
     def draw(*args): return _annchienta.Layer_draw(*args)
     def depthSort(*args): return _annchienta.Layer_depthSort(*args)
+    def addEntity(*args): return _annchienta.Layer_addEntity(*args)
 Layer_swigregister = _annchienta.Layer_swigregister
 Layer_swigregister(Layer)
 

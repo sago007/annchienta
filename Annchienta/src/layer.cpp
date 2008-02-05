@@ -102,6 +102,11 @@ namespace Annchienta
         }
     }
 
+    void Layer::addEntity( Entity *entity )
+    {
+        entities.push_back( entity );
+    }
+
     void Layer::makeEmpty()
     {
         tiles = new Tile*[width*height];

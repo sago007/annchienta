@@ -195,7 +195,7 @@ namespace Annchienta
     {
         /* Tile is already drawn...
          */
-        if( drawn )
+        if( this->isDrawn() )
             return;
 
         if( !nullTile )
