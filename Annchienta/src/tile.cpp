@@ -176,8 +176,8 @@ namespace Annchienta
         for( int i=0; i<4; i++ )
         {
             isoPoints[i] = points[i];
-            points[i].to( MapPoint );
-            isoPoints[i].to( IsometricPoint );
+            points[i].convert( MapPoint );
+            isoPoints[i].convert( IsometricPoint );
         }
 
         if( surfaces[0] && surfaces[1] && surfaces[2] && surfaces[3] )

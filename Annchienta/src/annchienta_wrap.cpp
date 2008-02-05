@@ -6871,7 +6871,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Point_to(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Point_convert(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Point *arg1 = (Annchienta::Point *) 0 ;
   Annchienta::PointType arg2 ;
@@ -6882,10 +6882,41 @@ SWIGINTERN PyObject *_wrap_Point_to(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
+  if (!PyArg_ParseTuple(args,(char *)"OO:Point_convert",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_convert" "', argument " "1"" of type '" "Annchienta::Point *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Point_convert" "', argument " "2"" of type '" "Annchienta::PointType""'");
+  } 
+  arg2 = static_cast< Annchienta::PointType >(val2);
+  (arg1)->convert(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Point_to(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Point *arg1 = (Annchienta::Point *) 0 ;
+  Annchienta::PointType arg2 ;
+  Annchienta::Point result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
   if (!PyArg_ParseTuple(args,(char *)"OO:Point_to",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_to" "', argument " "1"" of type '" "Annchienta::Point *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_to" "', argument " "1"" of type '" "Annchienta::Point const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
   ecode2 = SWIG_AsVal_int(obj1, &val2);
@@ -6893,8 +6924,8 @@ SWIGINTERN PyObject *_wrap_Point_to(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Point_to" "', argument " "2"" of type '" "Annchienta::PointType""'");
   } 
   arg2 = static_cast< Annchienta::PointType >(val2);
-  (arg1)->to(arg2);
-  resultobj = SWIG_Py_Void();
+  result = ((Annchienta::Point const *)arg1)->to(arg2);
+  resultobj = SWIG_NewPointerObj((new Annchienta::Point(static_cast< const Annchienta::Point& >(result))), SWIGTYPE_p_Annchienta__Point, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -7544,6 +7575,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_Point", _wrap_new_Point, METH_VARARGS, NULL},
 	 { (char *)"delete_Point", _wrap_delete_Point, METH_VARARGS, NULL},
 	 { (char *)"Point_getType", _wrap_Point_getType, METH_VARARGS, NULL},
+	 { (char *)"Point_convert", _wrap_Point_convert, METH_VARARGS, NULL},
 	 { (char *)"Point_to", _wrap_Point_to, METH_VARARGS, NULL},
 	 { (char *)"Point_swigregister", Point_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Tile", _wrap_new_Tile, METH_VARARGS, NULL},

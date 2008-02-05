@@ -43,7 +43,7 @@ namespace Annchienta
         return type;
     }
 
-    void Point::to( PointType newtype )
+    void Point::convert( PointType newtype )
     {
         if( type==newtype )
             return;
@@ -70,8 +70,8 @@ namespace Annchienta
                         y = ny;
                         break;
                     case ScreenPoint:
-                        this->to( MapPoint );
-                        this->to( ScreenPoint );
+                        this->convert( MapPoint );
+                        this->convert( ScreenPoint );
                         break;
                 }
                 break;
@@ -90,8 +90,8 @@ namespace Annchienta
                         y = ny;
                         break;
                     case ScreenPoint:
-                        this->to( MapPoint );
-                        this->to( ScreenPoint );
+                        this->convert( MapPoint );
+                        this->convert( ScreenPoint );
                         break;
                 }
                 break;
@@ -100,8 +100,8 @@ namespace Annchienta
                 switch( newtype )
                 {
                     case TilePoint:
-                        this->to( IsometricPoint );
-                        this->to( TilePoint );
+                        this->convert( IsometricPoint );
+                        this->convert( TilePoint );
                         break;
                     case IsometricPoint:
                         nx = y/2 + x/4;
@@ -120,13 +120,13 @@ namespace Annchienta
                 switch( newtype )
                 {
                     case TilePoint:
-                        this->to( MapPoint );
-                        this->to( IsometricPoint );
-                        this->to( TilePoint );
+                        this->convert( MapPoint );
+                        this->convert( IsometricPoint );
+                        this->convert( TilePoint );
                         break;
                     case IsometricPoint:
-                        this->to( MapPoint );
-                        this->to( IsometricPoint );
+                        this->convert( MapPoint );
+                        this->convert( IsometricPoint );
                         break;
                     case MapPoint: default:
                         x += mapMgr->getCameraX();
@@ -139,6 +139,13 @@ namespace Annchienta
 
         type = newtype;
 
+    }
+
+    Point Point::to( PointType newtype ) const
+    {
+        Point temp( *this );
+        temp.convert( newtype );
+        return temp;
     }
 
 };

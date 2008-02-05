@@ -29,6 +29,6 @@ while inputMgr.running():
     videoMgr.drawSurface( player[sprite], x, y )
     videoMgr.flip()
     sprite = (sprite+1)%2
-    x += 2
-    y += 1
-    time.sleep(0.5)
+    x += 4
+    y += 2
+    time.sleep(0.2)

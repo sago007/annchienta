@@ -5,12 +5,14 @@
 #include "entity.h"
 
 #include <stdio.h>
-#include <math.h>
-#include "mapmanager.h"
-#include "auxfunc.h"
 
 namespace Annchienta
 {
+
+    Entity::Entity( const char *_name )
+    {
+        strcpy( name, _name );
+    }
 
     void Entity::setDrawn( bool d )
     {
@@ -20,6 +22,16 @@ namespace Annchienta
     bool Entity::isDrawn() const
     {
         return drawn;
+    }
+
+    void Entity::setName( const char *_name )
+    {
+        strcpy( name, _name );
+    }
+
+    const char *Entity::getName() const
+    {
+        return name;
     }
 
 };

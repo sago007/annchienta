@@ -117,7 +117,7 @@ namespace Annchienta
             h = mapManager->getCurrentMap()->getCurrentLayer()->height;
 
         Point mousePoint( ScreenPoint, inputManager->getMouseX(), inputManager->getMouseY() );
-        mousePoint.to( MapPoint );
+        mousePoint.convert( MapPoint );
 
         float smallest = 8000.0f;
         Tile *tile;

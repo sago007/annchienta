@@ -33,7 +33,9 @@ namespace Annchienta
             #endif
 
             PointType getType() const;
-            void to( PointType newtype );
+            //void to( PointType newtype );
+            void convert( PointType newtype );
+            Point to( PointType newetype ) const;
 
     };
 
