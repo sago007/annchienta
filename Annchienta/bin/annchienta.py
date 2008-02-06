@@ -173,6 +173,24 @@ AudioManager_swigregister = _annchienta.AudioManager_swigregister
 AudioManager_swigregister(AudioManager)
 
 getAudioManager = _annchienta.getAudioManager
+class CacheManager(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, CacheManager, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, CacheManager, name)
+    __repr__ = _swig_repr
+    def getSurface(*args): return _annchienta.CacheManager_getSurface(*args)
+    def clear(*args): return _annchienta.CacheManager_clear(*args)
+    def __init__(self, *args): 
+        this = _annchienta.new_CacheManager(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_CacheManager
+    __del__ = lambda self : None;
+CacheManager_swigregister = _annchienta.CacheManager_swigregister
+CacheManager_swigregister(CacheManager)
+
+getCacheManager = _annchienta.getCacheManager
 class Surface(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Surface, name, value)

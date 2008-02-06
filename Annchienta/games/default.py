@@ -18,10 +18,15 @@ mapMgr.setCurrentMap( mymap )
 audioMgr = annchienta.getAudioManager()
 audioMgr.playMusic( "maps/drum_intro.ogg" )
 
-player = [ annchienta.Surface("maps/persontest.png"), annchienta.Surface("maps/persontest2.png") ]
+cache = annchienta.getCacheManager()
+
+player = [ cache.getSurface("maps/persontest.png"), cache.getSurface("maps/persontest2.png") ]
 sprite = 0
 x = 0
 y = 0
+
+cache.getSurface("maps/persontest.png")
+
 
 while inputMgr.running():
     inputMgr.update()

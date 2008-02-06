@@ -2466,26 +2466,27 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_Annchienta__AudioManager swig_types[0]
-#define SWIGTYPE_p_Annchienta__Engine swig_types[1]
-#define SWIGTYPE_p_Annchienta__Entity swig_types[2]
-#define SWIGTYPE_p_Annchienta__Font swig_types[3]
-#define SWIGTYPE_p_Annchienta__InputManager swig_types[4]
-#define SWIGTYPE_p_Annchienta__Layer swig_types[5]
-#define SWIGTYPE_p_Annchienta__LayerInfo swig_types[6]
-#define SWIGTYPE_p_Annchienta__Map swig_types[7]
-#define SWIGTYPE_p_Annchienta__MapManager swig_types[8]
-#define SWIGTYPE_p_Annchienta__Point swig_types[9]
-#define SWIGTYPE_p_Annchienta__Sound swig_types[10]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[11]
-#define SWIGTYPE_p_Annchienta__Tile swig_types[12]
-#define SWIGTYPE_p_Annchienta__TileSet swig_types[13]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[14]
-#define SWIGTYPE_p_SDLKey swig_types[15]
-#define SWIGTYPE_p_SDLMod swig_types[16]
-#define SWIGTYPE_p_char swig_types[17]
-#define SWIGTYPE_p_p_Annchienta__Tile swig_types[18]
-static swig_type_info *swig_types[20];
-static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__CacheManager swig_types[1]
+#define SWIGTYPE_p_Annchienta__Engine swig_types[2]
+#define SWIGTYPE_p_Annchienta__Entity swig_types[3]
+#define SWIGTYPE_p_Annchienta__Font swig_types[4]
+#define SWIGTYPE_p_Annchienta__InputManager swig_types[5]
+#define SWIGTYPE_p_Annchienta__Layer swig_types[6]
+#define SWIGTYPE_p_Annchienta__LayerInfo swig_types[7]
+#define SWIGTYPE_p_Annchienta__Map swig_types[8]
+#define SWIGTYPE_p_Annchienta__MapManager swig_types[9]
+#define SWIGTYPE_p_Annchienta__Point swig_types[10]
+#define SWIGTYPE_p_Annchienta__Sound swig_types[11]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[12]
+#define SWIGTYPE_p_Annchienta__Tile swig_types[13]
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[14]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[15]
+#define SWIGTYPE_p_SDLKey swig_types[16]
+#define SWIGTYPE_p_SDLMod swig_types[17]
+#define SWIGTYPE_p_char swig_types[18]
+#define SWIGTYPE_p_p_Annchienta__Tile swig_types[19]
+static swig_type_info *swig_types[21];
+static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2580,6 +2581,7 @@ namespace swig {
 #include "inputmanager.h"
 #include "mapmanager.h"
 #include "audiomanager.h"
+#include "cachemanager.h"
 #include "surface.h"
 #include "font.h"
 #include "sound.h"
@@ -5444,6 +5446,116 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_CacheManager_getSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
+  char *arg2 = (char *) 0 ;
+  Annchienta::Surface *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:CacheManager_getSurface",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__CacheManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CacheManager_getSurface" "', argument " "1"" of type '" "Annchienta::CacheManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::CacheManager * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "CacheManager_getSurface" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  result = (Annchienta::Surface *)(arg1)->getSurface((char const *)arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_CacheManager_clear(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:CacheManager_clear",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__CacheManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CacheManager_clear" "', argument " "1"" of type '" "Annchienta::CacheManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::CacheManager * >(argp1);
+  (arg1)->clear();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_CacheManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::CacheManager *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_CacheManager")) SWIG_fail;
+  result = (Annchienta::CacheManager *)new Annchienta::CacheManager();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__CacheManager, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_CacheManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_CacheManager",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__CacheManager, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_CacheManager" "', argument " "1"" of type '" "Annchienta::CacheManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::CacheManager * >(argp1);
+  delete arg1;
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *CacheManager_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__CacheManager, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_getCacheManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::CacheManager *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":getCacheManager")) SWIG_fail;
+  result = (Annchienta::CacheManager *)Annchienta::getCacheManager();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__CacheManager, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_Surface__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
@@ -7569,6 +7681,12 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_AudioManager", _wrap_delete_AudioManager, METH_VARARGS, NULL},
 	 { (char *)"AudioManager_swigregister", AudioManager_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getAudioManager", _wrap_getAudioManager, METH_VARARGS, NULL},
+	 { (char *)"CacheManager_getSurface", _wrap_CacheManager_getSurface, METH_VARARGS, NULL},
+	 { (char *)"CacheManager_clear", _wrap_CacheManager_clear, METH_VARARGS, NULL},
+	 { (char *)"new_CacheManager", _wrap_new_CacheManager, METH_VARARGS, NULL},
+	 { (char *)"delete_CacheManager", _wrap_delete_CacheManager, METH_VARARGS, NULL},
+	 { (char *)"CacheManager_swigregister", CacheManager_swigregister, METH_VARARGS, NULL},
+	 { (char *)"getCacheManager", _wrap_getCacheManager, METH_VARARGS, NULL},
 	 { (char *)"new_Surface", _wrap_new_Surface, METH_VARARGS, NULL},
 	 { (char *)"delete_Surface", _wrap_delete_Surface, METH_VARARGS, NULL},
 	 { (char *)"Surface_getWidth", _wrap_Surface_getWidth, METH_VARARGS, NULL},
@@ -7627,6 +7745,7 @@ static PyMethodDef SwigMethods[] = {
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
 static swig_type_info _swigt__p_Annchienta__AudioManager = {"_p_Annchienta__AudioManager", "Annchienta::AudioManager *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__CacheManager = {"_p_Annchienta__CacheManager", "Annchienta::CacheManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Engine = {"_p_Annchienta__Engine", "Annchienta::Engine *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Entity = {"_p_Annchienta__Entity", "Annchienta::Entity *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Font = {"_p_Annchienta__Font", "Annchienta::Font *", 0, 0, (void*)0, 0};
@@ -7648,6 +7767,7 @@ static swig_type_info _swigt__p_p_Annchienta__Tile = {"_p_p_Annchienta__Tile", "
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__AudioManager,
+  &_swigt__p_Annchienta__CacheManager,
   &_swigt__p_Annchienta__Engine,
   &_swigt__p_Annchienta__Entity,
   &_swigt__p_Annchienta__Font,
@@ -7669,6 +7789,7 @@ static swig_type_info *swig_type_initial[] = {
 };
 
 static swig_cast_info _swigc__p_Annchienta__AudioManager[] = {  {&_swigt__p_Annchienta__AudioManager, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__CacheManager[] = {  {&_swigt__p_Annchienta__CacheManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Engine[] = {  {&_swigt__p_Annchienta__Engine, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Entity[] = {  {&_swigt__p_Annchienta__Entity, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__Font, 0, 0, 0},{0, 0, 0, 0}};
@@ -7690,6 +7811,7 @@ static swig_cast_info _swigc__p_p_Annchienta__Tile[] = {  {&_swigt__p_p_Annchien
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__AudioManager,
+  _swigc__p_Annchienta__CacheManager,
   _swigc__p_Annchienta__Engine,
   _swigc__p_Annchienta__Entity,
   _swigc__p_Annchienta__Font,

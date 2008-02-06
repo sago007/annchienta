@@ -12,6 +12,7 @@ namespace Annchienta
     class InputManager;
     class MapManager;
     class AudioManager;
+    class CacheManager;
 
     class Engine
     {
@@ -20,6 +21,7 @@ namespace Annchienta
             InputManager *inputManager;
             MapManager *mapManager;
             AudioManager *audioManager;
+            CacheManager *cacheManager;
 
         public:
             #ifndef SWIG

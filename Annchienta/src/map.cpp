@@ -99,7 +99,7 @@ namespace Annchienta
                     }
                     if( !strcmpCaseInsensitive("staticobject", xml->getNodeName() ) )
                     {
-                        StaticObject *staticObject = new StaticObject();
+                        StaticObject *staticObject = new StaticObject( "Boo!", "config.xml" );
                         entities.push_back( staticObject );
 
                     }

@@ -12,6 +12,7 @@
 #include "inputmanager.h"
 #include "mapmanager.h"
 #include "audiomanager.h"
+#include "cachemanager.h"
 
 namespace Annchienta
 {
@@ -34,6 +35,7 @@ namespace Annchienta
         inputManager = new InputManager();
         mapManager = new MapManager();
         audioManager = new AudioManager();
+        cacheManager = new CacheManager();
     }
 
     Engine::~Engine()
@@ -45,6 +47,7 @@ namespace Annchienta
         delete inputManager;
         delete mapManager;
         delete audioManager;
+        delete cacheManager;
 
         /* Quit our libraries.
          */
