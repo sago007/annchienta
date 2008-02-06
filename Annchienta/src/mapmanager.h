@@ -39,6 +39,7 @@ namespace Annchienta
              */
             void run();
 
+            void update();
             void renderFrame() const;
     };
 

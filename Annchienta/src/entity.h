@@ -19,6 +19,7 @@ namespace Annchienta
             Entity( const char *name="none" );
 
             virtual void draw() = 0;
+            virtual void update() = 0;
             virtual int getDepthSortY() const = 0;
 
             void setDrawn( bool drawn );

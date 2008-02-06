@@ -99,7 +99,8 @@ namespace Annchienta
                     }
                     if( !strcmpCaseInsensitive("staticobject", xml->getNodeName() ) )
                     {
-                        StaticObject *staticObject = new StaticObject( "Boo!", "config.xml" );
+                        StaticObject *staticObject = new StaticObject( xml->getAttributeValue("name"),
+                                                                       xml->getAttributeValue("config") );
                         entities.push_back( staticObject );
 
                     }
@@ -152,6 +153,12 @@ namespace Annchienta
     void Map::setCurrentLayer( int index )
     {
         currentLayer = index;
+    }
+
+    void Map::update()
+    {
+        for( unsigned int i=0; i<layers.size(); i++ )
+            layers[i]->update();
     }
 
     void Map::draw() const

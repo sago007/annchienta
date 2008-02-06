@@ -50,6 +50,7 @@ namespace Annchienta
             void setOpacity( int opacity=0xff );
             int getOpacity() const;
 
+            void update();
             void draw() const;
             void depthSort();
 

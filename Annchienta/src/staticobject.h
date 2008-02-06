@@ -12,17 +12,20 @@
 
 namespace Annchienta
 {
+    class Surface;
+
     #ifndef SWIG
-        struct SpriteArea
+        struct Frame
         {
             int number;
             int x1, y1, x2, y2;
         };
 
-        struct SpriteAnimation
+        struct Animation
         {
             char name[512];
-            char array[128];
+            char frames[128];
+            int numberOfFrames;
         };
     #endif
 
@@ -30,19 +33,25 @@ namespace Annchienta
     {
         protected:
             Point position;
+            Surface *sprite;
 
-            std::vector<SpriteArea*> spriteAreas;
-            std::vector<SpriteAnimation*> spriteAnimations;
+            std::vector<Frame> frames;
+            std::vector<Animation> animations;
+
+            int currentAnimation, currentFrame;
 
         public:
             StaticObject( const char *name, const char *configfile );
             ~StaticObject();
 
+            virtual void update();
             virtual void draw();
             virtual int getDepthSortY() const;
 
             virtual void setPosition( Point );
             virtual Point getPosition() const;
+
+            virtual void setAnimation( const char *animationName );
     };
 };
 

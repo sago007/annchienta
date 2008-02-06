@@ -46,6 +46,14 @@ namespace Annchienta
         return opacity;
     }
 
+    void Layer::update()
+    {
+        for( unsigned int i=0; i<entities.size(); i++ )
+            entities[i]->update();
+
+        this->depthSort();
+    }
+
     void Layer::draw() const
     {
         VideoManager *videoManager = getVideoManager();

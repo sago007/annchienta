@@ -20,8 +20,9 @@ namespace Annchienta
             public:
                 char name[512];
                 T *data;
+                int references;
 
-                CacheObject( const char *_name, T *_data ): data(_data)
+                CacheObject( const char *_name, T *_data ): data(_data), references(1)
                 {
                     if( _name )
                         strcpy( name, _name );
@@ -41,6 +42,7 @@ namespace Annchienta
             #endif
 
             Surface *getSurface( const char *filename );
+            void deleteSurface( Surface *surface );
 
             void clear();
 

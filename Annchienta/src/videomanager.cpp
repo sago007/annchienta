@@ -216,7 +216,7 @@ namespace Annchienta
 
     void VideoManager::drawSurface( Surface *surface, int dx, int dy, int sx1, int sy1, int sx2, int sy2 ) const
     {
-        float left = (float)sy1/(float)surface->getGlWidth(),
+        float left = (float)sx1/(float)surface->getGlWidth(),
               right = (float)sx2/(float)surface->getGlWidth(),
               top = 1.0f - (float)sy1/(float)surface->getGlHeight(),
               bottom = 1.0f - (float)sy2/(float)surface->getGlHeight();

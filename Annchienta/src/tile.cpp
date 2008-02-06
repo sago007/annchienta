@@ -191,6 +191,10 @@ namespace Annchienta
         glDeleteLists( list, 1 );
     }
 
+    void Tile::update()
+    {
+    }
+
     void Tile::draw()
     {
         /* Tile is already drawn...

@@ -12,6 +12,8 @@
             0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0
         </tiles>
     
+        <staticobject name="aelaan" config="maps/aelaan.xml" />
+        
     </layer>
     
 </map>

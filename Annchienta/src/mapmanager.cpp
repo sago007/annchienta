@@ -88,6 +88,8 @@ namespace Annchienta
 
             inputManager->update();
 
+            this->update();
+
             renderFrame();
             videoManager->flip();
 
@@ -102,6 +104,11 @@ namespace Annchienta
                 frames = 0;
             }
         }
+    }
+
+    void MapManager::update()
+    {
+        currentMap->update();
     }
 
     void MapManager::renderFrame() const

@@ -144,6 +144,7 @@ class MapManager(_object):
     def setCurrentMap(*args): return _annchienta.MapManager_setCurrentMap(*args)
     def getCurrentMap(*args): return _annchienta.MapManager_getCurrentMap(*args)
     def run(*args): return _annchienta.MapManager_run(*args)
+    def update(*args): return _annchienta.MapManager_update(*args)
     def renderFrame(*args): return _annchienta.MapManager_renderFrame(*args)
     def __init__(self, *args): 
         this = _annchienta.new_MapManager(*args)
@@ -180,6 +181,7 @@ class CacheManager(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, CacheManager, name)
     __repr__ = _swig_repr
     def getSurface(*args): return _annchienta.CacheManager_getSurface(*args)
+    def deleteSurface(*args): return _annchienta.CacheManager_deleteSurface(*args)
     def clear(*args): return _annchienta.CacheManager_clear(*args)
     def __init__(self, *args): 
         this = _annchienta.new_CacheManager(*args)
@@ -255,6 +257,7 @@ class Layer(_object):
     __del__ = lambda self : None;
     def setOpacity(*args): return _annchienta.Layer_setOpacity(*args)
     def getOpacity(*args): return _annchienta.Layer_getOpacity(*args)
+    def update(*args): return _annchienta.Layer_update(*args)
     def draw(*args): return _annchienta.Layer_draw(*args)
     def depthSort(*args): return _annchienta.Layer_depthSort(*args)
     def addEntity(*args): return _annchienta.Layer_addEntity(*args)
@@ -275,6 +278,7 @@ class Map(_object):
     __del__ = lambda self : None;
     def getCurrentLayer(*args): return _annchienta.Map_getCurrentLayer(*args)
     def setCurrentLayer(*args): return _annchienta.Map_setCurrentLayer(*args)
+    def update(*args): return _annchienta.Map_update(*args)
     def draw(*args): return _annchienta.Map_draw(*args)
     def depthSort(*args): return _annchienta.Map_depthSort(*args)
 Map_swigregister = _annchienta.Map_swigregister
@@ -323,6 +327,7 @@ class Tile(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Tile
     __del__ = lambda self : None;
+    def update(*args): return _annchienta.Tile_update(*args)
     def draw(*args): return _annchienta.Tile_draw(*args)
     def getDepthSortY(*args): return _annchienta.Tile_getDepthSortY(*args)
 Tile_swigregister = _annchienta.Tile_swigregister

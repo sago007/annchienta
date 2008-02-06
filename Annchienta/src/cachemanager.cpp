@@ -29,6 +29,7 @@ namespace Annchienta
         {
             if( !strcmp( filename, (*i).name ) )
             {
+                (*i).references++;
                 return (*i).data;
             }
         }
@@ -36,6 +37,23 @@ namespace Annchienta
         Surface *surface = new Surface( filename );
         surfaces.push_back( CacheObject<Surface>( filename, surface ) );
         return surface;
+    }
+
+    void CacheManager::deleteSurface( Surface *surface )
+    {
+        for( std::list< CacheObject<Surface> >::iterator i = surfaces.begin(); i!=surfaces.end(); i++ )
+        {
+            if( surface == (*i).data )
+            {
+                (*i).references--;
+                if( (*i).references <= 0 )
+                {
+                    delete (*i).data;
+                    surfaces.erase( i );
+                }
+                return;
+            }
+        }
     }
 
     void CacheManager::clear()

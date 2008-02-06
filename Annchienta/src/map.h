@@ -38,6 +38,7 @@ namespace Annchienta
             Layer *getCurrentLayer() const;
             void setCurrentLayer( int index );
 
+            void update();
             void draw() const;
             void depthSort();
 
