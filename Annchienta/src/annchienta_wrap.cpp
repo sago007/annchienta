@@ -5179,6 +5179,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_MapManager_setUpdatesPerSecond(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MapManager_setUpdatesPerSecond",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_setUpdatesPerSecond" "', argument " "1"" of type '" "Annchienta::MapManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "MapManager_setUpdatesPerSecond" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setUpdatesPerSecond(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_MapManager_setCurrentMap(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
@@ -7781,6 +7811,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_getCameraX", _wrap_MapManager_getCameraX, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setCameraY", _wrap_MapManager_setCameraY, METH_VARARGS, NULL},
 	 { (char *)"MapManager_getCameraY", _wrap_MapManager_getCameraY, METH_VARARGS, NULL},
+	 { (char *)"MapManager_setUpdatesPerSecond", _wrap_MapManager_setUpdatesPerSecond, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setCurrentMap", _wrap_MapManager_setCurrentMap, METH_VARARGS, NULL},
 	 { (char *)"MapManager_getCurrentMap", _wrap_MapManager_getCurrentMap, METH_VARARGS, NULL},
 	 { (char *)"MapManager_run", _wrap_MapManager_run, METH_VARARGS, NULL},

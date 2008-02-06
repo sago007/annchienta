@@ -14,6 +14,7 @@ namespace Annchienta
         private:
             int tileWidth, tileHeight;
             int cameraX, cameraY;
+            int updatesPerSecond;
             Map *currentMap;
 
         public:
@@ -31,6 +32,8 @@ namespace Annchienta
             int getCameraX() const;
             void setCameraY( int );
             int getCameraY() const;
+
+            void setUpdatesPerSecond( int );
 
             void setCurrentMap( Map *map );
             Map *getCurrentMap() const;

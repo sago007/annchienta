@@ -14,11 +14,24 @@ namespace Annchienta
 {
     MapManager *mapManager;
 
-    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0), currentMap(0)
+    long int updatesNeeded = 0;
+
+    /* Timer function. Increments updatesNeeded by the int
+     * pointed to by param.
+     */
+    Uint32 incrementUpdatesNeeded( Uint32 interval, void *param )
+    {
+        updatesNeeded += 1;
+        return interval;
+    }
+
+    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0), updatesPerSecond(60), currentMap(0)
     {
         /* Set reference to single-instance class.
          */
         mapManager = this;
+
+        updatesNeeded = updatesPerSecond;
     }
 
     MapManager::~MapManager()
@@ -70,6 +83,11 @@ namespace Annchienta
         currentMap = map;
     }
 
+    void MapManager::setUpdatesPerSecond( int u )
+    {
+        updatesPerSecond = u;
+    }
+
     Map *MapManager::getCurrentMap() const
     {
         return currentMap;
@@ -83,12 +101,16 @@ namespace Annchienta
         unsigned int lastFpsUpdate = SDL_GetTicks();
         unsigned int frames = 0;
 
+        SDL_AddTimer( 1000/updatesPerSecond, incrementUpdatesNeeded, 0 );
+
         while( inputManager->running() )
         {
-
-            inputManager->update();
-
-            this->update();
+            while( updatesNeeded>0 )
+            {
+                inputManager->update();
+                this->update();
+                updatesNeeded--;
+            }
 
             renderFrame();
             videoManager->flip();
