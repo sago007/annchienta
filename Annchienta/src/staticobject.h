@@ -26,6 +26,7 @@ namespace Annchienta
             char name[512];
             char frames[128];
             int numberOfFrames;
+            int speed;
         };
     #endif
 
@@ -33,12 +34,13 @@ namespace Annchienta
     {
         protected:
             Point position;
+            Point mapPosition;
             Surface *sprite;
 
             std::vector<Frame> frames;
             std::vector<Animation> animations;
 
-            int currentAnimation, currentFrame;
+            int currentAnimation, currentFrame, speedTimer;
 
         public:
             StaticObject( const char *name, const char *configfile );

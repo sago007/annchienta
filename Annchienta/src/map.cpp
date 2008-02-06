@@ -17,6 +17,7 @@ using namespace io;
 #include "layer.h"
 #include "mapmanager.h"
 #include "staticobject.h"
+#include "point.h"
 
 namespace Annchienta
 {
@@ -101,6 +102,19 @@ namespace Annchienta
                     {
                         StaticObject *staticObject = new StaticObject( xml->getAttributeValue("name"),
                                                                        xml->getAttributeValue("config") );
+
+                        if( xml->getAttributeValue("isox") && xml->getAttributeValue("isoy") )
+                            staticObject->setPosition( Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),
+                                                       xml->getAttributeValueAsInt("iosy"), 0 ) );
+
+                        if( xml->getAttributeValue("mapx") && xml->getAttributeValue("mapy") )
+                            staticObject->setPosition( Point( MapPoint, xml->getAttributeValueAsInt("mapx"),
+                                                       xml->getAttributeValueAsInt("mapy"), 0 ) );
+
+                        if( xml->getAttributeValue("tilex") && xml->getAttributeValue("tiley") )
+                            staticObject->setPosition( Point( TilePoint, xml->getAttributeValueAsInt("tilex"),
+                                                       xml->getAttributeValueAsInt("tiley"), 0 ) );
+
                         entities.push_back( staticObject );
 
                     }

@@ -34,7 +34,12 @@ namespace Annchienta
                     if( !strcmpCaseInsensitive("frame", xml->getNodeName()) )
                     {
                         Frame frame;
-                        frame.number = xml->getAttributeValueAsInt("number");
+
+                        if( xml->getAttributeValue("number") )
+                            frame.number = xml->getAttributeValueAsInt("number");
+                        else
+                            printf("Warning - number not defined for frame in %s\n", configfile);
+
                         frame.x1 = xml->getAttributeValueAsInt("x1");
                         frame.y1 = xml->getAttributeValueAsInt("y1");
                         frame.x2 = xml->getAttributeValueAsInt("x2");
@@ -47,6 +52,7 @@ namespace Annchienta
                         strcpy( animation.name, xml->getAttributeValue("name") );
                         strcpy( animation.frames, xml->getAttributeValue("frames") );
                         animation.numberOfFrames = strlen( animation.frames );
+                        animation.speed = xml->getAttributeValueAsInt("speed");
                         animations.push_back( animation );
                     }
                     break;
@@ -67,10 +73,17 @@ namespace Annchienta
     {
         if( currentAnimation>=0 )
         {
-            currentFrame++;
-            if( currentFrame >= animations[currentAnimation].numberOfFrames )
-                currentFrame = 0;
+            speedTimer++;
+            if( speedTimer >= animations[currentAnimation].speed )
+            {
+                currentFrame++;
+                if( currentFrame >= animations[currentAnimation].numberOfFrames )
+                    currentFrame = 0;
+                speedTimer = 0;
+            }
         }
+
+        mapPosition = position.to( MapPoint );
     }
 
     void StaticObject::draw()
@@ -95,19 +108,20 @@ namespace Annchienta
                 i = frames.size();
             }
         }
-        getVideoManager()->drawSurface( sprite, 0, 0, frame->x1, frame->y1, frame->x2, frame->y2 );
+        getVideoManager()->drawSurface( sprite, mapPosition.x, mapPosition.y, frame->x1, frame->y1, frame->x2, frame->y2 );
         //printf("Drawing area: %d, %d, %d, %d\n", frame->x1, frame->y1, frame->x2, frame->y2 );
 
     }
 
     int StaticObject::getDepthSortY() const
     {
-        return 200;
+        return mapPosition.y + sprite->getHeight();
     }
 
     void StaticObject::setPosition( Point _position )
     {
-        position = _position;
+        position = _position.to( IsometricPoint );
+        mapPosition = _position.to( MapPoint );
     }
 
     Point StaticObject::getPosition() const
@@ -122,7 +136,7 @@ namespace Annchienta
             if( !strcmpCaseInsensitive( aname, animations[i].name ) )
             {
                 currentAnimation = i;
-                currentFrame = 0;
+                currentFrame = speedTimer = 0;
                 return;
             }
         }

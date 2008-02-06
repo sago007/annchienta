@@ -9,7 +9,7 @@ inputMgr = annchienta.getInputManager()
 mapMgr = annchienta.getMapManager()
 mapMgr.setTileWidth(64)
 mapMgr.setTileHeight(32)
-mapMgr.setUpdatesPerSecond(2)
+mapMgr.setUpdatesPerSecond(60)
 
 mymap = annchienta.Map( "maps/map.xml" )
 #mymap = annchienta.Map( 10, 10, "tileset/" )

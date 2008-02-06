@@ -4,6 +4,6 @@
     <frame number="1" x1="0" y1="0" x2="64" y2="90">
     <frame number="2" x1="64" y1="0" x2="128" y2="90">
     
-    <animation name="stand" frames="12" />
+    <animation name="stand" frames="12" speed="20" />
         
 </sprite>
