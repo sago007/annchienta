@@ -38,7 +38,7 @@ namespace Annchienta
             switch( xml->getNodeType() )
             {
                 case EXN_ELEMENT:
-                    if( !strcmp("map", xml->getNodeName()) )
+                    if( !strcmpCaseInsensitive("map", xml->getNodeName()) )
                     {
                         width = xml->getAttributeValueAsInt("width");
                         height = xml->getAttributeValueAsInt("height");
@@ -50,7 +50,7 @@ namespace Annchienta
 
                         tileSet = new TileSet( xml->getAttributeValue("tileset") );
                     }
-                    if( !strcmp("layer", xml->getNodeName()) )
+                    if( !strcmpCaseInsensitive("layer", xml->getNodeName()) )
                     {
                         layerInfo = new LayerInfo;
                         layerInfo->z = xml->getAttributeValue("z") ? xml->getAttributeValueAsInt("z"):0;
@@ -59,7 +59,7 @@ namespace Annchienta
                         layerInfo->opacity = xml->getAttributeValue("opacity") ? xml->getAttributeValueAsInt("opacity"):0xff;
                         tiles = 0;
                     }
-                    if( !strcmp("tiles", xml->getNodeName()) )
+                    if( !strcmpCaseInsensitive("tiles", xml->getNodeName()) )
                     {
                         xml->read();
                         std::stringstream data( xml->getNodeData() );
@@ -97,7 +97,7 @@ namespace Annchienta
                             }
                         }
                     }
-                    if( !strcmp("staticobject", xml->getNodeName() ) )
+                    if( !strcmpCaseInsensitive("staticobject", xml->getNodeName() ) )
                     {
                         StaticObject *staticObject = new StaticObject();
                         entities.push_back( staticObject );
@@ -106,7 +106,7 @@ namespace Annchienta
                     break;
 
                 case EXN_ELEMENT_END:
-                    if( !strcmp("layer", xml->getNodeName()) )
+                    if( !strcmpCaseInsensitive("layer", xml->getNodeName()) )
                     {
                         Layer *layer = new Layer( layerInfo, tiles );
                         delete layerInfo;

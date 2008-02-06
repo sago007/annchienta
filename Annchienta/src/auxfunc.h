@@ -22,6 +22,8 @@ namespace Annchienta
 
     void copyFile( const char *src, const char dst );
 
+    int strcmpCaseInsensitive( const char *str1, const char *str2 );
+
     #ifndef SWIG
         template <class T>
         void swap( T &a, T &b )

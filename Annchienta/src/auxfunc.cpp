@@ -69,4 +69,23 @@ namespace Annchienta
         fclose( dst );
     }
 
+    int strcmpCaseInsensitive( const char *str1, const char *str2 )
+    {
+        const int caseDiff = 'A' - 'a';
+
+        while( *str1 && *str2 )
+        {
+            if( (*str1 == *str2) || (*str1 == *str2+caseDiff) || (*str1 == *str2-caseDiff) )
+            {
+                str1++;
+                str2++;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
 };
