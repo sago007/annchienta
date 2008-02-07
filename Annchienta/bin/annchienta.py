@@ -183,6 +183,8 @@ class CacheManager(_object):
     __repr__ = _swig_repr
     def getSurface(*args): return _annchienta.CacheManager_getSurface(*args)
     def deleteSurface(*args): return _annchienta.CacheManager_deleteSurface(*args)
+    def getMask(*args): return _annchienta.CacheManager_getMask(*args)
+    def deleteMask(*args): return _annchienta.CacheManager_deleteMask(*args)
     def clear(*args): return _annchienta.CacheManager_clear(*args)
     def __init__(self, *args): 
         this = _annchienta.new_CacheManager(*args)
@@ -348,6 +350,7 @@ class TileSet(_object):
     __del__ = lambda self : None;
     def getSurface(*args): return _annchienta.TileSet_getSurface(*args)
     def getSideSurface(*args): return _annchienta.TileSet_getSideSurface(*args)
+    def getMask(*args): return _annchienta.TileSet_getMask(*args)
 TileSet_swigregister = _annchienta.TileSet_swigregister
 TileSet_swigregister(TileSet)
 

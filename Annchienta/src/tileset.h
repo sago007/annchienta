@@ -9,6 +9,7 @@ namespace Annchienta
 {
 
     class Surface;
+    class Mask;
 
     class TileSet
     {
@@ -19,12 +20,15 @@ namespace Annchienta
             Surface **sideSurfaces;
             int numberOfSideSurfaces;
 
+            Mask *mask;
+
         public:
             TileSet( const char *directory );
             ~TileSet();
 
             Surface *getSurface( int tileNumber ) const;
             Surface *getSideSurface( int sideNumber ) const;
+            Mask *getMask() const;
 
     };
 };

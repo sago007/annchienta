@@ -5563,6 +5563,70 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_CacheManager_getMask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
+  char *arg2 = (char *) 0 ;
+  Annchienta::Mask *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:CacheManager_getMask",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__CacheManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CacheManager_getMask" "', argument " "1"" of type '" "Annchienta::CacheManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::CacheManager * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "CacheManager_getMask" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  result = (Annchienta::Mask *)(arg1)->getMask((char const *)arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_CacheManager_deleteMask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
+  Annchienta::Mask *arg2 = (Annchienta::Mask *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:CacheManager_deleteMask",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__CacheManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CacheManager_deleteMask" "', argument " "1"" of type '" "Annchienta::CacheManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::CacheManager * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "CacheManager_deleteMask" "', argument " "2"" of type '" "Annchienta::Mask *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Mask * >(argp2);
+  (arg1)->deleteMask(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_CacheManager_clear(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
@@ -7754,6 +7818,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_TileSet_getMask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::TileSet *arg1 = (Annchienta::TileSet *) 0 ;
+  Annchienta::Mask *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:TileSet_getMask",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__TileSet, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TileSet_getMask" "', argument " "1"" of type '" "Annchienta::TileSet const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::TileSet * >(argp1);
+  result = (Annchienta::Mask *)((Annchienta::TileSet const *)arg1)->getMask();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *TileSet_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -7996,6 +8082,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"getAudioManager", _wrap_getAudioManager, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_getSurface", _wrap_CacheManager_getSurface, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_deleteSurface", _wrap_CacheManager_deleteSurface, METH_VARARGS, NULL},
+	 { (char *)"CacheManager_getMask", _wrap_CacheManager_getMask, METH_VARARGS, NULL},
+	 { (char *)"CacheManager_deleteMask", _wrap_CacheManager_deleteMask, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_clear", _wrap_CacheManager_clear, METH_VARARGS, NULL},
 	 { (char *)"new_CacheManager", _wrap_new_CacheManager, METH_VARARGS, NULL},
 	 { (char *)"delete_CacheManager", _wrap_delete_CacheManager, METH_VARARGS, NULL},
@@ -8054,6 +8142,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_TileSet", _wrap_delete_TileSet, METH_VARARGS, NULL},
 	 { (char *)"TileSet_getSurface", _wrap_TileSet_getSurface, METH_VARARGS, NULL},
 	 { (char *)"TileSet_getSideSurface", _wrap_TileSet_getSideSurface, METH_VARARGS, NULL},
+	 { (char *)"TileSet_getMask", _wrap_TileSet_getMask, METH_VARARGS, NULL},
 	 { (char *)"TileSet_swigregister", TileSet_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Mask", _wrap_new_Mask, METH_VARARGS, NULL},
 	 { (char *)"delete_Mask", _wrap_delete_Mask, METH_VARARGS, NULL},

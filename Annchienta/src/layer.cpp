@@ -8,11 +8,12 @@
 #include "auxfunc.h"
 #include "tile.h"
 #include "videomanager.h"
+#include "tileset.h"
 
 namespace Annchienta
 {
 
-    Layer::Layer( LayerInfo *info, Tile **_tiles ): width(info->width), height(info->height), z(info->z), opacity(info->opacity)
+    Layer::Layer( LayerInfo *info, Tile **_tiles ): width(info->width), height(info->height), z(info->z), opacity(info->opacity), tileSet(0)
     {
         /* Create some extra space.
          */
@@ -113,6 +114,7 @@ namespace Annchienta
     void Layer::addEntity( Entity *entity )
     {
         entities.push_back( entity );
+        entity->setLayer( this );
     }
 
     void Layer::makeEmpty()
@@ -143,6 +145,26 @@ namespace Annchienta
     Tile **Layer::getTilePointer( int x, int y )
     {
         return &tiles[ x*width+y ];
+    }
+
+    int Layer::getWidth() const
+    {
+        return width;
+    }
+
+    int Layer::getHeight() const
+    {
+        return height;
+    }
+
+    void Layer::setTileSet( TileSet *_tileSet )
+    {
+        tileSet = _tileSet;
+    }
+
+    TileSet *Layer::getTileSet() const
+    {
+        return tileSet;
     }
 
 };

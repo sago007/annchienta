@@ -9,11 +9,14 @@
 
 namespace Annchienta
 {
+    class Layer;
+
     class Entity
     {
         protected:
             bool drawn;
             char name[512];
+            Layer *layer;
 
         public:
             Entity( const char *name="none" );
@@ -28,6 +31,8 @@ namespace Annchienta
             void setName( const char *name );
             const char *getName() const;
 
+            void setLayer( Layer *layer );
+            Layer *getLayer() const;
     };
 };
 

@@ -9,7 +9,7 @@
 namespace Annchienta
 {
 
-    Entity::Entity( const char *_name )
+    Entity::Entity( const char *_name ): layer(0)
     {
         if( _name )
             strcpy( name, _name );
@@ -33,6 +33,16 @@ namespace Annchienta
     const char *Entity::getName() const
     {
         return name;
+    }
+
+    void Entity::setLayer( Layer *_layer )
+    {
+        layer = _layer;
+    }
+
+    Layer *Entity::getLayer() const
+    {
+        return layer;
     }
 
 };

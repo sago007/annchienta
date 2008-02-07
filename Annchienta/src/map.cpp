@@ -131,6 +131,8 @@ namespace Annchienta
 
                         entities.clear();
 
+                        layer->setTileSet( tileSet );
+
                         layers.push_back( layer );
                     }
                     break;

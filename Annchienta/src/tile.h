@@ -38,6 +38,10 @@ namespace Annchienta
             virtual void draw();
             virtual int getDepthSortY() const;
 
+            #ifndef SWIG
+                Point getMaskPosition() const;
+            #endif
+
     };
 };
 

@@ -5,6 +5,7 @@
 #include "cachemanager.h"
 
 #include "surface.h"
+#include "mask.h"
 
 namespace Annchienta
 {
@@ -56,15 +57,50 @@ namespace Annchienta
         }
     }
 
+    Mask *CacheManager::getMask( const char *filename )
+    {
+        for( std::list< CacheObject<Mask> >::iterator i = masks.begin(); i!=masks.end(); i++ )
+        {
+            if( !strcmp( filename, (*i).name ) )
+            {
+                (*i).references++;
+                return (*i).data;
+            }
+        }
+
+        Mask *mask = new Mask( filename );
+        masks.push_back( CacheObject<Mask>( filename, mask ) );
+        return mask;
+    }
+
+    void CacheManager::deleteMask( Mask *mask )
+    {
+        for( std::list< CacheObject<Mask> >::iterator i = masks.begin(); i!=masks.end(); i++ )
+        {
+            if( mask == (*i).data )
+            {
+                (*i).references--;
+                if( (*i).references <= 0 )
+                {
+                    delete (*i).data;
+                    masks.erase( i );
+                }
+                return;
+            }
+        }
+    }
+
     void CacheManager::clear()
     {
         for( std::list< CacheObject<Surface> >::iterator i = surfaces.begin(); i!=surfaces.end(); i++ )
-        {
             delete (*i).data;
-        }
 
         surfaces.clear();
 
+        for( std::list< CacheObject<Mask> >::iterator i = masks.begin(); i!=masks.end(); i++ )
+            delete (*i).data;
+
+        masks.clear();
     }
 
     CacheManager *getCacheManager()

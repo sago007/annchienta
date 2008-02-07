@@ -213,4 +213,9 @@ namespace Annchienta
         return points[2].y+points[2].z;
     }
 
+    Point Tile::getMaskPosition() const
+    {
+        return Point( MapPoint, points[1].x, points[0].y + points[0].z );
+    }
+
 };

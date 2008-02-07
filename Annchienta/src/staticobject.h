@@ -8,11 +8,14 @@
 #include "entity.h"
 
 #include <vector>
+#include <list>
 #include "point.h"
 
 namespace Annchienta
 {
     class Surface;
+    class Tile;
+    class Mask;
 
     #ifndef SWIG
         struct Frame
@@ -36,11 +39,15 @@ namespace Annchienta
             Point position;
             Point mapPosition;
             Surface *sprite;
+            Mask *mask;
 
             std::vector<Frame> frames;
             std::vector<Animation> animations;
+            std::list<Tile*> collidingTiles;
 
             int currentAnimation, currentFrame, speedTimer;
+
+            bool needsUpdate;
 
         public:
             StaticObject( const char *name, const char *configfile );

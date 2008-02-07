@@ -12,7 +12,7 @@
             0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0
         </tiles>
     
-        <staticobject name="aelaan" config="maps/aelaan.xml" isox="50" isoy="0" />
+        <staticobject name="aelaan" config="maps/aelaan.xml" isox="25" isoy="10" />
         
     </layer>
     

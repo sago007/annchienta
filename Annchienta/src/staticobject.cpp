@@ -11,11 +11,15 @@ using namespace io;
 #include "cachemanager.h"
 #include "videomanager.h"
 #include "surface.h"
+#include "tile.h"
+#include "mask.h"
+#include "layer.h"
+#include "tileset.h"
 
 namespace Annchienta
 {
 
-    StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), currentFrame(0)
+    StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), currentFrame(0), needsUpdate(true)
     {
         IrrXMLReader *xml = createIrrXMLReader( configfile );
 
@@ -29,7 +33,8 @@ namespace Annchienta
                 case EXN_ELEMENT:
                     if( !strcmpCaseInsensitive("sprite", xml->getNodeName()) )
                     {
-                        sprite = getCacheManager()->getSurface( xml->getAttributeValue("filename") );
+                        sprite = getCacheManager()->getSurface( xml->getAttributeValue("image") );
+                        mask = getCacheManager()->getMask( xml->getAttributeValue("mask") );
                     }
                     if( !strcmpCaseInsensitive("frame", xml->getNodeName()) )
                     {
@@ -67,6 +72,7 @@ namespace Annchienta
     StaticObject::~StaticObject()
     {
         getCacheManager()->deleteSurface( sprite );
+        getCacheManager()->deleteMask( mask );
     }
 
     void StaticObject::update()
@@ -83,6 +89,26 @@ namespace Annchienta
             }
         }
 
+        if( needsUpdate && layer )
+        {
+            collidingTiles.clear();
+
+            Point point;
+
+            for( int ty=0; ty<layer->getHeight(); ty++ )
+            {
+                for( int tx=0; tx<layer->getWidth(); tx++ )
+                {
+                    Tile *tile = *layer->getTilePointer( tx, ty );
+                    point = tile->getMaskPosition();
+                    if( mask->collision( mapPosition.x, mapPosition.y, layer->getTileSet()->getMask(), point.x, point.y ) )
+                        collidingTiles.push_back( tile );
+                }
+            }
+
+            needsUpdate = false;
+        }
+
         mapPosition = position.to( MapPoint );
     }
 
@@ -90,6 +116,12 @@ namespace Annchienta
     {
         if( this->isDrawn() )
             return;
+
+        for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
+        {
+            (*i)->draw(); 
+            //(*i)->setDrawn(true);
+        }
 
         this->setDrawn( true );
 
@@ -122,6 +154,7 @@ namespace Annchienta
     {
         position = _position.to( IsometricPoint );
         mapPosition = _position.to( MapPoint );
+        needsUpdate = true;
     }
 
     Point StaticObject::getPosition() const

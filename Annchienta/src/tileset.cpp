@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "surface.h"
+#include "mask.h"
 #include "auxfunc.h"
 
 namespace Annchienta
@@ -59,6 +60,9 @@ namespace Annchienta
             sprintf( buffer, "%s/side%d.png", directory, i );
             sideSurfaces[i] = new Surface( buffer );
         }
+
+        sprintf( buffer, "%s/mask.png", directory );
+        mask = new Mask( buffer );
     }
 
     TileSet::~TileSet()
@@ -72,6 +76,8 @@ namespace Annchienta
             delete sideSurfaces[i];
 
         delete[] sideSurfaces;
+
+        delete mask;
     }
 
     Surface *TileSet::getSurface( int tileNumber ) const
@@ -82,6 +88,11 @@ namespace Annchienta
     Surface *TileSet::getSideSurface( int tileNumber ) const
     {
         return sideSurfaces[ tileNumber ];
+    }
+
+    Mask *TileSet::getMask() const
+    {
+        return mask;
     }
 
 };

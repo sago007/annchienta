@@ -13,6 +13,7 @@ namespace Annchienta
     class Tile;
     class Entity;
     struct LayerInfo;
+    class TileSet;
 
     #ifndef SWIG
         struct LayerInfo
@@ -42,6 +43,8 @@ namespace Annchienta
              */
             std::vector<Entity*> entities;
 
+            TileSet *tileSet;
+
         public:
 
             Layer( LayerInfo *info, Tile **tiles=0 );
@@ -59,6 +62,10 @@ namespace Annchienta
             #ifndef SWIG
                 void makeEmpty();
                 Tile **getTilePointer( int x, int y );
+                int getWidth() const;
+                int getHeight() const;
+                void setTileSet( TileSet *tileSet );
+                TileSet *getTileSet() const;
             #endif
     };
 };
