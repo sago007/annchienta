@@ -20,6 +20,7 @@ namespace Annchienta
 
         public:
             Entity( const char *name="none" );
+            virtual ~Entity();
 
             virtual void draw() = 0;
             virtual void update() = 0;

@@ -15,6 +15,10 @@ namespace Annchienta
             strcpy( name, _name );
     }
 
+    Entity::~Entity()
+    {
+    }
+
     void Entity::setDrawn( bool d )
     {
         drawn = d;

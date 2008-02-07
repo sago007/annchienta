@@ -51,7 +51,7 @@ namespace Annchienta
 
         public:
             StaticObject( const char *name, const char *configfile );
-            ~StaticObject();
+            virtual ~StaticObject();
 
             virtual void update();
             virtual void draw();
