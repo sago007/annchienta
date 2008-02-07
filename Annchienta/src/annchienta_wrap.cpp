@@ -2475,18 +2475,19 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__LayerInfo swig_types[7]
 #define SWIGTYPE_p_Annchienta__Map swig_types[8]
 #define SWIGTYPE_p_Annchienta__MapManager swig_types[9]
-#define SWIGTYPE_p_Annchienta__Point swig_types[10]
-#define SWIGTYPE_p_Annchienta__Sound swig_types[11]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[12]
-#define SWIGTYPE_p_Annchienta__Tile swig_types[13]
-#define SWIGTYPE_p_Annchienta__TileSet swig_types[14]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[15]
-#define SWIGTYPE_p_SDLKey swig_types[16]
-#define SWIGTYPE_p_SDLMod swig_types[17]
-#define SWIGTYPE_p_char swig_types[18]
-#define SWIGTYPE_p_p_Annchienta__Tile swig_types[19]
-static swig_type_info *swig_types[21];
-static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__Mask swig_types[10]
+#define SWIGTYPE_p_Annchienta__Point swig_types[11]
+#define SWIGTYPE_p_Annchienta__Sound swig_types[12]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[13]
+#define SWIGTYPE_p_Annchienta__Tile swig_types[14]
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[15]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[16]
+#define SWIGTYPE_p_SDLKey swig_types[17]
+#define SWIGTYPE_p_SDLMod swig_types[18]
+#define SWIGTYPE_p_char swig_types[19]
+#define SWIGTYPE_p_p_Annchienta__Tile swig_types[20]
+static swig_type_info *swig_types[22];
+static swig_module_info swig_module = {swig_types, 21, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2590,6 +2591,7 @@ namespace swig {
 #include "point.h"
 #include "tile.h"
 #include "tileset.h"
+#include "mask.h"
 
 
 SWIGINTERN swig_type_info*
@@ -7759,6 +7761,171 @@ SWIGINTERN PyObject *TileSet_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_new_Mask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  Annchienta::Mask *result = 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_Mask",&obj0)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Mask" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  result = (Annchienta::Mask *)new Annchienta::Mask((char const *)arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Mask, SWIG_POINTER_NEW |  0 );
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Mask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Mask *arg1 = (Annchienta::Mask *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_Mask",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Mask, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Mask" "', argument " "1"" of type '" "Annchienta::Mask *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Mask * >(argp1);
+  delete arg1;
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Mask_getWidth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Mask *arg1 = (Annchienta::Mask *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Mask_getWidth",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Mask_getWidth" "', argument " "1"" of type '" "Annchienta::Mask const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Mask * >(argp1);
+  result = (int)((Annchienta::Mask const *)arg1)->getWidth();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Mask_getHeight(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Mask *arg1 = (Annchienta::Mask *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Mask_getHeight",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Mask_getHeight" "', argument " "1"" of type '" "Annchienta::Mask const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Mask * >(argp1);
+  result = (int)((Annchienta::Mask const *)arg1)->getHeight();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Mask_collision(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Mask *arg1 = (Annchienta::Mask *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  Annchienta::Mask *arg4 = (Annchienta::Mask *) 0 ;
+  int arg5 ;
+  int arg6 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:Mask_collision",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Mask_collision" "', argument " "1"" of type '" "Annchienta::Mask *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Mask * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Mask_collision" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Mask_collision" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Mask_collision" "', argument " "4"" of type '" "Annchienta::Mask *""'"); 
+  }
+  arg4 = reinterpret_cast< Annchienta::Mask * >(argp4);
+  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Mask_collision" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "Mask_collision" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  result = (bool)(arg1)->collision(arg2,arg3,arg4,arg5,arg6);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Mask_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__Mask, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"Engine_write", _wrap_Engine_write, METH_VARARGS, NULL},
 	 { (char *)"new_Engine", _wrap_new_Engine, METH_VARARGS, NULL},
@@ -7888,6 +8055,12 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"TileSet_getSurface", _wrap_TileSet_getSurface, METH_VARARGS, NULL},
 	 { (char *)"TileSet_getSideSurface", _wrap_TileSet_getSideSurface, METH_VARARGS, NULL},
 	 { (char *)"TileSet_swigregister", TileSet_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_Mask", _wrap_new_Mask, METH_VARARGS, NULL},
+	 { (char *)"delete_Mask", _wrap_delete_Mask, METH_VARARGS, NULL},
+	 { (char *)"Mask_getWidth", _wrap_Mask_getWidth, METH_VARARGS, NULL},
+	 { (char *)"Mask_getHeight", _wrap_Mask_getHeight, METH_VARARGS, NULL},
+	 { (char *)"Mask_collision", _wrap_Mask_collision, METH_VARARGS, NULL},
+	 { (char *)"Mask_swigregister", Mask_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -7904,6 +8077,7 @@ static swig_type_info _swigt__p_Annchienta__Layer = {"_p_Annchienta__Layer", "An
 static swig_type_info _swigt__p_Annchienta__LayerInfo = {"_p_Annchienta__LayerInfo", "Annchienta::LayerInfo *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Map = {"_p_Annchienta__Map", "Annchienta::Map *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__MapManager = {"_p_Annchienta__MapManager", "Annchienta::MapManager *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__Mask = {"_p_Annchienta__Mask", "Annchienta::Mask *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Point = {"_p_Annchienta__Point", "Annchienta::Point *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Sound = {"_p_Annchienta__Sound", "Annchienta::Sound *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Surface = {"_p_Annchienta__Surface", "Annchienta::Surface *", 0, 0, (void*)0, 0};
@@ -7926,6 +8100,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__LayerInfo,
   &_swigt__p_Annchienta__Map,
   &_swigt__p_Annchienta__MapManager,
+  &_swigt__p_Annchienta__Mask,
   &_swigt__p_Annchienta__Point,
   &_swigt__p_Annchienta__Sound,
   &_swigt__p_Annchienta__Surface,
@@ -7948,6 +8123,7 @@ static swig_cast_info _swigc__p_Annchienta__Layer[] = {  {&_swigt__p_Annchienta_
 static swig_cast_info _swigc__p_Annchienta__LayerInfo[] = {  {&_swigt__p_Annchienta__LayerInfo, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Map[] = {  {&_swigt__p_Annchienta__Map, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__MapManager[] = {  {&_swigt__p_Annchienta__MapManager, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__Mask[] = {  {&_swigt__p_Annchienta__Mask, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Point[] = {  {&_swigt__p_Annchienta__Point, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Sound[] = {  {&_swigt__p_Annchienta__Sound, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Surface[] = {  {&_swigt__p_Annchienta__Surface, 0, 0, 0},{0, 0, 0, 0}};
@@ -7970,6 +8146,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__LayerInfo,
   _swigc__p_Annchienta__Map,
   _swigc__p_Annchienta__MapManager,
+  _swigc__p_Annchienta__Mask,
   _swigc__p_Annchienta__Point,
   _swigc__p_Annchienta__Sound,
   _swigc__p_Annchienta__Surface,

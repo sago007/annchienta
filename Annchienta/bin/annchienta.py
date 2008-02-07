@@ -351,6 +351,24 @@ class TileSet(_object):
 TileSet_swigregister = _annchienta.TileSet_swigregister
 TileSet_swigregister(TileSet)
 
+class Mask(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Mask, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Mask, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_Mask(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Mask
+    __del__ = lambda self : None;
+    def getWidth(*args): return _annchienta.Mask_getWidth(*args)
+    def getHeight(*args): return _annchienta.Mask_getHeight(*args)
+    def collision(*args): return _annchienta.Mask_collision(*args)
+Mask_swigregister = _annchienta.Mask_swigregister
+Mask_swigregister(Mask)
+
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN
 SDLK_FIRST = _annchienta.SDLK_FIRST
 SDLK_BACKSPACE = _annchienta.SDLK_BACKSPACE

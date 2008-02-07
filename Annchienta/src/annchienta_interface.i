@@ -15,6 +15,7 @@
 #include "point.h"
 #include "tile.h"
 #include "tileset.h"
+#include "mask.h"
 %}
 
 %include "engine.h"
@@ -31,4 +32,5 @@
 %include "point.h"
 %include "tile.h"
 %include "tileset.h"
+%include "mask.h"
 %include "/usr/include/SDL/SDL_keysym.h"

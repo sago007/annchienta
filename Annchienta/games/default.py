@@ -1,5 +1,4 @@
 import annchienta
-import time
 
 videoMgr = annchienta.getVideoManager()
 videoMgr.setVideoMode( 400, 300, "Annchienta", False )

@@ -8,6 +8,8 @@
 namespace Annchienta
 {
     #define square( a ) ((a)*(a))
+    #define min( a, b ) ( (a)>(b)?(b):(a) )
+    #define max( a, b ) ( (a)>(b)?(a):(b) )
 
     const int nearestPowerOfTwo( const int &input );
 

@@ -65,6 +65,11 @@ namespace Annchienta
         /* Write our pixel data to the video memory.
          */
         glTexImage2D( GL_TEXTURE_2D, 0, pixelSize, glWidth, glHeight, 0, format, GL_UNSIGNED_BYTE, (GLvoid*) pixels );
+
+        /* Clean up the pixel data.
+         */
+        delete[] pixels;
+        pixels = 0;
     }
 
     void Surface::compileList()
@@ -223,7 +228,8 @@ namespace Annchienta
     {
         glDeleteTextures( 1, &texture );
         glDeleteLists( list, 1 );
-        delete[] pixels;
+        if( pixels )
+            delete[] pixels;
     }
 
     int Surface::getWidth() const

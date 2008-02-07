@@ -34,14 +34,15 @@ import os\n\
 \n\
 sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
 os.chdir( os.path.dirname( \"%s\" ) )\n\
+execfile( os.path.basename( \"%s\" ) )\n\
 ",
-    filename );
+    filename, filename );
 
     PyRun_SimpleString( initScript );
 
     /* Run our game.
      */
-    engine->runPythonScript( filename );
+    //engine->runPythonScript( filename );
 }
 
 void runEditor( int argc, char **argv )
