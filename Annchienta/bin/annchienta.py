@@ -89,6 +89,8 @@ class VideoManager(_object):
     def drawQuad(*args): return _annchienta.VideoManager_drawQuad(*args)
     def drawSurface(*args): return _annchienta.VideoManager_drawSurface(*args)
     def drawString(*args): return _annchienta.VideoManager_drawString(*args)
+    def drawStringCentered(*args): return _annchienta.VideoManager_drawStringCentered(*args)
+    def drawStringRight(*args): return _annchienta.VideoManager_drawStringRight(*args)
     def grabBuffer(*args): return _annchienta.VideoManager_grabBuffer(*args)
     def storeBuffer(*args): return _annchienta.VideoManager_storeBuffer(*args)
     def restoreBuffer(*args): return _annchienta.VideoManager_restoreBuffer(*args)

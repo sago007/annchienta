@@ -61,6 +61,8 @@ namespace Annchienta
             void drawSurface( Surface *surface, int x, int y ) const;
             void drawSurface( Surface *surface, int dx, int dy, int sx1, int sy1, int sx2, int sy2 ) const;
             void drawString( Font *font, const char *str, int x, int y ) const;
+            void drawStringCentered( Font *font, const char *str, int x, int y ) const;
+            void drawStringRight( Font *font, const char *str, int x, int y ) const;
 
             /** Copies the buffer to a surface.
              */

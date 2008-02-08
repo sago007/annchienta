@@ -9,16 +9,23 @@
 
 namespace Annchienta
 {
+    class PersonControl;
 
     class Person: public StaticObject
     {
         protected:
             bool hasInput;
+            PersonControl *control;
 
         public:
             Person( const char *name, const char *configfile );
             virtual ~Person();
+
+            virtual void update();
+
+            virtual void move( int x, int y );
     };
+
 };
 
 #endif

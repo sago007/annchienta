@@ -17,6 +17,7 @@ using namespace io;
 #include "layer.h"
 #include "mapmanager.h"
 #include "staticobject.h"
+#include "person.h"
 #include "point.h"
 
 namespace Annchienta
@@ -116,6 +117,26 @@ namespace Annchienta
                                                        xml->getAttributeValueAsInt("tiley"), 0 ) );
 
                         entities.push_back( staticObject );
+
+                    }
+                    if( !strcmpCaseInsensitive("person", xml->getNodeName() ) )
+                    {
+                        Person *person = new Person( xml->getAttributeValue("name"),
+                                                     xml->getAttributeValue("config") );
+
+                        if( xml->getAttributeValue("isox") && xml->getAttributeValue("isoy") )
+                            person->setPosition( Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),
+                                                 xml->getAttributeValueAsInt("iosy"), 0 ) );
+
+                        if( xml->getAttributeValue("mapx") && xml->getAttributeValue("mapy") )
+                            person->setPosition( Point( MapPoint, xml->getAttributeValueAsInt("mapx"),
+                                                 xml->getAttributeValueAsInt("mapy"), 0 ) );
+
+                        if( xml->getAttributeValue("tilex") && xml->getAttributeValue("tiley") )
+                            person->setPosition( Point( TilePoint, xml->getAttributeValueAsInt("tilex"),
+                                                 xml->getAttributeValueAsInt("tiley"), 0 ) );
+
+                        entities.push_back( person );
 
                     }
                     break;

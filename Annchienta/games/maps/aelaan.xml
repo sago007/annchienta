@@ -6,4 +6,6 @@
     
     <animation name="stand" frames="12" speed="20" />
         
+    <control type="input" />
+    
 </sprite>

@@ -243,6 +243,16 @@ namespace Annchienta
         font->draw( str, x, y );
     }
 
+    void VideoManager::drawStringCentered( Font *font, const char *str, int x, int y ) const
+    {
+        font->draw( str, x - font->getStringWidth( str )/2, y );
+    }
+
+    void VideoManager::drawStringRight( Font *font, const char *str, int x, int y ) const
+    {
+        font->draw( str, x - font->getStringWidth( str ), y );
+    }
+
     void VideoManager::grabBuffer( Surface *surface ) const
     {
         glBindTexture( GL_TEXTURE_2D, surface->getTexture() );
