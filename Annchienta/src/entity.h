@@ -5,7 +5,7 @@
 #ifndef ANNCHIENTA_ENTITY_H
 #define ANNCHIENTA_ENTITY_H
 
-#include <string>
+#include "point.h"
 
 namespace Annchienta
 {
@@ -25,6 +25,7 @@ namespace Annchienta
             virtual void draw() = 0;
             virtual void update() = 0;
             virtual int getDepthSortY() const = 0;
+            virtual Point getMaskPosition() const = 0;
 
             void setDrawn( bool drawn );
             bool isDrawn() const;
@@ -35,6 +36,7 @@ namespace Annchienta
             void setLayer( Layer *layer );
             Layer *getLayer() const;
     };
+
 };
 
 #endif

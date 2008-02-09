@@ -68,7 +68,7 @@ namespace Annchienta
 
             virtual void setPosition( Point );
             virtual Point getPosition() const;
-            virtual Point getSpritePosition() const;
+            virtual Point getMaskPosition() const;
 
             virtual void setAnimation( const char *animationName );
     };

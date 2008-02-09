@@ -64,10 +64,12 @@ namespace Annchienta
         StaticObject::update();
     }
 
-    void Person::move( int x, int y )
+    void Person::move( int x, int y, bool force )
     {
         position.x += x;
         position.y += y;
+
+        
     }
 
 };

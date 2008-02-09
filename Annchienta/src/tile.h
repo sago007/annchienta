@@ -39,7 +39,8 @@ namespace Annchienta
             virtual int getDepthSortY() const;
 
             #ifndef SWIG
-                Point getMaskPosition() const;
+                virtual Point getMaskPosition() const;
+                int getZ( int point );
             #endif
 
     };

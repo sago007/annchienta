@@ -218,4 +218,9 @@ namespace Annchienta
         return Point( MapPoint, points[1].x, points[0].y + points[0].z );
     }
 
+    int Tile::getZ( int point )
+    {
+        return points[point].z;
+    }
+
 };

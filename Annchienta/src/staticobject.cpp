@@ -16,6 +16,11 @@ using namespace io;
 #include "layer.h"
 #include "tileset.h"
 
+bool DepthSortPredicate( const Annchienta::Tile* tilep1, const Annchienta::Tile* tilep2 )
+{
+    return tilep1->getDepthSortY() < tilep2->getDepthSortY();
+}
+
 namespace Annchienta
 {
 
@@ -93,8 +98,10 @@ namespace Annchienta
         {
             collidingTiles.clear();
 
-            Point pos = this->getSpritePosition(), point;
+            Point pos = this->getMaskPosition(), point;
 
+            /* First we need to collect all colliding tiles.
+             */
             for( int ty=0; ty<layer->getHeight(); ty++ )
             {
                 for( int tx=0; tx<layer->getWidth(); tx++ )
@@ -104,9 +111,28 @@ namespace Annchienta
                     if( mask->collision( pos.x, pos.y, layer->getTileSet()->getMask(), point.x, point.y ) )
                         collidingTiles.push_back( tile );
                 }
+
             }
 
-            //needsUpdate = false;
+            /* Do a depthsort on them.
+             */
+            collidingTiles.sort( DepthSortPredicate );
+
+            /* Now, we set out Z to the highest one of the colliding tiles.
+             */
+            position.z = 0;
+            for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
+            {
+                for( int p=0; p<4; p++ )
+                {
+                    if( (*i)->getZ(p) > position.z )
+                    {
+                        position.z = (*i)->getZ(p);
+                    }
+                }
+            }
+
+            needsUpdate = false;
         }
 
         mapPosition = position.to( MapPoint );
@@ -141,11 +167,16 @@ namespace Annchienta
             }
         }
 
-        Point pos = this->getSpritePosition();
+        Point pos = this->getMaskPosition();
 
-        getVideoManager()->drawSurface( sprite, pos.x, pos.y, frame->x1, frame->y1, frame->x2, frame->y2 );
-        //printf("Drawing area: %d, %d, %d, %d\n", frame->x1, frame->y1, frame->x2, frame->y2 );
+        getVideoManager()->drawSurface( sprite, pos.x, pos.y-pos.z, frame->x1, frame->y1, frame->x2, frame->y2 );
 
+        /*glColor3f(1.0f,0.0f,0.0f);
+        glBindTexture( GL_TEXTURE_2D, 0 );
+        glBegin( GL_POINTS );
+            glVertex2f( mapPosition.x, mapPosition.y );
+        glEnd();
+        glColor3f(1.0f,1.0f,1.0f);*/
     }
 
     int StaticObject::getDepthSortY() const
@@ -165,7 +196,7 @@ namespace Annchienta
         return position;
     }
 
-    Point StaticObject::getSpritePosition() const
+    Point StaticObject::getMaskPosition() const
     {
         return Point( MapPoint, mapPosition.x - (mask->getWidth()>>1), mapPosition.y - mask->getHeight(), mapPosition.z );
     }
