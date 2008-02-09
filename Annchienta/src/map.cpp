@@ -106,7 +106,7 @@ namespace Annchienta
 
                         if( xml->getAttributeValue("isox") && xml->getAttributeValue("isoy") )
                             staticObject->setPosition( Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),
-                                                       xml->getAttributeValueAsInt("iosy"), 0 ) );
+                                                       xml->getAttributeValueAsInt("isoy"), 0 ) );
 
                         if( xml->getAttributeValue("mapx") && xml->getAttributeValue("mapy") )
                             staticObject->setPosition( Point( MapPoint, xml->getAttributeValueAsInt("mapx"),
@@ -115,6 +115,9 @@ namespace Annchienta
                         if( xml->getAttributeValue("tilex") && xml->getAttributeValue("tiley") )
                             staticObject->setPosition( Point( TilePoint, xml->getAttributeValueAsInt("tilex"),
                                                        xml->getAttributeValueAsInt("tiley"), 0 ) );
+
+                        if( xml->getAttributeValueAsInt("camera") )
+                            getMapManager()->cameraFollow( staticObject );
 
                         entities.push_back( staticObject );
 
@@ -126,7 +129,7 @@ namespace Annchienta
 
                         if( xml->getAttributeValue("isox") && xml->getAttributeValue("isoy") )
                             person->setPosition( Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),
-                                                 xml->getAttributeValueAsInt("iosy"), 0 ) );
+                                                 xml->getAttributeValueAsInt("isoy"), 0 ) );
 
                         if( xml->getAttributeValue("mapx") && xml->getAttributeValue("mapy") )
                             person->setPosition( Point( MapPoint, xml->getAttributeValueAsInt("mapx"),
@@ -135,6 +138,9 @@ namespace Annchienta
                         if( xml->getAttributeValue("tilex") && xml->getAttributeValue("tiley") )
                             person->setPosition( Point( TilePoint, xml->getAttributeValueAsInt("tilex"),
                                                  xml->getAttributeValueAsInt("tiley"), 0 ) );
+
+                        if( xml->getAttributeValueAsInt("camera") )
+                            getMapManager()->cameraFollow( person);
 
                         entities.push_back( person );
 

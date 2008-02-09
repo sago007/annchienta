@@ -93,7 +93,7 @@ namespace Annchienta
         {
             collidingTiles.clear();
 
-            Point point;
+            Point pos = this->getSpritePosition(), point;
 
             for( int ty=0; ty<layer->getHeight(); ty++ )
             {
@@ -101,12 +101,12 @@ namespace Annchienta
                 {
                     Tile *tile = *layer->getTilePointer( tx, ty );
                     point = tile->getMaskPosition();
-                    if( mask->collision( mapPosition.x, mapPosition.y, layer->getTileSet()->getMask(), point.x, point.y ) )
+                    if( mask->collision( pos.x, pos.y, layer->getTileSet()->getMask(), point.x, point.y ) )
                         collidingTiles.push_back( tile );
                 }
             }
 
-            needsUpdate = false;
+            //needsUpdate = false;
         }
 
         mapPosition = position.to( MapPoint );
@@ -140,14 +140,17 @@ namespace Annchienta
                 i = frames.size();
             }
         }
-        getVideoManager()->drawSurface( sprite, mapPosition.x, mapPosition.y, frame->x1, frame->y1, frame->x2, frame->y2 );
+
+        Point pos = this->getSpritePosition();
+
+        getVideoManager()->drawSurface( sprite, pos.x, pos.y, frame->x1, frame->y1, frame->x2, frame->y2 );
         //printf("Drawing area: %d, %d, %d, %d\n", frame->x1, frame->y1, frame->x2, frame->y2 );
 
     }
 
     int StaticObject::getDepthSortY() const
     {
-        return mapPosition.y + sprite->getHeight();
+        return mapPosition.y;
     }
 
     void StaticObject::setPosition( Point _position )
@@ -160,6 +163,11 @@ namespace Annchienta
     Point StaticObject::getPosition() const
     {
         return position;
+    }
+
+    Point StaticObject::getSpritePosition() const
+    {
+        return Point( MapPoint, mapPosition.x - (mask->getWidth()>>1), mapPosition.y - mask->getHeight(), mapPosition.z );
     }
 
     void StaticObject::setAnimation( const char *aname )

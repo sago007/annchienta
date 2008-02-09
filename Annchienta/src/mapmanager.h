@@ -8,6 +8,7 @@
 namespace Annchienta
 {
     class Map;
+    class StaticObject;
 
     class MapManager
     {
@@ -16,6 +17,7 @@ namespace Annchienta
             int cameraX, cameraY;
             int updatesPerSecond;
             Map *currentMap;
+            StaticObject *cameraTarget;
 
         public:
             #ifndef SWIG
@@ -32,6 +34,8 @@ namespace Annchienta
             int getCameraX() const;
             void setCameraY( int );
             int getCameraY() const;
+
+            void cameraFollow( StaticObject *object );
 
             void setUpdatesPerSecond( int );
 

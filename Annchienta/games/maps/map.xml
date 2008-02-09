@@ -12,7 +12,10 @@
             0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0    0 1 0 1 0 1 0 1 0
         </tiles>
     
-        <person name="aelaan" config="maps/aelaan.xml" isox="25" isoy="10" />
+        <person name="aelaan" config="maps/aelaan.xml" isox="0" isoy="0" camera="1"/>
+        <staticobject name="tree" config="maps/tree.xml" isox="0" isoy="0" />
+        <staticobject name="tree" config="maps/tree.xml" isox="100" isoy="100" />
+        <staticobject name="tree" config="maps/tree.xml" isox="100" isoy="0" />
         
     </layer>
     

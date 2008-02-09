@@ -2478,16 +2478,17 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__Mask swig_types[10]
 #define SWIGTYPE_p_Annchienta__Point swig_types[11]
 #define SWIGTYPE_p_Annchienta__Sound swig_types[12]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[13]
-#define SWIGTYPE_p_Annchienta__Tile swig_types[14]
-#define SWIGTYPE_p_Annchienta__TileSet swig_types[15]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[16]
-#define SWIGTYPE_p_SDLKey swig_types[17]
-#define SWIGTYPE_p_SDLMod swig_types[18]
-#define SWIGTYPE_p_char swig_types[19]
-#define SWIGTYPE_p_p_Annchienta__Tile swig_types[20]
-static swig_type_info *swig_types[22];
-static swig_module_info swig_module = {swig_types, 21, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__StaticObject swig_types[13]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[14]
+#define SWIGTYPE_p_Annchienta__Tile swig_types[15]
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[16]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[17]
+#define SWIGTYPE_p_SDLKey swig_types[18]
+#define SWIGTYPE_p_SDLMod swig_types[19]
+#define SWIGTYPE_p_char swig_types[20]
+#define SWIGTYPE_p_p_Annchienta__Tile swig_types[21]
+static swig_type_info *swig_types[23];
+static swig_module_info swig_module = {swig_types, 22, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -5295,6 +5296,36 @@ SWIGINTERN PyObject *_wrap_MapManager_getCameraY(PyObject *SWIGUNUSEDPARM(self),
   arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
   result = (int)((Annchienta::MapManager const *)arg1)->getCameraY();
   resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MapManager_cameraFollow(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  Annchienta::StaticObject *arg2 = (Annchienta::StaticObject *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MapManager_cameraFollow",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_cameraFollow" "', argument " "1"" of type '" "Annchienta::MapManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MapManager_cameraFollow" "', argument " "2"" of type '" "Annchienta::StaticObject *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::StaticObject * >(argp2);
+  (arg1)->cameraFollow(arg2);
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -8186,6 +8217,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_getCameraX", _wrap_MapManager_getCameraX, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setCameraY", _wrap_MapManager_setCameraY, METH_VARARGS, NULL},
 	 { (char *)"MapManager_getCameraY", _wrap_MapManager_getCameraY, METH_VARARGS, NULL},
+	 { (char *)"MapManager_cameraFollow", _wrap_MapManager_cameraFollow, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setUpdatesPerSecond", _wrap_MapManager_setUpdatesPerSecond, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setCurrentMap", _wrap_MapManager_setCurrentMap, METH_VARARGS, NULL},
 	 { (char *)"MapManager_getCurrentMap", _wrap_MapManager_getCurrentMap, METH_VARARGS, NULL},
@@ -8291,6 +8323,7 @@ static swig_type_info _swigt__p_Annchienta__MapManager = {"_p_Annchienta__MapMan
 static swig_type_info _swigt__p_Annchienta__Mask = {"_p_Annchienta__Mask", "Annchienta::Mask *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Point = {"_p_Annchienta__Point", "Annchienta::Point *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Sound = {"_p_Annchienta__Sound", "Annchienta::Sound *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__StaticObject = {"_p_Annchienta__StaticObject", "Annchienta::StaticObject *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Surface = {"_p_Annchienta__Surface", "Annchienta::Surface *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Tile = {"_p_Annchienta__Tile", "Annchienta::Tile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__TileSet = {"_p_Annchienta__TileSet", "Annchienta::TileSet *", 0, 0, (void*)0, 0};
@@ -8314,6 +8347,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Mask,
   &_swigt__p_Annchienta__Point,
   &_swigt__p_Annchienta__Sound,
+  &_swigt__p_Annchienta__StaticObject,
   &_swigt__p_Annchienta__Surface,
   &_swigt__p_Annchienta__Tile,
   &_swigt__p_Annchienta__TileSet,
@@ -8337,6 +8371,7 @@ static swig_cast_info _swigc__p_Annchienta__MapManager[] = {  {&_swigt__p_Annchi
 static swig_cast_info _swigc__p_Annchienta__Mask[] = {  {&_swigt__p_Annchienta__Mask, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Point[] = {  {&_swigt__p_Annchienta__Point, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Sound[] = {  {&_swigt__p_Annchienta__Sound, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__StaticObject[] = {  {&_swigt__p_Annchienta__StaticObject, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Surface[] = {  {&_swigt__p_Annchienta__Surface, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Tile[] = {  {&_swigt__p_Annchienta__Tile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__TileSet[] = {  {&_swigt__p_Annchienta__TileSet, 0, 0, 0},{0, 0, 0, 0}};
@@ -8360,6 +8395,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Mask,
   _swigc__p_Annchienta__Point,
   _swigc__p_Annchienta__Sound,
+  _swigc__p_Annchienta__StaticObject,
   _swigc__p_Annchienta__Surface,
   _swigc__p_Annchienta__Tile,
   _swigc__p_Annchienta__TileSet,

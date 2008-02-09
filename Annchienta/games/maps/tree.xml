@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<sprite image="maps/tree.png" mask="maps/treemask.png">
+    
+    <frame number="1" x1="0" y1="0" x2="110" y2="171">
+    
+    <animation name="stand" frames="1" speed="20" />
+    
+</sprite>

@@ -143,6 +143,7 @@ class MapManager(_object):
     def getCameraX(*args): return _annchienta.MapManager_getCameraX(*args)
     def setCameraY(*args): return _annchienta.MapManager_setCameraY(*args)
     def getCameraY(*args): return _annchienta.MapManager_getCameraY(*args)
+    def cameraFollow(*args): return _annchienta.MapManager_cameraFollow(*args)
     def setUpdatesPerSecond(*args): return _annchienta.MapManager_setUpdatesPerSecond(*args)
     def setCurrentMap(*args): return _annchienta.MapManager_setCurrentMap(*args)
     def getCurrentMap(*args): return _annchienta.MapManager_getCurrentMap(*args)

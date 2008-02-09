@@ -36,6 +36,15 @@ namespace Annchienta
     class StaticObject: public Entity
     {
         protected:
+            /* The position indicates the bottom center, like
+             *      ___________
+             *      |         |
+             *      |         |
+             *      |         |
+             *      |__(pos)__|
+             *
+             * This almost equals the "depth sort y".
+             */
             Point position;
             Point mapPosition;
             Surface *sprite;
@@ -59,6 +68,7 @@ namespace Annchienta
 
             virtual void setPosition( Point );
             virtual Point getPosition() const;
+            virtual Point getSpritePosition() const;
 
             virtual void setAnimation( const char *animationName );
     };

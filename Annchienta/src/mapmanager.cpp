@@ -9,6 +9,7 @@
 #include "map.h"
 #include "inputmanager.h"
 #include "videomanager.h"
+#include "staticobject.h"
 
 namespace Annchienta
 {
@@ -25,7 +26,7 @@ namespace Annchienta
         return interval;
     }
 
-    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0), updatesPerSecond(60), currentMap(0)
+    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0), updatesPerSecond(60), currentMap(0), cameraTarget(0)
     {
         /* Set reference to single-instance class.
          */
@@ -76,6 +77,11 @@ namespace Annchienta
     int MapManager::getCameraY() const
     {
         return cameraY;
+    }
+
+    void MapManager::cameraFollow( StaticObject *object )
+    {
+        cameraTarget = object;
     }
 
     void MapManager::setCurrentMap( Map *map )
@@ -131,6 +137,18 @@ namespace Annchienta
     void MapManager::update()
     {
         currentMap->update();
+
+        if( cameraTarget )
+        {
+            VideoManager *videoManager = getVideoManager();
+
+            Point targetPosition = cameraTarget->getPosition();
+            targetPosition.convert( MapPoint );
+
+            cameraX = targetPosition.x - videoManager->getScreenWidth()/2;
+            cameraY = targetPosition.y - videoManager->getScreenHeight()/2;
+
+        }
     }
 
     void MapManager::renderFrame() const
