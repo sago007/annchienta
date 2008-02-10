@@ -336,6 +336,7 @@ class Tile(_object):
     def update(*args): return _annchienta.Tile_update(*args)
     def draw(*args): return _annchienta.Tile_draw(*args)
     def getDepthSortY(*args): return _annchienta.Tile_getDepthSortY(*args)
+    def hasPoint(*args): return _annchienta.Tile_hasPoint(*args)
 Tile_swigregister = _annchienta.Tile_swigregister
 Tile_swigregister(Tile)
 

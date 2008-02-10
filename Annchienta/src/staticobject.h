@@ -53,6 +53,7 @@ namespace Annchienta
             std::vector<Frame> frames;
             std::vector<Animation> animations;
             std::list<Tile*> collidingTiles;
+            Tile *tileStandingOn;
 
             int currentAnimation, currentFrame, speedTimer;
 
@@ -64,7 +65,7 @@ namespace Annchienta
 
             virtual void update();
             virtual void draw();
-            virtual int getDepthSortY() const;
+            virtual int getDepthSortY();
 
             virtual void setPosition( Point );
             virtual Point getPosition() const;

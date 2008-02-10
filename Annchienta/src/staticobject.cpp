@@ -16,7 +16,7 @@ using namespace io;
 #include "layer.h"
 #include "tileset.h"
 
-bool DepthSortPredicate( const Annchienta::Tile* tilep1, const Annchienta::Tile* tilep2 )
+bool DepthSortPredicate( Annchienta::Tile* tilep1, Annchienta::Tile* tilep2 )
 {
     return tilep1->getDepthSortY() < tilep2->getDepthSortY();
 }
@@ -24,7 +24,7 @@ bool DepthSortPredicate( const Annchienta::Tile* tilep1, const Annchienta::Tile*
 namespace Annchienta
 {
 
-    StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), currentFrame(0), needsUpdate(true)
+    StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), needsUpdate(true)
     {
         IrrXMLReader *xml = createIrrXMLReader( configfile );
 
@@ -110,6 +110,12 @@ namespace Annchienta
                     point = tile->getMaskPosition();
                     if( mask->collision( pos.x, pos.y, layer->getTileSet()->getMask(), point.x, point.y ) )
                         collidingTiles.push_back( tile );
+
+                    if( tile->hasPoint(position) )
+                    {
+                        //printf("Standing on ( %d, %d )\n", tx, ty );
+                        tileStandingOn = tile;
+                    }
                 }
 
             }
@@ -121,13 +127,13 @@ namespace Annchienta
             /* Now, we set out Z to the highest one of the colliding tiles.
              */
             position.z = 0;
-            for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
+            if( tileStandingOn )
             {
                 for( int p=0; p<4; p++ )
                 {
-                    if( (*i)->getZ(p) > position.z )
+                    if( tileStandingOn->getZ(p) > position.z )
                     {
-                        position.z = (*i)->getZ(p);
+                        position.z = tileStandingOn->getZ(p);
                     }
                 }
             }
@@ -145,8 +151,12 @@ namespace Annchienta
 
         for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
         {
-            (*i)->draw(); 
-            //(*i)->setDrawn(true);
+            //if( (*i) != tileStandingOn )
+                (*i)->draw();
+            //else
+            //{
+                //(*i)->setDrawn(true);
+            //}
         }
 
         this->setDrawn( true );
@@ -179,9 +189,14 @@ namespace Annchienta
         glColor3f(1.0f,1.0f,1.0f);*/
     }
 
-    int StaticObject::getDepthSortY() const
+    int StaticObject::getDepthSortY()
     {
-        return mapPosition.y;
+        int dsy = mapPosition.y;
+        //for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
+          //  if( (*i)->getDepthSortY() > dsy )
+            //    dsy = (*i)->getDepthSortY();
+
+        return dsy;
     }
 
     void StaticObject::setPosition( Point _position )

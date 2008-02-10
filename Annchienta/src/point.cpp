@@ -60,12 +60,12 @@ namespace Annchienta
                 switch( newtype )
                 {
                     case IsometricPoint:
-                        x *= mapMgr->getTileHeight();
-                        y *= mapMgr->getTileHeight();
+                        x *= (mapMgr->getTileHeight()>>1);
+                        y *= (mapMgr->getTileHeight()>>1);
                         break;
                     case MapPoint: default:
                         nx = x*mapMgr->getTileWidth()/2 - y*mapMgr->getTileWidth()/2;
-                        ny = x*mapMgr->getTileHeight()/2 + y*mapMgr->getTileHeight()/2 - z;
+                        ny = x*mapMgr->getTileHeight()/2 + y*mapMgr->getTileHeight()/2;
                         x = nx;
                         y = ny;
                         break;
@@ -85,7 +85,7 @@ namespace Annchienta
                         break;
                     case MapPoint: default:
                         nx = x*2 - y*2;
-                        ny = x+y - z;
+                        ny = x+y;
                         x = nx;
                         y = ny;
                         break;
@@ -111,7 +111,7 @@ namespace Annchienta
                         break;
                     case ScreenPoint: default:
                         x -= mapMgr->getCameraX();
-                        y -= mapMgr->getCameraY();
+                        y -= (mapMgr->getCameraY()+z);
                         break;
                 }
                 break;
@@ -130,7 +130,7 @@ namespace Annchienta
                         break;
                     case MapPoint: default:
                         x += mapMgr->getCameraX();
-                        y += mapMgr->getCameraY();
+                        y += mapMgr->getCameraY()+z;
                         break;
                 }
                 break;

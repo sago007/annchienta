@@ -96,19 +96,19 @@ namespace Annchienta
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[0] || i==0?1.0f:0.0f );
                 glTexCoord2f( xCenter, s->getTopTexCoord() );
-                glVertex2f( points[0].x, points[0].y );
+                glVertex2f( points[0].x, points[0].y-points[0].z );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[1] || i==0?1.0f:0.0f );
                 glTexCoord2f( s->getLeftTexCoord(), yCenter );
-                glVertex2f( points[1].x, points[1].y );
+                glVertex2f( points[1].x, points[1].y-points[1].z );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[2] || i==0?1.0f:0.0f );
                 glTexCoord2f( xCenter, s->getBottomTexCoord() );
-                glVertex2f( points[2].x, points[2].y );
+                glVertex2f( points[2].x, points[2].y-points[2].z );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[3] || i==0?1.0f:0.0f );
                 glTexCoord2f( s->getRightTexCoord(), yCenter );
-                glVertex2f( points[3].x, points[3].y );
+                glVertex2f( points[3].x, points[3].y-points[3].z );
 
             glEnd();
         }
@@ -136,22 +136,22 @@ namespace Annchienta
             glBegin( GL_TRIANGLE_STRIP );
 
                 glTexCoord2f( sideSurface->getLeftTexCoord(), sideSurface->getTopTexCoord() );
-                glVertex2f( points[1].x, points[1].y );
+                glVertex2f( points[1].x, points[1].y - points[1].z );
 
                 glTexCoord2f( sideSurface->getLeftTexCoord(), centerYMinusOne );
-                glVertex2f( points[1].x, points[1].y + points[1].z );
+                glVertex2f( points[1].x, points[1].y );
 
                 glTexCoord2f( centerX, centerY );
-                glVertex2f( points[2].x, points[2].y );
+                glVertex2f( points[2].x, points[2].y - points[2].z );
 
                 glTexCoord2f( centerX, sideSurface->getBottomTexCoord() );
-                glVertex2f( points[2].x, points[2].y + points[2].z );
+                glVertex2f( points[2].x, points[2].y );
 
                 glTexCoord2f( sideSurface->getRightTexCoord(), sideSurface->getTopTexCoord() );
-                glVertex2f( points[3].x, points[3].y );
+                glVertex2f( points[3].x, points[3].y - points[3].z );
 
                 glTexCoord2f( sideSurface->getRightTexCoord(), centerYMinusOne );
-                glVertex2f( points[3].x, points[3].y + points[3].z );
+                glVertex2f( points[3].x, points[3].y );
 
             glEnd();
         }
@@ -208,14 +208,20 @@ namespace Annchienta
         setDrawn( true );
     }
 
-    int Tile::getDepthSortY() const
+    int Tile::getDepthSortY()
     {
-        return points[2].y+points[2].z;
+        return points[2].y;
+    }
+
+    bool Tile::hasPoint( Point point ) const
+    {
+        point.convert( IsometricPoint );
+        return( point.x > isoPoints[0].x && point.x < isoPoints[3].x && point.y > isoPoints[0].y && point.y < isoPoints[1].y );
     }
 
     Point Tile::getMaskPosition() const
     {
-        return Point( MapPoint, points[1].x, points[0].y + points[0].z );
+        return Point( MapPoint, points[1].x, points[0].y );
     }
 
     int Tile::getZ( int point )
