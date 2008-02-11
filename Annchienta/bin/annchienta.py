@@ -55,6 +55,7 @@ class Engine(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, Engine, name)
     __repr__ = _swig_repr
     def write(*args): return _annchienta.Engine_write(*args)
+    def getDefaultFont(*args): return _annchienta.Engine_getDefaultFont(*args)
     def __init__(self, *args): 
         this = _annchienta.new_Engine(*args)
         try: self.this.append(this)

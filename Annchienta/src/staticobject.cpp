@@ -10,6 +10,7 @@ using namespace io;
 #include "auxfunc.h"
 #include "cachemanager.h"
 #include "videomanager.h"
+#include "mapmanager.h"
 #include "surface.h"
 #include "tile.h"
 #include "mask.h"
@@ -127,15 +128,18 @@ namespace Annchienta
             /* Now, we set out Z to the highest one of the colliding tiles.
              */
             position.z = 0;
-            if( tileStandingOn )
+            for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
             {
+                //if( tileStandingOn )
+                //{
                 for( int p=0; p<4; p++ )
                 {
-                    if( tileStandingOn->getZ(p) > position.z )
+                    if( (*i)->getZ(p) > position.z )
                     {
-                        position.z = tileStandingOn->getZ(p);
+                        position.z = (*i)->getZ(p);
                     }
                 }
+                //}
             }
 
             needsUpdate = false;
@@ -151,12 +155,15 @@ namespace Annchienta
 
         for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
         {
-            //if( (*i) != tileStandingOn )
-                (*i)->draw();
-            //else
-            //{
-                //(*i)->setDrawn(true);
-            //}
+            (*i)->draw();
+
+            /*glColor4f(1.0f,0.0f,0.0f,0.5f);
+            glBindTexture( GL_TEXTURE_2D, 0 );
+            glBegin( GL_QUADS );
+                for( int p=0; p<4; p++ )
+                    glVertex2f( (*i)->getPoint(p).x, (*i)->getPoint(p).y );
+            glEnd();
+            glColor3f(1.0f,1.0f,1.0f);*/
         }
 
         this->setDrawn( true );
@@ -181,22 +188,20 @@ namespace Annchienta
 
         getVideoManager()->drawSurface( sprite, pos.x, pos.y-pos.z, frame->x1, frame->y1, frame->x2, frame->y2 );
 
-        /*glColor3f(1.0f,0.0f,0.0f);
-        glBindTexture( GL_TEXTURE_2D, 0 );
-        glBegin( GL_POINTS );
-            glVertex2f( mapPosition.x, mapPosition.y );
-        glEnd();
-        glColor3f(1.0f,1.0f,1.0f);*/
     }
 
     int StaticObject::getDepthSortY()
     {
         int dsy = mapPosition.y;
-        //for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
-          //  if( (*i)->getDepthSortY() > dsy )
-            //    dsy = (*i)->getDepthSortY();
+        for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
+            if( (*i)->getDepthSortY() > dsy )
+                dsy = (*i)->getDepthSortY();
 
-        return dsy;
+        /* The -1 will ensure that this gets drawn BEFORE tiles
+         * at the same y. Yes, this is a hack. Sorry, Sanne.
+         * But no, this won't hurt. :)
+         */
+        return dsy-1;
     }
 
     void StaticObject::setPosition( Point _position )

@@ -41,7 +41,8 @@ namespace Annchienta
 
             #ifndef SWIG
                 virtual Point getMaskPosition() const;
-                int getZ( int point );
+                int getZ( int point ) const;
+                Point getPoint( int i ) const;
             #endif
 
     };
