@@ -137,10 +137,11 @@ namespace Annchienta
         glPopMatrix();
     }
 
-    void VideoManager::flip() const
+    void VideoManager::flip()
     {
         SDL_GL_SwapBuffers();
         glClear( GL_COLOR_BUFFER_BIT );
+        this->reset();
     }
 
     void VideoManager::setColor( int red, int green, int blue, int alpha ) const

@@ -37,7 +37,7 @@ namespace Annchienta
          */
         textures = new GLuint[NUM_CHARACTERS];
         height = size;
-        lineHeight = (int)(1.6f*(float)size);
+        lineHeight = (int)(1.4f*(float)size);
         advance = new int[NUM_CHARACTERS];
 
         /* Allocate memory for our font structure.
@@ -185,6 +185,7 @@ namespace Annchienta
 
         glListBase( list );
         glCallLists( strlen(text), GL_UNSIGNED_BYTE, text );
+        //printf("Drawing %s.\n", text);
 
         glPopMatrix();
     }

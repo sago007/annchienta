@@ -1,4 +1,5 @@
 import annchienta
+from scene import *
 
 videoMgr = annchienta.getVideoManager()
 videoMgr.setVideoMode( 400, 300, "Annchienta", False )
@@ -18,4 +19,12 @@ mapMgr.setCurrentMap( mymap )
 audioMgr = annchienta.getAudioManager()
 audioMgr.playMusic( "maps/drum_intro.ogg" )
 
-mapMgr.run()
+initSceneManager()
+sceneMgr = getSceneManager()
+
+while inputMgr.running():
+    #mapMgr.renderFrame()
+    sceneMgr.text( "Lorem ipsum dolor sit amet!\nConsectetuer adipiscing elit. Phasellus purus nisl, laoreet id, ornare nec, bibendum at, velit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit." )
+    inputMgr.update()
+    videoMgr.flip()
+#mapMgr.run()

@@ -13,7 +13,6 @@ namespace Annchienta
     class MapManager;
     class AudioManager;
     class CacheManager;
-    class Font;
 
     class Engine
     {
@@ -23,8 +22,6 @@ namespace Annchienta
             MapManager *mapManager;
             AudioManager *audioManager;
             CacheManager *cacheManager;
-
-            Font *defaultFont;
 
         public:
             #ifndef SWIG
@@ -38,8 +35,6 @@ namespace Annchienta
              *  text might not appear when compiled under certain conditions.
              */
             void write( const char *text ) const;
-
-            Font *getDefaultFont() const;
 
     };
 

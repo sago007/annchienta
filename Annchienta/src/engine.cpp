@@ -13,7 +13,6 @@
 #include "mapmanager.h"
 #include "audiomanager.h"
 #include "cachemanager.h"
-#include "font.h"
 
 namespace Annchienta
 {
@@ -37,8 +36,6 @@ namespace Annchienta
         mapManager = new MapManager();
         audioManager = new AudioManager();
         cacheManager = new CacheManager();
-
-        defaultFont = new Font("../data/defaultFont.ttf", 14);
     }
 
     Engine::~Engine()
@@ -51,8 +48,6 @@ namespace Annchienta
         delete mapManager;
         delete audioManager;
         delete cacheManager;
-
-        delete defaultFont;
 
         /* Quit our libraries.
          */
@@ -71,11 +66,6 @@ namespace Annchienta
     void Engine::write( const char *text ) const
     {
         printf( text );
-    }
-
-    Font *Engine::getDefaultFont() const
-    {
-        return defaultFont;
     }
 
     Engine *getEngine()
