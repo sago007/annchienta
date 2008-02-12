@@ -157,6 +157,17 @@ namespace Annchienta
         glColor4fv( colors );
     }
 
+    void VideoManager::setClippingRectangle( int x1, int y1, int x2, int y2 ) const
+    {
+        glScissor( x1, getScreenHeight()-y2, x2-x1, y2-y1 );
+        glEnable( GL_SCISSOR_TEST );
+    }
+
+    void VideoManager::disableClipping() const
+    {
+        glDisable( GL_SCISSOR_TEST );
+    }
+
     void VideoManager::drawLine( int x1, int y1, int x2, int y2 ) const
     {
         glDisable( GL_TEXTURE_2D );

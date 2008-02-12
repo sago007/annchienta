@@ -80,8 +80,10 @@ class SceneManager:
     #  \param text The text to be displayed.
     def text( self, text ):
         self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
+        self.videoManager.setClippingRectangle( 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 2*self.margin, 110-self.margin )
         self.videoManager.setColor( 255, 255, 255, 255 )
         self.renderTextInArea( text, 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 2*self.margin, self.defaultFont )
+        self.videoManager.disableClipping()
 
 
 ## \brief Init the SceneManager global instance.

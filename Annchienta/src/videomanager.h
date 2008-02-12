@@ -52,6 +52,11 @@ namespace Annchienta
             void setColor( int red=0xff, int green=0xff, int blue=0xff, int alpha=0xff ) const;
             void setAlpha( int alpha=0xff ) const;
 
+            /** Sets clipping rectangle.
+             */
+            void setClippingRectangle( int x1, int y1, int x2, int y2 ) const;
+            void disableClipping() const;
+
             /** Drawing functions.
              */
             void drawLine( int x1, int y1, int x2, int y2 ) const;
