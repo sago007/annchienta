@@ -10,6 +10,7 @@ using namespace io;
 #include "auxfunc.h"
 #include "personcontrol.h"
 #include "inputpersoncontrol.h"
+#include "mapmanager.h"
 
 namespace Annchienta
 {
@@ -80,7 +81,19 @@ namespace Annchienta
         setCollidingTiles();
         setZFromCollidingTiles();
 
-        if( oldPosition.z + 16 < position.z )
+        bool possible = true;
+
+        /* Reject if the player ascents too high.
+         */
+        if( oldPosition.z + getMapManager()->getMaxAscentHeight() < position.z )
+            possible = false;
+
+        /* Reject if the player descents too deep.
+         */
+        if( possible && (oldPosition.z - getMapManager()->getMaxDescentHeight() > position.z ) )
+            possible = false;
+
+        if( !possible )
         {
             position = oldPosition;
             mapPosition = position.to( MapPoint );

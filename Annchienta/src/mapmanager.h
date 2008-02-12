@@ -19,6 +19,8 @@ namespace Annchienta
             Map *currentMap;
             StaticObject *cameraTarget;
 
+            int maxAscentHeight, maxDescentHeight;
+
         public:
             #ifndef SWIG
                 MapManager();
@@ -41,6 +43,11 @@ namespace Annchienta
 
             void setCurrentMap( Map *map );
             Map *getCurrentMap() const;
+
+            void setMaxAscentHeight( int maxAscentHeight );
+            int getMaxAscentHeight() const;
+            void setMaxDescentHeight( int maxDescentHeight );
+            int getMaxDescentHeight() const;
 
             /* This function should basically run the game.
              */

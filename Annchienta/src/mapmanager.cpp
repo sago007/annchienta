@@ -26,7 +26,7 @@ namespace Annchienta
         return interval;
     }
 
-    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0), updatesPerSecond(60), currentMap(0), cameraTarget(0)
+    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0), updatesPerSecond(60), currentMap(0), cameraTarget(0), maxAscentHeight(16), maxDescentHeight(32)
     {
         /* Set reference to single-instance class.
          */
@@ -99,6 +99,26 @@ namespace Annchienta
         return currentMap;
     }
 
+    void MapManager::setMaxAscentHeight( int _maxAscentHeight )
+    {
+        maxAscentHeight = _maxAscentHeight;
+    }
+
+    int MapManager::getMaxAscentHeight() const
+    {
+        return maxAscentHeight;
+    }
+
+    void MapManager::setMaxDescentHeight( int _maxDescentHeight )
+    {
+        maxDescentHeight = _maxDescentHeight;
+    }
+
+    int MapManager::getMaxDescentHeight() const
+    {
+        return maxDescentHeight;
+    }
+
     void MapManager::run()
     {
         InputManager *inputManager = getInputManager();
@@ -136,7 +156,8 @@ namespace Annchienta
 
     void MapManager::update()
     {
-        currentMap->update();
+        if( currentMap )
+            currentMap->update();
 
         if( cameraTarget )
         {

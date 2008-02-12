@@ -239,6 +239,29 @@ namespace Annchienta
         glEnd();
     }
 
+    void VideoManager::drawPattern( Surface *surface, int x1, int y1, int x2, int y2 ) const
+    {
+        int x, y;
+
+        for( y = y1; y+surface->getHeight()<=y2; y+=surface->getHeight() )
+        {
+            for( x = x1; x+surface->getWidth()<=x2; x+=surface->getWidth() )
+                drawSurface( surface, x, y );
+
+            if( x != x2 )
+                drawSurface( surface, x, y, 0, 0, x2-x, surface->getHeight() );
+        }
+
+        if( y != y2 )
+        {
+            for( x = x1; x+surface->getWidth()<=x2; x+=surface->getWidth() )
+                drawSurface( surface, x, y, 0, 0, surface->getWidth(), y2-y );
+
+            if( x != x2 )
+                drawSurface( surface, x, y, 0, 0, x2-x, y2-y );
+        }
+    }
+
     void VideoManager::drawString( Font *font, const char *str, int x, int y ) const
     {
         font->draw( str, x, y );
