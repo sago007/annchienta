@@ -21,10 +21,11 @@ audioMgr.playMusic( "maps/drum_intro.ogg" )
 
 initSceneManager()
 sceneMgr = getSceneManager()
+sceneMgr.defaultFont = annchienta.Font("editor/font.ttf", 20)
 
-while inputMgr.running():
-    #mapMgr.renderFrame()
-    sceneMgr.text( "Lorem ipsum dolor sit amet!\nConsectetuer adipiscing elit. Phasellus purus nisl, laoreet id, ornare nec, bibendum at, velit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit." )
-    inputMgr.update()
-    videoMgr.flip()
-#mapMgr.run()
+#while inputMgr.running():
+    ##mapMgr.renderFrame()
+    #sceneMgr.text( "Lorem ipsum dolor sit amet!\nConsectetuer adipiscing elit. Phasellus purus nisl, laoreet id, ornare nec, bibendum at, velit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit." )
+    #inputMgr.update()
+    #videoMgr.flip()
+mapMgr.run()

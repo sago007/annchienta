@@ -25,6 +25,53 @@ bool DepthSortPredicate( Annchienta::Tile* tilep1, Annchienta::Tile* tilep2 )
 namespace Annchienta
 {
 
+    void StaticObject::setCollidingTiles()
+    {
+        collidingTiles.clear();
+
+        Point pos = this->getMaskPosition(), point;
+
+        /* First we need to collect all colliding tiles.
+            */
+        for( int ty=0; ty<layer->getHeight(); ty++ )
+        {
+            for( int tx=0; tx<layer->getWidth(); tx++ )
+            {
+                Tile *tile = *layer->getTilePointer( tx, ty );
+                point = tile->getMaskPosition();
+                if( mask->collision( pos.x, pos.y, layer->getTileSet()->getMask(), point.x, point.y ) )
+                    collidingTiles.push_back( tile );
+
+                if( tile->hasPoint(position) )
+                {
+                    //printf("Standing on ( %d, %d )\n", tx, ty );
+                    tileStandingOn = tile;
+                }
+            }
+
+        }
+    }
+
+    void StaticObject::setZFromCollidingTiles()
+    {
+        /* Now, we set out Z to the highest one of the colliding tiles.
+            */
+        position.z = 0;
+        for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
+        {
+            //if( tileStandingOn )
+            //{
+            for( int p=0; p<4; p++ )
+            {
+                if( (*i)->getZ(p) > position.z )
+                {
+                    position.z = (*i)->getZ(p);
+                }
+            }
+            //}
+        }
+    }
+
     StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), needsUpdate(true)
     {
         IrrXMLReader *xml = createIrrXMLReader( configfile );
@@ -97,50 +144,13 @@ namespace Annchienta
 
         if( needsUpdate && layer )
         {
-            collidingTiles.clear();
-
-            Point pos = this->getMaskPosition(), point;
-
-            /* First we need to collect all colliding tiles.
-             */
-            for( int ty=0; ty<layer->getHeight(); ty++ )
-            {
-                for( int tx=0; tx<layer->getWidth(); tx++ )
-                {
-                    Tile *tile = *layer->getTilePointer( tx, ty );
-                    point = tile->getMaskPosition();
-                    if( mask->collision( pos.x, pos.y, layer->getTileSet()->getMask(), point.x, point.y ) )
-                        collidingTiles.push_back( tile );
-
-                    if( tile->hasPoint(position) )
-                    {
-                        //printf("Standing on ( %d, %d )\n", tx, ty );
-                        tileStandingOn = tile;
-                    }
-                }
-
-            }
+            setCollidingTiles();
 
             /* Do a depthsort on them.
              */
             collidingTiles.sort( DepthSortPredicate );
 
-            /* Now, we set out Z to the highest one of the colliding tiles.
-             */
-            position.z = 0;
-            for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
-            {
-                //if( tileStandingOn )
-                //{
-                for( int p=0; p<4; p++ )
-                {
-                    if( (*i)->getZ(p) > position.z )
-                    {
-                        position.z = (*i)->getZ(p);
-                    }
-                }
-                //}
-            }
+            setZFromCollidingTiles();
 
             needsUpdate = false;
         }

@@ -23,7 +23,7 @@ namespace Annchienta
 
             virtual void update();
 
-            virtual void move( int x, int y, bool force=false );
+            virtual bool move( int x, int y, bool force=false );
             //virtual void stepTo( int x, int y );
     };
 

@@ -59,6 +59,9 @@ namespace Annchienta
 
             bool needsUpdate;
 
+            void setCollidingTiles();
+            void setZFromCollidingTiles();
+
         public:
             StaticObject( const char *name, const char *configfile );
             virtual ~StaticObject();

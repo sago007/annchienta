@@ -64,12 +64,31 @@ namespace Annchienta
         StaticObject::update();
     }
 
-    void Person::move( int x, int y, bool force )
+    bool Person::move( int x, int y, bool force )
     {
+        Point oldPosition = position;
+
         position.x += x;
         position.y += y;
+        mapPosition = position.to( MapPoint );
 
-        
+        if( force || !layer )
+            return true;
+
+        std::list<Tile*> oldCollidingTiles = collidingTiles;
+
+        setCollidingTiles();
+        setZFromCollidingTiles();
+
+        if( oldPosition.z + 16 < position.z )
+        {
+            position = oldPosition;
+            mapPosition = position.to( MapPoint );
+            collidingTiles = oldCollidingTiles;
+            return false;
+        }
+
+        return true;
     }
 
 };
