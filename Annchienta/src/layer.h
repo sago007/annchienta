@@ -14,6 +14,7 @@ namespace Annchienta
     class Entity;
     struct LayerInfo;
     class TileSet;
+    class StaticObject;
 
     #ifndef SWIG
         struct LayerInfo
@@ -42,6 +43,7 @@ namespace Annchienta
              * layer. This even includes tiles.
              */
             std::vector<Entity*> entities;
+            std::vector<StaticObject*> staticObjects;
 
             TileSet *tileSet;
 
@@ -66,6 +68,7 @@ namespace Annchienta
                 int getHeight() const;
                 void setTileSet( TileSet *tileSet );
                 TileSet *getTileSet() const;
+                StaticObject *getStaticObject( int num );
             #endif
     };
 };

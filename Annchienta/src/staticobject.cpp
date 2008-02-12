@@ -124,8 +124,11 @@ namespace Annchienta
 
     StaticObject::~StaticObject()
     {
-        getCacheManager()->deleteSurface( sprite );
-        getCacheManager()->deleteMask( mask );
+    }
+
+    EntityType StaticObject::getEntityType() const
+    {
+        return StaticObjectEntity;
     }
 
     void StaticObject::update()
@@ -231,6 +234,11 @@ namespace Annchienta
         return Point( MapPoint, mapPosition.x - (mask->getWidth()>>1), mapPosition.y - mask->getHeight(), mapPosition.z );
     }
 
+    Mask *StaticObject::getMask() const
+    {
+        return mask;
+    }
+
     void StaticObject::setAnimation( const char *aname )
     {
         for( unsigned int i=0; i<animations.size(); i++ )
@@ -238,7 +246,7 @@ namespace Annchienta
             if( !strcmpCaseInsensitive( aname, animations[i].name ) )
             {
                 currentAnimation = i;
-                currentFrame = speedTimer = 0;
+                currentFrame %= animations[i].numberOfFrames;
                 return;
             }
         }

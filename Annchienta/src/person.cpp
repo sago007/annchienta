@@ -11,6 +11,8 @@ using namespace io;
 #include "personcontrol.h"
 #include "inputpersoncontrol.h"
 #include "mapmanager.h"
+#include "layer.h"
+#include "mask.h"
 
 namespace Annchienta
 {
@@ -45,6 +47,11 @@ namespace Annchienta
     Person::~Person()
     {
         delete control;
+    }
+
+    EntityType Person::getEntityType() const
+    {
+        return PersonEntity;
     }
 
     void Person::update()
@@ -83,15 +90,29 @@ namespace Annchienta
 
         bool possible = true;
 
-        /* Reject if the player ascents too high.
+        /* Reject if the person ascents too high.
          */
         if( oldPosition.z + getMapManager()->getMaxAscentHeight() < position.z )
             possible = false;
 
-        /* Reject if the player descents too deep.
+        /* Reject if the person descents too deep.
          */
         if( possible && (oldPosition.z - getMapManager()->getMaxDescentHeight() > position.z ) )
             possible = false;
+
+        /* Reject if the person collides with something else.
+         */
+        Point maskPosition = this->getMaskPosition();
+        for( int i=0; possible && layer->getStaticObject(i); i++ )
+        {
+            StaticObject *so = layer->getStaticObject(i);
+            if( (StaticObject*) this != so )
+            {
+                Point otherMaskPosition( so->getMaskPosition() );
+                if( mask->collision( maskPosition.x, maskPosition.y, so->getMask(), otherMaskPosition.x, otherMaskPosition.y ) )
+                    possible = false;
+            }
+        }
 
         if( !possible )
         {

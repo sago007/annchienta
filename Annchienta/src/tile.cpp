@@ -191,6 +191,11 @@ namespace Annchienta
         glDeleteLists( list, 1 );
     }
 
+    EntityType Tile::getEntityType() const
+    {
+        return TileEntity;
+    }
+
     void Tile::update()
     {
     }

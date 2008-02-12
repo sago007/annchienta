@@ -66,6 +66,8 @@ namespace Annchienta
             StaticObject( const char *name, const char *configfile );
             virtual ~StaticObject();
 
+            virtual EntityType getEntityType() const;
+
             virtual void update();
             virtual void draw();
             virtual int getDepthSortY();
@@ -73,6 +75,7 @@ namespace Annchienta
             virtual void setPosition( Point );
             virtual Point getPosition() const;
             virtual Point getMaskPosition() const;
+            virtual Mask *getMask() const;
 
             virtual void setAnimation( const char *animationName );
     };

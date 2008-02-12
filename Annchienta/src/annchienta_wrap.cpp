@@ -2590,6 +2590,7 @@ namespace swig {
 #include "layer.h"
 #include "map.h"
 #include "point.h"
+#include "entity.h"
 #include "tile.h"
 #include "tileset.h"
 #include "mask.h"
@@ -2858,6 +2859,30 @@ SWIGINTERNINLINE PyObject*
   SWIG_From_bool  (bool value)
 {
   return PyBool_FromLong(value ? 1 : 0);
+}
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_FromCharPtrAndSize(const char* carray, size_t size)
+{
+  if (carray) {
+    if (size > INT_MAX) {
+      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+      return pchar_descriptor ? 
+	SWIG_NewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
+    } else {
+      return PyString_FromStringAndSize(carray, static_cast< int >(size));
+    }
+  } else {
+    return SWIG_Py_Void();
+  }
+}
+
+
+SWIGINTERNINLINE PyObject * 
+SWIG_FromCharPtr(const char *cptr)
+{ 
+  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
 }
 
 #ifdef __cplusplus
@@ -5932,36 +5957,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_CacheManager_deleteSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
-  Annchienta::Surface *arg2 = (Annchienta::Surface *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:CacheManager_deleteSurface",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__CacheManager, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CacheManager_deleteSurface" "', argument " "1"" of type '" "Annchienta::CacheManager *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::CacheManager * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "CacheManager_deleteSurface" "', argument " "2"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg2 = reinterpret_cast< Annchienta::Surface * >(argp2);
-  (arg1)->deleteSurface(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_CacheManager_getMask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
@@ -5992,36 +5987,6 @@ SWIGINTERN PyObject *_wrap_CacheManager_getMask(PyObject *SWIGUNUSEDPARM(self), 
   return resultobj;
 fail:
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_CacheManager_deleteMask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
-  Annchienta::Mask *arg2 = (Annchienta::Mask *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:CacheManager_deleteMask",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__CacheManager, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CacheManager_deleteMask" "', argument " "1"" of type '" "Annchienta::CacheManager *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::CacheManager * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "CacheManager_deleteMask" "', argument " "2"" of type '" "Annchienta::Mask *""'"); 
-  }
-  arg2 = reinterpret_cast< Annchienta::Mask * >(argp2);
-  (arg1)->deleteMask(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
   return NULL;
 }
 
@@ -7670,350 +7635,301 @@ SWIGINTERN PyObject *Point_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_new_Tile__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_delete_Entity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Point arg1 ;
-  Annchienta::Surface *arg2 = (Annchienta::Surface *) 0 ;
-  Annchienta::Point arg3 ;
-  Annchienta::Surface *arg4 = (Annchienta::Surface *) 0 ;
-  Annchienta::Point arg5 ;
-  Annchienta::Surface *arg6 = (Annchienta::Surface *) 0 ;
-  Annchienta::Point arg7 ;
-  Annchienta::Surface *arg8 = (Annchienta::Surface *) 0 ;
-  Annchienta::Surface *arg9 = (Annchienta::Surface *) 0 ;
-  Annchienta::Tile *result = 0 ;
-  void *argp1 ;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  void *argp5 ;
-  int res5 = 0 ;
-  void *argp6 = 0 ;
-  int res6 = 0 ;
-  void *argp7 ;
-  int res7 = 0 ;
-  void *argp8 = 0 ;
-  int res8 = 0 ;
-  void *argp9 = 0 ;
-  int res9 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
-  PyObject * obj8 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOOO:new_Tile",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7,&obj8)) SWIG_fail;
-  {
-    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_Annchienta__Point,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Tile" "', argument " "1"" of type '" "Annchienta::Point""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Tile" "', argument " "1"" of type '" "Annchienta::Point""'");
-    } else {
-      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
-    }
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_Entity",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Entity" "', argument " "1"" of type '" "Annchienta::Entity *""'"); 
   }
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Tile" "', argument " "2"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg2 = reinterpret_cast< Annchienta::Surface * >(argp2);
-  {
-    res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_Annchienta__Point,  0  | 0);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "new_Tile" "', argument " "3"" of type '" "Annchienta::Point""'"); 
-    }  
-    if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Tile" "', argument " "3"" of type '" "Annchienta::Point""'");
-    } else {
-      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp3);
-      arg3 = *temp;
-      if (SWIG_IsNewObj(res3)) delete temp;
-    }
-  }
-  res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "new_Tile" "', argument " "4"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg4 = reinterpret_cast< Annchienta::Surface * >(argp4);
-  {
-    res5 = SWIG_ConvertPtr(obj4, &argp5, SWIGTYPE_p_Annchienta__Point,  0  | 0);
-    if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "new_Tile" "', argument " "5"" of type '" "Annchienta::Point""'"); 
-    }  
-    if (!argp5) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Tile" "', argument " "5"" of type '" "Annchienta::Point""'");
-    } else {
-      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp5);
-      arg5 = *temp;
-      if (SWIG_IsNewObj(res5)) delete temp;
-    }
-  }
-  res6 = SWIG_ConvertPtr(obj5, &argp6,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res6)) {
-    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "new_Tile" "', argument " "6"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg6 = reinterpret_cast< Annchienta::Surface * >(argp6);
-  {
-    res7 = SWIG_ConvertPtr(obj6, &argp7, SWIGTYPE_p_Annchienta__Point,  0  | 0);
-    if (!SWIG_IsOK(res7)) {
-      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Tile" "', argument " "7"" of type '" "Annchienta::Point""'"); 
-    }  
-    if (!argp7) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Tile" "', argument " "7"" of type '" "Annchienta::Point""'");
-    } else {
-      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp7);
-      arg7 = *temp;
-      if (SWIG_IsNewObj(res7)) delete temp;
-    }
-  }
-  res8 = SWIG_ConvertPtr(obj7, &argp8,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res8)) {
-    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "new_Tile" "', argument " "8"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg8 = reinterpret_cast< Annchienta::Surface * >(argp8);
-  res9 = SWIG_ConvertPtr(obj8, &argp9,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res9)) {
-    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "new_Tile" "', argument " "9"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg9 = reinterpret_cast< Annchienta::Surface * >(argp9);
-  result = (Annchienta::Tile *)new Annchienta::Tile(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Tile, SWIG_POINTER_NEW |  0 );
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  delete arg1;
+  
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_new_Tile__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Entity_getEntityType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Point arg1 ;
-  Annchienta::Surface *arg2 = (Annchienta::Surface *) 0 ;
-  Annchienta::Point arg3 ;
-  Annchienta::Surface *arg4 = (Annchienta::Surface *) 0 ;
-  Annchienta::Point arg5 ;
-  Annchienta::Surface *arg6 = (Annchienta::Surface *) 0 ;
-  Annchienta::Point arg7 ;
-  Annchienta::Surface *arg8 = (Annchienta::Surface *) 0 ;
-  Annchienta::Tile *result = 0 ;
-  void *argp1 ;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  Annchienta::EntityType result;
+  void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  void *argp3 ;
-  int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  void *argp5 ;
-  int res5 = 0 ;
-  void *argp6 = 0 ;
-  int res6 = 0 ;
-  void *argp7 ;
-  int res7 = 0 ;
-  void *argp8 = 0 ;
-  int res8 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOO:new_Tile",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7)) SWIG_fail;
-  {
-    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_Annchienta__Point,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Tile" "', argument " "1"" of type '" "Annchienta::Point""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Tile" "', argument " "1"" of type '" "Annchienta::Point""'");
-    } else {
-      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
-    }
+  if (!PyArg_ParseTuple(args,(char *)"O:Entity_getEntityType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_getEntityType" "', argument " "1"" of type '" "Annchienta::Entity const *""'"); 
   }
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Tile" "', argument " "2"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg2 = reinterpret_cast< Annchienta::Surface * >(argp2);
-  {
-    res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_Annchienta__Point,  0  | 0);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "new_Tile" "', argument " "3"" of type '" "Annchienta::Point""'"); 
-    }  
-    if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Tile" "', argument " "3"" of type '" "Annchienta::Point""'");
-    } else {
-      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp3);
-      arg3 = *temp;
-      if (SWIG_IsNewObj(res3)) delete temp;
-    }
-  }
-  res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "new_Tile" "', argument " "4"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg4 = reinterpret_cast< Annchienta::Surface * >(argp4);
-  {
-    res5 = SWIG_ConvertPtr(obj4, &argp5, SWIGTYPE_p_Annchienta__Point,  0  | 0);
-    if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "new_Tile" "', argument " "5"" of type '" "Annchienta::Point""'"); 
-    }  
-    if (!argp5) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Tile" "', argument " "5"" of type '" "Annchienta::Point""'");
-    } else {
-      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp5);
-      arg5 = *temp;
-      if (SWIG_IsNewObj(res5)) delete temp;
-    }
-  }
-  res6 = SWIG_ConvertPtr(obj5, &argp6,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res6)) {
-    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "new_Tile" "', argument " "6"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg6 = reinterpret_cast< Annchienta::Surface * >(argp6);
-  {
-    res7 = SWIG_ConvertPtr(obj6, &argp7, SWIGTYPE_p_Annchienta__Point,  0  | 0);
-    if (!SWIG_IsOK(res7)) {
-      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "new_Tile" "', argument " "7"" of type '" "Annchienta::Point""'"); 
-    }  
-    if (!argp7) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Tile" "', argument " "7"" of type '" "Annchienta::Point""'");
-    } else {
-      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp7);
-      arg7 = *temp;
-      if (SWIG_IsNewObj(res7)) delete temp;
-    }
-  }
-  res8 = SWIG_ConvertPtr(obj7, &argp8,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res8)) {
-    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "new_Tile" "', argument " "8"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg8 = reinterpret_cast< Annchienta::Surface * >(argp8);
-  result = (Annchienta::Tile *)new Annchienta::Tile(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Tile, SWIG_POINTER_NEW |  0 );
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  result = (Annchienta::EntityType)((Annchienta::Entity const *)arg1)->getEntityType();
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_new_Tile(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[10];
-  int ii;
+SWIGINTERN PyObject *_wrap_Entity_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
   
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 9); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  if (!PyArg_ParseTuple(args,(char *)"O:Entity_draw",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_draw" "', argument " "1"" of type '" "Annchienta::Entity *""'"); 
   }
-  if (argc == 8) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_Annchienta__Point, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Annchienta__Surface, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_Annchienta__Point, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          void *vptr = 0;
-          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_Annchienta__Surface, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            int res = SWIG_ConvertPtr(argv[4], 0, SWIGTYPE_p_Annchienta__Point, 0);
-            _v = SWIG_CheckState(res);
-            if (_v) {
-              void *vptr = 0;
-              int res = SWIG_ConvertPtr(argv[5], &vptr, SWIGTYPE_p_Annchienta__Surface, 0);
-              _v = SWIG_CheckState(res);
-              if (_v) {
-                int res = SWIG_ConvertPtr(argv[6], 0, SWIGTYPE_p_Annchienta__Point, 0);
-                _v = SWIG_CheckState(res);
-                if (_v) {
-                  void *vptr = 0;
-                  int res = SWIG_ConvertPtr(argv[7], &vptr, SWIGTYPE_p_Annchienta__Surface, 0);
-                  _v = SWIG_CheckState(res);
-                  if (_v) {
-                    return _wrap_new_Tile__SWIG_1(self, args);
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 9) {
-    int _v;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_Annchienta__Point, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Annchienta__Surface, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_Annchienta__Point, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          void *vptr = 0;
-          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_Annchienta__Surface, 0);
-          _v = SWIG_CheckState(res);
-          if (_v) {
-            int res = SWIG_ConvertPtr(argv[4], 0, SWIGTYPE_p_Annchienta__Point, 0);
-            _v = SWIG_CheckState(res);
-            if (_v) {
-              void *vptr = 0;
-              int res = SWIG_ConvertPtr(argv[5], &vptr, SWIGTYPE_p_Annchienta__Surface, 0);
-              _v = SWIG_CheckState(res);
-              if (_v) {
-                int res = SWIG_ConvertPtr(argv[6], 0, SWIGTYPE_p_Annchienta__Point, 0);
-                _v = SWIG_CheckState(res);
-                if (_v) {
-                  void *vptr = 0;
-                  int res = SWIG_ConvertPtr(argv[7], &vptr, SWIGTYPE_p_Annchienta__Surface, 0);
-                  _v = SWIG_CheckState(res);
-                  if (_v) {
-                    void *vptr = 0;
-                    int res = SWIG_ConvertPtr(argv[8], &vptr, SWIGTYPE_p_Annchienta__Surface, 0);
-                    _v = SWIG_CheckState(res);
-                    if (_v) {
-                      return _wrap_new_Tile__SWIG_0(self, args);
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  (arg1)->draw();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Tile'.\n  Possible C/C++ prototypes are:\n    Annchienta::Tile(Annchienta::Point,Annchienta::Surface *,Annchienta::Point,Annchienta::Surface *,Annchienta::Point,Annchienta::Surface *,Annchienta::Point,Annchienta::Surface *,Annchienta::Surface *)\n    Annchienta::Tile(Annchienta::Point,Annchienta::Surface *,Annchienta::Point,Annchienta::Surface *,Annchienta::Point,Annchienta::Surface *,Annchienta::Point,Annchienta::Surface *)\n");
   return NULL;
 }
 
+
+SWIGINTERN PyObject *_wrap_Entity_update(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Entity_update",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_update" "', argument " "1"" of type '" "Annchienta::Entity *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  (arg1)->update();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Entity_getDepthSortY(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Entity_getDepthSortY",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_getDepthSortY" "', argument " "1"" of type '" "Annchienta::Entity *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  result = (int)(arg1)->getDepthSortY();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Entity_getMaskPosition(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  Annchienta::Point result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Entity_getMaskPosition",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_getMaskPosition" "', argument " "1"" of type '" "Annchienta::Entity const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  result = ((Annchienta::Entity const *)arg1)->getMaskPosition();
+  resultobj = SWIG_NewPointerObj((new Annchienta::Point(static_cast< const Annchienta::Point& >(result))), SWIGTYPE_p_Annchienta__Point, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Entity_setDrawn(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Entity_setDrawn",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_setDrawn" "', argument " "1"" of type '" "Annchienta::Entity *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Entity_setDrawn" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  (arg1)->setDrawn(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Entity_isDrawn(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Entity_isDrawn",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_isDrawn" "', argument " "1"" of type '" "Annchienta::Entity const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  result = (bool)((Annchienta::Entity const *)arg1)->isDrawn();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Entity_setName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Entity_setName",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_setName" "', argument " "1"" of type '" "Annchienta::Entity *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Entity_setName" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  (arg1)->setName((char const *)arg2);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Entity_getName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  char *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Entity_getName",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_getName" "', argument " "1"" of type '" "Annchienta::Entity const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  result = (char *)((Annchienta::Entity const *)arg1)->getName();
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Entity_setLayer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  Annchienta::Layer *arg2 = (Annchienta::Layer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Entity_setLayer",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_setLayer" "', argument " "1"" of type '" "Annchienta::Entity *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Entity_setLayer" "', argument " "2"" of type '" "Annchienta::Layer *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Layer * >(argp2);
+  (arg1)->setLayer(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Entity_getLayer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  Annchienta::Layer *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Entity_getLayer",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_getLayer" "', argument " "1"" of type '" "Annchienta::Entity const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  result = (Annchienta::Layer *)((Annchienta::Entity const *)arg1)->getLayer();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Entity_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__Entity, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
 
 SWIGINTERN PyObject *_wrap_delete_Tile(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
@@ -8031,6 +7947,28 @@ SWIGINTERN PyObject *_wrap_delete_Tile(PyObject *SWIGUNUSEDPARM(self), PyObject 
   delete arg1;
   
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tile_getEntityType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  Annchienta::EntityType result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_getEntityType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_getEntityType" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  result = (Annchienta::EntityType)((Annchienta::Tile const *)arg1)->getEntityType();
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -8529,9 +8467,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"AudioManager_swigregister", AudioManager_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getAudioManager", _wrap_getAudioManager, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_getSurface", _wrap_CacheManager_getSurface, METH_VARARGS, NULL},
-	 { (char *)"CacheManager_deleteSurface", _wrap_CacheManager_deleteSurface, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_getMask", _wrap_CacheManager_getMask, METH_VARARGS, NULL},
-	 { (char *)"CacheManager_deleteMask", _wrap_CacheManager_deleteMask, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_clear", _wrap_CacheManager_clear, METH_VARARGS, NULL},
 	 { (char *)"new_CacheManager", _wrap_new_CacheManager, METH_VARARGS, NULL},
 	 { (char *)"delete_CacheManager", _wrap_delete_CacheManager, METH_VARARGS, NULL},
@@ -8580,8 +8516,21 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Point_convert", _wrap_Point_convert, METH_VARARGS, NULL},
 	 { (char *)"Point_to", _wrap_Point_to, METH_VARARGS, NULL},
 	 { (char *)"Point_swigregister", Point_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_Tile", _wrap_new_Tile, METH_VARARGS, NULL},
+	 { (char *)"delete_Entity", _wrap_delete_Entity, METH_VARARGS, NULL},
+	 { (char *)"Entity_getEntityType", _wrap_Entity_getEntityType, METH_VARARGS, NULL},
+	 { (char *)"Entity_draw", _wrap_Entity_draw, METH_VARARGS, NULL},
+	 { (char *)"Entity_update", _wrap_Entity_update, METH_VARARGS, NULL},
+	 { (char *)"Entity_getDepthSortY", _wrap_Entity_getDepthSortY, METH_VARARGS, NULL},
+	 { (char *)"Entity_getMaskPosition", _wrap_Entity_getMaskPosition, METH_VARARGS, NULL},
+	 { (char *)"Entity_setDrawn", _wrap_Entity_setDrawn, METH_VARARGS, NULL},
+	 { (char *)"Entity_isDrawn", _wrap_Entity_isDrawn, METH_VARARGS, NULL},
+	 { (char *)"Entity_setName", _wrap_Entity_setName, METH_VARARGS, NULL},
+	 { (char *)"Entity_getName", _wrap_Entity_getName, METH_VARARGS, NULL},
+	 { (char *)"Entity_setLayer", _wrap_Entity_setLayer, METH_VARARGS, NULL},
+	 { (char *)"Entity_getLayer", _wrap_Entity_getLayer, METH_VARARGS, NULL},
+	 { (char *)"Entity_swigregister", Entity_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_Tile", _wrap_delete_Tile, METH_VARARGS, NULL},
+	 { (char *)"Tile_getEntityType", _wrap_Tile_getEntityType, METH_VARARGS, NULL},
 	 { (char *)"Tile_update", _wrap_Tile_update, METH_VARARGS, NULL},
 	 { (char *)"Tile_draw", _wrap_Tile_draw, METH_VARARGS, NULL},
 	 { (char *)"Tile_getDepthSortY", _wrap_Tile_getDepthSortY, METH_VARARGS, NULL},
@@ -8605,6 +8554,9 @@ static PyMethodDef SwigMethods[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_Annchienta__TileTo_p_Annchienta__Entity(void *x) {
+    return (void *)((Annchienta::Entity *)  ((Annchienta::Tile *) x));
+}
 static swig_type_info _swigt__p_Annchienta__AudioManager = {"_p_Annchienta__AudioManager", "Annchienta::AudioManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__CacheManager = {"_p_Annchienta__CacheManager", "Annchienta::CacheManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Engine = {"_p_Annchienta__Engine", "Annchienta::Engine *", 0, 0, (void*)0, 0};
@@ -8656,7 +8608,7 @@ static swig_type_info *swig_type_initial[] = {
 static swig_cast_info _swigc__p_Annchienta__AudioManager[] = {  {&_swigt__p_Annchienta__AudioManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__CacheManager[] = {  {&_swigt__p_Annchienta__CacheManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Engine[] = {  {&_swigt__p_Annchienta__Engine, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Annchienta__Entity[] = {  {&_swigt__p_Annchienta__Entity, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__Entity[] = {  {&_swigt__p_Annchienta__Tile, _p_Annchienta__TileTo_p_Annchienta__Entity, 0, 0},  {&_swigt__p_Annchienta__Entity, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__Font, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__InputManager[] = {  {&_swigt__p_Annchienta__InputManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Layer[] = {  {&_swigt__p_Annchienta__Layer, 0, 0, 0},{0, 0, 0, 0}};
@@ -9223,6 +9175,9 @@ SWIGEXPORT void SWIG_init(void) {
   SWIG_Python_SetConstant(d, "IsometricPoint",SWIG_From_int(static_cast< int >(Annchienta::IsometricPoint)));
   SWIG_Python_SetConstant(d, "MapPoint",SWIG_From_int(static_cast< int >(Annchienta::MapPoint)));
   SWIG_Python_SetConstant(d, "ScreenPoint",SWIG_From_int(static_cast< int >(Annchienta::ScreenPoint)));
+  SWIG_Python_SetConstant(d, "TileEntity",SWIG_From_int(static_cast< int >(Annchienta::TileEntity)));
+  SWIG_Python_SetConstant(d, "StaticObjectEntity",SWIG_From_int(static_cast< int >(Annchienta::StaticObjectEntity)));
+  SWIG_Python_SetConstant(d, "PersonEntity",SWIG_From_int(static_cast< int >(Annchienta::PersonEntity)));
   SWIG_Python_SetConstant(d, "SDLK_UNKNOWN",SWIG_From_int(static_cast< int >(SDLK_UNKNOWN)));
   SWIG_Python_SetConstant(d, "SDLK_FIRST",SWIG_From_int(static_cast< int >(SDLK_FIRST)));
   SWIG_Python_SetConstant(d, "SDLK_BACKSPACE",SWIG_From_int(static_cast< int >(SDLK_BACKSPACE)));

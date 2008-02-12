@@ -192,9 +192,7 @@ class CacheManager(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, CacheManager, name)
     __repr__ = _swig_repr
     def getSurface(*args): return _annchienta.CacheManager_getSurface(*args)
-    def deleteSurface(*args): return _annchienta.CacheManager_deleteSurface(*args)
     def getMask(*args): return _annchienta.CacheManager_getMask(*args)
-    def deleteMask(*args): return _annchienta.CacheManager_deleteMask(*args)
     def clear(*args): return _annchienta.CacheManager_clear(*args)
     def __init__(self, *args): 
         this = _annchienta.new_CacheManager(*args)
@@ -328,18 +326,44 @@ class Point(_object):
 Point_swigregister = _annchienta.Point_swigregister
 Point_swigregister(Point)
 
-class Tile(_object):
+TileEntity = _annchienta.TileEntity
+StaticObjectEntity = _annchienta.StaticObjectEntity
+PersonEntity = _annchienta.PersonEntity
+class Entity(_object):
     __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Entity, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Entity, name)
+    def __init__(self): raise AttributeError, "No constructor defined"
+    __repr__ = _swig_repr
+    __swig_destroy__ = _annchienta.delete_Entity
+    __del__ = lambda self : None;
+    def getEntityType(*args): return _annchienta.Entity_getEntityType(*args)
+    def draw(*args): return _annchienta.Entity_draw(*args)
+    def update(*args): return _annchienta.Entity_update(*args)
+    def getDepthSortY(*args): return _annchienta.Entity_getDepthSortY(*args)
+    def getMaskPosition(*args): return _annchienta.Entity_getMaskPosition(*args)
+    def setDrawn(*args): return _annchienta.Entity_setDrawn(*args)
+    def isDrawn(*args): return _annchienta.Entity_isDrawn(*args)
+    def setName(*args): return _annchienta.Entity_setName(*args)
+    def getName(*args): return _annchienta.Entity_getName(*args)
+    def setLayer(*args): return _annchienta.Entity_setLayer(*args)
+    def getLayer(*args): return _annchienta.Entity_getLayer(*args)
+Entity_swigregister = _annchienta.Entity_swigregister
+Entity_swigregister(Entity)
+
+class Tile(Entity):
+    __swig_setmethods__ = {}
+    for _s in [Entity]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
     __setattr__ = lambda self, name, value: _swig_setattr(self, Tile, name, value)
     __swig_getmethods__ = {}
+    for _s in [Entity]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
     __getattr__ = lambda self, name: _swig_getattr(self, Tile, name)
+    def __init__(self): raise AttributeError, "No constructor defined"
     __repr__ = _swig_repr
-    def __init__(self, *args): 
-        this = _annchienta.new_Tile(*args)
-        try: self.this.append(this)
-        except: self.this = this
     __swig_destroy__ = _annchienta.delete_Tile
     __del__ = lambda self : None;
+    def getEntityType(*args): return _annchienta.Tile_getEntityType(*args)
     def update(*args): return _annchienta.Tile_update(*args)
     def draw(*args): return _annchienta.Tile_draw(*args)
     def getDepthSortY(*args): return _annchienta.Tile_getDepthSortY(*args)

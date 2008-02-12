@@ -9,6 +9,7 @@
 #include "tile.h"
 #include "videomanager.h"
 #include "tileset.h"
+#include "staticobject.h"
 
 namespace Annchienta
 {
@@ -30,10 +31,11 @@ namespace Annchienta
 
     Layer::~Layer()
     {
-        for( int i=0; i<width*height; i++ )
+        for( unsigned int i=0; i<entities.size(); i++ )
         {
-            delete tiles[i];
+            delete entities[i];
         }
+
         delete[] tiles;
     }
 
@@ -115,6 +117,9 @@ namespace Annchienta
     {
         entities.push_back( entity );
         entity->setLayer( this );
+
+        if( entity->getEntityType() == StaticObjectEntity || entity->getEntityType() == PersonEntity )
+            staticObjects.push_back( (StaticObject*) entity );
     }
 
     void Layer::makeEmpty()
@@ -165,6 +170,13 @@ namespace Annchienta
     TileSet *Layer::getTileSet() const
     {
         return tileSet;
+    }
+
+    StaticObject *Layer::getStaticObject( int num )
+    {
+        if( (unsigned int)num >= staticObjects.size() )
+            return 0;
+        return staticObjects[num];
     }
 
 };

@@ -40,7 +40,7 @@ namespace Annchienta
         return surface;
     }
 
-    void CacheManager::deleteSurface( Surface *surface )
+    /*void CacheManager::deleteSurface( Surface *surface )
     {
         for( std::list< CacheObject<Surface> >::iterator i = surfaces.begin(); i!=surfaces.end(); i++ )
         {
@@ -55,7 +55,7 @@ namespace Annchienta
                 return;
             }
         }
-    }
+    }*/
 
     Mask *CacheManager::getMask( const char *filename )
     {
@@ -73,7 +73,7 @@ namespace Annchienta
         return mask;
     }
 
-    void CacheManager::deleteMask( Mask *mask )
+    /*void CacheManager::deleteMask( Mask *mask )
     {
         for( std::list< CacheObject<Mask> >::iterator i = masks.begin(); i!=masks.end(); i++ )
         {
@@ -88,7 +88,7 @@ namespace Annchienta
                 return;
             }
         }
-    }
+    }*/
 
     void CacheManager::clear()
     {

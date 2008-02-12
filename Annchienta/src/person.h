@@ -21,6 +21,8 @@ namespace Annchienta
             Person( const char *name, const char *configfile );
             virtual ~Person();
 
+            virtual EntityType getEntityType() const;
+
             virtual void update();
 
             virtual bool move( int x, int y, bool force=false );

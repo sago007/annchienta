@@ -44,10 +44,10 @@ namespace Annchienta
             #endif
 
             Surface *getSurface( const char *filename );
-            void deleteSurface( Surface *surface );
+            //void deleteSurface( Surface *surface );
 
             Mask *getMask( const char *filename );
-            void deleteMask( Mask *mask );
+            //void deleteMask( Mask *mask );
 
             void clear();
 

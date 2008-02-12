@@ -11,6 +11,13 @@ namespace Annchienta
 {
     class Layer;
 
+    enum EntityType
+    {
+        TileEntity = 0,
+        StaticObjectEntity,
+        PersonEntity
+    };
+
     class Entity
     {
         protected:
@@ -21,6 +28,8 @@ namespace Annchienta
         public:
             Entity( const char *name="none" );
             virtual ~Entity();
+
+            virtual EntityType getEntityType() const = 0;
 
             virtual void draw() = 0;
             virtual void update() = 0;
