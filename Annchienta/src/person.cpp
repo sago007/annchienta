@@ -80,7 +80,20 @@ namespace Annchienta
         position.y += y;
         mapPosition = position.to( MapPoint );
 
-        if( force || !layer )
+        /* Adjust animation.
+         */
+        if( x<0 )
+            this->setAnimation("walknorth");
+        if( x>0 )
+            this->setAnimation("walksouth");
+        if( y<0 )
+            this->setAnimation("walkeast");
+        if( y>0 )
+            this->setAnimation("walkwest");
+        if( !x && !y )
+            this->stopAnimation();
+
+        if( force || !layer || (!x && !y) )
             return true;
 
         std::list<Tile*> oldCollidingTiles = collidingTiles;

@@ -56,6 +56,7 @@ namespace Annchienta
             Tile *tileStandingOn;
 
             int currentAnimation, currentFrame, speedTimer;
+            bool animationRunning;
 
             bool needsUpdate;
 
@@ -78,6 +79,8 @@ namespace Annchienta
             virtual Mask *getMask() const;
 
             virtual void setAnimation( const char *animationName );
+            virtual void stopAnimation();
+            virtual void startAnimation();
     };
 };
 

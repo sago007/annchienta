@@ -133,7 +133,7 @@ namespace Annchienta
 
     void StaticObject::update()
     {
-        if( currentAnimation>=0 )
+        if( animationRunning && currentAnimation>=0 )
         {
             speedTimer++;
             if( speedTimer >= animations[currentAnimation].speed )
@@ -247,12 +247,23 @@ namespace Annchienta
             {
                 currentAnimation = i;
                 currentFrame %= animations[i].numberOfFrames;
+                animationRunning = true;
                 return;
             }
         }
 
         printf( "There is no animation called %s for entity %s\n", aname, name );
         currentAnimation = -1;
+    }
+
+    void StaticObject::stopAnimation()
+    {
+        animationRunning = false;
+    }
+
+    void StaticObject::startAnimation()
+    {
+        animationRunning = true;
     }
 
 };
