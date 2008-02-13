@@ -35,4 +35,4 @@ clean:
 
 cleanall:
 	@echo "Removing binaries and python wrappers..."
-	@$(RM) bin/* $(SWIG_CPP_FILE)
+	@$(RM) $(EXECUTABLE) bin/annchienta.py bin/annchienta.pyc $(SWIG_CPP_FILE)
