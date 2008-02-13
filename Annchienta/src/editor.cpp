@@ -91,6 +91,7 @@ namespace Annchienta
 
     void Editor::draw()
     {
+        videoManager->begin();
 
         mapManager->renderFrame();
 
@@ -106,8 +107,7 @@ namespace Annchienta
         else
             videoManager->drawString( font, "Select points.", 2, 2 );
 
-        videoManager->flip();
-
+        videoManager->end();
     }
 
     void Editor::getSelectedPoints()

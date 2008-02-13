@@ -3435,20 +3435,41 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_VideoManager_flip(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_VideoManager_begin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_flip",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_begin",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_flip" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_begin" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
-  (arg1)->flip();
+  (arg1)->begin();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_VideoManager_end(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_end",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_end" "', argument " "1"" of type '" "Annchienta::VideoManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  (arg1)->end();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8403,7 +8424,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"VideoManager_scale", _wrap_VideoManager_scale, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_pushMatrix", _wrap_VideoManager_pushMatrix, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_popMatrix", _wrap_VideoManager_popMatrix, METH_VARARGS, NULL},
-	 { (char *)"VideoManager_flip", _wrap_VideoManager_flip, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_begin", _wrap_VideoManager_begin, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_end", _wrap_VideoManager_end, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_setColor", _wrap_VideoManager_setColor, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_setAlpha", _wrap_VideoManager_setAlpha, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_setClippingRectangle", _wrap_VideoManager_setClippingRectangle, METH_VARARGS, NULL},

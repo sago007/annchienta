@@ -16,6 +16,7 @@ class SceneManager:
         self.inputManager = annchienta.getInputManager()
         #self.defaultFont
         self.boxTextures = []
+        self.confirmKey = annchienta.SDLK_SPACE
 
     ## \brief Draw a box.
     #
@@ -84,6 +85,15 @@ class SceneManager:
         self.videoManager.setColor( 255, 255, 255, 255 )
         self.renderTextInArea( text, 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 2*self.margin, self.defaultFont )
         self.videoManager.disableClipping()
+
+        # Now take a snapshot and use that.
+        self.videoManager.storeBuffer(7)
+        while self.inputManager.running() and not self.inputManager.keyTicked( self.confirmKey ):
+            self.videoManager.begin()
+            self.videoManager.restoreBuffer(7)
+            self.videoManager.end()
+            self.inputManager.update()
+
 
 
 ## \brief Init the SceneManager global instance.

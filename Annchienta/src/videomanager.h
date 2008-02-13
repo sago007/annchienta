@@ -45,7 +45,8 @@ namespace Annchienta
 
             /** Draws the buffer to the screen. Then clears the buffer.
              */
-            void flip();
+            void begin();
+            void end();
 
             /** Sets a color, used for text and surface drawing.
              */

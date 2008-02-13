@@ -63,6 +63,8 @@ namespace Annchienta
             void setCollidingTiles();
             void setZFromCollidingTiles();
 
+            char *onInteractScript, *onInteractCode;
+
         public:
             StaticObject( const char *name, const char *configfile );
             virtual ~StaticObject();
@@ -81,6 +83,8 @@ namespace Annchienta
             virtual void setAnimation( const char *animationName );
             virtual void stopAnimation();
             virtual void startAnimation();
+
+            virtual void onInteract();
     };
 };
 

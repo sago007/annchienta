@@ -138,8 +138,9 @@ namespace Annchienta
                 updatesNeeded--;
             }
 
+            videoManager->begin();
             renderFrame();
-            videoManager->flip();
+            videoManager->end();
 
             frames++;
             if( lastFpsUpdate+1000<=SDL_GetTicks() )

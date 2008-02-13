@@ -4,6 +4,7 @@
 
 #include "staticobject.h"
 
+#include <Python.h>
 #include "xml/irrXML.h"
 using namespace irr;
 using namespace io;
@@ -16,6 +17,7 @@ using namespace io;
 #include "mask.h"
 #include "layer.h"
 #include "tileset.h"
+#include "engine.h"
 
 bool DepthSortPredicate( Annchienta::Tile* tilep1, Annchienta::Tile* tilep2 )
 {
@@ -72,7 +74,7 @@ namespace Annchienta
         }
     }
 
-    StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), needsUpdate(true)
+    StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), needsUpdate(true), onInteractScript(0), onInteractCode(0)
     {
         IrrXMLReader *xml = createIrrXMLReader( configfile );
 
@@ -113,6 +115,23 @@ namespace Annchienta
                         animation.speed = xml->getAttributeValueAsInt("speed");
                         animations.push_back( animation );
                     }
+                    if( !strcmpCaseInsensitive("oninteract", xml->getNodeName()) )
+                    {
+                        if( xml->getAttributeValue("script") )
+                        {
+                            onInteractScript = new char[ strlen(xml->getAttributeValue("script"))+1 ];
+                            strcpy( onInteractScript, xml->getAttributeValue("script") );
+                            onInteractCode = 0;
+                        }
+                        else
+                        {
+                            xml->read();
+                            onInteractCode = new char[ strlen(xml->getNodeData())+1 ];
+                            strcpy( onInteractCode, xml->getNodeData() );
+                            xml->read();
+                            onInteractScript = 0;
+                        }
+                    }
                     break;
             }
         }
@@ -124,6 +143,10 @@ namespace Annchienta
 
     StaticObject::~StaticObject()
     {
+        if( onInteractCode )
+            delete[] onInteractCode;
+        if( onInteractScript )
+            delete[] onInteractScript;
     }
 
     EntityType StaticObject::getEntityType() const
@@ -264,6 +287,14 @@ namespace Annchienta
     void StaticObject::startAnimation()
     {
         animationRunning = true;
+    }
+
+    void StaticObject::onInteract()
+    {
+        if( onInteractCode )
+            PyRun_SimpleString( onInteractCode );
+        if( onInteractScript )
+            getEngine()->runPythonScript( onInteractScript );
     }
 
 };
