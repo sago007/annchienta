@@ -14,6 +14,7 @@ class SceneManager:
         self.margin = 6
         self.videoManager = annchienta.getVideoManager()
         self.inputManager = annchienta.getInputManager()
+        self.mapManager = annchienta.getMapManager()
         #self.defaultFont
         self.boxTextures = []
         self.confirmKey = annchienta.SDLK_SPACE
@@ -44,10 +45,14 @@ class SceneManager:
             # Draw the main texture as pattern.
             self.videoManager.drawPattern( self.boxTextures[4], x1+self.boxTextures[0].getWidth(), y1+self.boxTextures[0].getHeight(), x2-self.boxTextures[8].getWidth(), y2-self.boxTextures[8].getHeight() )
 
+    ## \brief Renders justified text.
+    #
+    #  \return The height of the rendered text.
     def renderTextInArea( self, text, x1, y1, x2, font ):
         paragraphs = text.split('\n')
         spaceWidth = font.getStringWidth(' ')
         maxWidth = x2 - x1
+        oy1 = y1
         for paragraph in paragraphs:
             words = paragraph.split()
             lineWords = []
@@ -75,24 +80,41 @@ class SceneManager:
                 self.videoManager.drawString( font, w, x, y1 )
                 x += font.getStringWidth(w) + spaceWidth
             y1 += font.getLineHeight()
+        # Return the height elapsed.
+        return y1-oy1
 
     ## \brief Display come text.
     #
     #  \param text The text to be displayed.
     def text( self, text ):
-        self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
-        self.videoManager.setClippingRectangle( 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 2*self.margin, 110-self.margin )
-        self.videoManager.setColor( 255, 255, 255, 255 )
-        self.renderTextInArea( text, 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 2*self.margin, self.defaultFont )
-        self.videoManager.disableClipping()
 
-        # Now take a snapshot and use that.
-        self.videoManager.storeBuffer(7)
+        scroll = 0
+
         while self.inputManager.running() and not self.inputManager.keyTicked( self.confirmKey ):
+            
             self.videoManager.begin()
-            self.videoManager.restoreBuffer(7)
+            self.mapManager.renderFrame()
+            self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
+            self.videoManager.setClippingRectangle( 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, 110-self.margin )
+            self.videoManager.setColor( 255, 255, 255, 255 )
+            height = self.renderTextInArea( text, 2*self.margin, 2*self.margin-scroll, self.videoManager.getScreenWidth() - 3*self.margin, self.defaultFont )
+            height -= 110 - self.defaultFont.getLineHeight()
+            self.videoManager.disableClipping()
+            self.videoManager.pushMatrix()
+            self.videoManager.translate( self.videoManager.getScreenWidth()-3*self.margin, 110-4*self.margin )
+            if scroll>0:
+                self.videoManager.drawTriangle( self.margin/2, 0, 0, self.margin, self.margin, self.margin )
+            if scroll<height:
+                self.videoManager.drawTriangle( 0, self.margin*2, self.margin/2, self.margin*3, self.margin, self.margin*2 )
+            self.videoManager.popMatrix()
             self.videoManager.end()
+
+
             self.inputManager.update()
+            if self.inputManager.keyTicked(annchienta.SDLK_DOWN) and scroll<height:
+                scroll += 5
+            if self.inputManager.keyTicked(annchienta.SDLK_UP) and scroll>0:
+                scroll -= 5
 
 
 

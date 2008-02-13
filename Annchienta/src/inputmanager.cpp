@@ -28,6 +28,10 @@ namespace Annchienta
         /* Get the keys address.
          */
         keyState = SDL_GetKeyState( NULL );
+
+        /* We want key repeats.
+         */
+        SDL_EnableKeyRepeat( SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL );
     }
 
     InputManager::~InputManager()
