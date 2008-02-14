@@ -27,6 +27,8 @@ namespace Annchienta
 
             virtual bool move( int x, int y, bool force=false );
             //virtual void stepTo( int x, int y );
+
+            virtual void setInputControl();
     };
 
 };

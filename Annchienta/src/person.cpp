@@ -138,4 +138,10 @@ namespace Annchienta
         return true;
     }
 
+    void Person::setInputControl()
+    {
+        if( control )
+            delete control;
+        control = new InputPersonControl( this );
+    }
 };

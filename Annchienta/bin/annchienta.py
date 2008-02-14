@@ -148,6 +148,7 @@ class MapManager(_object):
     def setCameraY(*args): return _annchienta.MapManager_setCameraY(*args)
     def getCameraY(*args): return _annchienta.MapManager_getCameraY(*args)
     def cameraFollow(*args): return _annchienta.MapManager_cameraFollow(*args)
+    def cameraPeekAt(*args): return _annchienta.MapManager_cameraPeekAt(*args)
     def setUpdatesPerSecond(*args): return _annchienta.MapManager_setUpdatesPerSecond(*args)
     def setCurrentMap(*args): return _annchienta.MapManager_setCurrentMap(*args)
     def getCurrentMap(*args): return _annchienta.MapManager_getCurrentMap(*args)
@@ -155,6 +156,7 @@ class MapManager(_object):
     def getMaxAscentHeight(*args): return _annchienta.MapManager_getMaxAscentHeight(*args)
     def setMaxDescentHeight(*args): return _annchienta.MapManager_setMaxDescentHeight(*args)
     def getMaxDescentHeight(*args): return _annchienta.MapManager_getMaxDescentHeight(*args)
+    def getObject(*args): return _annchienta.MapManager_getObject(*args)
     def run(*args): return _annchienta.MapManager_run(*args)
     def update(*args): return _annchienta.MapManager_update(*args)
     def renderFrame(*args): return _annchienta.MapManager_renderFrame(*args)
@@ -273,6 +275,7 @@ class Layer(_object):
     def draw(*args): return _annchienta.Layer_draw(*args)
     def depthSort(*args): return _annchienta.Layer_depthSort(*args)
     def addEntity(*args): return _annchienta.Layer_addEntity(*args)
+    def getObject(*args): return _annchienta.Layer_getObject(*args)
 Layer_swigregister = _annchienta.Layer_swigregister
 Layer_swigregister(Layer)
 
@@ -290,6 +293,7 @@ class Map(_object):
     __del__ = lambda self : None;
     def getCurrentLayer(*args): return _annchienta.Map_getCurrentLayer(*args)
     def setCurrentLayer(*args): return _annchienta.Map_setCurrentLayer(*args)
+    def getObject(*args): return _annchienta.Map_getObject(*args)
     def update(*args): return _annchienta.Map_update(*args)
     def draw(*args): return _annchienta.Map_draw(*args)
     def depthSort(*args): return _annchienta.Map_depthSort(*args)

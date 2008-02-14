@@ -23,8 +23,14 @@
 
 <oninteract>
 import scene
+
 sceneManager = scene.getSceneManager()
-sceneManager.text("Lorem ipsum dolor sit amet!\nConsectetuer adipiscing elit. Phasellus purus nisl, laoreet id, ornare nec, bibendum at, velit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer sapien. Nullam eleifend, ligula pharetra mattis tincidunt, sem nibh aliquet purus, quis ullamcorper ligula eros nec risus. Sed posuere turpis id elit fringilla imperdiet. Donec massa felis, venenatis quis, elementum tempor, cursus at, dui. Sed placerat enim vitae dolor. Morbi nunc justo, sollicitudin eget, tincidunt sit amet, interdum in, leo. Vestibulum dolor ipsum, fermentum vel, dapibus quis, consequat et, nulla. Nam pede neque, convallis et, porttitor nec, dictum nec, libero.")
+tree = sceneManager.mapManager.getObject( "tree" )
+player = sceneManager.mapManager.getObject( "aelaan" )
+sceneManager.speak( player, "What are you up to?" )
+sceneManager.speak( tree, "Just... thinking." )
+sceneManager.speak( player, "Thinking about what?" )
+sceneManager.speak( tree, "I'm not sure... it's just... we haven't been thinking a lot recently, have we?" )
 </oninteract>
 
 </sprite>

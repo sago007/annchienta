@@ -13,6 +13,7 @@ namespace Annchienta
 
     class TileSet;
     class Layer;
+    class StaticObject;
 
     class Map
     {
@@ -37,6 +38,8 @@ namespace Annchienta
 
             Layer *getCurrentLayer() const;
             void setCurrentLayer( int index );
+
+            StaticObject *getObject( const char *name );
 
             void update();
             void draw() const;

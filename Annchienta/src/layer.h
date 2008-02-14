@@ -70,6 +70,8 @@ namespace Annchienta
                 TileSet *getTileSet() const;
                 StaticObject *getStaticObject( int num );
             #endif
+
+            StaticObject *getObject( const char *name );
     };
 };
 

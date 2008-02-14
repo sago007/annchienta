@@ -10,6 +10,7 @@
 #include "inputmanager.h"
 #include "videomanager.h"
 #include "staticobject.h"
+#include "mask.h"
 
 namespace Annchienta
 {
@@ -84,6 +85,17 @@ namespace Annchienta
         cameraTarget = object;
     }
 
+    void MapManager::cameraPeekAt( StaticObject *object )
+    {
+        VideoManager *videoManager = getVideoManager();
+
+        Point targetPosition = object->getPosition();
+        targetPosition.convert( MapPoint );
+
+        cameraX = targetPosition.x - videoManager->getScreenWidth()/2;
+        cameraY = targetPosition.y - targetPosition.z - object->getMask()->getHeight()/2 - videoManager->getScreenHeight()/2;
+    }
+
     void MapManager::setCurrentMap( Map *map )
     {
         currentMap = map;
@@ -117,6 +129,13 @@ namespace Annchienta
     int MapManager::getMaxDescentHeight() const
     {
         return maxDescentHeight;
+    }
+
+    StaticObject *MapManager::getObject( const char *name )
+    {
+        if( currentMap )
+            return currentMap->getObject( name );
+        return 0;
     }
 
     void MapManager::run()

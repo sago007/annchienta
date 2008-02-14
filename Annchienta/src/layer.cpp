@@ -179,4 +179,12 @@ namespace Annchienta
         return staticObjects[num];
     }
 
+    StaticObject *Layer::getObject( const char *name )
+    {
+        for( int i=0; getStaticObject(i); i++ )
+            if( !strcmpCaseInsensitive( getStaticObject(i)->getName(), name ) )
+                return getStaticObject(i);
+        return 0;
+    }
+
 };

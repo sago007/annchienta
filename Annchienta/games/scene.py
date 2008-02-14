@@ -89,6 +89,7 @@ class SceneManager:
     def text( self, text ):
 
         scroll = 0
+        self.inputManager.update()
 
         while self.inputManager.running() and not self.inputManager.keyTicked( self.confirmKey ):
             
@@ -116,7 +117,12 @@ class SceneManager:
             if self.inputManager.keyTicked(annchienta.SDLK_UP) and scroll>0:
                 scroll -= 5
 
+    ## \brief lets someone say something.
+    #
+    def speak(self, object, text):
 
+        self.mapManager.cameraPeekAt( object )
+        self.text( text )
 
 ## \brief Init the SceneManager global instance.
 #

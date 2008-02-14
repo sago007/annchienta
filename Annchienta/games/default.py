@@ -23,7 +23,7 @@ audioMgr.playMusic( "maps/drum_intro.ogg" )
 
 initSceneManager()
 sceneMgr = getSceneManager()
-sceneMgr.defaultFont = annchienta.Font("assets/font.ttf", 12)
+sceneMgr.defaultFont = annchienta.Font("assets/font.ttf", 16)
 
 for i in range(9):
     sceneMgr.boxTextures.append( annchienta.Surface("assets/box"+str(i)+".png") )

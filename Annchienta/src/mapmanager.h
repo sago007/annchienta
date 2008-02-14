@@ -38,6 +38,7 @@ namespace Annchienta
             int getCameraY() const;
 
             void cameraFollow( StaticObject *object );
+            void cameraPeekAt( StaticObject *object );
 
             void setUpdatesPerSecond( int );
 
@@ -48,6 +49,8 @@ namespace Annchienta
             int getMaxAscentHeight() const;
             void setMaxDescentHeight( int maxDescentHeight );
             int getMaxDescentHeight() const;
+
+            StaticObject *getObject( const char *name );
 
             /* This function should basically run the game.
              */

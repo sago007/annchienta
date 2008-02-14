@@ -198,6 +198,13 @@ namespace Annchienta
         currentLayer = index;
     }
 
+    StaticObject *Map::getObject( const char *name )
+    {
+        if( layers.size() )
+            return layers[currentLayer]->getObject( name );
+        return 0;
+    }
+
     void Map::update()
     {
         for( unsigned int i=0; i<layers.size(); i++ )
