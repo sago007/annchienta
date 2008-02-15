@@ -27,6 +27,8 @@ bool DepthSortPredicate( Annchienta::Tile* tilep1, Annchienta::Tile* tilep2 )
 namespace Annchienta
 {
 
+    StaticObject *activeObject, *passiveObject;
+
     void StaticObject::setCollidingTiles()
     {
         collidingTiles.clear();
@@ -295,6 +297,26 @@ namespace Annchienta
             PyRun_SimpleString( onInteractCode );
         if( onInteractScript )
             getEngine()->runPythonScript( onInteractScript );
+    }
+
+    void setActiveObject( StaticObject *o )
+    {
+        activeObject = o;
+    }
+
+    void setPassiveObject( StaticObject *o )
+    {
+        passiveObject = o;
+    }
+
+    StaticObject *getActiveObject()
+    {
+        return activeObject;
+    }
+
+    StaticObject *getPassiveObject()
+    {
+        return passiveObject;
     }
 
 };

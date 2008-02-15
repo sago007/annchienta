@@ -32,8 +32,8 @@ namespace Annchienta
         else if( inputManager->keyDown( SDLK_DOWN ) )
             y++;
 
-        if( inputManager->keyDown( SDLK_RETURN ) )
-            person->onInteract();
+        if( inputManager->keyTicked( SDLK_RETURN ) )
+            person->interact();
 
         person->move( x, y );
     }

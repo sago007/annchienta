@@ -144,4 +144,48 @@ namespace Annchienta
             delete control;
         control = new InputPersonControl( this );
     }
+
+    void Person::interact()
+    {
+        if( !layer )
+            return;
+
+        StaticObject *interactWith = 0;
+        int closest = -1;
+        for( int i=0; layer->getStaticObject(i); i++ )
+        {
+            StaticObject *so = layer->getStaticObject(i);
+            int dist = (int)squaredDistance( this->getPosition().x, this->getPosition().y, so->getPosition().x, so->getPosition().y );
+            if( dist < squaredInteractDistance )
+            {
+                if( absValue(this->getPosition().z - so->getPosition().z) < getMapManager()->getMaxAscentHeight() )
+                {
+                    if( (dist<=closest) || (closest<=0) || (!interactWith) )
+                    {
+                        closest = dist;
+                        interactWith = so;
+                    }
+                    else
+                    {
+                        printf("Not interacting with %s because not closest.\n", so->getName() );
+                    }
+                }
+                else
+                {
+                        printf("Not interacting with %s because Z not right.\n", so->getName() );
+                }
+            }
+            else
+            {
+                printf("Not interacting with %s because distance too large.\n", so->getName() );
+            }
+        }
+
+        if( interactWith )
+        {
+            setActiveObject( this );
+            setPassiveObject( interactWith );
+            interactWith->onInteract();
+        }
+    }
 };

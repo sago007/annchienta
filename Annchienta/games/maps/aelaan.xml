@@ -21,16 +21,4 @@
 
     <control type="input" />
 
-<oninteract>
-import scene
-
-sceneManager = scene.getSceneManager()
-tree = sceneManager.mapManager.getObject( "tree" )
-player = sceneManager.mapManager.getObject( "aelaan" )
-sceneManager.speak( player, "What are you up to?" )
-sceneManager.speak( tree, "Just... thinking." )
-sceneManager.speak( player, "Thinking about what?" )
-sceneManager.speak( tree, "I'm not sure... it's just... we haven't been thinking a lot recently, have we?" )
-</oninteract>
-
 </sprite>

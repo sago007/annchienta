@@ -86,6 +86,17 @@ namespace Annchienta
 
             virtual void onInteract();
     };
+
+    #ifndef SWIG
+        void setActiveObject( StaticObject *object );
+        void setPassiveObject( StaticObject *object );
+    #endif
+
+    /* Used in scenes: active->interactor
+     *                 passive->ineracted with
+     */
+    StaticObject *getActiveObject();
+    StaticObject *getPassiveObject();
 };
 
 #endif

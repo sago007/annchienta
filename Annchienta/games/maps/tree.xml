@@ -5,4 +5,17 @@
     
     <animation name="stand" frames="1" speed="20" />
     
+<oninteract>
+import scene
+import annchienta
+
+sceneManager = scene.getSceneManager()
+tree = annchienta.getPassiveObject()
+player = annchienta.getActiveObject()
+sceneManager.speak( player, "What are you up to?" )
+sceneManager.speak( tree, "Just... thinking." )
+sceneManager.speak( player, "Thinking about what?" )
+sceneManager.speak( tree, "I'm not sure... it's just... we haven't been thinking a lot recently, have we?" )
+</oninteract>
+    
 </sprite>

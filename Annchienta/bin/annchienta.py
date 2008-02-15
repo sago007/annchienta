@@ -412,6 +412,37 @@ class Mask(_object):
 Mask_swigregister = _annchienta.Mask_swigregister
 Mask_swigregister(Mask)
 
+class StaticObject(Entity):
+    __swig_setmethods__ = {}
+    for _s in [Entity]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, StaticObject, name, value)
+    __swig_getmethods__ = {}
+    for _s in [Entity]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, StaticObject, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_StaticObject(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_StaticObject
+    __del__ = lambda self : None;
+    def getEntityType(*args): return _annchienta.StaticObject_getEntityType(*args)
+    def update(*args): return _annchienta.StaticObject_update(*args)
+    def draw(*args): return _annchienta.StaticObject_draw(*args)
+    def getDepthSortY(*args): return _annchienta.StaticObject_getDepthSortY(*args)
+    def setPosition(*args): return _annchienta.StaticObject_setPosition(*args)
+    def getPosition(*args): return _annchienta.StaticObject_getPosition(*args)
+    def getMaskPosition(*args): return _annchienta.StaticObject_getMaskPosition(*args)
+    def getMask(*args): return _annchienta.StaticObject_getMask(*args)
+    def setAnimation(*args): return _annchienta.StaticObject_setAnimation(*args)
+    def stopAnimation(*args): return _annchienta.StaticObject_stopAnimation(*args)
+    def startAnimation(*args): return _annchienta.StaticObject_startAnimation(*args)
+    def onInteract(*args): return _annchienta.StaticObject_onInteract(*args)
+StaticObject_swigregister = _annchienta.StaticObject_swigregister
+StaticObject_swigregister(StaticObject)
+
+getActiveObject = _annchienta.getActiveObject
+getPassiveObject = _annchienta.getPassiveObject
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN
 SDLK_FIRST = _annchienta.SDLK_FIRST
 SDLK_BACKSPACE = _annchienta.SDLK_BACKSPACE

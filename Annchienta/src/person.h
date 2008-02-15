@@ -17,6 +17,8 @@ namespace Annchienta
             bool hasInput;
             PersonControl *control;
 
+            const static int squaredInteractDistance = 600;
+
         public:
             Person( const char *name, const char *configfile );
             virtual ~Person();
@@ -29,6 +31,8 @@ namespace Annchienta
             //virtual void stepTo( int x, int y );
 
             virtual void setInputControl();
+
+            virtual void interact();
     };
 
 };
