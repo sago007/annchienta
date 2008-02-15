@@ -152,11 +152,17 @@ namespace Annchienta
 
         StaticObject *interactWith = 0;
         int closest = -1;
+        Point maskPosition = this->getMaskPosition();
         for( int i=0; layer->getStaticObject(i); i++ )
         {
             StaticObject *so = layer->getStaticObject(i);
+
             int dist = (int)squaredDistance( this->getPosition().x, this->getPosition().y, so->getPosition().x, so->getPosition().y );
-            if( dist < squaredInteractDistance )
+
+            Point otherMaskPosition = so->getMaskPosition();
+            bool boxCollision = mask->collision( maskPosition.x, maskPosition.y, so->getMask(), otherMaskPosition.x, otherMaskPosition.y, true );
+
+            if( dist < squaredInteractDistance || boxCollision )
             {
                 if( absValue(this->getPosition().z - so->getPosition().z) < getMapManager()->getMaxAscentHeight() )
                 {

@@ -135,7 +135,7 @@ namespace Annchienta
         return height;
     }
 
-    bool Mask::collision( int x1, int y1, Mask *mask2, int x2, int y2 )
+    bool Mask::collision( int x1, int y1, Mask *mask2, int x2, int y2, bool box )
     {
         int left1, left2, over_left;
         int right1, right2, over_right;
@@ -164,6 +164,8 @@ namespace Annchienta
         if( left1 > right2 )
             return false;
 
+        if( box )
+            return true;
 
         /* Ok, compute the rectangle which intersects:
          */
