@@ -181,14 +181,7 @@ namespace Annchienta
 
         if( cameraTarget )
         {
-            VideoManager *videoManager = getVideoManager();
-
-            Point targetPosition = cameraTarget->getPosition();
-            targetPosition.convert( MapPoint );
-
-            cameraX = targetPosition.x - videoManager->getScreenWidth()/2;
-            cameraY = targetPosition.y - videoManager->getScreenHeight()/2;
-
+            cameraPeekAt( cameraTarget );
         }
     }
 

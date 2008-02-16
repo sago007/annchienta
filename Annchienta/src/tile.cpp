@@ -221,7 +221,7 @@ namespace Annchienta
     bool Tile::hasPoint( Point point ) const
     {
         point.convert( IsometricPoint );
-        return( point.x > isoPoints[0].x && point.x < isoPoints[3].x && point.y > isoPoints[0].y && point.y < isoPoints[1].y );
+        return( point.x >= isoPoints[0].x && point.x <= isoPoints[3].x && point.y >= isoPoints[0].y && point.y <= isoPoints[1].y );
     }
 
     Point Tile::getMaskPosition() const

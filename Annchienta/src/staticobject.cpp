@@ -141,6 +141,7 @@ namespace Annchienta
         delete xml;
 
         setAnimation( "stand" );
+        speedTimer = 0;
     }
 
     StaticObject::~StaticObject()
