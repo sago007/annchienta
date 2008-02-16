@@ -5836,6 +5836,27 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_MapManager_resync(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_resync",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_resync" "', argument " "1"" of type '" "Annchienta::MapManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  (arg1)->resync();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_MapManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::MapManager *result = 0 ;
@@ -9166,6 +9187,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_run", _wrap_MapManager_run, METH_VARARGS, NULL},
 	 { (char *)"MapManager_update", _wrap_MapManager_update, METH_VARARGS, NULL},
 	 { (char *)"MapManager_renderFrame", _wrap_MapManager_renderFrame, METH_VARARGS, NULL},
+	 { (char *)"MapManager_resync", _wrap_MapManager_resync, METH_VARARGS, NULL},
 	 { (char *)"new_MapManager", _wrap_new_MapManager, METH_VARARGS, NULL},
 	 { (char *)"delete_MapManager", _wrap_delete_MapManager, METH_VARARGS, NULL},
 	 { (char *)"MapManager_swigregister", MapManager_swigregister, METH_VARARGS, NULL},

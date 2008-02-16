@@ -13,7 +13,9 @@ namespace Annchienta
     class SamplePersonControl: public PersonControl
     {
         protected:
+            int walkTimeGiven;
             Point *target;
+            int mx, my;
 
         public:
             SamplePersonControl( Person *person );

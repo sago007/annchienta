@@ -92,7 +92,7 @@ class SceneManager:
         self.inputManager.update()
 
         while self.inputManager.running() and not self.inputManager.keyTicked( self.confirmKey ):
-            
+
             self.videoManager.begin()
             self.mapManager.renderFrame()
             self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
@@ -117,12 +117,14 @@ class SceneManager:
             if self.inputManager.keyTicked(annchienta.SDLK_UP) and scroll>0:
                 scroll -= 5
 
+        self.mapManager.resync()
+
     ## \brief lets someone say something.
     #
     def speak(self, object, text):
 
         self.mapManager.cameraPeekAt( object )
-        self.text( text )
+        self.text( object.getName().capitalize() + ":\n" + text )
 
 ## \brief Init the SceneManager global instance.
 #

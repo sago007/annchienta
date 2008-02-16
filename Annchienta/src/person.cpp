@@ -10,6 +10,7 @@ using namespace io;
 #include "auxfunc.h"
 #include "personcontrol.h"
 #include "inputpersoncontrol.h"
+#include "samplepersoncontrol.h"
 #include "mapmanager.h"
 #include "layer.h"
 #include "mask.h"
@@ -34,6 +35,8 @@ namespace Annchienta
                         const char *typestr = xml->getAttributeValue("type");
                         if( !strcmpCaseInsensitive( "input", typestr ) )
                             control = new InputPersonControl( this );
+                        if( !strcmpCaseInsensitive( "sample", typestr ) )
+                            control = new SamplePersonControl( this );
                     }
                     break;
             }
@@ -103,9 +106,15 @@ namespace Annchienta
 
         bool possible = true;
 
+        /* Reject if there are now colliding tiles.
+         * (This means the player is probably outside the level.)
+         */
+        if( collidingTiles.size() <= 0 )
+            possible = false;
+
         /* Reject if the person ascents too high.
          */
-        if( oldPosition.z + getMapManager()->getMaxAscentHeight() < position.z )
+        if( possible && oldPosition.z + getMapManager()->getMaxAscentHeight() < position.z )
             possible = false;
 
         /* Reject if the person descents too deep.
@@ -151,39 +160,49 @@ namespace Annchienta
             return;
 
         StaticObject *interactWith = 0;
-        int closest = -1;
+        int closest = 0xffffffff;
         Point maskPosition = this->getMaskPosition();
+
+        /* We loop through the objects in the layer to see if we find
+         * one where we might interact with.
+         */
         for( int i=0; layer->getStaticObject(i); i++ )
         {
             StaticObject *so = layer->getStaticObject(i);
 
-            int dist = (int)squaredDistance( this->getPosition().x, this->getPosition().y, so->getPosition().x, so->getPosition().y );
-
-            Point otherMaskPosition = so->getMaskPosition();
-            bool boxCollision = mask->collision( maskPosition.x, maskPosition.y, so->getMask(), otherMaskPosition.x, otherMaskPosition.y, true );
-
-            if( dist < squaredInteractDistance || boxCollision )
+            /* Of course, we don't want to interact with ourselves.
+             */
+            if( so != (StaticObject*) this )
             {
-                if( absValue(this->getPosition().z - so->getPosition().z) < getMapManager()->getMaxAscentHeight() )
+                /* Find the distance between the objects.
+                 */
+                int dist = (int)squaredDistance( this->getPosition().x, this->getPosition().y, so->getPosition().x, so->getPosition().y );
+    
+                /* Check for bounding box collision.
+                 */
+                Point otherMaskPosition = so->getMaskPosition();
+                bool boxCollision = mask->collision( maskPosition.x, maskPosition.y, so->getMask(), otherMaskPosition.x, otherMaskPosition.y, true );
+    
+                /* If this person collides with an object...
+                 */
+                if( boxCollision )
                 {
-                    if( (dist<=closest) || (closest<=0) || (!interactWith) )
+                    /* Make sure the Z difference isn't too large. Why: We don't
+                     * want the player to be able to talk with eg. someone standing
+                     * on a cliff when the player is standing on the ground etc.
+                     */
+                    if( absValue(this->getPosition().z - so->getPosition().z) < getMapManager()->getMaxAscentHeight() )
                     {
-                        closest = dist;
-                        interactWith = so;
-                    }
-                    else
-                    {
-                        printf("Not interacting with %s because not closest.\n", so->getName() );
+                        /* From all the objects this person collides with, we
+                         * only want the one closest to the person.
+                         */
+                        if( (dist<=closest) || (!interactWith) )
+                        {
+                            closest = dist;
+                            interactWith = so;
+                        }
                     }
                 }
-                else
-                {
-                        printf("Not interacting with %s because Z not right.\n", so->getName() );
-                }
-            }
-            else
-            {
-                printf("Not interacting with %s because distance too large.\n", so->getName() );
             }
         }
 

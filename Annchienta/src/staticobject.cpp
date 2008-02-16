@@ -224,6 +224,7 @@ namespace Annchienta
 
         Point pos = this->getMaskPosition();
 
+        glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
         getVideoManager()->drawSurface( sprite, pos.x, pos.y-pos.z, frame->x1, frame->y1, frame->x2, frame->y2 );
 
     }

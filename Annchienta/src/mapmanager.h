@@ -58,6 +58,8 @@ namespace Annchienta
 
             void update();
             void renderFrame() const;
+
+            void resync();
     };
 
     MapManager *getMapManager();

@@ -204,6 +204,11 @@ namespace Annchienta
         glLoadIdentity();
     }
 
+    void MapManager::resync()
+    {
+        updatesNeeded = 0;
+    }
+
     MapManager *getMapManager()
     {
         return mapManager;

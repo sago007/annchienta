@@ -14,12 +14,8 @@ mapMgr.setMaxAscentHeight(16)
 mapMgr.setMaxDescentHeight(32)
 
 mymap = annchienta.Map( "maps/map.xml" )
-#mymap = annchienta.Map( 10, 10, "tileset/" )
 
 mapMgr.setCurrentMap( mymap )
-
-audioMgr = annchienta.getAudioManager()
-audioMgr.playMusic( "maps/drum_intro.ogg" )
 
 initSceneManager()
 sceneMgr = getSceneManager()

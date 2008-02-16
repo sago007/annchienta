@@ -160,6 +160,7 @@ class MapManager(_object):
     def run(*args): return _annchienta.MapManager_run(*args)
     def update(*args): return _annchienta.MapManager_update(*args)
     def renderFrame(*args): return _annchienta.MapManager_renderFrame(*args)
+    def resync(*args): return _annchienta.MapManager_resync(*args)
     def __init__(self, *args): 
         this = _annchienta.new_MapManager(*args)
         try: self.this.append(this)

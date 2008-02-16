@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<sprite image="maps/darkie.png" mask="maps/mask.png">
+    
+    <frame number="1" x1="0" y1="0" x2="64" y2="90">
+    <frame number="2" x1="64" y1="0" x2="128" y2="90">
+            
+    <frame number="3" x1="128" y1="0" x2="192" y2="90">
+    <frame number="4" x1="192" y1="0" x2="256" y2="90">
+        
+    <frame number="5" x1="0" y1="90" x2="64" y2="180">
+    <frame number="6" x1="64" y1="90" x2="128" y2="180">
+        
+    <frame number="7" x1="128" y1="90" x2="192" y2="180">
+    <frame number="8" x1="192" y1="90" x2="256" y2="180">
+        
+    <animation name="stand" frames="1" speed="20" />
+    <animation name="walknorth" frames="12" speed="15" />
+    <animation name="walkeast" frames="34" speed="15" />
+    <animation name="walkwest" frames="56" speed="15" />
+    <animation name="walksouth" frames="78" speed="15" />
+    
+    <control type="sample" />
+    
+<oninteract>
+import scene
+import annchienta
+
+sceneManager = scene.getSceneManager()
+this = annchienta.getPassiveObject()
+player = annchienta.getActiveObject()
+sceneManager.speak( player, "Where are you colours?" )
+sceneManager.speak( this, "I'm not sure anymore... It's been so long." )
+sceneManager.speak( player, "I'm sorry." )
+sceneManager.speak( this, "How do those colours taste?" )
+</oninteract>
+
+</sprite>
