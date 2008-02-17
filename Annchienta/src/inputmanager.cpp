@@ -8,7 +8,7 @@ namespace Annchienta
 {
     InputManager *inputManager;
 
-    InputManager::InputManager()
+    InputManager::InputManager(): inputControlledPerson(0), personInputEnabled(true)
     {
         /* Set reference to single-instance class.
          */
@@ -128,9 +128,29 @@ namespace Annchienta
         return tickedButtons[ buttonCode ];
     }
 
+    void InputManager::setInputControlledPerson( Person *person )
+    {
+        inputControlledPerson = person;
+    }
+
+    Person *InputManager::getInputControlledPerson() const
+    {
+        return inputControlledPerson;
+    }
+
     InputManager *getInputManager()
     {
         return inputManager;
+    }
+
+    bool InputManager::personInputIsEnabled() const
+    {
+        return personInputEnabled;
+    }
+
+    void InputManager::setPersonInputEnabled( bool pie )
+    {
+        personInputEnabled = pie;
     }
 
 };

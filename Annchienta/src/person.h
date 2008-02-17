@@ -16,6 +16,7 @@ namespace Annchienta
         protected:
             bool hasInput;
             PersonControl *control;
+            bool frozen;
 
             const static int squaredInteractDistance = 600;
 
@@ -28,7 +29,9 @@ namespace Annchienta
             virtual void update();
 
             virtual bool move( int x, int y, bool force=false );
-            //virtual void stepTo( int x, int y );
+            virtual bool stepTo( int x, int y );
+
+            virtual void freeze( bool );
 
             virtual void setInputControl();
 

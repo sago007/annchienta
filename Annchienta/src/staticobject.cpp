@@ -301,6 +301,20 @@ namespace Annchienta
             getEngine()->runPythonScript( onInteractScript );
     }
 
+    void StaticObject::freeze( bool )
+    {
+        return;
+    }
+
+    bool StaticObject::stepTo( int x, int y )
+    {
+        printf("Warning - attempt to step static object %s to %d, %d. Warping.\n", this->getName(), x, y );
+        position.x = x;
+        position.y = y;
+        needsUpdate = true;
+        return true;
+    }
+
     void setActiveObject( StaticObject *o )
     {
         activeObject = o;

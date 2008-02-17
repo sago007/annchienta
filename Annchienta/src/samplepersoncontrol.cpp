@@ -45,7 +45,7 @@ namespace Annchienta
                             my = 1;
             }
 
-            walkTimeGiven = 10 + rand()%300;
+            walkTimeGiven = 10 + rand()%100;
         }
         /* Take a step in the moving direction.
          */

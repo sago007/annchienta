@@ -123,6 +123,10 @@ class InputManager(_object):
     def getMouseY(*args): return _annchienta.InputManager_getMouseY(*args)
     def buttonDown(*args): return _annchienta.InputManager_buttonDown(*args)
     def buttonTicked(*args): return _annchienta.InputManager_buttonTicked(*args)
+    def setInputControlledPerson(*args): return _annchienta.InputManager_setInputControlledPerson(*args)
+    def getInputControlledPerson(*args): return _annchienta.InputManager_getInputControlledPerson(*args)
+    def personInputIsEnabled(*args): return _annchienta.InputManager_personInputIsEnabled(*args)
+    def setPersonInputEnabled(*args): return _annchienta.InputManager_setPersonInputEnabled(*args)
     def __init__(self, *args): 
         this = _annchienta.new_InputManager(*args)
         try: self.this.append(this)
@@ -439,6 +443,8 @@ class StaticObject(Entity):
     def stopAnimation(*args): return _annchienta.StaticObject_stopAnimation(*args)
     def startAnimation(*args): return _annchienta.StaticObject_startAnimation(*args)
     def onInteract(*args): return _annchienta.StaticObject_onInteract(*args)
+    def freeze(*args): return _annchienta.StaticObject_freeze(*args)
+    def stepTo(*args): return _annchienta.StaticObject_stepTo(*args)
 StaticObject_swigregister = _annchienta.StaticObject_swigregister
 StaticObject_swigregister(StaticObject)
 

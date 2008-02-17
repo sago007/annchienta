@@ -9,10 +9,14 @@ namespace Annchienta
 {
     class Map;
     class StaticObject;
+    class InputManager;
+    class Person;
 
     class MapManager
     {
         private:
+            InputManager *inputManager;
+
             int tileWidth, tileHeight;
             int cameraX, cameraY;
             int updatesPerSecond;
@@ -25,6 +29,8 @@ namespace Annchienta
             #ifndef SWIG
                 MapManager();
                 ~MapManager();
+
+                int getUpdatesNeeded() const;
             #endif
 
             void setTileWidth( int tileWidth );

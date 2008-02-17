@@ -40,6 +40,11 @@ namespace Annchienta
     {
     }
 
+    int MapManager::getUpdatesNeeded() const
+    {
+        return updatesNeeded;
+    }
+
     void MapManager::setTileWidth( int tw )
     {
         tileWidth = tw;
@@ -140,8 +145,8 @@ namespace Annchienta
 
     void MapManager::run()
     {
-        InputManager *inputManager = getInputManager();
         VideoManager *videoManager = getVideoManager();
+        inputManager = getInputManager();
 
         unsigned int lastFpsUpdate = SDL_GetTicks();
         unsigned int frames = 0;
@@ -150,15 +155,10 @@ namespace Annchienta
 
         while( inputManager->running() )
         {
-            while( updatesNeeded>0 )
-            {
-                inputManager->update();
-                this->update();
-                updatesNeeded--;
-            }
+            this->update();
 
             videoManager->begin();
-            renderFrame();
+            this->renderFrame();
             videoManager->end();
 
             frames++;
@@ -176,12 +176,19 @@ namespace Annchienta
 
     void MapManager::update()
     {
-        if( currentMap )
-            currentMap->update();
-
-        if( cameraTarget )
+        while( updatesNeeded>0 )
         {
-            cameraPeekAt( cameraTarget );
+            inputManager->update();
+
+            if( currentMap )
+                currentMap->update();
+    
+            if( cameraTarget )
+            {
+                cameraPeekAt( cameraTarget );
+            }
+
+            updatesNeeded--;
         }
     }
 

@@ -9,6 +9,8 @@
 
 namespace Annchienta
 {
+    class Person;
+
     class InputManager
     {
         private:
@@ -19,6 +21,8 @@ namespace Annchienta
             int mouseX, mouseY;
             Uint8 mouseState;
             bool supportMouse;
+            Person *inputControlledPerson;
+            bool personInputEnabled;
 
         public:
             #ifndef SWIG
@@ -40,6 +44,11 @@ namespace Annchienta
             bool buttonDown( int ) const;
             bool buttonTicked( int ) const;
 
+            void setInputControlledPerson( Person *person );
+            Person *getInputControlledPerson() const;
+
+            bool personInputIsEnabled() const;
+            void setPersonInputEnabled( bool );
     };
 
     InputManager *getInputManager();

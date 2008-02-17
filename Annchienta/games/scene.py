@@ -89,9 +89,19 @@ class SceneManager:
     def text( self, text ):
 
         scroll = 0
+
+        cx = self.mapManager.getCameraX()
+        cy = self.mapManager.getCameraY()
+
+        self.inputManager.setPersonInputEnabled(False)
+
         self.inputManager.update()
 
         while self.inputManager.running() and not self.inputManager.keyTicked( self.confirmKey ):
+
+            self.mapManager.update()
+            self.mapManager.setCameraX(cx)
+            self.mapManager.setCameraY(cy)
 
             self.videoManager.begin()
             self.mapManager.renderFrame()
@@ -110,14 +120,12 @@ class SceneManager:
             self.videoManager.popMatrix()
             self.videoManager.end()
 
-
-            self.inputManager.update()
             if self.inputManager.keyTicked(annchienta.SDLK_DOWN) and scroll<height:
                 scroll += 5
             if self.inputManager.keyTicked(annchienta.SDLK_UP) and scroll>0:
                 scroll -= 5
 
-        self.mapManager.resync()
+        self.inputManager.setPersonInputEnabled(True)
 
     ## \brief lets someone say something.
     #
@@ -125,6 +133,24 @@ class SceneManager:
 
         self.mapManager.cameraPeekAt( object )
         self.text( object.getName().capitalize() + ":\n" + text )
+
+    ## \moves someone.
+    #
+    def move(self, object, x, y):
+
+        self.inputManager.update()
+        self.inputManager.setPersonInputEnabled(False)
+
+        while self.inputManager.running() and object.stepTo(x,y):
+
+            self.mapManager.update()
+            self.mapManager.cameraPeekAt( object )
+
+            self.videoManager.begin()
+            self.mapManager.renderFrame()
+            self.videoManager.end()
+
+        self.inputManager.setPersonInputEnabled(True)
 
 ## \brief Init the SceneManager global instance.
 #

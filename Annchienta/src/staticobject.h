@@ -85,6 +85,12 @@ namespace Annchienta
             virtual void startAnimation();
 
             virtual void onInteract();
+
+            /* Should only be used for Persons, but this is needed because of
+             * abstracting to Python scripts. Always returns true.
+             */
+            virtual void freeze( bool );
+            virtual bool stepTo( int x, int y);
     };
 
     #ifndef SWIG

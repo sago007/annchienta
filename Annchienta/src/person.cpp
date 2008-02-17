@@ -10,6 +10,7 @@ using namespace io;
 #include "auxfunc.h"
 #include "personcontrol.h"
 #include "inputpersoncontrol.h"
+#include "inputmanager.h"
 #include "samplepersoncontrol.h"
 #include "mapmanager.h"
 #include "layer.h"
@@ -18,7 +19,7 @@ using namespace io;
 namespace Annchienta
 {
 
-    Person::Person( const char *_name, const char *_configfile ): StaticObject(_name, _configfile), control(0)
+    Person::Person( const char *_name, const char *_configfile ): StaticObject(_name, _configfile), control(0), frozen(false)
     {
         IrrXMLReader *xml = createIrrXMLReader( _configfile );
 
@@ -34,7 +35,10 @@ namespace Annchienta
                     {
                         const char *typestr = xml->getAttributeValue("type");
                         if( !strcmpCaseInsensitive( "input", typestr ) )
+                        {
                             control = new InputPersonControl( this );
+                            getInputManager()->setInputControlledPerson( this );
+                        }
                         if( !strcmpCaseInsensitive( "sample", typestr ) )
                             control = new SamplePersonControl( this );
                     }
@@ -77,6 +81,9 @@ namespace Annchienta
 
     bool Person::move( int x, int y, bool force )
     {
+        if( frozen && !force )
+            return false;
+
         Point oldPosition = position;
 
         position.x += x;
@@ -109,7 +116,7 @@ namespace Annchienta
         /* Reject if there are now colliding tiles.
          * (This means the player is probably outside the level.)
          */
-        if( collidingTiles.size() <= 0 )
+        if( possible && collidingTiles.size() <= 0 )
             possible = false;
 
         /* Reject if the person ascents too high.
@@ -145,6 +152,51 @@ namespace Annchienta
         }
 
         return true;
+    }
+
+    bool Person::stepTo( int tx, int ty )
+    {
+        /* We don't need to take a step if we're close enough.
+        */
+        if( squaredDistance( position.x, position.y, tx, ty ) <= 25 )
+        {
+            this->stopAnimation();
+            return false;
+        }
+
+        for( int i=0; i<getMapManager()->getUpdatesNeeded(); i++ )
+        {
+
+            int x = tx-position.x>0?1:(tx-position.x<0?-1:0),
+                y = ty-position.y>0?1:(ty-position.y<0?-1:0);
+
+            bool result;
+
+            if( x )
+            {
+                if( this->move( x, 0, false ) )
+                    return true;
+                else
+                    if( y )
+                        if( this->move( 0, y, false ) )
+                            return true;
+                        else
+                            this->move( x, 0, true );
+            }
+            else
+            {
+                this->move( 0, y, true );
+            }
+        }
+
+        return true;
+    }
+
+    void Person::freeze( bool f )
+    {
+        frozen = f;
+        if( frozen )
+            this->stopAnimation();
     }
 
     void Person::setInputControl()
