@@ -17,6 +17,7 @@ namespace Annchienta
             bool hasInput;
             PersonControl *control;
             bool frozen;
+            int heading;
 
             const static int squaredInteractDistance = 600;
 
@@ -32,10 +33,13 @@ namespace Annchienta
             virtual bool stepTo( int x, int y );
 
             virtual void freeze( bool );
+            virtual bool isFrozen() const;
 
             virtual void setInputControl();
 
             virtual void interact();
+
+            virtual void setStandAnimation();
     };
 
 };

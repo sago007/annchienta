@@ -18,6 +18,10 @@
     <animation name="walkeast" frames="34" speed="15" />
     <animation name="walkwest" frames="56" speed="15" />
     <animation name="walksouth" frames="78" speed="15" />
+    <animation name="standnorth" frames="1" speed="15" />
+    <animation name="standeast" frames="3" speed="15" />
+    <animation name="standwest" frames="5" speed="15" />
+    <animation name="standsouth" frames="7" speed="15" />
     
     <control type="sample" />
     
@@ -34,6 +38,9 @@ sceneManager.speak( this, "I'm not sure anymore... It's been so long." )
 sceneManager.speak( player, "I'm sorry." )
 sceneManager.move( this, 140, 140 )
 sceneManager.speak( this, "How do those colours taste?" )
+sceneManager.speak( player, "Wait, let me show you." )
+sceneManager.move( player, 120, 140 )
+sceneManager.speak( player, "There you go." )
 this.freeze(False)
 </oninteract>
 

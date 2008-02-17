@@ -49,6 +49,7 @@ namespace Annchienta
         delete xml;
 
         setAnimation( "stand" );
+        heading = 0;
     }
 
     Person::~Person()
@@ -81,9 +82,6 @@ namespace Annchienta
 
     bool Person::move( int x, int y, bool force )
     {
-        if( frozen && !force )
-            return false;
-
         Point oldPosition = position;
 
         position.x += x;
@@ -93,15 +91,29 @@ namespace Annchienta
         /* Adjust animation.
          */
         if( x<0 )
+        {
+            heading = 0;
             this->setAnimation("walknorth");
-        if( x>0 )
-            this->setAnimation("walksouth");
+        }
         if( y<0 )
+        {
+            heading = 1;
             this->setAnimation("walkeast");
+        }
+        if( x>0 )
+        {
+            heading = 2;
+            this->setAnimation("walksouth");
+        }
         if( y>0 )
+        {
+            heading = 3;
             this->setAnimation("walkwest");
+        }
         if( !x && !y )
-            this->stopAnimation();
+        {
+            this->setStandAnimation();
+        }
 
         if( force || !layer || (!x && !y) )
             return true;
@@ -160,7 +172,7 @@ namespace Annchienta
         */
         if( squaredDistance( position.x, position.y, tx, ty ) <= 25 )
         {
-            this->stopAnimation();
+            this->setStandAnimation();
             return false;
         }
 
@@ -196,7 +208,12 @@ namespace Annchienta
     {
         frozen = f;
         if( frozen )
-            this->stopAnimation();
+            this->setStandAnimation();
+    }
+
+    bool Person::isFrozen() const
+    {
+        return frozen;
     }
 
     void Person::setInputControl()
@@ -264,5 +281,36 @@ namespace Annchienta
             setPassiveObject( interactWith );
             interactWith->onInteract();
         }
+    }
+
+    void Person::setStandAnimation()
+    {
+        bool setAnimationResult;
+
+        //if( !strcmpCaseInsensitive("aelaan", getName() ) )
+          //  printf("Setting stand animation %d.\n", heading);
+
+        switch( heading )
+        {
+            case 0:
+                setAnimationResult = this->setAnimation("standnorth");
+                break;
+            case 1:
+                setAnimationResult = this->setAnimation("standeast");
+                break;
+            case 2:
+                setAnimationResult = this->setAnimation("standsouth");
+                break;
+            case 3: default:
+                setAnimationResult = this->setAnimation("standwest");
+                break;
+        }
+        if( !setAnimationResult )
+        {
+            //printf("Could not find animation.\n");
+            this->setAnimation("stand");
+        }
+
+        //printf("Animations is now: %s\n", animations[currentAnimation].name );
     }
 };

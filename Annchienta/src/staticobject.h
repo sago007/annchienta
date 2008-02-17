@@ -80,9 +80,9 @@ namespace Annchienta
             virtual Point getMaskPosition() const;
             virtual Mask *getMask() const;
 
-            virtual void setAnimation( const char *animationName );
-            virtual void stopAnimation();
-            virtual void startAnimation();
+            virtual bool setAnimation( const char *animationName );
+            //virtual void stopAnimation();
+            //virtual void startAnimation();
 
             virtual void onInteract();
 

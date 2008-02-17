@@ -62,7 +62,7 @@ namespace Annchienta
              */
             void run();
 
-            void update();
+            void update( bool updateInput=true );
             void renderFrame() const;
 
             void resync();

@@ -440,8 +440,6 @@ class StaticObject(Entity):
     def getMaskPosition(*args): return _annchienta.StaticObject_getMaskPosition(*args)
     def getMask(*args): return _annchienta.StaticObject_getMask(*args)
     def setAnimation(*args): return _annchienta.StaticObject_setAnimation(*args)
-    def stopAnimation(*args): return _annchienta.StaticObject_stopAnimation(*args)
-    def startAnimation(*args): return _annchienta.StaticObject_startAnimation(*args)
     def onInteract(*args): return _annchienta.StaticObject_onInteract(*args)
     def freeze(*args): return _annchienta.StaticObject_freeze(*args)
     def stepTo(*args): return _annchienta.StaticObject_stepTo(*args)

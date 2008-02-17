@@ -159,7 +159,7 @@ namespace Annchienta
 
     void StaticObject::update()
     {
-        if( animationRunning && currentAnimation>=0 )
+        if( /*animationRunning &&*/ currentAnimation>=0 )
         {
             speedTimer++;
             if( speedTimer >= animations[currentAnimation].speed )
@@ -223,6 +223,11 @@ namespace Annchienta
             }
         }
 
+        if( !strcmpCaseInsensitive("aelaan", getName()) )
+        {
+            //printf("Drawing frame %d of %s\n", frameNumber, animations[currentAnimation].name );
+        }
+
         Point pos = this->getMaskPosition();
 
         glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
@@ -266,24 +271,26 @@ namespace Annchienta
         return mask;
     }
 
-    void StaticObject::setAnimation( const char *aname )
+    bool StaticObject::setAnimation( const char *aname )
     {
+
         for( unsigned int i=0; i<animations.size(); i++ )
         {
             if( !strcmpCaseInsensitive( aname, animations[i].name ) )
             {
+                //printf("Set %s to %s or %s\n", getName(), aname, animations[i].name );
                 currentAnimation = i;
                 currentFrame %= animations[i].numberOfFrames;
                 animationRunning = true;
-                return;
+                return true;
             }
         }
 
-        printf( "There is no animation called %s for entity %s\n", aname, name );
         currentAnimation = -1;
+        return false;
     }
 
-    void StaticObject::stopAnimation()
+    /*void StaticObject::stopAnimation()
     {
         animationRunning = false;
     }
@@ -291,7 +298,7 @@ namespace Annchienta
     void StaticObject::startAnimation()
     {
         animationRunning = true;
-    }
+    }*/
 
     void StaticObject::onInteract()
     {

@@ -24,6 +24,9 @@ namespace Annchienta
     {
         int x = 0, y = 0;
 
+        if( person->isFrozen() )
+            return;
+
         if( inputManager->personInputIsEnabled() )
         {
             if( inputManager->keyDown( SDLK_LEFT ) )
@@ -37,9 +40,9 @@ namespace Annchienta
     
             if( inputManager->keyTicked( SDLK_RETURN ) )
                 person->interact();
-        }
 
-        person->move( x, y );
+            person->move( x, y );
+        }
     }
 
 };

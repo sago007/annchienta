@@ -99,9 +99,10 @@ class SceneManager:
 
         while self.inputManager.running() and not self.inputManager.keyTicked( self.confirmKey ):
 
-            self.mapManager.update()
+            self.mapManager.update(False)
             self.mapManager.setCameraX(cx)
             self.mapManager.setCameraY(cy)
+            self.inputManager.update()
 
             self.videoManager.begin()
             self.mapManager.renderFrame()
@@ -143,7 +144,9 @@ class SceneManager:
 
         while self.inputManager.running() and object.stepTo(x,y):
 
-            self.mapManager.update()
+            self.mapManager.update(False)
+            self.inputManager.update()
+
             self.mapManager.cameraPeekAt( object )
 
             self.videoManager.begin()
@@ -151,6 +154,39 @@ class SceneManager:
             self.videoManager.end()
 
         self.inputManager.setPersonInputEnabled(True)
+
+    def choose(self, title, answers):
+
+        selected = 0
+        self.inputManager.setPersonInputEnabled(False)
+        self.inputManager.update()
+
+        while self.inputManager.running() and not self.inputManager.keyTicked( self.confirmKey ):
+
+            self.mapManager.update(False)
+            self.inputManager.update()
+
+            self.videoManager.begin()
+            self.mapManager.renderFrame()
+            self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
+            self.videoManager.setColor( 255, 255, 255, 255 )
+            y = self.margin*2
+            self.videoManager.drawString( self.defaultFont, title, self.margin*2, y )
+            y += self.defaultFont.getLineHeight()
+            for a in answers:
+                self.videoManager.drawString( self.defaultFont, a, self.margin*4, y )
+                y += self.defaultFont.getLineHeight()
+            self.videoManager.translate( self.margin*2, self.margin*2 + self.defaultFont.getLineHeight()*(selected+1) )
+            self.videoManager.drawTriangle( 0, 0, 0, self.defaultFont.getHeight(), self.margin, self.defaultFont.getHeight()/2 )
+            self.videoManager.end()
+
+            if self.inputManager.keyTicked(annchienta.SDLK_DOWN):
+                selected = selected+1 if selected+1<len(answers) else 0
+            if self.inputManager.keyTicked(annchienta.SDLK_UP):
+                selected = selected-1 if selected>=1 else len(answers)-1
+
+        self.inputManager.setPersonInputEnabled(True)
+        return answers[selected]
 
 ## \brief Init the SceneManager global instance.
 #

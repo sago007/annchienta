@@ -73,7 +73,7 @@ namespace Annchienta
     {
         const int caseDiff = 'A' - 'a';
 
-        while( *str1 && *str2 )
+        while( *str1 || *str2 )
         {
             if( (*str1 == *str2) || (*str1 == *str2+caseDiff) || (*str1 == *str2-caseDiff) )
             {

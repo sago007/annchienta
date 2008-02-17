@@ -174,11 +174,12 @@ namespace Annchienta
         }
     }
 
-    void MapManager::update()
+    void MapManager::update( bool updateInput )
     {
         while( updatesNeeded>0 )
         {
-            inputManager->update();
+            if( updateInput )
+                inputManager->update();
 
             if( currentMap )
                 currentMap->update();
