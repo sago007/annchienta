@@ -27,7 +27,7 @@ namespace Annchienta
         if( person->isFrozen() )
             return;
 
-        if( inputManager->personInputIsEnabled() )
+        if( inputManager->personInputIsEnabled() && person==inputManager->getInputControlledPerson() )
         {
             if( inputManager->keyDown( SDLK_LEFT ) )
                 x--;

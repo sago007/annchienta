@@ -9,7 +9,7 @@
 
 #include "auxfunc.h"
 
-#define NUM_CHARACTERS 128
+#define NUM_CHARACTERS 256
 
 namespace Annchienta
 {

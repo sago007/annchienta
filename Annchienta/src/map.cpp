@@ -201,7 +201,20 @@ namespace Annchienta
     StaticObject *Map::getObject( const char *name )
     {
         if( layers.size() )
-            return layers[currentLayer]->getObject( name );
+        {
+            StaticObject *so = layers[currentLayer]->getObject( name );
+            if( so )
+                return so;
+        }
+        for( unsigned int i=0; i<layers.size(); i++ )
+        {
+            if( i!=currentLayer )
+            {
+                StaticObject *so = layers[i]->getObject( name );
+                if( so )
+                    return so;
+            }
+        }
         return 0;
     }
 

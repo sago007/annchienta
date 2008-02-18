@@ -14,7 +14,6 @@ namespace Annchienta
     class Person: public StaticObject
     {
         protected:
-            bool hasInput;
             PersonControl *control;
             bool frozen;
             int heading;

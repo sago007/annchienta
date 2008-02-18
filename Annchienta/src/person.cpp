@@ -221,6 +221,7 @@ namespace Annchienta
         if( control )
             delete control;
         control = new InputPersonControl( this );
+        getInputManager()->setInputControlledPerson( this );
     }
 
     void Person::interact()
