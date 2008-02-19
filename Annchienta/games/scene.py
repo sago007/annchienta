@@ -188,6 +188,22 @@ class SceneManager:
         self.inputManager.setPersonInputEnabled(True)
         return answers[selected]
 
+    ## \brief Inits a dialog.
+    #
+    def initDialog( self, objects ):
+        for o in objects:
+            o.freeze( True )
+        if len(objects)==2:
+            objects[0].lookAt( objects[1] )
+            objects[1].lookAt( objects[0] )
+        self.objectsInDialog = objects
+
+    ## \brief Ends a dialog.
+    #
+    def quitDialog( self ):
+        for object in self.objectsInDialog:
+            object.freeze(False)
+
 ## \brief Init the SceneManager global instance.
 #
 #  You should call this function only once, usually at the

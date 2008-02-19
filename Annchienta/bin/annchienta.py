@@ -443,6 +443,7 @@ class StaticObject(Entity):
     def onInteract(*args): return _annchienta.StaticObject_onInteract(*args)
     def freeze(*args): return _annchienta.StaticObject_freeze(*args)
     def stepTo(*args): return _annchienta.StaticObject_stepTo(*args)
+    def lookAt(*args): return _annchienta.StaticObject_lookAt(*args)
 StaticObject_swigregister = _annchienta.StaticObject_swigregister
 StaticObject_swigregister(StaticObject)
 

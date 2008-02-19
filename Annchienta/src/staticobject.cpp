@@ -322,6 +322,11 @@ namespace Annchienta
         return true;
     }
 
+    void StaticObject::lookAt( StaticObject *other )
+    {
+        return;
+    }
+
     void setActiveObject( StaticObject *o )
     {
         activeObject = o;

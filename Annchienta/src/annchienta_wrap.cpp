@@ -9288,6 +9288,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_StaticObject_lookAt(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
+  Annchienta::StaticObject *arg2 = (Annchienta::StaticObject *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:StaticObject_lookAt",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_lookAt" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "StaticObject_lookAt" "', argument " "2"" of type '" "Annchienta::StaticObject *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::StaticObject * >(argp2);
+  (arg1)->lookAt(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *StaticObject_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -9505,6 +9535,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"StaticObject_onInteract", _wrap_StaticObject_onInteract, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_freeze", _wrap_StaticObject_freeze, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_stepTo", _wrap_StaticObject_stepTo, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_lookAt", _wrap_StaticObject_lookAt, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_swigregister", StaticObject_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getActiveObject", _wrap_getActiveObject, METH_VARARGS, NULL},
 	 { (char *)"getPassiveObject", _wrap_getPassiveObject, METH_VARARGS, NULL},

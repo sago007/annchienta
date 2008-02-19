@@ -39,6 +39,7 @@ namespace Annchienta
             virtual void interact();
 
             virtual void setStandAnimation();
+            virtual void lookAt( StaticObject *object );
     };
 
 };

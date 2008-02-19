@@ -314,4 +314,28 @@ namespace Annchienta
 
         //printf("Animations is now: %s\n", animations[currentAnimation].name );
     }
+
+    void Person::lookAt( StaticObject *other )
+    {
+        int xdiff = this->getPosition().x - other->getPosition().x,
+            ydiff = this->getPosition().y - other->getPosition().y;
+
+        if( absValue( xdiff ) > absValue( ydiff ) )
+        {
+            if( xdiff < 0 )
+                heading = 2;
+            else
+                heading = 0;
+        }
+        else
+        {
+            if( ydiff < 0 )
+                heading = 3;
+            else
+                heading = 1;
+        }
+
+        setStandAnimation();
+    }
+
 };

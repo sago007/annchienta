@@ -91,6 +91,7 @@ namespace Annchienta
              */
             virtual void freeze( bool );
             virtual bool stepTo( int x, int y);
+            virtual void lookAt( StaticObject *other );
     };
 
     #ifndef SWIG
