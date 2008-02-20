@@ -230,6 +230,12 @@ namespace Annchienta
             layers[i]->draw();
     }
 
+    void Map::drawTerrain() const
+    {
+        for( unsigned int i=0; i<layers.size(); i++ )
+            layers[i]->drawTerrain();
+    }
+
     void Map::depthSort()
     {
         for( unsigned int i=0; i<layers.size(); i++ )

@@ -57,6 +57,7 @@ namespace Annchienta
 
             void update();
             void draw() const;
+            void drawTerrain() const;
             void depthSort();
 
             void addEntity( Entity *entity );

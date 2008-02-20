@@ -64,6 +64,7 @@ namespace Annchienta
 
             void update( bool updateInput=true );
             void renderFrame() const;
+            void renderTerrain() const;
 
             void resync();
     };

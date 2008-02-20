@@ -164,6 +164,7 @@ class MapManager(_object):
     def run(*args): return _annchienta.MapManager_run(*args)
     def update(*args): return _annchienta.MapManager_update(*args)
     def renderFrame(*args): return _annchienta.MapManager_renderFrame(*args)
+    def renderTerrain(*args): return _annchienta.MapManager_renderTerrain(*args)
     def resync(*args): return _annchienta.MapManager_resync(*args)
     def __init__(self, *args): 
         this = _annchienta.new_MapManager(*args)
@@ -278,6 +279,7 @@ class Layer(_object):
     def getOpacity(*args): return _annchienta.Layer_getOpacity(*args)
     def update(*args): return _annchienta.Layer_update(*args)
     def draw(*args): return _annchienta.Layer_draw(*args)
+    def drawTerrain(*args): return _annchienta.Layer_drawTerrain(*args)
     def depthSort(*args): return _annchienta.Layer_depthSort(*args)
     def addEntity(*args): return _annchienta.Layer_addEntity(*args)
     def getObject(*args): return _annchienta.Layer_getObject(*args)
@@ -301,6 +303,7 @@ class Map(_object):
     def getObject(*args): return _annchienta.Map_getObject(*args)
     def update(*args): return _annchienta.Map_update(*args)
     def draw(*args): return _annchienta.Map_draw(*args)
+    def drawTerrain(*args): return _annchienta.Map_drawTerrain(*args)
     def depthSort(*args): return _annchienta.Map_depthSort(*args)
 Map_swigregister = _annchienta.Map_swigregister
 Map_swigregister(Map)

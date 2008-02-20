@@ -59,18 +59,12 @@ namespace Annchienta
 
     void Layer::draw() const
     {
-        VideoManager *videoManager = getVideoManager();
-
         glPushMatrix();
 
         glTranslatef( 0.0f, -z, 0.0f );
 
         if( opacity < 0xff )
-        {
-            glDrawBuffer( GL_AUX0 );
-            glReadBuffer( GL_AUX0 );
-            glClear( GL_COLOR_BUFFER_BIT );
-        }
+            return;
 
         for( unsigned int i=0; i<entities.size(); i++ )
             entities[i]->setDrawn( false );
@@ -78,16 +72,28 @@ namespace Annchienta
         for( unsigned int i=0; i<entities.size(); i++ )
             entities[i]->draw();
 
+        glPopMatrix();
+    }
+
+    void Layer::drawTerrain() const
+    {
+        glPushMatrix();
+
+        glTranslatef( 0.0f, -z, 0.0f );
+
         if( opacity < 0xff )
+            return;
+
+        for( unsigned int i=0; i<entities.size(); i++ )
         {
-            videoManager->storeBuffer(7);
-            glDrawBuffer( GL_BACK );
-            glReadBuffer( GL_BACK );
-            glColor4f( 1.0f, 1.0f, 1.0f, (float)opacity/(float)0xff );
-            videoManager->restoreBuffer(7);
+            if( entities[i]->getEntityType() != PersonEntity )
+                entities[i]->setDrawn( false );
+            else
+                entities[i]->setDrawn( true );
         }
 
-        glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
+        for( unsigned int i=0; i<entities.size(); i++ )
+            entities[i]->draw();
 
         glPopMatrix();
     }

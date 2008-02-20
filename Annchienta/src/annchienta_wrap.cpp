@@ -6012,6 +6012,27 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_MapManager_renderTerrain(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_renderTerrain",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_renderTerrain" "', argument " "1"" of type '" "Annchienta::MapManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  ((Annchienta::MapManager const *)arg1)->renderTerrain();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_MapManager_resync(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
@@ -7048,6 +7069,27 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Layer_drawTerrain(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Layer_drawTerrain",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_drawTerrain" "', argument " "1"" of type '" "Annchienta::Layer const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
+  ((Annchienta::Layer const *)arg1)->drawTerrain();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Layer_depthSort(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
@@ -7396,6 +7438,27 @@ SWIGINTERN PyObject *_wrap_Map_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
   }
   arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
   ((Annchienta::Map const *)arg1)->draw();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Map_drawTerrain(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Map_drawTerrain",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_drawTerrain" "', argument " "1"" of type '" "Annchienta::Map const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  ((Annchienta::Map const *)arg1)->drawTerrain();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9426,6 +9489,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_run", _wrap_MapManager_run, METH_VARARGS, NULL},
 	 { (char *)"MapManager_update", _wrap_MapManager_update, METH_VARARGS, NULL},
 	 { (char *)"MapManager_renderFrame", _wrap_MapManager_renderFrame, METH_VARARGS, NULL},
+	 { (char *)"MapManager_renderTerrain", _wrap_MapManager_renderTerrain, METH_VARARGS, NULL},
 	 { (char *)"MapManager_resync", _wrap_MapManager_resync, METH_VARARGS, NULL},
 	 { (char *)"new_MapManager", _wrap_new_MapManager, METH_VARARGS, NULL},
 	 { (char *)"delete_MapManager", _wrap_delete_MapManager, METH_VARARGS, NULL},
@@ -9464,6 +9528,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Layer_getOpacity", _wrap_Layer_getOpacity, METH_VARARGS, NULL},
 	 { (char *)"Layer_update", _wrap_Layer_update, METH_VARARGS, NULL},
 	 { (char *)"Layer_draw", _wrap_Layer_draw, METH_VARARGS, NULL},
+	 { (char *)"Layer_drawTerrain", _wrap_Layer_drawTerrain, METH_VARARGS, NULL},
 	 { (char *)"Layer_depthSort", _wrap_Layer_depthSort, METH_VARARGS, NULL},
 	 { (char *)"Layer_addEntity", _wrap_Layer_addEntity, METH_VARARGS, NULL},
 	 { (char *)"Layer_getObject", _wrap_Layer_getObject, METH_VARARGS, NULL},
@@ -9475,6 +9540,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Map_getObject", _wrap_Map_getObject, METH_VARARGS, NULL},
 	 { (char *)"Map_update", _wrap_Map_update, METH_VARARGS, NULL},
 	 { (char *)"Map_draw", _wrap_Map_draw, METH_VARARGS, NULL},
+	 { (char *)"Map_drawTerrain", _wrap_Map_drawTerrain, METH_VARARGS, NULL},
 	 { (char *)"Map_depthSort", _wrap_Map_depthSort, METH_VARARGS, NULL},
 	 { (char *)"Map_swigregister", Map_swigregister, METH_VARARGS, NULL},
 	 { (char *)"Point_x_set", _wrap_Point_x_set, METH_VARARGS, NULL},
