@@ -41,10 +41,11 @@ class Editor(QWidget):
     def selectGameDirectory(self):
 
         # Select a directory and set working directory
-        directory = self.browseDirectory()
-        os.chdir( directory )
+        fileDialog = QFileDialog(self)
+        filename = fileDialog.getExistingDirectory(self)
         # Set lineEdit to match
-        self.selectGameDirectoryDisplay.setText( directory )
+        self.selectGameDirectoryDisplay.setText( filename )
+        os.chdir( str(filename) )
 
     # Gets automatically called every {whaterver} milliseconds.
     def updateMap(self):
@@ -81,20 +82,9 @@ class Editor(QWidget):
     # Opens and loads a map.
     def openMap(self):
 
-        filename = self.browseFile()
+        fileDialog = QFileDialog(self)
+        filename = fileDialog.getOpenFileName(self)
         if not os.path.isfile(filename):
             return
         self.currentMap = annchienta.Map( str(filename) )
         self.mapManager.setCurrentMap( self.currentMap )
-
-    def browseDirectory(self):
-
-        fileDialog = QFileDialog(self)
-        filename = fileDialog.getExistingDirectory(self)
-        return filename
-
-    def browseFile(self):
-
-        fileDialog = QFileDialog(self)
-        filename = fileDialog.getOpenFileName(self)
-        return filename
