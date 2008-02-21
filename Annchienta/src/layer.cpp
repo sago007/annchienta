@@ -18,6 +18,7 @@ namespace Annchienta
     {
         /* Create some extra space.
          */
+        //printf("Creating layer: %d x %d\n", width, height);
         entities.resize( width*height );
 
         if( _tiles )

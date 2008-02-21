@@ -174,10 +174,11 @@ namespace Annchienta
         tileSet = new TileSet( tileSetFilename );
         LayerInfo *layerInfo = new LayerInfo;
         layerInfo->z = 0;
-        layerInfo->width = width;
-        layerInfo->height = height;
+        layerInfo->width = width = w;
+        layerInfo->height = height = h;
         layerInfo->opacity = 0xff;
-        layers.push_back( new Layer( layerInfo, 0 ) );
+        Layer *layer =  new Layer( layerInfo, 0 );
+        layer->setTileSet( tileSet );
         delete layerInfo;
     }
 

@@ -32,11 +32,11 @@ import sys\n\
 import os\n\
 \n\
 sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
-sys.path.append( os.path.abspath( os.path.dirname( \"%s\" ) ) )\n\
 os.chdir( os.path.dirname( \"%s\" ) )\n\
+sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
 execfile( os.path.basename( \"%s\" ) )\n\
 ",
-    filename, filename, filename );
+    filename, filename );
 
     PyRun_SimpleString( initScript );
 

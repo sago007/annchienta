@@ -36,10 +36,90 @@
    <property name="currentIndex" >
     <number>0</number>
    </property>
+   <widget class="QWidget" name="configurationTab" >
+    <attribute name="title" >
+     <string>Configuration</string>
+    </attribute>
+    <widget class="QLabel" name="label" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>160</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Game working directory:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="selectGameDirectoryDisplay" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>251</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="selectGameDirectoryButton" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>251</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Browse</string>
+     </property>
+    </widget>
+   </widget>
    <widget class="QWidget" name="mapTab" >
     <attribute name="title" >
      <string>Map</string>
     </attribute>
+    <widget class="QPushButton" name="newMapButton" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>70</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>New</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="openMapButton" >
+     <property name="geometry" >
+      <rect>
+       <x>80</x>
+       <y>10</y>
+       <width>76</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Open</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="saveMapButton" >
+     <property name="geometry" >
+      <rect>
+       <x>180</x>
+       <y>10</y>
+       <width>74</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Save</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tileTab" >
     <attribute name="title" >
