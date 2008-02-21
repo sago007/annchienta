@@ -6,7 +6,6 @@
 #define ANNCHIENTA_MAP_H
 
 #include <vector>
-#include "editor.h"
 
 namespace Annchienta
 {
@@ -17,7 +16,6 @@ namespace Annchienta
 
     class Map
     {
-        friend class Editor;
 
         private:
             TileSet *tileSet;

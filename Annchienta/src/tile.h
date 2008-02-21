@@ -8,7 +8,6 @@
 #include <GL/gl.h>
 #include "point.h"
 #include "entity.h"
-#include "editor.h"
 
 namespace Annchienta
 {
@@ -17,7 +16,6 @@ namespace Annchienta
 
     class Tile: public Entity
     {
-        friend class Editor;
 
         private:
             Point points[4];
