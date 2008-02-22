@@ -13,6 +13,8 @@ class Editor(QWidget):
         QWidget.__init__(self)
         uic.loadUi("editor.ui", self)
 
+        self.hasOpenedMap = False
+
         # Create an annchienta context
         self.videoManager = annchienta.getVideoManager()
         self.mapManager = annchienta.getMapManager()
@@ -69,15 +71,16 @@ class Editor(QWidget):
 
         # Draw
         self.videoManager.begin()
-        self.mapManager.renderFrame()
+        if self.hasOpenedMap:
+            self.mapManager.renderFrame()
+            self.drawGrid()
         self.videoManager.end()
 
     # Creates a new map.
     def newMap(self):
 
         self.newMapDialog.run()
-        #self.currentMap = dialog.getMap()
-        #self.mapmanager.setCurrentMap( self.currentMap )
+        self.hasOpenedMap = True
 
     # Opens and loads a map.
     def openMap(self):
@@ -88,3 +91,21 @@ class Editor(QWidget):
             return
         self.currentMap = annchienta.Map( str(filename) )
         self.mapManager.setCurrentMap( self.currentMap )
+        self.currentMap.depthSort()
+        self.hasOpenedMap = True
+
+    def drawGrid(self):
+
+        self.videoManager.translate( -self.mapManager.getCameraX(), -self.mapManager.getCameraY() )
+        self.videoManager.setColor( 255, 0, 0, 100 )
+
+        layer = self.currentMap.getCurrentLayer()
+        for y in range( 1, layer.getHeight() ):
+            point1 = layer.getTile( 0, y ).getPointPointer(0)
+            point2 = layer.getTile( layer.getWidth()-1, y-1 ).getPointPointer(2)
+            self.videoManager.drawLine( point1.x, point1.y, point2.x, point2.y )
+
+        for x in range( 1, layer.getWidth() ):
+            point1 = layer.getTile( x, 0 ).getPointPointer(0)
+            point2 = layer.getTile( x-1, layer.getHeight()-1 ).getPointPointer(2)
+            self.videoManager.drawLine( point1.x, point1.y, point2.x, point2.y )

@@ -282,6 +282,9 @@ class Layer(_object):
     def drawTerrain(*args): return _annchienta.Layer_drawTerrain(*args)
     def depthSort(*args): return _annchienta.Layer_depthSort(*args)
     def addEntity(*args): return _annchienta.Layer_addEntity(*args)
+    def getWidth(*args): return _annchienta.Layer_getWidth(*args)
+    def getHeight(*args): return _annchienta.Layer_getHeight(*args)
+    def getTile(*args): return _annchienta.Layer_getTile(*args)
     def getObject(*args): return _annchienta.Layer_getObject(*args)
 Layer_swigregister = _annchienta.Layer_swigregister
 Layer_swigregister(Layer)
@@ -381,6 +384,7 @@ class Tile(Entity):
     def draw(*args): return _annchienta.Tile_draw(*args)
     def getDepthSortY(*args): return _annchienta.Tile_getDepthSortY(*args)
     def hasPoint(*args): return _annchienta.Tile_hasPoint(*args)
+    def getPointPointer(*args): return _annchienta.Tile_getPointPointer(*args)
 Tile_swigregister = _annchienta.Tile_swigregister
 Tile_swigregister(Tile)
 

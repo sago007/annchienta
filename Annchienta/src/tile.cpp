@@ -239,4 +239,9 @@ namespace Annchienta
         return points[i];
     }
 
+    Point *Tile::getPointPointer( int i )
+    {
+        return &points[i];
+    }
+
 };

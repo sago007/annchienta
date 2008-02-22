@@ -159,16 +159,6 @@ namespace Annchienta
         return &tiles[ x*width+y ];
     }
 
-    int Layer::getWidth() const
-    {
-        return width;
-    }
-
-    int Layer::getHeight() const
-    {
-        return height;
-    }
-
     void Layer::setTileSet( TileSet *_tileSet )
     {
         tileSet = _tileSet;
@@ -184,6 +174,21 @@ namespace Annchienta
         if( (unsigned int)num >= staticObjects.size() )
             return 0;
         return staticObjects[num];
+    }
+
+    int Layer::getWidth() const
+    {
+        return width;
+    }
+
+    int Layer::getHeight() const
+    {
+        return height;
+    }
+
+    Tile *Layer::getTile( int x, int y )
+    {
+        return tiles[ x*width+y ];
     }
 
     StaticObject *Layer::getObject( const char *name )

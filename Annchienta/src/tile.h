@@ -45,6 +45,8 @@ namespace Annchienta
                 Point getPoint( int i ) const;
             #endif
 
+            Point *getPointPointer( int i );
+
     };
 };
 

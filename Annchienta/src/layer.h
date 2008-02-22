@@ -63,12 +63,14 @@ namespace Annchienta
             #ifndef SWIG
                 void makeEmpty();
                 Tile **getTilePointer( int x, int y );
-                int getWidth() const;
-                int getHeight() const;
                 void setTileSet( TileSet *tileSet );
                 TileSet *getTileSet() const;
                 StaticObject *getStaticObject( int num );
             #endif
+
+            int getWidth() const;
+            int getHeight() const;
+            Tile *getTile( int x, int y );
 
             StaticObject *getObject( const char *name );
     };

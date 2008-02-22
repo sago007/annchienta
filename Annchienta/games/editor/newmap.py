@@ -26,6 +26,7 @@ class NewMapDialog(QDialog):
         tmap = annchienta.Map( int(self.widthBox.value()), int(self.heightBox.value()), str(self.tilesetDisplay.text()) )
         self.editor.currentMap = tmap
         self.editor.mapManager.setCurrentMap( tmap )
+        tmap.depthSort()
         self.accept()
 
     def tilesetBrowse(self):
