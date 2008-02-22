@@ -169,7 +169,7 @@ namespace Annchienta
         delete xml;
     }
 
-    Map::Map( int w, int h, const char *tileSetFilename )
+    Map::Map( int w, int h, const char *tileSetFilename ): currentLayer(0)
     {
         tileSet = new TileSet( tileSetFilename );
         LayerInfo *layerInfo = new LayerInfo;
@@ -179,6 +179,7 @@ namespace Annchienta
         layerInfo->opacity = 0xff;
         Layer *layer =  new Layer( layerInfo, 0 );
         layer->setTileSet( tileSet );
+        layers.push_back( layer );
         delete layerInfo;
     }
 

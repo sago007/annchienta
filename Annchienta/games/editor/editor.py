@@ -40,6 +40,8 @@ class Editor(QWidget):
 
         self.newMapDialog = newmap.NewMapDialog(self)
 
+        self.connect( self.tileWidthBox, SIGNAL("valueChanged(int)"), self.changeTileWidth )
+
     def selectGameDirectory(self):
 
         # Select a directory and set working directory
@@ -109,3 +111,10 @@ class Editor(QWidget):
             point1 = layer.getTile( x, 0 ).getPointPointer(0)
             point2 = layer.getTile( x-1, layer.getHeight()-1 ).getPointPointer(2)
             self.videoManager.drawLine( point1.x, point1.y, point2.x, point2.y )
+
+    def changeTileWidth(self):
+
+        self.tileHeightBox.setValue( int(self.tileWidthBox.value())/2 )
+        self.mapManager.setTileWidth( int(self.tileWidthBox.value()) )
+        self.mapManager.setTileHeight( int(self.tileHeightBox.value()) )
+
