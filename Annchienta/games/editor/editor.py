@@ -73,14 +73,14 @@ class Editor(QWidget):
         self.videoManager.begin()
         if self.hasOpenedMap:
             self.mapManager.renderFrame()
-            self.drawGrid()
+            if bool(self.gridBox.isChecked()):
+                self.drawGrid()
         self.videoManager.end()
 
     # Creates a new map.
     def newMap(self):
 
         self.newMapDialog.run()
-        self.hasOpenedMap = True
 
     # Opens and loads a map.
     def openMap(self):
@@ -97,7 +97,7 @@ class Editor(QWidget):
     def drawGrid(self):
 
         self.videoManager.translate( -self.mapManager.getCameraX(), -self.mapManager.getCameraY() )
-        self.videoManager.setColor( 255, 0, 0, 100 )
+        self.videoManager.setColor( 255, 255, 255, 200 )
 
         layer = self.currentMap.getCurrentLayer()
         for y in range( 1, layer.getHeight() ):

@@ -76,6 +76,22 @@
       <string>Browse</string>
      </property>
     </widget>
+    <widget class="QCheckBox" name="gridBox" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>94</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Draw Grid</string>
+     </property>
+     <property name="checked" >
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="mapTab" >
     <attribute name="title" >
