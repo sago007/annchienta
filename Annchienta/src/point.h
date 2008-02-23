@@ -37,6 +37,8 @@ namespace Annchienta
             void convert( PointType newtype );
             Point to( PointType newtype ) const;
 
+            bool isEnclosedBy( Point *leftTop, Point *rightBottom );
+
     };
 
 };

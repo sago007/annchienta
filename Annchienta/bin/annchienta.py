@@ -339,6 +339,7 @@ class Point(_object):
     def getType(*args): return _annchienta.Point_getType(*args)
     def convert(*args): return _annchienta.Point_convert(*args)
     def to(*args): return _annchienta.Point_to(*args)
+    def isEnclosedBy(*args): return _annchienta.Point_isEnclosedBy(*args)
 Point_swigregister = _annchienta.Point_swigregister
 Point_swigregister(Point)
 

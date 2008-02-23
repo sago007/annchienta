@@ -8126,6 +8126,46 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Point_isEnclosedBy(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Point *arg1 = (Annchienta::Point *) 0 ;
+  Annchienta::Point *arg2 = (Annchienta::Point *) 0 ;
+  Annchienta::Point *arg3 = (Annchienta::Point *) 0 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Point_isEnclosedBy",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_isEnclosedBy" "', argument " "1"" of type '" "Annchienta::Point *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Point_isEnclosedBy" "', argument " "2"" of type '" "Annchienta::Point *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Point * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Point_isEnclosedBy" "', argument " "3"" of type '" "Annchienta::Point *""'"); 
+  }
+  arg3 = reinterpret_cast< Annchienta::Point * >(argp3);
+  result = (bool)(arg1)->isEnclosedBy(arg2,arg3);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Point_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -8573,7 +8613,7 @@ SWIGINTERN PyObject *_wrap_Tile_hasPoint(PyObject *SWIGUNUSEDPARM(self), PyObjec
   if (!PyArg_ParseTuple(args,(char *)"OO:Tile_hasPoint",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_hasPoint" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_hasPoint" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
   {
@@ -8589,7 +8629,7 @@ SWIGINTERN PyObject *_wrap_Tile_hasPoint(PyObject *SWIGUNUSEDPARM(self), PyObjec
       if (SWIG_IsNewObj(res2)) delete temp;
     }
   }
-  result = (bool)((Annchienta::Tile const *)arg1)->hasPoint(arg2);
+  result = (bool)(arg1)->hasPoint(arg2);
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -9693,6 +9733,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Point_getType", _wrap_Point_getType, METH_VARARGS, NULL},
 	 { (char *)"Point_convert", _wrap_Point_convert, METH_VARARGS, NULL},
 	 { (char *)"Point_to", _wrap_Point_to, METH_VARARGS, NULL},
+	 { (char *)"Point_isEnclosedBy", _wrap_Point_isEnclosedBy, METH_VARARGS, NULL},
 	 { (char *)"Point_swigregister", Point_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_Entity", _wrap_delete_Entity, METH_VARARGS, NULL},
 	 { (char *)"Entity_getEntityType", _wrap_Entity_getEntityType, METH_VARARGS, NULL},

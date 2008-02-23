@@ -37,7 +37,7 @@ namespace Annchienta
             virtual void update();
             virtual void draw();
             virtual int getDepthSortY();
-            bool hasPoint( Point point ) const;
+            bool hasPoint( Point point );
 
             #ifndef SWIG
                 virtual Point getMaskPosition() const;

@@ -134,17 +134,42 @@ class Editor(QWidget):
 
         layer = self.currentMap.getCurrentLayer()
 
-        if self.inputManager.buttonDown( 0 ):
+        mouse = annchienta.Point( annchienta.ScreenPoint, self.inputManager.getMouseX(), self.inputManager.getMouseY() )
+
+        if self.inputManager.buttonDown( 0 ) or (bool(self.zGroupBox.isChecked()) and self.inputManager.buttonTicked(0)):
             if bool(self.wholeTiles.isChecked()):
                 for y in range( 0, layer.getHeight() ):
                     for x in range( 0, layer.getWidth() ):
                         tile = layer.getTile( x, y )
-                        point = annchienta.Point( annchienta.ScreenPoint, self.inputManager.getMouseX(), self.inputManager.getMouseY() )
-                        if tile.hasPoint( point ):
+                        if tile.hasPoint( mouse ):
                             self.selected.tiles.append( selection.AffectedTile( tile, True, True, True, True ) )
                             needsRecompiling = True
             else:
-                pass
+                # Move the mouse a little
+                mouse.convert( annchienta.ScreenPoint )
+                #mouse.x -= self.mapManager.getTileWidth()/4
+                mouse.y -= self.mapManager.getTileHeight()/2
+                mouse.convert( annchienta.IsometricPoint )
+                # Create a new pseudo-tilegrid
+                grid = []
+                gridh, gridw = layer.getHeight()+1, layer.getWidth()+1
+                for y in range( 0, gridh ):
+                    for x in range( 0, gridw ):
+                        point = annchienta.Point( annchienta.TilePoint, x, y, 0 )
+                        point.convert( annchienta.IsometricPoint )
+                        grid.append( point )
+                # Now check for collision
+                for y in range( 0, gridh-1 ):
+                    for x in range( 0, gridw-1 ):
+                        if mouse.isEnclosedBy( grid[ y*gridw+x ], grid[ (y+1)*gridw+(x+1) ] ):
+                            self.selected.tiles.append( selection.AffectedTile( layer.getTile(x,y), False, False, True, False ) )
+                            if x+2<gridw:
+                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x+1,y), False, True, False, False ) )
+                            if y+2<gridh:
+                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x,y+1), False, False, False, True ) )
+                            if x+2<gridw and y+2<gridh:
+                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x+1,y+1), True, False, False, False ) )
+                            needsRecompiling = True
 
         # APPLY PART
 
@@ -158,6 +183,8 @@ class Editor(QWidget):
         if needsRecompiling:
             for at in self.selected.tiles:
                 at.tile.makeList()
-            self.currentMap.update()
+
+            # Does not work anyway
+            #self.currentMap.update()
 
 

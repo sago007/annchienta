@@ -148,4 +148,11 @@ namespace Annchienta
         return temp;
     }
 
+    bool Point::isEnclosedBy( Point *leftTopp, Point *rightBottomp )
+    {
+        Point leftTop = leftTopp->to(type),
+              rightBottom = rightBottomp->to(type);
+        return ( leftTop.x<=x && leftTop.y<=y && rightBottom.x>=x && rightBottom.y>=y );
+    }
+
 };

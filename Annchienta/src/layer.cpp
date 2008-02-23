@@ -156,7 +156,7 @@ namespace Annchienta
 
     Tile **Layer::getTilePointer( int x, int y )
     {
-        return &tiles[ x*width+y ];
+        return &tiles[ y*width+x ];
     }
 
     void Layer::setTileSet( TileSet *_tileSet )
@@ -188,7 +188,7 @@ namespace Annchienta
 
     Tile *Layer::getTile( int x, int y )
     {
-        return tiles[ x*width+y ];
+        return tiles[ y*width+x ];
     }
 
     StaticObject *Layer::getObject( const char *name )
