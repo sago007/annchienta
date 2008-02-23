@@ -26,11 +26,11 @@ namespace Annchienta
 
             bool nullTile;
 
-            void makeList();
-
         public:
             Tile( Point, Surface*, Point, Surface*, Point, Surface*, Point, Surface*, Surface *side=0 );
             ~Tile();
+
+            void makeList();
 
             virtual EntityType getEntityType() const;
 

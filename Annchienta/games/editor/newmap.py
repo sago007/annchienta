@@ -21,6 +21,7 @@ class NewMapDialog(QDialog):
 
         self.setModal(True)
         self.show()
+        self.createButton.setEnabled(False)
 
     def createMap(self):
         tmap = annchienta.Map( int(self.widthBox.value()), int(self.heightBox.value()), str(self.tilesetDisplay.text()) )
@@ -34,3 +35,4 @@ class NewMapDialog(QDialog):
         fileDialog = QFileDialog(self)
         filename = fileDialog.getExistingDirectory(self)
         self.tilesetDisplay.setText( filename )
+        self.createButton.setEnabled(True)

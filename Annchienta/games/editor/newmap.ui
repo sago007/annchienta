@@ -104,6 +104,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="createButton" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="geometry" >
     <rect>
      <x>177</x>

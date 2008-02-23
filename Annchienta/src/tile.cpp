@@ -21,6 +21,36 @@ namespace Annchienta
         *wallYDown = 1.0f - (float)( (mapMgr->getTileHeight()>>1) + surf->getHeight() - mapMgr->getTileHeight() )/(float)surf->getGlHeight();
     }*/
 
+    Tile::Tile( Point p1, Surface *s1, Point p2, Surface *s2, Point p3, Surface *s3, Point p4, Surface *s4, Surface *side ): list(0), nullTile(false)
+    {
+        points[0] = p1;
+        surfaces[0] = s1;
+        points[1] = p2;
+        surfaces[1] = s2;
+        points[2] = p3;
+        surfaces[2] = s3;
+        points[3] = p4;
+        surfaces[3] = s4;
+        sideSurface = side;
+
+        for( int i=0; i<4; i++ )
+        {
+            isoPoints[i] = points[i];
+            points[i].convert( MapPoint );
+            isoPoints[i].convert( IsometricPoint );
+        }
+
+        if( surfaces[0] && surfaces[1] && surfaces[2] && surfaces[3] )
+            makeList();
+        else
+            nullTile = true;
+    }
+
+    Tile::~Tile()
+    {
+        glDeleteLists( list, 1 );
+    }
+
     void Tile::makeList()
     {
         /* Obtain a reference to the map manager, because we
@@ -159,36 +189,6 @@ namespace Annchienta
         /* End the display list.
          */
         glEndList();
-    }
-
-    Tile::Tile( Point p1, Surface *s1, Point p2, Surface *s2, Point p3, Surface *s3, Point p4, Surface *s4, Surface *side ): list(0), nullTile(false)
-    {
-        points[0] = p1;
-        surfaces[0] = s1;
-        points[1] = p2;
-        surfaces[1] = s2;
-        points[2] = p3;
-        surfaces[2] = s3;
-        points[3] = p4;
-        surfaces[3] = s4;
-        sideSurface = side;
-
-        for( int i=0; i<4; i++ )
-        {
-            isoPoints[i] = points[i];
-            points[i].convert( MapPoint );
-            isoPoints[i].convert( IsometricPoint );
-        }
-
-        if( surfaces[0] && surfaces[1] && surfaces[2] && surfaces[3] )
-            makeList();
-        else
-            nullTile = true;
-    }
-
-    Tile::~Tile()
-    {
-        glDeleteLists( list, 1 );
     }
 
     EntityType Tile::getEntityType() const

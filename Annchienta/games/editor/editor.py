@@ -3,6 +3,7 @@ from PyQt4.QtCore import *
 from PyQt4 import uic
 import annchienta
 import newmap
+import selection
 import os
 
 class Editor(QWidget):
@@ -42,6 +43,8 @@ class Editor(QWidget):
 
         self.connect( self.tileWidthBox, SIGNAL("valueChanged(int)"), self.changeTileWidth )
 
+        self.selected = selection.Selection()
+
     def selectGameDirectory(self):
 
         # Select a directory and set working directory
@@ -78,6 +81,9 @@ class Editor(QWidget):
             if bool(self.gridBox.isChecked()):
                 self.drawGrid()
         self.videoManager.end()
+
+        if self.hasOpenedMap:
+            self.selectAndApply()
 
     # Creates a new map.
     def newMap(self):
@@ -117,4 +123,41 @@ class Editor(QWidget):
         self.tileHeightBox.setValue( int(self.tileWidthBox.value())/2 )
         self.mapManager.setTileWidth( int(self.tileWidthBox.value()) )
         self.mapManager.setTileHeight( int(self.tileHeightBox.value()) )
+
+    def selectAndApply(self):
+
+        needsRecompiling = False
+
+        # SELECT PART
+
+        self.selected.clear()
+
+        layer = self.currentMap.getCurrentLayer()
+
+        if self.inputManager.buttonDown( 0 ):
+            if bool(self.wholeTiles.isChecked()):
+                for y in range( 0, layer.getHeight() ):
+                    for x in range( 0, layer.getWidth() ):
+                        tile = layer.getTile( x, y )
+                        point = annchienta.Point( annchienta.ScreenPoint, self.inputManager.getMouseX(), self.inputManager.getMouseY() )
+                        if tile.hasPoint( point ):
+                            self.selected.tiles.append( selection.AffectedTile( tile, True, True, True, True ) )
+                            needsRecompiling = True
+            else:
+                pass
+
+        # APPLY PART
+
+        if bool(self.zGroupBox.isChecked()) and self.inputManager.buttonTicked(0):
+            for at in self.selected.tiles:
+                for p in at.points:
+                    point = at.tile.getPointPointer(p)
+                    point.z = point.z + int(self.tileZBox.value())
+                    #point.y = point.y - int(self.tileZBox.value())/2
+
+        if needsRecompiling:
+            for at in self.selected.tiles:
+                at.tile.makeList()
+            self.currentMap.update()
+
 
