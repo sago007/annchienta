@@ -50,6 +50,16 @@ namespace Annchienta
         return opacity;
     }
 
+    void Layer::setZ( int _z )
+    {
+        z = _z;
+    }
+
+    int Layer::getZ() const
+    {
+        return z;
+    }
+
     void Layer::update()
     {
         for( unsigned int i=0; i<entities.size(); i++ )

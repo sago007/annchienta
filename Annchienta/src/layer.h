@@ -53,6 +53,9 @@ namespace Annchienta
             void setOpacity( int opacity=0xff );
             int getOpacity() const;
 
+            void setZ( int );
+            int getZ() const;
+
             void update();
             void draw() const;
             void drawTerrain() const;

@@ -277,6 +277,8 @@ class Layer(_object):
     __del__ = lambda self : None;
     def setOpacity(*args): return _annchienta.Layer_setOpacity(*args)
     def getOpacity(*args): return _annchienta.Layer_getOpacity(*args)
+    def setZ(*args): return _annchienta.Layer_setZ(*args)
+    def getZ(*args): return _annchienta.Layer_getZ(*args)
     def update(*args): return _annchienta.Layer_update(*args)
     def draw(*args): return _annchienta.Layer_draw(*args)
     def drawTerrain(*args): return _annchienta.Layer_drawTerrain(*args)

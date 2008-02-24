@@ -43,6 +43,8 @@ class Editor(QWidget):
         self.connect( self.tileWidthBox, SIGNAL("valueChanged(int)"), self.changeTileWidth )
         self.changeTileWidth()
 
+        self.connect( self.addLayerButton, SIGNAL("clicked()"), self.addLayer )
+
         self.newMapDialog = newmap.NewMapDialog(self)
 
         self.selected = selection.Selection()
@@ -108,6 +110,7 @@ class Editor(QWidget):
     def drawGrid(self):
 
         self.videoManager.translate( -self.mapManager.getCameraX(), -self.mapManager.getCameraY() )
+        self.videoManager.translate( 0, -self.currentMap.getCurrentLayer().getZ() )
         self.videoManager.setColor( 255, 255, 255, 200 )
 
         layer = self.currentMap.getCurrentLayer()
@@ -138,6 +141,7 @@ class Editor(QWidget):
         layer = self.currentMap.getCurrentLayer()
 
         mouse = annchienta.Point( annchienta.ScreenPoint, self.inputManager.getMouseX(), self.inputManager.getMouseY() )
+        mouse.y += self.currentMap.getCurrentLayer().getZ()
 
         if self.inputManager.buttonDown( 0 ) or (bool(self.zGroupBox.isChecked()) and self.inputManager.buttonTicked(0)):
             if bool(self.wholeTiles.isChecked()):
@@ -201,4 +205,8 @@ class Editor(QWidget):
             # Does not work anyway
             #self.currentMap.update()
 
+    def addLayer(self):
 
+        if not self.hasOpenedMap:
+            return
+        self.currentMap.addNewLayer( int(self.addLayerZBox.value()) )

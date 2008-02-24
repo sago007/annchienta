@@ -7027,6 +7027,58 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Layer_setZ(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Layer_setZ",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_setZ" "', argument " "1"" of type '" "Annchienta::Layer *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Layer_setZ" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setZ(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Layer_getZ(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Layer_getZ",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_getZ" "', argument " "1"" of type '" "Annchienta::Layer const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
+  result = (int)((Annchienta::Layer const *)arg1)->getZ();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Layer_update(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
@@ -9867,6 +9919,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_Layer", _wrap_delete_Layer, METH_VARARGS, NULL},
 	 { (char *)"Layer_setOpacity", _wrap_Layer_setOpacity, METH_VARARGS, NULL},
 	 { (char *)"Layer_getOpacity", _wrap_Layer_getOpacity, METH_VARARGS, NULL},
+	 { (char *)"Layer_setZ", _wrap_Layer_setZ, METH_VARARGS, NULL},
+	 { (char *)"Layer_getZ", _wrap_Layer_getZ, METH_VARARGS, NULL},
 	 { (char *)"Layer_update", _wrap_Layer_update, METH_VARARGS, NULL},
 	 { (char *)"Layer_draw", _wrap_Layer_draw, METH_VARARGS, NULL},
 	 { (char *)"Layer_drawTerrain", _wrap_Layer_drawTerrain, METH_VARARGS, NULL},
