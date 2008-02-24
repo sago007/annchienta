@@ -303,6 +303,7 @@ class Map(_object):
     __del__ = lambda self : None;
     def getCurrentLayer(*args): return _annchienta.Map_getCurrentLayer(*args)
     def setCurrentLayer(*args): return _annchienta.Map_setCurrentLayer(*args)
+    def getTileSet(*args): return _annchienta.Map_getTileSet(*args)
     def getObject(*args): return _annchienta.Map_getObject(*args)
     def update(*args): return _annchienta.Map_update(*args)
     def draw(*args): return _annchienta.Map_draw(*args)
@@ -387,6 +388,8 @@ class Tile(Entity):
     def getDepthSortY(*args): return _annchienta.Tile_getDepthSortY(*args)
     def hasPoint(*args): return _annchienta.Tile_hasPoint(*args)
     def getPointPointer(*args): return _annchienta.Tile_getPointPointer(*args)
+    def setSurface(*args): return _annchienta.Tile_setSurface(*args)
+    def setSideSurface(*args): return _annchienta.Tile_setSideSurface(*args)
 Tile_swigregister = _annchienta.Tile_swigregister
 Tile_swigregister(Tile)
 
@@ -405,6 +408,7 @@ class TileSet(_object):
     def getSurface(*args): return _annchienta.TileSet_getSurface(*args)
     def getSideSurface(*args): return _annchienta.TileSet_getSideSurface(*args)
     def getMask(*args): return _annchienta.TileSet_getMask(*args)
+    def getDirectory(*args): return _annchienta.TileSet_getDirectory(*args)
 TileSet_swigregister = _annchienta.TileSet_swigregister
 TileSet_swigregister(TileSet)
 

@@ -1,6 +1,9 @@
 <ui version="4.0" >
  <class>Form</class>
  <widget class="QWidget" name="Form" >
+  <property name="enabled" >
+   <bool>true</bool>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -8,6 +11,12 @@
     <width>300</width>
     <height>400</height>
    </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="minimumSize" >
    <size>
@@ -297,6 +306,19 @@
      <property name="checked" >
       <bool>false</bool>
      </property>
+     <widget class="QPushButton" name="showTileSurfacesButton" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Show Tiles</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QGroupBox" name="tileSideGroupBox" >
      <property name="enabled" >
@@ -319,6 +341,19 @@
      <property name="checked" >
       <bool>false</bool>
      </property>
+     <widget class="QPushButton" name="showTileSideSurfacesButton" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Show Tile Sides</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

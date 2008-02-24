@@ -37,6 +37,8 @@ namespace Annchienta
             Layer *getCurrentLayer() const;
             void setCurrentLayer( int index );
 
+            TileSet *getTileSet() const;
+
             StaticObject *getObject( const char *name );
 
             void update();

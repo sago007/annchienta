@@ -5,6 +5,7 @@ import annchienta
 import newmap
 import selection
 import os
+import pytileset
 
 class Editor(QWidget):
 
@@ -39,9 +40,10 @@ class Editor(QWidget):
         self.connect( self.newMapButton, SIGNAL("clicked()"), self.newMap )
         self.connect( self.openMapButton, SIGNAL("clicked()"), self.openMap )
 
-        self.newMapDialog = newmap.NewMapDialog(self)
-
         self.connect( self.tileWidthBox, SIGNAL("valueChanged(int)"), self.changeTileWidth )
+        self.changeTileWidth()
+
+        self.newMapDialog = newmap.NewMapDialog(self)
 
         self.selected = selection.Selection()
 
@@ -101,6 +103,7 @@ class Editor(QWidget):
         self.mapManager.setCurrentMap( self.currentMap )
         self.currentMap.depthSort()
         self.hasOpenedMap = True
+        self.tileset = pytileset.PyTileSet( self, self.currentMap.getTileSet().getDirectory() )
 
     def drawGrid(self):
 
@@ -179,6 +182,17 @@ class Editor(QWidget):
                     point = at.tile.getPointPointer(p)
                     point.z = point.z + int(self.tileZBox.value())
                     #point.y = point.y - int(self.tileZBox.value())/2
+
+        if bool(self.tileGroupBox.isChecked()):
+            for at in self.selected.tiles:
+                for p in at.points:
+                    surface = self.currentMap.getTileSet().getSurface( self.tileset.selectedTile )
+                    at.tile.setSurface( p, surface )
+
+        if bool(self.tileSideGroupBox.isChecked()):
+            for at in self.selected.tiles:
+                surface = self.currentMap.getTileSet().getSideSurface( self.tileset.selectedTile )
+                at.tile.setSideSurface( surface )
 
         if needsRecompiling:
             for at in self.selected.tiles:

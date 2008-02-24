@@ -46,6 +46,8 @@ namespace Annchienta
             #endif
 
             Point *getPointPointer( int i );
+            void setSurface( int i, Surface *surf );
+            void setSideSurface( Surface *ssurf );
 
     };
 };

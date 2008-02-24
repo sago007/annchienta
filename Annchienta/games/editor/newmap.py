@@ -3,6 +3,7 @@ from PyQt4.QtCore import *
 from PyQt4 import uic
 import os
 import annchienta
+import pytileset
 
 class NewMapDialog(QDialog):
 
@@ -30,6 +31,7 @@ class NewMapDialog(QDialog):
         self.editor.hasOpenedMap = True
         tmap.depthSort()
         self.accept()
+        self.editor.tileset = pytileset.PyTileSet( self.editor, self.editor.currentMap.getTileSet().getDirectory() )
 
     def tilesetBrowse(self):
         fileDialog = QFileDialog(self)

@@ -53,6 +53,11 @@ namespace Annchienta
 
     void Tile::makeList()
     {
+        /* Should not happen, but might avoid segfaults.
+         */
+        if( nullTile )
+            return;
+
         /* Obtain a reference to the map manager, because we
          * we need to know tile width and height.
          */
@@ -245,4 +250,17 @@ namespace Annchienta
         return &points[i];
     }
 
+    void Tile::setSurface( int i, Surface *surf )
+    {
+        if( surf )
+            nullTile = false;
+        surfaces[i] = surf;
+    }
+
+    void Tile::setSideSurface( Surface *ssurf )
+    {
+        if( ssurf )
+            nullTile = false;
+        sideSurface = ssurf;
+    }
 };

@@ -200,6 +200,11 @@ namespace Annchienta
         currentLayer = index;
     }
 
+    TileSet *Map::getTileSet() const
+    {
+        return tileSet;
+    }
+
     StaticObject *Map::getObject( const char *name )
     {
         if( layers.size() )

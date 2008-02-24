@@ -14,6 +14,8 @@ namespace Annchienta
     class TileSet
     {
         private:
+            char directory[512];
+
             Surface **surfaces;
             int numberOfSurfaces;
 
@@ -29,6 +31,8 @@ namespace Annchienta
             Surface *getSurface( int tileNumber ) const;
             Surface *getSideSurface( int sideNumber ) const;
             Mask *getMask() const;
+
+            const char *getDirectory() const;
 
     };
 };

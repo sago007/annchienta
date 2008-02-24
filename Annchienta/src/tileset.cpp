@@ -13,8 +13,10 @@
 namespace Annchienta
 {
 
-    TileSet::TileSet( const char *directory ): numberOfSurfaces(0), numberOfSideSurfaces(0)
+    TileSet::TileSet( const char *_directory ): numberOfSurfaces(0), numberOfSideSurfaces(0)
     {
+        strcpy( directory, _directory );
+
         char buffer[ strlen(directory)+16 ];
 
         /* Count the regular surfaces.
@@ -93,6 +95,11 @@ namespace Annchienta
     Mask *TileSet::getMask() const
     {
         return mask;
+    }
+
+    const char *TileSet::getDirectory() const
+    {
+        return directory;
     }
 
 };
