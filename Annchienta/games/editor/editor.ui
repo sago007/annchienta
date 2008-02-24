@@ -222,7 +222,7 @@
        <x>10</x>
        <y>160</y>
        <width>251</width>
-       <height>171</height>
+       <height>181</height>
       </rect>
      </property>
      <property name="title" >
@@ -258,6 +258,51 @@
       </property>
       <property name="value" >
        <number>30</number>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cycleLayerButton" >
+      <property name="geometry" >
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>101</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Cycle to next layer</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="layerZBox" >
+      <property name="geometry" >
+       <rect>
+        <x>170</x>
+        <y>70</y>
+        <width>62</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="suffix" >
+       <string/>
+      </property>
+      <property name="maximum" >
+       <number>199</number>
+      </property>
+      <property name="value" >
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5" >
+      <property name="geometry" >
+       <rect>
+        <x>130</x>
+        <y>70</y>
+        <width>35</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Offset:</string>
       </property>
      </widget>
     </widget>

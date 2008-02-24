@@ -210,3 +210,12 @@ class Editor(QWidget):
         if not self.hasOpenedMap:
             return
         self.currentMap.addNewLayer( int(self.addLayerZBox.value()) )
+
+	def cycleLayers(self):
+
+        if not self.hasOpenedMap:
+            return
+        i = self.currentMap.getCurrentLayerIndex()
+        i = (i+1)%self.currentMap.getNumberOfLayers()
+        self.currentMap.setCurrentLayer(i)
+

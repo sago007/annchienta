@@ -195,6 +195,11 @@ namespace Annchienta
         return layers[currentLayer];
     }
 
+    int Map::getCurrentLayerIndex() const
+    {
+        return currentLayer;
+    }
+
     void Map::setCurrentLayer( int index )
     {
         currentLayer = index;
