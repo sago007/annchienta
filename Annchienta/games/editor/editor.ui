@@ -216,6 +216,19 @@
       <string>Save</string>
      </property>
     </widget>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>251</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <property name="title" >
+      <string>Layers</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="editTab" >
     <attribute name="title" >

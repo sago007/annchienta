@@ -303,6 +303,8 @@ class Map(_object):
     __del__ = lambda self : None;
     def getCurrentLayer(*args): return _annchienta.Map_getCurrentLayer(*args)
     def setCurrentLayer(*args): return _annchienta.Map_setCurrentLayer(*args)
+    def getNumberOfLayers(*args): return _annchienta.Map_getNumberOfLayers(*args)
+    def addNewLayer(*args): return _annchienta.Map_addNewLayer(*args)
     def getTileSet(*args): return _annchienta.Map_getTileSet(*args)
     def getObject(*args): return _annchienta.Map_getObject(*args)
     def update(*args): return _annchienta.Map_update(*args)

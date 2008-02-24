@@ -200,6 +200,26 @@ namespace Annchienta
         currentLayer = index;
     }
 
+    int Map::getNumberOfLayers() const
+    {
+        return (int) layers.size();
+    }
+
+    void Map::addNewLayer( int z )
+    {
+        LayerInfo *layerInfo = new LayerInfo;
+        layerInfo->z = z;
+        layerInfo->width = width;
+        layerInfo->height = height;
+        layerInfo->opacity = 0xff;
+        Layer *layer =  new Layer( layerInfo, 0 );
+        layer->setTileSet( tileSet );
+        layers.push_back( layer );
+        delete layerInfo;
+
+        setCurrentLayer( (int)layers.size()-1 );
+    }
+
     TileSet *Map::getTileSet() const
     {
         return tileSet;

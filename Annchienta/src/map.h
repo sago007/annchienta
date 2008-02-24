@@ -36,6 +36,9 @@ namespace Annchienta
 
             Layer *getCurrentLayer() const;
             void setCurrentLayer( int index );
+            int getNumberOfLayers() const;
+
+            void addNewLayer( int z );
 
             TileSet *getTileSet() const;
 
