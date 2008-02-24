@@ -50,6 +50,8 @@ namespace Annchienta
             void drawTerrain() const;
             void depthSort();
 
+            void sortLayers();
+
     };
 };
 

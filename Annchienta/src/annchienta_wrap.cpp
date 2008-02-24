@@ -7475,6 +7475,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Map_getCurrentLayerIndex(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Map_getCurrentLayerIndex",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_getCurrentLayerIndex" "', argument " "1"" of type '" "Annchienta::Map const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  result = (int)((Annchienta::Map const *)arg1)->getCurrentLayerIndex();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Map_setCurrentLayer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
@@ -7690,6 +7712,27 @@ SWIGINTERN PyObject *_wrap_Map_depthSort(PyObject *SWIGUNUSEDPARM(self), PyObjec
   }
   arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
   (arg1)->depthSort();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Map_sortLayers(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Map_sortLayers",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_sortLayers" "', argument " "1"" of type '" "Annchienta::Map *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  (arg1)->sortLayers();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9934,6 +9977,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_Map", _wrap_new_Map, METH_VARARGS, NULL},
 	 { (char *)"delete_Map", _wrap_delete_Map, METH_VARARGS, NULL},
 	 { (char *)"Map_getCurrentLayer", _wrap_Map_getCurrentLayer, METH_VARARGS, NULL},
+	 { (char *)"Map_getCurrentLayerIndex", _wrap_Map_getCurrentLayerIndex, METH_VARARGS, NULL},
 	 { (char *)"Map_setCurrentLayer", _wrap_Map_setCurrentLayer, METH_VARARGS, NULL},
 	 { (char *)"Map_getNumberOfLayers", _wrap_Map_getNumberOfLayers, METH_VARARGS, NULL},
 	 { (char *)"Map_addNewLayer", _wrap_Map_addNewLayer, METH_VARARGS, NULL},
@@ -9943,6 +9987,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Map_draw", _wrap_Map_draw, METH_VARARGS, NULL},
 	 { (char *)"Map_drawTerrain", _wrap_Map_drawTerrain, METH_VARARGS, NULL},
 	 { (char *)"Map_depthSort", _wrap_Map_depthSort, METH_VARARGS, NULL},
+	 { (char *)"Map_sortLayers", _wrap_Map_sortLayers, METH_VARARGS, NULL},
 	 { (char *)"Map_swigregister", Map_swigregister, METH_VARARGS, NULL},
 	 { (char *)"Point_x_set", _wrap_Point_x_set, METH_VARARGS, NULL},
 	 { (char *)"Point_x_get", _wrap_Point_x_get, METH_VARARGS, NULL},

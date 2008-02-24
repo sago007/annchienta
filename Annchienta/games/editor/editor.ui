@@ -260,24 +260,24 @@
        <number>30</number>
       </property>
      </widget>
-     <widget class="QPushButton" name="cycleLayerButton" >
+     <widget class="QPushButton" name="nextLayerButton" >
       <property name="geometry" >
        <rect>
         <x>10</x>
-        <y>70</y>
+        <y>80</y>
         <width>101</width>
         <height>30</height>
        </rect>
       </property>
       <property name="text" >
-       <string>Cycle to next layer</string>
+       <string>Next layer</string>
       </property>
      </widget>
      <widget class="QSpinBox" name="layerZBox" >
       <property name="geometry" >
        <rect>
         <x>170</x>
-        <y>70</y>
+        <y>100</y>
         <width>62</width>
         <height>30</height>
        </rect>
@@ -295,14 +295,27 @@
      <widget class="QLabel" name="label_5" >
       <property name="geometry" >
        <rect>
-        <x>130</x>
-        <y>70</y>
-        <width>35</width>
+        <x>170</x>
+        <y>80</y>
+        <width>51</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text" >
        <string>Offset:</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>211</width>
+        <height>3</height>
+       </rect>
+      </property>
+      <property name="orientation" >
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </widget>

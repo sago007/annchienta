@@ -45,6 +45,9 @@ class Editor(QWidget):
 
         self.connect( self.addLayerButton, SIGNAL("clicked()"), self.addLayer )
 
+        self.connect( self.nextLayerButton, SIGNAL("clicked()"), self.nextLayer )
+        self.connect( self.layerZBox, SIGNAL("valueChanged(int)"), self.changeLayerZ )
+
         self.newMapDialog = newmap.NewMapDialog(self)
 
         self.selected = selection.Selection()
@@ -159,24 +162,28 @@ class Editor(QWidget):
                 mouse.convert( annchienta.IsometricPoint )
                 # Create a new pseudo-tilegrid
                 grid = []
-                gridh, gridw = layer.getHeight()+1, layer.getWidth()+1
+                gridh, gridw = layer.getHeight()+2, layer.getWidth()+2
                 for y in range( 0, gridh ):
                     for x in range( 0, gridw ):
                         point = annchienta.Point( annchienta.TilePoint, x, y, 0 )
                         point.convert( annchienta.IsometricPoint )
                         grid.append( point )
                 # Now check for collision
-                for y in range( 0, gridh-1 ):
-                    for x in range( 0, gridw-1 ):
-                        if mouse.isEnclosedBy( grid[ y*gridw+x ], grid[ (y+1)*gridw+(x+1) ] ):
-                            self.selected.tiles.append( selection.AffectedTile( layer.getTile(x,y), False, False, True, False ) )
-                            if x+2<gridw:
-                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x+1,y), False, True, False, False ) )
-                            if y+2<gridh:
-                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x,y+1), False, False, False, True ) )
-                            if x+2<gridw and y+2<gridh:
-                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x+1,y+1), True, False, False, False ) )
+                for y in range( 1, gridh ):
+                    for x in range( 1, gridw ):
+                        if mouse.isEnclosedBy( grid[ (y-1)*gridw+(x-1) ], grid[ y*gridw+x ] ):
+                            #print x, y
+                            if x-1 in range(0,layer.getWidth()) and y-1 in range(0,layer.getHeight()):
+                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x-1,y-1), False, False, True, False ) )
+                            if x in range(0,layer.getWidth()) and y-1 in range(0,layer.getHeight()):
+                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x,y-1), False, True, False, False ) )
+                            if x-1 in range(0,layer.getWidth()) and y in range(0,layer.getHeight()):
+                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x-1,y), False, False, False, True ) )
+                            if x in range(0,layer.getWidth()) and y in range(0,layer.getHeight()):
+                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x,y), True, False, False, False ) )
                             needsRecompiling = True
+
+                print "Here."
 
         # APPLY PART
 
@@ -210,12 +217,18 @@ class Editor(QWidget):
         if not self.hasOpenedMap:
             return
         self.currentMap.addNewLayer( int(self.addLayerZBox.value()) )
+        self.currentMap.sortLayers()
 
-	def cycleLayers(self):
+    def nextLayer(self):
 
         if not self.hasOpenedMap:
             return
         i = self.currentMap.getCurrentLayerIndex()
         i = (i+1)%self.currentMap.getNumberOfLayers()
         self.currentMap.setCurrentLayer(i)
+        self.layerZBox.setValue( self.currentMap.getCurrentLayer().getZ() )
 
+    def changeLayerZ(self):
+
+        self.currentMap.getCurrentLayer().setZ( int(self.layerZBox.value()) )
+        self.currentMap.sortLayers()

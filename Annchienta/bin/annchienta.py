@@ -304,6 +304,7 @@ class Map(_object):
     __swig_destroy__ = _annchienta.delete_Map
     __del__ = lambda self : None;
     def getCurrentLayer(*args): return _annchienta.Map_getCurrentLayer(*args)
+    def getCurrentLayerIndex(*args): return _annchienta.Map_getCurrentLayerIndex(*args)
     def setCurrentLayer(*args): return _annchienta.Map_setCurrentLayer(*args)
     def getNumberOfLayers(*args): return _annchienta.Map_getNumberOfLayers(*args)
     def addNewLayer(*args): return _annchienta.Map_addNewLayer(*args)
@@ -313,6 +314,7 @@ class Map(_object):
     def draw(*args): return _annchienta.Map_draw(*args)
     def drawTerrain(*args): return _annchienta.Map_drawTerrain(*args)
     def depthSort(*args): return _annchienta.Map_depthSort(*args)
+    def sortLayers(*args): return _annchienta.Map_sortLayers(*args)
 Map_swigregister = _annchienta.Map_swigregister
 Map_swigregister(Map)
 

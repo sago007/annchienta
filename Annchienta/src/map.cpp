@@ -274,4 +274,29 @@ namespace Annchienta
             layers[i]->depthSort();
     }
 
+    void Map::sortLayers()
+    {
+        Layer *c = layers[currentLayer];
+
+        /* They should be in order, really. Do a bubble sort.
+         */
+        bool swapped;
+        do
+        {
+            swapped = false;
+            for( unsigned int i=1; i<layers.size(); i++ )
+            {
+                if( layers[i-1]->getZ() > layers[i]->getZ() )
+                {
+                    swap<Layer*>( layers[i-1], layers[i] );
+                    swapped = true;
+                }
+            }
+        }
+        while( swapped );
+
+        for( currentLayer=0; currentLayer<layers.size() && layers[currentLayer]!=c; currentLayer++ )
+        {}
+    }
+
 };
