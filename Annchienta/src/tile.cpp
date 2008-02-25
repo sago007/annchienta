@@ -252,9 +252,9 @@ namespace Annchienta
 
     void Tile::setSurface( int i, Surface *surf )
     {
-        if( surf )
-            nullTile = false;
         surfaces[i] = surf;
+        if( surfaces[0] && surfaces[1] && surfaces[2] && surfaces[3] )
+            nullTile = false;
     }
 
     void Tile::setSideSurface( Surface *ssurf )

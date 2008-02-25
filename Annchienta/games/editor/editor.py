@@ -48,6 +48,10 @@ class Editor(QWidget):
         self.connect( self.nextLayerButton, SIGNAL("clicked()"), self.nextLayer )
         self.connect( self.layerZBox, SIGNAL("valueChanged(int)"), self.changeLayerZ )
 
+        self.connect( self.zGroupBox, SIGNAL("toggled(bool)"), self.selectZGroupBox )
+        self.connect( self.tileGroupBox, SIGNAL("toggled(bool)"), self.selectTileGroupBox )
+        self.connect( self.tileSideGroupBox, SIGNAL("toggled(bool)"), self.selectTileSideGroupBox )
+
         self.newMapDialog = newmap.NewMapDialog(self)
 
         self.selected = selection.Selection()
@@ -158,7 +162,7 @@ class Editor(QWidget):
                 # Move the mouse a little
                 mouse.convert( annchienta.ScreenPoint )
                 #mouse.x -= self.mapManager.getTileWidth()/4
-                mouse.y -= self.mapManager.getTileHeight()/2
+                mouse.y += self.mapManager.getTileHeight()/2
                 mouse.convert( annchienta.IsometricPoint )
                 # Create a new pseudo-tilegrid
                 grid = []
@@ -169,10 +173,9 @@ class Editor(QWidget):
                         point.convert( annchienta.IsometricPoint )
                         grid.append( point )
                 # Now check for collision
-                for y in range( 1, gridh ):
-                    for x in range( 1, gridw ):
-                        if mouse.isEnclosedBy( grid[ (y-1)*gridw+(x-1) ], grid[ y*gridw+x ] ):
-                            #print x, y
+                for y in range( 0, gridh-1 ):
+                    for x in range( 0, gridw-1 ):
+                        if mouse.isEnclosedBy( grid[ (y)*gridw+(x) ], grid[ (y+1)*gridw+(x+1) ] ):
                             if x-1 in range(0,layer.getWidth()) and y-1 in range(0,layer.getHeight()):
                                 self.selected.tiles.append( selection.AffectedTile( layer.getTile(x-1,y-1), False, False, True, False ) )
                             if x in range(0,layer.getWidth()) and y-1 in range(0,layer.getHeight()):
@@ -183,7 +186,6 @@ class Editor(QWidget):
                                 self.selected.tiles.append( selection.AffectedTile( layer.getTile(x,y), True, False, False, False ) )
                             needsRecompiling = True
 
-                print "Here."
 
         # APPLY PART
 
@@ -191,8 +193,10 @@ class Editor(QWidget):
             for at in self.selected.tiles:
                 for p in at.points:
                     point = at.tile.getPointPointer(p)
-                    point.z = point.z + int(self.tileZBox.value())
-                    #point.y = point.y - int(self.tileZBox.value())/2
+                    if bool(self.zRelativeBox.isChecked()):
+                        point.z += int(self.tileZBox.value())
+                    else:
+                        point.z = int(self.tileZBox.value())
 
         if bool(self.tileGroupBox.isChecked()):
             for at in self.selected.tiles:
@@ -232,3 +236,18 @@ class Editor(QWidget):
 
         self.currentMap.getCurrentLayer().setZ( int(self.layerZBox.value()) )
         self.currentMap.sortLayers()
+        
+    def selectZGroupBox(self):
+        if bool(self.zGroupBox.isChecked()):
+            self.tileGroupBox.setChecked(False)
+            self.tileSideGroupBox.setChecked(False)
+        
+    def selectTileGroupBox(self):
+        if bool(self.tileGroupBox.isChecked()):
+            self.zGroupBox.setChecked(False)
+            self.tileSideGroupBox.setChecked(False)
+            
+    def selectTileSideGroupBox(self):
+        if bool(self.tileSideGroupBox.isChecked()):
+            self.zGroupBox.setChecked(False)
+            self.tileGroupBox.setChecked(False)

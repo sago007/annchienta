@@ -43,7 +43,7 @@
     </sizepolicy>
    </property>
    <property name="currentIndex" >
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="configurationTab" >
     <attribute name="title" >
@@ -382,6 +382,22 @@
       </property>
       <property name="text" >
        <string>Raise by:</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="zRelativeBox" >
+      <property name="geometry" >
+       <rect>
+        <x>90</x>
+        <y>50</y>
+        <width>94</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Relative</string>
+      </property>
+      <property name="checked" >
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
