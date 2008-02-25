@@ -13,6 +13,7 @@ namespace Annchienta
 {
 
     class Surface;
+    class TileSet;
 
     class Tile: public Entity
     {
@@ -24,10 +25,14 @@ namespace Annchienta
             Surface *sideSurface;
             GLuint list;
 
+            TileSet *tileSet;
+            int surfaceNumbers[4];
+            int sideSurfaceNumber;
+
             bool nullTile;
 
         public:
-            Tile( Point, Surface*, Point, Surface*, Point, Surface*, Point, Surface*, Surface *side=0 );
+            Tile( TileSet*, Point, int, Point, int, Point, int, Point, int, int ss=0 );
             ~Tile();
 
             void makeList();
@@ -46,8 +51,11 @@ namespace Annchienta
             #endif
 
             Point *getPointPointer( int i );
-            void setSurface( int i, Surface *surf );
-            void setSideSurface( Surface *ssurf );
+            void setSurface( int i, int s );
+            void setSideSurface( int ss );
+
+            int getSurface( int i ) const;
+            int getSideSurface() const;
 
     };
 };

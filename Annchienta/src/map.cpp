@@ -90,11 +90,11 @@ namespace Annchienta
 
                                 data >> sideSurface;
 
-                                tiles[y*width+x] = new Tile( points[0], tileSet->getSurface( surfaces[0] ),
-                                                             points[1], tileSet->getSurface( surfaces[1] ),
-                                                             points[2], tileSet->getSurface( surfaces[2] ),
-                                                             points[3], tileSet->getSurface( surfaces[3] ),
-                                                             tileSet->getSideSurface( sideSurface ) );
+                                tiles[y*width+x] = new Tile( tileSet, points[0], surfaces[0],
+                                                                      points[1], surfaces[1],
+                                                                      points[2], surfaces[2],
+                                                                      points[3], surfaces[3],
+                                                                      sideSurface );
 
                             }
                         }
@@ -150,15 +150,13 @@ namespace Annchienta
                 case EXN_ELEMENT_END:
                     if( !strcmpCaseInsensitive("layer", xml->getNodeName()) )
                     {
-                        Layer *layer = new Layer( layerInfo, tiles );
+                        Layer *layer = new Layer( tileSet, layerInfo, tiles );
                         delete layerInfo;
 
                         for( unsigned int i=0; i<entities.size(); i++ )
                             layer->addEntity( entities[i] );
 
                         entities.clear();
-
-                        layer->setTileSet( tileSet );
 
                         layers.push_back( layer );
                     }
@@ -177,7 +175,7 @@ namespace Annchienta
         layerInfo->width = width = w;
         layerInfo->height = height = h;
         layerInfo->opacity = 0xff;
-        Layer *layer =  new Layer( layerInfo, 0 );
+        Layer *layer =  new Layer( tileSet, layerInfo, 0 );
         layer->setTileSet( tileSet );
         layers.push_back( layer );
         delete layerInfo;
@@ -193,6 +191,11 @@ namespace Annchienta
     Layer *Map::getCurrentLayer() const
     {
         return layers[currentLayer];
+    }
+
+    Layer *Map::getLayer( int n ) const
+    {
+        return layers[n];
     }
 
     int Map::getCurrentLayerIndex() const
@@ -217,8 +220,7 @@ namespace Annchienta
         layerInfo->width = width;
         layerInfo->height = height;
         layerInfo->opacity = 0xff;
-        Layer *layer =  new Layer( layerInfo, 0 );
-        layer->setTileSet( tileSet );
+        Layer *layer =  new Layer( tileSet, layerInfo, 0 );
         layers.push_back( layer );
         delete layerInfo;
 

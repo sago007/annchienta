@@ -6798,95 +6798,42 @@ SWIGINTERN PyObject *Sound_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_new_Layer__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_Layer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::LayerInfo *arg1 = (Annchienta::LayerInfo *) 0 ;
-  Annchienta::Tile **arg2 = (Annchienta::Tile **) 0 ;
+  Annchienta::TileSet *arg1 = (Annchienta::TileSet *) 0 ;
+  Annchienta::LayerInfo *arg2 = (Annchienta::LayerInfo *) 0 ;
+  Annchienta::Tile **arg3 = (Annchienta::Tile **) 0 ;
   Annchienta::Layer *result = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_Layer",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LayerInfo, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:new_Layer",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__TileSet, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Layer" "', argument " "1"" of type '" "Annchienta::LayerInfo *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Layer" "', argument " "1"" of type '" "Annchienta::TileSet *""'"); 
   }
-  arg1 = reinterpret_cast< Annchienta::LayerInfo * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_p_Annchienta__Tile, 0 |  0 );
+  arg1 = reinterpret_cast< Annchienta::TileSet * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__LayerInfo, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Layer" "', argument " "2"" of type '" "Annchienta::Tile **""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Layer" "', argument " "2"" of type '" "Annchienta::LayerInfo *""'"); 
   }
-  arg2 = reinterpret_cast< Annchienta::Tile ** >(argp2);
-  result = (Annchienta::Layer *)new Annchienta::Layer(arg1,arg2);
+  arg2 = reinterpret_cast< Annchienta::LayerInfo * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "new_Layer" "', argument " "3"" of type '" "Annchienta::Tile **""'"); 
+  }
+  arg3 = reinterpret_cast< Annchienta::Tile ** >(argp3);
+  result = (Annchienta::Layer *)new Annchienta::Layer(arg1,arg2,arg3);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Layer, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Layer__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::LayerInfo *arg1 = (Annchienta::LayerInfo *) 0 ;
-  Annchienta::Layer *result = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_Layer",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LayerInfo, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Layer" "', argument " "1"" of type '" "Annchienta::LayerInfo *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::LayerInfo * >(argp1);
-  result = (Annchienta::Layer *)new Annchienta::Layer(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Layer, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Layer(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__LayerInfo, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_Layer__SWIG_1(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__LayerInfo, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_p_Annchienta__Tile, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_new_Layer__SWIG_0(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Layer'.\n  Possible C/C++ prototypes are:\n    Annchienta::Layer(Annchienta::LayerInfo *,Annchienta::Tile **)\n    Annchienta::Layer(Annchienta::LayerInfo *)\n");
   return NULL;
 }
 
@@ -7468,6 +7415,37 @@ SWIGINTERN PyObject *_wrap_Map_getCurrentLayer(PyObject *SWIGUNUSEDPARM(self), P
   }
   arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
   result = (Annchienta::Layer *)((Annchienta::Map const *)arg1)->getCurrentLayer();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Map_getLayer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  int arg2 ;
+  Annchienta::Layer *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Map_getLayer",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_getLayer" "', argument " "1"" of type '" "Annchienta::Map const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Map_getLayer" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (Annchienta::Layer *)((Annchienta::Map const *)arg1)->getLayer(arg2);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
   return resultobj;
 fail:
@@ -8841,13 +8819,13 @@ SWIGINTERN PyObject *_wrap_Tile_setSurface(PyObject *SWIGUNUSEDPARM(self), PyObj
   PyObject *resultobj = 0;
   Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
   int arg2 ;
-  Annchienta::Surface *arg3 = (Annchienta::Surface *) 0 ;
+  int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
@@ -8863,11 +8841,11 @@ SWIGINTERN PyObject *_wrap_Tile_setSurface(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tile_setSurface" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Tile_setSurface" "', argument " "3"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg3 = reinterpret_cast< Annchienta::Surface * >(argp3);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tile_setSurface" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
   (arg1)->setSurface(arg2,arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -8879,11 +8857,11 @@ fail:
 SWIGINTERN PyObject *_wrap_Tile_setSideSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
-  Annchienta::Surface *arg2 = (Annchienta::Surface *) 0 ;
+  int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
@@ -8893,13 +8871,66 @@ SWIGINTERN PyObject *_wrap_Tile_setSideSurface(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_setSideSurface" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tile_setSideSurface" "', argument " "2"" of type '" "Annchienta::Surface *""'"); 
-  }
-  arg2 = reinterpret_cast< Annchienta::Surface * >(argp2);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tile_setSideSurface" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
   (arg1)->setSideSurface(arg2);
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tile_getSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  int arg2 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tile_getSurface",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_getSurface" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tile_getSurface" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (int)((Annchienta::Tile const *)arg1)->getSurface(arg2);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tile_getSideSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_getSideSurface",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_getSideSurface" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  result = (int)((Annchienta::Tile const *)arg1)->getSideSurface();
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -9977,6 +10008,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_Map", _wrap_new_Map, METH_VARARGS, NULL},
 	 { (char *)"delete_Map", _wrap_delete_Map, METH_VARARGS, NULL},
 	 { (char *)"Map_getCurrentLayer", _wrap_Map_getCurrentLayer, METH_VARARGS, NULL},
+	 { (char *)"Map_getLayer", _wrap_Map_getLayer, METH_VARARGS, NULL},
 	 { (char *)"Map_getCurrentLayerIndex", _wrap_Map_getCurrentLayerIndex, METH_VARARGS, NULL},
 	 { (char *)"Map_setCurrentLayer", _wrap_Map_setCurrentLayer, METH_VARARGS, NULL},
 	 { (char *)"Map_getNumberOfLayers", _wrap_Map_getNumberOfLayers, METH_VARARGS, NULL},
@@ -10025,6 +10057,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tile_getPointPointer", _wrap_Tile_getPointPointer, METH_VARARGS, NULL},
 	 { (char *)"Tile_setSurface", _wrap_Tile_setSurface, METH_VARARGS, NULL},
 	 { (char *)"Tile_setSideSurface", _wrap_Tile_setSideSurface, METH_VARARGS, NULL},
+	 { (char *)"Tile_getSurface", _wrap_Tile_getSurface, METH_VARARGS, NULL},
+	 { (char *)"Tile_getSideSurface", _wrap_Tile_getSideSurface, METH_VARARGS, NULL},
 	 { (char *)"Tile_swigregister", Tile_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_TileSet", _wrap_new_TileSet, METH_VARARGS, NULL},
 	 { (char *)"delete_TileSet", _wrap_delete_TileSet, METH_VARARGS, NULL},

@@ -304,6 +304,7 @@ class Map(_object):
     __swig_destroy__ = _annchienta.delete_Map
     __del__ = lambda self : None;
     def getCurrentLayer(*args): return _annchienta.Map_getCurrentLayer(*args)
+    def getLayer(*args): return _annchienta.Map_getLayer(*args)
     def getCurrentLayerIndex(*args): return _annchienta.Map_getCurrentLayerIndex(*args)
     def setCurrentLayer(*args): return _annchienta.Map_setCurrentLayer(*args)
     def getNumberOfLayers(*args): return _annchienta.Map_getNumberOfLayers(*args)
@@ -396,6 +397,8 @@ class Tile(Entity):
     def getPointPointer(*args): return _annchienta.Tile_getPointPointer(*args)
     def setSurface(*args): return _annchienta.Tile_setSurface(*args)
     def setSideSurface(*args): return _annchienta.Tile_setSideSurface(*args)
+    def getSurface(*args): return _annchienta.Tile_getSurface(*args)
+    def getSideSurface(*args): return _annchienta.Tile_getSideSurface(*args)
 Tile_swigregister = _annchienta.Tile_swigregister
 Tile_swigregister(Tile)
 

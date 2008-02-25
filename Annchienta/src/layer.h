@@ -47,7 +47,7 @@ namespace Annchienta
 
         public:
 
-            Layer( LayerInfo *info, Tile **tiles=0 );
+            Layer( TileSet *tileSet, LayerInfo *info, Tile **tiles );
             ~Layer();
 
             void setOpacity( int opacity=0xff );

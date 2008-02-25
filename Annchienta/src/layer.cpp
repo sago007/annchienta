@@ -14,7 +14,7 @@
 namespace Annchienta
 {
 
-    Layer::Layer( LayerInfo *info, Tile **_tiles ): width(info->width), height(info->height), z(info->z), opacity(info->opacity), tileSet(0)
+    Layer::Layer( TileSet *ts, LayerInfo *info, Tile **_tiles ): width(info->width), height(info->height), z(info->z), opacity(info->opacity), tileSet(ts)
     {
         /* Create some extra space.
          */
@@ -159,7 +159,7 @@ namespace Annchienta
                     points[i].z = 0;
                 }
 
-                tiles[y*width+x] = new Tile( points[0], 0, points[1], 0, points[2], 0, points[3], 0, 0 );
+                tiles[y*width+x] = new Tile( tileSet, points[0], 0, points[1], 0, points[2], 0, points[3], 0, 0 );
             }
         }
     }

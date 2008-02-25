@@ -3,9 +3,10 @@ from PyQt4.QtCore import *
 from PyQt4 import uic
 import annchienta
 import newmap
-import selection
+import tiles
 import os
 import pytileset
+import mapfile
 
 class Editor(QWidget):
 
@@ -40,6 +41,8 @@ class Editor(QWidget):
         self.connect( self.newMapButton, SIGNAL("clicked()"), self.newMap )
         self.connect( self.openMapButton, SIGNAL("clicked()"), self.openMap )
 
+        self.connect( self.saveMapButton, SIGNAL("clicked()"), self.saveMap )
+
         self.connect( self.tileWidthBox, SIGNAL("valueChanged(int)"), self.changeTileWidth )
         self.changeTileWidth()
 
@@ -54,7 +57,7 @@ class Editor(QWidget):
 
         self.newMapDialog = newmap.NewMapDialog(self)
 
-        self.selected = selection.Selection()
+        self.selected = tiles.Selection()
 
     def selectGameDirectory(self):
 
@@ -114,6 +117,11 @@ class Editor(QWidget):
         self.hasOpenedMap = True
         self.tileset = pytileset.PyTileSet( self, self.currentMap.getTileSet().getDirectory() )
 
+    def saveMap(self):
+
+        if self.hasOpenedMap:
+            mapfile.writeMap( self, "temp.xml" )
+
     def drawGrid(self):
 
         self.videoManager.translate( -self.mapManager.getCameraX(), -self.mapManager.getCameraY() )
@@ -156,7 +164,7 @@ class Editor(QWidget):
                     for x in range( 0, layer.getWidth() ):
                         tile = layer.getTile( x, y )
                         if tile.hasPoint( mouse ):
-                            self.selected.tiles.append( selection.AffectedTile( tile, True, True, True, True ) )
+                            self.selected.tiles.append( tiles.AffectedTile( tile, True, True, True, True ) )
                             needsRecompiling = True
             else:
                 # Move the mouse a little
@@ -173,17 +181,17 @@ class Editor(QWidget):
                         point.convert( annchienta.IsometricPoint )
                         grid.append( point )
                 # Now check for collision
-                for y in range( 0, gridh-1 ):
-                    for x in range( 0, gridw-1 ):
+                for y in range( gridh-1 ):
+                    for x in range( gridw-1 ):
                         if mouse.isEnclosedBy( grid[ (y)*gridw+(x) ], grid[ (y+1)*gridw+(x+1) ] ):
-                            if x-1 in range(0,layer.getWidth()) and y-1 in range(0,layer.getHeight()):
-                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x-1,y-1), False, False, True, False ) )
-                            if x in range(0,layer.getWidth()) and y-1 in range(0,layer.getHeight()):
-                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x,y-1), False, True, False, False ) )
-                            if x-1 in range(0,layer.getWidth()) and y in range(0,layer.getHeight()):
-                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x-1,y), False, False, False, True ) )
-                            if x in range(0,layer.getWidth()) and y in range(0,layer.getHeight()):
-                                self.selected.tiles.append( selection.AffectedTile( layer.getTile(x,y), True, False, False, False ) )
+                            if x-1 in range(layer.getWidth()) and y-1 in range(layer.getHeight()):
+                                self.selected.tiles.append( tiles.AffectedTile( layer.getTile(x-1,y-1), False, False, True, False ) )
+                            if x in range(layer.getWidth()) and y-1 in range(layer.getHeight()):
+                                self.selected.tiles.append( tiles.AffectedTile( layer.getTile(x,y-1), False, True, False, False ) )
+                            if x-1 in range(layer.getWidth()) and y in range(layer.getHeight()):
+                                self.selected.tiles.append( tiles.AffectedTile( layer.getTile(x-1,y), False, False, False, True ) )
+                            if x in range(layer.getWidth()) and y in range(layer.getHeight()):
+                                self.selected.tiles.append( tiles.AffectedTile( layer.getTile(x,y), True, False, False, False ) )
                             needsRecompiling = True
 
 
@@ -202,12 +210,12 @@ class Editor(QWidget):
             for at in self.selected.tiles:
                 for p in at.points:
                     surface = self.currentMap.getTileSet().getSurface( self.tileset.selectedTile )
-                    at.tile.setSurface( p, surface )
+                    at.tile.setSurface( p, self.tileset.selectedTile )
 
         if bool(self.tileSideGroupBox.isChecked()):
             for at in self.selected.tiles:
                 surface = self.currentMap.getTileSet().getSideSurface( self.tileset.selectedTile )
-                at.tile.setSideSurface( surface )
+                at.tile.setSideSurface( self.tileset.selectedTile )
 
         if needsRecompiling:
             for at in self.selected.tiles:

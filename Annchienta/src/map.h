@@ -35,6 +35,7 @@ namespace Annchienta
             ~Map();
 
             Layer *getCurrentLayer() const;
+            Layer *getLayer( int ) const;
             int getCurrentLayerIndex() const;
             void setCurrentLayer( int index );
             int getNumberOfLayers() const;
