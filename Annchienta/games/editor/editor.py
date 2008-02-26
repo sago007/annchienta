@@ -97,7 +97,12 @@ class Editor(QWidget):
         self.videoManager.end()
 
         if self.hasOpenedMap:
+            self.currentMap.depthSort()
             self.selectAndApply()
+            l = self.currentMap.getCurrentLayer()
+            for o in range(l.getNumberOfObjects()):
+                l.getObject(o).setCollidingTiles()
+                l.getObject(o).setZFromCollidingTiles()
 
     # Creates a new map.
     def newMap(self):

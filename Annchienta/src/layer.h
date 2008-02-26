@@ -68,14 +68,15 @@ namespace Annchienta
                 Tile **getTilePointer( int x, int y );
                 void setTileSet( TileSet *tileSet );
                 TileSet *getTileSet() const;
-                StaticObject *getStaticObject( int num );
             #endif
 
             int getWidth() const;
             int getHeight() const;
             Tile *getTile( int x, int y );
 
-            StaticObject *getObject( const char *name );
+            StaticObject *getObject( int num ) const;
+            StaticObject *getObject( const char *name ) const;
+            int getNumberOfObjects() const;
     };
 };
 

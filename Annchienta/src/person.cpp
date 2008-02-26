@@ -144,9 +144,9 @@ namespace Annchienta
         /* Reject if the person collides with something else.
          */
         Point maskPosition = this->getMaskPosition();
-        for( int i=0; possible && layer->getStaticObject(i); i++ )
+        for( int i=0; possible && layer->getObject(i); i++ )
         {
-            StaticObject *so = layer->getStaticObject(i);
+            StaticObject *so = layer->getObject(i);
             if( (StaticObject*) this != so )
             {
                 Point otherMaskPosition( so->getMaskPosition() );
@@ -236,9 +236,9 @@ namespace Annchienta
         /* We loop through the objects in the layer to see if we find
          * one where we might interact with.
          */
-        for( int i=0; layer->getStaticObject(i); i++ )
+        for( int i=0; layer->getObject(i); i++ )
         {
-            StaticObject *so = layer->getStaticObject(i);
+            StaticObject *so = layer->getObject(i);
 
             /* Of course, we don't want to interact with ourselves.
              */

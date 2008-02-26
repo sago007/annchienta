@@ -60,14 +60,14 @@ namespace Annchienta
 
             bool needsUpdate;
 
-            void setCollidingTiles();
-            void setZFromCollidingTiles();
-
             char *onInteractScript, *onInteractCode;
 
         public:
             StaticObject( const char *name, const char *configfile );
             virtual ~StaticObject();
+
+            void setCollidingTiles();
+            void setZFromCollidingTiles();
 
             virtual EntityType getEntityType() const;
 

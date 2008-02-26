@@ -288,6 +288,7 @@ class Layer(_object):
     def getHeight(*args): return _annchienta.Layer_getHeight(*args)
     def getTile(*args): return _annchienta.Layer_getTile(*args)
     def getObject(*args): return _annchienta.Layer_getObject(*args)
+    def getNumberOfObjects(*args): return _annchienta.Layer_getNumberOfObjects(*args)
 Layer_swigregister = _annchienta.Layer_swigregister
 Layer_swigregister(Layer)
 
@@ -453,6 +454,8 @@ class StaticObject(Entity):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_StaticObject
     __del__ = lambda self : None;
+    def setCollidingTiles(*args): return _annchienta.StaticObject_setCollidingTiles(*args)
+    def setZFromCollidingTiles(*args): return _annchienta.StaticObject_setZFromCollidingTiles(*args)
     def getEntityType(*args): return _annchienta.StaticObject_getEntityType(*args)
     def update(*args): return _annchienta.StaticObject_update(*args)
     def draw(*args): return _annchienta.StaticObject_draw(*args)

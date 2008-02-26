@@ -7224,7 +7224,38 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Layer_getObject(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Layer_getObject__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
+  int arg2 ;
+  Annchienta::StaticObject *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Layer_getObject",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_getObject" "', argument " "1"" of type '" "Annchienta::Layer const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Layer_getObject" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (Annchienta::StaticObject *)((Annchienta::Layer const *)arg1)->getObject(arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Layer_getObject__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -7240,7 +7271,7 @@ SWIGINTERN PyObject *_wrap_Layer_getObject(PyObject *SWIGUNUSEDPARM(self), PyObj
   if (!PyArg_ParseTuple(args,(char *)"OO:Layer_getObject",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_getObject" "', argument " "1"" of type '" "Annchienta::Layer *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_getObject" "', argument " "1"" of type '" "Annchienta::Layer const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
@@ -7248,12 +7279,79 @@ SWIGINTERN PyObject *_wrap_Layer_getObject(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Layer_getObject" "', argument " "2"" of type '" "char const *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  result = (Annchienta::StaticObject *)(arg1)->getObject((char const *)arg2);
+  result = (Annchienta::StaticObject *)((Annchienta::Layer const *)arg1)->getObject((char const *)arg2);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
 fail:
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Layer_getObject(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Layer, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Layer_getObject__SWIG_0(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Layer, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Layer_getObject__SWIG_1(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Layer_getObject'.\n  Possible C/C++ prototypes are:\n    getObject(int)\n    getObject(char const *)\n");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Layer_getNumberOfObjects(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Layer_getNumberOfObjects",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_getNumberOfObjects" "', argument " "1"" of type '" "Annchienta::Layer const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
+  result = (int)((Annchienta::Layer const *)arg1)->getNumberOfObjects();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
   return NULL;
 }
 
@@ -9503,6 +9601,48 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_StaticObject_setCollidingTiles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_setCollidingTiles",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_setCollidingTiles" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
+  (arg1)->setCollidingTiles();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_StaticObject_setZFromCollidingTiles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_setZFromCollidingTiles",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_setZFromCollidingTiles" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
+  (arg1)->setZFromCollidingTiles();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_StaticObject_getEntityType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
@@ -10004,6 +10144,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Layer_getHeight", _wrap_Layer_getHeight, METH_VARARGS, NULL},
 	 { (char *)"Layer_getTile", _wrap_Layer_getTile, METH_VARARGS, NULL},
 	 { (char *)"Layer_getObject", _wrap_Layer_getObject, METH_VARARGS, NULL},
+	 { (char *)"Layer_getNumberOfObjects", _wrap_Layer_getNumberOfObjects, METH_VARARGS, NULL},
 	 { (char *)"Layer_swigregister", Layer_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Map", _wrap_new_Map, METH_VARARGS, NULL},
 	 { (char *)"delete_Map", _wrap_delete_Map, METH_VARARGS, NULL},
@@ -10075,6 +10216,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Mask_swigregister", Mask_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_StaticObject", _wrap_new_StaticObject, METH_VARARGS, NULL},
 	 { (char *)"delete_StaticObject", _wrap_delete_StaticObject, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_setCollidingTiles", _wrap_StaticObject_setCollidingTiles, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_setZFromCollidingTiles", _wrap_StaticObject_setZFromCollidingTiles, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getEntityType", _wrap_StaticObject_getEntityType, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_update", _wrap_StaticObject_update, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_draw", _wrap_StaticObject_draw, METH_VARARGS, NULL},

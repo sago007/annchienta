@@ -179,13 +179,6 @@ namespace Annchienta
         return tileSet;
     }
 
-    StaticObject *Layer::getStaticObject( int num )
-    {
-        if( (unsigned int)num >= staticObjects.size() )
-            return 0;
-        return staticObjects[num];
-    }
-
     int Layer::getWidth() const
     {
         return width;
@@ -201,12 +194,24 @@ namespace Annchienta
         return tiles[ y*width+x ];
     }
 
-    StaticObject *Layer::getObject( const char *name )
+    StaticObject *Layer::getObject( int num ) const
     {
-        for( int i=0; getStaticObject(i); i++ )
-            if( !strcmpCaseInsensitive( getStaticObject(i)->getName(), name ) )
-                return getStaticObject(i);
+        if( (unsigned int)num >= staticObjects.size() )
+            return 0;
+        return staticObjects[num];
+    }
+
+    StaticObject *Layer::getObject( const char *name ) const
+    {
+        for( int i=0; getObject(i); i++ )
+            if( !strcmpCaseInsensitive( getObject(i)->getName(), name ) )
+                return getObject(i);
         return 0;
+    }
+
+    int Layer::getNumberOfObjects() const
+    {
+        return (int)staticObjects.size();
     }
 
 };
