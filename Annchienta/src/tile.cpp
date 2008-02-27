@@ -115,6 +115,8 @@ namespace Annchienta
             list = glGenLists( 1 );
         glNewList( list, GL_COMPILE );
 
+        glPushMatrix();
+
         /* For every surface, draw with thee correct alpha value
          * at the correct points.
          */
@@ -160,8 +162,8 @@ namespace Annchienta
             /* Get come specific texture coords.
              */
             float centerX = 0.5f*( sideSurface->getLeftTexCoord() + sideSurface->getRightTexCoord() );
-            float centerY = 1.0f -  (float)(sideSurface->getHeight()+1-mapMgr->getTileHeight()/2)/(float)sideSurface->getGlHeight();
-            float centerYMinusOne = 1.0f -  (float)(sideSurface->getHeight()-mapMgr->getTileHeight()/2)/(float)sideSurface->getGlHeight();
+            float topY = 1.0f -  ((float)(mapMgr->getTileHeight()/2))/(float)sideSurface->getGlHeight();
+            float downY = 1.0f -  ((float)(sideSurface->getHeight()-mapMgr->getTileHeight()/2))/(float)sideSurface->getGlHeight();
 
             /* Use a triangle strip to draw a
              *     -       -
@@ -172,15 +174,17 @@ namespace Annchienta
              */
             glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
             glBindTexture( GL_TEXTURE_2D, sideSurface->getTexture() );
+            //sideSurface->draw( points[1].x, points[0].y-points[0].z );
             glBegin( GL_TRIANGLE_STRIP );
 
                 glTexCoord2f( sideSurface->getLeftTexCoord(), sideSurface->getTopTexCoord() );
                 glVertex2f( points[1].x, points[1].y - points[1].z );
 
-                glTexCoord2f( sideSurface->getLeftTexCoord(), centerYMinusOne );
+                glTexCoord2f( sideSurface->getLeftTexCoord(), downY );
                 glVertex2f( points[1].x, points[1].y );
 
-                glTexCoord2f( centerX, centerY );
+                //glTexCoord2f( centerX, sideSurface->getTopTexCoord() );
+                glTexCoord2f( centerX, topY );
                 glVertex2f( points[2].x, points[2].y - points[2].z );
 
                 glTexCoord2f( centerX, sideSurface->getBottomTexCoord() );
@@ -189,11 +193,13 @@ namespace Annchienta
                 glTexCoord2f( sideSurface->getRightTexCoord(), sideSurface->getTopTexCoord() );
                 glVertex2f( points[3].x, points[3].y - points[3].z );
 
-                glTexCoord2f( sideSurface->getRightTexCoord(), centerYMinusOne );
+                glTexCoord2f( sideSurface->getRightTexCoord(), downY );
                 glVertex2f( points[3].x, points[3].y );
 
             glEnd();
         }
+
+        glPopMatrix();
 
         /* End the display list.
          */
