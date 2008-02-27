@@ -251,6 +251,8 @@ class Editor(QWidget):
             return
         self.currentMap.addNewLayer( int(self.addLayerZBox.value()) )
         self.currentMap.sortLayers()
+        le = self.mapFile.document.createElement( "layer" )
+        self.mapFile.mapElement.appendChild( le )
 
     def nextLayer(self):
 

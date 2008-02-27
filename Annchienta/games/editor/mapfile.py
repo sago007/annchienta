@@ -43,11 +43,12 @@ class MapFile:
 
         else:
             self.document = xml.dom.minidom.parse( self.filename )
+            self.mapElement = self.document.getElementsByTagName("map")[0]
 
     def write( self ):
         self.update()
         file = open( self.filename, "wb" )
-        file.write( self.document.toprettyxml() )
+        xml.dom.ext.PrettyPrint( self.document, file )
         file.close()
 
     def update( self ):
