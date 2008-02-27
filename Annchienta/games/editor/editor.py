@@ -22,6 +22,7 @@ class Editor(QWidget):
         self.videoManager = annchienta.getVideoManager()
         self.mapManager = annchienta.getMapManager()
         self.inputManager = annchienta.getInputManager()
+        self.engine = annchienta.getEngine()
 
         # Set the video mode
         self.videoManager.setVideoMode( 600, 500, "Map", False )
@@ -42,6 +43,7 @@ class Editor(QWidget):
         self.connect( self.openMapButton, SIGNAL("clicked()"), self.openMap )
 
         self.connect( self.saveMapButton, SIGNAL("clicked()"), self.saveMap )
+        self.connect( self.saveMapAsButton, SIGNAL("clicked()"), self.saveMapAs )
 
         self.connect( self.tileWidthBox, SIGNAL("valueChanged(int)"), self.changeTileWidth )
         self.changeTileWidth()
@@ -113,19 +115,33 @@ class Editor(QWidget):
     def openMap(self):
 
         fileDialog = QFileDialog(self)
-        filename = fileDialog.getOpenFileName(self)
+        filename = str(fileDialog.getOpenFileName(self))
         if not os.path.isfile(filename):
             return
-        self.currentMap = annchienta.Map( str(filename) )
+        self.currentMap = annchienta.Map( filename )
         self.mapManager.setCurrentMap( self.currentMap )
         self.currentMap.depthSort()
         self.hasOpenedMap = True
         self.tileset = pytileset.PyTileSet( self, self.currentMap.getTileSet().getDirectory() )
+        self.mapFile = mapfile.MapFile( self, filename )
+        self.mapFile.filename = filename
+        self.saveMapButton.setEnabled(True)
+        self.engine.setWindowTitle( filename )
 
     def saveMap(self):
 
         if self.hasOpenedMap:
-            mapfile.writeMap( self, "temp.xml" )
+            self.mapFile.write()
+
+    def saveMapAs(self):
+
+        fileDialog = QFileDialog(self)
+        filename = str(fileDialog.getSaveFileName(self))
+        self.mapFile.filename = os.path.abspath(filename)
+        self.saveMapButton.setEnabled(True)
+        if self.hasOpenedMap:
+            self.mapFile.write()
+        self.engine.setWindowTitle( filename )
 
     def drawGrid(self):
 

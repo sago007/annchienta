@@ -25,6 +25,7 @@ namespace Annchienta
             /* All layers in the level.
              */
             std::vector<Layer*> layers;
+            Layer **sortedLayers;
             int currentLayer;
 
 
@@ -39,6 +40,9 @@ namespace Annchienta
             int getCurrentLayerIndex() const;
             void setCurrentLayer( int index );
             int getNumberOfLayers() const;
+
+            int getWidth() const;
+            int getHeight() const;
 
             void addNewLayer( int z );
 

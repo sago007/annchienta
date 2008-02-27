@@ -23,7 +23,7 @@ using namespace io;
 namespace Annchienta
 {
 
-    Map::Map( const char *filename ): currentLayer(0)
+    Map::Map( const char *filename ): sortedLayers(0), currentLayer(0)
     {
         Tile **tiles = 0;
         Layer *layer = 0;
@@ -165,9 +165,10 @@ namespace Annchienta
         }
 
         delete xml;
+        sortLayers();
     }
 
-    Map::Map( int w, int h, const char *tileSetFilename ): currentLayer(0)
+    Map::Map( int w, int h, const char *tileSetFilename ): sortedLayers(0), currentLayer(0)
     {
         tileSet = new TileSet( tileSetFilename );
         LayerInfo *layerInfo = new LayerInfo;
@@ -179,6 +180,7 @@ namespace Annchienta
         layer->setTileSet( tileSet );
         layers.push_back( layer );
         delete layerInfo;
+        sortLayers();
     }
 
     Map::~Map()
@@ -213,6 +215,16 @@ namespace Annchienta
         return (int) layers.size();
     }
 
+    int Map::getWidth() const
+    {
+        return width;
+    }
+
+    int Map::getHeight() const
+    {
+        return height;
+    }
+
     void Map::addNewLayer( int z )
     {
         LayerInfo *layerInfo = new LayerInfo;
@@ -225,6 +237,8 @@ namespace Annchienta
         delete layerInfo;
 
         setCurrentLayer( (int)layers.size()-1 );
+
+        sortLayers();
     }
 
     TileSet *Map::getTileSet() const
@@ -261,13 +275,13 @@ namespace Annchienta
     void Map::draw() const
     {
         for( unsigned int i=0; i<layers.size(); i++ )
-            layers[i]->draw();
+            sortedLayers[i]->draw();
     }
 
     void Map::drawTerrain() const
     {
         for( unsigned int i=0; i<layers.size(); i++ )
-            layers[i]->drawTerrain();
+            sortedLayers[i]->drawTerrain();
     }
 
     void Map::depthSort()
@@ -278,27 +292,25 @@ namespace Annchienta
 
     void Map::sortLayers()
     {
-        Layer *c = layers[currentLayer];
+        if( sortedLayers )
+            delete[] sortedLayers;
 
-        /* They should be in order, really. Do a bubble sort.
-         */
-        bool swapped;
-        do
+        sortedLayers = new Layer*[layers.size()+1];
+
+        unsigned int i=0;
+        for( int z=0; i<layers.size(); z++ )
         {
-            swapped = false;
-            for( unsigned int i=1; i<layers.size(); i++ )
+            for( unsigned int l=0; l<layers.size(); l++ )
             {
-                if( layers[i-1]->getZ() > layers[i]->getZ() )
+                if( layers[l]->getZ()==z )
                 {
-                    swap<Layer*>( layers[i-1], layers[i] );
-                    swapped = true;
+                    sortedLayers[i] = layers[l];
+                    i++;
                 }
             }
         }
-        while( swapped );
 
-        for( currentLayer=0; currentLayer<layers.size() && layers[currentLayer]!=c; currentLayer++ )
-        {}
+        sortedLayers[ layers.size() ] = 0;
     }
 
 };

@@ -55,6 +55,7 @@ class Engine(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, Engine, name)
     __repr__ = _swig_repr
     def write(*args): return _annchienta.Engine_write(*args)
+    def setWindowTitle(*args): return _annchienta.Engine_setWindowTitle(*args)
     def __init__(self, *args): 
         this = _annchienta.new_Engine(*args)
         try: self.this.append(this)
@@ -309,6 +310,8 @@ class Map(_object):
     def getCurrentLayerIndex(*args): return _annchienta.Map_getCurrentLayerIndex(*args)
     def setCurrentLayer(*args): return _annchienta.Map_setCurrentLayer(*args)
     def getNumberOfLayers(*args): return _annchienta.Map_getNumberOfLayers(*args)
+    def getWidth(*args): return _annchienta.Map_getWidth(*args)
+    def getHeight(*args): return _annchienta.Map_getHeight(*args)
     def addNewLayer(*args): return _annchienta.Map_addNewLayer(*args)
     def getTileSet(*args): return _annchienta.Map_getTileSet(*args)
     def getObject(*args): return _annchienta.Map_getObject(*args)

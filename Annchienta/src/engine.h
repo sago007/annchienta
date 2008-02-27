@@ -36,6 +36,8 @@ namespace Annchienta
              */
             void write( const char *text ) const;
 
+            void setWindowTitle( const char *title ) const;
+
     };
 
     Engine *getEngine();

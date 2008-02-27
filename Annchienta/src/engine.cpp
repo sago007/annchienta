@@ -68,6 +68,11 @@ namespace Annchienta
         printf( text );
     }
 
+    void Engine::setWindowTitle( const char *title ) const
+    {
+        SDL_WM_SetCaption( title, NULL );
+    }
+
     Engine *getEngine()
     {
         return engine;
