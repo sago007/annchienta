@@ -401,8 +401,10 @@ class Tile(Entity):
     def getPointPointer(*args): return _annchienta.Tile_getPointPointer(*args)
     def setSurface(*args): return _annchienta.Tile_setSurface(*args)
     def setSideSurface(*args): return _annchienta.Tile_setSideSurface(*args)
+    def setSideSurfaceOffset(*args): return _annchienta.Tile_setSideSurfaceOffset(*args)
     def getSurface(*args): return _annchienta.Tile_getSurface(*args)
     def getSideSurface(*args): return _annchienta.Tile_getSideSurface(*args)
+    def getSideSurfaceOffset(*args): return _annchienta.Tile_getSideSurfaceOffset(*args)
 Tile_swigregister = _annchienta.Tile_swigregister
 Tile_swigregister(Tile)
 

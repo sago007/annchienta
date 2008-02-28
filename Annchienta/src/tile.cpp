@@ -22,7 +22,7 @@ namespace Annchienta
         *wallYDown = 1.0f - (float)( (mapMgr->getTileHeight()>>1) + surf->getHeight() - mapMgr->getTileHeight() )/(float)surf->getGlHeight();
     }*/
 
-    Tile::Tile( TileSet *ts, Point p0, int s0, Point p1, int s1, Point p2, int s2, Point p3, int s3, int side ): list(0), tileSet(ts), nullTile(false)
+    Tile::Tile( TileSet *ts, Point p0, int s0, Point p1, int s1, Point p2, int s2, Point p3, int s3, int sso, int side ): list(0), tileSet(ts), sideSurfaceOffset(sso), nullTile(false)
     {
         points[0] = p0;
         surfaceNumbers[0] = s0;
@@ -181,20 +181,19 @@ namespace Annchienta
                 glVertex2f( points[1].x, points[1].y - points[1].z );
 
                 glTexCoord2f( sideSurface->getLeftTexCoord(), downY );
-                glVertex2f( points[1].x, points[1].y );
+                glVertex2f( points[1].x, points[1].y - sideSurfaceOffset );
 
-                //glTexCoord2f( centerX, sideSurface->getTopTexCoord() );
                 glTexCoord2f( centerX, topY );
                 glVertex2f( points[2].x, points[2].y - points[2].z );
 
                 glTexCoord2f( centerX, sideSurface->getBottomTexCoord() );
-                glVertex2f( points[2].x, points[2].y );
+                glVertex2f( points[2].x, points[2].y - sideSurfaceOffset );
 
                 glTexCoord2f( sideSurface->getRightTexCoord(), sideSurface->getTopTexCoord() );
                 glVertex2f( points[3].x, points[3].y - points[3].z );
 
                 glTexCoord2f( sideSurface->getRightTexCoord(), downY );
-                glVertex2f( points[3].x, points[3].y );
+                glVertex2f( points[3].x, points[3].y - sideSurfaceOffset );
 
             glEnd();
         }
@@ -276,6 +275,11 @@ namespace Annchienta
             nullTile = false;
     }
 
+    void Tile::setSideSurfaceOffset( int sso )
+    {
+        sideSurfaceOffset = sso;
+    }
+
     int Tile::getSurface( int i ) const
     {
         return surfaceNumbers[i];
@@ -284,5 +288,10 @@ namespace Annchienta
     int Tile::getSideSurface() const
     {
         return sideSurfaceNumber;
+    }
+
+    int Tile::getSideSurfaceOffset() const
+    {
+        return sideSurfaceOffset;
     }
 };

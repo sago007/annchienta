@@ -237,6 +237,7 @@ class Editor(QWidget):
             for at in self.selected.tiles:
                 surface = self.currentMap.getTileSet().getSideSurface( self.tileset.selectedTile )
                 at.tile.setSideSurface( self.tileset.selectedTile )
+                at.tile.setSideSurfaceOffset( int(self.tileSideOffsetBox.value()) )
 
         if needsRecompiling:
             for at in self.selected.tiles:

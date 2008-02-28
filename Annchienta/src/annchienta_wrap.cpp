@@ -9059,6 +9059,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tile_setSideSurfaceOffset(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tile_setSideSurfaceOffset",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_setSideSurfaceOffset" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tile_setSideSurfaceOffset" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setSideSurfaceOffset(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Tile_getSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
@@ -9105,6 +9135,28 @@ SWIGINTERN PyObject *_wrap_Tile_getSideSurface(PyObject *SWIGUNUSEDPARM(self), P
   }
   arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
   result = (int)((Annchienta::Tile const *)arg1)->getSideSurface();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tile_getSideSurfaceOffset(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_getSideSurfaceOffset",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_getSideSurfaceOffset" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  result = (int)((Annchienta::Tile const *)arg1)->getSideSurfaceOffset();
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -10278,8 +10330,10 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tile_getPointPointer", _wrap_Tile_getPointPointer, METH_VARARGS, NULL},
 	 { (char *)"Tile_setSurface", _wrap_Tile_setSurface, METH_VARARGS, NULL},
 	 { (char *)"Tile_setSideSurface", _wrap_Tile_setSideSurface, METH_VARARGS, NULL},
+	 { (char *)"Tile_setSideSurfaceOffset", _wrap_Tile_setSideSurfaceOffset, METH_VARARGS, NULL},
 	 { (char *)"Tile_getSurface", _wrap_Tile_getSurface, METH_VARARGS, NULL},
 	 { (char *)"Tile_getSideSurface", _wrap_Tile_getSideSurface, METH_VARARGS, NULL},
+	 { (char *)"Tile_getSideSurfaceOffset", _wrap_Tile_getSideSurfaceOffset, METH_VARARGS, NULL},
 	 { (char *)"Tile_swigregister", Tile_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_TileSet", _wrap_new_TileSet, METH_VARARGS, NULL},
 	 { (char *)"delete_TileSet", _wrap_delete_TileSet, METH_VARARGS, NULL},

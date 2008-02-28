@@ -28,11 +28,12 @@ namespace Annchienta
             TileSet *tileSet;
             int surfaceNumbers[4];
             int sideSurfaceNumber;
+            int sideSurfaceOffset;
 
             bool nullTile;
 
         public:
-            Tile( TileSet*, Point, int, Point, int, Point, int, Point, int, int ss=0 );
+            Tile( TileSet*, Point, int, Point, int, Point, int, Point, int, int ssOffset=0, int ss=0 );
             ~Tile();
 
             void makeList();
@@ -53,9 +54,11 @@ namespace Annchienta
             Point *getPointPointer( int i );
             void setSurface( int i, int s );
             void setSideSurface( int ss );
+            void setSideSurfaceOffset( int sso );
 
             int getSurface( int i ) const;
             int getSideSurface() const;
+            int getSideSurfaceOffset() const;
 
     };
 };

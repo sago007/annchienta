@@ -74,6 +74,7 @@ namespace Annchienta
                             {
                                 Point points[4];
                                 int surfaces[4];
+                                int sideSurfaceOffset;
                                 int sideSurface;
 
                                 points[0].y = points[3].y = y;
@@ -88,13 +89,14 @@ namespace Annchienta
                                     data >> surfaces[p];
                                 }
 
+                                data >> sideSurfaceOffset;
                                 data >> sideSurface;
 
                                 tiles[y*width+x] = new Tile( tileSet, points[0], surfaces[0],
-                                                                      points[1], surfaces[1],
-                                                                      points[2], surfaces[2],
-                                                                      points[3], surfaces[3],
-                                                                      sideSurface );
+                                                             points[1], surfaces[1],
+                                                             points[2], surfaces[2],
+                                                             points[3], surfaces[3],
+                                                             sideSurfaceOffset, sideSurface );
 
                             }
                         }

@@ -1,5 +1,4 @@
 import annchienta
-import xml.dom.ext
 import xml.dom.minidom
 import os
 
@@ -48,7 +47,7 @@ class MapFile:
     def write( self ):
         self.update()
         file = open( self.filename, "wb" )
-        xml.dom.ext.PrettyPrint( self.document, file )
+        file.write( self.document.toxml() )
         file.close()
 
     def update( self ):
@@ -79,6 +78,7 @@ class MapFile:
                     tile = layer.getTile(x,y)
                     for i in range(4):
                         data += (str(tile.getPointPointer(i).z)+" "+str(tile.getSurface(i))+" ")
+                    data += (str(tile.getSideSurfaceOffset())+" ")
                     data += (str(tile.getSideSurface())+"    ")
                data += "\n"
 
