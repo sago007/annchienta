@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>400</height>
+    <height>430</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -507,6 +507,22 @@
      </widget>
     </widget>
    </widget>
+  </widget>
+  <widget class="QLabel" name="mousePositionLabel" >
+   <property name="geometry" >
+    <rect>
+     <x>20</x>
+     <y>400</y>
+     <width>261</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Mouse position</string>
+   </property>
+   <property name="alignment" >
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
  </widget>
  <resources/>
