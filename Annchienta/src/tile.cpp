@@ -265,14 +265,14 @@ namespace Annchienta
         surfaces[i] = tileSet->getSurface(s);
         if( surfaces[0] && surfaces[1] && surfaces[2] && surfaces[3] )
             nullTile = false;
+        else
+            nullTile = true;
     }
 
     void Tile::setSideSurface( int side )
     {
         sideSurface = tileSet->getSideSurface(side);
         sideSurfaceNumber = side;
-        if( side )
-            nullTile = false;
     }
 
     void Tile::setSideSurfaceOffset( int sso )
