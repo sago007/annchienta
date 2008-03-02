@@ -268,6 +268,14 @@ namespace Annchienta
         return 0;
     }
 
+    void Map::removeObject( StaticObject *so )
+    {
+        for( unsigned int i=0; i<layers.size(); i++ )
+        {
+            layers[i]->removeObject( so );
+        }
+    }
+
     void Map::update()
     {
         for( unsigned int i=0; i<layers.size(); i++ )

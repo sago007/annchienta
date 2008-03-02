@@ -290,6 +290,7 @@ class Layer(_object):
     def getTile(*args): return _annchienta.Layer_getTile(*args)
     def getObject(*args): return _annchienta.Layer_getObject(*args)
     def getNumberOfObjects(*args): return _annchienta.Layer_getNumberOfObjects(*args)
+    def removeObject(*args): return _annchienta.Layer_removeObject(*args)
 Layer_swigregister = _annchienta.Layer_swigregister
 Layer_swigregister(Layer)
 
@@ -315,6 +316,7 @@ class Map(_object):
     def addNewLayer(*args): return _annchienta.Map_addNewLayer(*args)
     def getTileSet(*args): return _annchienta.Map_getTileSet(*args)
     def getObject(*args): return _annchienta.Map_getObject(*args)
+    def removeObject(*args): return _annchienta.Map_removeObject(*args)
     def update(*args): return _annchienta.Map_update(*args)
     def draw(*args): return _annchienta.Map_draw(*args)
     def drawTerrain(*args): return _annchienta.Map_drawTerrain(*args)

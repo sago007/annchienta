@@ -77,6 +77,7 @@ namespace Annchienta
             StaticObject *getObject( int num ) const;
             StaticObject *getObject( const char *name ) const;
             int getNumberOfObjects() const;
+            void removeObject( StaticObject *so );
     };
 };
 

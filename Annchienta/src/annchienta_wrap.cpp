@@ -7389,6 +7389,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Layer_removeObject(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
+  Annchienta::StaticObject *arg2 = (Annchienta::StaticObject *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Layer_removeObject",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_removeObject" "', argument " "1"" of type '" "Annchienta::Layer *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Layer_removeObject" "', argument " "2"" of type '" "Annchienta::StaticObject *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::StaticObject * >(argp2);
+  (arg1)->removeObject(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Layer_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -7784,6 +7814,36 @@ SWIGINTERN PyObject *_wrap_Map_getObject(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return resultobj;
 fail:
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Map_removeObject(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  Annchienta::StaticObject *arg2 = (Annchienta::StaticObject *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Map_removeObject",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_removeObject" "', argument " "1"" of type '" "Annchienta::Map *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Map_removeObject" "', argument " "2"" of type '" "Annchienta::StaticObject *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::StaticObject * >(argp2);
+  (arg1)->removeObject(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
   return NULL;
 }
 
@@ -10275,6 +10335,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Layer_getTile", _wrap_Layer_getTile, METH_VARARGS, NULL},
 	 { (char *)"Layer_getObject", _wrap_Layer_getObject, METH_VARARGS, NULL},
 	 { (char *)"Layer_getNumberOfObjects", _wrap_Layer_getNumberOfObjects, METH_VARARGS, NULL},
+	 { (char *)"Layer_removeObject", _wrap_Layer_removeObject, METH_VARARGS, NULL},
 	 { (char *)"Layer_swigregister", Layer_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Map", _wrap_new_Map, METH_VARARGS, NULL},
 	 { (char *)"delete_Map", _wrap_delete_Map, METH_VARARGS, NULL},
@@ -10288,6 +10349,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Map_addNewLayer", _wrap_Map_addNewLayer, METH_VARARGS, NULL},
 	 { (char *)"Map_getTileSet", _wrap_Map_getTileSet, METH_VARARGS, NULL},
 	 { (char *)"Map_getObject", _wrap_Map_getObject, METH_VARARGS, NULL},
+	 { (char *)"Map_removeObject", _wrap_Map_removeObject, METH_VARARGS, NULL},
 	 { (char *)"Map_update", _wrap_Map_update, METH_VARARGS, NULL},
 	 { (char *)"Map_draw", _wrap_Map_draw, METH_VARARGS, NULL},
 	 { (char *)"Map_drawTerrain", _wrap_Map_drawTerrain, METH_VARARGS, NULL},

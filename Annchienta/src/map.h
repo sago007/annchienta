@@ -49,6 +49,7 @@ namespace Annchienta
             TileSet *getTileSet() const;
 
             StaticObject *getObject( const char *name );
+            void removeObject( StaticObject *so );
 
             void update();
             void draw() const;

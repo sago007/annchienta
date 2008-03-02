@@ -214,4 +214,23 @@ namespace Annchienta
         return (int)staticObjects.size();
     }
 
+    void Layer::removeObject( StaticObject *so )
+    {
+        for( unsigned int i=0; i<staticObjects.size(); i++ )
+        {
+            if( staticObjects[i] == so )
+            {
+                staticObjects.erase( staticObjects.begin()+i );
+            }
+        }
+
+        for( unsigned int i=0; i<entities.size(); i++ )
+        {
+            if( (StaticObject*) entities[i] == so )
+            {
+                entities.erase( entities.begin()+i );
+            }
+        }
+    }
+
 };
