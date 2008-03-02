@@ -22,12 +22,25 @@
         <staticobject config="maps/tree.xml" isox="210" isoy="210" name="tree"/>
 
 <area tilex1="4" tiley1="4" tilex2="6" tiley2="6">
-import scene
 import annchienta
 
-sceneManager = scene.getSceneManager()
+# Obtain some references
+mapManager = annchienta.getMapManager()
+currentMap = mapManager.getCurrentMap()
 this = annchienta.getActiveObject()
+
+# Set a new position to our object (=the player)
 this.setPosition( annchienta.Point( annchienta.TilePoint, 10, 10 ) )
+
+# Remove our object from this map...
+currentMap.removeObject( this )
+
+# Load and set the new map.
+newMap = annchienta.Map("maps/map2.xml")
+mapManager.setCurrentMap( newMap )
+
+# Put our object in the new map.
+newMap.addObject( this )
 </area>
 
     </layer>

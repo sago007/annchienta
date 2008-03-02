@@ -198,6 +198,7 @@ namespace Annchienta
     {
         tileSet = new TileSet( tileSetFilename );
         Layer *layer =  new Layer( tileSet, width, height, 0xff, 0 );
+        layer->setTiles( 0 );
         layers.push_back( layer );
         sortLayers();
     }
@@ -277,6 +278,11 @@ namespace Annchienta
             }
         }
         return 0;
+    }
+
+    void Map::addObject( StaticObject *so )
+    {
+        layers[currentLayer]->addEntity( so );
     }
 
     void Map::removeObject( StaticObject *so )
