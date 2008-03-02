@@ -276,6 +276,7 @@ class Layer(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Layer
     __del__ = lambda self : None;
+    def setTiles(*args): return _annchienta.Layer_setTiles(*args)
     def setOpacity(*args): return _annchienta.Layer_setOpacity(*args)
     def getOpacity(*args): return _annchienta.Layer_getOpacity(*args)
     def setZ(*args): return _annchienta.Layer_setZ(*args)

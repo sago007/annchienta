@@ -14,20 +14,8 @@
 namespace Annchienta
 {
 
-    Layer::Layer( TileSet *ts, LayerInfo *info, Tile **_tiles ): width(info->width), height(info->height), z(info->z), opacity(info->opacity), tileSet(ts)
+    Layer::Layer( TileSet *ts, int w, int h, int o, int _z ): width(w), height(h), opacity(o), z(_z), tileSet(ts)
     {
-        /* Create some extra space.
-         */
-        //printf("Creating layer: %d x %d\n", width, height);
-        entities.resize( width*height );
-
-        if( _tiles )
-            tiles = _tiles;
-        else
-            makeEmpty();
-
-        for( int i=0; i<width*height; i++ )
-            entities[i] = tiles[i];
     }
 
     Layer::~Layer()
@@ -38,6 +26,21 @@ namespace Annchienta
         }
 
         delete[] tiles;
+    }
+
+    void Layer::setTiles( Tile **_tiles )
+    {
+        /* Create some extra space.
+         */
+        entities.resize( width*height );
+
+        if( _tiles )
+            tiles = _tiles;
+        else
+            makeEmpty();
+
+        for( int i=0; i<width*height; i++ )
+            entities[i] = tiles[i];
     }
 
     void Layer::setOpacity( int o )

@@ -11,16 +11,8 @@ namespace Annchienta
 {
     class Tile;
     class Entity;
-    struct LayerInfo;
     class TileSet;
     class StaticObject;
-
-    #ifndef SWIG
-        struct LayerInfo
-        {
-            int width, height, opacity, z;
-        };
-    #endif
 
     class Layer
     {
@@ -47,8 +39,12 @@ namespace Annchienta
 
         public:
 
-            Layer( TileSet *tileSet, LayerInfo *info, Tile **tiles );
+            /* Layer::setTiles MUST, I repeat, MUST be called right after this.
+             */
+            Layer( TileSet *tileSet, int width, int height, int opacity, int z );
             ~Layer();
+
+            void setTiles( Tile **tiles=0 );
 
             void setOpacity( int opacity=0xff );
             int getOpacity() const;

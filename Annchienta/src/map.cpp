@@ -25,10 +25,7 @@ namespace Annchienta
 
     Map::Map( const char *filename ): sortedLayers(0), currentLayer(0)
     {
-        Tile **tiles = 0;
         Layer *layer = 0;
-        Annchienta::LayerInfo *layerInfo;
-        std::vector<Entity*> entities;
 
         IrrXMLReader *xml = createIrrXMLReader( filename );
 
@@ -45,8 +42,6 @@ namespace Annchienta
                         width = xml->getAttributeValueAsInt("width");
                         height = xml->getAttributeValueAsInt("height");
 
-                        tiles = new Tile*[width*height];
-
                         getMapManager()->setTileWidth( xml->getAttributeValueAsInt("tilewidth") );
                         getMapManager()->setTileHeight( xml->getAttributeValueAsInt("tileheight") );
 
@@ -54,19 +49,17 @@ namespace Annchienta
                     }
                     if( !strcmpCaseInsensitive("layer", xml->getNodeName()) )
                     {
-                        layerInfo = new LayerInfo;
-                        layerInfo->z = xml->getAttributeValue("z") ? xml->getAttributeValueAsInt("z"):0;
-                        layerInfo->width = width;
-                        layerInfo->height = height;
-                        layerInfo->opacity = xml->getAttributeValue("opacity") ? xml->getAttributeValueAsInt("opacity"):0xff;
-                        tiles = 0;
+                        int opacity = xml->getAttributeValue("opacity") ? xml->getAttributeValueAsInt("opacity"):0xff,
+                            z = xml->getAttributeValue("z") ? xml->getAttributeValueAsInt("z"):0;
+
+                        layer = new Layer( tileSet, width, height, opacity, z );
                     }
                     if( !strcmpCaseInsensitive("tiles", xml->getNodeName()) )
                     {
                         xml->read();
                         std::stringstream data( xml->getNodeData() );
 
-                        tiles = new Tile*[width*height];
+                        Tile **tiles = new Tile*[width*height];
 
                         for( int y=0; y<height; y++ )
                         {
@@ -100,6 +93,8 @@ namespace Annchienta
 
                             }
                         }
+
+                        layer->setTiles( tiles );
                     }
                     if( !strcmpCaseInsensitive("staticobject", xml->getNodeName() ) )
                     {
@@ -121,7 +116,7 @@ namespace Annchienta
                         if( xml->getAttributeValueAsInt("camera") )
                             getMapManager()->cameraFollow( staticObject );
 
-                        entities.push_back( staticObject );
+                        layer->addEntity( staticObject );
 
                     }
                     if( !strcmpCaseInsensitive("person", xml->getNodeName() ) )
@@ -144,7 +139,7 @@ namespace Annchienta
                         if( xml->getAttributeValueAsInt("camera") )
                             getMapManager()->cameraFollow( person);
 
-                        entities.push_back( person );
+                        layer->addEntity( person );
 
                     }
                     break;
@@ -152,15 +147,8 @@ namespace Annchienta
                 case EXN_ELEMENT_END:
                     if( !strcmpCaseInsensitive("layer", xml->getNodeName()) )
                     {
-                        Layer *layer = new Layer( tileSet, layerInfo, tiles );
-                        delete layerInfo;
-
-                        for( unsigned int i=0; i<entities.size(); i++ )
-                            layer->addEntity( entities[i] );
-
-                        entities.clear();
-
                         layers.push_back( layer );
+                        layer = 0;
                     }
                     break;
             }
@@ -170,18 +158,11 @@ namespace Annchienta
         sortLayers();
     }
 
-    Map::Map( int w, int h, const char *tileSetFilename ): sortedLayers(0), currentLayer(0)
+    Map::Map( int w, int h, const char *tileSetFilename ): width(w), height(h), sortedLayers(0), currentLayer(0)
     {
         tileSet = new TileSet( tileSetFilename );
-        LayerInfo *layerInfo = new LayerInfo;
-        layerInfo->z = 0;
-        layerInfo->width = width = w;
-        layerInfo->height = height = h;
-        layerInfo->opacity = 0xff;
-        Layer *layer =  new Layer( tileSet, layerInfo, 0 );
-        layer->setTileSet( tileSet );
+        Layer *layer =  new Layer( tileSet, width, height, 0xff, 0 );
         layers.push_back( layer );
-        delete layerInfo;
         sortLayers();
     }
 
@@ -229,14 +210,8 @@ namespace Annchienta
 
     void Map::addNewLayer( int z )
     {
-        LayerInfo *layerInfo = new LayerInfo;
-        layerInfo->z = z;
-        layerInfo->width = width;
-        layerInfo->height = height;
-        layerInfo->opacity = 0xff;
-        Layer *layer =  new Layer( tileSet, layerInfo, 0 );
+        Layer *layer =  new Layer( tileSet, width, height, 0xff, 0 );
         layers.push_back( layer );
-        delete layerInfo;
 
         setCurrentLayer( (int)layers.size()-1 );
 
