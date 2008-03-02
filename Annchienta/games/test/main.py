@@ -10,7 +10,7 @@ mapMgr = annchienta.getMapManager()
 mapMgr.setTileWidth(64)
 mapMgr.setTileHeight(32)
 mapMgr.setUpdatesPerSecond(60)
-mapMgr.setMaxAscentHeight(16)
+mapMgr.setMaxAscentHeight(32)
 mapMgr.setMaxDescentHeight(32)
 
 mymap = annchienta.Map( "maps/map.xml" )

@@ -161,7 +161,7 @@ namespace Annchienta
 
                         if( xml->getAttributeValue("tilex1") )
                         {
-                            p1 = Point( TilePoint, xml->getAttributeValueAsInt("tilex1"), xml->getAttributeValueAsInt("tilex1"), 0 );
+                            p1 = Point( TilePoint, xml->getAttributeValueAsInt("tilex1"), xml->getAttributeValueAsInt("tiley1"), 0 );
                             p2 = Point( TilePoint, xml->getAttributeValueAsInt("tilex2"), xml->getAttributeValueAsInt("tiley2"), 0 );
                         }
 
@@ -247,7 +247,8 @@ namespace Annchienta
 
     void Map::addNewLayer( int z )
     {
-        Layer *layer =  new Layer( tileSet, width, height, 0xff, 0 );
+        Layer *layer =  new Layer( tileSet, width, height, 0xff, z );
+        layer->setTiles( 0 );
         layers.push_back( layer );
 
         setCurrentLayer( (int)layers.size()-1 );

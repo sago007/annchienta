@@ -80,8 +80,8 @@ namespace Annchienta
                 switch( newtype )
                 {
                     case TilePoint:
-                        x /= mapMgr->getTileHeight();
-                        y /= mapMgr->getTileHeight();
+                        x /= (mapMgr->getTileHeight()>>1);
+                        y /= (mapMgr->getTileHeight()>>1);
                         break;
                     case MapPoint: default:
                         nx = x*2 - y*2;

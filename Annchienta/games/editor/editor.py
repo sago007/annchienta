@@ -88,7 +88,10 @@ class Editor(QWidget):
 
         mpoint = annchienta.Point( annchienta.ScreenPoint, self.mouseX, self.mouseY )
         mpoint.convert( annchienta.IsometricPoint )
-        self.mousePositionLabel.setText( QString( "Isometric Mouse Position: "+str(mpoint.x)+", "+str(mpoint.y)) )
+        string = "Mouse: "+str(mpoint.x)+", "+str(mpoint.y)+" (iso) "
+        mpoint.convert( annchienta.TilePoint )
+        string += str(mpoint.x)+", "+str(mpoint.y)+" (tile)"
+        self.mousePositionLabel.setText( QString( string ) )
 
         # NEVER Update the MapManager
         # LEAVE THIS COMMENTED

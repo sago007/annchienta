@@ -21,7 +21,7 @@
         <person config="maps/darkie.xml" isox="20" isoy="180" name="darkie"/>
         <staticobject config="maps/tree.xml" isox="210" isoy="210" name="tree"/>
 
-<area tilex1="4" tiley1="4" tilex2="6" tiley2="6">
+<area tilex1="2" tiley1="0" tilex2="5" tiley2="1">
 import annchienta
 
 # Obtain some references
