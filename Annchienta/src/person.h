@@ -40,6 +40,8 @@ namespace Annchienta
 
             virtual void setStandAnimation();
             virtual void lookAt( StaticObject *object );
+
+            virtual void collisionWithLayerAreas();
     };
 
 };

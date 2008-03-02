@@ -100,7 +100,7 @@ namespace Annchienta
     #endif
 
     /* Used in scenes: active->interactor
-     *                 passive->ineracted with
+     *                 passive->interacted with
      */
     StaticObject *getActiveObject();
     StaticObject *getPassiveObject();

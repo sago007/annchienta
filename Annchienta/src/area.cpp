@@ -18,6 +18,10 @@ namespace Annchienta
         onCollisionCode = onCollisionScript = 0;
     }
 
+    Area::~Area()
+    {
+    }
+
     void Area::setOnCollisionScript( const char *script )
     {
         if( onCollisionScript )

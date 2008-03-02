@@ -19,6 +19,7 @@ using namespace io;
 #include "staticobject.h"
 #include "person.h"
 #include "point.h"
+#include "area.h"
 
 namespace Annchienta
 {
@@ -141,6 +142,41 @@ namespace Annchienta
 
                         layer->addEntity( person );
 
+                    }
+                    if( !strcmpCaseInsensitive("area", xml->getNodeName() ) )
+                    {
+                        Point p1, p2;
+
+                        if( xml->getAttributeValue("isox1") )
+                        {
+                            p1 = Point( IsometricPoint, xml->getAttributeValueAsInt("isox1"), xml->getAttributeValueAsInt("isoy1"), 0 );
+                            p2 = Point( IsometricPoint, xml->getAttributeValueAsInt("isox2"), xml->getAttributeValueAsInt("isoy2"), 0 );
+                        }
+
+                        if( xml->getAttributeValue("mapx1") )
+                        {
+                            p1 = Point( MapPoint, xml->getAttributeValueAsInt("mapx1"), xml->getAttributeValueAsInt("mapy1"), 0 );
+                            p2 = Point( MapPoint, xml->getAttributeValueAsInt("mapx2"), xml->getAttributeValueAsInt("mapy2"), 0 );
+                        }
+
+                        if( xml->getAttributeValue("tilex1") )
+                        {
+                            p1 = Point( TilePoint, xml->getAttributeValueAsInt("tilex1"), xml->getAttributeValueAsInt("tilex1"), 0 );
+                            p2 = Point( TilePoint, xml->getAttributeValueAsInt("tilex2"), xml->getAttributeValueAsInt("tiley2"), 0 );
+                        }
+
+                        Area *area = new Area( p1, p2 );
+
+                        if( xml->getAttributeValue("script") )
+                            area->setOnCollisionScript( xml->getAttributeValue("script") );
+                        else
+                        {
+                            xml->read();
+                            area->setOnCollisionCode( xml->getNodeData() );
+                            xml->read();
+                        }
+
+                        layer->addArea( area );
                     }
                     break;
 

@@ -15,6 +15,8 @@ using namespace io;
 #include "mapmanager.h"
 #include "layer.h"
 #include "mask.h"
+#include "inputmanager.h"
+#include "area.h"
 
 namespace Annchienta
 {
@@ -72,6 +74,11 @@ namespace Annchienta
          * every turn.
          */
         needsUpdate = true;
+
+        /* Check for collisions with areas.
+         */
+        if( this==getInputManager()->getInputControlledPerson() )
+            collisionWithLayerAreas();
 
         /* First call the superclass update() method,
          * because we also need to switch frames etc.
@@ -336,6 +343,17 @@ namespace Annchienta
         }
 
         setStandAnimation();
+    }
+
+    void Person::collisionWithLayerAreas()
+    {
+        setActiveObject( this );
+        Area *area;
+        for( int i=0; area = layer->getArea(i); i++ )
+        {
+            if( area->hasPoint( position ) )
+                area->onCollision();
+        }
     }
 
 };

@@ -13,6 +13,7 @@ namespace Annchienta
     class Entity;
     class TileSet;
     class StaticObject;
+    class Area;
 
     class Layer
     {
@@ -34,6 +35,7 @@ namespace Annchienta
              */
             std::vector<Entity*> entities;
             std::vector<StaticObject*> staticObjects;
+            std::vector<Area*> areas;
 
             TileSet *tileSet;
 
@@ -58,6 +60,7 @@ namespace Annchienta
             void depthSort();
 
             void addEntity( Entity *entity );
+            void addArea( Area *area );
 
             #ifndef SWIG
                 void makeEmpty();
@@ -74,6 +77,8 @@ namespace Annchienta
             StaticObject *getObject( const char *name ) const;
             int getNumberOfObjects() const;
             void removeObject( StaticObject *so );
+
+            Area *getArea( int num ) const;
     };
 };
 
