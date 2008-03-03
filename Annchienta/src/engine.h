@@ -38,6 +38,8 @@ namespace Annchienta
 
             void setWindowTitle( const char *title ) const;
 
+            unsigned int getTicks() const;
+
     };
 
     Engine *getEngine();

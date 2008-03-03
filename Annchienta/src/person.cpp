@@ -17,6 +17,7 @@ using namespace io;
 #include "mask.h"
 #include "inputmanager.h"
 #include "area.h"
+#include "tile.h"
 
 namespace Annchienta
 {
@@ -147,6 +148,14 @@ namespace Annchienta
          */
         if( possible && (oldPosition.z - getMapManager()->getMaxDescentHeight() > position.z ) )
             possible = false;
+
+        /* Reject if the person steps on a nulltile.
+         */
+        for( std::list<Tile*>::iterator i = collidingTiles.begin(); possible && i!=collidingTiles.end(); i++ )
+        {
+            if( (*i)->isNullTile() )
+                possible = false;
+        }
 
         /* Reject if the person collides with something else.
          */

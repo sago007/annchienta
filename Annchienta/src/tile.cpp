@@ -239,6 +239,11 @@ namespace Annchienta
         //return( point.x >= isoPoints[0].x && point.x <= isoPoints[3].x && point.y >= isoPoints[0].y && point.y <= isoPoints[1].y );
     }
 
+    bool Tile::isNullTile() const
+    {
+        return nullTile;
+    }
+
     Point Tile::getMaskPosition() const
     {
         return Point( MapPoint, points[1].x, points[0].y );

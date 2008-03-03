@@ -2666,6 +2666,24 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 
 
 
+  #define SWIG_From_long   PyInt_FromLong 
+
+
+SWIGINTERNINLINE PyObject* 
+SWIG_From_unsigned_SS_long  (unsigned long value)
+{
+  return (value > LONG_MAX) ?
+    PyLong_FromUnsignedLong(value) : PyInt_FromLong(static_cast< long >(value)); 
+}
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_unsigned_SS_int  (unsigned int value)
+{    
+  return SWIG_From_unsigned_SS_long  (value);
+}
+
+
 #include <limits.h>
 #ifndef LLONG_MIN
 # define LLONG_MIN	LONG_LONG_MIN
@@ -2831,9 +2849,6 @@ SWIG_AsVal_bool (PyObject *obj, bool *val)
 }
 
 
-  #define SWIG_From_long   PyInt_FromLong 
-
-
 SWIGINTERNINLINE PyObject *
 SWIG_From_int  (int value)
 {    
@@ -2952,6 +2967,28 @@ SWIGINTERN PyObject *_wrap_Engine_setWindowTitle(PyObject *SWIGUNUSEDPARM(self),
   return resultobj;
 fail:
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Engine_getTicks(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Engine *arg1 = (Annchienta::Engine *) 0 ;
+  unsigned int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Engine_getTicks",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Engine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Engine_getTicks" "', argument " "1"" of type '" "Annchienta::Engine const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Engine * >(argp1);
+  result = (unsigned int)((Annchienta::Engine const *)arg1)->getTicks();
+  resultobj = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  return resultobj;
+fail:
   return NULL;
 }
 
@@ -9219,6 +9256,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tile_isNullTile(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_isNullTile",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_isNullTile" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  result = (bool)((Annchienta::Tile const *)arg1)->isNullTile();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Tile_getPointPointer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
@@ -10413,6 +10472,7 @@ fail:
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"Engine_write", _wrap_Engine_write, METH_VARARGS, NULL},
 	 { (char *)"Engine_setWindowTitle", _wrap_Engine_setWindowTitle, METH_VARARGS, NULL},
+	 { (char *)"Engine_getTicks", _wrap_Engine_getTicks, METH_VARARGS, NULL},
 	 { (char *)"new_Engine", _wrap_new_Engine, METH_VARARGS, NULL},
 	 { (char *)"delete_Engine", _wrap_delete_Engine, METH_VARARGS, NULL},
 	 { (char *)"Engine_swigregister", Engine_swigregister, METH_VARARGS, NULL},
@@ -10593,6 +10653,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tile_draw", _wrap_Tile_draw, METH_VARARGS, NULL},
 	 { (char *)"Tile_getDepthSortY", _wrap_Tile_getDepthSortY, METH_VARARGS, NULL},
 	 { (char *)"Tile_hasPoint", _wrap_Tile_hasPoint, METH_VARARGS, NULL},
+	 { (char *)"Tile_isNullTile", _wrap_Tile_isNullTile, METH_VARARGS, NULL},
 	 { (char *)"Tile_getPointPointer", _wrap_Tile_getPointPointer, METH_VARARGS, NULL},
 	 { (char *)"Tile_setSurface", _wrap_Tile_setSurface, METH_VARARGS, NULL},
 	 { (char *)"Tile_setSideSurface", _wrap_Tile_setSideSurface, METH_VARARGS, NULL},

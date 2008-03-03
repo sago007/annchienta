@@ -56,6 +56,7 @@ class Engine(_object):
     __repr__ = _swig_repr
     def write(*args): return _annchienta.Engine_write(*args)
     def setWindowTitle(*args): return _annchienta.Engine_setWindowTitle(*args)
+    def getTicks(*args): return _annchienta.Engine_getTicks(*args)
     def __init__(self, *args): 
         this = _annchienta.new_Engine(*args)
         try: self.this.append(this)
@@ -404,6 +405,7 @@ class Tile(Entity):
     def draw(*args): return _annchienta.Tile_draw(*args)
     def getDepthSortY(*args): return _annchienta.Tile_getDepthSortY(*args)
     def hasPoint(*args): return _annchienta.Tile_hasPoint(*args)
+    def isNullTile(*args): return _annchienta.Tile_isNullTile(*args)
     def getPointPointer(*args): return _annchienta.Tile_getPointPointer(*args)
     def setSurface(*args): return _annchienta.Tile_setSurface(*args)
     def setSideSurface(*args): return _annchienta.Tile_setSideSurface(*args)

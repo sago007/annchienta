@@ -79,14 +79,14 @@ namespace Annchienta
 
         glTranslatef( 0.0f, -z, 0.0f );
 
-        if( opacity < 0xff )
-            return;
+        if( opacity >= 0xff )
+        {
+            for( unsigned int i=0; i<entities.size(); i++ )
+                entities[i]->setDrawn( false );
 
-        for( unsigned int i=0; i<entities.size(); i++ )
-            entities[i]->setDrawn( false );
-
-        for( unsigned int i=0; i<entities.size(); i++ )
-            entities[i]->draw();
+            for( unsigned int i=0; i<entities.size(); i++ )
+                entities[i]->draw();
+        }
 
         glPopMatrix();
     }

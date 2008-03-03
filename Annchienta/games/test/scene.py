@@ -15,6 +15,7 @@ class SceneManager:
         self.videoManager = annchienta.getVideoManager()
         self.inputManager = annchienta.getInputManager()
         self.mapManager = annchienta.getMapManager()
+        self.engine = annchienta.getEngine()
         #self.defaultFont
         self.boxTextures = []
         self.confirmKey = annchienta.SDLK_SPACE
@@ -203,6 +204,19 @@ class SceneManager:
     def quitDialog( self ):
         for object in self.objectsInDialog:
             object.freeze(False)
+
+    ## \fades
+    #
+    def fade( self, ms, r, g, b ):
+        start = self.engine.getTicks()
+        self.videoManager.storeBuffer(7)
+        while self.engine.getTicks() < start+ms:
+            alpha = float(self.engine.getTicks() - start)/float(ms)*255.0
+            self.videoManager.begin()
+            self.videoManager.restoreBuffer(7)
+            self.videoManager.setColor(r,g,b,int(alpha))
+            self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
+            self.videoManager.end()
 
 ## \brief Init the SceneManager global instance.
 #

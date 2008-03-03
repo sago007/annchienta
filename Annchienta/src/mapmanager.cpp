@@ -11,6 +11,7 @@
 #include "videomanager.h"
 #include "staticobject.h"
 #include "mask.h"
+#include "layer.h"
 
 namespace Annchienta
 {
@@ -98,7 +99,7 @@ namespace Annchienta
         targetPosition.convert( MapPoint );
 
         cameraX = targetPosition.x - videoManager->getScreenWidth()/2;
-        cameraY = targetPosition.y - targetPosition.z - object->getMask()->getHeight()/2 - videoManager->getScreenHeight()/2;
+        cameraY = targetPosition.y - targetPosition.z - object->getMask()->getHeight()/2 - videoManager->getScreenHeight()/2 - object->getLayer()->getZ();
     }
 
     void MapManager::setCurrentMap( Map *map )

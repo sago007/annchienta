@@ -45,6 +45,8 @@ namespace Annchienta
             virtual int getDepthSortY();
             bool hasPoint( Point point );
 
+            bool isNullTile() const;
+
             #ifndef SWIG
                 virtual Point getMaskPosition() const;
                 int getZ( int point ) const;

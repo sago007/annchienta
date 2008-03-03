@@ -52,6 +52,7 @@ class Editor(QWidget):
 
         self.connect( self.nextLayerButton, SIGNAL("clicked()"), self.nextLayer )
         self.connect( self.layerZBox, SIGNAL("valueChanged(int)"), self.changeLayerZ )
+        self.connect( self.layerOpacityBox, SIGNAL("valueChanged(int)"), self.changeLayerOpacity )
 
         self.connect( self.zGroupBox, SIGNAL("toggled(bool)"), self.selectZGroupBox )
         self.connect( self.tileGroupBox, SIGNAL("toggled(bool)"), self.selectTileGroupBox )
@@ -270,11 +271,16 @@ class Editor(QWidget):
         i = (i+1)%self.currentMap.getNumberOfLayers()
         self.currentMap.setCurrentLayer(i)
         self.layerZBox.setValue( self.currentMap.getCurrentLayer().getZ() )
+        self.layerOpacityBox.setValue( self.currentMap.getCurrentLayer().getOpacity() )
 
     def changeLayerZ(self):
 
         self.currentMap.getCurrentLayer().setZ( int(self.layerZBox.value()) )
         self.currentMap.sortLayers()
+        
+    def changeLayerOpacity(self):
+
+        self.currentMap.getCurrentLayer().setOpacity( int(self.layerOpacityBox.value()) )
         
     def selectZGroupBox(self):
         if bool(self.zGroupBox.isChecked()):

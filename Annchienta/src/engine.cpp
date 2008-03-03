@@ -73,6 +73,11 @@ namespace Annchienta
         SDL_WM_SetCaption( title, NULL );
     }
 
+    unsigned int Engine::getTicks() const
+    {
+        return SDL_GetTicks();
+    }
+
     Engine *getEngine()
     {
         return engine;
