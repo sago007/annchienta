@@ -26,7 +26,7 @@ namespace Annchienta
     {
         if( onCollisionScript )
             delete[] onCollisionScript;
-        onCollisionScript = new char[strlen(script)];
+        onCollisionScript = new char[strlen(script)+1];
         strcpy( onCollisionScript, script );
     }
 
@@ -34,7 +34,7 @@ namespace Annchienta
     {
         if( onCollisionCode )
             delete[] onCollisionCode;
-        onCollisionCode = new char[strlen(code)];
+        onCollisionCode = new char[strlen(code)+1];
         strcpy( onCollisionCode, code );
     }
 

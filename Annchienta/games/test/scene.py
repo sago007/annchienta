@@ -207,16 +207,31 @@ class SceneManager:
 
     ## \fades
     #
-    def fade( self, ms, r, g, b ):
+    def fadeOut( self ):
+        ms = 500
         start = self.engine.getTicks()
         self.videoManager.storeBuffer(7)
         while self.engine.getTicks() < start+ms:
             alpha = float(self.engine.getTicks() - start)/float(ms)*255.0
             self.videoManager.begin()
             self.videoManager.restoreBuffer(7)
-            self.videoManager.setColor(r,g,b,int(alpha))
+            self.videoManager.setColor(0,0,0,int(alpha))
             self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
             self.videoManager.end()
+        self.mapManager.resync()
+
+    def fadeIn( self ):
+        ms = 500
+        start = self.engine.getTicks()
+        self.videoManager.storeBuffer(7)
+        while self.engine.getTicks() < start+ms:
+            alpha = 255. - float(self.engine.getTicks() - start)/float(ms)*255.0
+            self.videoManager.begin()
+            self.videoManager.restoreBuffer(7)
+            self.videoManager.setColor(0,0,0,int(alpha))
+            self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
+            self.videoManager.end()
+        self.mapManager.resync()
 
 ## \brief Init the SceneManager global instance.
 #

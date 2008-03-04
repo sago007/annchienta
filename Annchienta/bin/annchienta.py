@@ -165,6 +165,7 @@ class MapManager(_object):
     def getObject(*args): return _annchienta.MapManager_getObject(*args)
     def run(*args): return _annchienta.MapManager_run(*args)
     def update(*args): return _annchienta.MapManager_update(*args)
+    def updateOnce(*args): return _annchienta.MapManager_updateOnce(*args)
     def renderFrame(*args): return _annchienta.MapManager_renderFrame(*args)
     def renderTerrain(*args): return _annchienta.MapManager_renderTerrain(*args)
     def resync(*args): return _annchienta.MapManager_resync(*args)

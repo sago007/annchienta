@@ -49,9 +49,12 @@ import scene
 
 # Obtain some references
 mapManager = annchienta.getMapManager()
+videoManager = annchienta.getVideoManager()
 sceneManager = scene.getSceneManager()
 currentMap = mapManager.getCurrentMap()
 this = annchienta.getActiveObject()
+
+sceneManager.fadeOut()
 
 # Set a new position to our object (=the player)
 this.setPosition( annchienta.Point( annchienta.TilePoint, 9, 3 ) )
@@ -64,7 +67,12 @@ currentMap.setCurrentLayer(1)
 
 # Put our object in the new map.
 currentMap.getCurrentLayer().addEntity( this )
-sceneManager.fade(1000,0,0,0)
+mapManager.updateOnce()
+
+videoManager.begin()
+mapManager.renderFrame()
+
+sceneManager.fadeIn()
 </area>
 </layer>
 
@@ -90,9 +98,12 @@ import scene
 
 # Obtain some references
 mapManager = annchienta.getMapManager()
+videoManager = annchienta.getVideoManager()
 sceneManager = scene.getSceneManager()
 currentMap = mapManager.getCurrentMap()
 this = annchienta.getActiveObject()
+
+sceneManager.fadeOut()
 
 # Set a new position to our object (=the player)
 this.setPosition( annchienta.Point( annchienta.TilePoint, 13, 3 ) )
@@ -105,7 +116,12 @@ currentMap.setCurrentLayer(0)
 
 # Put our object in the new map.
 currentMap.getCurrentLayer().addEntity( this )
-sceneManager.fade(1000,0,0,0)
+mapManager.updateOnce()
+
+videoManager.begin()
+mapManager.renderFrame()
+
+sceneManager.fadeIn()
 </area>
 </layer>
 </map>

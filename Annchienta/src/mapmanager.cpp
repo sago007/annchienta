@@ -179,18 +179,22 @@ namespace Annchienta
     {
         while( updatesNeeded>0 )
         {
-            if( updateInput )
-                inputManager->update();
-
-            if( currentMap )
-                currentMap->update();
-    
-            if( cameraTarget )
-            {
-                cameraPeekAt( cameraTarget );
-            }
-
+            this->updateOnce( updateInput );
             updatesNeeded--;
+        }
+    }
+
+    void MapManager::updateOnce( bool updateInput )
+    {
+        if( updateInput )
+            inputManager->update();
+
+        if( currentMap )
+            currentMap->update();
+
+        if( cameraTarget )
+        {
+            cameraPeekAt( cameraTarget );
         }
     }
 
