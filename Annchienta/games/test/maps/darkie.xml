@@ -14,14 +14,14 @@
     <frame number="8" x1="192" y1="90" x2="256" y2="180">
         
     <animation name="stand" frames="1" speed="20" />
-    <animation name="walknorth" frames="12" speed="15" />
-    <animation name="walkeast" frames="34" speed="15" />
-    <animation name="walkwest" frames="56" speed="15" />
-    <animation name="walksouth" frames="78" speed="15" />
+    <animation name="walknorth" frames="1" speed="15" />
+    <animation name="walkeast" frames="1" speed="15" />
+    <animation name="walkwest" frames="1" speed="15" />
+    <animation name="walksouth" frames="1" speed="15" />
     <animation name="standnorth" frames="1" speed="15" />
-    <animation name="standeast" frames="3" speed="15" />
-    <animation name="standwest" frames="5" speed="15" />
-    <animation name="standsouth" frames="7" speed="15" />
+    <animation name="standeast" frames="1" speed="15" />
+    <animation name="standwest" frames="1" speed="15" />
+    <animation name="standsouth" frames="1" speed="15" />
     
     <control type="sample" />
     
