@@ -88,6 +88,8 @@ class Editor(QWidget):
         self.mouseX, self.mouseY = self.inputManager.getMouseX(), self.inputManager.getMouseY()
 
         mpoint = annchienta.Point( annchienta.ScreenPoint, self.mouseX, self.mouseY )
+        if self.hasOpenedMap:
+            mpoint.y += self.currentMap.getCurrentLayer().getZ()
         mpoint.convert( annchienta.IsometricPoint )
         string = "Mouse: "+str(mpoint.x)+", "+str(mpoint.y)+" (iso) "
         mpoint.convert( annchienta.TilePoint )
@@ -187,7 +189,7 @@ class Editor(QWidget):
         mouse = annchienta.Point( annchienta.ScreenPoint, self.inputManager.getMouseX(), self.inputManager.getMouseY() )
         mouse.y += self.currentMap.getCurrentLayer().getZ()
 
-        if self.inputManager.buttonDown( 0 ) or (bool(self.zGroupBox.isChecked()) and self.inputManager.buttonTicked(0)):
+        if self.inputManager.buttonDown( 0 ):
             if bool(self.wholeTiles.isChecked()):
                 for y in range( 0, layer.getHeight() ):
                     for x in range( 0, layer.getWidth() ):
@@ -226,14 +228,11 @@ class Editor(QWidget):
 
         # APPLY PART
 
-        if bool(self.zGroupBox.isChecked()) and self.inputManager.buttonTicked(0):
+        if bool(self.zGroupBox.isChecked()):
             for at in self.selected.tiles:
                 for p in at.points:
                     point = at.tile.getPointPointer(p)
-                    if bool(self.zRelativeBox.isChecked()):
-                        point.z += int(self.tileZBox.value())
-                    else:
-                        point.z = int(self.tileZBox.value())
+                    point.z = int(self.tileZBox.value())
 
         if bool(self.tileGroupBox.isChecked()):
             for at in self.selected.tiles:
