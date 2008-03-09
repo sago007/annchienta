@@ -18,6 +18,8 @@ namespace Annchienta
 
     InputPersonControl::~InputPersonControl()
     {
+        if( person==inputManager->getInputControlledPerson() )
+            inputManager->setInputControlledPerson(0);
     }
 
     void InputPersonControl::affect()

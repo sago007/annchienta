@@ -57,7 +57,8 @@ namespace Annchienta
 
     Person::~Person()
     {
-        delete control;
+        if( control )
+            delete control;
     }
 
     EntityType Person::getEntityType() const
@@ -69,7 +70,8 @@ namespace Annchienta
     {
         /* Let the control update this.
          */
-        control->affect();
+        if( control )
+            control->affect();
 
         /* Because persons are moving, we need to update
          * every turn.
@@ -238,6 +240,20 @@ namespace Annchienta
             delete control;
         control = new InputPersonControl( this );
         getInputManager()->setInputControlledPerson( this );
+    }
+
+    void Person::setSampleControl()
+    {
+        if( control )
+            delete control;
+        control = new SamplePersonControl( this );
+    }
+
+    void Person::setNullControl()
+    {
+        if( control )
+            delete control;
+        control = 0;
     }
 
     void Person::interact()

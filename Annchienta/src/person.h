@@ -35,6 +35,8 @@ namespace Annchienta
             virtual bool isFrozen() const;
 
             virtual void setInputControl();
+            virtual void setSampleControl();
+            virtual void setNullControl();
 
             virtual void interact();
 
