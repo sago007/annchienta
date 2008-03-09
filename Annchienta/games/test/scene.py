@@ -233,6 +233,21 @@ class SceneManager:
             self.videoManager.end()
         self.mapManager.resync()
 
+    def rotateEffect( self ):
+        ms = 4000
+        start = self.engine.getTicks()
+        self.videoManager.storeBuffer(7)
+        while self.engine.getTicks() < start+ms:
+            factor = float(self.engine.getTicks() - start)/float(ms)
+            self.videoManager.begin()
+            self.videoManager.translate( self.videoManager.getScreenWidth()/2, self.videoManager.getScreenHeight()/2 )
+            self.videoManager.rotate( factor*360. )
+            self.videoManager.scale( factor*100., factor*100. )
+            self.videoManager.translate( -self.videoManager.getScreenWidth()/2, -self.videoManager.getScreenHeight()/2 )
+            self.videoManager.restoreBuffer(7)
+            self.videoManager.end()
+        self.mapManager.resync()
+
 ## \brief Init the SceneManager global instance.
 #
 #  You should call this function only once, usually at the

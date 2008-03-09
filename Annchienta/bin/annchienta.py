@@ -230,6 +230,8 @@ class Surface(_object):
     __del__ = lambda self : None;
     def getWidth(*args): return _annchienta.Surface_getWidth(*args)
     def getHeight(*args): return _annchienta.Surface_getHeight(*args)
+    def setLinearScaling(*args): return _annchienta.Surface_setLinearScaling(*args)
+    def setNearestScaling(*args): return _annchienta.Surface_setNearestScaling(*args)
 Surface_swigregister = _annchienta.Surface_swigregister
 Surface_swigregister(Surface)
 

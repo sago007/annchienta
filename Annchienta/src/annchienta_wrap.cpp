@@ -6758,6 +6758,48 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Surface_setLinearScaling(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Surface *arg1 = (Annchienta::Surface *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Surface_setLinearScaling",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Surface_setLinearScaling" "', argument " "1"" of type '" "Annchienta::Surface const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Surface * >(argp1);
+  ((Annchienta::Surface const *)arg1)->setLinearScaling();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Surface_setNearestScaling(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Surface *arg1 = (Annchienta::Surface *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Surface_setNearestScaling",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Surface_setNearestScaling" "', argument " "1"" of type '" "Annchienta::Surface const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Surface * >(argp1);
+  ((Annchienta::Surface const *)arg1)->setNearestScaling();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Surface_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -10662,6 +10704,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_Surface", _wrap_delete_Surface, METH_VARARGS, NULL},
 	 { (char *)"Surface_getWidth", _wrap_Surface_getWidth, METH_VARARGS, NULL},
 	 { (char *)"Surface_getHeight", _wrap_Surface_getHeight, METH_VARARGS, NULL},
+	 { (char *)"Surface_setLinearScaling", _wrap_Surface_setLinearScaling, METH_VARARGS, NULL},
+	 { (char *)"Surface_setNearestScaling", _wrap_Surface_setNearestScaling, METH_VARARGS, NULL},
 	 { (char *)"Surface_swigregister", Surface_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Font", _wrap_new_Font, METH_VARARGS, NULL},
 	 { (char *)"delete_Font", _wrap_delete_Font, METH_VARARGS, NULL},

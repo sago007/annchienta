@@ -35,6 +35,9 @@ namespace Annchienta
             int getWidth() const;
             int getHeight() const;
 
+            void setLinearScaling() const;
+            void setNearestScaling() const;
+
             #ifndef SWIG
                 void draw( int x, int y ) const;
                 GLuint getTexture() const;
