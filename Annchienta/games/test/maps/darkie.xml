@@ -17,7 +17,7 @@
     <animation name="walknorth" frames="1" speed="15" />
     <animation name="walkeast" frames="1" speed="15" />
     <animation name="walkwest" frames="1" speed="15" />
-    <animation name="walksouth" frames="1" speed="15" />
+    <animation name="walksouth" frames="12" speed="10" />
     <animation name="standnorth" frames="1" speed="15" />
     <animation name="standeast" frames="1" speed="15" />
     <animation name="standwest" frames="1" speed="15" />
