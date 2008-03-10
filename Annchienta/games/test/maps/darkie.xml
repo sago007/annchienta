@@ -1,27 +1,28 @@
 <?xml version="1.0"?>
 <sprite image="maps/darkie.png" mask="maps/mask.png">
     
-    <frame number="1" x1="0" y1="0" x2="64" y2="90">
-    <frame number="2" x1="64" y1="0" x2="128" y2="90">
-            
-    <frame number="3" x1="128" y1="0" x2="192" y2="90">
-    <frame number="4" x1="192" y1="0" x2="256" y2="90">
+    
+    <frame number="1" x1="0" y1="0" x2="31" y2="71">
+    <frame number="2" x1="31" y1="0" x2="62" y2="71">
         
-    <frame number="5" x1="0" y1="90" x2="64" y2="180">
-    <frame number="6" x1="64" y1="90" x2="128" y2="180">
+    <frame number="3" x1="62" y1="0" x2="93" y2="71">
+    <frame number="4" x1="93" y1="0" x2="124" y2="71">
         
-    <frame number="7" x1="128" y1="90" x2="192" y2="180">
-    <frame number="8" x1="192" y1="90" x2="256" y2="180">
+    <frame number="5" x1="0" y1="71" x2="31" y2="142">
+    <frame number="6" x1="31" y1="71" x2="62" y2="142">
+    
+    <frame number="7" x1="62" y1="71" x2="93" y2="142">
+    <frame number="8" x1="93" y1="71" x2="124" y2="142">
         
     <animation name="stand" frames="1" speed="20" />
-    <animation name="walknorth" frames="1" speed="15" />
-    <animation name="walkeast" frames="1" speed="15" />
-    <animation name="walkwest" frames="1" speed="15" />
-    <animation name="walksouth" frames="12" speed="10" />
+    <animation name="walknorth" frames="12" speed="15" />
+    <animation name="walkeast" frames="34" speed="15" />
+    <animation name="walkwest" frames="56" speed="15" />
+    <animation name="walksouth" frames="78" speed="15" />
     <animation name="standnorth" frames="1" speed="15" />
-    <animation name="standeast" frames="1" speed="15" />
-    <animation name="standwest" frames="1" speed="15" />
-    <animation name="standsouth" frames="1" speed="15" />
+    <animation name="standeast" frames="3" speed="15" />
+    <animation name="standwest" frames="5" speed="15" />
+    <animation name="standsouth" frames="7" speed="15" />
     
     <control type="sample" />
     
