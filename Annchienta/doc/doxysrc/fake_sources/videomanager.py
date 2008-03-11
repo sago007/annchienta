@@ -76,10 +76,16 @@ class VideoManager:
     def popMatrix():
         pass
 
+    ## \brief Begins the scene.
+    #
+    #  Clears and resets the scene.
+    def begin():
+        pass
+
     ## \brief Draws the buffer to the screen.
     #
-    #  First draws the buffer to the screen, then clears it.
-    def flip():
+    #  Ends the scene and draws the buffer to the screen.
+    def end():
         pass
 
     ## \brief Sets the color.
@@ -121,12 +127,61 @@ class VideoManager:
     def drawTriangle( x1, y1, x2, y2, x3, y3 ):
         pass
 
+    ## \brief Draws an axis-aligned rectangle.
+    #
+    #  \param x1 Top-left X coordinate.
+    #  \param y1 Top-left Y coordinate.
+    #  \param x2 Bottom-right X coordinate.
+    #  \param y2 Bottom-right Y coordinate
+    def drawRectangle( x1, y1, x2, y2 ):
+        pass
+
+    ## \brief Draws a quad.
+    #
+    #  You should pass the coordinates counterclockwise.
+    #
+    #  \param x1 X coordinate of point 1.
+    #  \param y1 Y coordinate of point 1.
+    #  \param x2 X coordinate of point 2.
+    #  \param y2 Y coordinate of point 2.
+    #  \param x3 X coordinate of point 3.
+    #  \param y3 Y coordinate of point 3.
+    #  \param x4 X coordinate of point 4.
+    #  \param y4 Y coordinate of point 4.
+    def drawQuad( x1, y1, x2, y2, x3, y3, x4, y4 ):
+        pass
+
     ## \brief Draws a Surface.
     #
     #  \param surface Surface to be drawn.
-    #  \param x Upper-left X coord.
-    #  \param y Upper-left Y coord.
+    #  \param x Top-left X coord.
+    #  \param y Top-left Y coord.
     def drawSurface( surface, x, y ):
+        pass
+
+    ## \brief Draws a part of a Surface.
+    #
+    #  \param surface Surface to be drawn.
+    #  \param dx Destination X coordinate.
+    #  \param dy Destination Y coordinate.
+    #  \param sx1 Top-left X coordinate of source rectangle in the surface.
+    #  \param sy1 Top-left Y coordinate of source rectangle in the surface.
+    #  \param sx2 Bottom-right X coordinate of source rectangle in the surface.
+    #  \param sy2 Bottom-right Y coordinate of source rectangle in the surface.
+    def drawSurface( surface, dx, dy, sx1, sy1, sx2, sy2 ):
+        pass
+
+    ## \brief Draws a Surface as a pattern.
+    #
+    #  This function fills the rectangle defined by the function parameters
+    #  with the given Surface.
+    #
+    #  \param surface Surface to be drawn.
+    #  \param x1 Top-left X coordinate.
+    #  \param y1 Top-left Y coordinate.
+    #  \param x2 Bottom-right X coordinate.
+    #  \param y2 Bottom-right Y coordinate.
+    def drawPattern( surface, x1, y1, x2, y2 ):
         pass
 
     ## \brief Draws a string.
@@ -136,6 +191,24 @@ class VideoManager:
     #  \param x Upper-left X coord.
     #  \param y Upper-left Y coord.
     def drawString( font, string, x, y ):
+        pass
+
+    ## \brief Draws a string centered.
+    #
+    #  \param font Font to be used.
+    #  \param string String to be drawn.
+    #  \param x Middle X coord.
+    #  \param y Upper-left Y coord.
+    def drawStringCentered( font, string, x, y ):
+        pass
+
+    ## \brief Draws a string right-aligned.
+    #
+    #  \param font Font to be used.
+    #  \param string String to be drawn.
+    #  \param x Right X coord.
+    #  \param y Upper Y coord.
+    def drawStringRight( font, string, x, y ):
         pass
 
     ## \brief Grabs the buffer.
@@ -165,4 +238,15 @@ class VideoManager:
     def grabBuffer( surface, x1, y1, x2, y2 ):
         pass
 
+    ## \brief Saves the current buffer in a slot.
+    #
+    #  \param slot Number of the slot to be used. All implementations support at least slots [0-7].
+    def storeBuffer( slot ):
+        pass
 
+    ## \brief Restores a buffer from a slot.
+    #
+    #  This basically draws a previsouly saved buffer to the screen.
+    #
+    #  \param slot Slot of the buffer which you would like to be restored.
+    def restoreBuffer( slot ):

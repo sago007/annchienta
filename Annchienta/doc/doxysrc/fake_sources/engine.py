@@ -22,3 +22,15 @@ class Engine:
     def write( string ):
         pass
 
+    ## \brief Sets the window caption.
+    #
+    #  \param title The new title string.
+    def setWindowTitle( title ):
+        pass
+
+    ## \brief Get time since initting.
+    #
+    #  \return The number of milliseconds that passed since the engine was initted.
+    def getTicks():
+        pass
+
