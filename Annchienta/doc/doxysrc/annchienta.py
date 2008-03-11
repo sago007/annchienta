@@ -1,4 +1,35 @@
 
+## \brief Obtain the AudioManager instance.
+#
+#  Use this function to get access to the AudioManager
+#  instance anywhere.
+#
+#  \return The global AudioManager instance.
+def getAudioManager():
+    pass
+
+
+## \brief Handles audio tasks.
+#
+#  You use this class to perform audio tasks: play music, sounds, etc.
+class AudioManager:
+
+    ## \brief Plays a sound.
+    #
+    #  \param sound Sound to be played.
+    def playSound( sound ):
+        pass
+
+    ## \brief Plays background some music.
+    #
+    #  When the given music is already playing, nothing happens. When
+    #  other music is already playing, the other music is stopped.
+    #
+    #  \param filename Filename of the music file to be played.
+    def playMusic( filename ):
+        pass
+
+
 ## \brief Obtain the Engine instance.
 #
 #  Whenever you need access to the global Device instance, call this.
@@ -95,6 +126,7 @@ class Font:
     #  \return The string width.
     def getStringWidth( string ):
         pass
+
 
 ## \brief Obtain the InputManager instance.
 #
@@ -701,6 +733,32 @@ class MapManager:
 
 
 
+## \brief Holds a sound.
+#
+#  This class is used for holding digital sounds.
+#
+#  \section sound_example1 Example:
+#  \code
+# sound = annchienta.Sound( "scream.ogg" )
+# soundManager = annchienta.getSoundManager()
+# soundManager.playSound( sound )
+#  \endcode
+#
+class Sound:
+
+    ## \brief Loads a new Sound.
+    #
+    #  This function loads the sound specified by filename.
+    #
+    #  \param filename The sound to load.
+    #
+    #  \return A new Sound.
+    #
+    def __init__( filename ):
+        pass
+
+
+
 ## \brief Holds a video surface.
 #
 #  This class is used for holding video surfaces. Surfaces are mostly images.
@@ -748,6 +806,15 @@ class Surface:
     #  \return The Surface height.
     def getHeight():
         pass
+
+    ## \brief Set scaling method to linear.
+    def setLinearScaling():
+        pass
+
+    ## \brief Set scaling method to nearest.
+    def setNearestScaling():
+        pass
+
 
 ## \page tutorial1 Tutorial 1: The Basics.
 #

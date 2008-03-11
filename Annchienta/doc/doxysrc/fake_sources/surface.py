@@ -46,3 +46,12 @@ class Surface:
     #  \return The Surface height.
     def getHeight():
         pass
+
+    ## \brief Set scaling method to linear.
+    def setLinearScaling():
+        pass
+
+    ## \brief Set scaling method to nearest.
+    def setNearestScaling():
+        pass
+

@@ -59,3 +59,4 @@ class Font:
     #  \return The string width.
     def getStringWidth( string ):
         pass
+
