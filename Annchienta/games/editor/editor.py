@@ -54,9 +54,9 @@ class Editor(QWidget):
         self.connect( self.layerZBox, SIGNAL("valueChanged(int)"), self.changeLayerZ )
         self.connect( self.layerOpacityBox, SIGNAL("valueChanged(int)"), self.changeLayerOpacity )
 
-        self.connect( self.zGroupBox, SIGNAL("toggled(bool)"), self.selectZGroupBox )
-        self.connect( self.tileGroupBox, SIGNAL("toggled(bool)"), self.selectTileGroupBox )
-        self.connect( self.tileSideGroupBox, SIGNAL("toggled(bool)"), self.selectTileSideGroupBox )
+        #self.connect( self.zGroupBox, SIGNAL("toggled(bool)"), self.selectZGroupBox )
+        #self.connect( self.tileGroupBox, SIGNAL("toggled(bool)"), self.selectTileGroupBox )
+        #self.connect( self.tileSideGroupBox, SIGNAL("toggled(bool)"), self.selectTileSideGroupBox )
 
         self.newMapDialog = newmap.NewMapDialog(self)
 
@@ -237,13 +237,11 @@ class Editor(QWidget):
         if bool(self.tileGroupBox.isChecked()):
             for at in self.selected.tiles:
                 for p in at.points:
-                    surface = self.currentMap.getTileSet().getSurface( self.tileset.selectedTile )
                     at.tile.setSurface( p, self.tileset.selectedTile )
 
         if bool(self.tileSideGroupBox.isChecked()):
             for at in self.selected.tiles:
-                surface = self.currentMap.getTileSet().getSideSurface( self.tileset.selectedTile )
-                at.tile.setSideSurface( self.tileset.selectedTile )
+                at.tile.setSideSurface( self.tileset.selectedTileSide )
                 at.tile.setSideSurfaceOffset( int(self.tileSideOffsetBox.value()) )
 
         if needsRecompiling:

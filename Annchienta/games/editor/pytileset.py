@@ -2,6 +2,8 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import os
 
+SELECT_TILES, SELECT_TILE_SIDES = 0, 1
+
 class SurfaceButton(QToolButton):
 
     def __init__(self, parent, surface, number, tileset):
@@ -16,7 +18,11 @@ class SurfaceButton(QToolButton):
         self.connect( self, SIGNAL("clicked()"), self.onSelected )
 
     def onSelected(self):
-        self.tileset.selectedTile = self.number
+
+        if self.tileset.mode == SELECT_TILES:
+            self.tileset.selectedTile = self.number
+        else:
+            self.tileset.selectedTileSide = self.number
         #print "Selected tile", self.number
 
 
@@ -56,12 +62,15 @@ class PyTileSet:
         self.editor.connect( self.editor.showTileSurfacesButton, SIGNAL("clicked()"), self.showSurfaces )
         self.editor.connect( self.editor.showTileSideSurfacesButton, SIGNAL("clicked()"), self.showSideSurfaces )
 
-        self.selectedTile = 0
+        self.mode = SELECT_TILES
+        self.selectedTile, self.selectedTileSide = 0, 0
 
     def showSurfaces(self):
+        self.mode = SELECT_TILES
         self.show( self.surfaces )
 
     def showSideSurfaces(self):
+        self.mode = SELECT_TILE_SIDES
         self.show( self.sideSurfaces )
         
     def show(self, array):
