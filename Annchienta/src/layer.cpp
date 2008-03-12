@@ -15,6 +15,10 @@
 namespace Annchienta
 {
 
+    Layer::Layer()
+    {
+    }
+
     Layer::Layer( TileSet *ts, int w, int h, int o, int _z ): width(w), height(h), opacity(o), z(_z), tileSet(ts)
     {
     }

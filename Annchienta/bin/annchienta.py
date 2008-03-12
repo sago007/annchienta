@@ -274,13 +274,6 @@ class Layer(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, Layer, name)
     __repr__ = _swig_repr
-    def __init__(self, *args): 
-        this = _annchienta.new_Layer(*args)
-        try: self.this.append(this)
-        except: self.this = this
-    __swig_destroy__ = _annchienta.delete_Layer
-    __del__ = lambda self : None;
-    def setTiles(*args): return _annchienta.Layer_setTiles(*args)
     def setOpacity(*args): return _annchienta.Layer_setOpacity(*args)
     def getOpacity(*args): return _annchienta.Layer_getOpacity(*args)
     def setZ(*args): return _annchienta.Layer_setZ(*args)
@@ -298,6 +291,12 @@ class Layer(_object):
     def getNumberOfObjects(*args): return _annchienta.Layer_getNumberOfObjects(*args)
     def removeObject(*args): return _annchienta.Layer_removeObject(*args)
     def getArea(*args): return _annchienta.Layer_getArea(*args)
+    def __init__(self, *args): 
+        this = _annchienta.new_Layer(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Layer
+    __del__ = lambda self : None;
 Layer_swigregister = _annchienta.Layer_swigregister
 Layer_swigregister(Layer)
 

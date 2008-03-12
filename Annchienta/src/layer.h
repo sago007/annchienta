@@ -41,12 +41,20 @@ namespace Annchienta
 
         public:
 
-            /* Layer::setTiles MUST, I repeat, MUST be called right after this.
+            /* Do not use this constructor. It's a fake one to keep
+             * SWIG satisfied.
              */
-            Layer( TileSet *tileSet, int width, int height, int opacity, int z );
-            ~Layer();
+            Layer();
 
-            void setTiles( Tile **tiles=0 );
+            #ifndef SWIG
+                /* Layer::setTiles MUST, I repeat, MUST be called right
+                 * after this.
+                 */
+                Layer( TileSet *tileSet, int width, int height, int opacity, int z );
+                ~Layer();
+
+                void setTiles( Tile **tiles=0 );
+            #endif
 
             void setOpacity( int opacity=0xff );
             int getOpacity() const;
