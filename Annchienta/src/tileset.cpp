@@ -9,6 +9,7 @@
 #include "surface.h"
 #include "mask.h"
 #include "auxfunc.h"
+#include "mapmanager.h"
 
 namespace Annchienta
 {
@@ -63,8 +64,9 @@ namespace Annchienta
             sideSurfaces[i] = new Surface( buffer );
         }
 
-        sprintf( buffer, "%s/mask.png", directory );
-        mask = new Mask( buffer );
+        //sprintf( buffer, "%s/mask.png", directory );
+        //mask = new Mask( buffer );
+        mask = new Mask( getMapManager()->getTileWidth(), getMapManager()->getTileHeight() );
     }
 
     TileSet::~TileSet()

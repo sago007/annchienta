@@ -18,7 +18,6 @@
 #include "tileset.h"
 #include "mask.h"
 #include "staticobject.h"
-#include "person.h"
 %}
 
 %include "engine.h"
@@ -38,5 +37,4 @@
 %include "tileset.h"
 %include "mask.h"
 %include "staticobject.h"
-%include "person.h"
 %include "/usr/include/SDL/SDL_keysym.h"

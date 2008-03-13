@@ -99,7 +99,7 @@ namespace Annchienta
         /* The pixel size: 1, 2, 3 or 4 usually */
         int pixelSize = png_get_rowbytes( png_ptr, info_ptr ) / png_width;
         /* allocate memory for the pixel data */
-        pixels = (bool*) malloc( width * height );
+        pixels = new bool[width * height];
         /* pointers to rows */
         png_byte **row_pointers = png_get_rows(png_ptr, info_ptr);
         
@@ -118,6 +118,24 @@ namespace Annchienta
 
         /* close the file */
         fclose(fp);
+    }
+
+    Mask::Mask( int w, int h ): width(w), height(h), pixels(0)
+    {
+        /* allocate memory for the pixel data */
+        pixels = new bool[width * height];
+
+        /* All to false for a start.
+         */
+        fillRectangle( 0, 0, width, height, false );
+
+        for( int x=0; x<width/2; x+=2 )
+        {
+            int y1 = height/2-(x)/2-1;
+            int y2 = height-y1;
+            fillRectangle( x, y1, x+2, y2, true );
+            fillRectangle( width-x-2, y1, width-x, y2, true );
+        }
     }
 
     Mask::~Mask()
@@ -199,6 +217,29 @@ namespace Annchienta
         }
 
         return false;
+    }
+
+    bool Mask::fillRectangle( int x1, int y1, int x2, int y2, bool value )
+    {
+        for( int y=(y1>=0?y1:0); y<(y2<=height?y2:height-1); y++ )
+        {
+            for( int x=(x1>=0?x1:0); x<(x2<=width?x2:width-1); x++ )
+            {
+                pixels[y*width+x] = value;
+            }
+        }
+    }
+
+    void Mask::print() const
+    {
+        for( int y=0; y<height; y++ )
+        {
+            for( int x=0; x<width; x++ )
+            {
+                printf("%d", pixels[y*width+x]);
+            }
+            printf("\n");
+        }
     }
 
 };
