@@ -44,20 +44,46 @@ class Tile(Entity):
     def getPointPointer( index ):
         pass
 
-    def setSurface( index, surfaceCode ):
+    ## \brief Sets the Top Surface.
+    #
+    #  \param index Index of the Point this Surface needs to be asigned to.
+    #  \param surfaceNumber Number of the Surface you want in the TileSet being used in this Map.
+    def setSurface( index, surfaceNumber ):
         pass
 
-    def setSideSurface( sideSurfaceCode ):
+    ## \brief Sets the Side Surface.
+    #
+    #  \param sideSurfaceNumber Number of the SideSurface you want in the TileSet being used in this Map.
+    def setSideSurface( sideSurfaceNumber ):
         pass
 
+    ## \brief Sets Side Surface offset.
+    #
+    #  By default, the Side Surface starts at the top of the Tile
+    #  goes until the ground. By setting this offset value, the
+    #  Side Surface will only go to this offset instead of to the
+    #  ground.
+    #
+    #  \param sso The new Side Surface offset.
     def setSideSurfaceOffset( sso ):
         pass
 
+    ## \brief Gets the Surface.
+    #
+    #  \param index Index of the Point of which you want the Surface.
+    #  \return Number of the Surface used.
     def getSurface( index ):
         pass
 
+    ## \brief Gets the Side Surface.
+    #
+    #  \return Number of the SideSurface being used.
     def getSideSurface():
         pass
 
+    ## \brief Gets the Side Surface offset.
+    #
+    #  \return The Side Surface offset. See setSideSurfaceOffset().
     def getSideSurfaceOffset():
         pass
+
