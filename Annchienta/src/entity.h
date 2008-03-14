@@ -33,7 +33,7 @@ namespace Annchienta
 
             virtual void draw() = 0;
             virtual void update() = 0;
-            virtual int getDepthSortY() = 0;
+            virtual int getDepth() = 0;
             virtual Point getMaskPosition() const = 0;
 
             void setDrawn( bool drawn );

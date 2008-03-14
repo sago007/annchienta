@@ -42,7 +42,7 @@ namespace Annchienta
 
             virtual void update();
             virtual void draw();
-            virtual int getDepthSortY();
+            virtual int getDepth();
             bool hasPoint( Point point );
 
             bool isNullTile() const;

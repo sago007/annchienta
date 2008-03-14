@@ -21,7 +21,7 @@ using namespace io;
 
 bool DepthSortPredicate( Annchienta::Tile* tilep1, Annchienta::Tile* tilep2 )
 {
-    return tilep1->getDepthSortY() < tilep2->getDepthSortY();
+    return tilep1->getDepth() < tilep2->getDepth();
 }
 
 namespace Annchienta
@@ -235,12 +235,12 @@ namespace Annchienta
 
     }
 
-    int StaticObject::getDepthSortY()
+    int StaticObject::getDepth()
     {
         int dsy = mapPosition.y;
         for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
-            if( (*i)->getDepthSortY() > dsy )
-                dsy = (*i)->getDepthSortY();
+            if( (*i)->getDepth() > dsy )
+                dsy = (*i)->getDepth();
 
         /* The -1 will ensure that this gets drawn BEFORE tiles
          * at the same y. Yes, this is a hack. Sorry, Sanne.

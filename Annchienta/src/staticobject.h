@@ -73,7 +73,7 @@ namespace Annchienta
 
             virtual void update();
             virtual void draw();
-            virtual int getDepthSortY();
+            virtual int getDepth();
 
             virtual void setPosition( Point );
             virtual Point getPosition() const;

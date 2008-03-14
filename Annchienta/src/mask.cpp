@@ -230,7 +230,7 @@ namespace Annchienta
         }
     }
 
-    void Mask::print() const
+    void Mask::verbose() const
     {
         for( int y=0; y<height; y++ )
         {

@@ -27,7 +27,7 @@ namespace Annchienta
 
             bool fillRectangle( int x1, int y1, int x2, int y2, bool value );
 
-            void print() const;
+            void verbose() const;
     };
 };
 

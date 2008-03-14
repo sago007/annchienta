@@ -126,7 +126,7 @@ namespace Annchienta
         unsigned int i=1, c=1;
         while( i<entities.size() )
         {
-            if( entities[i-1]->getDepthSortY() > entities[i]->getDepthSortY() )
+            if( entities[i-1]->getDepth() > entities[i]->getDepth() )
             {
                 swap<Entity*>( entities[i-1], entities[i] );
                 if( i>1 )

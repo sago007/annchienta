@@ -66,6 +66,88 @@ class Engine:
         pass
 
 
+## \brief Holds an Entity.
+#
+#  This class is an abstract superclass for Tiles,
+#  StaticObjects and Persons.
+class Entity:
+
+    ## \brief Creates a new Entity.
+    #
+    #  \param name The name for this Entity.
+    #  \return A newly created Entity.
+    def __init__( name ):
+        pass
+
+    ## \brief Returns the Entity Type.
+    #
+    #  \return TileEntity, StaticObjectEntity or PersonEntity.
+    def getEntityType():
+        pass
+
+    ## \brief Renders this Entity.
+    #
+    def draw():
+        pass
+
+    ## \brief Updates this Entity.
+    #
+    def update():
+        pass
+
+    ## \brief Gets the depth from the origin.
+    #
+    #  This is used to draw all entities in the correct
+    #  order. Lower depth = farther from the screen
+    #  \return The depth of this Entity.
+    def getDepth():
+        pass
+
+    ## \brief The poition of the Entity Mask.
+    #
+    #  \return A Point referring to where the Mask of this entity should be drawn.
+    def getMaskPosition():
+        pass
+
+    ## \brief Sets this Entity as drawn.
+    #
+    #  \param value When set to True, the Entity will not be drawn this render because the engine assumes it has been drawn already.
+    def setDrawn( value ):
+        pass
+
+    ## \brief Checks if this Entity has been drawn.
+    #
+    #  \return True if this Entity was already drawn in the current render.
+    def isDrawn():
+        pass
+
+    ## \brief Sets the name of this Entity.
+    #
+    #  \param name The new name for this Entity.
+    def setName( name ):
+        pass
+
+    ## \brief Gets the name of this Entity.
+    #
+    #  \return The name of this Entity.
+    def getName():
+        pass
+
+    ## \brief Sets the Layer of this Entity.
+    #
+    #  This happens automatically when using
+    #  Layer.addEntity()
+    #
+    #  \param layer The new Layer to which this Entity should belong.
+    def setLayer( layer ):
+        pass
+
+    ## \brief Gets a reference to the Layer of this Entity.
+    #
+    #  \return The Layer to which this Entity belongs.
+    def getLayer():
+        pass
+
 ## \brief Holds a font.
 #
 #  This class is used for holding text fonts.
@@ -1171,6 +1253,59 @@ class Surface:
     def setNearestScaling():
         pass
 
+
+## \brief Holds a Tile.
+#
+#  This class is used to hold parts of the Layer, called tiles.
+#  Because we are using an isometric system, tiles are usually
+#  shaped like a rhombus.
+#
+class Tile(Entity):
+
+    ## \brief Updates this Tile.
+    #
+    #  This function recompiles the display list for this
+    #  Tile. In other words, call this function after you
+    #  performed changes to this Tile.
+    def makeList():
+        pass
+
+    ## \brief Checks for collision with a Point.
+    #
+    #  \param point Point to be checked.
+    #  \return True is the given Point lies on this Tile, False if not.
+    def hasPoint( point ):
+        pass
+
+    ## \brief Checks if this Tile is a NullTile.
+    #
+    #  A NullTile is a Tile that should not be drawn at all
+    #  because it is entirely transparent.
+    #
+    #  \return True is this Tile is a NullTile.
+    def isNullTile():
+        pass
+
+    def getPointPointer( index ):
+        pass
+
+    def setSurface( index, surfaceCode ):
+        pass
+
+    def setSideSurface( sideSurfaceCode ):
+        pass
+
+    def setSideSurfaceOffset( sso ):
+        pass
+
+    def getSurface( index ):
+        pass
+
+    def getSideSurface():
+        pass
+
+    def getSideSurfaceOffset():
+        pass
 
 ## \page tutorial1 Tutorial 1: The Basics.
 #

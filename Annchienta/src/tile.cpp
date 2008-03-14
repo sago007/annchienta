@@ -227,7 +227,7 @@ namespace Annchienta
         setDrawn( true );
     }
 
-    int Tile::getDepthSortY()
+    int Tile::getDepth()
     {
         return points[2].y;
     }

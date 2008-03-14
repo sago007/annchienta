@@ -8875,7 +8875,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Entity_getDepthSortY(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Entity_getDepth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
   int result;
@@ -8883,13 +8883,13 @@ SWIGINTERN PyObject *_wrap_Entity_getDepthSortY(PyObject *SWIGUNUSEDPARM(self), 
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Entity_getDepthSortY",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:Entity_getDepth",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_getDepthSortY" "', argument " "1"" of type '" "Annchienta::Entity *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_getDepth" "', argument " "1"" of type '" "Annchienta::Entity *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
-  result = (int)(arg1)->getDepthSortY();
+  result = (int)(arg1)->getDepth();
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9192,7 +9192,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Tile_getDepthSortY(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Tile_getDepth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
   int result;
@@ -9200,13 +9200,13 @@ SWIGINTERN PyObject *_wrap_Tile_getDepthSortY(PyObject *SWIGUNUSEDPARM(self), Py
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Tile_getDepthSortY",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_getDepth",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_getDepthSortY" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_getDepth" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
-  result = (int)(arg1)->getDepthSortY();
+  result = (int)(arg1)->getDepth();
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -10119,6 +10119,27 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Mask_verbose(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Mask *arg1 = (Annchienta::Mask *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Mask_verbose",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Mask_verbose" "', argument " "1"" of type '" "Annchienta::Mask const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Mask * >(argp1);
+  ((Annchienta::Mask const *)arg1)->verbose();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Mask_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -10291,7 +10312,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_StaticObject_getDepthSortY(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_StaticObject_getDepth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
   int result;
@@ -10299,13 +10320,13 @@ SWIGINTERN PyObject *_wrap_StaticObject_getDepthSortY(PyObject *SWIGUNUSEDPARM(s
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_getDepthSortY",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_getDepth",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_getDepthSortY" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_getDepth" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
-  result = (int)(arg1)->getDepthSortY();
+  result = (int)(arg1)->getDepth();
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -10775,7 +10796,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Entity_getEntityType", _wrap_Entity_getEntityType, METH_VARARGS, NULL},
 	 { (char *)"Entity_draw", _wrap_Entity_draw, METH_VARARGS, NULL},
 	 { (char *)"Entity_update", _wrap_Entity_update, METH_VARARGS, NULL},
-	 { (char *)"Entity_getDepthSortY", _wrap_Entity_getDepthSortY, METH_VARARGS, NULL},
+	 { (char *)"Entity_getDepth", _wrap_Entity_getDepth, METH_VARARGS, NULL},
 	 { (char *)"Entity_getMaskPosition", _wrap_Entity_getMaskPosition, METH_VARARGS, NULL},
 	 { (char *)"Entity_setDrawn", _wrap_Entity_setDrawn, METH_VARARGS, NULL},
 	 { (char *)"Entity_isDrawn", _wrap_Entity_isDrawn, METH_VARARGS, NULL},
@@ -10789,7 +10810,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tile_getEntityType", _wrap_Tile_getEntityType, METH_VARARGS, NULL},
 	 { (char *)"Tile_update", _wrap_Tile_update, METH_VARARGS, NULL},
 	 { (char *)"Tile_draw", _wrap_Tile_draw, METH_VARARGS, NULL},
-	 { (char *)"Tile_getDepthSortY", _wrap_Tile_getDepthSortY, METH_VARARGS, NULL},
+	 { (char *)"Tile_getDepth", _wrap_Tile_getDepth, METH_VARARGS, NULL},
 	 { (char *)"Tile_hasPoint", _wrap_Tile_hasPoint, METH_VARARGS, NULL},
 	 { (char *)"Tile_isNullTile", _wrap_Tile_isNullTile, METH_VARARGS, NULL},
 	 { (char *)"Tile_getPointPointer", _wrap_Tile_getPointPointer, METH_VARARGS, NULL},
@@ -10813,6 +10834,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Mask_getHeight", _wrap_Mask_getHeight, METH_VARARGS, NULL},
 	 { (char *)"Mask_collision", _wrap_Mask_collision, METH_VARARGS, NULL},
 	 { (char *)"Mask_fillRectangle", _wrap_Mask_fillRectangle, METH_VARARGS, NULL},
+	 { (char *)"Mask_verbose", _wrap_Mask_verbose, METH_VARARGS, NULL},
 	 { (char *)"Mask_swigregister", Mask_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_StaticObject", _wrap_new_StaticObject, METH_VARARGS, NULL},
 	 { (char *)"delete_StaticObject", _wrap_delete_StaticObject, METH_VARARGS, NULL},
@@ -10821,7 +10843,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"StaticObject_getEntityType", _wrap_StaticObject_getEntityType, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_update", _wrap_StaticObject_update, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_draw", _wrap_StaticObject_draw, METH_VARARGS, NULL},
-	 { (char *)"StaticObject_getDepthSortY", _wrap_StaticObject_getDepthSortY, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_getDepth", _wrap_StaticObject_getDepth, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_setPosition", _wrap_StaticObject_setPosition, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getPosition", _wrap_StaticObject_getPosition, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getMaskPosition", _wrap_StaticObject_getMaskPosition, METH_VARARGS, NULL},
