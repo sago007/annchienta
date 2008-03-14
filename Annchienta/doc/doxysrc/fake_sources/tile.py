@@ -5,6 +5,12 @@
 #  Because we are using an isometric system, tiles are usually
 #  shaped like a rhombus.
 #
+#  A Tile consist of four Points, indexed like this:
+#  \image html tile_pointindexes.png
+#
+#  A Tile has a top Surface and a Side Surface.
+#  \image html tile_anatomy.png
+#
 class Tile(Entity):
 
     ## \brief Updates this Tile.
@@ -31,6 +37,10 @@ class Tile(Entity):
     def isNullTile():
         pass
 
+    ## \brief Gets a reference to a Point of this tile.
+    #
+    #  \param index Index of the Point you want to retrieve.
+    #  \return One of the Points of this Tile.
     def getPointPointer( index ):
         pass
 
