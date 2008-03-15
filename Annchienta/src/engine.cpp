@@ -78,6 +78,11 @@ namespace Annchienta
         return SDL_GetTicks();
     }
 
+    void Engine::delay( int ms ) const
+    {
+        SDL_Delay( ms );
+    }
+
     Engine *getEngine()
     {
         return engine;

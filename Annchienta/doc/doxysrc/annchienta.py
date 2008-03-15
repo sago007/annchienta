@@ -65,6 +65,13 @@ class Engine:
     def getTicks():
         pass
 
+    ## \brief Waits a specified time.
+    #
+    #  \param ms Milliseconds to wait.
+    def delay( ms ):
+        pass
+
+
 
 ## \brief Holds an Entity.
 #

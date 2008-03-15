@@ -40,6 +40,8 @@ namespace Annchienta
 
             unsigned int getTicks() const;
 
+            void delay( int ms ) const;
+
     };
 
     Engine *getEngine();
