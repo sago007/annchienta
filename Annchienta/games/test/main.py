@@ -1,5 +1,5 @@
 import annchienta
-from scene import *
+import scene
 
 videoMgr = annchienta.getVideoManager()
 videoMgr.setVideoMode( 400, 300, "Annchienta", False )
@@ -17,8 +17,8 @@ mymap = annchienta.Map( "maps/map.xml" )
 
 mapMgr.setCurrentMap( mymap )
 
-initSceneManager()
-sceneMgr = getSceneManager()
+scene.initSceneManager()
+sceneMgr = scene.getSceneManager()
 sceneMgr.defaultFont = annchienta.Font("assets/font.ttf", 14)
 
 for i in range(9):

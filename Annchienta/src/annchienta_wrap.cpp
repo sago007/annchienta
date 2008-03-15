@@ -9137,27 +9137,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Tile_makeList(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Tile_makeList",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_makeList" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
-  (arg1)->makeList();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Tile_getEntityType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
@@ -9299,6 +9278,77 @@ SWIGINTERN PyObject *_wrap_Tile_isNullTile(PyObject *SWIGUNUSEDPARM(self), PyObj
   arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
   result = (bool)((Annchienta::Tile const *)arg1)->isNullTile();
   resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tile_setZ(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Tile_setZ",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_setZ" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tile_setZ" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tile_setZ" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  result = (int)(arg1)->setZ(arg2,arg3);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tile_getZ(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  int arg2 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tile_getZ",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_getZ" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tile_getZ" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (int)((Annchienta::Tile const *)arg1)->getZ(arg2);
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -10837,13 +10887,14 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Entity_getLayer", _wrap_Entity_getLayer, METH_VARARGS, NULL},
 	 { (char *)"Entity_swigregister", Entity_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_Tile", _wrap_delete_Tile, METH_VARARGS, NULL},
-	 { (char *)"Tile_makeList", _wrap_Tile_makeList, METH_VARARGS, NULL},
 	 { (char *)"Tile_getEntityType", _wrap_Tile_getEntityType, METH_VARARGS, NULL},
 	 { (char *)"Tile_update", _wrap_Tile_update, METH_VARARGS, NULL},
 	 { (char *)"Tile_draw", _wrap_Tile_draw, METH_VARARGS, NULL},
 	 { (char *)"Tile_getDepth", _wrap_Tile_getDepth, METH_VARARGS, NULL},
 	 { (char *)"Tile_hasPoint", _wrap_Tile_hasPoint, METH_VARARGS, NULL},
 	 { (char *)"Tile_isNullTile", _wrap_Tile_isNullTile, METH_VARARGS, NULL},
+	 { (char *)"Tile_setZ", _wrap_Tile_setZ, METH_VARARGS, NULL},
+	 { (char *)"Tile_getZ", _wrap_Tile_getZ, METH_VARARGS, NULL},
 	 { (char *)"Tile_getPointPointer", _wrap_Tile_getPointPointer, METH_VARARGS, NULL},
 	 { (char *)"Tile_setSurface", _wrap_Tile_setSurface, METH_VARARGS, NULL},
 	 { (char *)"Tile_setSideSurface", _wrap_Tile_setSideSurface, METH_VARARGS, NULL},

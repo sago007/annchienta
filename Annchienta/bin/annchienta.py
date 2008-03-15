@@ -402,13 +402,14 @@ class Tile(Entity):
     __repr__ = _swig_repr
     __swig_destroy__ = _annchienta.delete_Tile
     __del__ = lambda self : None;
-    def makeList(*args): return _annchienta.Tile_makeList(*args)
     def getEntityType(*args): return _annchienta.Tile_getEntityType(*args)
     def update(*args): return _annchienta.Tile_update(*args)
     def draw(*args): return _annchienta.Tile_draw(*args)
     def getDepth(*args): return _annchienta.Tile_getDepth(*args)
     def hasPoint(*args): return _annchienta.Tile_hasPoint(*args)
     def isNullTile(*args): return _annchienta.Tile_isNullTile(*args)
+    def setZ(*args): return _annchienta.Tile_setZ(*args)
+    def getZ(*args): return _annchienta.Tile_getZ(*args)
     def getPointPointer(*args): return _annchienta.Tile_getPointPointer(*args)
     def setSurface(*args): return _annchienta.Tile_setSurface(*args)
     def setSideSurface(*args): return _annchienta.Tile_setSideSurface(*args)

@@ -31,12 +31,13 @@ namespace Annchienta
             int sideSurfaceOffset;
 
             bool nullTile;
+            bool needsRecompiling;
+
+            void makeList();
 
         public:
             Tile( TileSet*, Point, int, Point, int, Point, int, Point, int, int ssOffset=0, int ss=0 );
             ~Tile();
-
-            void makeList();
 
             virtual EntityType getEntityType() const;
 
@@ -47,9 +48,11 @@ namespace Annchienta
 
             bool isNullTile() const;
 
+            int setZ( int point, int z );
+            int getZ( int point ) const;
+
             #ifndef SWIG
                 virtual Point getMaskPosition() const;
-                int getZ( int point ) const;
                 Point getPoint( int i ) const;
             #endif
 

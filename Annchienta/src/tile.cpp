@@ -22,39 +22,6 @@ namespace Annchienta
         *wallYDown = 1.0f - (float)( (mapMgr->getTileHeight()>>1) + surf->getHeight() - mapMgr->getTileHeight() )/(float)surf->getGlHeight();
     }*/
 
-    Tile::Tile( TileSet *ts, Point p0, int s0, Point p1, int s1, Point p2, int s2, Point p3, int s3, int sso, int side ): list(0), tileSet(ts), sideSurfaceOffset(sso), nullTile(false)
-    {
-        points[0] = p0;
-        surfaceNumbers[0] = s0;
-        points[1] = p1;
-        surfaceNumbers[1] = s1;
-        points[2] = p2;
-        surfaceNumbers[2] = s2;
-        points[3] = p3;
-        surfaceNumbers[3] = s3;
-        sideSurface = tileSet->getSideSurface(side);
-        sideSurfaceNumber = side;
-
-        for( int i=0; i<4; i++ )
-        {
-            surfaces[i] = tileSet->getSurface( surfaceNumbers[i] );
-
-            isoPoints[i] = points[i];
-            points[i].convert( MapPoint );
-            isoPoints[i].convert( IsometricPoint );
-        }
-
-        if( surfaces[0] && surfaces[1] && surfaces[2] && surfaces[3] )
-            makeList();
-        else
-            nullTile = true;
-    }
-
-    Tile::~Tile()
-    {
-        glDeleteLists( list, 1 );
-    }
-
     void Tile::makeList()
     {
         /* Should not happen, but might avoid segfaults.
@@ -113,7 +80,7 @@ namespace Annchienta
          */
         if( !list )
             list = glGenLists( 1 );
-        glNewList( list, GL_COMPILE );
+        glNewList( list, GL_COMPILE_AND_EXECUTE );
 
         glPushMatrix();
 
@@ -205,6 +172,38 @@ namespace Annchienta
         glEndList();
     }
 
+
+    Tile::Tile( TileSet *ts, Point p0, int s0, Point p1, int s1, Point p2, int s2, Point p3, int s3, int sso, int side ): list(0), tileSet(ts), sideSurfaceOffset(sso), nullTile(false), needsRecompiling(true)
+    {
+        points[0] = p0;
+        surfaceNumbers[0] = s0;
+        points[1] = p1;
+        surfaceNumbers[1] = s1;
+        points[2] = p2;
+        surfaceNumbers[2] = s2;
+        points[3] = p3;
+        surfaceNumbers[3] = s3;
+        sideSurface = tileSet->getSideSurface(side);
+        sideSurfaceNumber = side;
+
+        for( int i=0; i<4; i++ )
+        {
+            surfaces[i] = tileSet->getSurface( surfaceNumbers[i] );
+
+            isoPoints[i] = points[i];
+            points[i].convert( MapPoint );
+            isoPoints[i].convert( IsometricPoint );
+        }
+
+        if( !(surfaces[0] && surfaces[1] && surfaces[2] && surfaces[3]) )
+            nullTile = true;
+    }
+
+    Tile::~Tile()
+    {
+        glDeleteLists( list, 1 );
+    }
+
     EntityType Tile::getEntityType() const
     {
         return TileEntity;
@@ -222,7 +221,15 @@ namespace Annchienta
             return;
 
         if( !nullTile )
-            glCallList( list );
+        {
+            if( needsRecompiling )
+            {
+                makeList();
+                needsRecompiling = false;
+            }
+            else
+                glCallList( list );
+        }
 
         setDrawn( true );
     }
@@ -244,14 +251,21 @@ namespace Annchienta
         return nullTile;
     }
 
-    Point Tile::getMaskPosition() const
+    int Tile::setZ( int point, int z )
     {
-        return Point( MapPoint, points[1].x, points[0].y );
+        points[point].z = z;
+
+        needsRecompiling = true;
     }
 
     int Tile::getZ( int point ) const
     {
         return points[point].z;
+    }
+
+    Point Tile::getMaskPosition() const
+    {
+        return Point( MapPoint, points[1].x, points[0].y );
     }
 
     Point Tile::getPoint( int i ) const
@@ -272,17 +286,23 @@ namespace Annchienta
             nullTile = false;
         else
             nullTile = true;
+
+        needsRecompiling = true;
     }
 
     void Tile::setSideSurface( int side )
     {
         sideSurface = tileSet->getSideSurface(side);
         sideSurfaceNumber = side;
+
+        needsRecompiling = true;
     }
 
     void Tile::setSideSurfaceOffset( int sso )
     {
         sideSurfaceOffset = sso;
+
+        needsRecompiling = true;
     }
 
     int Tile::getSurface( int i ) const

@@ -231,8 +231,7 @@ class Editor(QWidget):
         if bool(self.zGroupBox.isChecked()):
             for at in self.selected.tiles:
                 for p in at.points:
-                    point = at.tile.getPointPointer(p)
-                    point.z = int(self.tileZBox.value())
+                    at.tile.setZ( p, int(self.tileZBox.value()) )
 
         if bool(self.tileGroupBox.isChecked()):
             for at in self.selected.tiles:
@@ -244,9 +243,9 @@ class Editor(QWidget):
                 at.tile.setSideSurface( self.tileset.selectedTileSide )
                 at.tile.setSideSurfaceOffset( int(self.tileSideOffsetBox.value()) )
 
-        if needsRecompiling:
-            for at in self.selected.tiles:
-                at.tile.makeList()
+        #if needsRecompiling:
+        #    for at in self.selected.tiles:
+        #        at.tile.makeList()
 
             # Does not work anyway
             #self.currentMap.update()

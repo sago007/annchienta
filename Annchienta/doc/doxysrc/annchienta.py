@@ -1275,14 +1275,6 @@ class Surface:
 #
 class Tile(Entity):
 
-    ## \brief Updates this Tile.
-    #
-    #  This function recompiles the display list for this
-    #  Tile. In other words, call this function after you
-    #  performed changes to this Tile.
-    def makeList():
-        pass
-
     ## \brief Checks for collision with a Point.
     #
     #  \param point Point to be checked.
@@ -1297,6 +1289,20 @@ class Tile(Entity):
     #
     #  \return True is this Tile is a NullTile.
     def isNullTile():
+        pass
+
+    ## \brief Sets Z value of a Point.
+    #
+    #  \param index Index of the Point of which you want to change the Z coord.
+    #  \param z The new Z value for that Point.
+    def setZ( index, z ):
+        pass
+
+    ## \brief Gets Z value of a Point.
+    #
+    #  \param index Index of the Point of which you want to retrieve the Z coord.
+    #  \return The Z value of that Point.
+    def getZ( index ):
         pass
 
     ## \brief Gets a reference to a Point of this tile.

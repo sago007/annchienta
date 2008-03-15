@@ -80,7 +80,8 @@ namespace Annchienta
 
     void Engine::delay( int ms ) const
     {
-        SDL_Delay( ms );
+        if( ms>0 )
+            SDL_Delay( ms );
     }
 
     Engine *getEngine()
