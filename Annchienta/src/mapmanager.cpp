@@ -12,6 +12,7 @@
 #include "staticobject.h"
 #include "mask.h"
 #include "layer.h"
+#include "auxfunc.h"
 
 namespace Annchienta
 {
@@ -98,8 +99,14 @@ namespace Annchienta
         Point targetPosition = object->getPosition();
         targetPosition.convert( MapPoint );
 
-        cameraX = targetPosition.x - videoManager->getScreenWidth()/2;
-        cameraY = targetPosition.y - targetPosition.z - object->getMask()->getHeight()/2 - videoManager->getScreenHeight()/2 - object->getLayer()->getZ();
+        int destX = targetPosition.x - videoManager->getScreenWidth()/2;
+        int destY = targetPosition.y - targetPosition.z - object->getMask()->getHeight()/2 - videoManager->getScreenHeight()/2 - object->getLayer()->getZ();
+
+        while( squaredDistance( cameraX, cameraY, destX, destY )>2500 )
+        {
+            cameraX += sign( destX - cameraX );
+            cameraY += sign( destY - cameraY );
+        }
     }
 
     void MapManager::setCurrentMap( Map *map )

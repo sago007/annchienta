@@ -11,6 +11,7 @@ namespace Annchienta
     #define min( a, b ) ( (a)>(b)?(b):(a) )
     #define max( a, b ) ( (a)>(b)?(a):(b) )
     #define absValue( a ) ( (a)>0? (a):-(a) )
+    #define sign( a ) ( (a)>0?1:((a)<0?-1:0) )
 
     const int nearestPowerOfTwo( const int &input );
 
@@ -20,8 +21,8 @@ namespace Annchienta
 
     bool isValidFile( const char *filename );
 
-    float distance( float x2, float y2, float x2, float y2 );
-    float squaredDistance( float x2, float y2, float x2, float y2 );
+    float distance( float x1, float y1, float x2, float y2 );
+    float squaredDistance( float x1, float y1, float x2, float y2 );
 
     void copyFile( const char *src, const char dst );
 
