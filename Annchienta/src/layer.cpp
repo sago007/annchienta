@@ -134,7 +134,32 @@ namespace Annchienta
             }
             else
             {
-                c = i = i>=c?i+1:c;
+                /* Exception rule for StaticObjects. They might be on the same Tile, so we have to make sure
+                 * and check Y values as well.
+                 */
+                if( (entities[i-1]->getEntityType()!=TileEntity) && (entities[i]->getEntityType()!=TileEntity) && ( entities[i-1]->getDepth() == entities[i]->getDepth() ) )
+                {
+                    StaticObject *so1 = (StaticObject*) entities[i-1],
+                                 *so2 = (StaticObject*) entities[i];
+
+                    Point p1 = so1->getPosition().to( MapPoint ),
+                          p2 = so2->getPosition().to( MapPoint );
+
+                    if( p1.y > p2.y )
+                    {
+                        swap<Entity*>( entities[i-1], entities[i] );
+                        if( i>1 )
+                            i--;
+                    }
+                    else
+                    {
+                        c = i = i>=c?i+1:c;
+                    }
+                }
+                else
+                {
+                    c = i = i>=c?i+1:c;
+                }
             }
         }
     }
