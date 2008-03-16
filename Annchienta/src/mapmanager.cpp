@@ -102,7 +102,8 @@ namespace Annchienta
         int destX = targetPosition.x - videoManager->getScreenWidth()/2;
         int destY = targetPosition.y - targetPosition.z - object->getMask()->getHeight()/2 - videoManager->getScreenHeight()/2 - object->getLayer()->getZ();
 
-        while( squaredDistance( cameraX, cameraY, destX, destY )>9000 )
+        int s = 4;
+        while( squaredDistance( cameraX, cameraY, destX, destY )>2500 && --s )
         {
             cameraX += sign( destX - cameraX );
             cameraY += sign( destY - cameraY );
