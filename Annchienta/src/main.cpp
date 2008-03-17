@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #include "engine.h"
+#include "auxfunc.h"
 
 extern "C" void init_annchienta(void);
 
@@ -12,6 +13,12 @@ Annchienta::Engine *engine;
 
 void runGame( const char *filename )
 {
+
+    if( !Annchienta::isValidFile(filename) )
+    {
+        printf( "Could not run %s because it is not a valid file.\n", filename );
+        return;
+    }
 
     init_annchienta();
 
