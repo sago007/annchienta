@@ -8,7 +8,7 @@ namespace Annchienta
 {
     InputManager *inputManager;
 
-    InputManager::InputManager(): inputControlledPerson(0), personInputEnabled(true)
+    InputManager::InputManager(): inputControlledPerson(0), personInputEnabled(true), interactKey(SDLK_SPACE)
     {
         /* Set reference to single-instance class.
          */
@@ -151,6 +151,16 @@ namespace Annchienta
     void InputManager::setPersonInputEnabled( bool pie )
     {
         personInputEnabled = pie;
+    }
+
+    void InputManager::setInteractKey( int k )
+    {
+        interactKey = k;
+    }
+
+    int InputManager::getInteractKey() const
+    {
+        return interactKey;
     }
 
 };

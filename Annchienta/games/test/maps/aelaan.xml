@@ -23,6 +23,4 @@
     <animation name="standwest" frames="5" speed="15" />
     <animation name="standsouth" frames="7" speed="15" />
 
-    <control type="input" />
-
 </sprite>

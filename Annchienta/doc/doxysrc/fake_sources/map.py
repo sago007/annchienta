@@ -55,6 +55,12 @@ class Map:
     def getNumberOfLayers():
         pass
 
+    ## \brief Gets the filename.
+    #
+    #  \return The xml filename from which this map was loaded.
+    def getFileName():
+        pass
+
     ## \brief Gets the Map width.
     #
     #  \return The width of this Map.

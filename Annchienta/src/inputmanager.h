@@ -23,6 +23,7 @@ namespace Annchienta
             bool supportMouse;
             Person *inputControlledPerson;
             bool personInputEnabled;
+            int interactKey;
 
         public:
             #ifndef SWIG
@@ -49,6 +50,9 @@ namespace Annchienta
 
             bool personInputIsEnabled() const;
             void setPersonInputEnabled( bool );
+
+            void setInteractKey( int );
+            int getInteractKey() const;
     };
 
     InputManager *getInputManager();

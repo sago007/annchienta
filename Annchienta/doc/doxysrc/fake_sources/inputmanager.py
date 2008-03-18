@@ -121,3 +121,15 @@ class InputManager:
     def setPersonInputEnabled( enabled ):
         pass
 
+    ## \brief Sets the interact key.
+    #
+    #  \param keyCode The new interact key. See \ref keycodes
+    def setInteractKey( keyCode ):
+        pass
+
+    ## \brief Gets the interact key.
+    #
+    #  \return The key code of the current interact key.
+    def getInteractKey():
+        pass
+

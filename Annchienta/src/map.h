@@ -28,6 +28,8 @@ namespace Annchienta
             Layer **sortedLayers;
             int currentLayer;
 
+            char filename[512];
+
 
         public:
 
@@ -40,6 +42,8 @@ namespace Annchienta
             int getCurrentLayerIndex() const;
             void setCurrentLayer( int index );
             int getNumberOfLayers() const;
+
+            const char *getFileName() const;
 
             int getWidth() const;
             int getHeight() const;

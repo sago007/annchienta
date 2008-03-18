@@ -339,6 +339,18 @@ class InputManager:
     def setPersonInputEnabled( enabled ):
         pass
 
+    ## \brief Sets the interact key.
+    #
+    #  \param keyCode The new interact key. See \ref keycodes
+    def setInteractKey( keyCode ):
+        pass
+
+    ## \brief Gets the interact key.
+    #
+    #  \return The key code of the current interact key.
+    def getInteractKey():
+        pass
+
 
 ## \page keycodes Annchienta keyCodes.
 #
@@ -785,6 +797,12 @@ class Map:
     #
     #  \return The number of Layers in this Map.
     def getNumberOfLayers():
+        pass
+
+    ## \brief Gets the filename.
+    #
+    #  \return The xml filename from which this map was loaded.
+    def getFileName():
         pass
 
     ## \brief Gets the Map width.

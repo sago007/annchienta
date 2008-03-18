@@ -5435,6 +5435,58 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_InputManager_setInteractKey(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_setInteractKey",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_setInteractKey" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_setInteractKey" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setInteractKey(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_getInteractKey(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  int result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_getInteractKey",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_getInteractKey" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  result = (int)((Annchienta::InputManager const *)arg1)->getInteractKey();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_InputManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::InputManager *result = 0 ;
@@ -7917,6 +7969,28 @@ SWIGINTERN PyObject *_wrap_Map_getNumberOfLayers(PyObject *SWIGUNUSEDPARM(self),
   arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
   result = (int)((Annchienta::Map const *)arg1)->getNumberOfLayers();
   resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Map_getFileName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  char *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Map_getFileName",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_getFileName" "', argument " "1"" of type '" "Annchienta::Map const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  result = (char *)((Annchienta::Map const *)arg1)->getFileName();
+  resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
   return NULL;
@@ -11293,6 +11367,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"InputManager_getInputControlledPerson", _wrap_InputManager_getInputControlledPerson, METH_VARARGS, NULL},
 	 { (char *)"InputManager_personInputIsEnabled", _wrap_InputManager_personInputIsEnabled, METH_VARARGS, NULL},
 	 { (char *)"InputManager_setPersonInputEnabled", _wrap_InputManager_setPersonInputEnabled, METH_VARARGS, NULL},
+	 { (char *)"InputManager_setInteractKey", _wrap_InputManager_setInteractKey, METH_VARARGS, NULL},
+	 { (char *)"InputManager_getInteractKey", _wrap_InputManager_getInteractKey, METH_VARARGS, NULL},
 	 { (char *)"new_InputManager", _wrap_new_InputManager, METH_VARARGS, NULL},
 	 { (char *)"delete_InputManager", _wrap_delete_InputManager, METH_VARARGS, NULL},
 	 { (char *)"InputManager_swigregister", InputManager_swigregister, METH_VARARGS, NULL},
@@ -11381,6 +11457,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Map_getCurrentLayerIndex", _wrap_Map_getCurrentLayerIndex, METH_VARARGS, NULL},
 	 { (char *)"Map_setCurrentLayer", _wrap_Map_setCurrentLayer, METH_VARARGS, NULL},
 	 { (char *)"Map_getNumberOfLayers", _wrap_Map_getNumberOfLayers, METH_VARARGS, NULL},
+	 { (char *)"Map_getFileName", _wrap_Map_getFileName, METH_VARARGS, NULL},
 	 { (char *)"Map_getWidth", _wrap_Map_getWidth, METH_VARARGS, NULL},
 	 { (char *)"Map_getHeight", _wrap_Map_getHeight, METH_VARARGS, NULL},
 	 { (char *)"Map_addNewLayer", _wrap_Map_addNewLayer, METH_VARARGS, NULL},

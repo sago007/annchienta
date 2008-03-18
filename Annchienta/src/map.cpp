@@ -24,14 +24,16 @@ using namespace io;
 namespace Annchienta
 {
 
-    Map::Map( const char *filename ): sortedLayers(0), currentLayer(0)
+    Map::Map( const char *_filename ): sortedLayers(0), currentLayer(0)
     {
         Layer *layer = 0;
 
-        IrrXMLReader *xml = createIrrXMLReader( filename );
+        IrrXMLReader *xml = createIrrXMLReader( _filename );
+
+        strcpy( filename, _filename );
 
         if( !xml )
-            printf("Could not open level file %s\n", filename );
+            printf("Could not open level file %s\n", _filename );
 
         while( xml && xml->read() )
         {
@@ -201,6 +203,8 @@ namespace Annchienta
         layer->setTiles( 0 );
         layers.push_back( layer );
         sortLayers();
+
+        strcpy( filename, "untitled" );
     }
 
     Map::~Map()
@@ -233,6 +237,11 @@ namespace Annchienta
     int Map::getNumberOfLayers() const
     {
         return (int) layers.size();
+    }
+
+    const char *Map::getFileName() const
+    {
+        return filename;
     }
 
     int Map::getWidth() const

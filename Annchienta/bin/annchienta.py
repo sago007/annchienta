@@ -130,6 +130,8 @@ class InputManager(_object):
     def getInputControlledPerson(*args): return _annchienta.InputManager_getInputControlledPerson(*args)
     def personInputIsEnabled(*args): return _annchienta.InputManager_personInputIsEnabled(*args)
     def setPersonInputEnabled(*args): return _annchienta.InputManager_setPersonInputEnabled(*args)
+    def setInteractKey(*args): return _annchienta.InputManager_setInteractKey(*args)
+    def getInteractKey(*args): return _annchienta.InputManager_getInteractKey(*args)
     def __init__(self, *args): 
         this = _annchienta.new_InputManager(*args)
         try: self.this.append(this)
@@ -318,6 +320,7 @@ class Map(_object):
     def getCurrentLayerIndex(*args): return _annchienta.Map_getCurrentLayerIndex(*args)
     def setCurrentLayer(*args): return _annchienta.Map_setCurrentLayer(*args)
     def getNumberOfLayers(*args): return _annchienta.Map_getNumberOfLayers(*args)
+    def getFileName(*args): return _annchienta.Map_getFileName(*args)
     def getWidth(*args): return _annchienta.Map_getWidth(*args)
     def getHeight(*args): return _annchienta.Map_getHeight(*args)
     def addNewLayer(*args): return _annchienta.Map_addNewLayer(*args)
