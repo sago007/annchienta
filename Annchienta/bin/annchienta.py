@@ -483,6 +483,7 @@ class StaticObject(Entity):
     def getPosition(*args): return _annchienta.StaticObject_getPosition(*args)
     def getMaskPosition(*args): return _annchienta.StaticObject_getMaskPosition(*args)
     def getMask(*args): return _annchienta.StaticObject_getMask(*args)
+    def getXmlFile(*args): return _annchienta.StaticObject_getXmlFile(*args)
     def setAnimation(*args): return _annchienta.StaticObject_setAnimation(*args)
     def onInteract(*args): return _annchienta.StaticObject_onInteract(*args)
     def freeze(*args): return _annchienta.StaticObject_freeze(*args)
@@ -493,6 +494,36 @@ StaticObject_swigregister(StaticObject)
 
 getActiveObject = _annchienta.getActiveObject
 getPassiveObject = _annchienta.getPassiveObject
+class Person(StaticObject):
+    __swig_setmethods__ = {}
+    for _s in [StaticObject]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Person, name, value)
+    __swig_getmethods__ = {}
+    for _s in [StaticObject]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, Person, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_Person(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Person
+    __del__ = lambda self : None;
+    def getEntityType(*args): return _annchienta.Person_getEntityType(*args)
+    def update(*args): return _annchienta.Person_update(*args)
+    def move(*args): return _annchienta.Person_move(*args)
+    def stepTo(*args): return _annchienta.Person_stepTo(*args)
+    def freeze(*args): return _annchienta.Person_freeze(*args)
+    def isFrozen(*args): return _annchienta.Person_isFrozen(*args)
+    def setInputControl(*args): return _annchienta.Person_setInputControl(*args)
+    def setSampleControl(*args): return _annchienta.Person_setSampleControl(*args)
+    def setNullControl(*args): return _annchienta.Person_setNullControl(*args)
+    def interact(*args): return _annchienta.Person_interact(*args)
+    def setStandAnimation(*args): return _annchienta.Person_setStandAnimation(*args)
+    def lookAt(*args): return _annchienta.Person_lookAt(*args)
+    def collisionWithLayerAreas(*args): return _annchienta.Person_collisionWithLayerAreas(*args)
+Person_swigregister = _annchienta.Person_swigregister
+Person_swigregister(Person)
+
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN
 SDLK_FIRST = _annchienta.SDLK_FIRST
 SDLK_BACKSPACE = _annchienta.SDLK_BACKSPACE

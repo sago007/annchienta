@@ -18,7 +18,9 @@ namespace Annchienta
             bool frozen;
             int heading;
 
-            const static int squaredInteractDistance = 600;
+            #ifndef SWIG
+                const static int squaredInteractDistance = 600;
+            #endif
 
         public:
             Person( const char *name, const char *configfile );

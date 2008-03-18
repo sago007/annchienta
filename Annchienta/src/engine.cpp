@@ -16,7 +16,7 @@
 
 namespace Annchienta
 {
-    Engine *engine;
+    Engine *engine = 0;
 
     Engine::Engine()
     {
@@ -86,6 +86,8 @@ namespace Annchienta
 
     Engine *getEngine()
     {
+        if( !engine )
+            return (engine = new Engine);
         return engine;
     }
 

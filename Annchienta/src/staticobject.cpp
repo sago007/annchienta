@@ -33,6 +33,8 @@ namespace Annchienta
     {
         IrrXMLReader *xml = createIrrXMLReader( configfile );
 
+        strcpy( xmlFile, configfile );
+
         if( !xml )
             printf("Could not open config file %s for %s\n", configfile, _name );
 
@@ -269,6 +271,11 @@ namespace Annchienta
     Mask *StaticObject::getMask() const
     {
         return mask;
+    }
+
+    const char *StaticObject::getXmlFile() const
+    {
+        return xmlFile;
     }
 
     bool StaticObject::setAnimation( const char *aname )

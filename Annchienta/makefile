@@ -13,7 +13,6 @@ EXECUTABLE = bin/annchienta
 
 all: $(EXECUTABLE)
 
-
 $(EXECUTABLE): $(SWIG_CPP_FILE) $(XML_LIBRARY)
 	@echo "Compiling the executable..."
 	@$(CXX) $(C_FLAGS) -o $(EXECUTABLE) src/*.cpp $(LD_FLAGS)
@@ -28,6 +27,10 @@ $(XML_LIBRARY):
 	@$(CXX) -c src/xml/*.cpp
 	@$(AR) rcs $(XML_LIBRARY) *.o
 	@$(RM) *.o
+
+module: $(SWIG_CPP_FILE) $(XML_LIBRARY)
+	@echo "Compiling the Python module..."
+	@$(CXX) $(C_FLAGS) -shared -o bin/_annchienta.so src/*.cpp $(LD_FLAGS)
 
 clean:
 	@echo "Removing binaries..."

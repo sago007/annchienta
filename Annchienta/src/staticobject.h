@@ -62,6 +62,8 @@ namespace Annchienta
 
             char *onInteractScript, *onInteractCode;
 
+            char xmlFile[512];
+
         public:
             StaticObject( const char *name, const char *configfile );
             virtual ~StaticObject();
@@ -79,6 +81,8 @@ namespace Annchienta
             virtual Point getPosition() const;
             virtual Point getMaskPosition() const;
             virtual Mask *getMask() const;
+
+            const char *getXmlFile() const;
 
             virtual bool setAnimation( const char *animationName );
             //virtual void stopAnimation();
