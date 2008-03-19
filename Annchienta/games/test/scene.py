@@ -7,18 +7,34 @@ import annchienta
 #  out, and that you can easily customize it.
 class SceneManager:
 
+    margin = 6
+    confirmKey = annchienta.SDLK_SPACE
+    cancelKey = annchienta.SDLK_RETURN
+    boxTextures = []
+
+    videoManager = annchienta.getVideoManager()
+    inputManager = annchienta.getInputManager()
+    mapManager = annchienta.getMapManager()
+    engine = annchienta.getEngine()
+
     ## \brief Default contructor.
     #
     #  You should never call this constructor. Use initSceneManager() instead.
     def __init__( self ):
-        self.margin = 6
-        self.videoManager = annchienta.getVideoManager()
-        self.inputManager = annchienta.getInputManager()
-        self.mapManager = annchienta.getMapManager()
-        self.engine = annchienta.getEngine()
         #self.defaultFont
-        self.boxTextures = []
-        self.confirmKey = annchienta.SDLK_SPACE
+        pass
+
+    def waitForKey( self ):
+        videoManager.storeBuffer(7)
+        done = False
+        inputManager.update()
+        while inputManager.running() and not( inputManager.keyTicked(self.confirmKey) or inputManager.keyTicked(self.cancelTicked) ):
+            inputManager.update()
+            videoManager.begin()
+            videoManager.restoreBuffer(7)
+            videoManager.end()
+
+        mapManager.resync()
 
     ## \brief Draw a box.
     #

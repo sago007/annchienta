@@ -25,6 +25,8 @@ namespace Annchienta
 
             int maxAscentHeight, maxDescentHeight;
 
+            char *onUpdateScript, *onUpdateCode;
+
         public:
             #ifndef SWIG
                 MapManager();
@@ -57,6 +59,9 @@ namespace Annchienta
             int getMaxDescentHeight() const;
 
             StaticObject *getObject( const char *name );
+
+            void setOnUpdateScript( const char * );
+            void setOnUpdateCode( const char * );
 
             /* This function should basically run the game.
              */

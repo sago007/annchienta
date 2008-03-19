@@ -6,6 +6,7 @@
 
 #include <SDL.h>
 #include <GL/gl.h>
+#include <Python.h>
 #include "map.h"
 #include "inputmanager.h"
 #include "videomanager.h"
@@ -13,6 +14,7 @@
 #include "mask.h"
 #include "layer.h"
 #include "auxfunc.h"
+#include "engine.h"
 
 namespace Annchienta
 {
@@ -29,7 +31,10 @@ namespace Annchienta
         return interval;
     }
 
-    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0), updatesPerSecond(60), currentMap(0), cameraTarget(0), maxAscentHeight(16), maxDescentHeight(32)
+    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0),
+                              updatesPerSecond(60), currentMap(0), cameraTarget(0),
+                              maxAscentHeight(16), maxDescentHeight(32),
+                              onUpdateScript(0), onUpdateCode(0)
     {
         /* Set reference to single-instance class.
          */
@@ -40,6 +45,10 @@ namespace Annchienta
 
     MapManager::~MapManager()
     {
+        if( onUpdateScript )
+            delete[] onUpdateScript;
+        if( onUpdateCode )
+            delete[] onUpdateCode;
     }
 
     int MapManager::getUpdatesNeeded() const
@@ -152,6 +161,24 @@ namespace Annchienta
         return 0;
     }
 
+    void MapManager::setOnUpdateScript( const char *script )
+    {
+        if( onUpdateScript )
+            delete[] onUpdateScript;
+
+        onUpdateScript = new char[strlen(script)+1];
+        strcpy( onUpdateScript, script );
+    }
+
+    void MapManager::setOnUpdateCode( const char *code )
+    {
+        if( onUpdateCode )
+            delete[] onUpdateCode;
+
+        onUpdateCode = new char[strlen(code)+1];
+        strcpy( onUpdateCode, code );
+    }
+
     void MapManager::run()
     {
         VideoManager *videoManager = getVideoManager();
@@ -204,6 +231,11 @@ namespace Annchienta
         {
             cameraPeekAt( cameraTarget );
         }
+
+        if( onUpdateCode )
+            PyRun_SimpleString( onUpdateCode );
+        if( onUpdateScript )
+            getEngine()->runPythonScript( onUpdateScript );
     }
 
     void MapManager::renderFrame() const

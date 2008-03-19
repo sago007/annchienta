@@ -166,6 +166,8 @@ class MapManager(_object):
     def setMaxDescentHeight(*args): return _annchienta.MapManager_setMaxDescentHeight(*args)
     def getMaxDescentHeight(*args): return _annchienta.MapManager_getMaxDescentHeight(*args)
     def getObject(*args): return _annchienta.MapManager_getObject(*args)
+    def setOnUpdateScript(*args): return _annchienta.MapManager_setOnUpdateScript(*args)
+    def setOnUpdateCode(*args): return _annchienta.MapManager_setOnUpdateCode(*args)
     def run(*args): return _annchienta.MapManager_run(*args)
     def update(*args): return _annchienta.MapManager_update(*args)
     def updateOnce(*args): return _annchienta.MapManager_updateOnce(*args)

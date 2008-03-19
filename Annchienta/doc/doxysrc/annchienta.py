@@ -1046,6 +1046,18 @@ class MapManager:
     def getObject( name ):
         pass
 
+    ## \brief Set script to be executed every update.
+    #
+    #  \param script This script will be executed every update from now on.
+    def setOnUpdateScript( script ):
+        pass
+
+    ## \brief Set code to be executed every update.
+    #
+    #  \param code This piece of code will be executed every update from now on.
+    def setOnUpdateCode( code ):
+        pass
+
     ## \brief Start the MapManager.
     #
     #  This basically runs the game. It does not return until

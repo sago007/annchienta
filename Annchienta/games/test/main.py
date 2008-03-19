@@ -11,6 +11,7 @@ mapMgr.setTileHeight(32)
 mapMgr.setUpdatesPerSecond(60)
 mapMgr.setMaxAscentHeight(32)
 mapMgr.setMaxDescentHeight(32)
+mapMgr.setOnUpdateScript("onupdate.py")
 
 scene.initSceneManager()
 sceneMgr = scene.getSceneManager()
