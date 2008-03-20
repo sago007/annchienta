@@ -883,6 +883,14 @@ class Map:
         pass
 
 
+## \page mapfileformat The Map File Format.
+#
+#  \section mapfileformat_section1 Brief explanation.
+#
+#  To store maps, Annchienta uses an XML-based data format.
+#
+
+
 ## \brief Obtain the MapManager instance.
 #
 #  Use this function to get access to the MapManager

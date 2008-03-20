@@ -7,6 +7,7 @@
 #include <GL/gl.h>
 #include <sstream>
 #include <vector>
+#include <Python.h>
 #include "xml/irrXML.h"
 using namespace irr;
 using namespace io;
@@ -20,6 +21,7 @@ using namespace io;
 #include "person.h"
 #include "point.h"
 #include "area.h"
+#include "engine.h"
 
 namespace Annchienta
 {
@@ -34,6 +36,8 @@ namespace Annchienta
 
         if( !xml )
             printf("Could not open level file %s\n", _filename );
+
+        Engine *engine = getEngine();
 
         while( xml && xml->read() )
         {
@@ -179,6 +183,35 @@ namespace Annchienta
                         }
 
                         layer->addArea( area );
+                    }
+                    if( !strcmpCaseInsensitive("if", xml->getNodeName() ) )
+                    {
+                        bool result = engine->evaluatePythonBoolean( xml->getAttributeValue("code"),
+                                                                     xml->getAttributeValue("cond") );
+                        if( !result )
+                        {
+                            // go to the if ending node
+                            int endNodesToFind = 1;
+                            while( endNodesToFind>0 && xml->read() && xml )
+                            {
+                                if( !strcmp("if", xml->getNodeName() ) )
+                                    endNodesToFind += (xml->getNodeType()==EXN_ELEMENT?1:-1);
+                            }
+                        }
+
+                    }
+                    if( !strcmpCaseInsensitive("onload", xml->getNodeName() ) )
+                    {
+                        if( xml->getAttributeValue("script") )
+                        {
+                            engine->runPythonScript( xml->getAttributeValue("script") );
+                        }
+                        else
+                        {
+                            xml->read();
+                            PyRun_SimpleString( xml->getNodeData() );
+                            xml->read();
+                        }
                     }
                     break;
 

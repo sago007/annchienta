@@ -58,6 +58,8 @@ class Engine(_object):
     def setWindowTitle(*args): return _annchienta.Engine_setWindowTitle(*args)
     def getTicks(*args): return _annchienta.Engine_getTicks(*args)
     def delay(*args): return _annchienta.Engine_delay(*args)
+    def setPythonBoolean(*args): return _annchienta.Engine_setPythonBoolean(*args)
+    def evaluatePythonBoolean(*args): return _annchienta.Engine_evaluatePythonBoolean(*args)
     def __init__(self, *args): 
         this = _annchienta.new_Engine(*args)
         try: self.this.append(this)

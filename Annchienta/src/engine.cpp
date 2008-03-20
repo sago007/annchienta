@@ -84,6 +84,20 @@ namespace Annchienta
             SDL_Delay( ms );
     }
 
+    void Engine::setPythonBoolean( bool b )
+    {
+        pythonBoolean = b;
+    }
+
+    bool Engine::evaluatePythonBoolean( const char *start, const char *conditional )
+    {
+        const char script[] = "import annchienta\n%s\nannchienta.getEngine().setPythonBoolean(%s)\n";
+        char code[ strlen(script) + strlen( start ) + strlen( conditional ) + 4 ];
+        sprintf( code, script, start, conditional );
+        PyRun_SimpleString( code );
+        return pythonBoolean;
+    }
+
     Engine *getEngine()
     {
         if( !engine )

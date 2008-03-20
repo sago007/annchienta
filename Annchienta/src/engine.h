@@ -23,6 +23,8 @@ namespace Annchienta
             AudioManager *audioManager;
             CacheManager *cacheManager;
 
+            bool pythonBoolean;
+
         public:
             #ifndef SWIG
                 Engine();
@@ -41,6 +43,10 @@ namespace Annchienta
             unsigned int getTicks() const;
 
             void delay( int ms ) const;
+
+            void setPythonBoolean( bool b );
+
+            bool evaluatePythonBoolean( const char *code, const char *conditional );
 
     };
 
