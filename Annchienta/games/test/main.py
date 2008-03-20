@@ -13,6 +13,9 @@ mapMgr.setMaxAscentHeight(32)
 mapMgr.setMaxDescentHeight(32)
 mapMgr.setOnUpdateScript("onupdate.py")
 
+inputMgr = annchienta.getInputManager()
+inputMgr.setInteractKey( annchienta.SDLK_SPACE )
+
 scene.initSceneManager()
 sceneMgr = scene.getSceneManager()
 sceneMgr.defaultFont = annchienta.Font("assets/font.ttf", 14)

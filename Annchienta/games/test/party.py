@@ -3,6 +3,8 @@ import xml.dom.minidom
 
 class PartyManager:
 
+    records = []
+
     def __init__( self ):
         self.inputManager = annchienta.getInputManager()
         self.mapManager = annchienta.getMapManager()
@@ -31,6 +33,8 @@ class PartyManager:
         self.mapManager.cameraFollow( self.player )
         self.inputManager.setInputControlledPerson( self.player )
 
+        recordsElement = self.document.getElementsByTagName("records")[0]
+        self.records = recordsElement.firstChild.data.split()
 
     def save( self ):
         self.update()
@@ -60,6 +64,21 @@ class PartyManager:
         mapElement.setAttribute("filename", currentMap.getFileName() )
         mapElement.setAttribute("layer", str(currentMap.getCurrentLayerIndex()) )
         partyElement.appendChild( mapElement )
+
+        recordsElement = self.document.createElement("records")
+        data = ""
+        for r in self.records:
+            data += r+" "
+        dataNode = self.document.createTextNode( data )
+        recordsElement.appendChild( dataNode )
+        partyElement.appendChild( recordsElement )
+
+    def addRecord( self, record ):
+        if not self.hasRecord(record):
+            self.records.append( record.lower() )
+
+    def hasRecord( self, record ):
+        return record.lower() in self.records
 
 def initPartyManager():
     global globalPartyManagerInstance
