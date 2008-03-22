@@ -47,7 +47,7 @@
    </property>
    <widget class="QWidget" name="configurationTab" >
     <attribute name="title" >
-     <string>Configuration</string>
+     <string>Settings</string>
     </attribute>
     <widget class="QLabel" name="label" >
      <property name="geometry" >
@@ -518,6 +518,34 @@
        <string>Z Offset</string>
       </property>
      </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="pythonTab" >
+    <attribute name="title" >
+     <string>Python</string>
+    </attribute>
+    <widget class="QPushButton" name="pythonExecuteButton" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>300</y>
+       <width>251</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Execute</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="pythonCode" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>251</width>
+       <height>281</height>
+      </rect>
+     </property>
     </widget>
    </widget>
   </widget>

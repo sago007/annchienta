@@ -58,6 +58,8 @@ class Editor(QWidget):
         #self.connect( self.tileGroupBox, SIGNAL("toggled(bool)"), self.selectTileGroupBox )
         #self.connect( self.tileSideGroupBox, SIGNAL("toggled(bool)"), self.selectTileSideGroupBox )
 
+        self.connect( self.pythonExecuteButton, SIGNAL("clicked()"), self.executePythonCode )
+
         self.newMapDialog = newmap.NewMapDialog(self)
 
         self.selected = tiles.Selection()
@@ -292,3 +294,8 @@ class Editor(QWidget):
         if bool(self.tileSideGroupBox.isChecked()):
             self.zGroupBox.setChecked(False)
             self.tileGroupBox.setChecked(False)
+
+    def executePythonCode(self):
+        code = str(self.pythonCode.toPlainText())
+        exec( code )
+
