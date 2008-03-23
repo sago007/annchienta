@@ -27,24 +27,26 @@
 
 <area tilex1="2" tilex2="5" tiley1="0" tiley2="1">
 import annchienta
+import party
 
 # Obtain some references
 mapManager = annchienta.getMapManager()
-currentMap = mapManager.getCurrentMap()
-this = annchienta.getActiveObject()
+partyManager = party.getPartyManager()
 
 # Set a new position to our object (=the player)
-this.setPosition( annchienta.Point( annchienta.TilePoint, 10, 10 ) )
+partyManager.player.setPosition( annchienta.Point( annchienta.TilePoint, 10, 10 ) )
 
 # Remove our object from this map...
-currentMap.removeObject( this )
+partyManager.currentMap.removeObject( partyManager.player )
 
 # Load and set the new map.
-newMap = annchienta.Map(&quot;maps/map2.xml&quot;)
-mapManager.setCurrentMap( newMap )
-
-# Put our object in the new map.
-newMap.addObject( this )
+# We need this backup reference because if we wouldn't have
+# it, this map would be freed right now, so this code would
+# be deleted while being executed.
+partyManager.backup = partyManager.currentMap
+partyManager.currentMap = annchienta.Map(&quot;maps/map2.xml&quot;)
+partyManager.currentMap.addObject( partyManager.player )
+mapManager.setCurrentMap( partyManager.currentMap )
 </area>
 
 <area tilex1="11" tilex2="12" tiley1="1" tiley2="2">

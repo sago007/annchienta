@@ -26,7 +26,7 @@ using namespace io;
 namespace Annchienta
 {
 
-    Map::Map( const char *_filename ): sortedLayers(0), currentLayer(0)
+    Map::Map( const char *_filename ): sortedLayers(0), currentLayer(0), onPostRenderCode(0), onPostRenderScript(0)
     {
         Layer *layer = 0;
 
@@ -216,6 +216,21 @@ namespace Annchienta
                             xml->read();
                         }
                     }
+                    if( !strcmpCaseInsensitive("onpostrender", xml->getNodeName() ) )
+                    {
+                        if( xml->getAttributeValue("script") )
+                        {
+                            onPostRenderScript = new char[ strlen(xml->getAttributeValue("script"))+1 ];
+                            strcpy( onPostRenderScript, xml->getAttributeValue("script") );
+                        }
+                        else
+                        {
+                            xml->read();
+                            onPostRenderCode = new char[ strlen(xml->getNodeData())+1 ];
+                            strcpy( onPostRenderCode, xml->getNodeData() );
+                            xml->read();
+                        }
+                    }
                     break;
 
                 case EXN_ELEMENT_END:
@@ -232,7 +247,7 @@ namespace Annchienta
         sortLayers();
     }
 
-    Map::Map( int w, int h, const char *tileSetFilename ): width(w), height(h), sortedLayers(0), currentLayer(0)
+    Map::Map( int w, int h, const char *tileSetFilename ): width(w), height(h), sortedLayers(0), currentLayer(0), onPostRenderCode(0), onPostRenderScript(0)
     {
         tileSet = new TileSet( tileSetFilename );
         Layer *layer =  new Layer( tileSet, width, height, 0xff, 0 );
@@ -248,6 +263,11 @@ namespace Annchienta
         for( unsigned int i=0; i<layers.size(); i++ )
             delete layers[i];
         delete tileSet;
+
+        if( onPostRenderScript )
+            delete[] onPostRenderScript;
+        if( onPostRenderCode )
+            delete[] onPostRenderCode;
     }
 
     Layer *Map::getCurrentLayer() const
@@ -384,6 +404,14 @@ namespace Annchienta
         }
 
         sortedLayers[ layers.size() ] = 0;
+    }
+
+    void Map::onPostRender() const
+    {
+        if( onPostRenderScript )
+            getEngine()->runPythonScript( onPostRenderScript );
+        if( onPostRenderCode )
+            PyRun_SimpleString( onPostRenderCode );
     }
 
 };

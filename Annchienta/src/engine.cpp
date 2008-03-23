@@ -40,6 +40,9 @@ namespace Annchienta
 
     Engine::~Engine()
     {
+        /* Free up Python stuff first.
+         */
+        Py_Finalize();
 
         /* Free up other Single-Instance classes.
          */
@@ -51,7 +54,6 @@ namespace Annchienta
 
         /* Quit our libraries.
          */
-        Py_Finalize();
         SDL_Quit();
     }
 

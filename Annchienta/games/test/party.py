@@ -4,6 +4,7 @@ import xml.dom.minidom
 class PartyManager:
 
     records = []
+    currentMap = 0
 
     def __init__( self ):
         self.inputManager = annchienta.getInputManager()

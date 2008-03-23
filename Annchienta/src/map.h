@@ -31,6 +31,8 @@ namespace Annchienta
             char filename[512];
 
 
+            char *onPostRenderScript, *onPostRenderCode;
+
         public:
 
             Map( const char *filename );
@@ -62,6 +64,8 @@ namespace Annchienta
             void depthSort();
 
             void sortLayers();
+
+            void onPostRender() const;
 
     };
 };
