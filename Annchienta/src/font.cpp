@@ -20,7 +20,7 @@ namespace Annchienta
         FT_Library library;
         if( FT_Init_FreeType( &library ) )
         {
-            printf( "Error - could not create main FreeType library." );
+            printf( "Error - could not create main FreeType library.\n" );
             return;
         }
     
@@ -29,7 +29,7 @@ namespace Annchienta
         FT_Face face;
         if( FT_New_Face( library, filename, 0, &face ) )
         {
-            printf( "Error - could not open %s as TTF font.", filename );
+            printf( "Error - could not open %s as TTF font.\n", filename );
             return;
         }
 
@@ -56,7 +56,7 @@ namespace Annchienta
             FT_UInt index = FT_Get_Char_Index( face, i );
             if( FT_Load_Glyph( face, index, FT_LOAD_RENDER ) )
             {
-                printf( "Ft_Load_Glyph for %c int %s returned error code.", (char)i, filename );
+                printf( "Ft_Load_Glyph for %c int %s returned error code.\n", (char)i, filename );
                 return;
             }
     

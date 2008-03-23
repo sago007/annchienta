@@ -35,7 +35,7 @@ namespace Annchienta
         strcpy( filename, _filename );
 
         if( !xml )
-            printf("Could not open level file %s\n", _filename );
+            printf("Could not open given level file %s\n", _filename );
 
         Engine *engine = getEngine();
 
@@ -52,7 +52,10 @@ namespace Annchienta
                         getMapManager()->setTileWidth( xml->getAttributeValueAsInt("tilewidth") );
                         getMapManager()->setTileHeight( xml->getAttributeValueAsInt("tileheight") );
 
-                        tileSet = new TileSet( xml->getAttributeValue("tileset") );
+                        if( xml->getAttributeValue("tileset") )
+                            tileSet = new TileSet( xml->getAttributeValue("tileset") );
+                        else
+                            printf("Warning - %s does not provide a valid tileset.\n", filename);
                     }
                     if( !strcmpCaseInsensitive("layer", xml->getNodeName()) )
                     {

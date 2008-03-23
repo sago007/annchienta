@@ -45,8 +45,15 @@ namespace Annchienta
                 case EXN_ELEMENT:
                     if( !strcmpCaseInsensitive("sprite", xml->getNodeName()) )
                     {
-                        sprite = getCacheManager()->getSurface( xml->getAttributeValue("image") );
-                        mask = getCacheManager()->getMask( xml->getAttributeValue("mask") );
+                        if( xml->getAttributeValue("image") )
+                            sprite = getCacheManager()->getSurface( xml->getAttributeValue("image") );
+                        else
+                            printf("Warning - No sprite defined in %s.\n", configfile);
+
+                        if( xml->getAttributeValue("mask") )
+                            mask = getCacheManager()->getMask( xml->getAttributeValue("mask") );
+                        else
+                            printf("Warning - No mask defined in %s.\n", configfile);
                     }
                     if( !strcmpCaseInsensitive("frame", xml->getNodeName()) )
                     {
@@ -55,7 +62,7 @@ namespace Annchienta
                         if( xml->getAttributeValue("number") )
                             frame.number = xml->getAttributeValueAsInt("number");
                         else
-                            printf("Warning - number not defined for frame in %s\n", configfile);
+                            printf("Warning - number not defined for frame in %s.\n", configfile);
 
                         frame.x1 = xml->getAttributeValueAsInt("x1");
                         frame.y1 = xml->getAttributeValueAsInt("y1");
@@ -67,9 +74,15 @@ namespace Annchienta
                     {
                         Animation animation;
                         strcpy( animation.name, xml->getAttributeValue("name") );
+
                         strcpy( animation.frames, xml->getAttributeValue("frames") );
                         animation.numberOfFrames = strlen( animation.frames );
-                        animation.speed = xml->getAttributeValueAsInt("speed");
+
+                        if( xml->getAttributeValue("speed") )
+                            animation.speed = xml->getAttributeValueAsInt("speed");
+                        else
+                            animation.speed = 20;
+
                         animations.push_back( animation );
                     }
                     if( !strcmpCaseInsensitive("oninteract", xml->getNodeName()) )
@@ -95,7 +108,8 @@ namespace Annchienta
 
         delete xml;
 
-        setAnimation( "stand" );
+        if( !setAnimation( "stand" ) )
+            printf("Warning - StaticObject %s does not provide a 'stand' animation.\n", configfile );
         speedTimer = 0;
     }
 
