@@ -30,6 +30,7 @@
 import scene
 import annchienta
 import party
+import random
 
 sceneManager = scene.getSceneManager()
 this = annchienta.getPassiveObject()
@@ -51,6 +52,22 @@ else:
 sceneManager.quitDialog()
 
 party.getPartyManager().addRecord("talkedtogirl")
+
+
+audioManager = annchienta.getAudioManager()
+videoManager = annchienta.getVideoManager()
+sound = annchienta.Sound("maps/noise.ogg")
+audioManager.playSound( sound )
+engine = annchienta.getEngine()
+start = engine.getTicks()
+while engine.getTicks()&lt;start+1000:
+    videoManager.begin()
+    r = random.randint(0,255)
+    videoManager.setColor(r,r,r)
+    videoManager.drawRectangle(0,0,videoManager.getScreenWidth(),videoManager.getScreenHeight())
+    videoManager.end()
+annchienta.getMapManager().resync()
+sound = 0
 </oninteract>
 
 </sprite>
