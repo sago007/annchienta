@@ -58,7 +58,9 @@ class Editor(QWidget):
         #self.connect( self.tileGroupBox, SIGNAL("toggled(bool)"), self.selectTileGroupBox )
         #self.connect( self.tileSideGroupBox, SIGNAL("toggled(bool)"), self.selectTileSideGroupBox )
 
+        self.connect( self.pythonClearButton, SIGNAL("clicked()"), self.clearPythonCode )
         self.connect( self.pythonExecuteButton, SIGNAL("clicked()"), self.executePythonCode )
+        self.clearPythonCode()
 
         self.newMapDialog = newmap.NewMapDialog(self)
 
@@ -294,6 +296,9 @@ class Editor(QWidget):
         if bool(self.tileSideGroupBox.isChecked()):
             self.zGroupBox.setChecked(False)
             self.tileGroupBox.setChecked(False)
+
+    def clearPythonCode(self):
+        self.pythonCode.setPlainText("import annchienta\n")
 
     def executePythonCode(self):
         code = str(self.pythonCode.toPlainText())
