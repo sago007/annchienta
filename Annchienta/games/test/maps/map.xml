@@ -26,27 +26,11 @@
         <person config="maps/darkie.xml" isox="20" isoy="180" name="darkie"/>
 
 <area tilex1="2" tilex2="5" tiley1="0" tiley2="1">
-import annchienta
 import party
 
 # Obtain some references
-mapManager = annchienta.getMapManager()
 partyManager = party.getPartyManager()
-
-# Set a new position to our object (=the player)
-partyManager.player.setPosition( annchienta.Point( annchienta.TilePoint, 10, 10 ) )
-
-# Remove our object from this map...
-partyManager.currentMap.removeObject( partyManager.player )
-
-# Load and set the new map.
-# We need this backup reference because if we wouldn't have
-# it, this map would be freed right now, so this code would
-# be deleted while being executed.
-partyManager.backup = partyManager.currentMap
-partyManager.currentMap = annchienta.Map(&quot;maps/map2.xml&quot;)
-partyManager.currentMap.addObject( partyManager.player )
-mapManager.setCurrentMap( partyManager.currentMap )
+partyManager.changeMap(&quot;maps/map2.xml&quot;)
 </area>
 
 <area tilex1="11" tilex2="12" tiley1="1" tiley2="2">

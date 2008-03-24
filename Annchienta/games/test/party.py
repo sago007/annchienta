@@ -81,6 +81,14 @@ class PartyManager:
     def hasRecord( self, record ):
         return record.lower() in self.records
 
+    def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ) ):
+        self.player.setPosition( newPosition )
+        self.currentMap.removeObject( self.player )
+        self.lastMap = self.currentMap
+        self.currentMap = annchienta.Map( newMapFileName )
+        self.currentMap.addObject( self.player )
+        self.mapManager.setCurrentMap( self.currentMap )
+
 def initPartyManager():
     global globalPartyManagerInstance
     globalPartyManagerInstance = PartyManager()
