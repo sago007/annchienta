@@ -337,6 +337,7 @@ class Map(_object):
     def drawTerrain(*args): return _annchienta.Map_drawTerrain(*args)
     def depthSort(*args): return _annchienta.Map_depthSort(*args)
     def sortLayers(*args): return _annchienta.Map_sortLayers(*args)
+    def onPreRender(*args): return _annchienta.Map_onPreRender(*args)
     def onPostRender(*args): return _annchienta.Map_onPostRender(*args)
 Map_swigregister = _annchienta.Map_swigregister
 Map_swigregister(Map)

@@ -216,6 +216,21 @@ namespace Annchienta
                             xml->read();
                         }
                     }
+                    if( !strcmpCaseInsensitive("onprerender", xml->getNodeName() ) )
+                    {
+                        if( xml->getAttributeValue("script") )
+                        {
+                            onPreRenderScript = new char[ strlen(xml->getAttributeValue("script"))+1 ];
+                            strcpy( onPreRenderScript, xml->getAttributeValue("script") );
+                        }
+                        else
+                        {
+                            xml->read();
+                            onPreRenderCode = new char[ strlen(xml->getNodeData())+1 ];
+                            strcpy( onPreRenderCode, xml->getNodeData() );
+                            xml->read();
+                        }
+                    }
                     if( !strcmpCaseInsensitive("onpostrender", xml->getNodeName() ) )
                     {
                         if( xml->getAttributeValue("script") )
@@ -263,6 +278,11 @@ namespace Annchienta
         for( unsigned int i=0; i<layers.size(); i++ )
             delete layers[i];
         delete tileSet;
+
+        if( onPreRenderScript )
+            delete[] onPreRenderScript;
+        if( onPreRenderCode )
+            delete[] onPreRenderCode;
 
         if( onPostRenderScript )
             delete[] onPostRenderScript;
@@ -367,14 +387,34 @@ namespace Annchienta
 
     void Map::draw() const
     {
+        glPushMatrix();
+
+        glLoadIdentity();
+        this->onPreRender();
+
+        glPopMatrix();
+
         for( unsigned int i=0; i<layers.size(); i++ )
             sortedLayers[i]->draw();
+
+        glLoadIdentity();
+        this->onPostRender();
     }
 
     void Map::drawTerrain() const
     {
+        glPushMatrix();
+
+        glLoadIdentity();
+        this->onPreRender();
+
+        glPopMatrix();
+
         for( unsigned int i=0; i<layers.size(); i++ )
             sortedLayers[i]->drawTerrain();
+
+        glLoadIdentity();
+        this->onPostRender();
     }
 
     void Map::depthSort()
@@ -404,6 +444,14 @@ namespace Annchienta
         }
 
         sortedLayers[ layers.size() ] = 0;
+    }
+
+    void Map::onPreRender() const
+    {
+        if( onPreRenderScript )
+            getEngine()->runPythonScript( onPreRenderScript );
+        if( onPreRenderCode )
+            PyRun_SimpleString( onPreRenderCode );
     }
 
     void Map::onPostRender() const

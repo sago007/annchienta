@@ -30,7 +30,7 @@ namespace Annchienta
 
             char filename[512];
 
-
+            char *onPreRenderScript, *onPreRenderCode;
             char *onPostRenderScript, *onPostRenderCode;
 
         public:
@@ -65,6 +65,7 @@ namespace Annchienta
 
             void sortLayers();
 
+            void onPreRender() const;
             void onPostRender() const;
 
     };

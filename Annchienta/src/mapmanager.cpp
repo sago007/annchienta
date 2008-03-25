@@ -248,11 +248,6 @@ namespace Annchienta
             currentMap->draw();
 
         glLoadIdentity();
-
-        if( currentMap )
-            currentMap->onPostRender();
-
-        glLoadIdentity();
     }
 
     void MapManager::renderTerrain() const
@@ -263,11 +258,6 @@ namespace Annchienta
 
         if( currentMap )
             currentMap->drawTerrain();
-
-        glLoadIdentity();
-
-        if( currentMap )
-            currentMap->onPostRender();
 
         glLoadIdentity();
     }
