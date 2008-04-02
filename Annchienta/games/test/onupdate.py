@@ -9,8 +9,8 @@ if inputManager.keyTicked( annchienta.SDLK_RETURN ):
     gameMenu = menu.Menu("In-Game Menu")
 
     o = []
-    o.append( menu.MenuItem("continue") )
-    i = menu.Menu("item")
+    o.append( menu.MenuItem("continue", "Continue the game.") )
+    i = menu.Menu("item", "Use an item.")
     i.setOptions( map( menu.MenuItem, ("potion", "grenade") ) )
     o.append( i )
 

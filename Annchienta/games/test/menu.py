@@ -4,11 +4,11 @@ import scene
 class MenuItem:
 
     name = "Menu Item"
-    tooltip = "Tool Tip"
+    toolTip = "Tool Tip"
     isMenu = False
 
-    def __init__( self, name, tooltip=None ):
-        self.name, self.tooltip = name, tooltip
+    def __init__( self, name, toolTip=None ):
+        self.name, self.toolTip = name, toolTip
         self.isMenuItem = True
 
 ## \brief A simple Menu.
@@ -21,9 +21,10 @@ class Menu(MenuItem):
     selectedItem = None
     width, height = 0, 0
     x, y = 0, 0
+    toolTipOnTop = True
 
-    def __init__( self, name, tooltip=None ):
-        MenuItem.__init__( self, name, tooltip )
+    def __init__( self, name, toolTip=None ):
+        MenuItem.__init__( self, name, toolTip )
         self.inputManager = annchienta.getInputManager()
         self.videoManager = annchienta.getVideoManager()
         self.mapManager = annchienta.getMapManager()
@@ -93,9 +94,20 @@ class Menu(MenuItem):
 
         self.videoManager.restoreBuffer(6)
 
+        self.videoManager.setColor( 255, 255, 255, 255 )
+
+        # Render tooltip
+        if not self.selectedItem.toolTip is None:
+            self.videoManager.pushMatrix()
+            h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()
+            self.videoManager.translate( 0, self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin )
+            self.sceneManager.drawBox( self.sceneManager.margin, 0, self.videoManager.getScreenWidth()-self.sceneManager.margin, h )
+            self.videoManager.drawString( self.sceneManager.defaultFont, self.selectedItem.toolTip, self.sceneManager.margin*2, self.sceneManager.margin )
+            self.videoManager.popMatrix()
+
+        # Render menu
         self.videoManager.translate( self.x, self.y )
         self.sceneManager.drawBox( 0, 0, self.width, self.height )
-        self.videoManager.setColor( 255, 255, 255, 255 )
 
         self.videoManager.pushMatrix()
         self.videoManager.translate( self.sceneManager.margin, self.sceneManager.margin )
