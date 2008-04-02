@@ -83,7 +83,7 @@ namespace Annchienta
         glEnable( GL_CULL_FACE );
         glCullFace( GL_BACK );
 
-        glClearColor( 0.388f, 0.694f, 0.706f, 0.0f );
+        glClearColor( 0.388f, 0.694f, 0.706f, 1.0f );
 
         for( int i=0; i<numberOfBackBuffers; i++ )
         {

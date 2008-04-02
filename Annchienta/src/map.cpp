@@ -26,7 +26,8 @@ using namespace io;
 namespace Annchienta
 {
 
-    Map::Map( const char *_filename ): sortedLayers(0), currentLayer(0), onPostRenderCode(0), onPostRenderScript(0)
+    Map::Map( const char *_filename ): sortedLayers(0), currentLayer(0), onPreRenderCode(0), onPreRenderScript(0),
+                                       onPostRenderCode(0), onPostRenderScript(0)
     {
         Layer *layer = 0;
 

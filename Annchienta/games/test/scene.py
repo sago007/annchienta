@@ -5,11 +5,16 @@ import annchienta
 #  This class is used for drawing scene elements such as dialogs.
 #  Note that this is an optional python class, meaning it can be left
 #  out, and that you can easily customize it.
+#
+#  Uses video buffer 7.
 class SceneManager:
 
     margin = 6
-    confirmKey = annchienta.SDLK_SPACE
-    cancelKey = annchienta.SDLK_RETURN
+    confirmKeys = [annchienta.SDLK_SPACE]
+    cancelKeys = [annchienta.SDLK_BACKSPACE]
+    nextKeys = [annchienta.SDLK_DOWN,annchienta.SDLK_RIGHT]
+    previousKeys = [annchienta.SDLK_UP,annchienta.SDLK_LEFT]
+    defaultFont = None
     boxTextures = []
 
     videoManager = annchienta.getVideoManager()
@@ -25,16 +30,22 @@ class SceneManager:
         pass
 
     def waitForKey( self ):
-        videoManager.storeBuffer(7)
+        self.videoManager.storeBuffer(7)
         done = False
-        inputManager.update()
-        while inputManager.running() and not( inputManager.keyTicked(self.confirmKey) or inputManager.keyTicked(self.cancelTicked) ):
-            inputManager.update()
-            videoManager.begin()
-            videoManager.restoreBuffer(7)
-            videoManager.end()
+        self.inputManager.update()
+        while self.inputManager.running() and not self.ticked( self.confirmKeys+self.cancelKeys ):
+            self.inputManager.update()
+            self.videoManager.begin()
+            self.videoManager.restoreBuffer(7)
+            self.videoManager.end()
 
-        mapManager.resync()
+        self.mapManager.resync()
+
+    def ticked( self, keys ):
+        for k in keys:
+            if self.inputManager.keyTicked(k):
+                return True
+        return False
 
     ## \brief Draw a box.
     #
@@ -114,7 +125,7 @@ class SceneManager:
 
         self.inputManager.update()
 
-        while self.inputManager.running() and not self.inputManager.keyTicked( self.confirmKey ):
+        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
 
             self.mapManager.update(False)
             self.mapManager.setCameraX(cx)
@@ -138,9 +149,9 @@ class SceneManager:
             self.videoManager.popMatrix()
             self.videoManager.end()
 
-            if self.inputManager.keyTicked(annchienta.SDLK_DOWN) and scroll<height:
+            if self.ticked( self.nextKeys ) and scroll<height:
                 scroll += 5
-            if self.inputManager.keyTicked(annchienta.SDLK_UP) and scroll>0:
+            if self.ticked( self.previousKeys ) and scroll>0:
                 scroll -= 5
 
         self.inputManager.setPersonInputEnabled(True)
@@ -178,7 +189,7 @@ class SceneManager:
         self.inputManager.setPersonInputEnabled(False)
         self.inputManager.update()
 
-        while self.inputManager.running() and not self.inputManager.keyTicked( self.confirmKey ):
+        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
 
             self.mapManager.update(False)
             self.inputManager.update()
@@ -197,9 +208,9 @@ class SceneManager:
             self.videoManager.drawTriangle( 0, 0, 0, self.defaultFont.getHeight(), self.margin, self.defaultFont.getHeight()/2 )
             self.videoManager.end()
 
-            if self.inputManager.keyTicked(annchienta.SDLK_DOWN):
+            if self.ticked( self.nextKeys ):
                 selected = selected+1 if selected+1<len(answers) else 0
-            if self.inputManager.keyTicked(annchienta.SDLK_UP):
+            if self.ticked( self.previousKeys ):
                 selected = selected-1 if selected>=1 else len(answers)-1
 
         self.inputManager.setPersonInputEnabled(True)
