@@ -141,5 +141,3 @@ class Menu(MenuItem):
             self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
 
         self.videoManager.popMatrix()
-
-        self.videoManager.end()
