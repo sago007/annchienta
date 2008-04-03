@@ -15,6 +15,7 @@ if inputManager.keyTicked( annchienta.SDLK_RETURN ):
     o.append( i )
 
     gameMenu.setOptions( o )
+    gameMenu.leftBottom()
     a = gameMenu.pop()
 
     if a is None:

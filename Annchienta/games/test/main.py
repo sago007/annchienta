@@ -18,7 +18,8 @@ inputMgr.setInteractKey( annchienta.SDLK_SPACE )
 
 scene.initSceneManager()
 sceneMgr = scene.getSceneManager()
-sceneMgr.defaultFont = annchienta.Font("assets/font.ttf", 14)
+sceneMgr.defaultFont = annchienta.Font("assets/regular.ttf", 14)
+sceneMgr.italicsFont = annchienta.Font("assets/italics.ttf", 14)
 
 for i in range(9):
     sceneMgr.boxTextures.append( annchienta.Surface("assets/box"+str(i)+".png") )

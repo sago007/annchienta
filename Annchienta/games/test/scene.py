@@ -14,7 +14,7 @@ class SceneManager:
     cancelKeys = [annchienta.SDLK_BACKSPACE]
     nextKeys = [annchienta.SDLK_DOWN,annchienta.SDLK_RIGHT]
     previousKeys = [annchienta.SDLK_UP,annchienta.SDLK_LEFT]
-    defaultFont = None
+    defaultFont, italicsFont = None, None
     boxTextures = []
 
     videoManager = annchienta.getVideoManager()

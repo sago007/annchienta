@@ -32,10 +32,26 @@ class Menu(MenuItem):
 
     def setOptions( self, options ):
         self.options = options
-        names = map( lambda o: o.name, options )
+        names = map( lambda o: o.name, options ) + [self.name]
         longest = max( map( lambda n: self.sceneManager.defaultFont.getStringWidth(n), names ) )
         self.width = longest + 5*self.sceneManager.margin
-        self.height = (len(options))*self.sceneManager.defaultFont.getLineHeight() + 2*self.sceneManager.margin
+        self.height = len(options)*self.sceneManager.defaultFont.getLineHeight() + self.sceneManager.italicsFont.getLineHeight() + 2*self.sceneManager.margin
+
+    def top( self ):
+        self.toolTipOnTop = False
+        self.y = self.sceneManager.margin
+        self.x = (self.videoManager.getScreenWidth()-self.width)/2
+        for m in self.options:
+            if m.isMenu:
+                m.top()
+
+    def leftBottom( self ):
+        self.toolTipOnTop = True
+        self.y = self.videoManager.getScreenHeight()-self.height-self.sceneManager.margin
+        self.x = self.sceneManager.margin
+        for m in self.options:
+            if m.isMenu:
+                m.leftBottom()
 
     def pop( self ):
 
@@ -94,13 +110,15 @@ class Menu(MenuItem):
 
         self.videoManager.restoreBuffer(6)
 
-        self.videoManager.setColor( 255, 255, 255, 255 )
+        self.videoManager.pushMatrix()
+
+        self.videoManager.setColor( 255, 255, 255 )
 
         # Render tooltip
         if not self.selectedItem.toolTip is None:
             self.videoManager.pushMatrix()
             h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()
-            self.videoManager.translate( 0, self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin )
+            self.videoManager.translate( 0, self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin*3-self.sceneManager.defaultFont.getLineHeight() )
             self.sceneManager.drawBox( self.sceneManager.margin, 0, self.videoManager.getScreenWidth()-self.sceneManager.margin, h )
             self.videoManager.drawString( self.sceneManager.defaultFont, self.selectedItem.toolTip, self.sceneManager.margin*2, self.sceneManager.margin )
             self.videoManager.popMatrix()
@@ -109,8 +127,12 @@ class Menu(MenuItem):
         self.videoManager.translate( self.x, self.y )
         self.sceneManager.drawBox( 0, 0, self.width, self.height )
 
-        self.videoManager.pushMatrix()
-        self.videoManager.translate( self.sceneManager.margin, self.sceneManager.margin )
+        self.videoManager.setColor( 230, 230, 230 )
+
+        self.videoManager.drawStringCentered( self.sceneManager.italicsFont, self.name.capitalize(), self.width/2, self.sceneManager.margin )
+
+        self.videoManager.translate( self.sceneManager.margin, self.sceneManager.margin+ self.sceneManager.italicsFont.getLineHeight() )
+        self.videoManager.setColor( 255, 255, 255 )
 
         for o in self.options:
             self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), self.sceneManager.margin*2, 0 )
