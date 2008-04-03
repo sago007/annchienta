@@ -46,7 +46,7 @@ namespace Annchienta
             int getCameraY() const;
 
             void cameraFollow( StaticObject *object );
-            void cameraPeekAt( StaticObject *object );
+            void cameraPeekAt( StaticObject *object, bool instantly=false );
 
             void setUpdatesPerSecond( int );
 

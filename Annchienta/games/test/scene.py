@@ -118,22 +118,15 @@ class SceneManager:
 
         scroll = 0
 
-        cx = self.mapManager.getCameraX()
-        cy = self.mapManager.getCameraY()
-
-        self.inputManager.setPersonInputEnabled(False)
-
         self.inputManager.update()
+        self.videoManager.storeBuffer(7)
 
         while self.inputManager.running() and not self.ticked( self.confirmKeys ):
 
-            self.mapManager.update(False)
-            self.mapManager.setCameraX(cx)
-            self.mapManager.setCameraY(cy)
             self.inputManager.update()
 
             self.videoManager.begin()
-            self.mapManager.renderFrame()
+            self.videoManager.restoreBuffer(7)
             self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
             self.videoManager.setClippingRectangle( 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, 110-self.margin )
             self.videoManager.setColor( 255, 255, 255, 255 )
@@ -154,13 +147,16 @@ class SceneManager:
             if self.ticked( self.previousKeys ) and scroll>0:
                 scroll -= 5
 
-        self.inputManager.setPersonInputEnabled(True)
+        self.videoManager.restoreBuffer(7)
+        self.mapManager.resync()
 
     ## \brief lets someone say something.
     #
     def speak(self, object, text):
 
-        self.mapManager.cameraPeekAt( object )
+        self.mapManager.cameraPeekAt( object, True )
+        self.videoManager.begin()
+        self.mapManager.renderFrame()
         self.text( object.getName().capitalize() + ":\n" + text )
 
     ## \moves someone.
@@ -186,16 +182,15 @@ class SceneManager:
     def choose(self, title, answers):
 
         selected = 0
-        self.inputManager.setPersonInputEnabled(False)
         self.inputManager.update()
+        self.videoManager.storeBuffer(7)
 
         while self.inputManager.running() and not self.ticked( self.confirmKeys ):
 
-            self.mapManager.update(False)
             self.inputManager.update()
 
             self.videoManager.begin()
-            self.mapManager.renderFrame()
+            self.videoManager.restoreBuffer(7)
             self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
             self.videoManager.setColor( 255, 255, 255, 255 )
             y = self.margin*2
@@ -213,7 +208,8 @@ class SceneManager:
             if self.ticked( self.previousKeys ):
                 selected = selected-1 if selected>=1 else len(answers)-1
 
-        self.inputManager.setPersonInputEnabled(True)
+        self.videoManager.restoreBuffer(7)
+        self.mapManager.resync()
         return answers[selected]
 
     ## \brief Inits a dialog.

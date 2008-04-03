@@ -101,7 +101,7 @@ namespace Annchienta
         cameraTarget = object;
     }
 
-    void MapManager::cameraPeekAt( StaticObject *object )
+    void MapManager::cameraPeekAt( StaticObject *object, bool instantly )
     {
         VideoManager *videoManager = getVideoManager();
 
@@ -111,11 +111,19 @@ namespace Annchienta
         int destX = targetPosition.x - videoManager->getScreenWidth()/2;
         int destY = targetPosition.y - targetPosition.z - object->getMask()->getHeight()/2 - videoManager->getScreenHeight()/2 - object->getLayer()->getZ();
 
-        int s = 4;
-        while( squaredDistance( cameraX, cameraY, destX, destY )>2500 && --s )
+        if( instantly )
         {
-            cameraX += sign( destX - cameraX );
-            cameraY += sign( destY - cameraY );
+            cameraX = destX;
+            cameraY = destY;
+        }
+        else
+        {
+            int s = 4;
+            while( squaredDistance( cameraX, cameraY, destX, destY )>2500 && --s )
+            {
+                cameraX += sign( destX - cameraX );
+                cameraY += sign( destY - cameraY );
+            }
         }
     }
 

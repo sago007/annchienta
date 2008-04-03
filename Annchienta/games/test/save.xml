@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <party>
-	<player isox="71" isoy="230" name="aelaan" xmlfile="maps/aelaan.xml"/>
+	<player isox="30" isoy="179" name="aelaan" xmlfile="maps/aelaan.xml"/>
 	<map filename="maps/map.xml" layer="0"/>
 	<records>
-		talkedtotree talkedtogirl 
+		
 	</records>
 </party>
