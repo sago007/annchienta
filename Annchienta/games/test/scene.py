@@ -22,13 +22,6 @@ class SceneManager:
     mapManager = annchienta.getMapManager()
     engine = annchienta.getEngine()
 
-    ## \brief Default contructor.
-    #
-    #  You should never call this constructor. Use initSceneManager() instead.
-    def __init__( self ):
-        #self.defaultFont
-        pass
-
     def waitForKey( self ):
         self.videoManager.storeBuffer(7)
         done = False
@@ -111,7 +104,7 @@ class SceneManager:
         # Return the height elapsed.
         return y1-oy1
 
-    ## \brief Display come text.
+    ## \brief Display some text.
     #
     #  \param text The text to be displayed.
     def text( self, text ):

@@ -76,7 +76,8 @@ class MapManager:
     #  cameraFollow( object ) again.
     #
     #  \param object The StaticObject or Person the camera needs to peek at.
-    def cameraPeekAt( object ):
+    #  \param instantly If set to true, the camera will "jump" to the given target.
+    def cameraPeekAt( object, instantly=False ):
         pass
 
     ## \brief Sets the number of updates per second.
