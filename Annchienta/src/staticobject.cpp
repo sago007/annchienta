@@ -311,6 +311,18 @@ namespace Annchienta
         return false;
     }
 
+    const char *StaticObject::getAnimation() const
+    {
+        if( currentAnimation >= 0 )
+        {
+            return animations[currentAnimation].name;
+        }
+        else
+        {
+            return "Warning - request for unset animation.";
+        }
+    }
+
     /*void StaticObject::stopAnimation()
     {
         animationRunning = false;

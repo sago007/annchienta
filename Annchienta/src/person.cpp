@@ -178,6 +178,7 @@ namespace Annchienta
             position = oldPosition;
             mapPosition = position.to( MapPoint );
             collidingTiles = oldCollidingTiles;
+            this->setStandAnimation();
             return false;
         }
 

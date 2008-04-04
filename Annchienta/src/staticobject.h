@@ -85,6 +85,7 @@ namespace Annchienta
             const char *getXmlFile() const;
 
             virtual bool setAnimation( const char *animationName );
+            virtual const char *getAnimation() const;
             //virtual void stopAnimation();
             //virtual void startAnimation();
 

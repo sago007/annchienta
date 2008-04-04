@@ -35,8 +35,20 @@ partyManager.changeMap(&quot;maps/map.xml&quot;, annchienta.Point(annchienta.Til
 </tiles></layer>
 <onPostRender>
 import annchienta
+import party
+import scene
+
 videoManager = annchienta.getVideoManager()
-videoManager.setColor( 0, 0, 50, 150 )
-videoManager.drawRectangle( 0, 0, videoManager.getScreenWidth(), videoManager.getScreenHeight() )
+partyManager = party.getPartyManager()
+sceneManager = scene.getSceneManager()
+
+if not "stand" in partyManager.player.getAnimation():
+    videoManager.setColor( 0, 0, 50, 100 )
+    videoManager.drawRectangle( 0, 0, videoManager.getScreenWidth(), videoManager.getScreenHeight() )
+    videoManager.setColor( 255, 255, 255 )
+    videoManager.translate( videoManager.getScreenWidth()/2, videoManager.getScreenHeight()/2 )
+    videoManager.scale( 4, 4 )
+    videoManager.drawStringCentered( sceneManager.italicsFont, "Moving!", 0, -10 )
+
 </onPostRender>
 </map>
