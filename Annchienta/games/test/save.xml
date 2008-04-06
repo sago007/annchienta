@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <party>
-	<player isox="30" isoy="179" name="aelaan" xmlfile="maps/aelaan.xml"/>
-	<map filename="maps/map.xml" layer="0"/>
+	<player isox="63" isoy="90" name="aelaan" xmlfile="maps/aelaan.xml"/>
+	<map filename="maps/map2.xml" layer="0"/>
 	<records>
 		
 	</records>

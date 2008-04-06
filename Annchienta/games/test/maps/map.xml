@@ -24,6 +24,7 @@
         </if>
         <staticobject config="maps/tree.xml" isox="210" isoy="210" name="tree"/>
         <person config="maps/darkie.xml" isox="20" isoy="180" name="darkie"/>
+        <person config="maps/kator.xml" tilex="10" tiley="11" name="kator"/>
 
 <area tilex1="2" tilex2="5" tiley1="0" tiley2="1">
 import party

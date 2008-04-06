@@ -36,7 +36,6 @@ sceneManager = scene.getSceneManager()
 this = annchienta.getPassiveObject()
 player = annchienta.getActiveObject()
 sceneManager.initDialog( [player, this] )
-#sceneManager.rotateEffect()
 
 if party.getPartyManager().hasRecord("talkedToTree"):
     sceneManager.speak( this, "I generally don't talk to people who talked to that tree.\nShoot!" )
@@ -49,6 +48,7 @@ else:
     sceneManager.speak( player, "Wait, let me show you." )
     sceneManager.move( player, 120, 140 )
     sceneManager.speak( player, "There you go." )
+
 sceneManager.quitDialog()
 
 party.getPartyManager().addRecord("talkedtogirl")

@@ -89,6 +89,9 @@ class PartyManager:
         self.currentMap.addObject( self.player )
         self.mapManager.setCurrentMap( self.currentMap )
 
+        # Because loading a map can take some time:
+        self.mapManager.resync()
+
 def initPartyManager():
     global globalPartyManagerInstance
     globalPartyManagerInstance = PartyManager()

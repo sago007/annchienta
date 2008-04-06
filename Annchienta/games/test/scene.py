@@ -210,9 +210,8 @@ class SceneManager:
     def initDialog( self, objects ):
         for o in objects:
             o.freeze( True )
-        if len(objects)==2:
-            objects[0].lookAt( objects[1] )
-            objects[1].lookAt( objects[0] )
+        for i in range(len(objects)):
+            objects[i].lookAt( objects[(i+1)%len(objects)] )
         self.objectsInDialog = objects
 
     ## \brief Ends a dialog.
