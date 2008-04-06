@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<sprite image="maps/darkie.png" mask="maps/mask.png">
+<sprite image="sprites/darkie.png" mask="masks/mask.png">
     
     
     <frame number="1" x1="0" y1="0" x2="31" y2="71">
@@ -53,21 +53,6 @@ sceneManager.quitDialog()
 
 party.getPartyManager().addRecord("talkedtogirl")
 
-
-audioManager = annchienta.getAudioManager()
-videoManager = annchienta.getVideoManager()
-sound = annchienta.Sound("maps/noise.ogg")
-audioManager.playSound( sound )
-engine = annchienta.getEngine()
-start = engine.getTicks()
-while engine.getTicks()&lt;start+1000:
-    videoManager.begin()
-    r = random.randint(0,255)
-    videoManager.setColor(r,r,r)
-    videoManager.drawRectangle(0,0,videoManager.getScreenWidth(),videoManager.getScreenHeight())
-    videoManager.end()
-annchienta.getMapManager().resync()
-sound = 0
 </oninteract>
 
 </sprite>

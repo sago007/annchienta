@@ -1,3 +1,9 @@
+import sys
+
+# Add the scripts directory to the path so we can
+# import modules from it.
+sys.path.append("scripts")
+
 import annchienta
 import scene
 import party
@@ -11,7 +17,7 @@ mapMgr.setTileHeight(32)
 mapMgr.setUpdatesPerSecond(60)
 mapMgr.setMaxAscentHeight(32)
 mapMgr.setMaxDescentHeight(32)
-mapMgr.setOnUpdateScript("onupdate.py")
+mapMgr.setOnUpdateScript("scripts/onupdate.py")
 
 inputMgr = annchienta.getInputManager()
 inputMgr.setInteractKey( annchienta.SDLK_SPACE )
@@ -26,6 +32,6 @@ for i in range(9):
 
 party.initPartyManager()
 partyManager = party.getPartyManager()
-partyManager.load("save.xml")
+partyManager.load("saves/new.xml")
 
 mapMgr.run()

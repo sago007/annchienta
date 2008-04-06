@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<party>
+	<player isox="63" isoy="90" name="aelaan" xmlfile="locations/common/aelaan.xml"/>
+	<map filename="locations/tetia/map.xml" layer="0"/>
+	<records>
+		
+	</records>
+</party>

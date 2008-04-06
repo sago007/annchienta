@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<map height="14" tileheight="32" tileset="tileset" tilewidth="64" width="14">
+<map height="14" tileheight="32" tileset="tiles/tetia" tilewidth="64" width="14">
 
     <layer z="0">
         <tiles>117 2 117 2 117 2 117 2 0 0    117 2 117 2 117 2 117 2 0 2    0 4 0 4 0 5 0 4 0 0    0 4 0 5 0 4 0 4 0 0    0 4 0 4 0 2 0 4 0 0    133 2 133 2 133 2 133 2 0 0    133 2 133 2 133 2 133 2 0 0    133 2 133 2 133 2 133 2 0 0    133 2 133 2 133 2 133 2 0 0    133 2 133 2 133 2 133 2 16 2    133 2 133 2 133 2 133 2 16 2    16 4 16 4 16 4 16 4 0 1    0 4 0 4 0 4 0 4 0 0    0 4 0 4 0 4 0 4 0 0    
@@ -19,19 +19,19 @@
 </tiles>
         <if code="" cond="4>3">
             <if code="" cond="5>-1">
-                <staticobject config="maps/candle.xml" isox="30" isoy="160" name="candle"/>
+                <staticobject config="locations/tetia/candle.xml" isox="30" isoy="160" name="candle"/>
             </if>
         </if>
-        <staticobject config="maps/tree.xml" isox="210" isoy="210" name="tree"/>
-        <person config="maps/darkie.xml" isox="20" isoy="180" name="darkie"/>
-        <person config="maps/kator.xml" tilex="10" tiley="11" name="kator"/>
+        <staticobject config="locations/tetia/tree.xml" isox="210" isoy="210" name="tree"/>
+        <person config="locations/tetia/darkie.xml" isox="20" isoy="180" name="darkie"/>
+        <person config="locations/tetia/kator.xml" tilex="10" tiley="11" name="kator"/>
 
 <area tilex1="2" tilex2="5" tiley1="0" tiley2="1">
 import party
 
 # Obtain some references
 partyManager = party.getPartyManager()
-partyManager.changeMap(&quot;maps/map2.xml&quot;)
+partyManager.changeMap(&quot;locations/tetia/map2.xml&quot;)
 </area>
 
 <area tilex1="11" tilex2="12" tiley1="1" tiley2="2">
@@ -114,6 +114,6 @@ mapManager.renderFrame()
 
 sceneManager.fadeIn()
 </area>
-        <staticobject config="maps/candle.xml" tilex="8" tiley="12" name="candle"/>
+<staticobject config="locations/tetia/candle.xml" tilex="8" tiley="12" name="candle"/>
 </layer>
 </map>

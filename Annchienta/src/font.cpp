@@ -37,7 +37,7 @@ namespace Annchienta
          */
         textures = new GLuint[NUM_CHARACTERS];
         height = size;
-        lineHeight = (int)(1.4f*(float)size);
+        lineHeight = (int)(1.2f*(float)size);
         advance = new int[NUM_CHARACTERS];
 
         /* Allocate memory for our font structure.

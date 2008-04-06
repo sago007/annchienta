@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<sprite image="maps/tree.png" mask="maps/treemask.png">
+<sprite image="sprites/tree.png" mask="masks/treemask.png">
     
     <frame number="1" x1="0" y1="0" x2="120" y2="149">
     
