@@ -33,8 +33,8 @@ class Menu(MenuItem):
     def setOptions( self, options ):
         self.options = options
         names = map( lambda o: o.name, options ) + [self.name]
-        longest = max( map( lambda n: self.sceneManager.defaultFont.getStringWidth(n), names ) )
-        self.width = longest + 5*self.sceneManager.margin
+        longest = max( map( lambda n: self.sceneManager.defaultFont.getStringWidth(n.capitalize()), names ) )
+        self.width = longest + 2*self.sceneManager.margin
         self.height = len(options)*self.sceneManager.defaultFont.getLineHeight() + self.sceneManager.italicsFont.getLineHeight() + 2*self.sceneManager.margin
 
     def top( self ):
@@ -92,6 +92,7 @@ class Menu(MenuItem):
 
         self.mapManager.resync()
 
+        self.videoManager.setColor()
         self.videoManager.restoreBuffer(6)
 
         if canceled:
@@ -112,7 +113,7 @@ class Menu(MenuItem):
 
         self.videoManager.pushMatrix()
 
-        self.videoManager.setColor( 255, 255, 255 )
+        self.sceneManager.defaultColor()
 
         # Render tooltip
         if not self.selectedItem.toolTip is None:
@@ -127,17 +128,16 @@ class Menu(MenuItem):
         self.videoManager.translate( self.x, self.y )
         self.sceneManager.drawBox( 0, 0, self.width, self.height )
 
-        self.videoManager.setColor( 230, 230, 230 )
-
         self.videoManager.drawStringCentered( self.sceneManager.italicsFont, self.name.capitalize(), self.width/2, self.sceneManager.margin )
 
         self.videoManager.translate( self.sceneManager.margin, self.sceneManager.margin+ self.sceneManager.italicsFont.getLineHeight() )
-        self.videoManager.setColor( 255, 255, 255 )
 
         for o in self.options:
-            self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), self.sceneManager.margin*2, 0 )
             if o is self.selectedItem:
-                self.videoManager.drawTriangle( 0, 0, 0, self.sceneManager.defaultFont.getHeight(), self.sceneManager.margin, self.sceneManager.defaultFont.getHeight()/2 )
+                self.sceneManager.activeColor()
+            else:
+                self.sceneManager.inactiveColor()
+            self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), 0, 0 )
             self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
 
         self.videoManager.popMatrix()

@@ -47,7 +47,7 @@ class SceneManager:
         self.videoManager.setColor(255,255,0)
 
     def inactiveColor( self ):
-        self.videoManager.setColor(200,200,200)
+        self.videoManager.setColor(170,170,170)
 
     ## \brief Draw a box.
     #
