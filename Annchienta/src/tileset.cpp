@@ -86,12 +86,18 @@ namespace Annchienta
 
     Surface *TileSet::getSurface( int tileNumber ) const
     {
-        return surfaces[ tileNumber ];
+        if( tileNumber>=0 && tileNumber<numberOfSurfaces )
+            return surfaces[ tileNumber ];
+        else
+            printf( "Warning - tile %d does not exist in tileset %s.", tileNumber, directory );
     }
 
     Surface *TileSet::getSideSurface( int tileNumber ) const
     {
-        return sideSurfaces[ tileNumber ];
+        if( tileNumber>=0 && tileNumber<numberOfSideSurfaces )
+            return sideSurfaces[ tileNumber ];
+        else
+            printf( "Warning - side tile %d does not exist in tileset %s.", tileNumber, directory );
     }
 
     Mask *TileSet::getMask() const

@@ -173,7 +173,10 @@ namespace Annchienta
     }
 
 
-    Tile::Tile( TileSet *ts, Point p0, int s0, Point p1, int s1, Point p2, int s2, Point p3, int s3, int sso, int side ): list(0), tileSet(ts), sideSurfaceOffset(sso), nullTile(false), needsRecompiling(true)
+    Tile::Tile( TileSet *ts, Point p0, int s0, Point p1, int s1, Point p2, int s2,
+                Point p3, int s3, int sso, int side ): list(0), tileSet(ts),
+                sideSurfaceOffset(sso), nullTile(false), needsRecompiling(true),
+                obstruction(DefaultObstruction)
     {
         points[0] = p0;
         surfaceNumbers[0] = s0;
@@ -319,4 +322,15 @@ namespace Annchienta
     {
         return sideSurfaceOffset;
     }
+
+    void Tile::setObstructionType( ObstructionType o )
+    {
+        obstruction = o;
+    }
+
+    ObstructionType Tile::getObstructionType() const
+    {
+        return obstruction;
+    }
+
 };

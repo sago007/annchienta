@@ -31,12 +31,15 @@ namespace Annchienta
     {
         Layer *layer = 0;
 
+        if( !isValidFile(_filename) )
+            printf( "Error - %s is not a valid file.\n", _filename );
+
         IrrXMLReader *xml = createIrrXMLReader( _filename );
 
         strcpy( filename, _filename );
 
         if( !xml )
-            printf("Could not open given level file %s\n", _filename );
+            printf( "Error - could not open given map file %s as xml\n.", _filename );
 
         Engine *engine = getEngine();
 
@@ -106,6 +109,28 @@ namespace Annchienta
                         }
 
                         layer->setTiles( tiles );
+                    }
+                    if( !strcmpCaseInsensitive("obstruction", xml->getNodeName()) )
+                    {
+                        xml->read();
+                        if( layer->hasTiles() )
+                        {
+                            std::stringstream data( xml->getNodeData() );
+                            for( int y=0; y<height; y++ )
+                            {
+                                for( int x=0; x<width; x++ )
+                                {
+                                    int obstruction;
+                                    data >> obstruction;
+                                    layer->getTile(x,y)->setObstructionType( (ObstructionType) obstruction );
+                                }
+                            }
+                        }
+                        else
+                        {
+                            printf("Warning - obstruction defined before tile data in %s. Ignoring.\n", filename);
+                        }
+                        xml->read();
                     }
                     if( !strcmpCaseInsensitive("staticobject", xml->getNodeName() ) )
                     {

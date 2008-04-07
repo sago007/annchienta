@@ -151,11 +151,12 @@ namespace Annchienta
         if( possible && (oldPosition.z - getMapManager()->getMaxDescentHeight() > position.z ) )
             possible = false;
 
-        /* Reject if the person steps on a nulltile.
+        /* Reject if the person steps on a nulltile, or if that
+         * tile is fully obstructed.
          */
         for( std::list<Tile*>::iterator i = collidingTiles.begin(); possible && i!=collidingTiles.end(); i++ )
         {
-            if( (*i)->isNullTile() )
+            if( (*i)->isNullTile() || ((*i)->getObstructionType() == FullObstruction) )
                 possible = false;
         }
 

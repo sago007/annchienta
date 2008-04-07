@@ -54,6 +54,7 @@ namespace Annchienta
                 ~Layer();
 
                 void setTiles( Tile **tiles=0 );
+                bool hasTiles() const;
             #endif
 
             void setOpacity( int opacity=0xff );

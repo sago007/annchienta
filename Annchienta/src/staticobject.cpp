@@ -158,16 +158,16 @@ namespace Annchienta
         position.z = 0;
         for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
         {
-            //if( tileStandingOn )
-            //{
-            for( int p=0; p<4; p++ )
+            if( (*i)->getObstructionType() != NoObstruction )
             {
-                if( (*i)->getZ(p) > position.z )
+                for( int p=0; p<4; p++ )
                 {
-                    position.z = (*i)->getZ(p);
+                    if( (*i)->getZ(p) > position.z )
+                    {
+                        position.z = (*i)->getZ(p);
+                    }
                 }
             }
-            //}
         }
 
         mapPosition = position.to( MapPoint );

@@ -49,6 +49,11 @@ namespace Annchienta
             entities[i] = tiles[i];
     }
 
+    bool Layer::hasTiles() const
+    {
+        return (bool) tiles;
+    }
+
     void Layer::setOpacity( int o )
     {
         opacity = o;

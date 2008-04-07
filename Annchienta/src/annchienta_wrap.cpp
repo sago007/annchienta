@@ -9912,6 +9912,58 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tile_setObstructionType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  Annchienta::ObstructionType arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tile_setObstructionType",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_setObstructionType" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tile_setObstructionType" "', argument " "2"" of type '" "Annchienta::ObstructionType""'");
+  } 
+  arg2 = static_cast< Annchienta::ObstructionType >(val2);
+  (arg1)->setObstructionType(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tile_getObstructionType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  Annchienta::ObstructionType result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_getObstructionType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_getObstructionType" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  result = (Annchienta::ObstructionType)((Annchienta::Tile const *)arg1)->getObstructionType();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Tile_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -11818,6 +11870,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tile_getSurface", _wrap_Tile_getSurface, METH_VARARGS, NULL},
 	 { (char *)"Tile_getSideSurface", _wrap_Tile_getSideSurface, METH_VARARGS, NULL},
 	 { (char *)"Tile_getSideSurfaceOffset", _wrap_Tile_getSideSurfaceOffset, METH_VARARGS, NULL},
+	 { (char *)"Tile_setObstructionType", _wrap_Tile_setObstructionType, METH_VARARGS, NULL},
+	 { (char *)"Tile_getObstructionType", _wrap_Tile_getObstructionType, METH_VARARGS, NULL},
 	 { (char *)"Tile_swigregister", Tile_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_TileSet", _wrap_new_TileSet, METH_VARARGS, NULL},
 	 { (char *)"delete_TileSet", _wrap_delete_TileSet, METH_VARARGS, NULL},
@@ -12511,6 +12565,9 @@ SWIGEXPORT void SWIG_init(void) {
   SWIG_Python_SetConstant(d, "TileEntity",SWIG_From_int(static_cast< int >(Annchienta::TileEntity)));
   SWIG_Python_SetConstant(d, "StaticObjectEntity",SWIG_From_int(static_cast< int >(Annchienta::StaticObjectEntity)));
   SWIG_Python_SetConstant(d, "PersonEntity",SWIG_From_int(static_cast< int >(Annchienta::PersonEntity)));
+  SWIG_Python_SetConstant(d, "DefaultObstruction",SWIG_From_int(static_cast< int >(Annchienta::DefaultObstruction)));
+  SWIG_Python_SetConstant(d, "NoObstruction",SWIG_From_int(static_cast< int >(Annchienta::NoObstruction)));
+  SWIG_Python_SetConstant(d, "FullObstruction",SWIG_From_int(static_cast< int >(Annchienta::FullObstruction)));
   SWIG_Python_SetConstant(d, "SDLK_UNKNOWN",SWIG_From_int(static_cast< int >(SDLK_UNKNOWN)));
   SWIG_Python_SetConstant(d, "SDLK_FIRST",SWIG_From_int(static_cast< int >(SDLK_FIRST)));
   SWIG_Python_SetConstant(d, "SDLK_BACKSPACE",SWIG_From_int(static_cast< int >(SDLK_BACKSPACE)));

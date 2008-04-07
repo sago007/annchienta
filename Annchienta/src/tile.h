@@ -12,6 +12,13 @@
 namespace Annchienta
 {
 
+    enum ObstructionType
+    {
+        DefaultObstruction=0,
+        NoObstruction=1,
+        FullObstruction=2
+    };
+
     class Surface;
     class TileSet;
 
@@ -34,6 +41,8 @@ namespace Annchienta
             bool needsRecompiling;
 
             void makeList();
+
+            ObstructionType obstruction;
 
         public:
             Tile( TileSet*, Point, int, Point, int, Point, int, Point, int, int ssOffset=0, int ss=0 );
@@ -64,6 +73,9 @@ namespace Annchienta
             int getSurface( int i ) const;
             int getSideSurface() const;
             int getSideSurfaceOffset() const;
+
+            void setObstructionType( ObstructionType o );
+            ObstructionType getObstructionType() const;
 
     };
 };
