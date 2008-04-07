@@ -93,3 +93,36 @@ class Tile(Entity):
     def getSideSurfaceOffset():
         pass
 
+    ## \brief Sets the ObstructionType.
+    #
+    #  There are three possibilities:
+    #
+    #  \li DefaultObstruction
+    #
+    #  The default value. Persons will be able to step on this Tile,
+    #  depending on the height and the values set by
+    #  MapManager.setMaxAscentHeight() and
+    #  MapManager.setMaxDescentHeight().
+    #
+    #  \li NoObstruction
+    #
+    #  All Persons will always be able to step on this Tile,
+    #  regardless of it's height.
+    #
+    #  \li FullObstruction
+    #
+    #  Nobody will ever be able to step on this Tile,
+    #  regardless of it's height.
+    #
+    #  \param obstructionType The new ObstructionType for this tile.
+    def setObstructionType( obstructionType ):
+        pass
+
+    ## \brief Gets the ObstructionType.
+    #
+    #  See setObstructionType().
+    #
+    #  \return The current ObstructionType.
+    def getObstructionType():
+        pass
+

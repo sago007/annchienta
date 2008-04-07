@@ -968,7 +968,8 @@ class MapManager:
     #  cameraFollow( object ) again.
     #
     #  \param object The StaticObject or Person the camera needs to peek at.
-    def cameraPeekAt( object ):
+    #  \param instantly If set to true, the camera will "jump" to the given target.
+    def cameraPeekAt( object, instantly=False ):
         pass
 
     ## \brief Sets the number of updates per second.
@@ -1391,6 +1392,39 @@ class Tile(Entity):
     #
     #  \return The Side Surface offset. See setSideSurfaceOffset().
     def getSideSurfaceOffset():
+        pass
+
+    ## \brief Sets the ObstructionType.
+    #
+    #  There are three possibilities:
+    #
+    #  \li DefaultObstruction
+    #
+    #  The default value. Persons will be able to step on this Tile,
+    #  depending on the height and the values set by
+    #  MapManager.setMaxAscentHeight() and
+    #  MapManager.setMaxDescentHeight().
+    #
+    #  \li NoObstruction
+    #
+    #  All Persons will always be able to step on this Tile,
+    #  regardless of it's height.
+    #
+    #  \li FullObstruction
+    #
+    #  Nobody will ever be able to step on this Tile,
+    #  regardless of it's height.
+    #
+    #  \param obstructionType The new ObstructionType for this tile.
+    def setObstructionType( obstructionType ):
+        pass
+
+    ## \brief Gets the ObstructionType.
+    #
+    #  See setObstructionType().
+    #
+    #  \return The current ObstructionType.
+    def getObstructionType():
         pass
 
 
