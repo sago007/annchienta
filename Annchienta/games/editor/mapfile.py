@@ -84,3 +84,29 @@ class MapFile:
 
             dataNode = self.document.createTextNode( data )
             tileElements[0].appendChild( dataNode )
+
+            # collect obstruction values
+            obstructions = []
+            for y in range(layer.getHeight()):
+                for x in range(layer.getWidth()):
+                    obstructions.append( layer.getTile(x,y).getObstructionType() )
+
+            # write only if there are non-default values.
+            if len( filter( lambda o: o!=annchienta.DefaultObstruction, obstructions ) ):
+                obstructionElements = layerElements[l].getElementsByTagName("obstruction")
+                if not len(obstructionElements):
+                    obstructionElements = [ self.document.createElement("obstruction") ]
+                    layerElements[l].appendChild( tileElements[0] )
+
+                # remove all children
+                while obstructionElements[0].hasChildNodes():
+                    obstructionElements[0].removeChild( obstructionElements[0].lastChild )
+
+                data = ""
+
+                for i in obstructions:
+                    data += str(i) + " "
+
+                dataNode = self.document.createTextNode( data )
+                obstructionElements[0].appendChild( dataNode )
+

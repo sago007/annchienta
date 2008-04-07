@@ -1,5 +1,4 @@
-<?xml version="1.0" ?>
-<map height="14" tileheight="32" tileset="tiles/tetia" tilewidth="64" width="14">
+<?xml version="1.0" ?><map height="14" tileheight="32" tileset="tiles/tetia" tilewidth="64" width="14">
 
     <layer z="0">
         <tiles>117 2 117 2 117 2 117 2 0 0    117 2 117 2 117 2 117 2 0 2    0 4 0 4 0 5 0 4 0 0    0 4 0 5 0 4 0 4 0 0    0 4 0 4 0 2 0 4 0 0    133 2 133 2 133 2 133 2 0 0    133 2 133 2 133 2 133 2 0 0    133 2 133 2 133 2 133 2 0 0    133 2 133 2 133 2 133 2 0 0    133 2 133 2 133 2 133 2 16 2    133 2 133 2 133 2 133 2 16 2    16 4 16 4 16 4 16 4 0 1    0 4 0 4 0 4 0 4 0 0    0 4 0 4 0 4 0 4 0 0    
@@ -17,31 +16,16 @@
 16 4 16 4 16 4 16 4 0 0    16 4 16 4 16 4 16 5 0 0    16 5 16 4 16 4 16 5 0 0    16 5 16 4 16 4 16 4 0 0    16 5 16 5 16 5 16 5 0 0    16 4 16 4 16 4 16 5 0 0    16 5 16 4 16 4 16 5 0 0    133 5 133 5 133 5 133 5 16 5    133 4 133 4 133 4 133 4 16 5    16 4 16 4 16 4 16 4 0 1    0 1 0 1 0 3 0 1 0 0    0 1 0 3 0 1 0 1 0 0    0 1 0 1 0 3 0 1 0 0    0 1 0 3 0 1 0 1 0 0    
 16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 5 16 4 0 1    16 4 16 4 16 4 16 4 0 1    0 1 0 1 0 1 0 3 0 0    0 3 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 3 0 0    0 3 0 1 0 1 0 1 0 0    
 </tiles>
-        <if code="" cond="4>3">
-            <if code="" cond="5>-1">
+        <if code="" cond="4&gt;3">
+            <if code="" cond="5&gt;-1">
                 <staticobject config="locations/tetia/candle.xml" isox="30" isoy="160" name="candle"/>
             </if>
         </if>
         <staticobject config="locations/tetia/tree.xml" isox="210" isoy="210" name="tree"/>
         <person config="locations/tetia/darkie.xml" isox="20" isoy="180" name="darkie"/>
-        <person config="locations/tetia/kator.xml" tilex="10" tiley="11" name="kator"/>
+        <person config="locations/tetia/kator.xml" name="kator" tilex="10" tiley="11"/>
 
-<obstruction>
-1 0 0 0 0 0 0 0 0 0 0 0 0 0
-1 0 0 0 0 0 0 0 0 0 0 0 0 0
-1 0 0 0 0 0 0 0 0 0 0 0 0 0
-1 0 0 0 0 0 0 0 0 0 0 0 0 0
-1 0 0 0 0 0 0 0 0 0 0 0 0 0
-1 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 2 2 2
-0 0 0 0 0 0 0 0 0 0 0 2 2 2
-0 0 0 0 0 0 0 0 0 0 0 2 2 2
-</obstruction>
+<obstruction>1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 2 1 0 0 0 0 0 0 0 0 0 0 2 2 2 1 0 0 0 0 0 0 0 0 0 2 2 0 2 0 0 0 0 0 0 0 0 0 0 2 2 0 2 0 0 0 0 0 0 0 0 0 0 2 2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 2 2 2 0 0 0 0 0 0 0 0 0 0 0 2 2 2 0 0 0 0 0 0 0 0 0 0 0 2 2 2 </obstruction>
         
 <area tilex1="2" tilex2="5" tiley1="0" tiley2="1">
 import party
@@ -131,6 +115,6 @@ mapManager.renderFrame()
 
 sceneManager.fadeIn()
 </area>
-<staticobject config="locations/tetia/candle.xml" tilex="8" tiley="12" name="candle"/>
+<staticobject config="locations/tetia/candle.xml" name="candle" tilex="8" tiley="12"/>
 </layer>
 </map>

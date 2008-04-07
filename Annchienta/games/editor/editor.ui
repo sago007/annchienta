@@ -375,54 +375,6 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QGroupBox" name="zGroupBox" >
-     <property name="geometry" >
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>251</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="title" >
-      <string>Height of Tiles</string>
-     </property>
-     <property name="checkable" >
-      <bool>true</bool>
-     </property>
-     <widget class="QSpinBox" name="tileZBox" >
-      <property name="geometry" >
-       <rect>
-        <x>20</x>
-        <y>50</y>
-        <width>62</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="minimum" >
-       <number>-200</number>
-      </property>
-      <property name="maximum" >
-       <number>200</number>
-      </property>
-      <property name="value" >
-       <number>8</number>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_4" >
-      <property name="geometry" >
-       <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>62</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text" >
-       <string>Raise by:</string>
-      </property>
-     </widget>
-    </widget>
     <widget class="QGroupBox" name="tileGroupBox" >
      <property name="enabled" >
       <bool>true</bool>
@@ -430,9 +382,9 @@
      <property name="geometry" >
       <rect>
        <x>10</x>
-       <y>140</y>
+       <y>30</y>
        <width>251</width>
-       <height>91</height>
+       <height>61</height>
       </rect>
      </property>
      <property name="title" >
@@ -441,11 +393,14 @@
      <property name="alignment" >
       <set>Qt::AlignLeading</set>
      </property>
+     <property name="flat" >
+      <bool>false</bool>
+     </property>
      <property name="checkable" >
       <bool>true</bool>
      </property>
      <property name="checked" >
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <widget class="QPushButton" name="showTileSurfacesButton" >
       <property name="geometry" >
@@ -468,7 +423,7 @@
      <property name="geometry" >
       <rect>
        <x>10</x>
-       <y>240</y>
+       <y>180</y>
        <width>251</width>
        <height>91</height>
       </rect>
@@ -516,6 +471,107 @@
       </property>
       <property name="text" >
        <string>Z Offset</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="obstructionGroupBox" >
+     <property name="enabled" >
+      <bool>true</bool>
+     </property>
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>270</y>
+       <width>251</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title" >
+      <string>Obstruction</string>
+     </property>
+     <property name="checkable" >
+      <bool>true</bool>
+     </property>
+     <property name="checked" >
+      <bool>false</bool>
+     </property>
+     <widget class="QComboBox" name="obstructionTypeBox" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="insertPolicy" >
+       <enum>QComboBox::NoInsert</enum>
+      </property>
+      <item>
+       <property name="text" >
+        <string>DefaultObstruction</string>
+       </property>
+      </item>
+      <item>
+       <property name="text" >
+        <string>NoObstruction</string>
+       </property>
+      </item>
+      <item>
+       <property name="text" >
+        <string>FullObstruction</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="zGroupBox" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>251</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="title" >
+      <string>Height of Tiles</string>
+     </property>
+     <property name="checkable" >
+      <bool>true</bool>
+     </property>
+     <property name="checked" >
+      <bool>false</bool>
+     </property>
+     <widget class="QSpinBox" name="tileZBox" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>62</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="minimum" >
+       <number>-200</number>
+      </property>
+      <property name="maximum" >
+       <number>200</number>
+      </property>
+      <property name="value" >
+       <number>8</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>62</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Raise by:</string>
       </property>
      </widget>
     </widget>

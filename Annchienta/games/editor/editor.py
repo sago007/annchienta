@@ -174,6 +174,22 @@ class Editor(QWidget):
             point2 = layer.getTile( x-1, layer.getHeight()-1 ).getPointPointer(2)
             self.videoManager.drawLine( point1.x, point1.y, point2.x, point2.y )
 
+        if bool(self.obstructionGroupBox.isChecked()):
+            for y in range( 0, layer.getHeight() ):
+                for x in range( 0, layer.getWidth() ):
+                    tile = layer.getTile( x, y )
+                    if tile.getObstructionType() == annchienta.DefaultObstruction:
+                        self.videoManager.setColor( 0, 0, 0, 0 )
+                    if tile.getObstructionType() == annchienta.NoObstruction:
+                        self.videoManager.setColor( 0, 255, 0, 100 )
+                    if tile.getObstructionType() == annchienta.FullObstruction:
+                        self.videoManager.setColor( 255, 0, 0, 100 )
+
+                    p = map( lambda i: tile.getPointPointer(i).to( annchienta.MapPoint ), range(4) )
+                    self.videoManager.drawQuad( p[0].x, p[0].y, p[1].x, p[1].y, p[2].x, p[2].y, p[3].x, p[3].y )
+
+        self.videoManager.setColor()
+
     def changeTileWidth(self):
 
         self.tileHeightBox.setValue( int(self.tileWidthBox.value())/2 )
@@ -246,6 +262,10 @@ class Editor(QWidget):
             for at in self.selected.tiles:
                 at.tile.setSideSurface( self.tileset.selectedTileSide )
                 at.tile.setSideSurfaceOffset( int(self.tileSideOffsetBox.value()) )
+
+        if bool(self.obstructionGroupBox.isChecked()):
+            for at in self.selected.tiles:
+                at.tile.setObstructionType( int(self.obstructionTypeBox.currentIndex()) )
 
         #if needsRecompiling:
         #    for at in self.selected.tiles:
