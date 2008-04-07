@@ -423,7 +423,7 @@
      <property name="geometry" >
       <rect>
        <x>10</x>
-       <y>180</y>
+       <y>170</y>
        <width>251</width>
        <height>91</height>
       </rect>
@@ -481,9 +481,9 @@
      <property name="geometry" >
       <rect>
        <x>10</x>
-       <y>270</y>
+       <y>260</y>
        <width>251</width>
-       <height>71</height>
+       <height>61</height>
       </rect>
      </property>
      <property name="title" >
@@ -605,8 +605,8 @@
      <property name="html" >
       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;">
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>&lt;/body>&lt;/html></string>
+&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;">&lt;/p>&lt;/body>&lt;/html></string>
      </property>
      <property name="acceptRichText" >
       <bool>false</bool>
