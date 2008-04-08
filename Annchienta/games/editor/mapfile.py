@@ -110,3 +110,9 @@ class MapFile:
                 dataNode = self.document.createTextNode( data )
                 obstructionElements[0].appendChild( dataNode )
 
+            # remove the obstruction element (if there is one)
+            else:
+                obstructionElements = layerElements[l].getElementsByTagName("obstruction")
+                for o in obstructionElements:
+                    layerElements[l].removeChild(o)
+

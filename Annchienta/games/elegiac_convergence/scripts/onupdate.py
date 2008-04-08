@@ -26,7 +26,7 @@ if inputManager.keyTicked( annchienta.SDLK_RETURN ):
             import party
             import scene
             partyManager = party.getPartyManager()
-            partyManager.save()
+            partyManager.save("saves/save.xml")
             sceneManager = scene.getSceneManager()
             sceneManager.text("Game saved!")
 

@@ -1,34 +1,5 @@
 import annchienta
-
-class Combatant:
-
-    videoManager = annchienta.getVideoManager()
-
-    name = "Name"
-    health = 6
-    delay = 6
-    hostile = False
-
-    def __init__( self, name ):
-        self.name = name
-
-    def draw( self ):
-        x = 40 if self.hostile else self.videoManager.getScreenWidth()-40-self.sprite.getWidth()
-        self.videoManager.drawSurface( self.sprite, x, 40, self.sx1, self.sy1, self.sx2, self.sy2 )
-
-    def setSprite( self, sprite, x1, y1, x2, y2 ):
-        self.sprite = sprite
-        self.sx1, self.sy1 = x1, y1
-        self.sx2, self.sy2 = x2, y2
-
-    def takeTurn( self ):
-        self.delay += 6
-
-class Ally(Combatant):
-    pass
-
-class Enemy(Combatant):
-    pass
+import combatant
 
 class Battle:
 
@@ -75,7 +46,7 @@ class Battle:
             allies = filter( lambda c: not c.hostile, self.activeCombatants )
 
             # Check for game over or victory
-            if not len(enemies):
+            if not len(enemies) or inputManager.keyDown(annchienta.SDLK_ESCAPE):
                 self.onWin()
                 return
             if not len(allies):

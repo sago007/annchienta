@@ -25,7 +25,7 @@
         <person config="locations/tetia/darkie.xml" isox="20" isoy="180" name="darkie"/>
         <person config="locations/tetia/kator.xml" name="kator" tilex="10" tiley="11"/>
 
-<obstruction>1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 2 1 0 0 0 0 0 0 0 0 0 0 2 2 2 1 0 0 0 0 0 0 0 0 0 2 2 0 2 0 0 0 0 0 0 0 0 0 0 2 2 0 2 0 0 0 0 0 0 0 0 0 0 2 2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 2 2 2 0 0 0 0 0 0 0 0 0 0 0 2 2 2 0 0 0 0 0 0 0 0 0 0 0 2 2 2 </obstruction>
+
         
 <area tilex1="2" tilex2="5" tiley1="0" tiley2="1">
 import party
@@ -117,21 +117,4 @@ sceneManager.fadeIn()
 </area>
 <staticobject config="locations/tetia/candle.xml" name="candle" tilex="8" tiley="12"/>
 </layer>
-<onLoad>
-from battle import *
-import annchienta
-
-s = annchienta.Surface("sprites/kator.png")
-
-c1 = Combatant( "aelaan" )
-c1.hostile = False
-c1.setSprite( s, 0, 0, 37, 75 )
-c2 = Combatant( "wolf" )
-c2.hostile = True
-c2.setSprite( s, 0, 75, 37, 150 )
-
-b = Battle( [c1, c2] )
-b.run()
-
-</onLoad>
 </map>
