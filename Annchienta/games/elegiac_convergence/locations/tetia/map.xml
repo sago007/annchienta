@@ -16,8 +16,8 @@
 16 4 16 4 16 4 16 4 0 0    16 4 16 4 16 4 16 5 0 0    16 5 16 4 16 4 16 5 0 0    16 5 16 4 16 4 16 4 0 0    16 5 16 5 16 5 16 5 0 0    16 4 16 4 16 4 16 5 0 0    16 5 16 4 16 4 16 5 0 0    133 5 133 5 133 5 133 5 16 5    133 4 133 4 133 4 133 4 16 5    16 4 16 4 16 4 16 4 0 1    0 1 0 1 0 3 0 1 0 0    0 1 0 3 0 1 0 1 0 0    0 1 0 1 0 3 0 1 0 0    0 1 0 3 0 1 0 1 0 0    
 16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 4 16 4 0 1    16 4 16 4 16 5 16 4 0 1    16 4 16 4 16 4 16 4 0 1    0 1 0 1 0 1 0 3 0 0    0 3 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 3 0 0    0 3 0 1 0 1 0 1 0 0    
 </tiles>
-        <if code="" cond="4&gt;3">
-            <if code="" cond="5&gt;-1">
+        <if code="" cond="4==3">
+            <if code="" cond="5==-1">
                 <staticobject config="locations/tetia/candle.xml" isox="30" isoy="160" name="candle"/>
             </if>
         </if>
@@ -117,4 +117,21 @@ sceneManager.fadeIn()
 </area>
 <staticobject config="locations/tetia/candle.xml" name="candle" tilex="8" tiley="12"/>
 </layer>
+<onLoad>
+from battle import *
+import annchienta
+
+s = annchienta.Surface("sprites/kator.png")
+
+c1 = Combatant( "aelaan" )
+c1.hostile = False
+c1.setSprite( s, 0, 0, 37, 75 )
+c2 = Combatant( "wolf" )
+c2.hostile = True
+c2.setSprite( s, 0, 75, 37, 150 )
+
+b = Battle( [c1, c2] )
+b.run()
+
+</onLoad>
 </map>

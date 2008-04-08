@@ -70,6 +70,7 @@ class Editor(QWidget):
 
         # Select a directory and set working directory
         fileDialog = QFileDialog(self)
+        fileDialog.setDirectory(QString("../"))
         filename = fileDialog.getExistingDirectory(self)
         # Set lineEdit to match
         self.selectGameDirectoryDisplay.setText( filename )
