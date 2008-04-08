@@ -31,7 +31,7 @@ class PartyManager:
 
         # <TEAM>
         teamElement = self.document.getElementsByTagName("team")[0]
-        self.team = map( lambda e: combatant.Combatant(e), teamElement.getElementsByTagName("combatant") )
+        self.team = map( lambda e: combatant.Ally(e), teamElement.getElementsByTagName("combatant") )
 
         # <MAP>
         mapElement = self.document.getElementsByTagName("map")[0]

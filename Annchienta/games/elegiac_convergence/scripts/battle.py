@@ -1,10 +1,13 @@
+import xml.dom.minidom
 import annchienta
 import combatant
+import scene
 
 class Battle:
 
     videoManager = annchienta.getVideoManager()
     inputManager = annchienta.getInputManager()
+    sceneManager = scene.getSceneManager()
 
     combatants = activeCombatants = []
     background = None
@@ -20,7 +23,7 @@ class Battle:
         while self.running and self.inputManager.running():
 
             # For now
-            self.inputManager.update()
+            # self.inputManager.update()
 
             self.draw()
 
@@ -36,6 +39,8 @@ class Battle:
             actors = filter( lambda c: c.delay<=0, self.activeCombatants )
             actor = actors[0]
 
+            # Let that actor take a turn. This will increase
+            # it's delay as well.
             actor.takeTurn()
 
             # Update active combatants.
@@ -46,7 +51,7 @@ class Battle:
             allies = filter( lambda c: not c.hostile, self.activeCombatants )
 
             # Check for game over or victory
-            if not len(enemies) or inputManager.keyDown(annchienta.SDLK_ESCAPE):
+            if not len(enemies) or self.inputManager.keyDown(annchienta.SDLK_a):
                 self.onWin()
                 return
             if not len(allies):
@@ -65,9 +70,36 @@ class Battle:
     def onWin( self ):
         self.won = True
         self.running = False
-        print "You won!"
+        self.sceneManager.info( "You won!" )
 
     def onLose( self ):
         self.won = False
         self.running = False
-        print "You lost..."
+        self.sceneManager.info( "You lost..." )
+
+
+class BattleManager:
+
+    engine = annchienta.getEngine()
+
+    enemyElements = []
+
+    def loadEnemies( self, fname ):
+
+        self.document = xml.dom.minidom.parse( fname )
+        self.enemyElements = self.document.getElementsByTagName("combatant")
+
+    def createEnemy( self, name ):
+
+        candidates = filter( lambda e: str(e.getAttribute("name")).lower()==name.lower(), self.enemyElements )
+        if not len(candidates):
+            self.engine.write( "Error - could not find an enemy called "+str(name)+"." )
+        else:
+            return combatant.Enemy( candidates[0] )
+
+def initBattleManager():
+    global globalBattleManagerInstance
+    globalBattleManagerInstance = BattleManager()
+
+def getBattleManager():
+    return globalBattleManagerInstance

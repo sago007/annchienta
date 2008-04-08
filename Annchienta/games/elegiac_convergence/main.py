@@ -5,8 +5,6 @@ import sys
 sys.path.append("scripts")
 
 import annchienta
-import scene
-import party
 
 videoMgr = annchienta.getVideoManager()
 videoMgr.setVideoMode( 400, 300, "Annchienta", False )
@@ -22,6 +20,8 @@ mapMgr.setOnUpdateScript("scripts/onupdate.py")
 inputMgr = annchienta.getInputManager()
 inputMgr.setInteractKey( annchienta.SDLK_SPACE )
 
+import scene
+
 scene.initSceneManager()
 sceneMgr = scene.getSceneManager()
 sceneMgr.defaultFont = annchienta.Font("assets/regular.ttf", 14)
@@ -30,8 +30,16 @@ sceneMgr.italicsFont = annchienta.Font("assets/italics.ttf", 14)
 for i in range(9):
     sceneMgr.boxTextures.append( annchienta.Surface("assets/box"+str(i)+".png") )
 
+import party
+
 party.initPartyManager()
 partyManager = party.getPartyManager()
 partyManager.load("saves/new.xml")
+
+import battle
+
+battle.initBattleManager()
+battleManager = battle.getBattleManager()
+battleManager.loadEnemies("locations/common/enemies.xml")
 
 mapMgr.run()

@@ -8,4 +8,18 @@
     
     <animation name="stand" frames="1234" speed="10" />
     
+<onInteract>
+import battle
+import party
+
+battleManager = battle.getBattleManager()
+partyManager = party.getPartyManager()
+
+c = partyManager.team + [battleManager.createEnemy("dwarf")]
+
+b = battle.Battle( c )
+b.run()
+
+<onInteract>
+    
 </sprite>

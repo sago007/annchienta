@@ -6,7 +6,7 @@
 		
 	</records>
         <team>
-            <combatant name="Aelaan">
+            <combatant name="aelaan">
                 <sprite filename="sprites/aelaan.png" x1="0" y1="0" x2="37" y2="75"/>
                 <status strength="4" magic="1" health="4"/>
             </combatant>

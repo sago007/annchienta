@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<enemies>
+    <combatant name="dwarf">
+        <sprite filename="sprites/monster.png"/>
+        <status strength="4" magic="1" health="4"/>
+    </combatant>
+</enemies>

@@ -118,6 +118,7 @@ class SceneManager:
     #  \param text The text to be displayed.
     def text( self, text ):
 
+        text = str(text)
         scroll = 0
 
         self.inputManager.update()
@@ -151,6 +152,31 @@ class SceneManager:
 
         self.videoManager.restoreBuffer(7)
         self.mapManager.resync()
+
+
+    ## \brief Display some info.
+    #
+    #  \param text The text to be displayed.
+    def info( self, text ):
+
+        text = str(text)
+        self.inputManager.update()
+        self.videoManager.storeBuffer(7)
+
+        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
+
+            self.inputManager.update()
+
+            self.videoManager.begin()
+            self.videoManager.restoreBuffer(7)
+            self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, self.margin*3+self.defaultFont.getLineHeight() )
+            self.defaultColor()
+            self.videoManager.drawString( self.defaultFont, text, 2*self.margin, 2*self.margin )
+            self.videoManager.end()
+
+        self.videoManager.restoreBuffer(7)
+        self.mapManager.resync()
+
 
     ## \brief lets someone say something.
     #

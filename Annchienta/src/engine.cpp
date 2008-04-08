@@ -68,6 +68,7 @@ namespace Annchienta
     void Engine::write( const char *text ) const
     {
         printf( text );
+        printf( "\n" );
     }
 
     void Engine::setWindowTitle( const char *title ) const
