@@ -80,18 +80,26 @@ class Combatant:
 
     def draw( self ):
 
-        x = 40 if self.hostile else self.videoManager.getScreenWidth()-40-self.sprite.getWidth()
-
         if self.sx1 is None:
-            self.videoManager.drawSurface( self.sprite, x, 40 )
+            self.videoManager.drawSurface( self.sprite, self.x, self.y )
         else:
-            self.videoManager.drawSurface( self.sprite, x, 40, self.sx1, self.sy1, self.sx2, self.sy2 )
+            self.videoManager.drawSurface( self.sprite, self.x, self.y, self.sx1, self.sy1, self.sx2, self.sy2 )
 
     def setSprite( self, fname, x1=None, y1=None, x2=None, y2=None ):
         self.spriteFileName = fname
         self.sprite = annchienta.Surface( self.spriteFileName )
         self.sx1, self.sy1 = x1, y1
         self.sx2, self.sy2 = x2, y2
+
+    def getSize( self ):
+        if self.sx1 is None:
+            return self.sprite.getWidth(), self.sprite.getHeight()
+        else:
+            return (self.sx2-self.sx1), (self.sy2-self.sy1)
+
+    def setPosition( self, x, y ):
+        self.posX, self.posY = x, y
+        self.x, self.y = x, y
 
     def takeTurn( self ):
         self.delay += 6
@@ -108,7 +116,7 @@ class Ally(Combatant):
         pass
 
     def takeTurn( self ):
-        self.sceneManager.info( self.name.capitalize()+" fights! (delay: "+str(self.delay)+")" )
+        self.sceneManager.info( self.name.capitalize()+" fights! (delay: "+str(self.delay)+")", 500 )
         self.delay += 6
 
 class Enemy(Combatant):
@@ -119,5 +127,5 @@ class Enemy(Combatant):
         self.hostile = True
 
     def takeTurn( self ):
-        self.sceneManager.info( self.name.capitalize()+" acts! (delay: "+str(self.delay)+")" )
+        self.sceneManager.info( self.name.capitalize()+" acts! (delay: "+str(self.delay)+")", 500 )
         self.delay += 6

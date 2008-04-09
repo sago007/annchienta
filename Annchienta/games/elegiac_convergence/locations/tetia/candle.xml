@@ -15,7 +15,7 @@ import party
 battleManager = battle.getBattleManager()
 partyManager = party.getPartyManager()
 
-c = partyManager.team + [battleManager.createEnemy("dwarf")]
+c = partyManager.team + map( lambda i:battleManager.createEnemy("dwarf"), range(3) )
 
 b = battle.Battle( c )
 b.run()

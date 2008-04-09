@@ -18,6 +18,20 @@ class Battle:
         self.activeCombatants = self.combatants = combatants
         self.running = True
 
+        self.enemies = filter( lambda c: c.hostile, self.activeCombatants )
+        self.allies = filter( lambda c: not c.hostile, self.activeCombatants )
+
+        # Set positions for combatants
+        for i in range( len(self.allies) ):
+            a = self.allies[i]
+            w, h = a.getSize()
+            a.setPosition( self.videoManager.getScreenWidth()/2-50-i*20-w, 100+i*40-h )
+
+        for i in range( len(self.enemies) ):
+            e = self.enemies[i]
+            w, h = e.getSize()
+            e.setPosition( self.videoManager.getScreenWidth()/2+50+i*20, 100+i*40-h )
+
     def run( self ):
 
         while self.running and self.inputManager.running():
@@ -47,14 +61,14 @@ class Battle:
             self.activeCombatants = filter( lambda c: c.health>0, self.combatants )
 
             # Count enemies and allies.
-            enemies = filter( lambda c: c.hostile, self.activeCombatants )
-            allies = filter( lambda c: not c.hostile, self.activeCombatants )
+            self.enemies = filter( lambda c: c.hostile, self.activeCombatants )
+            self.allies = filter( lambda c: not c.hostile, self.activeCombatants )
 
             # Check for game over or victory
-            if not len(enemies) or self.inputManager.keyDown(annchienta.SDLK_a):
+            if not len(self.enemies) or self.inputManager.keyDown(annchienta.SDLK_a):
                 self.onWin()
                 return
-            if not len(allies):
+            if not len(self.allies):
                 self.onLose()
                 return
 

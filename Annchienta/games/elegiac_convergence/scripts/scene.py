@@ -17,10 +17,10 @@ class SceneManager:
     defaultFont, italicsFont = None, None
     boxTextures = []
 
+    engine = annchienta.getEngine()
     videoManager = annchienta.getVideoManager()
     inputManager = annchienta.getInputManager()
     mapManager = annchienta.getMapManager()
-    engine = annchienta.getEngine()
 
     def waitForKey( self ):
         self.videoManager.storeBuffer(7)
@@ -157,13 +157,17 @@ class SceneManager:
     ## \brief Display some info.
     #
     #  \param text The text to be displayed.
-    def info( self, text ):
+    def info( self, text, timeOut=None ):
 
         text = str(text)
         self.inputManager.update()
         self.videoManager.storeBuffer(7)
 
-        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
+        start = self.engine.getTicks()
+
+        done = False
+
+        while not done:
 
             self.inputManager.update()
 
@@ -173,6 +177,13 @@ class SceneManager:
             self.defaultColor()
             self.videoManager.drawString( self.defaultFont, text, 2*self.margin, 2*self.margin )
             self.videoManager.end()
+
+            if not self.inputManager.running() or self.ticked( self.confirmKeys ):
+                done = True
+
+            if not timeOut is None:
+                if self.engine.getTicks() > start+timeOut:
+                    done = True
 
         self.videoManager.restoreBuffer(7)
         self.mapManager.resync()
