@@ -3,6 +3,7 @@ import scene
 import battle
 import strategy
 import random
+import menu
 
 class Attribute:
     name = "name"
@@ -86,7 +87,7 @@ class Combatant:
         self.status = Status( statusElement )
 
         strategiesElement = element.getElementsByTagName("strategies")[0]
-        self.strategies = strategiesElement.firstChild.data.split()
+        self.strategies = map( lambda s: s.lower(), strategiesElement.firstChild.data.split() )
 
         self.delay = 6
         self.m_strategy = strategy.Strategy( None, self )
@@ -143,9 +144,39 @@ class Ally(Combatant):
         self.hostile = False
         self.buildMenu()
 
-    def buildMenu( self ):
-        pass
+    def addToOptions( self, options, strat ):
 
+        children = filter( lambda s: s.lower() in self.strategies, strat.children )
+
+        if not len(children):
+            options += [ menu.MenuItem(strat.name, strat.description) ]
+            return
+        if len(children)==1:
+            self.addToOptions( options, strategy.getStrategy(children[0]) )
+            return
+        if len(children)>1:
+            m = menu.Menu( strat.name, "Sub-strategies of "+strat.name.capitalize()+"." )
+            o = []
+            for c in children:
+                self.addToOptions( o, strategy.getStrategy(c) )
+            m.setOptions( o )
+            options += [m]
+            return
+
+    def buildMenu( self ):
+
+        self.menu = menu.Menu( str(self.name.capitalize()), "Select behaviour for your combatant." )
+        o = []
+        children = filter( lambda s: s.lower() in self.strategies, strategy.Strategy.children )
+        for c in children:
+           self.addToOptions( o, strategy.getStrategy(c) )
+        self.menu.setOptions( o )
+        self.menu.leftBottom()
+
+    def createStrategy( self ):
+        a = self.menu.pop()
+        s = strategy.getStrategy( a.name )
+        return s( self.m_battle, self )
 
 class Enemy(Combatant):
 

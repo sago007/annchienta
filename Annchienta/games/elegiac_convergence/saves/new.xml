@@ -10,7 +10,7 @@
                 <sprite filename="sprites/aelaan.png" x1="111" y1="75" x2="148" y2="150"/>
                 <status strength="4" magic="1" health="4"/>
                 <strategies>
-                    warrior healer
+                    warrior healer ninja defender
                 </strategies>
                 <experience warrior="3" healer="2" />
             </combatant>
