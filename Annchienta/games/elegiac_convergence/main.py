@@ -30,16 +30,17 @@ sceneMgr.italicsFont = annchienta.Font("assets/italics.ttf", 14)
 for i in range(9):
     sceneMgr.boxTextures.append( annchienta.Surface("assets/box"+str(i)+".png") )
 
-import party
-
-party.initPartyManager()
-partyManager = party.getPartyManager()
-partyManager.load("saves/new.xml")
-
 import battle
 
 battle.initBattleManager()
 battleManager = battle.getBattleManager()
 battleManager.loadEnemies("locations/common/enemies.xml")
+
+import party
+
+# Depends on battleManager
+party.initPartyManager()
+partyManager = party.getPartyManager()
+partyManager.load("saves/new.xml")
 
 mapMgr.run()

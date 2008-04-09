@@ -7,7 +7,6 @@ class Battle:
 
     videoManager = annchienta.getVideoManager()
     inputManager = annchienta.getInputManager()
-    sceneManager = scene.getSceneManager()
 
     combatants = activeCombatants = []
     background = None
@@ -15,6 +14,10 @@ class Battle:
     won = False
 
     def __init__( self, combatants ):
+
+        self.sceneManager = scene.getSceneManager()
+        self.battleManager = getBattleManager()
+        
         self.activeCombatants = self.combatants = combatants
         self.running = True
 
@@ -33,6 +36,11 @@ class Battle:
             e.setPosition( self.videoManager.getScreenWidth()/2+50+i*20, 100+i*40-h )
 
     def run( self ):
+
+        self.battleManager.m_battle = self
+
+        for a in self.combatants:
+            a.m_battle = self
 
         while self.running and self.inputManager.running():
 
@@ -97,6 +105,7 @@ class BattleManager:
     engine = annchienta.getEngine()
 
     enemyElements = []
+    m_battle = None
 
     def loadEnemies( self, fname ):
 

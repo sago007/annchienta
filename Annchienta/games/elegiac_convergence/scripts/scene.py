@@ -157,7 +157,7 @@ class SceneManager:
     ## \brief Display some info.
     #
     #  \param text The text to be displayed.
-    def info( self, text, timeOut=None ):
+    def info( self, text, timeOut=1200 ):
 
         text = str(text)
         self.inputManager.update()

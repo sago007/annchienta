@@ -1,5 +1,7 @@
 import annchienta
 import scene
+import battle
+import strategy
 
 class Attribute:
     name = "name"
@@ -55,15 +57,19 @@ class Status:
 class Combatant:
 
     videoManager = annchienta.getVideoManager()
-    sceneManager = scene.getSceneManager()
 
     name = "Name"
     health = 6
     delay = 6
     hostile = False
     status = None
+    m_strategy = None
+    m_battle = None
 
     def __init__( self, element ):
+
+        self.battleManager = battle.getBattleManager()
+        self.sceneManager = scene.getSceneManager()
 
         self.name = element.getAttribute("name")
 
@@ -77,6 +83,7 @@ class Combatant:
         self.status = Status( statusElement )
 
         self.delay = 6
+        self.m_strategy = strategy.Strategy( None, self )
 
     def draw( self ):
 
@@ -102,7 +109,15 @@ class Combatant:
         self.x, self.y = x, y
 
     def takeTurn( self ):
-        self.delay += 6
+
+        if self.m_strategy.turns <= 0:
+            self.m_strategy = self.selectStrategy()
+
+        self.m_strategy.control()
+
+    def selectStrategy( self ):
+
+        return strategy.Warrior( self.m_battle, self )
 
 class Ally(Combatant):
 
@@ -115,9 +130,6 @@ class Ally(Combatant):
     def buildMenu( self ):
         pass
 
-    def takeTurn( self ):
-        self.sceneManager.info( self.name.capitalize()+" fights! (delay: "+str(self.delay)+")", 500 )
-        self.delay += 6
 
 class Enemy(Combatant):
 
@@ -126,6 +138,3 @@ class Enemy(Combatant):
         Combatant.__init__( self, element )
         self.hostile = True
 
-    def takeTurn( self ):
-        self.sceneManager.info( self.name.capitalize()+" acts! (delay: "+str(self.delay)+")", 500 )
-        self.delay += 6
