@@ -2,6 +2,7 @@ import annchienta
 import scene
 import battle
 import strategy
+import random
 
 class Attribute:
     name = "name"
@@ -15,13 +16,15 @@ class Status:
 
     attributes = []
 
-    def __init__( self, element ):
+    def __init__( self, element=None ):
+
         self.attributes = []
 
-        keys = element.attributes.keys()
-        for k in keys:
-            attr = element.attributes[k]
-            self.attributes += [Attribute(attr.name, attr.value)]
+        if not element is None:
+            keys = element.attributes.keys()
+            for k in keys:
+                attr = element.attributes[k]
+                self.attributes += [Attribute(attr.name, attr.value)]
 
     def writeTo( self, element ):
 
@@ -82,6 +85,9 @@ class Combatant:
         statusElement = element.getElementsByTagName("status")[0]
         self.status = Status( statusElement )
 
+        strategiesElement = element.getElementsByTagName("strategies")[0]
+        self.strategies = strategiesElement.firstChild.data.split()
+
         self.delay = 6
         self.m_strategy = strategy.Strategy( None, self )
 
@@ -111,19 +117,29 @@ class Combatant:
     def takeTurn( self ):
 
         if self.m_strategy.turns <= 0:
-            self.m_strategy = self.selectStrategy()
+            self.m_strategy = self.createStrategy()
 
         self.m_strategy.control()
 
-    def selectStrategy( self ):
+    def createStrategy( self ):
 
-        return strategy.Warrior( self.m_battle, self )
+        # Select a random one.
+        n = self.strategies[ random.randint(0, len(self.strategies)-1 ) ]
+        s = strategy.getStrategy( n )
+        return s( self.m_battle, self )
 
 class Ally(Combatant):
 
     def __init__( self, element ):
 
         Combatant.__init__( self, element )
+
+        experienceElements = element.getElementsByTagName("experience")
+        if len(experienceElements):
+            self.experience = Status( experienceElements[0] )
+        else:
+            self.experience = Status()
+
         self.hostile = False
         self.buildMenu()
 

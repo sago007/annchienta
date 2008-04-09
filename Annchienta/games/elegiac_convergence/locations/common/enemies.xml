@@ -3,5 +3,8 @@
     <combatant name="dwarf">
         <sprite filename="sprites/monster.png"/>
         <status strength="4" magic="1" health="4"/>
+        <strategies>
+            warrior
+        </strategies>
     </combatant>
 </enemies>

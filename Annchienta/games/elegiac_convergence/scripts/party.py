@@ -110,6 +110,18 @@ class PartyManager:
             c.status.writeTo( statusElement )
             combatantElement.appendChild( statusElement )
 
+            strategiesElement = self.document.createElement("strategies")
+            data = ""
+            for s in c.strategies:
+                data += s+" "
+            dataNode = self.document.createTextNode( data )
+            strategiesElement.appendChild( dataNode )
+            combatantElement.appendChild( strategiesElement )
+
+            experienceElement = self.document.createElement("experience")
+            c.experience.writeTo( experienceElement )
+            combatantElement.appendChild( experienceElement )
+
             teamElement.appendChild( combatantElement )
 
         partyElement.appendChild( teamElement )
