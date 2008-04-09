@@ -23,6 +23,8 @@ class Menu(MenuItem):
     x, y = 0, 0
     toolTipOnTop = True
 
+    maxItemsInColumn = 4
+
     def __init__( self, name, toolTip=None ):
         MenuItem.__init__( self, name, toolTip )
         self.inputManager = annchienta.getInputManager()
@@ -32,10 +34,14 @@ class Menu(MenuItem):
 
     def setOptions( self, options ):
         self.options = options
+
+        self.rows = len(self.options) if len(self.options)<self.maxItemsInColumn else self.maxItemsInColumn
+        self.columns = (len(self.options)/self.maxItemsInColumn)+1
+
         names = map( lambda o: o.name, options ) + [self.name]
-        longest = max( map( lambda n: self.sceneManager.defaultFont.getStringWidth(n.capitalize()), names ) )
-        self.width = longest + 2*self.sceneManager.margin
-        self.height = len(options)*self.sceneManager.defaultFont.getLineHeight() + self.sceneManager.italicsFont.getLineHeight() + 2*self.sceneManager.margin
+        self.longest = max( map( lambda n: self.sceneManager.defaultFont.getStringWidth(n.capitalize()), names ) )
+        self.width = self.sceneManager.margin + (self.longest + self.sceneManager.margin)*self.columns
+        self.height = self.rows*self.sceneManager.defaultFont.getLineHeight() + self.sceneManager.italicsFont.getLineHeight() + 2*self.sceneManager.margin
 
     def top( self ):
         self.toolTipOnTop = False
@@ -72,10 +78,15 @@ class Menu(MenuItem):
 
             self.inputManager.update()
 
-            if self.sceneManager.ticked( self.sceneManager.nextKeys ):
+            if self.sceneManager.ticked( self.sceneManager.downKeys ):
                 selected = selected+1 if selected+1<len(self.options) else 0
-            if self.sceneManager.ticked( self.sceneManager.previousKeys ):
+            if self.sceneManager.ticked( self.sceneManager.upKeys ):
                 selected = selected-1 if selected>0 else len(self.options)-1
+
+            if self.sceneManager.ticked( self.sceneManager.leftKeys ):
+                selected = selected-self.rows if selected-self.rows>0 else selected
+            if self.sceneManager.ticked( self.sceneManager.rightKeys ):
+                selected = selected+self.rows if selected+self.rows<len(self.options) else selected
 
             self.selectedItem = self.options[selected]
 
@@ -132,12 +143,23 @@ class Menu(MenuItem):
 
         self.videoManager.translate( self.sceneManager.margin, self.sceneManager.margin+ self.sceneManager.italicsFont.getLineHeight() )
 
-        for o in self.options:
-            if o is self.selectedItem:
-                self.sceneManager.activeColor()
-            else:
-                self.sceneManager.inactiveColor()
-            self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), 0, 0 )
-            self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
+        for x in range(self.columns):
+            for y in range(self.rows):
+                idx = x*self.rows+y
+                if idx<len(self.options):
+                    o = self.options[ idx ]
+                    if o is self.selectedItem:
+                        self.sceneManager.activeColor()
+                    else:
+                        self.sceneManager.inactiveColor()
+                    self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), x*(self.longest+self.sceneManager.margin), y*self.sceneManager.defaultFont.getLineHeight() )
+
+        #for o in self.options:
+            #if o is self.selectedItem:
+                #self.sceneManager.activeColor()
+            #else:
+                #self.sceneManager.inactiveColor()
+            #self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), 0, 0 )
+            #self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
 
         self.videoManager.popMatrix()

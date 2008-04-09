@@ -15,6 +15,10 @@ if inputManager.keyTicked( annchienta.SDLK_RETURN ):
     i.setOptions( map( menu.MenuItem, ("potion", "grenade") ) )
     o.append( i )
 
+    s = menu.Menu("spam", "Spam of menu items.")
+    s.setOptions( map( lambda a:menu.MenuItem(str(a), "Bollocks.)"), range(17) ) )
+    o.append( s )
+
     gameMenu.setOptions( o )
     gameMenu.top()
     a = gameMenu.pop()

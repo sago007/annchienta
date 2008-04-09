@@ -14,6 +14,10 @@ class SceneManager:
     cancelKeys = [annchienta.SDLK_BACKSPACE]
     nextKeys = [annchienta.SDLK_DOWN,annchienta.SDLK_RIGHT]
     previousKeys = [annchienta.SDLK_UP,annchienta.SDLK_LEFT]
+    upKeys = [annchienta.SDLK_UP]
+    downKeys = [annchienta.SDLK_DOWN]
+    leftKeys = [annchienta.SDLK_LEFT]
+    rightKeys = [annchienta.SDLK_RIGHT]
     defaultFont, italicsFont = None, None
     boxTextures = []
 
