@@ -61,6 +61,7 @@ class Status:
 class Combatant:
 
     videoManager = annchienta.getVideoManager()
+    inputManager = annchienta.getInputManager()
 
     name = "Name"
     health = 6
@@ -120,7 +121,8 @@ class Combatant:
         if self.m_strategy.turns <= 0:
             self.m_strategy = self.createStrategy()
 
-        self.m_strategy.control()
+        if self.inputManager.running():
+            self.m_strategy.control()
 
     def createStrategy( self ):
 
@@ -144,39 +146,38 @@ class Ally(Combatant):
         self.hostile = False
         self.buildMenu()
 
-    def addToOptions( self, options, strat ):
-
-        children = filter( lambda s: s.lower() in self.strategies, strat.children )
-
-        if not len(children):
-            options += [ menu.MenuItem(strat.name, strat.description) ]
-            return
-        if len(children)==1:
-            self.addToOptions( options, strategy.getStrategy(children[0]) )
-            return
-        if len(children)>1:
-            m = menu.Menu( strat.name, "Sub-strategies of "+strat.name.capitalize()+"." )
-            o = []
-            for c in children:
-                self.addToOptions( o, strategy.getStrategy(c) )
-            m.setOptions( o )
-            options += [m]
-            return
-
     def buildMenu( self ):
 
         self.menu = menu.Menu( str(self.name.capitalize()), "Select behaviour for your combatant." )
-        o = []
-        children = filter( lambda s: s.lower() in self.strategies, strategy.Strategy.children )
-        for c in children:
-           self.addToOptions( o, strategy.getStrategy(c) )
-        self.menu.setOptions( o )
+        options = []
+        for sn in self.strategies:
+            s = strategy.getStrategy( sn )
+            added = False
+            for sub in options:
+                if sub.name == s.category and not added:
+                    sub.options += [menu.MenuItem( s.name, s.description )]
+                    added = True
+            if not added:
+                sub = menu.Menu( s.category, s.category.capitalize()+"-based strategies." )
+                sub.options += [menu.MenuItem( s.name, s.description )]
+                options += [sub]
+
+        for sub in options:
+            sub.setOptions()
+
+        self.menu.setOptions( options )
         self.menu.leftBottom()
 
     def createStrategy( self ):
-        a = self.menu.pop()
-        s = strategy.getStrategy( a.name )
-        return s( self.m_battle, self )
+        a = None
+        while a is None and self.inputManager.running():
+            a = self.menu.pop()
+
+        if self.inputManager.running():
+            s = strategy.getStrategy( a.name )
+            return s( self.m_battle, self )
+        else:
+            return None
 
 class Enemy(Combatant):
 

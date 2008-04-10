@@ -17,7 +17,6 @@ class MenuItem:
 class Menu(MenuItem):
 
     isMenu = True
-    options = []
     selectedItem = None
     width, height = 0, 0
     x, y = 0, 0
@@ -31,14 +30,17 @@ class Menu(MenuItem):
         self.videoManager = annchienta.getVideoManager()
         self.mapManager = annchienta.getMapManager()
         self.sceneManager = scene.getSceneManager()
+        self.options = []
 
-    def setOptions( self, options ):
-        self.options = options
+    def setOptions( self, options=None ):
+
+        if not options is None:
+            self.options = options
 
         self.rows = len(self.options) if len(self.options)<self.maxItemsInColumn else self.maxItemsInColumn
         self.columns = (len(self.options)/self.maxItemsInColumn)+1
 
-        names = map( lambda o: o.name, options ) + [self.name]
+        names = map( lambda o: o.name, self.options ) + [self.name]
         self.longest = max( map( lambda n: self.sceneManager.defaultFont.getStringWidth(n.capitalize()), names ) )
         self.width = self.sceneManager.margin + (self.longest + self.sceneManager.margin)*self.columns
         self.height = self.rows*self.sceneManager.defaultFont.getLineHeight() + self.sceneManager.italicsFont.getLineHeight() + 2*self.sceneManager.margin
@@ -59,14 +61,13 @@ class Menu(MenuItem):
             if m.isMenu:
                 m.leftBottom()
 
-    def pop( self ):
+    def pop( self, selected=0 ):
 
         self.videoManager.storeBuffer(6)
 
         self.inputManager.update()
         done = False
         canceled = False
-        selected = 0
         self.selectedItem = self.options[selected]
 
         while not done:
@@ -112,7 +113,7 @@ class Menu(MenuItem):
             if self.selectedItem.isMenu:
                 sub = self.selectedItem.pop()
                 if sub is None:
-                    return self.pop()
+                    return self.pop( selected )
                 else:
                     return sub
             else:

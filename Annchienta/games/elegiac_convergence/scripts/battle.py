@@ -65,6 +65,9 @@ class Battle:
             # it's delay as well.
             actor.takeTurn()
 
+            if not self.inputManager.running():
+                return
+
             # Update active combatants.
             self.activeCombatants = filter( lambda c: c.health>0, self.combatants )
 

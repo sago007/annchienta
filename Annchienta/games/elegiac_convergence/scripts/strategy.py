@@ -6,8 +6,6 @@ class Strategy:
     name = "empty"
     description = "Empty strategy class."
 
-    children = ["warrior","healer"]
-
     def __init__( self, m_battle, m_combatant ):
 
         self.sceneManager = scene.getSceneManager()
@@ -20,12 +18,18 @@ class Strategy:
 
         pass
 
+    # Note that this does not take a 'self' parameter,
+    # meaning you should call it like 'Strategy.isAvailableFor()'
+    def isAvailableFor( m_combatant ):
+
+        return True
+
 class Warrior(Strategy):
 
     name = "warrior"
     description = "Attacks enemies."
 
-    children = ["ninja", "defender"]
+    category = "melee"
 
     def __init__( self, m_battle, m_combatant ):
 
@@ -46,7 +50,7 @@ class Healer(Strategy):
     name = "healer"
     description = "Heals allies"
 
-    children = []
+    category = "white magic"
 
     def __init__( self, m_battle, m_combatant ):
 
@@ -67,7 +71,7 @@ class Ninja(Strategy):
     name = "ninja"
     description = "Does what ninja's do."
 
-    children = []
+    category = "black magic"
 
     def __init__( self, m_battle, m_combatant ):
 
@@ -88,7 +92,7 @@ class Defender(Strategy):
     name = "defender"
     description = "Defends around."
 
-    children = []
+    category = "melee"
 
     def __init__( self, m_battle, m_combatant ):
 
