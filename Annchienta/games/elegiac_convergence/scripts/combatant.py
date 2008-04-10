@@ -15,8 +15,6 @@ class Attribute:
 
 class Status:
 
-    attributes = []
-
     def __init__( self, element=None ):
 
         self.attributes = []
@@ -34,13 +32,13 @@ class Status:
 
     def get( self, name ):
 
-        for a in attributes:
+        for a in self.attributes:
             if a.name == name.lower():
                 return a.value
 
     def set( self, name, value ):
 
-        for a in attributes:
+        for a in self.attributes:
             if a.name == name.lower():
                 a.value = value
                 return
@@ -50,13 +48,13 @@ class Status:
 
     def add( self, name, value ):
 
-        for a in attributes:
+        for a in self.attributes:
             if a.name == name.lower():
                 a.value += value
                 return
 
         # if not found, append an attribute
-        attributes += [Attribute(name,value)]
+        self.attributes += [Attribute(name,value)]
 
 class Combatant:
 
@@ -89,6 +87,12 @@ class Combatant:
 
         strategiesElement = element.getElementsByTagName("strategies")[0]
         self.strategies = map( lambda s: s.lower(), strategiesElement.firstChild.data.split() )
+
+        experienceElements = element.getElementsByTagName("experience")
+        if len( experienceElements ):
+            self.experience = Status( experienceElements[0] )
+        else:
+            self.experience = Status()
 
         self.delay = 6
         self.m_strategy = strategy.Strategy( None, self )
@@ -175,6 +179,10 @@ class Ally(Combatant):
 
         if self.inputManager.running():
             s = strategy.getStrategy( a.name )
+
+            # Add experience for ths chosen strategy.
+            self.experience.add( a.name, 1 )
+
             return s( self.m_battle, self )
         else:
             return None
