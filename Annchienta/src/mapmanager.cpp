@@ -189,15 +189,17 @@ namespace Annchienta
 
     void MapManager::run()
     {
+        running = true;
+
         VideoManager *videoManager = getVideoManager();
         inputManager = getInputManager();
 
         unsigned int lastFpsUpdate = SDL_GetTicks();
         unsigned int frames = 0;
 
-        SDL_AddTimer( 1000/updatesPerSecond, incrementUpdatesNeeded, 0 );
+        SDL_TimerID timer = SDL_AddTimer( 1000/updatesPerSecond, incrementUpdatesNeeded, 0 );
 
-        while( inputManager->running() )
+        while( inputManager->running() && running )
         {
             this->update();
 
@@ -216,6 +218,13 @@ namespace Annchienta
                 frames = 0;
             }
         }
+
+        SDL_RemoveTimer( timer );
+    }
+
+    void MapManager::stop()
+    {
+        running = false;
     }
 
     void MapManager::update( bool updateInput )

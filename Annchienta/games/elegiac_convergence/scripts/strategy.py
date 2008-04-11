@@ -44,11 +44,23 @@ class Warrior(Strategy):
 
     def control( self ):
 
-        target = self.m_battle.activeCombatants[ random.randint(0,len(self.m_battle.activeCombatants)-1) ]
-        self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+" ("+str(self.turns)+")" )
+        # Decrease our turns for this strategy.
         self.turns -= 1
 
+        # Add some delay now.
         self.m_combatant.delay += 6
+
+        # Select any random target.
+        array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
+        if not len(array):
+            return
+        target = array[ random.randint(0,len(array)-1) ]
+
+        # Attack that target with default attack power (=20).
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
+        self.m_battle.physicalAttackAnimation( self.m_combatant, target )
+        self.m_combatant.physicalAttack( target, 20, 0.8 )
+
 
 ## HEALER
 #

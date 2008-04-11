@@ -171,6 +171,7 @@ class MapManager(_object):
     def setOnUpdateScript(*args): return _annchienta.MapManager_setOnUpdateScript(*args)
     def setOnUpdateCode(*args): return _annchienta.MapManager_setOnUpdateCode(*args)
     def run(*args): return _annchienta.MapManager_run(*args)
+    def stop(*args): return _annchienta.MapManager_stop(*args)
     def update(*args): return _annchienta.MapManager_update(*args)
     def updateOnce(*args): return _annchienta.MapManager_updateOnce(*args)
     def renderFrame(*args): return _annchienta.MapManager_renderFrame(*args)

@@ -7,6 +7,8 @@ class Battle:
 
     videoManager = annchienta.getVideoManager()
     inputManager = annchienta.getInputManager()
+    mapManager = annchienta.getMapManager()
+    engine = annchienta.getEngine()
 
     combatants = activeCombatants = []
     background = None
@@ -28,25 +30,37 @@ class Battle:
         for i in range( len(self.allies) ):
             a = self.allies[i]
             w, h = a.getSize()
-            a.setPosition( self.videoManager.getScreenWidth()/2-50-i*20-w, 100+i*40-h )
+            a.setPosition( self.videoManager.getScreenWidth()/2-30-i*20-w, 100+i*40-h )
 
         for i in range( len(self.enemies) ):
             e = self.enemies[i]
             w, h = e.getSize()
-            e.setPosition( self.videoManager.getScreenWidth()/2+50+i*20, 100+i*40-h )
+            e.setPosition( self.videoManager.getScreenWidth()/2+30+i*20, 100+i*40-h )
+
+        self.updateCombatantArrays()
+
+        self.background = None
+
+    def updateCombatantArrays( self ):
+        # Update active combatants.
+        self.activeCombatants = filter( lambda c: c.status.get("health")>0, self.combatants )
+
+        # Count enemies and allies.
+        self.enemies = filter( lambda c: c.hostile, self.activeCombatants )
+        self.allies = filter( lambda c: not c.hostile, self.activeCombatants )
 
     def run( self ):
 
         self.battleManager.m_battle = self
 
         for a in self.combatants:
+            a.reset()
             a.m_battle = self
 
         while self.running and self.inputManager.running():
 
             # For now
             # self.inputManager.update()
-
             self.draw()
 
             # Find lowest delay.
@@ -65,15 +79,12 @@ class Battle:
             # it's delay as well.
             actor.takeTurn()
 
+            self.draw()
+
             if not self.inputManager.running():
                 return
 
-            # Update active combatants.
-            self.activeCombatants = filter( lambda c: c.health>0, self.combatants )
-
-            # Count enemies and allies.
-            self.enemies = filter( lambda c: c.hostile, self.activeCombatants )
-            self.allies = filter( lambda c: not c.hostile, self.activeCombatants )
+            self.updateCombatantArrays()
 
             # Check for game over or victory
             if not len(self.enemies) or self.inputManager.keyDown(annchienta.SDLK_a):
@@ -83,27 +94,55 @@ class Battle:
                 self.onLose()
                 return
 
-    def draw( self ):
+    def draw( self, flip=True ):
 
         self.videoManager.begin()
+
+        # Draw the background
+        if self.background is not None:
+            self.videoManager.drawSurface( self.background, 0, 0 )
 
         # Sort them before drawing
         self.activeCombatants.sort( lambda c1, c2: c1.y-c2.y )
 
         for a in self.activeCombatants:
+
+            self.videoManager.reset()
             a.draw()
 
-        self.videoManager.end()
+            # Draw some basic info
+            x, y = a.posX, a.posY
+            w, h = a.getSize()
+            x += (w+20 if a.hostile else -20-60)
+            y += (h - 50)
+            self.videoManager.translate( x, y )
+            self.sceneManager.drawBox( 0, 0, 60, 30 )
+
+            # Health bar.
+            self.videoManager.setColor(0,0,0)
+            self.videoManager.drawRectangle( 5, 5, 55, 10 )
+            self.videoManager.setColor(200,0,0)
+            w = int(50.0*float(a.status.get("health"))/float(a.status.get("maxhealth")))
+            self.videoManager.drawRectangle( 5, 5, 5+w, 10 )
+
+            self.sceneManager.inactiveColor()
+            # Ailments and buffers.
+            if not (len(a.ailments)+len(a.buffers)):
+                self.videoManager.drawString( self.sceneManager.defaultFont, "Clean", 5, 10 )
+
+        if flip:
+            self.videoManager.end()
 
     def onWin( self ):
         self.won = True
         self.running = False
-        self.sceneManager.info( "You won!" )
+        self.sceneManager.info( "You won!", None )
 
     def onLose( self ):
         self.won = False
         self.running = False
-        self.sceneManager.info( "You lost..." )
+        self.sceneManager.info( "You lost...", None )
+        self.mapManager.stop()
 
     def getCombatantWithLowestHealth( self, hostile ):
         array = self.enemies if hostile else self.allies
@@ -112,6 +151,23 @@ class Battle:
             if a.status.get("health")<comb.status.get("health"):
                 comb = a
         return comb
+
+    def physicalAttackAnimation( self, attacker, target ):
+        duration = 600
+        start = self.engine.getTicks()
+
+        tw, th = target.getSize()
+        aw, ah = attacker.getSize()
+        tx = target.x-aw if target.hostile else target.x+tw
+        ty = target.y+th-ah
+
+        while self.engine.getTicks()<start+duration:
+            t = float(self.engine.getTicks()-start)/float(duration)
+            attacker.x = int( t*float(tx) + (1.0-t)*float(attacker.posX) )
+            attacker.y = int( t*float(ty) + (1.0-t)*float(attacker.posY) )
+            self.draw()
+
+        attacker.x, attacker.y = attacker.posX, attacker.posY
 
 class BattleManager:
 

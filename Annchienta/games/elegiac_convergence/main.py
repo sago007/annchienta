@@ -41,6 +41,8 @@ import party
 # Depends on battleManager
 party.initPartyManager()
 partyManager = party.getPartyManager()
-partyManager.load("saves/new.xml")
 
-mapMgr.run()
+while inputMgr.running():
+    partyManager.load("saves/new.xml")
+    mapMgr.run()
+    partyManager.free()

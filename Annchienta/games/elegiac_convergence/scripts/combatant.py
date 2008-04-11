@@ -62,7 +62,6 @@ class Combatant:
     inputManager = annchienta.getInputManager()
 
     name = "Name"
-    health = 6
     delay = 6
     hostile = False
     status = None
@@ -94,6 +93,11 @@ class Combatant:
         else:
             self.experience = Status()
 
+        self.reset()
+
+    def reset( self ):
+        self.ailments = []
+        self.buffers = []
         self.delay = 6
         self.m_strategy = strategy.Strategy( None, self )
 
@@ -138,8 +142,46 @@ class Combatant:
     def addHealth( self, health ):
         h = self.status.get("health")
         h += health
-        h = 0 if health<0 else (self.status.get("maxhealth") if health>self.status.get("maxhealth") else h )
+        h = 0 if h<0 else (self.status.get("maxhealth") if h>self.status.get("maxhealth") else h )
         self.status.set("health", h)
+
+    def physicalAttack( self, target, attackPower=20, chanceOnHit=0.8 ):
+
+        # Check if we hit first.
+        r = random.random()
+        if r > chanceOnHit:
+            self.sceneManager.info( self.name.capitalize()+" misses "+target.name.capitalize()+"!" )
+            return 0
+
+        # Now calculate damage.
+        dmg = float(attackPower)*float(self.status.get("strength"))/float(target.status.get("defense"))
+
+        # Apply a small random factor and covert to int.
+        dmg *= random.uniform(0.9,1.1)
+        dmg = int(dmg)
+
+        # Subtract damage from target's health.
+        target.addHealth( -dmg )
+        return dmg
+
+    def magicalAttack( self, target, attackPower=20, chanceOnHit=0.8 ):
+
+        # Check if we hit first.
+        r = random.random()
+        if r > chanceOnHit:
+            self.sceneManager.info( target.name.capitalize()+" resists the spell cast by "+self.name.capitalize()+"!" )
+            return 0
+
+        # Now calculate damage.
+        dmg = float(attackPower)*float(self.status.get("magic"))/float(target.status.get("resistance"))
+
+        # Apply a small random factor and covert to int.
+        dmg *= random.uniform(0.9,1.1)
+        dmg = int(dmg)
+
+        # Subtract damage from target's health.
+        target.addHealth( -dmg )
+        return dmg
 
 class Ally(Combatant):
 

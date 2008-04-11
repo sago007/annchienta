@@ -161,7 +161,7 @@ class SceneManager:
     ## \brief Display some info.
     #
     #  \param text The text to be displayed.
-    def info( self, text, timeOut=1200 ):
+    def info( self, text, timeOut=800 ):
 
         text = str(text)
         self.inputManager.update()
@@ -185,7 +185,7 @@ class SceneManager:
             if not self.inputManager.running() or self.ticked( self.confirmKeys ):
                 done = True
 
-            if not timeOut is None:
+            if timeOut is not None:
                 if self.engine.getTicks() > start+timeOut:
                     done = True
 

@@ -27,6 +27,8 @@ namespace Annchienta
 
             char *onUpdateScript, *onUpdateCode;
 
+            bool running;
+
         public:
             #ifndef SWIG
                 MapManager();
@@ -66,6 +68,7 @@ namespace Annchienta
             /* This function should basically run the game.
              */
             void run();
+            void stop();
 
             void update( bool updateInput=true );
             void updateOnce( bool updateInput=true );

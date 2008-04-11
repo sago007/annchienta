@@ -18,7 +18,9 @@ partyManager = party.getPartyManager()
 c = partyManager.team + map( lambda i:battleManager.createEnemy("dwarf"), range(3) )
 
 b = battle.Battle( c )
+b.background = annchienta.Surface("images/battlebg_tiles.png")
 b.run()
+b = 0
 
 <onInteract>
     

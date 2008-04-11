@@ -12,9 +12,11 @@ class PartyManager:
         self.inputManager = annchienta.getInputManager()
         self.mapManager = annchienta.getMapManager()
 
-    def __del__(self):
-        # So the player won't get deleted twice.
+    def free( self ):
         self.currentMap.removeObject(self.player)
+        self.currentMap = 0
+        self.team = 0
+        self.records = []
 
     def load( self, filename ):
         self.filename = filename
