@@ -135,6 +135,12 @@ class Combatant:
         s = strategy.getStrategy( n )
         return s( self.m_battle, self )
 
+    def addHealth( self, health ):
+        h = self.status.get("health")
+        h += health
+        h = 0 if health<0 else (self.status.get("maxhealth") if health>self.status.get("maxhealth") else h )
+        self.status.set("health", h)
+
 class Ally(Combatant):
 
     def __init__( self, element ):

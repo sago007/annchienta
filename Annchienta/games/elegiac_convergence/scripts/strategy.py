@@ -24,6 +24,11 @@ class Strategy:
 
         return True
 
+## WARRIOR
+#
+#  Most simple melee-based class. Selects a random target
+#  every turn and performs a regular attack on that target.
+#
 class Warrior(Strategy):
 
     name = "warrior"
@@ -45,6 +50,12 @@ class Warrior(Strategy):
 
         self.m_combatant.delay += 6
 
+## HEALER
+#
+#  Most simple white-magic based class. Selects the ally
+#  with the lowest health and performs a simple cure on
+#  that ally.
+#
 class Healer(Strategy):
 
     name = "healer"
@@ -66,50 +77,8 @@ class Healer(Strategy):
 
         self.m_combatant.delay += 6
 
-class Ninja(Strategy):
-
-    name = "ninja"
-    description = "Does what ninja's do."
-
-    category = "black magic"
-
-    def __init__( self, m_battle, m_combatant ):
-
-        Strategy.__init__( self, m_battle, m_combatant )
-
-        self.turns = 3
-
-    def control( self ):
-
-        target = self.m_battle.activeCombatants[ random.randint(0,len(self.m_battle.activeCombatants)-1) ]
-        self.sceneManager.info( self.m_combatant.name.capitalize()+" ninja-attacks "+target.name.capitalize()+" ("+str(self.turns)+")" )
-        self.turns -= 1
-
-        self.m_combatant.delay += 6
-
-class Defender(Strategy):
-
-    name = "defender"
-    description = "Defends around."
-
-    category = "melee"
-
-    def __init__( self, m_battle, m_combatant ):
-
-        Strategy.__init__( self, m_battle, m_combatant )
-
-        self.turns = 3
-
-    def control( self ):
-
-        target = self.m_battle.activeCombatants[ random.randint(0,len(self.m_battle.activeCombatants)-1) ]
-        self.sceneManager.info( self.m_combatant.name.capitalize()+" defends. ("+str(self.turns)+")" )
-        self.turns -= 1
-
-        self.m_combatant.delay += 6
-
 # List with all strategies, used by getStrategy()
-all = [Warrior, Healer, Ninja, Defender]
+all = [Warrior, Healer]
 
 def getStrategy( name ):
     for s in all:

@@ -87,6 +87,9 @@ class Battle:
 
         self.videoManager.begin()
 
+        # Sort them before drawing
+        self.activeCombatants.sort( lambda c1, c2: c1.y-c2.y )
+
         for a in self.activeCombatants:
             a.draw()
 
@@ -102,6 +105,13 @@ class Battle:
         self.running = False
         self.sceneManager.info( "You lost..." )
 
+    def getCombatantWithLowestHealth( self, hostile ):
+        array = self.enemies if hostile else self.allies
+        comb = array[0]
+        for a in array[1:]:
+            if a.status.get("health")<comb.status.get("health"):
+                comb = a
+        return comb
 
 class BattleManager:
 
