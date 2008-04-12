@@ -1,3 +1,4 @@
+import annchienta
 import scene
 import random
 
@@ -8,6 +9,7 @@ class Strategy:
 
     def __init__( self, m_battle, m_combatant ):
 
+        self.cacheManager = annchienta.getCacheManager()
         self.sceneManager = scene.getSceneManager()
 
         self.m_combatant = m_combatant
@@ -32,14 +34,13 @@ class Strategy:
 class Warrior(Strategy):
 
     name = "warrior"
-    description = "Attacks enemies."
+    description = "Randomly attacks enemies."
 
     category = "melee"
 
     def __init__( self, m_battle, m_combatant ):
 
         Strategy.__init__( self, m_battle, m_combatant )
-
         self.turns = 3
 
     def control( self ):
@@ -72,26 +73,71 @@ class Warrior(Strategy):
 class Healer(Strategy):
 
     name = "healer"
-    description = "Heals allies"
+    description = "Heals allies."
 
     category = "white magic"
 
     def __init__( self, m_battle, m_combatant ):
 
         Strategy.__init__( self, m_battle, m_combatant )
-
         self.turns = 3
 
     def control( self ):
 
-        target = self.m_battle.activeCombatants[ random.randint(0,len(self.m_battle.activeCombatants)-1) ]
-        self.sceneManager.info( self.m_combatant.name.capitalize()+" heals "+target.name.capitalize()+" ("+str(self.turns)+")" )
+        # Decrease our turns for this strategy.
         self.turns -= 1
 
+        # Add some delay now.
+        self.m_combatant.delay += 7
+
+        # Select the allie with the lowest health.
+        target = self.m_battle.getCombatantWithLowestHealth( self.m_combatant.hostile )
+        if target is None:
+            return
+
+        # Heal that target for 1/4 of his health.
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" heals "+target.name.capitalize()+"!" )
+        target.addHealth( target.status.get("maxhealth")/4 )
+        s = self.cacheManager.getSurface("images/animations/cure.png")
+        self.m_battle.surfaceOverSpritesAnimation( [target], s, 0, -50 )
+
+## ADEPT
+#
+#  Most simple black-magic based class. Casts a spell on
+#  all opponents.
+#
+class Adept(Strategy):
+
+    name = "adept"
+    description = "Casts spells on enemies."
+
+    category = "black magic"
+
+    def __init__( self, m_battle, m_combatant ):
+
+        Strategy.__init__( self, m_battle, m_combatant )
+        self.turns = 3
+
+    def control( self ):
+
+        # Decrease our turns for this strategy.
+        self.turns -= 1
+
+        # Add some delay now.
         self.m_combatant.delay += 6
 
+        # Select any random target.
+        array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
+
+        # Attack all targets with 10 attack power.
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" casts ice!" )
+        s = self.cacheManager.getSurface("images/animations/ice.png")
+        self.m_battle.surfaceOverSpritesAnimation( array, s, -50 if self.m_combatant.hostile else 50, 0 )
+        for e in array:
+            self.m_combatant.magicalAttack( e, 10, 0.7 )
+
 # List with all strategies, used by getStrategy()
-all = [Warrior, Healer]
+all = [Warrior, Healer, Adept]
 
 def getStrategy( name ):
     for s in all:

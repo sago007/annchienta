@@ -130,6 +130,7 @@ class Battle:
             if not (len(a.ailments)+len(a.buffers)):
                 self.videoManager.drawString( self.sceneManager.defaultFont, "Clean", 5, 10 )
 
+        self.videoManager.reset()
         if flip:
             self.videoManager.end()
 
@@ -146,6 +147,8 @@ class Battle:
 
     def getCombatantWithLowestHealth( self, hostile ):
         array = self.enemies if hostile else self.allies
+        if not len(array):
+            return None
         comb = array[0]
         for a in array[1:]:
             if a.status.get("health")<comb.status.get("health"):
@@ -174,6 +177,25 @@ class Battle:
     def returnHomeAnimation( self, mover ):
 
         self.moveAnimation( mover, mover.posX, mover.posY )
+
+    def surfaceOverSpritesAnimation( self, targets, surface, rtx, rty, duration=300 ):
+
+        sizes = map( lambda t: t.getSize(), targets )
+        ox = map( lambda i: targets[i].x+sizes[i][0]/2-surface.getWidth()/2, range(len(targets)) )
+        oy = map( lambda i: targets[i].y+sizes[i][1]/2-surface.getHeight()/2, range(len(targets)) )
+        tx = map( lambda i: ox[i]+rtx, range(len(targets)) )
+        ty = map( lambda i: oy[i]+rty, range(len(targets)) )
+        start = self.engine.getTicks()
+
+        while self.engine.getTicks()<start+duration and self.inputManager.running():
+            t = float(self.engine.getTicks()-start)/float(duration)
+            self.draw(False)
+            for i in range(len(targets)):
+                x = int( t*float(tx[i]) + (1.0-t)*float(ox[i]) )
+                y = int( t*float(ty[i]) + (1.0-t)*float(oy[i]) )
+                self.videoManager.drawSurface( surface, x, y )
+            self.videoManager.end()
+            self.engine.delay(1)
 
 class BattleManager:
 
