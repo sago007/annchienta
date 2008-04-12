@@ -152,22 +152,28 @@ class Battle:
                 comb = a
         return comb
 
-    def physicalAttackAnimation( self, attacker, target ):
-        duration = 600
+    def moveAnimation( self, mover, tx, ty, duration=300 ):
+        ox, oy = mover.x, mover.y
         start = self.engine.getTicks()
+        while self.engine.getTicks()<start+duration and self.inputManager.running():
+            t = float(self.engine.getTicks()-start)/float(duration)
+            mover.x = int( t*float(tx) + (1.0-t)*float(ox) )
+            mover.y = int( t*float(ty) + (1.0-t)*float(oy ) )
+            self.draw()
+            self.engine.delay(1)
+
+    def physicalAttackAnimation( self, attacker, target ):
 
         tw, th = target.getSize()
         aw, ah = attacker.getSize()
         tx = target.x-aw if target.hostile else target.x+tw
         ty = target.y+th-ah
 
-        while self.engine.getTicks()<start+duration:
-            t = float(self.engine.getTicks()-start)/float(duration)
-            attacker.x = int( t*float(tx) + (1.0-t)*float(attacker.posX) )
-            attacker.y = int( t*float(ty) + (1.0-t)*float(attacker.posY) )
-            self.draw()
+        self.moveAnimation( attacker, tx, ty )
 
-        attacker.x, attacker.y = attacker.posX, attacker.posY
+    def returnHomeAnimation( self, mover ):
+
+        self.moveAnimation( mover, mover.posX, mover.posY )
 
 class BattleManager:
 

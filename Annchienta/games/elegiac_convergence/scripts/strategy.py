@@ -60,6 +60,7 @@ class Warrior(Strategy):
         self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
         self.m_battle.physicalAttackAnimation( self.m_combatant, target )
         self.m_combatant.physicalAttack( target, 20, 0.8 )
+        self.m_battle.returnHomeAnimation( self.m_combatant )
 
 
 ## HEALER
