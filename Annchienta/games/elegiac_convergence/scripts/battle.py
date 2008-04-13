@@ -19,7 +19,7 @@ class Battle:
 
         self.sceneManager = scene.getSceneManager()
         self.battleManager = getBattleManager()
-        
+
         self.activeCombatants = self.combatants = combatants
         self.running = True
 

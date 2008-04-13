@@ -38,7 +38,9 @@ class Menu(MenuItem):
             self.options = options
 
         self.rows = len(self.options) if len(self.options)<self.maxItemsInColumn else self.maxItemsInColumn
-        self.columns = (len(self.options)/self.maxItemsInColumn)+1
+        self.columns = (len(self.options)/self.maxItemsInColumn)
+        if len(self.options)%self.maxItemsInColumn:
+            self.columns += 1
 
         names = map( lambda o: o.name, self.options ) + [self.name]
         self.longest = max( map( lambda n: self.sceneManager.defaultFont.getStringWidth(n.capitalize()), names ) )

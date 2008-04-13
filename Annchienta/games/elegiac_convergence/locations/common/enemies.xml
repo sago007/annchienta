@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <enemies>
-    <combatant name="dwarf">
+    <combatant name="guard">
         <sprite filename="sprites/monster.png"/>
         <status strength="20" defense="20" magic="20" resistance="20" health="100" maxhealth="100"/>
         <strategies>
