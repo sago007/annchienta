@@ -213,6 +213,7 @@ class CacheManager(_object):
     __repr__ = _swig_repr
     def getSurface(*args): return _annchienta.CacheManager_getSurface(*args)
     def getMask(*args): return _annchienta.CacheManager_getMask(*args)
+    def getSound(*args): return _annchienta.CacheManager_getSound(*args)
     def clear(*args): return _annchienta.CacheManager_clear(*args)
     def __init__(self, *args): 
         this = _annchienta.new_CacheManager(*args)

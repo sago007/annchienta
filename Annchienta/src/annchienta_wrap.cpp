@@ -6795,6 +6795,40 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_CacheManager_getSound(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
+  char *arg2 = (char *) 0 ;
+  Annchienta::Sound *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:CacheManager_getSound",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__CacheManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CacheManager_getSound" "', argument " "1"" of type '" "Annchienta::CacheManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::CacheManager * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "CacheManager_getSound" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  result = (Annchienta::Sound *)(arg1)->getSound((char const *)arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Sound, 0 |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_CacheManager_clear(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
@@ -11786,6 +11820,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"getAudioManager", _wrap_getAudioManager, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_getSurface", _wrap_CacheManager_getSurface, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_getMask", _wrap_CacheManager_getMask, METH_VARARGS, NULL},
+	 { (char *)"CacheManager_getSound", _wrap_CacheManager_getSound, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_clear", _wrap_CacheManager_clear, METH_VARARGS, NULL},
 	 { (char *)"new_CacheManager", _wrap_new_CacheManager, METH_VARARGS, NULL},
 	 { (char *)"delete_CacheManager", _wrap_delete_CacheManager, METH_VARARGS, NULL},

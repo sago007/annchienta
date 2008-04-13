@@ -10,6 +10,7 @@ class Strategy:
     def __init__( self, m_battle, m_combatant ):
 
         self.cacheManager = annchienta.getCacheManager()
+        self.audioManager = annchienta.getAudioManager()
         self.sceneManager = scene.getSceneManager()
 
         self.m_combatant = m_combatant
@@ -60,7 +61,9 @@ class Warrior(Strategy):
         # Attack that target with default attack power (=20).
         self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
         self.m_battle.physicalAttackAnimation( self.m_combatant, target )
-        self.m_combatant.physicalAttack( target, 20, 0.8 )
+        sound = self.cacheManager.getSound("sounds/sword.ogg")
+        if self.m_combatant.physicalAttack( target, 20, 0.8 ):
+            self.audioManager.playSound( sound )
         self.m_battle.returnHomeAnimation( self.m_combatant )
 
 
@@ -98,8 +101,10 @@ class Healer(Strategy):
         # Heal that target for 1/4 of his health.
         self.sceneManager.info( self.m_combatant.name.capitalize()+" heals "+target.name.capitalize()+"!" )
         target.addHealth( target.status.get("maxhealth")/4 )
-        s = self.cacheManager.getSurface("images/animations/cure.png")
-        self.m_battle.surfaceOverSpritesAnimation( [target], s, 0, -50 )
+        surf = self.cacheManager.getSurface("images/animations/cure.png")
+        sound = self.cacheManager.getSound("sounds/cure.ogg")
+        self.audioManager.playSound( sound )
+        self.m_battle.surfaceOverSpritesAnimation( [target], surf, 0, -50 )
 
 ## ADEPT
 #
@@ -131,8 +136,10 @@ class Adept(Strategy):
 
         # Attack all targets with 10 attack power.
         self.sceneManager.info( self.m_combatant.name.capitalize()+" casts ice!" )
-        s = self.cacheManager.getSurface("images/animations/ice.png")
-        self.m_battle.surfaceOverSpritesAnimation( array, s, -50 if self.m_combatant.hostile else 50, 0 )
+        surf = self.cacheManager.getSurface("images/animations/ice.png")
+        sound = self.cacheManager.getSound("sounds/ice.ogg")
+        self.audioManager.playSound( sound )
+        self.m_battle.surfaceOverSpritesAnimation( array, surf, -50 if self.m_combatant.hostile else 50, 0 )
         for e in array:
             self.m_combatant.magicalAttack( e, 10, 0.7 )
 

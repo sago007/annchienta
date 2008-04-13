@@ -13,6 +13,7 @@ namespace Annchienta
 
     class Surface;
     class Mask;
+    class Sound;
 
     #ifndef SWIG
         template <class T>
@@ -36,6 +37,7 @@ namespace Annchienta
         private:
             std::list< CacheObject<Surface> > surfaces;
             std::list< CacheObject<Mask> > masks;
+            std::list< CacheObject<Sound> > sounds;
 
         public:
             #ifndef SWIG
@@ -48,6 +50,8 @@ namespace Annchienta
 
             Mask *getMask( const char *filename );
             //void deleteMask( Mask *mask );
+
+            Sound *getSound( const char *filename );
 
             void clear();
 

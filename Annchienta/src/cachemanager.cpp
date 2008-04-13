@@ -6,6 +6,7 @@
 
 #include "surface.h"
 #include "mask.h"
+#include "sound.h"
 
 namespace Annchienta
 {
@@ -90,6 +91,22 @@ namespace Annchienta
         }
     }*/
 
+    Sound *CacheManager::getSound( const char *filename )
+    {
+        for( std::list< CacheObject<Sound> >::iterator i = sounds.begin(); i!=sounds.end(); i++ )
+        {
+            if( !strcmp( filename, (*i).name ) )
+            {
+                (*i).references++;
+                return (*i).data;
+            }
+        }
+
+        Sound *sound = new Sound( filename );
+        sounds.push_back( CacheObject<Sound>( filename, sound ) );
+        return sound;
+    }
+
     void CacheManager::clear()
     {
         for( std::list< CacheObject<Surface> >::iterator i = surfaces.begin(); i!=surfaces.end(); i++ )
@@ -101,6 +118,11 @@ namespace Annchienta
             delete (*i).data;
 
         masks.clear();
+
+        for( std::list< CacheObject<Sound> >::iterator i = sounds.begin(); i!=sounds.end(); i++ )
+            delete (*i).data;
+
+        sounds.clear();
     }
 
     CacheManager *getCacheManager()

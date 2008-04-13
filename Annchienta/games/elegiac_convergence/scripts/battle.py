@@ -2,13 +2,9 @@ import xml.dom.minidom
 import annchienta
 import combatant
 import scene
+import random
 
 class Battle:
-
-    videoManager = annchienta.getVideoManager()
-    inputManager = annchienta.getInputManager()
-    mapManager = annchienta.getMapManager()
-    engine = annchienta.getEngine()
 
     combatants = activeCombatants = []
     background = None
@@ -17,6 +13,11 @@ class Battle:
 
     def __init__( self, combatants ):
 
+        self.engine = annchienta.getEngine()
+        self.videoManager = annchienta.getVideoManager()
+        self.inputManager = annchienta.getInputManager()
+        self.mapManager = annchienta.getMapManager()
+        self.audioManager = annchienta.getAudioManager()
         self.sceneManager = scene.getSceneManager()
         self.battleManager = getBattleManager()
 
@@ -50,6 +51,9 @@ class Battle:
         self.allies = filter( lambda c: not c.hostile, self.activeCombatants )
 
     def run( self ):
+
+        # Some music, maestro!
+        self.audioManager.playMusic( "music/battle_"+str(random.randint(1,3))+".ogg" )
 
         self.battleManager.m_battle = self
 
