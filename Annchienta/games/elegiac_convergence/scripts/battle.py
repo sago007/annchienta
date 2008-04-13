@@ -57,6 +57,8 @@ class Battle:
             a.reset()
             a.m_battle = self
 
+        self.draw()
+
         while self.running and self.inputManager.running():
 
             # For now

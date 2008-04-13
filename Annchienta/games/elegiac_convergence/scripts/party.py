@@ -1,5 +1,4 @@
 import annchienta
-import status
 import xml.dom.minidom
 import combatant
 
