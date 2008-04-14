@@ -89,6 +89,7 @@ namespace Annchienta
             //virtual void stopAnimation();
             //virtual void startAnimation();
 
+            virtual bool canInteract() const;
             virtual void onInteract();
 
             /* Should only be used for Persons, but this is needed because of

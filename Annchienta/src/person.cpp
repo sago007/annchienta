@@ -297,13 +297,18 @@ namespace Annchienta
                      */
                     if( absValue(this->getPosition().z - so->getPosition().z) < getMapManager()->getMaxAscentHeight() )
                     {
-                        /* From all the objects this person collides with, we
-                         * only want the one closest to the person.
+                        /* We skip object with which can not be interacted.
                          */
-                        if( (dist<=closest) || (!interactWith) )
+                        if( so->canInteract() )
                         {
-                            closest = dist;
-                            interactWith = so;
+                            /* From all the objects this person collides with, we
+                             * only want the one closest to the person.
+                             */
+                            if( (dist<=closest) || (!interactWith) )
+                            {
+                                closest = dist;
+                                interactWith = so;
+                            }
                         }
                     }
                 }

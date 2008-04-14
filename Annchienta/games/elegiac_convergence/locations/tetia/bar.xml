@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<sprite image="sprites/bars.png" mask="masks/bars.png">
+    <frame number="1">
+    <animation name="stand" frames="1" speed="20" />
+</sprite>

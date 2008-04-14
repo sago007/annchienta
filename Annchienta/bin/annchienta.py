@@ -502,6 +502,7 @@ class StaticObject(Entity):
     def getXmlFile(*args): return _annchienta.StaticObject_getXmlFile(*args)
     def setAnimation(*args): return _annchienta.StaticObject_setAnimation(*args)
     def getAnimation(*args): return _annchienta.StaticObject_getAnimation(*args)
+    def canInteract(*args): return _annchienta.StaticObject_canInteract(*args)
     def onInteract(*args): return _annchienta.StaticObject_onInteract(*args)
     def freeze(*args): return _annchienta.StaticObject_freeze(*args)
     def stepTo(*args): return _annchienta.StaticObject_stepTo(*args)

@@ -11055,6 +11055,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_StaticObject_canInteract(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_canInteract",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_canInteract" "', argument " "1"" of type '" "Annchienta::StaticObject const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
+  result = (bool)((Annchienta::StaticObject const *)arg1)->canInteract();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_StaticObject_onInteract(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
@@ -11960,6 +11982,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"StaticObject_getXmlFile", _wrap_StaticObject_getXmlFile, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_setAnimation", _wrap_StaticObject_setAnimation, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getAnimation", _wrap_StaticObject_getAnimation, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_canInteract", _wrap_StaticObject_canInteract, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_onInteract", _wrap_StaticObject_onInteract, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_freeze", _wrap_StaticObject_freeze, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_stepTo", _wrap_StaticObject_stepTo, METH_VARARGS, NULL},

@@ -64,10 +64,25 @@ namespace Annchienta
                         else
                             printf("Warning - number not defined for frame in %s.\n", configfile);
 
-                        frame.x1 = xml->getAttributeValueAsInt("x1");
-                        frame.y1 = xml->getAttributeValueAsInt("y1");
-                        frame.x2 = xml->getAttributeValueAsInt("x2");
-                        frame.y2 = xml->getAttributeValueAsInt("y2");
+                        if( xml->getAttributeValue("x1") )
+                        {
+                            frame.x1 = xml->getAttributeValueAsInt("x1");
+                            frame.y1 = xml->getAttributeValueAsInt("y1");
+                            frame.x2 = xml->getAttributeValueAsInt("x2");
+                            frame.y2 = xml->getAttributeValueAsInt("y2");
+                        }
+                        else
+                        {
+                            /* Default to complete sprite, if available.
+                             */
+                            if( sprite )
+                            {
+                                frame.x1 = frame.y1 = 0;
+                                frame.x2 = sprite->getWidth();
+                                frame.y2 = sprite->getHeight();
+                            }
+                        }
+
                         frames.push_back( frame );
                     }
                     if( !strcmpCaseInsensitive("animation", xml->getNodeName()) )
@@ -332,6 +347,11 @@ namespace Annchienta
     {
         animationRunning = true;
     }*/
+
+    bool StaticObject::canInteract() const
+    {
+        return (onInteractCode || onInteractScript);
+    }
 
     void StaticObject::onInteract()
     {
