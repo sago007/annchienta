@@ -50,6 +50,7 @@ namespace Annchienta
 
             /** Sets a color, used for text and surface drawing.
              */
+            void setClearColor( int red=0xff, int green=0xff, int blue=0xff, int alpha=0xff ) const;
             void setColor( int red=0xff, int green=0xff, int blue=0xff, int alpha=0xff ) const;
             void setAlpha( int alpha=0xff ) const;
 

@@ -34,7 +34,7 @@ class MapFile:
             self.document = xml.dom.minidom.Document()
             self.mapElement = self.document.createElement("map")
             self.mapElement.setAttribute("width", str(editor.currentMap.getWidth()) )
-            self.mapElement.setAttribute("height", str(editor.currentMap.getWidth()) )
+            self.mapElement.setAttribute("height", str(editor.currentMap.getHeight()) )
             self.mapElement.setAttribute("tilewidth", str(editor.mapManager.getTileWidth() ) )
             self.mapElement.setAttribute("tileheight", str(editor.mapManager.getTileHeight() ) )
             self.mapElement.setAttribute("tileset", relpath( os.path.abspath(editor.currentMap.getTileSet().getDirectory() ), str(editor.selectGameDirectoryDisplay.text()) ))

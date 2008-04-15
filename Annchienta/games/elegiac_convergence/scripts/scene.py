@@ -204,7 +204,7 @@ class SceneManager:
 
     ## \moves someone.
     #
-    def move(self, object, x, y):
+    def move(self, object, x, y, freezePlayer=True ):
 
         self.inputManager.update()
         self.inputManager.setPersonInputEnabled(False)
@@ -258,12 +258,18 @@ class SceneManager:
         self.mapManager.resync()
         return answers[selected]
 
-    def chat( self, intro, answers ):
+    def chat( self, speaker, intro, answers ):
+
+        self.mapManager.cameraPeekAt( speaker, True )
+        self.videoManager.begin()
+        self.mapManager.renderFrame()
 
         scroll = 0
         selected = 0
         self.inputManager.update()
         self.videoManager.storeBuffer(7)
+
+        intro = speaker.getName().capitalize()+":\n"+intro
 
         while self.inputManager.running() and not self.ticked( self.confirmKeys ):
 
@@ -278,7 +284,7 @@ class SceneManager:
             self.videoManager.setClippingRectangle( 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 2*self.margin, 110-self.margin )
             self.defaultColor()
             height = self.renderTextInArea( intro, 2*self.margin, 2*self.margin-scroll+y, self.videoManager.getScreenWidth() - 2*self.margin, self.defaultFont )
-            y += height
+            y += height+self.margin
 
             yPositions = range(len(answers))
 
@@ -306,7 +312,8 @@ class SceneManager:
                 if selected>0:
                     selected -= 1
                 else:
-                    scroll -= self.defaultFont.getLineHeight()
+                    if scroll>0:
+                        scroll -= self.defaultFont.getLineHeight()
 
             while scroll>yPositions[selected]:
                 scroll -= self.defaultFont.getLineHeight()

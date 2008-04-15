@@ -27,7 +27,11 @@ class PartyManager:
         # <PLAYER>
         playerElement = self.document.getElementsByTagName("player")[0]
         self.player = annchienta.Person( str(playerElement.getAttribute("name")), str(playerElement.getAttribute("xmlfile")) )
-        point = annchienta.Point( annchienta.IsometricPoint, int(playerElement.getAttribute("isox")), int(playerElement.getAttribute("isoy")) )
+        point = None
+        if playerElement.hasAttribute("isox"):
+            point = annchienta.Point( annchienta.IsometricPoint, int(playerElement.getAttribute("isox")), int(playerElement.getAttribute("isoy")) )
+        if playerElement.hasAttribute("tilex"):
+            point = annchienta.Point( annchienta.TilePoint, int(playerElement.getAttribute("tilex")), int(playerElement.getAttribute("tiley")) )
         self.player.setPosition( point )
 
         # <TEAM>

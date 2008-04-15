@@ -44,6 +44,8 @@ namespace Annchienta
                         }
                         if( !strcmpCaseInsensitive( "sample", typestr ) )
                             control = new SamplePersonControl( this );
+                        if( !strcmpCaseInsensitive( "null", typestr ) )
+                            control = 0;
                     }
                     break;
             }

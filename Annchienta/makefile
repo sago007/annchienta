@@ -39,3 +39,6 @@ clean:
 cleanall:
 	@echo "Removing binaries and python wrappers..."
 	@$(RM) $(EXECUTABLE) $(XML_LIBRARY) bin/annchienta.py bin/annchienta.pyc $(SWIG_CPP_FILE)
+
+update: clean all
+	@echo "Updated."

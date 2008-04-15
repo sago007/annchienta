@@ -156,6 +156,11 @@ namespace Annchienta
         SDL_GL_SwapBuffers();
     }
 
+    void VideoManager::setClearColor( int red, int green, int blue, int alpha ) const
+    {
+        glClearColor( float(red)/255.0f, float(green)/255.0f, float(blue)/255.0f, float(alpha)/255.0f );
+    }
+
     void VideoManager::setColor( int red, int green, int blue, int alpha ) const
     {
         glColor4ub( red, green, blue, alpha );

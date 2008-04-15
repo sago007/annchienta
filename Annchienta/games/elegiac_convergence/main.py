@@ -8,6 +8,7 @@ import annchienta
 
 videoMgr = annchienta.getVideoManager()
 videoMgr.setVideoMode( 400, 300, "Annchienta", False )
+videoMgr.setClearColor(0,0,0)
 
 mapMgr = annchienta.getMapManager()
 mapMgr.setTileWidth(64)

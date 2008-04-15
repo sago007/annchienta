@@ -22,6 +22,7 @@ using namespace io;
 #include "point.h"
 #include "area.h"
 #include "engine.h"
+#include "cachemanager.h"
 
 namespace Annchienta
 {
@@ -42,6 +43,7 @@ namespace Annchienta
             printf( "Error - could not open given map file %s as xml\n.", _filename );
 
         Engine *engine = getEngine();
+        CacheManager *cacheManager = getCacheManager();
 
         while( xml && xml->read() )
         {
@@ -50,11 +52,21 @@ namespace Annchienta
                 case EXN_ELEMENT:
                     if( !strcmpCaseInsensitive("map", xml->getNodeName()) )
                     {
-                        width = xml->getAttributeValueAsInt("width");
-                        height = xml->getAttributeValueAsInt("height");
+                        if( xml->getAttributeValue("width") && xml->getAttributeValue("height") )
+                        {
+                            width = xml->getAttributeValueAsInt("width");
+                            height = xml->getAttributeValueAsInt("height");
+                        }
+                        else
+                            printf("Warning - %s does not provide width and height.\n", filename);
 
-                        getMapManager()->setTileWidth( xml->getAttributeValueAsInt("tilewidth") );
-                        getMapManager()->setTileHeight( xml->getAttributeValueAsInt("tileheight") );
+                        if( xml->getAttributeValue("tilewidth") && xml->getAttributeValue("tileheight") )
+                        {
+                            getMapManager()->setTileWidth( xml->getAttributeValueAsInt("tilewidth") );
+                            getMapManager()->setTileHeight( xml->getAttributeValueAsInt("tileheight") );
+                        }
+                        else
+                            printf("Warning - %s does not provide tilewidth and tileheight.\n", filename);
 
                         if( xml->getAttributeValue("tileset") )
                             tileSet = new TileSet( xml->getAttributeValue("tileset") );
@@ -134,8 +146,18 @@ namespace Annchienta
                     }
                     if( !strcmpCaseInsensitive("staticobject", xml->getNodeName() ) )
                     {
-                        StaticObject *staticObject = new StaticObject( xml->getAttributeValue("name"),
-                                                                       xml->getAttributeValue("config") );
+                        StaticObject *staticObject;
+
+                        if( xml->getAttributeValue("config") )
+                            staticObject = new StaticObject( xml->getAttributeValue("name"), xml->getAttributeValue("config") );
+                        else
+                        {
+                            /* StaticObjects don't *NEED* a config file.
+                             */
+                            Surface *s = cacheManager->getSurface( xml->getAttributeValue("sprite") );
+                            Mask *m = cacheManager->getMask( xml->getAttributeValue("mask") );
+                            staticObject = new StaticObject( xml->getAttributeValue("name"), s, m );
+                        }
 
                         if( xml->getAttributeValue("isox") && xml->getAttributeValue("isoy") )
                             staticObject->setPosition( Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),
@@ -157,8 +179,12 @@ namespace Annchienta
                     }
                     if( !strcmpCaseInsensitive("person", xml->getNodeName() ) )
                     {
-                        Person *person = new Person( xml->getAttributeValue("name"),
-                                                     xml->getAttributeValue("config") );
+                        Person *person;
+
+                        if( xml->getAttributeValue("name") && xml->getAttributeValue("config") )
+                            person = new Person( xml->getAttributeValue("name"), xml->getAttributeValue("config") );
+                        else
+                            printf("Error - no name and config specified for person in %s.\n", filename);
 
                         if( xml->getAttributeValue("isox") && xml->getAttributeValue("isoy") )
                             person->setPosition( Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),

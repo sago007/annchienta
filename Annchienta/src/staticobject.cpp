@@ -128,6 +128,30 @@ namespace Annchienta
         speedTimer = 0;
     }
 
+    StaticObject::StaticObject( const char *_name, Surface *_surf, Mask *_mask ): Entity(_name), sprite(_surf), mask(_mask), tileStandingOn(0), currentFrame(0), needsUpdate(true), onInteractScript(0), onInteractCode(0)
+    {
+        /* Create a default frame.
+         */
+        Frame frame;
+        frame.number = 1;
+        frame.x1 = frame.y1 = 0;
+        frame.x2 = sprite->getWidth();
+        frame.y2 = sprite->getHeight();
+        frames.push_back( frame );
+
+        /* Create a default animation.
+         */
+        Animation animation;
+        strcpy( animation.name, "stand" );
+        strcpy( animation.frames, "1" );
+        animation.numberOfFrames = strlen( animation.frames );
+        animation.speed = 20;
+        animations.push_back( animation );
+
+        setAnimation( "stand" );
+        speedTimer = 0;
+    }
+
     StaticObject::~StaticObject()
     {
         if( onInteractCode )

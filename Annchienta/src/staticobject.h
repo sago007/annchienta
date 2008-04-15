@@ -66,6 +66,7 @@ namespace Annchienta
 
         public:
             StaticObject( const char *name, const char *configfile );
+            StaticObject( const char *name, Surface *surf, Mask *mask );
             virtual ~StaticObject();
 
             void setCollidingTiles();
