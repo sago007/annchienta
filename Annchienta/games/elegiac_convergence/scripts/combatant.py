@@ -261,6 +261,8 @@ class Ally(Combatant):
                 self.status.add("defense", int(round( relative[i]*float(strat.defense) )) )
                 self.status.add("magic", int(round( relative[i]*float(strat.magic) )) )
                 self.status.add("resistance", int(round( relative[i]*float(strat.resistance) )) )
+                self.status.add("maxhealth", int(s))
+                self.status.set("health", self.status.get("maxhealth"))
             
             # Update needed points
             self.growth.set("needed", int(float(self.growth.get("needed"))*1.5) )
