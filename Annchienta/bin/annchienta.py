@@ -196,6 +196,7 @@ class AudioManager(_object):
     __repr__ = _swig_repr
     def playSound(*args): return _annchienta.AudioManager_playSound(*args)
     def playMusic(*args): return _annchienta.AudioManager_playMusic(*args)
+    def getPlayingMusic(*args): return _annchienta.AudioManager_getPlayingMusic(*args)
     def __init__(self, *args): 
         this = _annchienta.new_AudioManager(*args)
         try: self.this.append(this)

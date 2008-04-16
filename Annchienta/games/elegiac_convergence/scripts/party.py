@@ -127,6 +127,10 @@ class PartyManager:
             c.experience.writeTo( experienceElement )
             combatantElement.appendChild( experienceElement )
 
+            growthElement = self.document.createElement("growth")
+            c.growth.writeTo( growthElement )
+            combatantElement.appendChild( growthElement )
+
             teamElement.appendChild( combatantElement )
 
         partyElement.appendChild( teamElement )

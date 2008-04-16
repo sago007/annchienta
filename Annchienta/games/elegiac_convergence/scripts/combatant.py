@@ -36,6 +36,8 @@ class Status:
             if a.name == name.lower():
                 return a.value
 
+        return 0
+
     def set( self, name, value ):
 
         for a in self.attributes:
@@ -44,7 +46,7 @@ class Status:
                 return
 
         # if not found, append an attribute
-        attributes += [Attribute(name,value)]
+        self.attributes += [Attribute(name,value)]
 
     def add( self, name, value ):
 
@@ -195,6 +197,12 @@ class Ally(Combatant):
         else:
             self.experience = Status()
 
+        growthElements = element.getElementsByTagName("growth")
+        if len(growthElements):
+            self.growth = Status( growthElements[0] )
+        else:
+            self.growth = Status()
+
         self.hostile = False
         self.buildMenu()
 
@@ -228,17 +236,47 @@ class Ally(Combatant):
         if self.inputManager.running():
             s = strategy.getStrategy( a.name )
 
-            # Add experience for ths chosen strategy.
+            # Add experience and growth for this chosen strategy.
             self.experience.add( a.name, 1 )
+            self.growth.add( a.name, 1 )
 
             return s( self.m_battle, self )
         else:
             return None
+
+    def addGrowthPoints( self, points ):
+
+        self.growth.add( "points", points )
+
+        # 'Level up'
+        while self.growth.get("points")>=self.growth.get("needed"):
+            
+            s = float(sum( map(lambda n: self.growth.get(n), self.strategies) ))
+            relative = map( lambda n: float(self.growth.get(n))/float(s), self.strategies )
+            
+            for i in range(len(self.strategies)):
+                sn = self.strategies[i]
+                strat = strategy.getStrategy( sn )
+                self.status.add("strength", int(round( relative[i]*float(strat.strength) )) )
+                self.status.add("defense", int(round( relative[i]*float(strat.defense) )) )
+                self.status.add("magic", int(round( relative[i]*float(strat.magic) )) )
+                self.status.add("resistance", int(round( relative[i]*float(strat.resistance) )) )
+            
+            # Update needed points
+            self.growth.set("needed", int(float(self.growth.get("needed"))*1.5) )
+
+            self.growth.set("points", 0)
+            for sn in self.strategies:
+                self.growth.set( sn, 0 )
 
 class Enemy(Combatant):
 
     def __init__( self, element ):
 
         Combatant.__init__( self, element )
+
+        dropElement = element.getElementsByTagName("drop")[0]
+        self.experience = int(dropElement.getAttribute("experience"))
+
         self.hostile = True
 

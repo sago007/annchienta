@@ -151,7 +151,11 @@ class Battle:
     def onWin( self ):
         self.won = True
         self.running = False
-        self.sceneManager.info( "You won!", None )
+        self.sceneManager.info( "Victory!", None )
+        experienceGaining = filter( lambda a: a.status.get("health")>0, self.allies )
+        points = sum( map(lambda e: e.experience, filter( lambda c: c.hostile, self.combatants) ) )
+        for e in experienceGaining:
+            e.addGrowthPoints( points )
 
     def onLose( self ):
         self.won = False

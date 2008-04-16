@@ -6,6 +6,7 @@ class Strategy:
 
     name = "empty"
     description = "Empty strategy class."
+    strength, defense, magic, resistance = 3, 2, 3, 2
 
     def __init__( self, m_battle, m_combatant ):
 
@@ -36,6 +37,7 @@ class Warrior(Strategy):
 
     name = "warrior"
     description = "Randomly attacks enemies."
+    strength, defense, magic, resistance = 4, 3, 1, 2
 
     category = "melee"
 
@@ -77,6 +79,7 @@ class Healer(Strategy):
 
     name = "healer"
     description = "Heals allies."
+    strength, defense, magic, resistance = 1, 2, 3, 4
 
     category = "white magic"
 
@@ -115,6 +118,7 @@ class Adept(Strategy):
 
     name = "adept"
     description = "Casts spells on enemies."
+    strength, defense, magic, resistance = 1, 2, 4, 3
 
     category = "black magic"
 

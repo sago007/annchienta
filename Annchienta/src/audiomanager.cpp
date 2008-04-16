@@ -60,6 +60,11 @@ namespace Annchienta
         Mix_PlayMusic( music, -1 );
     }
 
+    const char *AudioManager::getPlayingMusic() const
+    {
+        return musicFilename;
+    }
+
     AudioManager *getAudioManager()
     {
         return audioManager;

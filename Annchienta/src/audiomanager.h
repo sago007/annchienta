@@ -28,6 +28,7 @@ namespace Annchienta
             void playSound( Sound *sound ) const;
             void playMusic( const char *filename );
 
+            const char *getPlayingMusic() const;
     };
 
     AudioManager *getAudioManager();

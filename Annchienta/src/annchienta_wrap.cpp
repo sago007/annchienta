@@ -6989,6 +6989,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_AudioManager_getPlayingMusic(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::AudioManager *arg1 = (Annchienta::AudioManager *) 0 ;
+  char *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:AudioManager_getPlayingMusic",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__AudioManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AudioManager_getPlayingMusic" "', argument " "1"" of type '" "Annchienta::AudioManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::AudioManager * >(argp1);
+  result = (char *)((Annchienta::AudioManager const *)arg1)->getPlayingMusic();
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_AudioManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::AudioManager *result = 0 ;
@@ -12244,6 +12266,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"getMapManager", _wrap_getMapManager, METH_VARARGS, NULL},
 	 { (char *)"AudioManager_playSound", _wrap_AudioManager_playSound, METH_VARARGS, NULL},
 	 { (char *)"AudioManager_playMusic", _wrap_AudioManager_playMusic, METH_VARARGS, NULL},
+	 { (char *)"AudioManager_getPlayingMusic", _wrap_AudioManager_getPlayingMusic, METH_VARARGS, NULL},
 	 { (char *)"new_AudioManager", _wrap_new_AudioManager, METH_VARARGS, NULL},
 	 { (char *)"delete_AudioManager", _wrap_delete_AudioManager, METH_VARARGS, NULL},
 	 { (char *)"AudioManager_swigregister", AudioManager_swigregister, METH_VARARGS, NULL},
