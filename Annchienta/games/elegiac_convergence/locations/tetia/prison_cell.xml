@@ -21,8 +21,13 @@
 
 <onload>
 import annchienta
+import battle
 audioManager = annchienta.getAudioManager()
+battleManager = battle.getBattleManager()
+
 audioManager.playMusic(&quot;music/tetia_1.ogg&quot;)
+battleManager.enemiesInMap = [&quot;spider&quot;]
+battleManager.battleBackground = &quot;images/backgrounds/tetia_prison.png&quot;
 </onload>
 
 </map>

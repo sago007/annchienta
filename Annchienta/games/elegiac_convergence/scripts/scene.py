@@ -369,16 +369,15 @@ class SceneManager:
             self.videoManager.end()
         self.mapManager.resync()
 
-    def rotateEffect( self ):
-        ms = 4000
+    def rotateEffect( self, duration=1500 ):
         start = self.engine.getTicks()
         self.videoManager.storeBuffer(7)
-        while self.engine.getTicks() < start+ms:
-            factor = float(self.engine.getTicks() - start)/float(ms)
+        while self.engine.getTicks() < start+duration:
+            factor = float(self.engine.getTicks() - start)/float(duration)
             self.videoManager.begin()
             self.videoManager.translate( self.videoManager.getScreenWidth()/2, self.videoManager.getScreenHeight()/2 )
-            self.videoManager.rotate( factor*360. )
-            self.videoManager.scale( factor*100., factor*100. )
+            self.videoManager.rotate( (factor+1.)*(factor+1.)*360. )
+            self.videoManager.scale( factor*50., factor*50. )
             self.videoManager.translate( -self.videoManager.getScreenWidth()/2, -self.videoManager.getScreenHeight()/2 )
             self.videoManager.restoreBuffer(7)
             self.videoManager.end()

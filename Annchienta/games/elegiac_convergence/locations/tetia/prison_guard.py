@@ -32,5 +32,5 @@ battleManager = battle.getBattleManager()
 c = partyManager.team + map( lambda i:battleManager.createEnemy("spider"), range(3) )
 
 b = battle.Battle( c )
-b.background = annchienta.Surface("images/backgrounds/tiles.png")
-battleManager.runBattle(b)
+b.background = annchienta.Surface("images/backgrounds/tetia_streets.png")
+b.run()

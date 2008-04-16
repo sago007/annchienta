@@ -1,7 +1,15 @@
 import annchienta
+import party
 
 inputManager = annchienta.getInputManager()
 mapManager = annchienta.getMapManager()
+
+# If the player is not standing still, we might need
+# to throw a random battle.
+if not "stand" in partyManager.player.getAnimation():
+    import battle
+    battleManager = battle.getBattleManager()
+    battleManager.throwRandomBattle()
 
 if inputManager.keyTicked( annchienta.SDLK_RETURN ):
 
@@ -27,7 +35,6 @@ if inputManager.keyTicked( annchienta.SDLK_RETURN ):
         print "Canceled."
     else:
         if a.name == "save":
-            import party
             import scene
             partyManager = party.getPartyManager()
             partyManager.save("saves/save.xml")

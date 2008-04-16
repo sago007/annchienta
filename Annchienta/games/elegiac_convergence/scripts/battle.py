@@ -3,6 +3,7 @@ import annchienta
 import combatant
 import scene
 import random
+import party
 
 class Battle:
 
@@ -52,9 +53,6 @@ class Battle:
         self.allies = filter( lambda c: not c.hostile, self.activeCombatants )
 
     def run( self ):
-
-        # Some music, maestro!
-        self.audioManager.playMusic( "music/battle_"+str(random.randint(1,3))+".ogg" )
 
         self.battleManager.m_battle = self
 
@@ -223,6 +221,12 @@ class BattleManager:
     enemyElements = []
     m_battle = None
 
+    def __init__( self ):
+        
+        self.enemiesInMap = []
+        self.battleBackground = None
+        self.randomBattleDelay = random.randint( 100, 200 )
+
     def loadEnemies( self, fname ):
 
         self.document = xml.dom.minidom.parse( fname )
@@ -236,10 +240,33 @@ class BattleManager:
         else:
             return combatant.Enemy( candidates[0] )
 
-    def runBattle( self, b ):
-        music = self.audioManager.getPlayingMusic()
-        r = b.run()
-        self.audioManager.playMusic( music )
+    def throwRandomBattle( self ):
+
+        self.partyManager = party.getPartyManager()
+        self.sceneManager = scene.getSceneManager()
+
+        if self.randomBattleDelay>0:
+            self.randomBattleDelay -= 1
+            return
+        else:
+            self.randomBattleDelay = random.randint( 100, 200 )
+
+            # Return if there are no enemies in this level.
+            if not len(self.enemiesInMap):
+                return
+
+            music = self.audioManager.getPlayingMusic()
+            self.audioManager.playMusic( "music/battle_"+str(random.randint(1,3))+".ogg" )
+            self.sceneManager.rotateEffect()
+
+            enames = map( lambda a: self.enemiesInMap[random.randint(0,len(self.enemiesInMap)-1)], range(random.randint(2,3)))
+            enemies = map( lambda n: self.createEnemy(n), enames )
+
+            b = Battle( self.partyManager.team + enemies )
+            b.background = annchienta.Surface(self.battleBackground)
+            b.run()
+
+            self.audioManager.playMusic( music )
 
 def initBattleManager():
     global globalBattleManagerInstance
