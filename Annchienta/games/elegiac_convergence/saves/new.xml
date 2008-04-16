@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <party>
-    <player tilex="5" tiley="5" name="aelaan" xmlfile="locations/common/aelaan.xml"/>
-	<map filename="locations/tetia/map.xml" layer="0"/>
+    <player tilex="8" tiley="5" name="aelaan" xmlfile="locations/common/aelaan.xml"/>
+	<map filename="locations/tetia/prison_cell.xml" layer="0"/>
 	<records>
 		
 	</records>

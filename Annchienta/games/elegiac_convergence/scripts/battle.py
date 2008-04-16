@@ -120,7 +120,7 @@ class Battle:
             # Draw some basic info
             x, y = a.posX, a.posY
             w, h = a.getSize()
-            x += (w+20 if a.hostile else -20-64)
+            x += (w+5 if a.hostile else -5-64)
             y += (h - 50)
             self.videoManager.translate( x, y )
             self.sceneManager.drawBox( 0, 0, 64, 30 )
@@ -217,6 +217,7 @@ class Battle:
 
 class BattleManager:
 
+    audioManager = annchienta.getAudioManager()
     engine = annchienta.getEngine()
 
     enemyElements = []
@@ -234,6 +235,11 @@ class BattleManager:
             self.engine.write( "Error - could not find an enemy called "+str(name)+"." )
         else:
             return combatant.Enemy( candidates[0] )
+
+    def runBattle( self, b ):
+        music = self.audioManager.getPlayingMusic()
+        r = b.run()
+        self.audioManager.playMusic( music )
 
 def initBattleManager():
     global globalBattleManagerInstance

@@ -17,5 +17,12 @@
     <person name="guard" config="locations/tetia/prison_guard.xml" tilex="4" tiley="3" />
 </if>
 
+</layer>
 
-</layer></map>
+<onload>
+import annchienta
+audioManager = annchienta.getAudioManager()
+audioManager.playMusic(&quot;music/tetia_1.ogg&quot;)
+</onload>
+
+</map>

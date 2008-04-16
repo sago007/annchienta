@@ -23,3 +23,14 @@ sceneManager.quitDialog()
 
 partyManager.addRecord("tetia_talked_to_prison_guard")
 partyManager.currentMap.removeObject( this )
+
+# Start battle area
+import battle
+
+battleManager = battle.getBattleManager()
+
+c = partyManager.team + map( lambda i:battleManager.createEnemy("spider"), range(3) )
+
+b = battle.Battle( c )
+b.background = annchienta.Surface("images/backgrounds/tiles.png")
+battleManager.runBattle(b)
