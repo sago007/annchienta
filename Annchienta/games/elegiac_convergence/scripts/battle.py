@@ -18,6 +18,7 @@ class Battle:
         self.inputManager = annchienta.getInputManager()
         self.mapManager = annchienta.getMapManager()
         self.audioManager = annchienta.getAudioManager()
+        self.cacheManager = annchienta.getCacheManager()
         self.sceneManager = scene.getSceneManager()
         self.battleManager = getBattleManager()
 
@@ -119,22 +120,29 @@ class Battle:
             # Draw some basic info
             x, y = a.posX, a.posY
             w, h = a.getSize()
-            x += (w+20 if a.hostile else -20-60)
+            x += (w+20 if a.hostile else -20-64)
             y += (h - 50)
             self.videoManager.translate( x, y )
-            self.sceneManager.drawBox( 0, 0, 60, 30 )
+            self.sceneManager.drawBox( 0, 0, 64, 30 )
 
             # Health bar.
             self.videoManager.setColor(0,0,0)
-            self.videoManager.drawRectangle( 5, 5, 55, 10 )
+            self.videoManager.drawRectangle( 5, 5, 59, 10 )
             self.videoManager.setColor(200,0,0)
-            w = int(50.0*float(a.status.get("health"))/float(a.status.get("maxhealth")))
+            w = int(54.0*float(a.status.get("health"))/float(a.status.get("maxhealth")))
             self.videoManager.drawRectangle( 5, 5, 5+w, 10 )
 
-            self.sceneManager.inactiveColor()
             # Ailments and buffers.
+            self.videoManager.translate( 0, 10 )
             if not (len(a.ailments)+len(a.buffers)):
-                self.videoManager.drawString( self.sceneManager.defaultFont, "Clean", 5, 10 )
+                self.sceneManager.inactiveColor()
+                self.videoManager.drawString( self.sceneManager.defaultFont, "Clean", 0, 0 )
+            else:
+                self.videoManager.setColor()
+                for effect in a.ailments+a.buffers:
+                    surf = self.cacheManager.getSurface("images/status_effects/"+effect+".png")
+                    self.videoManager.drawSurface( surf, 0, 0 )
+                    self.videoManager.translate( surf.getWidth(), 0 )
 
         self.videoManager.reset()
         if flip:

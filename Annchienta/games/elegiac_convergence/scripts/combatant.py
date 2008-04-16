@@ -96,7 +96,7 @@ class Combatant:
         self.reset()
 
     def reset( self ):
-        self.ailments = []
+        self.ailments = ["poison"]
         self.buffers = []
         self.delay = 6
         self.m_strategy = strategy.Strategy( None, self )
