@@ -97,7 +97,7 @@ namespace Annchienta
              * abstracting to Python scripts. Always returns true.
              */
             virtual void freeze( bool );
-            virtual bool stepTo( int x, int y);
+            virtual bool stepTo( Point );
             virtual void lookAt( StaticObject *other );
     };
 

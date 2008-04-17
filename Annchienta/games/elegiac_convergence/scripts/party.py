@@ -153,6 +153,10 @@ class PartyManager:
         # Because loading a map can take some time:
         self.mapManager.resync()
 
+    def refreshMap( self ):
+        pos = self.player.getPosition()
+        self.changeMap( self.currentMap.getFileName(), pos )
+
 def initPartyManager():
     global globalPartyManagerInstance
     globalPartyManagerInstance = PartyManager()

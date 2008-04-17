@@ -188,8 +188,11 @@ namespace Annchienta
         return true;
     }
 
-    bool Person::stepTo( int tx, int ty )
+    bool Person::stepTo( Point target )
     {
+        target.convert( IsometricPoint );
+        int tx = target.x, ty = target.y;
+
         /* We don't need to take a step if we're close enough.
         */
         if( squaredDistance( position.x, position.y, tx, ty ) <= 25 )

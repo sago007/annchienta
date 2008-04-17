@@ -390,11 +390,10 @@ namespace Annchienta
         return;
     }
 
-    bool StaticObject::stepTo( int x, int y )
+    bool StaticObject::stepTo( Point p )
     {
-        printf("Warning - attempt to step static object %s to %d, %d. Warping.\n", this->getName(), x, y );
-        position.x = x;
-        position.y = y;
+        printf("Warning - attempt to step static object %s to %d, %d. Warping.\n", this->getName(), p.x, p.y );
+        position = p.to(IsometricPoint);
         needsUpdate = true;
         return true;
     }

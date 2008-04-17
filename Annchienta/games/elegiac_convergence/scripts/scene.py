@@ -120,7 +120,9 @@ class SceneManager:
     ## \brief Display some text.
     #
     #  \param text The text to be displayed.
-    def text( self, text ):
+    def text( self, text, font=None ):
+
+        font = self.defaultFont if font is None else font
 
         text = str(text)
         scroll = 0
@@ -137,8 +139,8 @@ class SceneManager:
             self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
             self.videoManager.setClippingRectangle( 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, 110-self.margin )
             self.defaultColor()
-            height = self.renderTextInArea( text, 2*self.margin, 2*self.margin-scroll, self.videoManager.getScreenWidth() - 3*self.margin, self.defaultFont )
-            height -= 110 - self.defaultFont.getLineHeight()
+            height = self.renderTextInArea( text, 2*self.margin, 2*self.margin-scroll, self.videoManager.getScreenWidth() - 3*self.margin, font )
+            height -= 110 - font.getLineHeight()
             self.videoManager.disableClipping()
             self.videoManager.pushMatrix()
             self.videoManager.translate( self.videoManager.getScreenWidth()-3*self.margin, 110-4*self.margin )
@@ -150,13 +152,32 @@ class SceneManager:
             self.videoManager.end()
 
             if self.ticked( self.nextKeys ) and scroll<height:
-                scroll += self.defaultFont.getLineHeight()
+                scroll += font.getLineHeight()
             if self.ticked( self.previousKeys ) and scroll>0:
-                scroll -= self.defaultFont.getLineHeight()
+                scroll -= font.getLineHeight()
 
         self.videoManager.restoreBuffer(7)
         self.mapManager.resync()
 
+    def thoughts( self, text ):
+
+        text = str(text)
+        scroll = 0
+        self.inputManager.update()
+        self.videoManager.storeBuffer(7)
+        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
+
+            self.inputManager.update()
+
+            self.videoManager.begin()
+            self.videoManager.setColor(0,0,0)
+            self.videoManager.drawRectangle(0,0,self.videoManager.getScreenWidth(),self.videoManager.getScreenHeight())
+            self.defaultColor()
+            self.renderTextInArea( text, 2*self.margin, 100, self.videoManager.getScreenWidth() - 2*self.margin, self.italicsFont )
+            self.videoManager.end()
+
+        self.videoManager.restoreBuffer(7)
+        self.mapManager.resync()
 
     ## \brief Display some info.
     #
@@ -200,63 +221,7 @@ class SceneManager:
         self.mapManager.cameraPeekAt( object, True )
         self.videoManager.begin()
         self.mapManager.renderFrame()
-        self.text( object.getName().capitalize() + ":\n" + text )
-
-    ## \moves someone.
-    #
-    def move(self, object, x, y, freezePlayer=True ):
-
-        self.inputManager.update()
-        self.inputManager.setPersonInputEnabled(False)
-
-        while self.inputManager.running() and object.stepTo(x,y):
-
-            self.mapManager.update(False)
-            self.inputManager.update()
-
-            self.mapManager.cameraPeekAt( object )
-
-            self.videoManager.begin()
-            self.mapManager.renderFrame()
-            self.videoManager.end()
-
-        self.inputManager.setPersonInputEnabled(True)
-
-    def choose(self, title, answers):
-
-        selected = 0
-        self.inputManager.update()
-        self.videoManager.storeBuffer(7)
-
-        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
-
-            self.inputManager.update()
-
-            self.videoManager.begin()
-            self.videoManager.restoreBuffer(7)
-            self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
-            self.defaultColor()
-            y = self.margin*2
-            self.videoManager.drawString( self.defaultFont, title, self.margin*2, y )
-            y += self.defaultFont.getLineHeight()
-            for a in answers:
-                if answers[selected] is a:
-                    self.activeColor()
-                else:
-                    self.inactiveColor()
-                self.videoManager.drawString( self.defaultFont, a, self.margin*2, y )
-                y += self.defaultFont.getLineHeight()
-            self.videoManager.end()
-
-            if self.ticked( self.nextKeys ):
-                selected = selected+1 if selected+1<len(answers) else 0
-            if self.ticked( self.previousKeys ):
-                selected = selected-1 if selected>=1 else len(answers)-1
-
-        self.videoManager.setColor()
-        self.videoManager.restoreBuffer(7)
-        self.mapManager.resync()
-        return answers[selected]
+        self.text( object.getName().capitalize() + ":\n" + text, self.defaultFont )
 
     def chat( self, speaker, intro, answers ):
 
@@ -325,6 +290,63 @@ class SceneManager:
         self.videoManager.restoreBuffer(7)
         self.mapManager.resync()
         return selected
+
+    def choose(self, title, answers):
+
+        selected = 0
+        self.inputManager.update()
+        self.videoManager.storeBuffer(7)
+
+        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
+
+            self.inputManager.update()
+
+            self.videoManager.begin()
+            self.videoManager.restoreBuffer(7)
+            self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
+            self.defaultColor()
+            y = self.margin*2
+            self.videoManager.drawString( self.defaultFont, title, self.margin*2, y )
+            y += self.defaultFont.getLineHeight()
+            for a in answers:
+                if answers[selected] is a:
+                    self.activeColor()
+                else:
+                    self.inactiveColor()
+                self.videoManager.drawString( self.defaultFont, a, self.margin*2, y )
+                y += self.defaultFont.getLineHeight()
+            self.videoManager.end()
+
+            if self.ticked( self.nextKeys ):
+                selected = selected+1 if selected+1<len(answers) else 0
+            if self.ticked( self.previousKeys ):
+                selected = selected-1 if selected>=1 else len(answers)-1
+
+        self.videoManager.setColor()
+        self.videoManager.restoreBuffer(7)
+        self.mapManager.resync()
+        return answers[selected]
+
+
+    ## \moves someone.
+    #
+    def move(self, object, point ):
+
+        self.inputManager.update()
+        self.inputManager.setPersonInputEnabled(False)
+
+        while self.inputManager.running() and object.stepTo(point):
+
+            self.mapManager.update(False)
+            self.inputManager.update()
+
+            self.mapManager.cameraPeekAt( object, True )
+
+            self.videoManager.begin()
+            self.mapManager.renderFrame()
+            self.videoManager.end()
+
+        self.inputManager.setPersonInputEnabled(True)
 
     ## \brief Inits a dialog.
     #

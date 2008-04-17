@@ -31,7 +31,7 @@ namespace Annchienta
             virtual void update();
 
             virtual bool move( int x, int y, bool force=false );
-            virtual bool stepTo( int x, int y );
+            virtual bool stepTo( Point );
 
             virtual void freeze( bool );
             virtual bool isFrozen() const;
