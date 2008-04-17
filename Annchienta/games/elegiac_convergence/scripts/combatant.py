@@ -206,6 +206,11 @@ class Ally(Combatant):
         self.hostile = False
         self.buildMenu()
 
+    def reset( self ):
+
+        Combatant.reset( self )
+        self.buildMenu()
+
     def buildMenu( self ):
 
         self.menu = menu.Menu( str(self.name.capitalize()), "Select behaviour for your combatant." )
@@ -270,6 +275,14 @@ class Ally(Combatant):
             self.growth.set("points", 0)
             for sn in self.strategies:
                 self.growth.set( sn, 0 )
+
+        # Check for new strategies:
+        for strat in strategy.all:
+            # Unfortunately we need an instance.
+            inst = strat(None,None)
+            if inst.isAvailableFor( self ) and strat.name not in self.strategies:
+                self.strategies += [strat.name]
+                self.sceneManager.info(self.name.capitalize()+" learned strategy "+strat.name.capitalize()+"!")
 
 class Enemy(Combatant):
 

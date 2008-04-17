@@ -22,10 +22,7 @@ class Strategy:
 
         pass
 
-    # Note that this does not take a 'self' parameter,
-    # meaning you should call it like 'Strategy.isAvailableFor()'
-    def isAvailableFor( m_combatant ):
-
+    def isAvailableFor( self, m_combatant ):
         return True
 
 ## WARRIOR
@@ -68,6 +65,8 @@ class Warrior(Strategy):
             self.audioManager.playSound( sound )
         self.m_battle.returnHomeAnimation( self.m_combatant )
 
+    def isAvailableFor( self, m_combatant ):
+        return True
 
 ## HEALER
 #
@@ -109,6 +108,9 @@ class Healer(Strategy):
         self.audioManager.playSound( sound )
         self.m_battle.surfaceOverSpritesAnimation( [target], surf, 0, -50 )
 
+    def isAvailableFor( self, m_combatant ):
+        return True
+
 ## ADEPT
 #
 #  Most simple black-magic based class. Casts a spell on
@@ -147,8 +149,52 @@ class Adept(Strategy):
         for e in array:
             self.m_combatant.magicalAttack( e, 10, 0.7 )
 
+    def isAvailableFor( self, m_combatant ):
+        return True
+
+## FIGHTER
+#
+#  Attacks the weakest enemies.
+#
+class Fighter(Strategy):
+
+    name = "fighter"
+    description = "Attacks the weakest enemy."
+    strength, defense, magic, resistance = 4, 4, 1, 1
+
+    category = "melee"
+
+    def __init__( self, m_battle, m_combatant ):
+
+        Strategy.__init__( self, m_battle, m_combatant )
+        self.turns = 3
+
+    def control( self ):
+
+        # Decrease our turns for this strategy.
+        self.turns -= 1
+
+        # Add some delay now.
+        self.m_combatant.delay += 7
+
+        # Select the target with the lowest health.
+        target = self.m_battle.getCombatantWithLowestHealth( not self.m_combatant.hostile )
+        if target is None:
+            return
+
+        # Attack that target with some more attack power.
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
+        self.m_battle.physicalAttackAnimation( self.m_combatant, target )
+        sound = self.cacheManager.getSound("sounds/sword.ogg")
+        if self.m_combatant.physicalAttack( target, 25, 0.8 ):
+            self.audioManager.playSound( sound )
+        self.m_battle.returnHomeAnimation( self.m_combatant )
+
+    def isAvailableFor( self, m_combatant ):
+        return m_combatant.experience.get("warrior")>2
+
 # List with all strategies, used by getStrategy()
-all = [Warrior, Healer, Adept]
+all = [Warrior, Healer, Adept, Fighter]
 
 def getStrategy( name ):
     for s in all:

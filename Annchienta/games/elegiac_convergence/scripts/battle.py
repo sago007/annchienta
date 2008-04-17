@@ -194,7 +194,7 @@ class Battle:
 
         self.moveAnimation( mover, mover.posX, mover.posY )
 
-    def surfaceOverSpritesAnimation( self, targets, surface, rtx, rty, duration=300 ):
+    def surfaceOverSpritesAnimation( self, targets, surface, rtx, rty, duration=300, backwards=False ):
 
         sizes = map( lambda t: t.getSize(), targets )
         ox = map( lambda i: targets[i].x+sizes[i][0]/2-surface.getWidth()/2, range(len(targets)) )
@@ -205,6 +205,7 @@ class Battle:
 
         while self.engine.getTicks()<start+duration and self.inputManager.running():
             t = float(self.engine.getTicks()-start)/float(duration)
+            t = 1.0-t if backwards else t
             self.draw(False)
             for i in range(len(targets)):
                 x = int( t*float(tx[i]) + (1.0-t)*float(ox[i]) )
@@ -225,7 +226,7 @@ class BattleManager:
         
         self.enemiesInMap = []
         self.battleBackground = None
-        self.randomBattleDelay = random.randint( 100, 200 )
+        self.randomBattleDelay = random.randint( 500, 1000 )
 
     def loadEnemies( self, fname ):
 
@@ -249,7 +250,7 @@ class BattleManager:
             self.randomBattleDelay -= 1
             return
         else:
-            self.randomBattleDelay = random.randint( 100, 200 )
+            self.randomBattleDelay = random.randint( 500, 1000 )
 
             # Return if there are no enemies in this level.
             if not len(self.enemiesInMap):
