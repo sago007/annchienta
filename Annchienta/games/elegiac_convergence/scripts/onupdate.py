@@ -5,11 +5,14 @@ inputManager = annchienta.getInputManager()
 mapManager = annchienta.getMapManager()
 
 # If the player is not standing still, we might need
-# to throw a random battle.
+# to throw a random battle. Also make sure that the player
+# is input controlled because we do not want random
+# battles during cinematic sequences.
 if not "stand" in partyManager.player.getAnimation():
-    import battle
-    battleManager = battle.getBattleManager()
-    battleManager.throwRandomBattle()
+    if inputManager.personInputIsEnabled():
+        import battle
+        battleManager = battle.getBattleManager()
+        battleManager.throwRandomBattle()
 
 if inputManager.keyTicked( annchienta.SDLK_RETURN ):
 
