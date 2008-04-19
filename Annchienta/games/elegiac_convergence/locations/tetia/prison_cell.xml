@@ -6,10 +6,14 @@
 118 7 118 7 118 7 118 7 0 7    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    
 118 7 118 7 118 7 118 7 0 7    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    118 7 118 7 118 7 118 7 0 7    118 7 118 7 118 7 118 7 0 7    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    
 </tiles>
-<staticobject name="bars" isox="80" isoy="29" sprite="sprites/bars.png" mask="masks/bars.png" />
-<staticobject name="bars" isox="80" isoy="45" sprite="sprites/bars.png" mask="masks/bars.png" />
-<staticobject name="bars" isox="80" isoy="61" sprite="sprites/bars.png" mask="masks/bars.png" />
-<staticobject name="bars" isox="80" isoy="76" sprite="sprites/bars.png" mask="masks/bars.png" />
+
+<!-- This bars run prison_guard.py when interacted with. That script should let a
+     guard enter this map, talk a little and then leave.
+-->
+<staticobject name="bars" isox="80" isoy="29" config="locations/tetia/bars.xml" />
+<staticobject name="bars" isox="80" isoy="45" config="locations/tetia/bars.xml" />
+<staticobject name="bars" isox="80" isoy="61" config="locations/tetia/bars.xml" />
+<staticobject name="bars" isox="80" isoy="76" config="locations/tetia/bars.xml" />
 <staticobject name="bed" isox="165" isoy="95" sprite="sprites/bed.png" mask="masks/bed.png" />
 
 <!-- The very first event. -->

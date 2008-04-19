@@ -228,7 +228,8 @@ class SceneManager:
 
     def chat( self, speaker, intro, answers ):
 
-        self.mapManager.cameraPeekAt( speaker, True )
+        if speaker is not None:
+            self.mapManager.cameraPeekAt( speaker, True )
         self.videoManager.begin()
         self.mapManager.renderFrame()
 
@@ -237,7 +238,7 @@ class SceneManager:
         self.inputManager.update()
         self.videoManager.storeBuffer(7)
 
-        intro = speaker.getName().capitalize()+":\n"+intro
+        intro = (speaker.getName().capitalize()+":\n"+intro) if speaker is not None else intro
 
         while self.inputManager.running() and not self.ticked( self.confirmKeys ):
 
@@ -356,6 +357,7 @@ class SceneManager:
     def initDialog( self, objects ):
         for o in objects:
             o.freeze( True )
+            o.setStandAnimation()
         for i in range(len(objects)):
             objects[i].lookAt( objects[(i+1)%len(objects)] )
         self.objectsInDialog = objects
@@ -413,7 +415,7 @@ class SceneManager:
         self.videoManager.storeBuffer(7)
         s = self.cacheManager.getSound("sounds/noise.ogg")
         self.audioManager.playSound( s )
-        while self.engine.getTicks() < start+duration:
+        while self.engine.getTicks() < start+duration and self.inputManager.running():
             self.videoManager.begin()
             r = random.randint(0,255)
             self.videoManager.setColor( r, r, r )

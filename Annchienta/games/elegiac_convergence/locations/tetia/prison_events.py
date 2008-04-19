@@ -25,7 +25,7 @@ if not partyManager.hasRecord("tetia_prison_awakening"):
     sceneManager.thoughts( "We were on a mission... It had something to do with stealing something... It... it can't be, they never could've caught us..."  )
     sceneManager.thoughts( "We were entering the building, and then..." )
     sceneManager.noise()
-    sceneManager.thoughts( "Why can't I remember?" )
+    sceneManager.thoughts( "Ouch... Why can't I remember?" )
     sceneManager.speak( player, "Why can't I remember?!" )
     sceneManager.speak( player, "Jelobat lead this robbery... he must know more... if I only could talk to him..." )
     sceneManager.info( "Use the arrow keys to move.", None )

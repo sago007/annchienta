@@ -6,31 +6,53 @@ mapManager = annchienta.getMapManager()
 sceneManager = scene.getSceneManager()
 partyManager = party.getPartyManager()
 
-this = annchienta.getPassiveObject()
-player = annchienta.getActiveObject()
+player = partyManager.player
 
-sceneManager.initDialog( [player, this] )
+# We only want this even on certain record conditions.
+if partyManager.hasRecord("tetia_prison_awakening") and not partyManager.hasRecord("tetia_prison_guard"):
 
-a = sceneManager.chat( this, "Finally woke up, you stinking bag of scum?", ["Bag of scum? What the heck are you saying, man?", "Why am I here?"] )
-if a is 0:
-    sceneManager.chat( this, "Did you forgot you are a murderer or what?", ["A murderer?"] )
-if a is 1:
-    sceneManager.chat( this, "Why would you be here? Because you are a murderer, of course!", ["A murderer?"] )
+    partyManager.addRecord("tetia_prison_guard")
 
-sceneManager.move( this, 32, 180 )
+    # Create a guard and set his position.
+    guard = annchienta.Person( "guard", "locations/tetia/prison_guard.xml" )
+    partyManager.currentMap.addObject( guard )
+    guard.setPosition( annchienta.Point( annchienta.IsometricPoint, 30, 140 ) )
 
-sceneManager.quitDialog()
+    # Follow the guard walking to Aelaan.
+    p = player.getPosition().to( annchienta.IsometricPoint )
+    sceneManager.move( guard, annchienta.Point( annchienta.IsometricPoint, 30, p.y ) )
+    sceneManager.move( guard, annchienta.Point( annchienta.IsometricPoint, 74, p.y ) )
 
-partyManager.addRecord("tetia_talked_to_prison_guard")
-partyManager.currentMap.removeObject( this )
+    # Init the dialog.
+    sceneManager.initDialog( [guard, player] )
 
-# Start battle area
-import battle
+    # Chat a little.
+    sceneManager.chat( guard, "I see our newcomer finally woke up.", ["Let me out of here!"] )
+    sceneManager.chat( guard, "I'm afraid I cannot do that. You did something terrible, and therefore you should face the consequences!", ["How.. what did I do?"] )
+    sceneManager.chat( guard, "Don't play stupid with me, I know your kind.", ["But I can't remember, I really can't!"] )
+    sceneManager.chat( guard, "Well then, you are sentenced to death because of murder. Rings any bells?", ["What?!"] )
 
-battleManager = battle.getBattleManager()
+    # Guard backs off, but returns.
+    sceneManager.move( guard, annchienta.Point( annchienta.IsometricPoint, 40, p.y ) )
+    sceneManager.speak( player, "Wait!" )
+    sceneManager.move( guard, annchienta.Point( annchienta.IsometricPoint, 74, p.y ) )
 
-c = partyManager.team + map( lambda i:battleManager.createEnemy("spider"), range(3) )
+    # Keep talking.
+    sceneManager.chat( guard, "What is it this time?", ["You've got to let me out!"] )
+    sceneManager.chat( guard, "I really don't see any reason why I should free a murderer like you.", ["But I'm innocent!"] )
+    sceneManager.chat( guard, "You were found unconsciously on the crime scene, with the weapon of murder in your hands!", ["But I can't have... was there nobody else?"] )
+    sceneManager.speak( guard, "Well, no, not alive. Now that the verdict has been spoken, you will be executed within twenty four hours." )
 
-b = battle.Battle( c )
-b.background = annchienta.Surface("images/backgrounds/tetia_streets.png")
-b.run()
+    # The guard walks back as he came in.
+    sceneManager.move( guard, annchienta.Point( annchienta.IsometricPoint, 30, p.y ) )
+    sceneManager.move( guard, annchienta.Point( annchienta.IsometricPoint, 30, 140 ) )
+
+    # Some more thoughts after the scene.
+    sceneManager.speak( player, "Not alive..." )
+    sceneManager.thoughts( "Not alive..." )
+    sceneManager.thoughts( "Could that guard be speaking the truth? I... I don't feel like a murderer... I'm just a thief... a failed thief!")
+    sceneManager.thoughts( "I've got to get out!" )
+
+    # Remove the guard.
+    sceneManager.quitDialog()
+    partyManager.currentMap.removeObject( guard )

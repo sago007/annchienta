@@ -6,30 +6,28 @@ sys.path.append("scripts")
 
 import annchienta
 
-videoMgr = annchienta.getVideoManager()
-videoMgr.setVideoMode( 400, 300, "Annchienta", False )
-videoMgr.setClearColor(0,0,0)
+videoManager = annchienta.getVideoManager()
+videoManager.setVideoMode( 400, 300, "Annchienta", False )
+videoManager.setClearColor(0,0,0)
 
-mapMgr = annchienta.getMapManager()
-mapMgr.setTileWidth(64)
-mapMgr.setTileHeight(32)
-mapMgr.setUpdatesPerSecond(60)
-mapMgr.setMaxAscentHeight(32)
-mapMgr.setMaxDescentHeight(32)
-mapMgr.setOnUpdateScript("scripts/onupdate.py")
+mapManager = annchienta.getMapManager()
+mapManager.setTileWidth(64)
+mapManager.setTileHeight(32)
+mapManager.setUpdatesPerSecond(60)
+mapManager.setMaxAscentHeight(32)
+mapManager.setMaxDescentHeight(32)
+mapManager.setOnUpdateScript("scripts/onupdate.py")
 
-inputMgr = annchienta.getInputManager()
-inputMgr.setInteractKey( annchienta.SDLK_SPACE )
+inputManager = annchienta.getInputManager()
+inputManager.setInteractKey( annchienta.SDLK_SPACE )
 
 import scene
 
 scene.initSceneManager()
-sceneMgr = scene.getSceneManager()
-sceneMgr.defaultFont = annchienta.Font("assets/regular.ttf", 14)
-sceneMgr.italicsFont = annchienta.Font("assets/italics.ttf", 14)
-
-for i in range(9):
-    sceneMgr.boxTextures.append( annchienta.Surface("assets/box"+str(i)+".png") )
+sceneManager = scene.getSceneManager()
+sceneManager.defaultFont = annchienta.Font("assets/regular.ttf", 14)
+sceneManager.italicsFont = annchienta.Font("assets/italics.ttf", 14)
+sceneManager.boxTextures = map( lambda i: annchienta.Surface("assets/box"+str(i)+".png"), range(9) )
 
 import battle
 
@@ -43,7 +41,10 @@ import party
 party.initPartyManager()
 partyManager = party.getPartyManager()
 
-while inputMgr.running():
-    partyManager.load("saves/new.xml")
-    mapMgr.run()
+while inputManager.running():
+
+    a = sceneManager.chat(None, "What do you want to do?", ["Start a new game.", "Load a previously saved game."])
+    partyManager.load("saves/save.xml" if a else "saves/new.xml")
+
+    mapManager.run()
     partyManager.free()
