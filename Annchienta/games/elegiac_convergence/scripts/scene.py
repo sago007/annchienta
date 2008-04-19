@@ -1,4 +1,5 @@
 import annchienta
+import random
 
 ## \brief Handles scene tasks.
 #
@@ -24,6 +25,8 @@ class SceneManager:
     engine = annchienta.getEngine()
     videoManager = annchienta.getVideoManager()
     inputManager = annchienta.getInputManager()
+    audioManager = annchienta.getAudioManager()
+    cacheManager = annchienta.getCacheManager()
     mapManager = annchienta.getMapManager()
 
     def waitForKey( self ):
@@ -403,6 +406,21 @@ class SceneManager:
             self.videoManager.translate( -self.videoManager.getScreenWidth()/2, -self.videoManager.getScreenHeight()/2 )
             self.videoManager.restoreBuffer(7)
             self.videoManager.end()
+        self.mapManager.resync()
+
+    def noise( self, duration=1000 ):
+        start = self.engine.getTicks()
+        self.videoManager.storeBuffer(7)
+        s = self.cacheManager.getSound("sounds/noise.ogg")
+        self.audioManager.playSound( s )
+        while self.engine.getTicks() < start+duration:
+            self.videoManager.begin()
+            r = random.randint(0,255)
+            self.videoManager.setColor( r, r, r )
+            self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
+            self.videoManager.end()
+        self.videoManager.setColor()
+        self.videoManager.restoreBuffer(7)
         self.mapManager.resync()
 
 ## \brief Init the SceneManager global instance.

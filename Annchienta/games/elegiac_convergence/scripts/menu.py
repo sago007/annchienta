@@ -56,8 +56,8 @@ class Menu(MenuItem):
                 m.top()
 
     def leftBottom( self ):
-        self.toolTipOnTop = True
-        self.y = self.videoManager.getScreenHeight()-self.height-self.sceneManager.margin
+        self.toolTipOnTop = False
+        self.y = self.videoManager.getScreenHeight()-self.height-self.sceneManager.margin*4-self.sceneManager.defaultFont.getLineHeight()
         self.x = self.sceneManager.margin
         for m in self.options:
             if m.isMenu:

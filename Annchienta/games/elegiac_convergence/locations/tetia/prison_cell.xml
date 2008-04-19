@@ -12,11 +12,6 @@
 <staticobject name="bars" isox="80" isoy="76" sprite="sprites/bars.png" mask="masks/bars.png" />
 <staticobject name="bed" isox="165" isoy="95" sprite="sprites/bed.png" mask="masks/bed.png" />
 
-<!-- The guard is there unless you already talked to him.
-<if code="import party;partyManager=party.getPartyManager()" cond="not partyManager.hasRecord('tetia_talked_to_prison_guard')">
-    <person name="guard" config="locations/tetia/prison_guard.xml" tilex="4" tiley="3" />
-</if> -->
-
 <!-- The very first event. -->
 <if code="import party;partyManager=party.getPartyManager()" cond="not partyManager.hasRecord('tetia_prison_awakening')">
     <area tilex1="0" tilex2="10" tiley1="0" tiley2="6" script="locations/tetia/prison_events.py">
