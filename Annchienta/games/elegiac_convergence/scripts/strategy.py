@@ -140,14 +140,14 @@ class Adept(Strategy):
         # Select any random target.
         array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
 
-        # Attack all targets with 10 attack power.
+        # Attack all targets with 12 attack power.
         self.sceneManager.info( self.m_combatant.name.capitalize()+" casts ice!" )
         surf = self.cacheManager.getSurface("images/animations/ice.png")
         sound = self.cacheManager.getSound("sounds/ice.ogg")
         self.audioManager.playSound( sound )
         self.m_battle.surfaceOverSpritesAnimation( array, surf, -50 if self.m_combatant.hostile else 50, 0 )
         for e in array:
-            self.m_combatant.magicalAttack( e, 10, 0.7 )
+            self.m_combatant.magicalAttack( e, 12, 0.7 )
 
     def isAvailableFor( self, m_combatant ):
         return True
