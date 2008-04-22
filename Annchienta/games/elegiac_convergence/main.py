@@ -28,6 +28,7 @@ sceneManager = scene.getSceneManager()
 sceneManager.defaultFont = annchienta.Font("assets/regular.ttf", 14)
 sceneManager.italicsFont = annchienta.Font("assets/italics.ttf", 14)
 sceneManager.boxTextures = map( lambda i: annchienta.Surface("assets/box"+str(i)+".png"), range(9) )
+sceneManager.boxMargin = 22
 
 import battle
 
