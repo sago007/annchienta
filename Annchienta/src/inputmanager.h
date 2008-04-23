@@ -11,6 +11,12 @@ namespace Annchienta
 {
     class Person;
 
+    enum InputMode
+    {
+        CinematicMode=0,
+        InteractiveMode=1
+    };
+
     class InputManager
     {
         private:
@@ -22,7 +28,7 @@ namespace Annchienta
             Uint8 mouseState;
             bool supportMouse;
             Person *inputControlledPerson;
-            bool personInputEnabled;
+            InputMode inputMode;
             int interactKey;
 
         public:
@@ -48,8 +54,8 @@ namespace Annchienta
             void setInputControlledPerson( Person *person );
             Person *getInputControlledPerson() const;
 
-            bool personInputIsEnabled() const;
-            void setPersonInputEnabled( bool );
+            void setInputMode( InputMode mode );
+            InputMode getInputMode() const;
 
             void setInteractKey( int );
             int getInteractKey() const;

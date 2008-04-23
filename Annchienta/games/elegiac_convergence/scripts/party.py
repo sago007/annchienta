@@ -38,15 +38,16 @@ class PartyManager:
         teamElement = self.document.getElementsByTagName("team")[0]
         self.team = map( lambda e: combatant.Ally(e), teamElement.getElementsByTagName("combatant") )
 
+        # <RECORDS>
+        recordsElement = self.document.getElementsByTagName("records")[0]
+        self.records = recordsElement.firstChild.data.split()
+
         # <MAP>
+        # Load this after <RECORDS> because <RECORDS> might influence <MAP>.
         mapElement = self.document.getElementsByTagName("map")[0]
         self.currentMap = annchienta.Map( str(mapElement.getAttribute("filename")) )
         self.currentMap.setCurrentLayer( int(mapElement.getAttribute("layer")) )
         self.mapManager.setCurrentMap( self.currentMap )
-
-        # <RECORDS>
-        recordsElement = self.document.getElementsByTagName("records")[0]
-        self.records = recordsElement.firstChild.data.split()
 
         # Stuff to do when everything is loaded
         self.player.setInputControl()

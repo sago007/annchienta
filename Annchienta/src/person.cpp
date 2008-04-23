@@ -80,9 +80,9 @@ namespace Annchienta
          */
         needsUpdate = true;
 
-        /* Check for collisions with areas.
+        /* Check for collisions with areas. Only not check in InteractiveMode.
          */
-        if( this==getInputManager()->getInputControlledPerson() )
+        if( this==getInputManager()->getInputControlledPerson() && getInputManager()->getInputMode()==InteractiveMode )
             collisionWithLayerAreas();
 
         /* First call the superclass update() method,

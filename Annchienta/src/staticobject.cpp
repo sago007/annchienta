@@ -27,7 +27,7 @@ bool DepthSortPredicate( Annchienta::Tile* tilep1, Annchienta::Tile* tilep2 )
 namespace Annchienta
 {
 
-    StaticObject *activeObject, *passiveObject;
+    StaticObject *activeObject=0, *passiveObject=0;
 
     StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), needsUpdate(true), onInteractScript(0), onInteractCode(0)
     {

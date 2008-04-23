@@ -21,7 +21,6 @@ class SceneManager:
     rightKeys = [annchienta.SDLK_RIGHT]
     defaultFont, italicsFont = None, None
     boxTextures = []
-    boxMargin = 22
 
     engine = annchienta.getEngine()
     videoManager = annchienta.getVideoManager()
@@ -69,19 +68,19 @@ class SceneManager:
             self.videoManager.setColor()
         else:
             # Draw the corner textures
-            self.videoManager.drawSurface( self.boxTextures[0], x1+self.boxMargin-self.boxTextures[0].getWidth(), y1+self.boxMargin-self.boxTextures[0].getHeight() )
-            self.videoManager.drawSurface( self.boxTextures[2], x2-self.boxMargin, y1+self.boxMargin-self.boxTextures[0].getHeight() )
-            self.videoManager.drawSurface( self.boxTextures[6], x1+self.boxMargin-self.boxTextures[6].getWidth(), y2-self.boxMargin )
-            self.videoManager.drawSurface( self.boxTextures[8], x2-self.boxMargin, y2-self.boxMargin )
+            self.videoManager.drawSurface( self.boxTextures[0], x1, y1 )
+            self.videoManager.drawSurface( self.boxTextures[2], x2-self.boxTextures[2].getWidth(), y1 )
+            self.videoManager.drawSurface( self.boxTextures[6], x1, y2-self.boxTextures[6].getHeight() )
+            self.videoManager.drawSurface( self.boxTextures[8], x2-self.boxTextures[2].getWidth(), y2-self.boxTextures[6].getHeight() )
 
             # Draw the side textures as patterns.
-            self.videoManager.drawPattern( self.boxTextures[1], x1+self.boxMargin, y1+self.boxMargin-self.boxTextures[1].getHeight(), x2-self.boxMargin, y1+self.boxMargin )
-            self.videoManager.drawPattern( self.boxTextures[7], x1+self.boxMargin, y2-self.boxMargin, x2-self.boxMargin, y2-self.boxMargin+self.boxTextures[7].getHeight() )
-            self.videoManager.drawPattern( self.boxTextures[3], x1+self.boxMargin-self.boxTextures[3].getWidth(), y1+self.boxMargin, x1+self.boxMargin, y2-self.boxMargin )
-            self.videoManager.drawPattern( self.boxTextures[5], x2-self.boxMargin, y1+self.boxMargin, x2-self.boxMargin+self.boxTextures[5].getWidth(), y2-self.boxMargin )
+            self.videoManager.drawPattern( self.boxTextures[1], x1+self.boxTextures[0].getWidth(), y1, x2-self.boxTextures[2].getWidth(), y1+self.boxTextures[1].getHeight() )
+            self.videoManager.drawPattern( self.boxTextures[7], x1+self.boxTextures[7].getWidth(), y2-self.boxTextures[7].getHeight(), x2-self.boxTextures[8].getWidth(), y2 )
+            self.videoManager.drawPattern( self.boxTextures[3], x1, y1+self.boxTextures[0].getHeight(), x1+self.boxTextures[3].getWidth(), y2-self.boxTextures[6].getHeight() )
+            self.videoManager.drawPattern( self.boxTextures[5], x2-self.boxTextures[5].getWidth(), y1+self.boxTextures[2].getHeight(), x2, y2-self.boxTextures[8].getHeight() )
 
             # Draw the main texture as pattern.
-            self.videoManager.drawPattern( self.boxTextures[4], x1+self.boxMargin, y1+self.boxMargin, x2-self.boxMargin, y2-self.boxMargin )
+            self.videoManager.drawPattern( self.boxTextures[4], x1+self.boxTextures[0].getWidth(), y1+self.boxTextures[0].getHeight(), x2-self.boxTextures[8].getWidth(), y2-self.boxTextures[8].getHeight() )
 
     ## \brief Renders justified text.
     #
@@ -338,7 +337,7 @@ class SceneManager:
     def move(self, object, point ):
 
         self.inputManager.update()
-        self.inputManager.setPersonInputEnabled(False)
+        self.inputManager.setInputMode( annchienta.CinematicMode )
 
         while self.inputManager.running() and object.stepTo(point):
 
@@ -351,7 +350,7 @@ class SceneManager:
             self.mapManager.renderFrame()
             self.videoManager.end()
 
-        self.inputManager.setPersonInputEnabled(True)
+        self.inputManager.setInputMode( annchienta.InteractiveMode )
 
     ## \brief Inits a dialog.
     #

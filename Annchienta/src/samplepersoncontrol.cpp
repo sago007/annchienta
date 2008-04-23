@@ -6,6 +6,7 @@
 
 #include <stdlib.h>
 #include "person.h"
+#include "inputmanager.h"
 
 namespace Annchienta
 {
@@ -26,6 +27,9 @@ namespace Annchienta
         {
             return;
         }
+
+        if( getInputManager()->getInputMode()==CinematicMode )
+            return;
 
         /* Stops walking and choose a new direction,
          * or wait a little.

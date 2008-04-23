@@ -5779,52 +5779,52 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_InputManager_personInputIsEnabled(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_InputManager_setInputMode(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
-  bool result;
+  Annchienta::InputMode arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_personInputIsEnabled",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_setInputMode",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_personInputIsEnabled" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_setInputMode" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
-  result = (bool)((Annchienta::InputManager const *)arg1)->personInputIsEnabled();
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_setInputMode" "', argument " "2"" of type '" "Annchienta::InputMode""'");
+  } 
+  arg2 = static_cast< Annchienta::InputMode >(val2);
+  (arg1)->setInputMode(arg2);
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_InputManager_setPersonInputEnabled(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_InputManager_getInputMode(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
-  bool arg2 ;
+  Annchienta::InputMode result;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_setPersonInputEnabled",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_getInputMode",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_setPersonInputEnabled" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_getInputMode" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
-  ecode2 = SWIG_AsVal_bool(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_setPersonInputEnabled" "', argument " "2"" of type '" "bool""'");
-  } 
-  arg2 = static_cast< bool >(val2);
-  (arg1)->setPersonInputEnabled(arg2);
-  resultobj = SWIG_Py_Void();
+  result = (Annchienta::InputMode)((Annchienta::InputManager const *)arg1)->getInputMode();
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -12223,8 +12223,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"InputManager_buttonTicked", _wrap_InputManager_buttonTicked, METH_VARARGS, NULL},
 	 { (char *)"InputManager_setInputControlledPerson", _wrap_InputManager_setInputControlledPerson, METH_VARARGS, NULL},
 	 { (char *)"InputManager_getInputControlledPerson", _wrap_InputManager_getInputControlledPerson, METH_VARARGS, NULL},
-	 { (char *)"InputManager_personInputIsEnabled", _wrap_InputManager_personInputIsEnabled, METH_VARARGS, NULL},
-	 { (char *)"InputManager_setPersonInputEnabled", _wrap_InputManager_setPersonInputEnabled, METH_VARARGS, NULL},
+	 { (char *)"InputManager_setInputMode", _wrap_InputManager_setInputMode, METH_VARARGS, NULL},
+	 { (char *)"InputManager_getInputMode", _wrap_InputManager_getInputMode, METH_VARARGS, NULL},
 	 { (char *)"InputManager_setInteractKey", _wrap_InputManager_setInteractKey, METH_VARARGS, NULL},
 	 { (char *)"InputManager_getInteractKey", _wrap_InputManager_getInteractKey, METH_VARARGS, NULL},
 	 { (char *)"new_InputManager", _wrap_new_InputManager, METH_VARARGS, NULL},
@@ -13067,6 +13067,8 @@ SWIGEXPORT void SWIG_init(void) {
   SWIG_InstallConstants(d,swig_const_table);
   
   
+  SWIG_Python_SetConstant(d, "CinematicMode",SWIG_From_int(static_cast< int >(Annchienta::CinematicMode)));
+  SWIG_Python_SetConstant(d, "InteractiveMode",SWIG_From_int(static_cast< int >(Annchienta::InteractiveMode)));
   SWIG_Python_SetConstant(d, "TilePoint",SWIG_From_int(static_cast< int >(Annchienta::TilePoint)));
   SWIG_Python_SetConstant(d, "IsometricPoint",SWIG_From_int(static_cast< int >(Annchienta::IsometricPoint)));
   SWIG_Python_SetConstant(d, "MapPoint",SWIG_From_int(static_cast< int >(Annchienta::MapPoint)));

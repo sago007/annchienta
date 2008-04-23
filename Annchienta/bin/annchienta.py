@@ -114,6 +114,8 @@ VideoManager_swigregister = _annchienta.VideoManager_swigregister
 VideoManager_swigregister(VideoManager)
 
 getVideoManager = _annchienta.getVideoManager
+CinematicMode = _annchienta.CinematicMode
+InteractiveMode = _annchienta.InteractiveMode
 class InputManager(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, InputManager, name, value)
@@ -131,8 +133,8 @@ class InputManager(_object):
     def buttonTicked(*args): return _annchienta.InputManager_buttonTicked(*args)
     def setInputControlledPerson(*args): return _annchienta.InputManager_setInputControlledPerson(*args)
     def getInputControlledPerson(*args): return _annchienta.InputManager_getInputControlledPerson(*args)
-    def personInputIsEnabled(*args): return _annchienta.InputManager_personInputIsEnabled(*args)
-    def setPersonInputEnabled(*args): return _annchienta.InputManager_setPersonInputEnabled(*args)
+    def setInputMode(*args): return _annchienta.InputManager_setInputMode(*args)
+    def getInputMode(*args): return _annchienta.InputManager_getInputMode(*args)
     def setInteractKey(*args): return _annchienta.InputManager_setInteractKey(*args)
     def getInteractKey(*args): return _annchienta.InputManager_getInteractKey(*args)
     def __init__(self, *args): 

@@ -9,7 +9,7 @@ mapManager = annchienta.getMapManager()
 # is input controlled because we do not want random
 # battles during cinematic sequences.
 if not "stand" in partyManager.player.getAnimation():
-    if inputManager.personInputIsEnabled():
+    if inputManager.getInputMode() is annchienta.InteractiveMode:
         import battle
         battleManager = battle.getBattleManager()
         battleManager.throwRandomBattle()

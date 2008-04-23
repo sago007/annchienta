@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<sprite image="sprites/guard.png" mask="masks/mask.png">
+<sprite image="sprites/guard.png" mask="masks/guard.png">
+
     <frame number="1" x1="0" y1="0" x2="35" y2="73">
     <frame number="2" x1="35" y1="0" x2="70" y2="73">
     <frame number="3" x1="70" y1="0" x2="105" y2="73">
@@ -18,7 +19,5 @@
     <animation name="standwest" frames="5" speed="15" />
     <animation name="standsouth" frames="7" speed="15" />
     <control type="null" />
-
-<oninteract script="locations/tetia/prison_guard.py"/>
 
 </sprite>
