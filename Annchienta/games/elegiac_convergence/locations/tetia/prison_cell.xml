@@ -7,13 +7,20 @@
 118 7 118 7 118 7 118 7 0 7    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    118 7 118 7 118 7 118 7 0 7    118 7 118 7 118 7 118 7 0 7    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    
 </tiles>
 
-<!-- This bars run prison_guard.py when interacted with. That script should let a
-     guard enter this map, talk a little and then leave.
+
+<!-- The bars are only there before Esana destroys them.
 -->
-<staticobject name="bars" isox="80" isoy="29" config="locations/tetia/bars.xml" />
-<staticobject name="bars" isox="80" isoy="45" config="locations/tetia/bars.xml" />
-<staticobject name="bars" isox="80" isoy="61" config="locations/tetia/bars.xml" />
-<staticobject name="bars" isox="80" isoy="76" config="locations/tetia/bars.xml" />
+<if code="import party;partyManager=party.getPartyManager()" cond="not partyManager.hasRecord('tetia_met_esana')">
+
+    <!-- This bars run prison_guard.py when interacted with. That script should let a
+         guard enter this map, talk a little and then leave.
+    -->
+    <staticobject name="bars" isox="80" isoy="29" config="locations/tetia/bars.xml" />
+    <staticobject name="bars" isox="80" isoy="45" config="locations/tetia/bars.xml" />
+    <staticobject name="bars" isox="80" isoy="61" config="locations/tetia/bars.xml" />
+    <staticobject name="bars" isox="80" isoy="76" config="locations/tetia/bars.xml" />
+
+</if>
 
 <!-- This bed runs prison_events.py when interacted with. It makes Esana appear
      when the time is right.

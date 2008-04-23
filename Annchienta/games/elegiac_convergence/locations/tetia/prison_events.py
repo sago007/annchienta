@@ -2,6 +2,7 @@ import annchienta
 import scene
 import party
 
+mapManager = annchienta.getMapManager()
 sceneManager = scene.getSceneManager()
 partyManager = party.getPartyManager()
 
@@ -109,18 +110,43 @@ if partyManager.hasRecord("tetia_prison_guard") and not partyManager.hasRecord("
     # Init the dialog.
     sceneManager.initDialog( [esana, player] )
 
-    # Follow the guard walking to Aelaan.
+    # Esana walks to the gate.
+    sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, 30, 40 ) )
+    sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, 74, 40 ) )
+
+    # Esana opens the gate.
+    bar = 1
+    while bar:
+        bar = partyManager.currentMap.getObject("bars")
+        if bar:
+            partyManager.currentMap.removeObject(bar)
+
+    mapManager.renderFrame()
+
+    sceneManager.speak( esana, "I know someone who's got to take better care of his keys." )
+
+    # Esana walks to the player
     p = player.getPosition().to( annchienta.IsometricPoint )
-    p.y = 40
-    sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, 30, p.y ) )
-    sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, 74, p.y ) )
+    sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, p.x-20, 40 ) )
+    sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, p.x-20, p.y ) )
+    esana.lookAt( player )
 
-    # The guard walks back as he came in.
-    sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, 30, p.y ) )
-    sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, 30, 140 ) )
+    sceneManager.chat( esana, "Come on, let's go! What are you waiting for?", ["Who...? Are you... Esana? You here?"] )
+    sceneManager.speak( esana, "It's been a long time, yeah, but we'll catch up later. We need to get going now. Come on, follow." )
 
-    # Remove the guard.
+    sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, p.x-40, p.y ) )
+
+    sceneManager.speak( player, "Esana, wait. Bardolph, your father... I didn't... I didn't mean too... I don't know..." )
+    sceneManager.speak( esana, "Don't get silly, I know as well as you do that you're innocent. Now let's get moving." )
+
+    sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, p.x, p.y ) )
+
+    # Remove Esana.
     sceneManager.quitDialog()
     partyManager.currentMap.removeObject( esana )
+
+    mapManager.renderFrame()
+    sceneManager.info( "Esana joined the party.", None )
+
     partyManager.refreshMap()
 
