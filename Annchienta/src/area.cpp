@@ -36,6 +36,8 @@ namespace Annchienta
             delete[] onCollisionCode;
         onCollisionCode = new char[strlen(code)+1];
         strcpy( onCollisionCode, code );
+
+        getEngine()->toPythonCode( &onCollisionCode );
     }
 
     bool Area::hasPoint( Point point )

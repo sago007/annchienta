@@ -61,13 +61,16 @@ if partyManager.hasRecord("tetia_prison_awakening") and not partyManager.hasReco
     p = player.getPosition().to( annchienta.IsometricPoint )
     sceneManager.move( guard, annchienta.Point( annchienta.IsometricPoint, 30, p.y ) )
     sceneManager.move( guard, annchienta.Point( annchienta.IsometricPoint, 74, p.y ) )
+    guard.lookAt( player )
+    player.lookAt( guard )
 
     # Chat a little.
     sceneManager.chat( guard, "What's all that noise? Did our precious newcomer wake up at last?.", ["Let me out of here!"] )
     sceneManager.chat( guard, "Letting you out?! You've got to be kidding! You're the cruelest murderer we've ever had down here.", ["How.. what!?"] )
     sceneManager.chat( guard, "So you are indeed suffering from amnesia. The doctor told us something like that could happen.", ["The doctor?"] )
     sceneManager.chat( guard, "Yeah, they called a doctor to look after your head injury. Pretty much a waste of time, since you are going to be executed very soon anyway.", ["Executed? Why!?"] )
-    sceneManager.speak( guard, "Maybe for breaking into the house of this island's governour Bardolph. Maybe for murdering his two loyal bodyguards. Or wait, maybe for killing the governour himself and cutting his head off? You are a monster, I hope you realise that. I hope his family will have some rest when they hear you will receive death penalty." )
+    sceneManager.speak( guard, "Maybe for breaking into the house of this island's governour Bardolph. Maybe for murdering his two loyal bodyguards. Or wait, maybe for killing the governour himself and cutting his head off?" )
+    sceneManager.speak( guard, "You are a monster, I hope you realise that. I hope his family will have some rest when they hear you will receive death penalty." )
 
     sceneManager.thoughts("I... I can't have...")
 
@@ -80,7 +83,8 @@ if partyManager.hasRecord("tetia_prison_awakening") and not partyManager.hasReco
     sceneManager.chat( guard, "What is it this time?", ["You've got to let me out!"] )
     sceneManager.chat( guard, "I really don't see any reason why I should free a murderer like you.", ["But I'm innocent!"] )
     sceneManager.chat( guard, "You were found unconsciously on the crime scene, with the murder weapon in your hands!", ["But I can't have... was there nobody else?"] )
-    sceneManager.speak( guard, "Well, no, not alive. Except from the bodyguards, some other bodies were found, too. It makes no sense denying that they were with you. Now that the verdict has been spoken, you will be executed within twenty four hours." )
+    sceneManager.speak( guard, "Well, no, not alive. Except from the bodyguards, some other bodies were found, too. It makes no sense denying that they were with you." )
+    sceneManager.speak( guard, "Now that the verdict has been spoken, you will be executed within twenty four hours." )
 
     # The guard walks back as he came in.
     sceneManager.move( guard, annchienta.Point( annchienta.IsometricPoint, 30, p.y ) )
@@ -113,6 +117,7 @@ if partyManager.hasRecord("tetia_prison_guard") and not partyManager.hasRecord("
     # Esana walks to the gate.
     sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, 30, 40 ) )
     sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, 74, 40 ) )
+    player.lookAt(esana)
 
     # Esana opens the gate.
     bar = 1

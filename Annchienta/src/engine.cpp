@@ -101,6 +101,24 @@ namespace Annchienta
         return pythonBoolean;
     }
 
+    void Engine::toPythonCode( char **strptr )
+    {
+        /* Remove spaces on the end.
+         */
+        int newLength = strlen(*strptr);
+        for( int i=newLength-1; i>=0; i-- )
+            if( isspace( (*strptr)[i] ) )
+                newLength--;
+            else
+                i = -1;
+
+        char *newCode = new char[newLength+1];
+        strncpy( newCode, *strptr, newLength );
+        newCode[ newLength ] = '\0';
+        delete[] *strptr;
+        *strptr = newCode;
+    }
+
     Engine *getEngine()
     {
         if( !engine )

@@ -48,6 +48,10 @@ namespace Annchienta
 
             bool evaluatePythonBoolean( const char *code, const char *conditional );
 
+            /* Removes spaces on the end and such things.
+             */
+            void toPythonCode( char **code );
+
     };
 
     Engine *getEngine();

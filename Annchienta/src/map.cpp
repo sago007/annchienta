@@ -281,6 +281,8 @@ namespace Annchienta
                             onPreRenderCode = new char[ strlen(xml->getNodeData())+1 ];
                             strcpy( onPreRenderCode, xml->getNodeData() );
                             xml->read();
+
+                            engine->toPythonCode( &onPreRenderCode );
                         }
                     }
                     if( !strcmpCaseInsensitive("onpostrender", xml->getNodeName() ) )
@@ -296,6 +298,8 @@ namespace Annchienta
                             onPostRenderCode = new char[ strlen(xml->getNodeData())+1 ];
                             strcpy( onPostRenderCode, xml->getNodeData() );
                             xml->read();
+
+                            engine->toPythonCode( &onPostRenderCode );
                         }
                     }
                     break;

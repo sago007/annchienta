@@ -115,6 +115,8 @@ namespace Annchienta
                             strcpy( onInteractCode, xml->getNodeData() );
                             xml->read();
                             onInteractScript = 0;
+
+                            getEngine()->toPythonCode( &onInteractCode );
                         }
                     }
                     break;

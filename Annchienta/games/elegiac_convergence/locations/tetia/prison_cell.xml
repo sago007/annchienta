@@ -7,6 +7,11 @@
 118 7 118 7 118 7 118 7 0 7    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    118 7 118 7 118 7 118 7 0 7    118 7 118 7 118 7 118 7 0 7    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    0 7 0 7 0 7 0 7 0 0    
 </tiles>
 
+<!-- The very first event. -->
+<if code="import party;partyManager=party.getPartyManager()" cond="not partyManager.hasRecord('tetia_prison_awakening')">
+    <area tilex1="0" tilex2="10" tiley1="0" tiley2="6" script="locations/tetia/prison_events.py">
+</if>
+
 
 <!-- The bars are only there before Esana destroys them.
 -->
@@ -27,9 +32,16 @@
 -->
 <staticobject name="bed" isox="165" isoy="95" config="locations/tetia/bed.xml" />
 
-<!-- The very first event. -->
-<if code="import party;partyManager=party.getPartyManager()" cond="not partyManager.hasRecord('tetia_prison_awakening')">
-    <area tilex1="0" tilex2="10" tiley1="0" tiley2="6" script="locations/tetia/prison_events.py">
+<!-- Create a door to the next map if we met Esana.
+-->
+<if code="import party;partyManager=party.getPartyManager()" cond="partyManager.hasRecord('tetia_met_esana')">
+    <area tilex1="1" tilex2="3" tiley1="5" tiley2="6">
+import party
+import annchienta
+partyManager = party.getPartyManager()
+partyManager.player.setPosition( annchienta.Point( annchienta.TilePoint, 0, 0 ) )
+print "Boo!"
+    </area>
 </if>
 
 </layer>
