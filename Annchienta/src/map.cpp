@@ -318,7 +318,7 @@ namespace Annchienta
         sortLayers();
     }
 
-    Map::Map( int w, int h, const char *tileSetFilename ): width(w), height(h), sortedLayers(0), currentLayer(0), onPostRenderCode(0), onPostRenderScript(0)
+    Map::Map( int w, int h, const char *tileSetFilename ): width(w), height(h), sortedLayers(0), currentLayer(0), onPreRenderCode(0), onPreRenderScript(0), onPostRenderCode(0), onPostRenderScript(0)
     {
         tileSet = new TileSet( tileSetFilename );
         Layer *layer =  new Layer( tileSet, width, height, 0xff, 0 );
