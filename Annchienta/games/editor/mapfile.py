@@ -96,7 +96,7 @@ class MapFile:
                 obstructionElements = layerElements[l].getElementsByTagName("obstruction")
                 if not len(obstructionElements):
                     obstructionElements = [ self.document.createElement("obstruction") ]
-                    layerElements[l].appendChild( tileElements[0] )
+                    layerElements[l].appendChild( obstructionElements[0] )
 
                 # remove all children
                 while obstructionElements[0].hasChildNodes():

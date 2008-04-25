@@ -39,8 +39,7 @@
 import party
 import annchienta
 partyManager = party.getPartyManager()
-partyManager.player.setPosition( annchienta.Point( annchienta.TilePoint, 0, 0 ) )
-print "Boo!"
+partyManager.changeMap(&quot;locations/world/world.xml&quot;, annchienta.Point( annchienta.TilePoint, 10, 10 ) )
     </area>
 </if>
 
