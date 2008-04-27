@@ -2,5 +2,5 @@
 <sprite image="sprites/bed.png" mask="masks/bed.png">
     <frame number="1">
     <animation name="stand" frames="1" speed="20" />
-    <oninteract script="locations/tetia/prison_events.py" />
+    <oninteract script="locations/prison/events.py" />
 </sprite>

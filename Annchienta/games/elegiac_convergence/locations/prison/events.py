@@ -17,8 +17,8 @@ if "getName" in dir(passive):
 player = partyManager.player
 
 # The first event
-if not partyManager.hasRecord("tetia_prison_awakening"):
-    partyManager.addRecord("tetia_prison_awakening")
+if not partyManager.hasRecord("prison_awakening"):
+    partyManager.addRecord("prison_awakening")
     player.setPosition( annchienta.Point( annchienta.TilePoint, 8, 5 ) )
     sceneManager.initDialog( [player] )
     sceneManager.thoughts( "Ouch..." )
@@ -45,12 +45,12 @@ if not partyManager.hasRecord("tetia_prison_awakening"):
     partyManager.refreshMap()
 
 # The event with the guard.
-if partyManager.hasRecord("tetia_prison_awakening") and not partyManager.hasRecord("tetia_prison_guard") and passiveName=="bars":
+if partyManager.hasRecord("prison_awakening") and not partyManager.hasRecord("prison_guard") and passiveName=="bars":
 
-    partyManager.addRecord("tetia_prison_guard")
+    partyManager.addRecord("prison_guard")
 
     # Create a guard and set his position.
-    guard = annchienta.Person( "guard", "locations/tetia/prison_guard.xml" )
+    guard = annchienta.Person( "guard", "locations/prison/guard.xml" )
     partyManager.currentMap.addObject( guard )
     guard.setPosition( annchienta.Point( annchienta.IsometricPoint, 30, 140 ) )
 
@@ -102,12 +102,12 @@ if partyManager.hasRecord("tetia_prison_awakening") and not partyManager.hasReco
     partyManager.refreshMap()
 
 # The event with Esana.
-if partyManager.hasRecord("tetia_prison_guard") and not partyManager.hasRecord("tetia_met_esana") and passiveName=="bed":
+if partyManager.hasRecord("prison_guard") and not partyManager.hasRecord("prison_met_esana") and passiveName=="bed":
 
-    partyManager.addRecord("tetia_met_esana")
+    partyManager.addRecord("prison_met_esana")
 
     # Create Esana and set her position.
-    esana = annchienta.Person( "esana", "locations/tetia/esana.xml" )
+    esana = annchienta.Person( "esana", "locations/prison/esana.xml" )
     partyManager.currentMap.addObject( esana )
     esana.setPosition( annchienta.Point( annchienta.IsometricPoint, 30, 140 ) )
 

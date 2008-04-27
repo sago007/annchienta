@@ -157,7 +157,7 @@ class PartyManager:
 
     def changeLayer( self, index, newPosition = annchienta.Point( annchienta.TilePoint, 2, 2 ) ):
         self.player.setPosition( newPosition )
-        self.currentMap.removeObject( self.player ))
+        self.currentMap.removeObject( self.player )
         self.currentMap.setCurrentLayer( index )
         self.currentMap.addObject( self.player )
 
