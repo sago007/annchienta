@@ -143,16 +143,27 @@ class PartyManager:
     def hasRecord( self, record ):
         return record.lower() in self.records
 
-    def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ) ):
+    def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ), newLayer = 0 ):
         self.player.setPosition( newPosition )
         self.currentMap.removeObject( self.player )
         self.lastMap = self.currentMap
         self.currentMap = annchienta.Map( newMapFileName )
+        self.currentMap.setCurrentLayer( newLayer )
         self.currentMap.addObject( self.player )
         self.mapManager.setCurrentMap( self.currentMap )
 
         # Because loading a map can take some time:
         self.mapManager.resync()
+
+    def changeLayer( self, index, newPosition = annchienta.Point( annchienta.TilePoint, 2, 2 ) ):
+        self.player.setPosition( newPosition )
+        self.currentMap.removeObject( self.player ))
+        self.currentMap.setCurrentLayer( index )
+        self.currentMap.addObject( self.player )
+
+        # Because changing a layer can take some time:
+        self.mapManager.resync()
+        
 
     def refreshMap( self ):
         pos = self.player.getPosition()

@@ -43,7 +43,7 @@
     </sizepolicy>
    </property>
    <property name="currentIndex" >
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="configurationTab" >
     <attribute name="title" >
@@ -93,7 +93,7 @@
       <rect>
        <x>10</x>
        <y>100</y>
-       <width>94</width>
+       <width>111</width>
        <height>23</height>
       </rect>
      </property>
@@ -364,7 +364,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>141</width>
+       <width>161</width>
        <height>23</height>
       </rect>
      </property>
@@ -458,6 +458,9 @@
         <width>62</width>
         <height>30</height>
        </rect>
+      </property>
+      <property name="maximum" >
+       <number>999</number>
       </property>
      </widget>
      <widget class="QLabel" name="label_6" >
@@ -555,7 +558,7 @@
        <number>-200</number>
       </property>
       <property name="maximum" >
-       <number>200</number>
+       <number>999</number>
       </property>
       <property name="value" >
        <number>8</number>
@@ -605,8 +608,8 @@
      <property name="html" >
       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;">&lt;/p>&lt;/body>&lt;/html></string>
+&lt;/style>&lt;/head>&lt;body style=" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;">
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif';">&lt;/p>&lt;/body>&lt;/html></string>
      </property>
      <property name="acceptRichText" >
       <bool>false</bool>
