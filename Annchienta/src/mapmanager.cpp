@@ -127,14 +127,19 @@ namespace Annchienta
         }
     }
 
+    void MapManager::setUpdatesPerSecond( int u )
+    {
+        updatesPerSecond = u;
+    }
+
     void MapManager::setCurrentMap( Map *map )
     {
         currentMap = map;
     }
 
-    void MapManager::setUpdatesPerSecond( int u )
+    void MapManager::setNullMap()
     {
-        updatesPerSecond = u;
+        currentMap = 0;
     }
 
     Map *MapManager::getCurrentMap() const
@@ -203,9 +208,12 @@ namespace Annchienta
         {
             this->update();
 
-            videoManager->begin();
-            this->renderFrame();
-            videoManager->end();
+            if( running )
+            {
+                videoManager->begin();
+                this->renderFrame();
+                videoManager->end();
+            }
 
             frames++;
             if( lastFpsUpdate+1000<=SDL_GetTicks() )

@@ -1,6 +1,7 @@
 import annchienta
 import xml.dom.minidom
 import combatant
+import scene
 
 class PartyManager:
 
@@ -10,12 +11,14 @@ class PartyManager:
     def __init__( self ):
         self.inputManager = annchienta.getInputManager()
         self.mapManager = annchienta.getMapManager()
+        self.sceneManager = scene.getSceneManager()
 
     def free( self ):
         self.currentMap.removeObject(self.player)
         self.currentMap = 0
         self.team = 0
         self.records = []
+        self.mapManager.setNullMap()
 
     def load( self, filename ):
         self.filename = filename
@@ -144,6 +147,7 @@ class PartyManager:
         return record.lower() in self.records
 
     def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ), newLayer = 0 ):
+        self.sceneManager.fadeOut()
         self.player.setPosition( newPosition )
         self.currentMap.removeObject( self.player )
         self.lastMap = self.currentMap

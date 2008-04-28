@@ -2,7 +2,9 @@ import annchienta
 import scene
 import party
 
+engine = annchienta.getEngine()
 mapManager = annchienta.getMapManager()
+inputManager = annchienta.getInputManager()
 sceneManager = scene.getSceneManager()
 partyManager = party.getPartyManager()
 
@@ -155,3 +157,56 @@ if partyManager.hasRecord("prison_guard") and not partyManager.hasRecord("prison
 
     partyManager.refreshMap()
 
+if partyManager.hasRecord("prison_met_esana") and not partyManager.hasRecord("prison_through_window"):
+
+    partyManager.addRecord("prison_through_window")
+
+    # Create Esana and set her position.
+    esana = annchienta.Person( "esana", "locations/prison/esana.xml" )
+    partyManager.currentMap.addObject( esana )
+    p = player.getPosition()
+    esana.setPosition( p )
+
+    # Init the dialog.
+    sceneManager.initDialog( [esana, player] )
+
+    p.x = p.x+30
+
+    # Esana moves away a little.
+    sceneManager.move( esana, p )
+    player.lookAt(esana)
+    esana.lookAt(player)
+
+    # Talk a little, then move back.
+    sceneManager.chat( esana, "Yeah, we actually have to go down that window.", ["What?"] )
+    sceneManager.speak( esana, "Below us are only guards. And I brought this rope just in case... Let's go!" )
+    sceneManager.move( esana, player.getPosition() )
+
+    # Remove Esana.
+    sceneManager.quitDialog()
+    partyManager.currentMap.removeObject( esana )
+
+    background = annchienta.Surface( "images/storyline/prison_tower.png" )
+    s1 = annchienta.Surface( "sprites/aelaan.png" )
+    s2 = annchienta.Surface( "sprites/esana.png" )
+    start = engine.getTicks()
+    while start+9000>engine.getTicks() and inputManager.running():
+        inputManager.update()
+        t = engine.getTicks()-start
+        videoManager.begin()
+        videoManager.translate( 0, (-engine.getTicks()+start)/10 )
+        videoManager.drawPattern( background, 0, 0, 400, 1200 )
+        videoManager.drawSurface( s1, 142, 600, 0, 0, 37, 75 )
+        videoManager.drawSurface( s2, 142, 680, 0, 0, 31, 71 )
+        videoManager.end()
+
+    videoManager.reset()
+    f = annchienta.Font( "assets/italics.ttf", 40 )
+    videoManager.setColor(0,0,0,200)
+    videoManager.drawRectangle(0,0,videoManager.getScreenWidth(),videoManager.getScreenHeight())
+    videoManager.setColor(255,255,255)
+    videoManager.drawStringCentered( sceneManager.defaultFont, "And all was well.", 200, 80 )
+    videoManager.drawStringCentered( f, "The End.", 200, 100 )
+    mapManager.stop()
+    sceneManager.waitForKey()
+    engine.write("Thanks for playing Annchienta.")

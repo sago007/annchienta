@@ -60,6 +60,7 @@ class Engine(_object):
     def delay(*args): return _annchienta.Engine_delay(*args)
     def setPythonBoolean(*args): return _annchienta.Engine_setPythonBoolean(*args)
     def evaluatePythonBoolean(*args): return _annchienta.Engine_evaluatePythonBoolean(*args)
+    def toPythonCode(*args): return _annchienta.Engine_toPythonCode(*args)
     def __init__(self, *args): 
         this = _annchienta.new_Engine(*args)
         try: self.this.append(this)
@@ -165,6 +166,7 @@ class MapManager(_object):
     def cameraPeekAt(*args): return _annchienta.MapManager_cameraPeekAt(*args)
     def setUpdatesPerSecond(*args): return _annchienta.MapManager_setUpdatesPerSecond(*args)
     def setCurrentMap(*args): return _annchienta.MapManager_setCurrentMap(*args)
+    def setNullMap(*args): return _annchienta.MapManager_setNullMap(*args)
     def getCurrentMap(*args): return _annchienta.MapManager_getCurrentMap(*args)
     def setMaxAscentHeight(*args): return _annchienta.MapManager_setMaxAscentHeight(*args)
     def getMaxAscentHeight(*args): return _annchienta.MapManager_getMaxAscentHeight(*args)

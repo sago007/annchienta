@@ -53,6 +53,7 @@ import party
 import annchienta
 partyManager = party.getPartyManager()
 partyManager.changeMap(&quot;locations/prison/floor1.xml&quot;, annchienta.Point( annchienta.TilePoint, 10, 17 ) )
+partyManager.player.setAnimation(&quot;standnorth&quot;)
 </area>
 
 </layer>

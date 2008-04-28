@@ -24,9 +24,6 @@
 </obstruction>
 
 <!-- A whole lot of bars for the cells.-->
-<staticobject isox="64" isoy="61" mask="masks/bars.png" name="bars" sprite="sprites/bars.png"/>
-<staticobject isox="64" isoy="76" mask="masks/bars.png" name="bars" sprite="sprites/bars.png"/>
-
 <staticobject isox="64" isoy="109" mask="masks/bars.png" name="bars" sprite="sprites/bars.png"/>
 <staticobject isox="64" isoy="124" mask="masks/bars.png" name="bars" sprite="sprites/bars.png"/>
 
@@ -45,12 +42,16 @@
 <!-- A guard watching out. -->
 <person name="guard" config="locations/prison/guard.xml" animation="standsouth" tilex="11" tiley="15"/>
 
+<!-- Area to escape through window. -->
+<area tilex1="1" tiley1="3" tilex2="4" tiley2="5" script="locations/prison/events.py"/>
+
 <!-- The way back to the higher floor. -->
 <area tilex1="11" tiley1="16" tilex2="12" tiley2="18">
 import party
 import annchienta
 partyManager = party.getPartyManager()
 partyManager.changeMap(&quot;locations/prison/floor2.xml&quot;, annchienta.Point( annchienta.TilePoint, 10, 15 ) )
+partyManager.player.setAnimation(&quot;standnorth&quot;)
 </area>
 
 </layer>

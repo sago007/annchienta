@@ -209,21 +209,7 @@ namespace Annchienta
 
             bool result;
 
-            if( x )
-            {
-                if( this->move( x, 0, false ) )
-                    return true;
-                else
-                    if( y )
-                        if( this->move( 0, y, false ) )
-                            return true;
-                        else
-                            this->move( x, 0, true );
-            }
-            else
-            {
-                this->move( 0, y, true );
-            }
+            this->move( x, y, true );
         }
 
         return true;

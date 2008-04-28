@@ -22,6 +22,7 @@ if inputManager.keyTicked( annchienta.SDLK_RETURN ):
     o = []
     o.append( menu.MenuItem("continue", "Continue the game.") )
     o.append( menu.MenuItem("save", "Save your progress.") )
+    o.append( menu.MenuItem("quit", "Quit the game.") )
     i = menu.Menu("item", "Use an item.")
     i.setOptions( map( menu.MenuItem, ("potion", "grenade") ) )
     o.append( i )
@@ -43,5 +44,6 @@ if inputManager.keyTicked( annchienta.SDLK_RETURN ):
             partyManager.save("saves/save.xml")
             sceneManager = scene.getSceneManager()
             sceneManager.text("Game saved!")
-
+        if a.name == "quit":
+            mapManager.stop()
 

@@ -53,6 +53,7 @@ namespace Annchienta
             void setUpdatesPerSecond( int );
 
             void setCurrentMap( Map *map );
+            void setNullMap();
             Map *getCurrentMap() const;
 
             void setMaxAscentHeight( int maxAscentHeight );

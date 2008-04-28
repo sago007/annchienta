@@ -6,6 +6,8 @@ sys.path.append("scripts")
 
 import annchienta
 
+engine = annchienta.getEngine()
+
 videoManager = annchienta.getVideoManager()
 videoManager.setVideoMode( 400, 300, "Annchienta", False )
 videoManager.setClearColor(0,0,0)
@@ -43,8 +45,10 @@ partyManager = party.getPartyManager()
 
 while inputManager.running():
 
-    a = sceneManager.chat(None, "What do you want to do?", ["Start a new game.", "Load a previously saved game."])
-    partyManager.load("saves/save.xml" if a else "saves/new.xml")
-
-    mapManager.run()
-    partyManager.free()
+    a = sceneManager.chat(None, "What do you want to do?", ["Start a new game.", "Load a previously saved game.","Quit"])
+    if a==2:
+        inputManager.stop()
+    else:
+        partyManager.load("saves/save.xml" if a else "saves/new.xml")
+        mapManager.run()
+        partyManager.free()

@@ -2499,8 +2499,9 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_SDLKey swig_types[19]
 #define SWIGTYPE_p_SDLMod swig_types[20]
 #define SWIGTYPE_p_char swig_types[21]
-static swig_type_info *swig_types[23];
-static swig_module_info swig_module = {swig_types, 22, 0, 0, 0, 0};
+#define SWIGTYPE_p_p_char swig_types[22]
+static swig_type_info *swig_types[24];
+static swig_module_info swig_module = {swig_types, 23, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3098,6 +3099,36 @@ SWIGINTERN PyObject *_wrap_Engine_evaluatePythonBoolean(PyObject *SWIGUNUSEDPARM
 fail:
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Engine_toPythonCode(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Engine *arg1 = (Annchienta::Engine *) 0 ;
+  char **arg2 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Engine_toPythonCode",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Engine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Engine_toPythonCode" "', argument " "1"" of type '" "Annchienta::Engine *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Engine * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Engine_toPythonCode" "', argument " "2"" of type '" "char **""'"); 
+  }
+  arg2 = reinterpret_cast< char ** >(argp2);
+  (arg1)->toPythonCode(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
   return NULL;
 }
 
@@ -6349,6 +6380,27 @@ SWIGINTERN PyObject *_wrap_MapManager_setCurrentMap(PyObject *SWIGUNUSEDPARM(sel
   }
   arg2 = reinterpret_cast< Annchienta::Map * >(argp2);
   (arg1)->setCurrentMap(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MapManager_setNullMap(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_setNullMap",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_setNullMap" "', argument " "1"" of type '" "Annchienta::MapManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  (arg1)->setNullMap();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -12176,6 +12228,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Engine_delay", _wrap_Engine_delay, METH_VARARGS, NULL},
 	 { (char *)"Engine_setPythonBoolean", _wrap_Engine_setPythonBoolean, METH_VARARGS, NULL},
 	 { (char *)"Engine_evaluatePythonBoolean", _wrap_Engine_evaluatePythonBoolean, METH_VARARGS, NULL},
+	 { (char *)"Engine_toPythonCode", _wrap_Engine_toPythonCode, METH_VARARGS, NULL},
 	 { (char *)"new_Engine", _wrap_new_Engine, METH_VARARGS, NULL},
 	 { (char *)"delete_Engine", _wrap_delete_Engine, METH_VARARGS, NULL},
 	 { (char *)"Engine_swigregister", Engine_swigregister, METH_VARARGS, NULL},
@@ -12243,6 +12296,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_cameraPeekAt", _wrap_MapManager_cameraPeekAt, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setUpdatesPerSecond", _wrap_MapManager_setUpdatesPerSecond, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setCurrentMap", _wrap_MapManager_setCurrentMap, METH_VARARGS, NULL},
+	 { (char *)"MapManager_setNullMap", _wrap_MapManager_setNullMap, METH_VARARGS, NULL},
 	 { (char *)"MapManager_getCurrentMap", _wrap_MapManager_getCurrentMap, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setMaxAscentHeight", _wrap_MapManager_setMaxAscentHeight, METH_VARARGS, NULL},
 	 { (char *)"MapManager_getMaxAscentHeight", _wrap_MapManager_getMaxAscentHeight, METH_VARARGS, NULL},
@@ -12475,6 +12529,7 @@ static swig_type_info _swigt__p_Annchienta__VideoManager = {"_p_Annchienta__Vide
 static swig_type_info _swigt__p_SDLKey = {"_p_SDLKey", "enum SDLKey *|SDLKey *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDLMod = {"_p_SDLMod", "enum SDLMod *|SDLMod *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Area,
@@ -12499,6 +12554,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_SDLKey,
   &_swigt__p_SDLMod,
   &_swigt__p_char,
+  &_swigt__p_p_char,
 };
 
 static swig_cast_info _swigc__p_Annchienta__Area[] = {  {&_swigt__p_Annchienta__Area, 0, 0, 0},{0, 0, 0, 0}};
@@ -12523,6 +12579,7 @@ static swig_cast_info _swigc__p_Annchienta__VideoManager[] = {  {&_swigt__p_Annc
 static swig_cast_info _swigc__p_SDLKey[] = {  {&_swigt__p_SDLKey, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDLMod[] = {  {&_swigt__p_SDLMod, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Area,
@@ -12547,6 +12604,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_SDLKey,
   _swigc__p_SDLMod,
   _swigc__p_char,
+  _swigc__p_p_char,
 };
 
 
