@@ -124,7 +124,7 @@ namespace Annchienta
         /* If there is a Z coordinate and a wall-like thing surface,
          * we want to draw a wall-like thing.
          */
-        if( (points[1].z || points[2].z || points[3].z) && sideSurface )
+        if( (points[1].z || points[2].z || points[3].z || sideSurfaceOffset) && sideSurface )
         {
             /* Get come specific texture coords.
              */

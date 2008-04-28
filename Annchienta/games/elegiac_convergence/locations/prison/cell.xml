@@ -39,7 +39,7 @@
 import party
 import annchienta
 partyManager = party.getPartyManager()
-partyManager.changeMap(&quot;locations/world/world.xml&quot;, annchienta.Point( annchienta.TilePoint, 10, 10 ) )
+partyManager.changeMap(&quot;locations/prison/floor2.xml&quot;, annchienta.Point( annchienta.TilePoint, 6, 2 ) )
     </area>
 </if>
 

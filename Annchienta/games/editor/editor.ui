@@ -43,7 +43,7 @@
     </sizepolicy>
    </property>
    <property name="currentIndex" >
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="configurationTab" >
     <attribute name="title" >
@@ -459,6 +459,9 @@
         <height>30</height>
        </rect>
       </property>
+      <property name="minimum" >
+       <number>-999</number>
+      </property>
       <property name="maximum" >
        <number>999</number>
       </property>
@@ -555,7 +558,7 @@
        </rect>
       </property>
       <property name="minimum" >
-       <number>-200</number>
+       <number>-999</number>
       </property>
       <property name="maximum" >
        <number>999</number>
