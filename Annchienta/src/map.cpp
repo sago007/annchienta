@@ -174,6 +174,9 @@ namespace Annchienta
                         if( xml->getAttributeValueAsInt("camera") )
                             getMapManager()->cameraFollow( staticObject );
 
+                        if( xml->getAttributeValue("animation") )
+                            staticObject->setAnimation( xml->getAttributeValue("animation") );
+
                         layer->addEntity( staticObject );
 
                     }
@@ -200,6 +203,9 @@ namespace Annchienta
 
                         if( xml->getAttributeValueAsInt("camera") )
                             getMapManager()->cameraFollow( person);
+
+                        if( xml->getAttributeValue("animation") )
+                            person->setAnimation( xml->getAttributeValue("animation") );
 
                         layer->addEntity( person );
 

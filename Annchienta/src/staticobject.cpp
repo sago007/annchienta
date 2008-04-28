@@ -197,6 +197,7 @@ namespace Annchienta
         /* Now, we set out Z to the highest one of the colliding tiles.
             */
         bool first = true;
+        position.z = 0;
         for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
         {
             if( (*i)->getObstructionType() != NoObstruction )
