@@ -23,13 +23,5 @@
                 </strategies>
                 <growth points="10" needed="32" />
             </combatant>
-            <combatant name="kator">
-                <sprite filename="sprites/kator.png" x1="108" y1="78" x2="144" y2="156"/>
-                <status strength="20" defense="20" magic="20" resistance="20" health="100" maxhealth="100"/>
-                <strategies>
-                    warrior healer adept
-                </strategies>
-                <growth points="10" needed="32" />
-            </combatant>
         </team>
 </party>

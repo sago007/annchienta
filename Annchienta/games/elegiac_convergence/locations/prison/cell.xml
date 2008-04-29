@@ -48,10 +48,9 @@ partyManager.changeMap(&quot;locations/prison/floor2.xml&quot;, annchienta.Point
 <onload>
 import annchienta
 import battle
-audioManager = annchienta.getAudioManager()
 battleManager = battle.getBattleManager()
-
-audioManager.playMusic(&quot;music/prison.ogg&quot;)
+annchienta.getAudioManager().playMusic(&quot;music/prison.ogg&quot;)
+annchienta.getVideoManager().setClearColor(0,0,0)
 battleManager.enemiesInMap = [&quot;spider&quot;]
 battleManager.battleBackground = &quot;images/backgrounds/prison.png&quot;
 </onload>

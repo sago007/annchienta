@@ -146,8 +146,9 @@ class PartyManager:
     def hasRecord( self, record ):
         return record.lower() in self.records
 
-    def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ), newLayer = 0 ):
-        self.sceneManager.fadeOut()
+    def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ), newLayer = 0, fade=True ):
+        if fade:
+            self.sceneManager.fadeOut()
         self.player.setPosition( newPosition )
         self.currentMap.removeObject( self.player )
         self.lastMap = self.currentMap
@@ -171,7 +172,7 @@ class PartyManager:
 
     def refreshMap( self ):
         pos = self.player.getPosition()
-        self.changeMap( self.currentMap.getFileName(), pos )
+        self.changeMap( self.currentMap.getFileName(), pos, 0, False )
 
 def initPartyManager():
     global globalPartyManagerInstance

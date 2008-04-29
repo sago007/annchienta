@@ -157,7 +157,7 @@ if partyManager.hasRecord("prison_guard") and not partyManager.hasRecord("prison
 
     partyManager.refreshMap()
 
-if partyManager.hasRecord("prison_met_esana") and not partyManager.hasRecord("prison_through_window"):
+if partyManager.hasRecord("prison_met_esana") and not partyManager.hasRecord("prison_through_window") and passiveName=="nameless":
 
     partyManager.addRecord("prison_through_window")
 

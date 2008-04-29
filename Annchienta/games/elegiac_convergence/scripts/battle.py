@@ -226,7 +226,7 @@ class BattleManager:
         
         self.enemiesInMap = []
         self.battleBackground = None
-        self.randomBattleDelay = random.randint( 500, 1000 )
+        self.randomBattleDelay = random.randint( 200, 500 )
 
     def loadEnemies( self, fname ):
 
@@ -250,7 +250,7 @@ class BattleManager:
             self.randomBattleDelay -= 1
             return
         else:
-            self.randomBattleDelay = random.randint( 500, 1000 )
+            self.randomBattleDelay = random.randint( 200, 500 )
 
             # Return if there are no enemies in this level.
             if not len(self.enemiesInMap):

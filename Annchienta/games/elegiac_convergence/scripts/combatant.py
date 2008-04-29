@@ -98,7 +98,7 @@ class Combatant:
         self.reset()
 
     def reset( self ):
-        self.ailments = ["poison"]
+        self.ailments = []
         self.buffers = []
         self.delay = 6
         self.m_strategy = strategy.Strategy( None, self )
@@ -162,6 +162,9 @@ class Combatant:
         dmg *= random.uniform(0.9,1.1)
         dmg = int(dmg)
 
+        if "protect" in target.buffers:
+            dmg /= 2
+
         # Subtract damage from target's health.
         target.addHealth( -dmg )
         return dmg
@@ -180,6 +183,9 @@ class Combatant:
         # Apply a small random factor and covert to int.
         dmg *= random.uniform(0.9,1.1)
         dmg = int(dmg)
+
+        if "barrier" in target.buffers:
+            dmg /= 2
 
         # Subtract damage from target's health.
         target.addHealth( -dmg )

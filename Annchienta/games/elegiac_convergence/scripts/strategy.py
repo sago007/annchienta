@@ -2,6 +2,12 @@ import annchienta
 import scene
 import random
 
+## STRATEGY GUIDELINES
+#
+#  strength+defense+magic+resistance == 10
+#
+#  a strategy should do 5 standard damage per 1 delay
+#  or heal 1/28 per 1 delay
 class Strategy:
 
     name = "empty"
@@ -57,11 +63,11 @@ class Warrior(Strategy):
             return
         target = array[ random.randint(0,len(array)-1) ]
 
-        # Attack that target with default attack power (=20).
+        # Attack that target with default attack power (=30).
         self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
         self.m_battle.physicalAttackAnimation( self.m_combatant, target )
         sound = self.cacheManager.getSound("sounds/sword.ogg")
-        if self.m_combatant.physicalAttack( target, 20, 0.8 ):
+        if self.m_combatant.physicalAttack( target, 30, 0.8 ):
             self.audioManager.playSound( sound )
         self.m_battle.returnHomeAnimation( self.m_combatant )
 
@@ -147,7 +153,7 @@ class Adept(Strategy):
         self.audioManager.playSound( sound )
         self.m_battle.surfaceOverSpritesAnimation( array, surf, -50 if self.m_combatant.hostile else 50, 0 )
         for e in array:
-            self.m_combatant.magicalAttack( e, 12, 0.7 )
+            self.m_combatant.magicalAttack( e, 20, 0.7 )
 
     def isAvailableFor( self, m_combatant ):
         return True
@@ -157,6 +163,7 @@ class Adept(Strategy):
 #  Attacks the weakest enemies.
 #
 class Fighter(Strategy):
+
 
     name = "fighter"
     description = "Attacks the weakest enemy."
@@ -175,7 +182,7 @@ class Fighter(Strategy):
         self.turns -= 1
 
         # Add some delay now.
-        self.m_combatant.delay += 7
+        self.m_combatant.delay += 6
 
         # Select the target with the lowest health.
         target = self.m_battle.getCombatantWithLowestHealth( not self.m_combatant.hostile )
@@ -186,15 +193,68 @@ class Fighter(Strategy):
         self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
         self.m_battle.physicalAttackAnimation( self.m_combatant, target )
         sound = self.cacheManager.getSound("sounds/sword.ogg")
-        if self.m_combatant.physicalAttack( target, 25, 0.8 ):
+        if self.m_combatant.physicalAttack( target, 30, 0.7 ):
             self.audioManager.playSound( sound )
         self.m_battle.returnHomeAnimation( self.m_combatant )
 
     def isAvailableFor( self, m_combatant ):
-        return m_combatant.experience.get("warrior")>2
+        return m_combatant.experience.get("warrior")>6
+
+## MONK
+#
+#  A white-magic based class that protects other fighters.
+#
+class Monk(Strategy):
+
+    name = "monk"
+    description = "Supports allies."
+    strength, defense, magic, resistance = 1, 4, 1, 4
+
+    category = "white magic"
+
+    def __init__( self, m_battle, m_combatant ):
+
+        Strategy.__init__( self, m_battle, m_combatant )
+        self.turns = 2
+
+    def control( self ):
+
+        # Decrease our turns for this strategy.
+        self.turns -= 1
+
+        # Add some delay now.
+        self.m_combatant.delay += 6
+
+        # Select first array.
+        array = self.m_battle.enemies if self.m_combatant.hostile else self.m_battle.allies
+        # Filter based on status effects.
+        array = filter( lambda c: not ("protect" in c.buffers and "barrier" in c.buffers), array )
+        if not len(array):
+            return
+
+        target = array[ random.randint(0,len(array)-1) ]
+
+        status = ""
+        if "protect" in target.buffers:
+            status = "barrier"
+        elif "barrier" in target.buffers:
+            status = "protect"
+        else:
+            status = "protect" if random.randint(0,1) else "barrier"
+
+        # Add that status effect.
+        if status=="protect":
+            self.sceneManager.info( self.m_combatant.name.capitalize()+" creates a protection arround "+target.name.capitalize()+"!" )
+        else:
+            self.sceneManager.info( self.m_combatant.name.capitalize()+" creates a barrier for "+target.name.capitalize()+"!" )
+
+        target.buffers += [status]
+
+    def isAvailableFor( self, m_combatant ):
+        return m_combatant.experience.get("healer")>6
 
 # List with all strategies, used by getStrategy()
-all = [Warrior, Healer, Adept, Fighter]
+all = [Warrior, Healer, Adept, Fighter, Monk]
 
 def getStrategy( name ):
     for s in all:
