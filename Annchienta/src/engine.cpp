@@ -65,32 +65,6 @@ namespace Annchienta
         PyRun_SimpleString( buffer );
     }
 
-    void Engine::write( const char *text ) const
-    {
-        printf( text );
-        printf( "\n" );
-    }
-
-    void Engine::setWindowTitle( const char *title ) const
-    {
-        SDL_WM_SetCaption( title, NULL );
-    }
-
-    unsigned int Engine::getTicks() const
-    {
-        return SDL_GetTicks();
-    }
-
-    void Engine::delay( int ms ) const
-    {
-        if( ms>0 )
-            SDL_Delay( ms );
-    }
-
-    void Engine::setPythonBoolean( bool b )
-    {
-        pythonBoolean = b;
-    }
 
     bool Engine::evaluatePythonBoolean( const char *start, const char *conditional )
     {
@@ -117,6 +91,33 @@ namespace Annchienta
         newCode[ newLength ] = '\0';
         delete[] *strptr;
         *strptr = newCode;
+    }
+
+    void Engine::write( const char *text ) const
+    {
+        printf( text );
+        printf( "\n" );
+    }
+
+    void Engine::setWindowTitle( const char *title ) const
+    {
+        SDL_WM_SetCaption( title, NULL );
+    }
+
+    unsigned int Engine::getTicks() const
+    {
+        return SDL_GetTicks();
+    }
+
+    void Engine::delay( int ms ) const
+    {
+        if( ms>0 )
+            SDL_Delay( ms );
+    }
+
+    void Engine::setPythonBoolean( bool b )
+    {
+        pythonBoolean = b;
     }
 
     Engine *getEngine()
