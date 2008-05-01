@@ -19,25 +19,17 @@ if inputManager.keyTicked( annchienta.SDLK_RETURN ):
     import menu
     gameMenu = menu.Menu("In-Game Menu")
 
-    o = []
-    o.append( menu.MenuItem("continue", "Continue the game.") )
-    o.append( menu.MenuItem("save", "Save your progress.") )
-    o.append( menu.MenuItem("quit", "Quit the game.") )
-    i = menu.Menu("item", "Use an item.")
-    i.setOptions( map( menu.MenuItem, ("potion", "grenade") ) )
-    o.append( i )
+    options = [ menu.MenuItem("continue", "Continue the game."),
+                menu.MenuItem("save", "Save your progress.") ),
+                menu.MenuItem("quit", "Quit the game.") ) ]
 
-    s = menu.Menu("spam", "Spam of menu items.")
-    s.setOptions( map( lambda a:menu.MenuItem(str(a), "Bollocks.)"), range(17) ) )
-    o.append( s )
-
-    gameMenu.setOptions( o )
+    gameMenu.setOptions( options )
     gameMenu.top()
     a = gameMenu.pop()
 
-    if a is None:
-        print "Canceled."
-    else:
+    if a is not None:
+        if a.name == "continue":
+            pass
         if a.name == "save":
             import scene
             partyManager = party.getPartyManager()
