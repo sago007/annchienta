@@ -134,6 +134,9 @@ class Combatant:
         if self.inputManager.running():
             self.m_strategy.control()
 
+        if "poison" in self.ailments:
+            self.addHealth( -self.status.get("maxhealth")/8 )
+
     def createStrategy( self ):
 
         # Select a random one.

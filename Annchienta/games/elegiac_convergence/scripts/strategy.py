@@ -253,8 +253,53 @@ class Monk(Strategy):
     def isAvailableFor( self, m_combatant ):
         return m_combatant.experience.get("healer")>6
 
+## ADEPT
+#
+#  Most simple black-magic based class. Casts a spell on
+#  all opponents.
+#
+class Poisoner(Strategy):
+
+    name = "poisoner"
+    description = "Tries to poison enemies."
+    strength, defense, magic, resistance = 1, 3, 4, 2
+
+    category = "black magic"
+
+    def __init__( self, m_battle, m_combatant ):
+
+        Strategy.__init__( self, m_battle, m_combatant )
+        self.turns = 3
+
+    def control( self ):
+
+        # Decrease our turns for this strategy.
+        self.turns -= 1
+
+        # Add some delay now.
+        self.m_combatant.delay += 6
+
+        # Select any random target.
+        array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
+        if not len(array):
+            return
+        target = array[ random.randint(0,len(array)-1) ]
+
+        # Attack all targets with 12 attack power.
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" casts bio on "+target.name.capitalize()+"!" )
+        surf = self.cacheManager.getSurface("images/animations/poison.png")
+        sound = self.cacheManager.getSound("sounds/poison.ogg")
+        self.audioManager.playSound( sound )
+        self.m_battle.surfaceOverSpritesAnimation( [target], surf, -50 if self.m_combatant.hostile else 50, 0 )
+        self.m_combatant.magicalAttack( target, 20, 0.7 )
+        if not "poison" in target.ailments:
+            target.ailments += ["poison"]
+
+    def isAvailableFor( self, m_combatant ):
+        return m_combatant.experience.get("adept")>6
+
 # List with all strategies, used by getStrategy()
-all = [Warrior, Healer, Adept, Fighter, Monk]
+all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner]
 
 def getStrategy( name ):
     for s in all:

@@ -351,6 +351,7 @@ class SceneManager:
             self.videoManager.end()
 
         self.inputManager.setInputMode( annchienta.InteractiveMode )
+        self.mapManager.resync()
 
     ## \brief Inits a dialog.
     #

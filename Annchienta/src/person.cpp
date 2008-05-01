@@ -310,7 +310,11 @@ namespace Annchienta
         {
             setActiveObject( this );
             setPassiveObject( interactWith );
+
             interactWith->onInteract();
+
+            setActiveObject( 0 );
+            setPassiveObject( 0 );
         }
     }
 

@@ -64,7 +64,7 @@ int main( int argc, char **argv )
     char gameToRun[512];
 
     if( argc<2 )
-        strcpy( gameToRun, "../games/test/main.py" );
+        strcpy( gameToRun, "../games/elegiac_convergence/main.py" );
     else
         strcpy( gameToRun, argv[1] );
 

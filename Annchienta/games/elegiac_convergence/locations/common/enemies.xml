@@ -2,7 +2,7 @@
 <enemies>
     <combatant name="spider">
         <sprite filename="sprites/spider.png"/>
-        <status strength="8" defense="15" magic="8" resistance="15" health="60" maxhealth="60"/>
+        <status strength="12" defense="20" magic="12" resistance="20" health="70" maxhealth="70"/>
         <strategies>
             warrior
         </strategies>

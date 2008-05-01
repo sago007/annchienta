@@ -219,7 +219,7 @@ namespace Annchienta
             if( lastFpsUpdate+1000<=SDL_GetTicks() )
             {
                 char title[256];
-                sprintf( title, "MapManager FPS: %d", frames );
+                sprintf( title, "Annchienta FPS: %d", frames );
                 SDL_WM_SetCaption( title, NULL );
 
                 lastFpsUpdate = SDL_GetTicks();
