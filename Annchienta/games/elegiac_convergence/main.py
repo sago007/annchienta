@@ -43,12 +43,32 @@ import party
 party.initPartyManager()
 partyManager = party.getPartyManager()
 
+# Main menu
+options = ["Continue", "New Game", "Quit"]
+background = annchienta.Surface("assets/title.png")
+font = annchienta.Font("assets/italics.ttf", 24)
 while inputManager.running():
 
-    a = sceneManager.chat(None, "What do you want to do?", ["Start a new game.", "Load a previously saved game.","Quit"])
-    if a==2:
-        inputManager.stop()
-    else:
-        partyManager.load("saves/save.xml" if a else "saves/new.xml")
-        mapManager.run()
-        partyManager.free()
+    inputManager.update()
+
+    videoManager.begin()
+    videoManager.drawSurface( background, 0, 0 )
+
+    for i in range(len(options)):
+        if inputManager.hover( 0, 120+i*font.getLineHeight(), videoManager.getScreenWidth(), 120+(i+1)*font.getLineHeight() ):
+            videoManager.setColor(0,0,0)
+
+            if inputManager.buttonTicked(0):
+                if options[i]=="Continue" or options[i]=="New Game":
+                    partyManager.load("saves/save.xml" if options[i]=="Continue" else "saves/new.xml")
+                    mapManager.run()
+                    partyManager.free()
+                if options[i]=="Quit":
+                    inputManager.stop()
+
+        else:
+            videoManager.setColor(0,0,0,150)
+
+        videoManager.drawStringCentered( font, options[i], 200, 120+i*font.getLineHeight() )
+
+    videoManager.end()
