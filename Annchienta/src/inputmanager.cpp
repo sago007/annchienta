@@ -128,6 +128,21 @@ namespace Annchienta
         return tickedButtons[ buttonCode ];
     }
 
+    Point InputManager::getMousePoint() const
+    {
+        return Point( ScreenPoint, mouseX, mouseY );
+    }
+
+    bool InputManager::hover( int x1, int y1, int x2, int y2 ) const
+    {
+        return mouseX>=x1 && mouseX<x2 && mouseY>=y1 && mouseY<y2;
+    }
+
+    bool InputManager::clicked( int x1, int y1, int x2, int y2 ) const
+    {
+        return buttonTicked(0) && hover(x1,y1,x2,y2);
+    }
+
     void InputManager::setInputControlledPerson( Person *person )
     {
         inputControlledPerson = person;

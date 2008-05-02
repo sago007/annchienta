@@ -21,6 +21,7 @@ namespace Annchienta
             virtual ~InputPersonControl();
 
             virtual void affect();
+            void tryInteract();
     };
 };
 

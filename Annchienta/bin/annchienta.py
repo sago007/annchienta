@@ -48,6 +48,38 @@ except AttributeError:
 del types
 
 
+TilePoint = _annchienta.TilePoint
+IsometricPoint = _annchienta.IsometricPoint
+MapPoint = _annchienta.MapPoint
+ScreenPoint = _annchienta.ScreenPoint
+class Point(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Point, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Point, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["x"] = _annchienta.Point_x_set
+    __swig_getmethods__["x"] = _annchienta.Point_x_get
+    if _newclass:x = _swig_property(_annchienta.Point_x_get, _annchienta.Point_x_set)
+    __swig_setmethods__["y"] = _annchienta.Point_y_set
+    __swig_getmethods__["y"] = _annchienta.Point_y_get
+    if _newclass:y = _swig_property(_annchienta.Point_y_get, _annchienta.Point_y_set)
+    __swig_setmethods__["z"] = _annchienta.Point_z_set
+    __swig_getmethods__["z"] = _annchienta.Point_z_get
+    if _newclass:z = _swig_property(_annchienta.Point_z_get, _annchienta.Point_z_set)
+    def __init__(self, *args): 
+        this = _annchienta.new_Point(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Point
+    __del__ = lambda self : None;
+    def getType(*args): return _annchienta.Point_getType(*args)
+    def convert(*args): return _annchienta.Point_convert(*args)
+    def to(*args): return _annchienta.Point_to(*args)
+    def isEnclosedBy(*args): return _annchienta.Point_isEnclosedBy(*args)
+Point_swigregister = _annchienta.Point_swigregister
+Point_swigregister(Point)
+
 class Engine(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Engine, name, value)
@@ -59,8 +91,6 @@ class Engine(_object):
     def getTicks(*args): return _annchienta.Engine_getTicks(*args)
     def delay(*args): return _annchienta.Engine_delay(*args)
     def setPythonBoolean(*args): return _annchienta.Engine_setPythonBoolean(*args)
-    def evaluatePythonBoolean(*args): return _annchienta.Engine_evaluatePythonBoolean(*args)
-    def toPythonCode(*args): return _annchienta.Engine_toPythonCode(*args)
     def __init__(self, *args): 
         this = _annchienta.new_Engine(*args)
         try: self.this.append(this)
@@ -132,6 +162,9 @@ class InputManager(_object):
     def getMouseY(*args): return _annchienta.InputManager_getMouseY(*args)
     def buttonDown(*args): return _annchienta.InputManager_buttonDown(*args)
     def buttonTicked(*args): return _annchienta.InputManager_buttonTicked(*args)
+    def getMousePoint(*args): return _annchienta.InputManager_getMousePoint(*args)
+    def hover(*args): return _annchienta.InputManager_hover(*args)
+    def clicked(*args): return _annchienta.InputManager_clicked(*args)
     def setInputControlledPerson(*args): return _annchienta.InputManager_setInputControlledPerson(*args)
     def getInputControlledPerson(*args): return _annchienta.InputManager_getInputControlledPerson(*args)
     def setInputMode(*args): return _annchienta.InputManager_setInputMode(*args)
@@ -350,38 +383,6 @@ class Map(_object):
 Map_swigregister = _annchienta.Map_swigregister
 Map_swigregister(Map)
 
-TilePoint = _annchienta.TilePoint
-IsometricPoint = _annchienta.IsometricPoint
-MapPoint = _annchienta.MapPoint
-ScreenPoint = _annchienta.ScreenPoint
-class Point(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Point, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Point, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["x"] = _annchienta.Point_x_set
-    __swig_getmethods__["x"] = _annchienta.Point_x_get
-    if _newclass:x = _swig_property(_annchienta.Point_x_get, _annchienta.Point_x_set)
-    __swig_setmethods__["y"] = _annchienta.Point_y_set
-    __swig_getmethods__["y"] = _annchienta.Point_y_get
-    if _newclass:y = _swig_property(_annchienta.Point_y_get, _annchienta.Point_y_set)
-    __swig_setmethods__["z"] = _annchienta.Point_z_set
-    __swig_getmethods__["z"] = _annchienta.Point_z_get
-    if _newclass:z = _swig_property(_annchienta.Point_z_get, _annchienta.Point_z_set)
-    def __init__(self, *args): 
-        this = _annchienta.new_Point(*args)
-        try: self.this.append(this)
-        except: self.this = this
-    __swig_destroy__ = _annchienta.delete_Point
-    __del__ = lambda self : None;
-    def getType(*args): return _annchienta.Point_getType(*args)
-    def convert(*args): return _annchienta.Point_convert(*args)
-    def to(*args): return _annchienta.Point_to(*args)
-    def isEnclosedBy(*args): return _annchienta.Point_isEnclosedBy(*args)
-Point_swigregister = _annchienta.Point_swigregister
-Point_swigregister(Point)
-
 TileEntity = _annchienta.TileEntity
 StaticObjectEntity = _annchienta.StaticObjectEntity
 PersonEntity = _annchienta.PersonEntity
@@ -541,7 +542,6 @@ class Person(StaticObject):
     def setInputControl(*args): return _annchienta.Person_setInputControl(*args)
     def setSampleControl(*args): return _annchienta.Person_setSampleControl(*args)
     def setNullControl(*args): return _annchienta.Person_setNullControl(*args)
-    def interact(*args): return _annchienta.Person_interact(*args)
     def setStandAnimation(*args): return _annchienta.Person_setStandAnimation(*args)
     def lookAt(*args): return _annchienta.Person_lookAt(*args)
     def collisionWithLayerAreas(*args): return _annchienta.Person_collisionWithLayerAreas(*args)

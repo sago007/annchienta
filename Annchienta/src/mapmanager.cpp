@@ -254,7 +254,7 @@ namespace Annchienta
 
         if( cameraTarget )
         {
-            cameraPeekAt( cameraTarget );
+            cameraPeekAt( cameraTarget, true );
         }
 
         if( onUpdateCode )

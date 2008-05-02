@@ -7,6 +7,10 @@
 #include "inputmanager.h"
 #include "mapmanager.h"
 #include "person.h"
+#include "auxfunc.h"
+#include "point.h"
+#include "mask.h"
+#include "layer.h"
 
 namespace Annchienta
 {
@@ -31,19 +35,88 @@ namespace Annchienta
 
         if( inputManager->getInputMode()==InteractiveMode && person==inputManager->getInputControlledPerson() )
         {
-            if( inputManager->keyDown( SDLK_LEFT ) )
-                x--;
-            else if( inputManager->keyDown( SDLK_RIGHT ) )
-                x++;
-            else if( inputManager->keyDown( SDLK_UP ) )
-                y--;
-            else if( inputManager->keyDown( SDLK_DOWN ) )
-                y++;
+            if( inputManager->buttonDown(0) )
+            {
+                Point mouse = inputManager->getMousePoint();
+                mouse.convert( IsometricPoint );
     
-            if( inputManager->keyTicked( inputManager->getInteractKey() ) )
-                person->interact();
+                Point pos = person->getPosition();
+                pos.convert( IsometricPoint );
+    
+                if( squaredDistance( mouse.x, mouse.y, pos.x, pos.y ) >= 200 )
+                {
+                    if( absValue(mouse.x-pos.x) > absValue(mouse.y-pos.y) )
+                        x += mouse.x<pos.x?-1:1;
+                    else
+                        y += mouse.y<pos.y?-1:1;
+                }
 
-            person->move( x, y );
+                person->move( x, y );
+            }
+            else
+                person->move( 0, 0 );
+
+            if( inputManager->buttonTicked( 0 ) )
+                this->tryInteract();
+
+        }
+
+    }
+
+    void InputPersonControl::tryInteract()
+    {
+        Layer *layer = person->getLayer();
+
+        if( !layer )
+            return;
+
+        bool searching = true;
+
+        /* We loop through the objects in the layer to see if we find
+         * one where we might interact with.
+         */
+        for( int i=0; layer->getObject(i) && searching; i++ )
+        {
+            StaticObject *object = layer->getObject(i);
+
+            /* Of course, we don't want to interact with ourselves.
+             */
+            if( object != (StaticObject*) person )
+            {
+    
+                /* Check if the object is clicked.
+                 */
+                Point mp = object->getMaskPosition().to( ScreenPoint );
+                bool clicked = ( getInputManager()->hover( mp.x, mp.y, mp.x+object->getMask()->getWidth(), mp.y+object->getMask()->getHeight() ) );
+    
+                mp.convert( MapPoint );
+                Point p = person->getMaskPosition().to( MapPoint );
+                bool boxCollision = person->getMask()->collision( p.x, p.y, object->getMask(), mp.x, mp.y, true );
+
+                if( clicked && boxCollision )
+                {
+                    /* Make sure the Z difference isn't too large. Why: We don't
+                     * want the player to be able to talk with eg. someone standing
+                     * on a cliff when the player is standing on the ground etc.
+                     */
+                    if( absValue(p.z - object->getPosition().z) < getMapManager()->getMaxAscentHeight() )
+                    {
+                        /* We skip object with which can not be interacted.
+                         */
+                        if( object->canInteract() )
+                        {
+                            setActiveObject( person );
+                            setPassiveObject( object );
+                
+                            object->onInteract();
+                
+                            setActiveObject( 0 );
+                            setPassiveObject( 0 );
+                            searching = false;
+                        }
+                    }
+                }
+            }
         }
     }
 

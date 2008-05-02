@@ -14,14 +14,14 @@ if not "stand" in partyManager.player.getAnimation():
         battleManager = battle.getBattleManager()
         battleManager.throwRandomBattle()
 
-if inputManager.keyTicked( annchienta.SDLK_RETURN ):
+if inputManager.buttonTicked(1):
 
     import menu
     gameMenu = menu.Menu("In-Game Menu")
 
     options = [ menu.MenuItem("continue", "Continue the game."),
-                menu.MenuItem("save", "Save your progress.") ),
-                menu.MenuItem("quit", "Quit the game.") ) ]
+                menu.MenuItem("save", "Save your progress."),
+                menu.MenuItem("quit", "Quit the game.") ]
 
     gameMenu.setOptions( options )
     gameMenu.top()

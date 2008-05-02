@@ -6,6 +6,7 @@
 #define ANNCHIENTA_INPUTMANAGER_H
 
 #include <SDL.h>
+#include "point.h"
 
 namespace Annchienta
 {
@@ -50,6 +51,9 @@ namespace Annchienta
 
             bool buttonDown( int ) const;
             bool buttonTicked( int ) const;
+            Point getMousePoint() const;
+            bool hover( int x1, int y1, int x2, int y2 ) const;
+            bool clicked( int x1, int y1, int x2, int y2 ) const;
 
             void setInputControlledPerson( Person *person );
             Person *getInputControlledPerson() const;

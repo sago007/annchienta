@@ -41,8 +41,7 @@ if not partyManager.hasRecord("prison_awakening"):
     sceneManager.thoughts( "Ouch... Why can't I remember?" )
     sceneManager.speak( player, "Why can't I remember?!" )
     sceneManager.speak( player, "I need to find out what happened... I must find the others! I must speak to them!" )
-    sceneManager.info( "Use the arrow keys to move.", None )
-    sceneManager.info( "Press spacebar to inspect items.", None )
+    sceneManager.text( "Click and hold left mouse button to move. Click objects to interact with them if you're close enough.", None )
     sceneManager.quitDialog()
     partyManager.refreshMap()
 

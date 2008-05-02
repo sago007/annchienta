@@ -1,6 +1,7 @@
 %module annchienta
 
 %{
+#include "point.h"
 #include "engine.h"
 #include "videomanager.h"
 #include "inputmanager.h"
@@ -12,7 +13,6 @@
 #include "sound.h"
 #include "layer.h"
 #include "map.h"
-#include "point.h"
 #include "entity.h"
 #include "tile.h"
 #include "tileset.h"
@@ -21,6 +21,7 @@
 #include "person.h"
 %}
 
+%include "point.h"
 %include "engine.h"
 %include "videomanager.h"
 %include "inputmanager.h"
@@ -32,7 +33,6 @@
 %include "sound.h"
 %include "layer.h"
 %include "map.h"
-%include "point.h"
 %include "entity.h"
 %include "tile.h"
 %include "tileset.h"

@@ -51,7 +51,7 @@ import battle
 battleManager = battle.getBattleManager()
 annchienta.getAudioManager().playMusic(&quot;music/prison.ogg&quot;)
 annchienta.getVideoManager().setClearColor(0,0,0)
-battleManager.enemiesInMap = [&quot;spider&quot;]
+battleManager.enemiesInMap = []
 battleManager.battleBackground = &quot;images/backgrounds/prison.png&quot;
 </onload>
 

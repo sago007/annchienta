@@ -11,14 +11,6 @@ import random
 class SceneManager:
 
     margin = 6
-    confirmKeys = [annchienta.SDLK_SPACE]
-    cancelKeys = [annchienta.SDLK_BACKSPACE]
-    nextKeys = [annchienta.SDLK_DOWN,annchienta.SDLK_RIGHT]
-    previousKeys = [annchienta.SDLK_UP,annchienta.SDLK_LEFT]
-    upKeys = [annchienta.SDLK_UP]
-    downKeys = [annchienta.SDLK_DOWN]
-    leftKeys = [annchienta.SDLK_LEFT]
-    rightKeys = [annchienta.SDLK_RIGHT]
     defaultFont, italicsFont = None, None
     boxTextures = []
 
@@ -40,12 +32,6 @@ class SceneManager:
             self.videoManager.end()
 
         self.mapManager.resync()
-
-    def ticked( self, keys ):
-        for k in keys:
-            if self.inputManager.keyTicked(k):
-                return True
-        return False
 
     def defaultColor( self ):
         self.videoManager.setColor(255,255,255)
@@ -128,12 +114,11 @@ class SceneManager:
         font = self.defaultFont if font is None else font
 
         text = str(text)
-        scroll = 0
 
         self.inputManager.update()
         self.videoManager.storeBuffer(7)
 
-        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
+        while self.inputManager.running() and not self.inputManager.buttonTicked(0):
 
             self.inputManager.update()
 
@@ -142,22 +127,10 @@ class SceneManager:
             self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
             self.videoManager.setClippingRectangle( 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, 110-self.margin )
             self.defaultColor()
-            height = self.renderTextInArea( text, 2*self.margin, 2*self.margin-scroll, self.videoManager.getScreenWidth() - 3*self.margin, font )
+            height = self.renderTextInArea( text, 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, font )
             height -= 110 - font.getLineHeight()
             self.videoManager.disableClipping()
-            self.videoManager.pushMatrix()
-            self.videoManager.translate( self.videoManager.getScreenWidth()-3*self.margin, 110-4*self.margin )
-            if scroll>0:
-                self.videoManager.drawTriangle( self.margin/2, 0, 0, self.margin, self.margin, self.margin )
-            if scroll<height:
-                self.videoManager.drawTriangle( 0, self.margin*2, self.margin/2, self.margin*3, self.margin, self.margin*2 )
-            self.videoManager.popMatrix()
             self.videoManager.end()
-
-            if self.ticked( self.nextKeys ) and scroll<height:
-                scroll += font.getLineHeight()
-            if self.ticked( self.previousKeys ) and scroll>0:
-                scroll -= font.getLineHeight()
 
         self.videoManager.restoreBuffer(7)
         self.mapManager.resync()
@@ -168,7 +141,7 @@ class SceneManager:
         scroll = 0
         self.inputManager.update()
         self.videoManager.storeBuffer(7)
-        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
+        while self.inputManager.running() and not self.inputManager.buttonTicked(0):
 
             self.inputManager.update()
 
@@ -206,7 +179,7 @@ class SceneManager:
             self.videoManager.drawString( self.defaultFont, text, 2*self.margin, 2*self.margin )
             self.videoManager.end()
 
-            if not self.inputManager.running() or self.ticked( self.confirmKeys ):
+            if not self.inputManager.running() or self.inputManager.buttonTicked( 0 ):
                 done = True
 
             if timeOut is not None:
@@ -233,14 +206,15 @@ class SceneManager:
         self.videoManager.begin()
         self.mapManager.renderFrame()
 
-        scroll = 0
         selected = 0
         self.inputManager.update()
         self.videoManager.storeBuffer(7)
 
         intro = (speaker.getName().capitalize()+":\n"+intro) if speaker is not None else intro
 
-        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
+        done = False
+
+        while self.inputManager.running() and not done:
 
             self.inputManager.update()
 
@@ -252,43 +226,24 @@ class SceneManager:
             # Make sure everything goes in the box.
             self.videoManager.setClippingRectangle( 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 2*self.margin, 110-self.margin )
             self.defaultColor()
-            height = self.renderTextInArea( intro, 2*self.margin, 2*self.margin-scroll+y, self.videoManager.getScreenWidth() - 2*self.margin, self.defaultFont )
+            height = self.renderTextInArea( intro, 2*self.margin, 2*self.margin+y, self.videoManager.getScreenWidth() - 2*self.margin, self.defaultFont )
             y += height+self.margin
 
-            yPositions = range(len(answers))
-
             for i in range(len(answers)):
-                if selected is i:
+
+                if self.inputManager.hover( 2*self.margin, 2*self.margin+y, self.videoManager.getScreenWidth() - 2*self.margin, 2*self.margin+y+self.defaultFont.getLineHeight() ):
                     self.activeColor()
+                    if self.inputManager.buttonTicked(0):
+                        selected = i
+                        done = True
                 else:
                     self.inactiveColor()
 
-                yPositions[i] = y
-
-                height = self.renderTextInArea( answers[i], 2*self.margin, 2*self.margin-scroll+y, self.videoManager.getScreenWidth() - 2*self.margin, self.defaultFont )
+                height = self.renderTextInArea( answers[i], 2*self.margin, 2*self.margin+y, self.videoManager.getScreenWidth() - 2*self.margin, self.defaultFont )
                 y += height
-
-            yPositions.append(y)
 
             self.videoManager.disableClipping()
             self.videoManager.end()
-
-            if self.ticked( self.nextKeys ):
-                if selected+1<len(answers):
-                    selected += 1
-
-            if self.ticked( self.previousKeys ):
-                if selected>0:
-                    selected -= 1
-                else:
-                    if scroll>0:
-                        scroll -= self.defaultFont.getLineHeight()
-
-            while scroll>yPositions[selected]:
-                scroll -= self.defaultFont.getLineHeight()
-
-            while scroll+110-self.defaultFont.getLineHeight()<yPositions[selected+1]:
-                scroll += self.defaultFont.getLineHeight()
 
         self.videoManager.setColor()
         self.videoManager.restoreBuffer(7)
@@ -298,10 +253,11 @@ class SceneManager:
     def choose(self, title, answers):
 
         selected = 0
+        done = False
         self.inputManager.update()
         self.videoManager.storeBuffer(7)
 
-        while self.inputManager.running() and not self.ticked( self.confirmKeys ):
+        while self.inputManager.running() and not done:
 
             self.inputManager.update()
 
@@ -312,19 +268,19 @@ class SceneManager:
             y = self.margin*2
             self.videoManager.drawString( self.defaultFont, title, self.margin*2, y )
             y += self.defaultFont.getLineHeight()
-            for a in answers:
-                if answers[selected] is a:
+            for i in range(len(answers)):
+
+                if self.inputManager.hover( self.margin*2, y, self.videoManager.getScreenWidth()-self.margin*2, y+self.defaultFont.getLineHeight() ):
                     self.activeColor()
+                    if self.inputManager.buttonTicked(0):
+                        selected = i
+                        done = True
                 else:
                     self.inactiveColor()
-                self.videoManager.drawString( self.defaultFont, a, self.margin*2, y )
+
+                self.videoManager.drawString( self.defaultFont, answers[i], self.margin*2, y )
                 y += self.defaultFont.getLineHeight()
             self.videoManager.end()
-
-            if self.ticked( self.nextKeys ):
-                selected = selected+1 if selected+1<len(answers) else 0
-            if self.ticked( self.previousKeys ):
-                selected = selected-1 if selected>=1 else len(answers)-1
 
         self.videoManager.setColor()
         self.videoManager.restoreBuffer(7)

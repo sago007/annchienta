@@ -40,8 +40,6 @@ namespace Annchienta
             virtual void setSampleControl();
             virtual void setNullControl();
 
-            virtual void interact();
-
             virtual void setStandAnimation();
             virtual void lookAt( StaticObject *object );
 

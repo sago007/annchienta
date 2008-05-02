@@ -36,7 +36,7 @@ namespace Annchienta
 
     float distance( float x1, float y1, float x2, float y2 )
     {
-        return sqrt( square(x2-x1) + square(y2-y1) );
+        return sqrt( squaredDistance(x1,y1,x2,y2) );
     }
 
 

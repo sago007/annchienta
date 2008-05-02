@@ -17,7 +17,7 @@ class MenuItem:
 class Menu(MenuItem):
 
     isMenu = True
-    selectedItem = None
+    clickedItem = None
     width, height = 0, 0
     x, y = 0, 0
     toolTipOnTop = True
@@ -63,17 +63,14 @@ class Menu(MenuItem):
             if m.isMenu:
                 m.leftBottom()
 
-    def pop( self, selected=0 ):
+    def pop( self ):
 
         self.videoManager.storeBuffer(6)
 
         self.inputManager.update()
         done = False
-        canceled = False
-        self.selectedItem = self.options[selected]
 
-        while not done:
-
+        while not done and self.clickedItem is None:
 
             self.videoManager.begin()
             self.render()
@@ -81,62 +78,36 @@ class Menu(MenuItem):
 
             self.inputManager.update()
 
-            if self.sceneManager.ticked( self.sceneManager.downKeys ):
-                selected = selected+1 if selected+1<len(self.options) else 0
-            if self.sceneManager.ticked( self.sceneManager.upKeys ):
-                selected = selected-1 if selected>0 else len(self.options)-1
-
-            if self.sceneManager.ticked( self.sceneManager.leftKeys ):
-                selected = selected-self.rows if selected-self.rows>0 else selected
-            if self.sceneManager.ticked( self.sceneManager.rightKeys ):
-                selected = selected+self.rows if selected+self.rows<len(self.options) else selected
-
-            self.selectedItem = self.options[selected]
-
-            if self.sceneManager.ticked( self.sceneManager.confirmKeys ):
+            if self.inputManager.buttonTicked( 1 ):
                 done = True
-
-            if self.sceneManager.ticked( self.sceneManager.cancelKeys ):
-                done = True
-                canceled = True
 
             if not self.inputManager.running():
                 done = True
-                canceled = True
 
         self.mapManager.resync()
 
         self.videoManager.setColor()
         self.videoManager.restoreBuffer(6)
 
-        if canceled:
+        if self.clickedItem is None:
             return None
         else:
-            if self.selectedItem.isMenu:
-                sub = self.selectedItem.pop()
+            if self.clickedItem.isMenu:
+                sub = self.clickedItem.pop()
                 if sub is None:
-                    return self.pop( selected )
+                    return self.pop()
                 else:
                     return sub
             else:
-                return self.selectedItem
+                return self.clickedItem
 
     def render( self ):
+
+        hover = None
 
         self.videoManager.restoreBuffer(6)
 
         self.videoManager.pushMatrix()
-
-        self.sceneManager.defaultColor()
-
-        # Render tooltip
-        if not self.selectedItem.toolTip is None:
-            self.videoManager.pushMatrix()
-            h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()
-            self.videoManager.translate( 0, self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin*3-self.sceneManager.defaultFont.getLineHeight() )
-            self.sceneManager.drawBox( self.sceneManager.margin, 0, self.videoManager.getScreenWidth()-self.sceneManager.margin, h )
-            self.videoManager.drawString( self.sceneManager.defaultFont, self.selectedItem.toolTip, self.sceneManager.margin*2, self.sceneManager.margin )
-            self.videoManager.popMatrix()
 
         # Render menu
         self.videoManager.translate( self.x, self.y )
@@ -146,23 +117,31 @@ class Menu(MenuItem):
 
         self.videoManager.translate( self.sceneManager.margin, self.sceneManager.margin+ self.sceneManager.italicsFont.getLineHeight() )
 
+        sx, sy = self.x+self.sceneManager.margin, self.y+self.sceneManager.margin+ self.sceneManager.italicsFont.getLineHeight()
+
         for x in range(self.columns):
             for y in range(self.rows):
                 idx = x*self.rows+y
                 if idx<len(self.options):
                     o = self.options[ idx ]
-                    if o is self.selectedItem:
+                    if self.inputManager.hover( sx+x*(self.longest+self.sceneManager.margin), sy+y*self.sceneManager.defaultFont.getLineHeight(), sx+(x+1)*(self.longest+self.sceneManager.margin), sy+(y+1)*self.sceneManager.defaultFont.getLineHeight() ):
                         self.sceneManager.activeColor()
+                        hover = o
+                        if self.inputManager.buttonTicked(0):
+                            self.clickedItem = o
                     else:
                         self.sceneManager.inactiveColor()
                     self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), x*(self.longest+self.sceneManager.margin), y*self.sceneManager.defaultFont.getLineHeight() )
 
-        #for o in self.options:
-            #if o is self.selectedItem:
-                #self.sceneManager.activeColor()
-            #else:
-                #self.sceneManager.inactiveColor()
-            #self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), 0, 0 )
-            #self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
-
         self.videoManager.popMatrix()
+
+        self.sceneManager.defaultColor()
+
+        # Render tooltip
+        if hover is not None:
+            self.videoManager.pushMatrix()
+            h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()
+            self.videoManager.translate( 0, self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin*3-self.sceneManager.defaultFont.getLineHeight() )
+            self.sceneManager.drawBox( self.sceneManager.margin, 0, self.videoManager.getScreenWidth()-self.sceneManager.margin, h )
+            self.videoManager.drawString( self.sceneManager.defaultFont,hover.toolTip, self.sceneManager.margin*2, self.sceneManager.margin )
+            self.videoManager.popMatrix()
