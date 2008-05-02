@@ -253,8 +253,10 @@ namespace Annchienta
     {
         bool setAnimationResult;
 
-        //if( !strcmpCaseInsensitive("aelaan", getName() ) )
-          //  printf("Setting stand animation %d.\n", heading);
+        /* Already stand animation, return.
+         */
+        if( strstr(getAnimation(), "stand") )
+            return;
 
         switch( heading )
         {

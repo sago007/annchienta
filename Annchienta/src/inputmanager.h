@@ -18,6 +18,9 @@ namespace Annchienta
         InteractiveMode=1
     };
 
+    /** Used to handle input tasks. Remember to call update() every
+     *  frame.
+     */
     class InputManager
     {
         private:
@@ -38,15 +41,44 @@ namespace Annchienta
                 ~InputManager();
             #endif
 
+            /** Updates all keys to their current state.
+             */
             void update();
 
+            /** This function should be called if you want to know
+             *  if the engine is still running. This function will
+             *  return false if the user closed the window.
+             *  \return Whether the engine is still running or not.
+             */
             bool running();
+
+            /** Stops the game. running() will return false from now
+             *  on.
+             */
             void stop();
 
-            bool keyDown( int ) const;
-            bool keyTicked( int ) const;
+            /** \param code See \ref keycodes
+             *  \return Is the given key pressed down?
+             */
+            bool keyDown( int code ) const;
 
+            /** This is a function like keyDown(), but slightly
+             *  different: this function only returns true if the key
+             *  was ticked since the last update. That means that,
+             *  even when the user keeps pressing the key, this
+             *  function will only return true the first time. Quite
+             *  useful for menus and things like that.
+             *  \param code See \ref keycodes
+             *  \return Is the given key ticked?
+             */
+            bool keyTicked( int code ) const;
+
+            /** \return Mouse X.
+             */
             int getMouseX() const;
+
+            /** \return Mouse Y.
+             */
             int getMouseY() const;
 
             bool buttonDown( int ) const;

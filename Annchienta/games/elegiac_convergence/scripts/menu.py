@@ -17,7 +17,6 @@ class MenuItem:
 class Menu(MenuItem):
 
     isMenu = True
-    clickedItem = None
     width, height = 0, 0
     x, y = 0, 0
     toolTipOnTop = True
@@ -69,6 +68,7 @@ class Menu(MenuItem):
 
         self.inputManager.update()
         done = False
+        self.clickedItem = None
 
         while not done and self.clickedItem is None:
 

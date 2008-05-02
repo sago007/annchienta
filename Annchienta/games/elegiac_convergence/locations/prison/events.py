@@ -156,6 +156,11 @@ if partyManager.hasRecord("prison_guard") and not partyManager.hasRecord("prison
 
     partyManager.refreshMap()
 
+# Rest a little.
+if partyManager.hasRecord("prison_met_esana") and passiveName=="bed":
+    sceneManager.info("You rest a little. Your health was restored.", None)
+    partyManager.heal()
+
 if partyManager.hasRecord("prison_met_esana") and not partyManager.hasRecord("prison_through_window") and passiveName=="nameless":
 
     partyManager.addRecord("prison_through_window")

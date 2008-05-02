@@ -168,11 +168,14 @@ class PartyManager:
 
         # Because changing a layer can take some time:
         self.mapManager.resync()
-        
 
     def refreshMap( self ):
         pos = self.player.getPosition()
         self.changeMap( self.currentMap.getFileName(), pos, 0, False )
+
+    def heal( self ):
+        for c in self.team:
+            c.status.set("health", c.status.get("maxhealth") )
 
 def initPartyManager():
     global globalPartyManagerInstance
