@@ -402,6 +402,11 @@ namespace Annchienta
         return true;
     }
 
+    void StaticObject::setStandAnimation( bool )
+    {
+        return;
+    }
+
     void StaticObject::lookAt( StaticObject *other )
     {
         return;

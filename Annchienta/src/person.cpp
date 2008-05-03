@@ -249,13 +249,13 @@ namespace Annchienta
         control = 0;
     }
 
-    void Person::setStandAnimation()
+    void Person::setStandAnimation( bool forceFromHeading )
     {
         bool setAnimationResult;
 
         /* Already stand animation, return.
          */
-        if( strstr(getAnimation(), "stand") )
+        if( !forceFromHeading && strstr(getAnimation(), "stand") )
             return;
 
         switch( heading )
@@ -302,7 +302,7 @@ namespace Annchienta
                 heading = 1;
         }
 
-        setStandAnimation();
+        setStandAnimation(true);
     }
 
     void Person::collisionWithLayerAreas()

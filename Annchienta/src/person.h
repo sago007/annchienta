@@ -40,7 +40,7 @@ namespace Annchienta
             virtual void setSampleControl();
             virtual void setNullControl();
 
-            virtual void setStandAnimation();
+            virtual void setStandAnimation( bool forceFromHeading=false );
             virtual void lookAt( StaticObject *object );
 
             virtual void collisionWithLayerAreas();

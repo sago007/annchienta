@@ -354,6 +354,19 @@
       </property>
      </widget>
     </widget>
+    <widget class="QPushButton" name="refreshMapButton" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>80</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Refresh</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="editTab" >
     <attribute name="title" >
@@ -611,8 +624,8 @@
      <property name="html" >
       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;">
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif';">&lt;/p>&lt;/body>&lt;/html></string>
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;">
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>&lt;/body>&lt;/html></string>
      </property>
      <property name="acceptRichText" >
       <bool>false</bool>

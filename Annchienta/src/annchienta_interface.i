@@ -19,6 +19,7 @@
 #include "mask.h"
 #include "staticobject.h"
 #include "person.h"
+#include "auxfunc.h"
 %}
 
 %include "point.h"
@@ -39,4 +40,5 @@
 %include "mask.h"
 %include "staticobject.h"
 %include "person.h"
+%include "auxfunc.h"
 %include "/usr/include/SDL/SDL_keysym.h"

@@ -35,6 +35,8 @@ namespace Annchienta
 
         if( inputManager->getInputMode()==InteractiveMode && person==inputManager->getInputControlledPerson() )
         {
+            /* Mouse input. Listen to it.
+             */
             if( inputManager->buttonDown(0) )
             {
                 Point mouse = inputManager->getMousePoint();
@@ -50,11 +52,22 @@ namespace Annchienta
                     else
                         y += mouse.y<pos.y?-1:1;
                 }
-
-                person->move( x, y );
             }
+            /* Keyboard input, second choice.
+             */
             else
-                person->move( 0, 0 );
+            {
+                if( inputManager->keyDown(SDLK_UP) )
+                    y--;
+                else if( inputManager->keyDown(SDLK_RIGHT) )
+                    x++;
+                else if( inputManager->keyDown(SDLK_DOWN) )
+                    y++;
+                else if( inputManager->keyDown(SDLK_LEFT) )
+                    x--;
+            }
+
+            person->move( x, y );
 
             if( inputManager->buttonTicked( 0 ) )
                 this->tryInteract();

@@ -7,12 +7,6 @@
 
 namespace Annchienta
 {
-    #define square( a ) ((a)*(a))
-    #define min( a, b ) ( (a)>(b)?(b):(a) )
-    #define max( a, b ) ( (a)>(b)?(a):(b) )
-    #define absValue( a ) ( (a)>0? (a):-(a) )
-    #define sign( a ) ( (a)>0?1:((a)<0?-1:0) )
-
     const int nearestPowerOfTwo( const int &input );
 
     /* return will be beneath maximum
@@ -24,7 +18,7 @@ namespace Annchienta
     float distance( float x1, float y1, float x2, float y2 );
     float squaredDistance( float x1, float y1, float x2, float y2 );
 
-    void copyFile( const char *src, const char dst );
+    void copyFile( const char *src, const char *dst );
 
     int strcmpCaseInsensitive( const char *str1, const char *str2 );
 
@@ -42,6 +36,12 @@ namespace Annchienta
         {
 
         }
+
+        #define square( a ) ((a)*(a))
+        #define min( a, b ) ( (a)>(b)?(b):(a) )
+        #define max( a, b ) ( (a)>(b)?(a):(b) )
+        #define absValue( a ) ( (a)>0? (a):-(a) )
+        #define sign( a ) ( (a)>0?1:((a)<0?-1:0) )
     #endif
 };
 

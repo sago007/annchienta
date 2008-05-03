@@ -98,6 +98,7 @@ namespace Annchienta
              */
             virtual void freeze( bool );
             virtual bool stepTo( Point );
+            virtual void setStandAnimation( bool b=false);
             virtual void lookAt( StaticObject *other );
     };
 

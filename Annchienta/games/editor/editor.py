@@ -41,6 +41,7 @@ class Editor(QWidget):
         # Connect map buttons
         self.connect( self.newMapButton, SIGNAL("clicked()"), self.newMap )
         self.connect( self.openMapButton, SIGNAL("clicked()"), self.openMap )
+        self.connect( self.refreshMapButton, SIGNAL("clicked()"), self.refreshMap )
 
         self.connect( self.saveMapButton, SIGNAL("clicked()"), self.saveMap )
         self.connect( self.saveMapAsButton, SIGNAL("clicked()"), self.saveMapAs )
@@ -142,6 +143,15 @@ class Editor(QWidget):
         self.mapFile.filename = filename
         self.saveMapButton.setEnabled(True)
         self.engine.setWindowTitle( filename )
+
+    # Opens and loads a map.
+    def refreshMap(self):
+
+        self.currentMap = annchienta.Map( self.mapFile.filename )
+        self.mapManager.setCurrentMap( self.currentMap )
+        self.currentMap.depthSort()
+        self.tileset = pytileset.PyTileSet( self, self.currentMap.getTileSet().getDirectory() )
+        self.mapFile = mapfile.MapFile( self, self.mapFile.filename )
 
     def saveMap(self):
 

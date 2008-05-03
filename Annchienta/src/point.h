@@ -38,6 +38,7 @@ namespace Annchienta
             Point to( PointType newtype ) const;
 
             bool isEnclosedBy( Point *leftTop, Point *rightBottom );
+            int distance( Point other ) const;
 
     };
 

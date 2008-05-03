@@ -47,13 +47,12 @@ partyManager = party.getPartyManager()
 partyManager.changeMap(&quot;locations/prison/cell.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 4 ) )
 </area>
 
-<!-- The way to the underlying floor. -->
+<!-- The way to the maze. -->
 <area tilex1="11" tiley1="14" tilex2="12" tiley2="16">
 import party
 import annchienta
 partyManager = party.getPartyManager()
-partyManager.changeMap(&quot;locations/prison/floor1.xml&quot;, annchienta.Point( annchienta.TilePoint, 10, 17 ) )
-partyManager.player.setAnimation(&quot;standnorth&quot;)
+partyManager.changeMap(&quot;locations/prison/maze.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 29 ) )
 </area>
 
 </layer>
