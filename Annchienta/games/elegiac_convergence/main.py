@@ -44,18 +44,18 @@ party.initPartyManager()
 partyManager = party.getPartyManager()
 
 # Main menu
-background = annchienta.Surface("assets/title.png")
-font = annchienta.Font("assets/italics.ttf", 24)
+title_background = annchienta.Surface("assets/title.png")
+title_font = annchienta.Font("assets/italics.ttf", 24)
 while inputManager.running():
 
     inputManager.update()
 
     videoManager.begin()
-    videoManager.drawSurface( background, 0, 0 )
+    videoManager.drawSurface( title_background, 0, 0 )
 
     options = ["Continue", "New Game", "Quit"]
     for i in range(len(options)):
-        if inputManager.hover( 0, 120+i*font.getLineHeight(), videoManager.getScreenWidth(), 120+(i+1)*font.getLineHeight() ):
+        if inputManager.hover( 0, 120+i*title_font.getLineHeight(), videoManager.getScreenWidth(), 120+(i+1)*title_font.getLineHeight() ):
             videoManager.setColor(0,0,0)
 
             if inputManager.buttonTicked(0):
@@ -63,6 +63,7 @@ while inputManager.running():
                     partyManager.load("saves/save.xml" if options[i]=="Continue" else "saves/new.xml")
                     mapManager.run()
                     partyManager.free()
+                    inputManager.update()
                 elif options[i]=="Quit":
                     inputManager.stop()
 
@@ -70,6 +71,6 @@ while inputManager.running():
             videoManager.setColor(0,0,0,150)
 
         if inputManager.running():
-            videoManager.drawStringCentered( font, str(options[i]), 200, 120+i*font.getLineHeight() )
+            videoManager.drawStringCentered( title_font, str(options[i]), 200, 120+i*title_font.getLineHeight() )
 
     videoManager.end()

@@ -21,11 +21,10 @@ class SceneManager:
     cacheManager = annchienta.getCacheManager()
     mapManager = annchienta.getMapManager()
 
-    def waitForKey( self ):
+    def waitForClick( self ):
         self.videoManager.storeBuffer(7)
-        done = False
         self.inputManager.update()
-        while self.inputManager.running() and not self.ticked( self.confirmKeys+self.cancelKeys ):
+        while self.inputManager.running() and not self.inputManager.buttonTicked(0):
             self.inputManager.update()
             self.videoManager.begin()
             self.videoManager.restoreBuffer(7)

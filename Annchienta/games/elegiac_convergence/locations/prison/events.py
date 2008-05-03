@@ -212,5 +212,5 @@ if partyManager.hasRecord("prison_met_esana") and not partyManager.hasRecord("pr
     videoManager.drawStringCentered( sceneManager.defaultFont, "And all was well.", 200, 80 )
     videoManager.drawStringCentered( f, "The End.", 200, 100 )
     mapManager.stop()
-    sceneManager.waitForKey()
+    sceneManager.waitForClick()
     engine.write("Thanks for playing Annchienta.")
