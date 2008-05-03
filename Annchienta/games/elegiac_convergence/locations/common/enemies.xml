@@ -1,5 +1,13 @@
 <?xml version="1.0"?>
 <enemies>
+    <combatant name="worm">
+        <sprite filename="sprites/worm.png"/>
+        <status strength="15" defense="20" magic="6" resistance="40" health="50" maxhealth="50"/>
+        <strategies>
+            poisoner
+        </strategies>
+        <drop experience="10"/>
+    </combatant>
     <combatant name="spider">
         <sprite filename="sprites/spider.png"/>
         <status strength="12" defense="20" magic="12" resistance="20" health="70" maxhealth="70"/>

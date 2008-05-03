@@ -132,15 +132,11 @@ class Battle:
 
             # Ailments and buffers.
             self.videoManager.translate( 0, 10 )
-            if not (len(a.ailments)+len(a.buffers)):
-                self.sceneManager.inactiveColor()
-                self.videoManager.drawString( self.sceneManager.defaultFont, "Clean", 0, 0 )
-            else:
-                self.videoManager.setColor()
-                for effect in a.ailments+a.buffers:
-                    surf = self.cacheManager.getSurface("images/status_effects/"+effect+".png")
-                    self.videoManager.drawSurface( surf, 0, 0 )
-                    self.videoManager.translate( surf.getWidth(), 0 )
+            self.videoManager.setColor()
+            for effect in a.ailments+a.buffers:
+                surf = self.cacheManager.getSurface("images/status_effects/"+effect+".png")
+                self.videoManager.drawSurface( surf, 0, 0 )
+                self.videoManager.translate( surf.getWidth(), 0 )
 
         self.videoManager.reset()
         if flip:
