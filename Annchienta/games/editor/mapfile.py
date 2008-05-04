@@ -1,5 +1,5 @@
 import annchienta
-import xml.dom.minidom
+import minidom
 import os
 
 def relpath(target, base=os.curdir):
@@ -31,7 +31,7 @@ class MapFile:
 
         self.filename = filename
         if filename=="untitled":
-            self.document = xml.dom.minidom.Document()
+            self.document = minidom.Document()
             self.mapElement = self.document.createElement("map")
             self.mapElement.setAttribute("width", str(editor.currentMap.getWidth()) )
             self.mapElement.setAttribute("height", str(editor.currentMap.getHeight()) )
@@ -41,7 +41,7 @@ class MapFile:
             self.document.appendChild( self.mapElement )
 
         else:
-            self.document = xml.dom.minidom.parse( self.filename )
+            self.document = minidom.parse( self.filename )
             self.mapElement = self.document.getElementsByTagName("map")[0]
 
     def write( self ):

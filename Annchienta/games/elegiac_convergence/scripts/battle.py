@@ -1,4 +1,4 @@
-import xml.dom.minidom
+import minidom
 import annchienta
 import combatant
 import scene
@@ -226,7 +226,7 @@ class BattleManager:
 
     def loadEnemies( self, fname ):
 
-        self.document = xml.dom.minidom.parse( fname )
+        self.document = minidom.parse( fname )
         self.enemyElements = self.document.getElementsByTagName("combatant")
 
     def createEnemy( self, name ):

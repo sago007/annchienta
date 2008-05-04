@@ -20,7 +20,7 @@ $(EXECUTABLE): $(SWIG_CPP_FILE) $(XML_LIBRARY)
 
 $(SWIG_CPP_FILE):
 	@echo "Generating Python wrappers..."
-	@swig -python -c++ -o $(SWIG_CPP_FILE) -outdir bin $(SWIG_INTERFACE_FILE)
+	@swig -python -c++ -o $(SWIG_CPP_FILE) -outdir modules $(SWIG_INTERFACE_FILE)
 
 $(XML_LIBRARY):
 	@echo "Compiling xml library..."
@@ -38,7 +38,7 @@ clean:
 
 cleanall:
 	@echo "Removing binaries and python wrappers..."
-	@$(RM) $(EXECUTABLE) $(XML_LIBRARY) bin/annchienta.py bin/annchienta.pyc $(SWIG_CPP_FILE)
+	@$(RM) $(EXECUTABLE) $(XML_LIBRARY) modules/annchienta.py bin/annchienta.pyc $(SWIG_CPP_FILE)
 
 update: clean all
 	@echo "Updated."

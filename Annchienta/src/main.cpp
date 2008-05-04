@@ -11,7 +11,7 @@ extern "C" void init_annchienta(void);
 
 Annchienta::Engine *engine;
 
-void runGame( const char *filename )
+void runGame( const char *filename, const char *modules )
 {
 
     if( !Annchienta::isValidFile(filename) )
@@ -38,12 +38,13 @@ void runGame( const char *filename )
 import sys\n\
 import os\n\
 \n\
+sys.path.append( os.path.abspath( \"%s\" ) )\n\
 sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
 os.chdir( os.path.dirname( \"%s\" ) )\n\
 sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
 execfile( os.path.basename( \"%s\" ) )\n\
 ",
-    filename, filename );
+    modules, filename, filename );
 
     PyRun_SimpleString( initScript );
 
@@ -62,13 +63,19 @@ int main( int argc, char **argv )
     engine = Annchienta::getEngine();
 
     char gameToRun[512];
+    char moduleDir[512];
 
     if( argc<2 )
         strcpy( gameToRun, "../games/elegiac_convergence/main.py" );
     else
         strcpy( gameToRun, argv[1] );
 
-    runGame( gameToRun );
+    if( argc<3 )
+        strcpy( moduleDir, "../modules" );
+    else
+        strcpy( moduleDir, argv[2] );
+
+    runGame( gameToRun, moduleDir );
 
     delete engine;
 
