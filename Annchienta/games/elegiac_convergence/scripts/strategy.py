@@ -1,6 +1,5 @@
 import annchienta
 import scene
-import random
 
 ## STRATEGY GUIDELINES
 #
@@ -61,7 +60,7 @@ class Warrior(Strategy):
         array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
         if not len(array):
             return
-        target = array[ random.randint(0,len(array)-1) ]
+        target = array[ annchienta.randInt(0,len(array)-1) ]
 
         # Attack that target with default attack power (=30).
         self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
@@ -232,7 +231,7 @@ class Monk(Strategy):
         if not len(array):
             return
 
-        target = array[ random.randint(0,len(array)-1) ]
+        target = array[ annchienta.randInt(0,len(array)-1) ]
 
         status = ""
         if "protect" in target.buffers:
@@ -240,7 +239,7 @@ class Monk(Strategy):
         elif "barrier" in target.buffers:
             status = "protect"
         else:
-            status = "protect" if random.randint(0,1) else "barrier"
+            status = "protect" if annchienta.randInt(0,1) else "barrier"
 
         # Add that status effect.
         if status=="protect":
@@ -283,7 +282,7 @@ class Poisoner(Strategy):
         array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
         if not len(array):
             return
-        target = array[ random.randint(0,len(array)-1) ]
+        target = array[ annchienta.randInt(0,len(array)-1) ]
 
         # Attack all targets with 12 attack power.
         self.sceneManager.info( self.m_combatant.name.capitalize()+" casts bio on "+target.name.capitalize()+"!" )

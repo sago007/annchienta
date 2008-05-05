@@ -1,5 +1,4 @@
 import annchienta
-import random
 
 ## \brief Handles scene tasks.
 #
@@ -360,7 +359,7 @@ class SceneManager:
         self.audioManager.playSound( s )
         while self.engine.getTicks() < start+duration and self.inputManager.running():
             self.videoManager.begin()
-            r = random.randint(0,255)
+            r = annchienta.randInt(0,255)
             self.videoManager.setColor( r, r, r )
             self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
             self.videoManager.end()

@@ -2,7 +2,6 @@ import annchienta
 import scene
 import battle
 import strategy
-import random
 import menu
 
 class Attribute:
@@ -140,7 +139,7 @@ class Combatant:
     def createStrategy( self ):
 
         # Select a random one.
-        n = self.strategies[ random.randint(0, len(self.strategies)-1 ) ]
+        n = self.strategies[ annchienta.randInt(0, len(self.strategies)-1 ) ]
         s = strategy.getStrategy( n )
         return s( self.m_battle, self )
 
@@ -153,7 +152,7 @@ class Combatant:
     def physicalAttack( self, target, attackPower=20, chanceOnHit=0.8 ):
 
         # Check if we hit first.
-        r = random.random()
+        r = annchienta.randFloat()
         if r > chanceOnHit:
             self.sceneManager.info( self.name.capitalize()+" misses "+target.name.capitalize()+"!" )
             return 0
@@ -162,7 +161,7 @@ class Combatant:
         dmg = float(attackPower)*float(self.status.get("strength"))/float(target.status.get("defense"))
 
         # Apply a small random factor and covert to int.
-        dmg *= random.uniform(0.9,1.1)
+        dmg *= annchienta.randFloat(0.9,1.1)
         dmg = int(dmg)
 
         if "protect" in target.buffers:
@@ -175,7 +174,7 @@ class Combatant:
     def magicalAttack( self, target, attackPower=20, chanceOnHit=0.8 ):
 
         # Check if we hit first.
-        r = random.random()
+        r = annchienta.randFloat()
         if r > chanceOnHit:
             self.sceneManager.info( target.name.capitalize()+" resists the spell cast by "+self.name.capitalize()+"!" )
             return 0
@@ -184,7 +183,7 @@ class Combatant:
         dmg = float(attackPower)*float(self.status.get("magic"))/float(target.status.get("resistance"))
 
         # Apply a small random factor and covert to int.
-        dmg *= random.uniform(0.9,1.1)
+        dmg *= annchienta.randFloat(0.9,1.1)
         dmg = int(dmg)
 
         if "barrier" in target.buffers:

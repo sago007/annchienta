@@ -36,15 +36,17 @@ void runGame( const char *filename, const char *modules )
     sprintf( initScript,
 "\
 import sys\n\
-import os\n\
 \n\
-sys.path.append( os.path.abspath( \"%s\" ) )\n\
+sys.path.append( \"%s\" )\n\
+\
+import os\n\
+sys.path.append( os.path.abspath( \"%s\" )  )\n\
 sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
 os.chdir( os.path.dirname( \"%s\" ) )\n\
 sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
 execfile( os.path.basename( \"%s\" ) )\n\
 ",
-    modules, filename, filename );
+    modules, modules, filename, filename );
 
     PyRun_SimpleString( initScript );
 
@@ -65,6 +67,8 @@ int main( int argc, char **argv )
     char gameToRun[512];
     char moduleDir[512];
 
+    /* Select default values for parameters not given.
+     */
     if( argc<2 )
         strcpy( gameToRun, "../games/elegiac_convergence/main.py" );
     else

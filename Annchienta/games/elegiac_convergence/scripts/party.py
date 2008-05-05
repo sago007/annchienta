@@ -1,5 +1,5 @@
 import annchienta
-import minidom
+import xml.dom.minidom
 import combatant
 import scene
 
@@ -22,7 +22,7 @@ class PartyManager:
 
     def load( self, filename ):
         self.filename = filename
-        self.document = minidom.parse( self.filename )
+        self.document = xml.dom.minidom.parse( self.filename )
 
         # Let's asume this is a valid file and
         # the needed elements are there.
@@ -70,7 +70,7 @@ class PartyManager:
     # Creates new xml document
     def update( self ):
 
-        self.document = minidom.Document()
+        self.document = xml.dom.minidom.Document()
         partyElement = self.document.createElement("party")
         self.document.appendChild( partyElement )
 

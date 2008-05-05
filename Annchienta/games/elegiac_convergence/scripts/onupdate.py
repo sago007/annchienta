@@ -8,7 +8,7 @@ mapManager = annchienta.getMapManager()
 # to throw a random battle. Also make sure that the player
 # is input controlled because we do not want random
 # battles during cinematic sequences.
-if not "stand" in partyManager.player.getAnimation():
+if not "stand" in partyManager.player.getAnimation() and not inputManager.keyDown(annchienta.SDLK_q):
     if inputManager.getInputMode() is annchienta.InteractiveMode:
         import battle
         battleManager = battle.getBattleManager()

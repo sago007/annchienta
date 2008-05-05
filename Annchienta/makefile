@@ -8,7 +8,7 @@ SWIG_INTERFACE_FILE = src/annchienta_interface.i
 
 XML_LIBRARY = bin/libirrXML.a
 
-EXECUTABLE = bin/annchienta
+EXECUTABLE = bin/annchienta_linux
 
 
 all: $(EXECUTABLE)

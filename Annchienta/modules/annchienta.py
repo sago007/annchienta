@@ -551,7 +551,6 @@ Person_swigregister = _annchienta.Person_swigregister
 Person_swigregister(Person)
 
 nearestPowerOfTwo = _annchienta.nearestPowerOfTwo
-randInt = _annchienta.randInt
 isValidFile = _annchienta.isValidFile
 distance = _annchienta.distance
 squaredDistance = _annchienta.squaredDistance
@@ -805,4 +804,6 @@ KMOD_CAPS = _annchienta.KMOD_CAPS
 KMOD_MODE = _annchienta.KMOD_MODE
 KMOD_RESERVED = _annchienta.KMOD_RESERVED
 
+randInt = _annchienta.randInt
+randFloat = _annchienta.randFloat
 

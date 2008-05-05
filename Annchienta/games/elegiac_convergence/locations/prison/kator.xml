@@ -30,7 +30,6 @@
 import scene
 import annchienta
 import party
-import random
 
 sceneManager = scene.getSceneManager()
 this = annchienta.getPassiveObject()

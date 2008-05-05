@@ -1,8 +1,7 @@
-import minidom
+import xml.dom.minidom
 import annchienta
 import combatant
 import scene
-import random
 import party
 
 class Battle:
@@ -222,11 +221,11 @@ class BattleManager:
         
         self.enemiesInMap = []
         self.battleBackground = None
-        self.randomBattleDelay = random.randint( 200, 500 )
+        self.randomBattleDelay = annchienta.randInt( 200, 500 )
 
     def loadEnemies( self, fname ):
 
-        self.document = minidom.parse( fname )
+        self.document = xml.dom.minidom.parse( fname )
         self.enemyElements = self.document.getElementsByTagName("combatant")
 
     def createEnemy( self, name ):
@@ -246,17 +245,17 @@ class BattleManager:
             self.randomBattleDelay -= 1
             return
         else:
-            self.randomBattleDelay = random.randint( 200, 500 )
+            self.randomBattleDelay = annchienta.randInt( 200, 500 )
 
             # Return if there are no enemies in this level.
             if not len(self.enemiesInMap):
                 return
 
             music = self.audioManager.getPlayingMusic()
-            self.audioManager.playMusic( "music/battle_"+str(random.randint(1,3))+".ogg" )
+            self.audioManager.playMusic( "music/battle_"+str(annchienta.randInt(1,3))+".ogg" )
             self.sceneManager.rotateEffect()
 
-            enames = map( lambda a: self.enemiesInMap[random.randint(0,len(self.enemiesInMap)-1)], range(random.randint(2,3)))
+            enames = map( lambda a: self.enemiesInMap[annchienta.randInt(0,len(self.enemiesInMap)-1)], range(annchienta.randInt(2,3)))
             enemies = map( lambda n: self.createEnemy(n), enames )
 
             b = Battle( self.partyManager.team + enemies )
