@@ -50,9 +50,10 @@ execfile( os.path.basename( \"%s\" ) )\n\
 
     PyRun_SimpleString( initScript );
 
-    /* Run our game.
+    /* Show debugging information.
      */
-    //engine->runPythonScript( filename );
+    if( PyErr_Occurred() )
+        PyErr_Print();
 }
 
 
