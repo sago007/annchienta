@@ -48,6 +48,7 @@ namespace Annchienta
             #ifndef SWIG
                 /** Draws a font to the screen.
                  *  \note Use VideoManager::drawString().
+                 *  \note Not available in Python.
                  */
                 void draw( const char *text, int x, int y ) const;
             #endif

@@ -115,13 +115,31 @@ namespace Annchienta
              */
             bool clicked( int x1, int y1, int x2, int y2 ) const;
 
+            /** Sets the Person controlled by input. If there already
+             *  is one, the previous setting will be overwritten.
+             *  \param person The Person to be controlled by the user.
+             */
             void setInputControlledPerson( Person *person );
+
+            /** \return Obtain the Person controlled by the user.
+             */
             Person *getInputControlledPerson() const;
 
+            /** \param mode See InputMode.
+             */
             void setInputMode( InputMode mode );
+
+            /** \return See InputMode.
+             */
             InputMode getInputMode() const;
 
-            void setInteractKey( int );
+            /** Sets the default interact key.
+             *  \param code See \ref keycodes
+             */
+            void setInteractKey( int code );
+
+            /** \return The interact key. See \ref keycodes
+             */
             int getInteractKey() const;
     };
 

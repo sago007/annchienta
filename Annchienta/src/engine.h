@@ -35,8 +35,8 @@ namespace Annchienta
                 ~Engine();
 
                 /** Safe method for running Python scripts.
-                 *  \note Not available in Python.
                  *  \param filename The script to be ran.
+                 *  \note Not available in Python.
                  */
                 void runPythonScript( const char *filename ) const;
 
@@ -45,12 +45,14 @@ namespace Annchienta
                  *  \code engine->evaluatePythonBoolean( "a=3", "a>1" ); \endcode
                  *  \param code Code to be executed before checking the boolean value.
                  *  \param conditional The boolean expression.
+                 *  \note Not available in Python.
                  */
                 bool evaluatePythonBoolean( const char *code, const char *conditional );
 
                 /** Converts a string to proper Python code. For now,
                  *  this means removing extra spaces at the end.
                  *  \param code Code to be converted.
+                 *  \note Not available in Python.
                  */
                 void toPythonCode( char **code );
             #endif

@@ -62,34 +62,42 @@ namespace Annchienta
             #ifndef SWIG
                 /** Draws the surface at the given position.
                  *  \note Use VideoManager.drawSurface() instead.
+                 *  \note Not available in Python.
                  */
                 void draw( int x, int y ) const;
 
                 /** \return The actual OpenGL texture.
+                 *  \note Not available in Python.
                  */
                 GLuint getTexture() const;
 
                 /** \return The actual width of the OpenGL texture, so a power of two.
+                 *  \note Not available in Python.
                  */
                 int getGlWidth() const;
 
                 /** \return The actual height of the OpenGL texture, so a power of two.
+                 *  \note Not available in Python.
                  */
                 int getGlHeight() const;
 
                 /** \return Left Texture Coordinate of the image on the OpenGL texture.
+                 *  \note Not available in Python.
                  */
                 float getLeftTexCoord() const;
 
                 /** \return Right Texture Coordinate of the image on the OpenGL texture.
+                 *  \note Not available in Python.
                  */
                 float getRightTexCoord() const;
 
                 /** \return Top Texture Coordinate of the image on the OpenGL texture.
+                 *  \note Not available in Python.
                  */
                 float getTopTexCoord() const;
 
                 /** \return Bottom Texture Coordinate of the image on the OpenGL texture.
+                 *  \note Not available in Python.
                  */
                 float getBottomTexCoord() const;
             #endif
