@@ -14,7 +14,13 @@ namespace Annchienta
 
     enum InputMode
     {
+        /** No input is accepted from the user. Used for cinematic
+         *  sequences.
+         */
         CinematicMode=0,
+        /** In this mode, the game accepts user input, which means
+         *  the player can control his character.
+         */
         InteractiveMode=1
     };
 
@@ -81,10 +87,32 @@ namespace Annchienta
              */
             int getMouseY() const;
 
-            bool buttonDown( int ) const;
-            bool buttonTicked( int ) const;
+            /** \param code 0 for left mouse button, 1 for right mouse button.
+             *  \return Is the given button currently down?
+             */
+            bool buttonDown( int code ) const;
+
+            /** \param code 0 for left mouse button, 1 for right mouse button.
+             *  \return Is the given button ticked? (See keyTicked())
+             */
+            bool buttonTicked( int code ) const;
+
+            /** \return A Point indicating mouse coordinates.
+             */
             Point getMousePoint() const;
+
+            /** Checks if the mouse is in a given rectangle.
+             *  \param x1 Left X of that rectangle.
+             *  \param y1 Top Y of that rectangle.
+             *  \param x2 Right X of that rectangle.
+             *  \param y2 Bottom Y of that rectangle.
+             *  \return Is the mouse in that area?
+             */
             bool hover( int x1, int y1, int x2, int y2 ) const;
+
+            /** Checks if a certain area is clicked.
+             *  \return Was this area clicked since the last update()?
+             */
             bool clicked( int x1, int y1, int x2, int y2 ) const;
 
             void setInputControlledPerson( Person *person );
