@@ -12,6 +12,8 @@ namespace Annchienta
 
     class Sound;
 
+    /** Used for playing audio and music.
+     */
     class AudioManager
     {
         private:
@@ -22,12 +24,28 @@ namespace Annchienta
             #ifndef SWIG
                 AudioManager();
                 ~AudioManager();
+
+                /** \return The playing music.
+                 *  \note Not available in Python.
+                 */
                 Mix_Music *getMusic() const;
             #endif
 
+            /** Play back a loaded Sound.
+             *  \param sound Sound to play.
+             */
             void playSound( Sound *sound ) const;
+
+            /** Starts streaming background music. When the file
+             *  given is already playing, nothing will happen. If
+             *  other music is already playing, that music will be
+             *  stopped first.
+             *  \param filename Music to stream.
+             */
             void playMusic( const char *filename );
 
+            /** \return Filename of the music currently streaming.
+             */
             const char *getPlayingMusic() const;
     };
 
