@@ -11,6 +11,8 @@ namespace Annchienta
     class Surface;
     class Font;
 
+    /** A class used for painting on the screen.
+     */
     class VideoManager
     {
         private:
@@ -24,34 +26,70 @@ namespace Annchienta
                 ~VideoManager();
             #endif
 
-            /** Sets the video mode.
+            /** Sets the video mode. Use this before doing any drawing operations.
+             *  \param w Width for the screen.
+             *  \param h Height for the screen.
+             *  \param title Caption to be used for the window.
+             *  \param fullscreen Should the game run in fullscreen mode? (Might not always work with all resolutions.)
              */
             void setVideoMode( int w, int h, const char *title="Annchienta RPG Engine", bool fullscreen=false );
+
+            /** \return Width of the screen.
+             */
             int getScreenWidth() const;
+
+            /** \return Height of the screen.
+             */
             int getScreenHeight() const;
 
-            /** Resets matrix and colors.
+            /** Resets all matrixes, colors...
              */
             void reset();
 
-            /** A few matrix operations.
+            /** Multiply the current matrix with a translation matrix.
+             *  \param x X translation distance.
+             *  \param y Y translation distance.
              */
             void translate( float x, float y ) const;
+
+            /** Multiply the current matrix with a rotation matrix.
+             *  \param degrees Degrees to be rotated clockwise.
+             */
             void rotate( float degrees ) const;
+
+            /** Multiply the current matrix with a scalar matrix.
+             *  \param x X scale factor.
+             *  \param y Y scale factor.
+             */
             void scale( float x, float y ) const;
 
+            /** Pushes the current matrix onto the stack.
+             */
             void pushMatrix() const;
+
+            /** Restores a matrix from the stack.
+             */
             void popMatrix() const;
 
-            /** Draws the buffer to the screen. Then clears the buffer.
+            /** Begins the scene. Clears and resets the screen.
              */
             void begin();
+
+            /** Draw the buffer to the screen.
+             */
             void end();
 
-            /** Sets a color, used for text and surface drawing.
+            /** Sets the color used for clearing the screen with.
              */
             void setClearColor( int red=0xff, int green=0xff, int blue=0xff, int alpha=0xff ) const;
+
+            /** Sets the color used for all drawing.
+             */
             void setColor( int red=0xff, int green=0xff, int blue=0xff, int alpha=0xff ) const;
+
+            /** Sets the alpha component for the current color.
+             *  \param alpha Alpha Component. [0-255].
+             */
             void setAlpha( int alpha=0xff ) const;
 
             /** Sets clipping rectangle.
