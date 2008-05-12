@@ -172,9 +172,9 @@ class SceneManager:
 
             self.videoManager.begin()
             self.videoManager.restoreBuffer(7)
-            self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, self.margin*3+self.defaultFont.getLineHeight() )
+            self.drawBox( self.margin, self.videoManager.getScreenHeight()-self.margin*3-self.defaultFont.getLineHeight(), self.videoManager.getScreenWidth() - self.margin, self.videoManager.getScreenHeight()-self.margin )
             self.defaultColor()
-            self.videoManager.drawString( self.defaultFont, text, 2*self.margin, 2*self.margin )
+            self.videoManager.drawString( self.defaultFont, text, 2*self.margin, self.videoManager.getScreenHeight()-self.margin*2-self.defaultFont.getLineHeight() )
             self.videoManager.end()
 
             if not self.inputManager.running() or self.inputManager.buttonTicked( 0 ):

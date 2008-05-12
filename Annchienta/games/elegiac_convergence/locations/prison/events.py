@@ -144,7 +144,7 @@ if partyManager.hasRecord("prison_guard") and not partyManager.hasRecord("prison
 
     sceneManager.speak( player, "Esana, wait. Bardolph, your father... I didn't... I didn't mean too... I don't know..." )
     sceneManager.speak( esana, "Don't get silly, I know as well as you do that you're innocent. Now let's get moving." )
-    sceneManager.speak( eana, "But watch out, this place is not only crowded with guards. There are fiends too. So stay alert." )
+    sceneManager.speak( esana, "But watch out, this place is not only crowded with guards. There are fiends too. So stay alert. Here, take this sword." )
 
     sceneManager.move( esana, annchienta.Point( annchienta.IsometricPoint, p.x, p.y ) )
 
