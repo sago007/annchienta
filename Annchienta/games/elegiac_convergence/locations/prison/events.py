@@ -205,4 +205,5 @@ if partyManager.hasRecord("prison_met_esana") and not partyManager.hasRecord("pr
         videoManager.drawSurface( s2, 142, 680, 0, 0, 31, 71 )
         videoManager.end()
 
+    sceneManager.thoughts( "Esana then said we'd have to head back to Tetia. I agreed, there was no time to think." )
     partyManager.changeMap( "locations/world/world.xml", annchienta.Point( annchienta.TilePoint, 14, 6 ) )

@@ -115,19 +115,15 @@ namespace Annchienta
             glBegin( GL_QUADS );
 
                 glTexCoord2f( 0.0f, bottomTexCoord );
-                //glVertex2f( 0.0f, 0.0f );
                 glVertex2f( 0.0f, move_down );
 
                 glTexCoord2f( rightTexCoord, bottomTexCoord );
-                //glVertex2f( 10.0f, 0.0f );
                 glVertex2f( width, move_down );
 
                 glTexCoord2f( rightTexCoord, 0.0f );
-                //glVertex2f( 10.0f, 10.0f );
                 glVertex2f( width, -height+move_down );
 
                 glTexCoord2f( 0.0f, 0.0f );
-                //glVertex2f( 0.0f, 10.0f );
                 glVertex2f( 0.0f, -height+move_down );
 
             glEnd();

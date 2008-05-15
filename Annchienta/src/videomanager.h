@@ -46,6 +46,10 @@ namespace Annchienta
              */
             void reset();
 
+            /** Loads identity matrix.
+             */
+            void identity() const;
+
             /** Multiply the current matrix with a translation matrix.
              *  \param x X translation distance.
              *  \param y Y translation distance.

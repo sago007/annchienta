@@ -120,6 +120,11 @@ namespace Annchienta
         glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     }
     
+    void VideoManager::identity() const
+    {
+        glLoadIdentity();
+    }
+
     void VideoManager::translate( float x, float y ) const
     {
         glTranslatef( x, y, 0.0f );
