@@ -30,7 +30,7 @@ $(XML_LIBRARY):
 
 module: $(SWIG_CPP_FILE) $(XML_LIBRARY)
 	@echo "Compiling the Python module..."
-	@$(CXX) $(C_FLAGS) -shared -o bin/_annchienta.so src/*.cpp $(LD_FLAGS)
+	@$(CXX) $(C_FLAGS) -shared -o modules/_annchienta.so src/*.cpp $(LD_FLAGS)
 
 clean:
 	@echo "Removing binaries..."
@@ -38,7 +38,7 @@ clean:
 
 cleanall:
 	@echo "Removing binaries and python wrappers..."
-	@$(RM) $(EXECUTABLE) $(XML_LIBRARY) modules/annchienta.py bin/annchienta.pyc $(SWIG_CPP_FILE)
+	@$(RM) $(EXECUTABLE) $(XML_LIBRARY) modules/annchienta.py bin/annchienta.pyc $(SWIG_CPP_FILE) modules/_annchienta.so
 
 update: clean all
 	@echo "Updated."
