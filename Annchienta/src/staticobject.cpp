@@ -335,6 +335,18 @@ namespace Annchienta
         return xmlFile;
     }
 
+    void StaticObject::setSprite( const char *filename )
+    {
+        Surface *s = getCacheManager()->getSurface( filename );
+        if( s )
+            sprite = s;
+    }
+
+    Surface *StaticObject::getSprite() const
+    {
+        return sprite;
+    }
+
     bool StaticObject::setAnimation( const char *aname )
     {
 

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<sprite image="sprites/prison.png" mask="masks/prison.png">
+    <frame number="1">
+    <animation name="stand" frames="1" speed="20" />
+<oninteract>
+import party, scene
+partyManager, sceneManager = party.getPartyManager(), scene.getSceneManager()
+sceneManager.speak( partyManager.player, &quot;We'd better not go back there...&quot; )
+</oninteract>
+</sprite>

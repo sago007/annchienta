@@ -509,6 +509,8 @@ class StaticObject(Entity):
     def getMaskPosition(*args): return _annchienta.StaticObject_getMaskPosition(*args)
     def getMask(*args): return _annchienta.StaticObject_getMask(*args)
     def getXmlFile(*args): return _annchienta.StaticObject_getXmlFile(*args)
+    def setSprite(*args): return _annchienta.StaticObject_setSprite(*args)
+    def getSprite(*args): return _annchienta.StaticObject_getSprite(*args)
     def setAnimation(*args): return _annchienta.StaticObject_setAnimation(*args)
     def getAnimation(*args): return _annchienta.StaticObject_getAnimation(*args)
     def canInteract(*args): return _annchienta.StaticObject_canInteract(*args)

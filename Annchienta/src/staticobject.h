@@ -85,6 +85,16 @@ namespace Annchienta
 
             const char *getXmlFile() const;
 
+            /** Should be used with care, because the frame settings
+             *  stay the same.
+             *  \param filename Filename of the new sprite.
+             */
+            virtual void setSprite( const char *filename );
+
+            /** \return return the current sprite used.
+             */
+            virtual Surface *getSprite() const;
+
             virtual bool setAnimation( const char *animationName );
             virtual const char *getAnimation() const;
             //virtual void stopAnimation();

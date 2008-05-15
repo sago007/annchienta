@@ -11673,6 +11673,61 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_StaticObject_setSprite(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:StaticObject_setSprite",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_setSprite" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "StaticObject_setSprite" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  (arg1)->setSprite((char const *)arg2);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_StaticObject_getSprite(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
+  Annchienta::Surface *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_getSprite",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_getSprite" "', argument " "1"" of type '" "Annchienta::StaticObject const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
+  result = (Annchienta::Surface *)((Annchienta::StaticObject const *)arg1)->getSprite();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_StaticObject_setAnimation(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
@@ -13207,6 +13262,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"StaticObject_getMaskPosition", _wrap_StaticObject_getMaskPosition, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getMask", _wrap_StaticObject_getMask, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getXmlFile", _wrap_StaticObject_getXmlFile, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_setSprite", _wrap_StaticObject_setSprite, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_getSprite", _wrap_StaticObject_getSprite, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_setAnimation", _wrap_StaticObject_setAnimation, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getAnimation", _wrap_StaticObject_getAnimation, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_canInteract", _wrap_StaticObject_canInteract, METH_VARARGS, NULL},
