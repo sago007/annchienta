@@ -37,12 +37,15 @@
 </layer>
 
 <onload>
-import annchienta, battle
+import annchienta, battle, party
 battleManager = battle.getBattleManager()
+patyManager = party.getPartyManager()
 annchienta.getAudioManager().playMusic(&quot;music/world.ogg&quot;)
 annchienta.getVideoManager().setClearColor(0,127,255)
 battleManager.enemiesInMap = []
 battleManager.battleBackground = 0
+# Change to world map sprite
+partyManager.player.setSprite(&quot;sprites/aelaan_world.png&quot;)
 </onload>
 
 </map>
