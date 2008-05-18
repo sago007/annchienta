@@ -160,7 +160,9 @@ class PartyManager:
         # Because loading a map can take some time:
         self.mapManager.resync()
 
-    def changeLayer( self, index, newPosition = annchienta.Point( annchienta.TilePoint, 2, 2 ) ):
+    def changeLayer( self, index, newPosition = annchienta.Point( annchienta.TilePoint, 2, 2 ), fade = True ):
+        if fade:
+            self.sceneManager.fadeOut()
         self.player.setPosition( newPosition )
         self.currentMap.removeObject( self.player )
         self.currentMap.setCurrentLayer( index )
