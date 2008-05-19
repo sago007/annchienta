@@ -33,7 +33,7 @@ partyManager.changeLayer( 1, annchienta.Point( annchienta.TilePoint, 1, 3 ) )
 </area>
 
 <!-- Baniran. -->
-<staticobject name="baniran" sprite="sprites/baniran.png" mask="masks/baniran.png" tilex="20" tiley="9" />
+<staticobject name="baniran" config="locations/tetia/baniran.xml" tilex="20" tiley="9" />
 
 </layer>
 

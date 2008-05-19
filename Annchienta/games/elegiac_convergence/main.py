@@ -23,6 +23,9 @@ mapManager.setOnUpdateScript("scripts/onupdate.py")
 inputManager = annchienta.getInputManager()
 inputManager.setInteractKey( annchienta.SDLK_SPACE )
 
+audioManager = annchienta.getAudioManager()
+audioManager.playMusic("music/title.ogg")
+
 import scene
 
 scene.initSceneManager()
