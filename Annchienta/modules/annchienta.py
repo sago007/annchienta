@@ -137,6 +137,7 @@ class VideoManager(_object):
     def grabBuffer(*args): return _annchienta.VideoManager_grabBuffer(*args)
     def storeBuffer(*args): return _annchienta.VideoManager_storeBuffer(*args)
     def restoreBuffer(*args): return _annchienta.VideoManager_restoreBuffer(*args)
+    def boxBlur(*args): return _annchienta.VideoManager_boxBlur(*args)
     def __init__(self, *args): 
         this = _annchienta.new_VideoManager(*args)
         try: self.this.append(this)

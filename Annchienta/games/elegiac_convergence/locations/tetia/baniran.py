@@ -10,7 +10,7 @@ esana = annchienta.Person( "esana", "locations/prison/esana.xml" )
 sceneManager.initDialog( [baniran, player, esana] )
 
 pp = player.getPosition().to( annchienta.IsometricPoint )
-bp = player.getPosition().to( annchienta.IsometricPoint )
+bp = baniran.getPosition().to( annchienta.IsometricPoint )
 ep = annchienta.Point( annchienta.IsometricPoint, pp.x + (30 if bp.x < pp.x else -30), pp.y )
 
 esana.setPosition( pp )

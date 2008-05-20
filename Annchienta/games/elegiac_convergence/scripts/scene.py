@@ -45,6 +45,12 @@ class SceneManager:
     #  A box is the main GUI element. You can customize the box layout
     #  by changing bitmaps.
     def drawBox( self, x1, y1, x2, y2 ):
+
+        #self.videoManager.pushMatrix()
+        #self.videoManager.identity()
+        self.videoManager.boxBlur( x1, y1, x2, y2 )
+        #self.videoManager.popMatrix()
+
         # If there are not enough textures, just draw a stupid simple box.
         if( len(self.boxTextures)<=8 ):
             self.videoManager.setColor( 100, 100, 150, 200 )

@@ -106,13 +106,12 @@ class Menu(MenuItem):
         hover = None
 
         self.videoManager.restoreBuffer(6)
+        self.sceneManager.drawBox( self.x, self.y, self.x+self.width, self.y+self.height )
 
         self.videoManager.pushMatrix()
 
         # Render menu
         self.videoManager.translate( self.x, self.y )
-        self.sceneManager.drawBox( 0, 0, self.width, self.height )
-
         self.videoManager.drawStringCentered( self.sceneManager.italicsFont, self.name.capitalize(), self.width/2, self.sceneManager.margin )
 
         self.videoManager.translate( self.sceneManager.margin, self.sceneManager.margin+ self.sceneManager.italicsFont.getLineHeight() )
@@ -141,7 +140,8 @@ class Menu(MenuItem):
         if hover is not None:
             self.videoManager.pushMatrix()
             h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()
-            self.videoManager.translate( 0, self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin*3-self.sceneManager.defaultFont.getLineHeight() )
-            self.sceneManager.drawBox( self.sceneManager.margin, 0, self.videoManager.getScreenWidth()-self.sceneManager.margin, h )
+            y = self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin*3-self.sceneManager.defaultFont.getLineHeight()
+            self.sceneManager.drawBox( self.sceneManager.margin, y, self.videoManager.getScreenWidth()-self.sceneManager.margin, y+h )
+            self.videoManager.translate( 0, y )
             self.videoManager.drawString( self.sceneManager.defaultFont,hover.toolTip, self.sceneManager.margin*2, self.sceneManager.margin )
             self.videoManager.popMatrix()

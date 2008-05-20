@@ -329,7 +329,8 @@ namespace Annchienta
 
         glBindTexture( GL_TEXTURE_2D, surface->getTexture() );
 
-        glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-surface->getHeight(), x1, getScreenHeight()-surface->getHeight()-y1, width, height );
+        //glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-surface->getHeight(), x1, getScreenHeight()-surface->getHeight()-y1, width, height );
+        glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-height, x1, getScreenHeight()-y1-height, width, height );
     }
 
     void VideoManager::storeBuffer( int slot )
@@ -342,6 +343,34 @@ namespace Annchienta
     {
         if( slot>=0 && slot<numberOfBackBuffers )
             backBuffers[slot]->draw( 0, 0 );
+    }
+
+    void VideoManager::boxBlur( int x1, int y1, int x2, int y2, int radius )
+    {
+        //this->pushMatrix();
+        //this->identity();
+        this->setClippingRectangle( x1, y1, x2, y2 );
+
+        int side = radius*2+1;
+        int times = side*side;
+        float alphaInc = -255.0f/(float)times;
+        float alpha = 255.0f;
+
+        this->grabBuffer( backBuffers[0], x1, y1, x2, y2 );
+
+        for( int y=-radius; y<=radius; y++ )
+        {
+            for( int x=-radius; x<=radius; x++ )
+            {
+                this->setColor( 255, 255, 255, (int)alpha );
+                this->drawSurface( backBuffers[0], x1+x, y1+y, 0, 0, x2-x1, y2-y1 );
+                alpha += alphaInc;
+            }
+        }
+
+        this->disableClipping();
+        //this->popMatrix();
+        this->setColor();
     }
 
     VideoManager *getVideoManager()

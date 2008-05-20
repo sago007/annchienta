@@ -119,8 +119,8 @@ class Battle:
             w, h = a.getSize()
             x += (w+5 if a.hostile else -5-64)
             y += (h - 50)
+            self.sceneManager.drawBox( x, y, x+64, y+30 )
             self.videoManager.translate( x, y )
-            self.sceneManager.drawBox( 0, 0, 64, 30 )
 
             # Health bar.
             self.videoManager.setColor(0,0,0)

@@ -121,6 +121,10 @@ namespace Annchienta
 
             void storeBuffer( int slot );
             void restoreBuffer( int slot ) const;
+
+            /** Does not work when a clipping rectangle is set.
+             */
+            void boxBlur( int x1, int y1, int x2, int y2, int radius=2 );
     };
 
     VideoManager *getVideoManager();

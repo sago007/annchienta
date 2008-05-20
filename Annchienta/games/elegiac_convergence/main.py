@@ -49,6 +49,7 @@ partyManager = party.getPartyManager()
 # Main menu
 title_background = annchienta.Surface("assets/title.png")
 title_font = annchienta.Font("assets/italics.ttf", 24)
+surf = annchienta.Surface( 400, 300, 3 )
 while inputManager.running():
 
     inputManager.update()
@@ -76,4 +77,8 @@ while inputManager.running():
         if inputManager.running():
             videoManager.drawStringCentered( title_font, str(options[i]), 200, 120+i*title_font.getLineHeight() )
 
+    #videoManager.boxBlur( 100, 100, 300, 200, 6 )
+    #videoManager.grabBuffer( surf )
+    #videoManager.begin()
+    #videoManager.drawSurface( surf, 0, 0, 0, 0, 200, 100 )
     videoManager.end()
