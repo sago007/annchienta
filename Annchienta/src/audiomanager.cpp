@@ -5,6 +5,7 @@
 #include "audiomanager.h"
 
 #include "sound.h"
+#include "logmanager.h"
 
 namespace Annchienta
 {
@@ -19,7 +20,7 @@ namespace Annchienta
         /* Init SDL_mixer and print error when failed.
          */
         if( Mix_OpenAudio( MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024 ) )
-            printf( "Could not init SDL_mixer: %s\n", SDL_GetError() );
+            getLogManager()->warning( "Could not init SDL_mixer: '%s'.", SDL_GetError() );
 
         /* Initialize musicFilename.
          */
@@ -68,7 +69,7 @@ namespace Annchienta
          */
         music = Mix_LoadMUS( filename );
         if( !music )
-            printf( "Error - Could not open music: %s\n", filename );
+            getLogManager()->error( "Could not open music: '%s'.", filename );
 
         Mix_PlayMusic( music, -1 );
     }

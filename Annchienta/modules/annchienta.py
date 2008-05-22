@@ -102,6 +102,26 @@ Engine_swigregister = _annchienta.Engine_swigregister
 Engine_swigregister(Engine)
 
 getEngine = _annchienta.getEngine
+class LogManager(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, LogManager, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, LogManager, name)
+    __repr__ = _swig_repr
+    def enable(*args): return _annchienta.LogManager_enable(*args)
+    def isEnabled(*args): return _annchienta.LogManager_isEnabled(*args)
+    def warning(*args): return _annchienta.LogManager_warning(*args)
+    def error(*args): return _annchienta.LogManager_error(*args)
+    def __init__(self, *args): 
+        this = _annchienta.new_LogManager(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_LogManager
+    __del__ = lambda self : None;
+LogManager_swigregister = _annchienta.LogManager_swigregister
+LogManager_swigregister(LogManager)
+
+getLogManager = _annchienta.getLogManager
 class VideoManager(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, VideoManager, name, value)
@@ -481,7 +501,6 @@ class Mask(_object):
     def getHeight(*args): return _annchienta.Mask_getHeight(*args)
     def collision(*args): return _annchienta.Mask_collision(*args)
     def fillRectangle(*args): return _annchienta.Mask_fillRectangle(*args)
-    def verbose(*args): return _annchienta.Mask_verbose(*args)
 Mask_swigregister = _annchienta.Mask_swigregister
 Mask_swigregister(Mask)
 

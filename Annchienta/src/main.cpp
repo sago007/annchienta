@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #include "engine.h"
+#include "logmanager.h"
 #include "auxfunc.h"
 
 /* Forward declaration here, implementation in the
@@ -13,6 +14,7 @@
 extern "C" void init_annchienta(void);
 
 Annchienta::Engine *engine;
+Annchienta::LogManager *logManager;
 
 void runGame( const char *filename, const char *modules )
 {
@@ -20,10 +22,7 @@ void runGame( const char *filename, const char *modules )
     /* Make sure the given filename is valid.
      */
     if( !Annchienta::isValidFile(filename) )
-    {
-        printf( "Could not run %s because it is not a valid file.\n", filename );
-        return;
-    }
+        logManager->error( "Could not run '%s' because it is not a valid file.", filename );
 
     /* Init our module.
      */
@@ -73,9 +72,10 @@ int main( int argc, char **argv )
      */
     srand( time(NULL) );
 
-    /* Creates a new engine.
+    /* Creates a new engine, and get LogManager.
      */
     engine = Annchienta::getEngine();
+    logManager = Annchienta::getLogManager();
 
     char gameToRun[512];
     char moduleDir[512];

@@ -10,6 +10,7 @@
 #include "mask.h"
 #include "auxfunc.h"
 #include "mapmanager.h"
+#include "logmanager.h"
 
 namespace Annchienta
 {
@@ -64,8 +65,6 @@ namespace Annchienta
             sideSurfaces[i] = new Surface( buffer );
         }
 
-        //sprintf( buffer, "%s/mask.png", directory );
-        //mask = new Mask( buffer );
         mask = new Mask( getMapManager()->getTileWidth(), getMapManager()->getTileHeight() );
     }
 
@@ -89,7 +88,8 @@ namespace Annchienta
         if( tileNumber>=0 && tileNumber<numberOfSurfaces )
             return surfaces[ tileNumber ];
         else
-            printf( "Warning - tile %d does not exist in tileset %s.", tileNumber, directory );
+            getLogManager()->warning( "Tile '%d' does not exist in tileset '%s'.", tileNumber, directory );
+        return 0;
     }
 
     Surface *TileSet::getSideSurface( int tileNumber ) const
@@ -97,7 +97,8 @@ namespace Annchienta
         if( tileNumber>=0 && tileNumber<numberOfSideSurfaces )
             return sideSurfaces[ tileNumber ];
         else
-            printf( "Warning - side tile %d does not exist in tileset %s.", tileNumber, directory );
+            getLogManager()->warning( "Side tile '%d' does not exist in tileset '%s'.", tileNumber, directory );
+        return 0;
     }
 
     Mask *TileSet::getMask() const

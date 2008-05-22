@@ -2473,22 +2473,23 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__Font swig_types[5]
 #define SWIGTYPE_p_Annchienta__InputManager swig_types[6]
 #define SWIGTYPE_p_Annchienta__Layer swig_types[7]
-#define SWIGTYPE_p_Annchienta__Map swig_types[8]
-#define SWIGTYPE_p_Annchienta__MapManager swig_types[9]
-#define SWIGTYPE_p_Annchienta__Mask swig_types[10]
-#define SWIGTYPE_p_Annchienta__Person swig_types[11]
-#define SWIGTYPE_p_Annchienta__Point swig_types[12]
-#define SWIGTYPE_p_Annchienta__Sound swig_types[13]
-#define SWIGTYPE_p_Annchienta__StaticObject swig_types[14]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[15]
-#define SWIGTYPE_p_Annchienta__Tile swig_types[16]
-#define SWIGTYPE_p_Annchienta__TileSet swig_types[17]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[18]
-#define SWIGTYPE_p_SDLKey swig_types[19]
-#define SWIGTYPE_p_SDLMod swig_types[20]
-#define SWIGTYPE_p_char swig_types[21]
-static swig_type_info *swig_types[23];
-static swig_module_info swig_module = {swig_types, 22, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__LogManager swig_types[8]
+#define SWIGTYPE_p_Annchienta__Map swig_types[9]
+#define SWIGTYPE_p_Annchienta__MapManager swig_types[10]
+#define SWIGTYPE_p_Annchienta__Mask swig_types[11]
+#define SWIGTYPE_p_Annchienta__Person swig_types[12]
+#define SWIGTYPE_p_Annchienta__Point swig_types[13]
+#define SWIGTYPE_p_Annchienta__Sound swig_types[14]
+#define SWIGTYPE_p_Annchienta__StaticObject swig_types[15]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[16]
+#define SWIGTYPE_p_Annchienta__Tile swig_types[17]
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[18]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[19]
+#define SWIGTYPE_p_SDLKey swig_types[20]
+#define SWIGTYPE_p_SDLMod swig_types[21]
+#define SWIGTYPE_p_char swig_types[22]
+static swig_type_info *swig_types[24];
+static swig_module_info swig_module = {swig_types, 23, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2580,6 +2581,7 @@ namespace swig {
 
 #include "point.h"
 #include "engine.h"
+#include "logmanager.h"
 #include "videomanager.h"
 #include "inputmanager.h"
 #include "mapmanager.h"
@@ -3747,6 +3749,209 @@ SWIGINTERN PyObject *_wrap_getEngine(PyObject *SWIGUNUSEDPARM(self), PyObject *a
   if (!PyArg_ParseTuple(args,(char *)":getEngine")) SWIG_fail;
   result = (Annchienta::Engine *)Annchienta::getEngine();
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Engine, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_LogManager_enable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:LogManager_enable",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LogManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "LogManager_enable" "', argument " "1"" of type '" "Annchienta::LogManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::LogManager * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "LogManager_enable" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  (arg1)->enable(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_LogManager_isEnabled(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:LogManager_isEnabled",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LogManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "LogManager_isEnabled" "', argument " "1"" of type '" "Annchienta::LogManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::LogManager * >(argp1);
+  result = (bool)((Annchienta::LogManager const *)arg1)->isEnabled();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_LogManager_warning__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs) {
+  PyObject *resultobj = 0;
+  Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:LogManager_warning",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LogManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "LogManager_warning" "', argument " "1"" of type '" "Annchienta::LogManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::LogManager * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "LogManager_warning" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  (arg1)->warning((char const *)arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_LogManager_warning(PyObject *self, PyObject *args) {
+  PyObject *resultobj;
+  PyObject *varargs;
+  PyObject *newargs;
+  
+  newargs = PyTuple_GetSlice(args,0,2);
+  varargs = PyTuple_GetSlice(args,2,PyTuple_Size(args)+1);
+  resultobj = _wrap_LogManager_warning__varargs__(self,newargs,varargs);
+  Py_XDECREF(newargs);
+  Py_XDECREF(varargs);
+  return resultobj;
+}
+
+
+SWIGINTERN PyObject *_wrap_LogManager_error__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs) {
+  PyObject *resultobj = 0;
+  Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:LogManager_error",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LogManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "LogManager_error" "', argument " "1"" of type '" "Annchienta::LogManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::LogManager * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "LogManager_error" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  (arg1)->error((char const *)arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_LogManager_error(PyObject *self, PyObject *args) {
+  PyObject *resultobj;
+  PyObject *varargs;
+  PyObject *newargs;
+  
+  newargs = PyTuple_GetSlice(args,0,2);
+  varargs = PyTuple_GetSlice(args,2,PyTuple_Size(args)+1);
+  resultobj = _wrap_LogManager_error__varargs__(self,newargs,varargs);
+  Py_XDECREF(newargs);
+  Py_XDECREF(varargs);
+  return resultobj;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_LogManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::LogManager *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_LogManager")) SWIG_fail;
+  result = (Annchienta::LogManager *)new Annchienta::LogManager();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__LogManager, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_LogManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_LogManager",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LogManager, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_LogManager" "', argument " "1"" of type '" "Annchienta::LogManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::LogManager * >(argp1);
+  delete arg1;
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *LogManager_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__LogManager, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_getLogManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::LogManager *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":getLogManager")) SWIG_fail;
+  result = (Annchienta::LogManager *)Annchienta::getLogManager();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__LogManager, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -11454,27 +11659,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Mask_verbose(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::Mask *arg1 = (Annchienta::Mask *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Mask_verbose",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Mask_verbose" "', argument " "1"" of type '" "Annchienta::Mask const *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::Mask * >(argp1);
-  ((Annchienta::Mask const *)arg1)->verbose();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *Mask_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O|swigregister", &obj)) return NULL;
@@ -13253,6 +13437,14 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_Engine", _wrap_delete_Engine, METH_VARARGS, NULL},
 	 { (char *)"Engine_swigregister", Engine_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getEngine", _wrap_getEngine, METH_VARARGS, NULL},
+	 { (char *)"LogManager_enable", _wrap_LogManager_enable, METH_VARARGS, NULL},
+	 { (char *)"LogManager_isEnabled", _wrap_LogManager_isEnabled, METH_VARARGS, NULL},
+	 { (char *)"LogManager_warning", _wrap_LogManager_warning, METH_VARARGS, NULL},
+	 { (char *)"LogManager_error", _wrap_LogManager_error, METH_VARARGS, NULL},
+	 { (char *)"new_LogManager", _wrap_new_LogManager, METH_VARARGS, NULL},
+	 { (char *)"delete_LogManager", _wrap_delete_LogManager, METH_VARARGS, NULL},
+	 { (char *)"LogManager_swigregister", LogManager_swigregister, METH_VARARGS, NULL},
+	 { (char *)"getLogManager", _wrap_getLogManager, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_setVideoMode", _wrap_VideoManager_setVideoMode, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_getScreenWidth", _wrap_VideoManager_getScreenWidth, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_getScreenHeight", _wrap_VideoManager_getScreenHeight, METH_VARARGS, NULL},
@@ -13460,7 +13652,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Mask_getHeight", _wrap_Mask_getHeight, METH_VARARGS, NULL},
 	 { (char *)"Mask_collision", _wrap_Mask_collision, METH_VARARGS, NULL},
 	 { (char *)"Mask_fillRectangle", _wrap_Mask_fillRectangle, METH_VARARGS, NULL},
-	 { (char *)"Mask_verbose", _wrap_Mask_verbose, METH_VARARGS, NULL},
 	 { (char *)"Mask_swigregister", Mask_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_StaticObject", _wrap_new_StaticObject, METH_VARARGS, NULL},
 	 { (char *)"delete_StaticObject", _wrap_delete_StaticObject, METH_VARARGS, NULL},
@@ -13537,6 +13728,7 @@ static swig_type_info _swigt__p_Annchienta__Entity = {"_p_Annchienta__Entity", "
 static swig_type_info _swigt__p_Annchienta__Font = {"_p_Annchienta__Font", "Annchienta::Font *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__InputManager = {"_p_Annchienta__InputManager", "Annchienta::InputManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Layer = {"_p_Annchienta__Layer", "Annchienta::Layer *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__LogManager = {"_p_Annchienta__LogManager", "Annchienta::LogManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Map = {"_p_Annchienta__Map", "Annchienta::Map *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__MapManager = {"_p_Annchienta__MapManager", "Annchienta::MapManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Mask = {"_p_Annchienta__Mask", "Annchienta::Mask *", 0, 0, (void*)0, 0};
@@ -13561,6 +13753,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Font,
   &_swigt__p_Annchienta__InputManager,
   &_swigt__p_Annchienta__Layer,
+  &_swigt__p_Annchienta__LogManager,
   &_swigt__p_Annchienta__Map,
   &_swigt__p_Annchienta__MapManager,
   &_swigt__p_Annchienta__Mask,
@@ -13585,6 +13778,7 @@ static swig_cast_info _swigc__p_Annchienta__Entity[] = {  {&_swigt__p_Annchienta
 static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__Font, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__InputManager[] = {  {&_swigt__p_Annchienta__InputManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Layer[] = {  {&_swigt__p_Annchienta__Layer, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__LogManager[] = {  {&_swigt__p_Annchienta__LogManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Map[] = {  {&_swigt__p_Annchienta__Map, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__MapManager[] = {  {&_swigt__p_Annchienta__MapManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Mask[] = {  {&_swigt__p_Annchienta__Mask, 0, 0, 0},{0, 0, 0, 0}};
@@ -13609,6 +13803,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Font,
   _swigc__p_Annchienta__InputManager,
   _swigc__p_Annchienta__Layer,
+  _swigc__p_Annchienta__LogManager,
   _swigc__p_Annchienta__Map,
   _swigc__p_Annchienta__MapManager,
   _swigc__p_Annchienta__Mask,

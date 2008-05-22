@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <png.h>
 #include "auxfunc.h"
+#include "logmanager.h"
 
 #define PNG_BYTES_TO_CHECK 4
 
@@ -15,32 +16,25 @@ namespace Annchienta
 
     Mask::Mask( const char *filename ): pixels(0)
     {
+        LogManager *logManager = getLogManager();
+
         png_byte buffer[PNG_BYTES_TO_CHECK];
 
         FILE *fp = fopen(filename, "rb");
 
         if( fp==NULL )
-        {
-            printf( "Error - could not open %s for reading.\n", filename );
-            return;
-        }
+            logManager->error("Could not open '%s' for reading.", filename );
 
         /* Read in some of the signature bytes
          */
         if( fread( buffer, 1, PNG_BYTES_TO_CHECK, fp ) != PNG_BYTES_TO_CHECK )
-        {
-            printf( "Error - could not check png signature in %s.\n", filename );
-            return;
-        }
+            logManager->error("Could not check png signature in '%s'.", filename );
 
         /* Compare the first PNG_BYTES_TO_CHECK bytes of the signature.
          * Return nonzero (true) if they match
          */
         if( png_sig_cmp( buffer, (png_size_t)0, PNG_BYTES_TO_CHECK ) )
-        {
-            printf( "Error - png signature is not correct in %s.\n", filename );
-            return;
-        }
+            logManager->error( "Png signature is not correct in '%s'.", filename );
 
         /* variables for the png file handling */
         png_structp png_ptr;
@@ -54,8 +48,7 @@ namespace Annchienta
         if( png_ptr==NULL )
         {
             fclose(fp);
-            printf( "Error - failed creating png_ptr for %s.\n", filename );
-            return;
+            logManager->error( "Failed creating png_ptr for '%s'.", filename );
         }
 
         /* Create our main structure */
@@ -66,7 +59,7 @@ namespace Annchienta
         {
             png_destroy_read_struct( &png_ptr, (png_infop*) NULL, (png_infop*) NULL);
             fclose(fp);
-            printf( "Error - failed creating info_ptr for %s.\n", filename );
+            logManager->error( "Failed creating info_ptr for '%s'.", filename );
             return;
         }
 
@@ -76,7 +69,7 @@ namespace Annchienta
             /* Something went wrong */
             png_destroy_read_struct( &png_ptr, &info_ptr, (png_infop*) NULL);
             fclose(fp);
-            printf( "Error - failed creating error handling for %s.\n", filename );
+            logManager->error( "Failed creating error handling for '%s'.", filename );
             return;
         }
 
@@ -227,18 +220,6 @@ namespace Annchienta
             {
                 pixels[y*width+x] = value;
             }
-        }
-    }
-
-    void Mask::verbose() const
-    {
-        for( int y=0; y<height; y++ )
-        {
-            for( int x=0; x<width; x++ )
-            {
-                printf("%d", pixels[y*width+x]);
-            }
-            printf("\n");
         }
     }
 

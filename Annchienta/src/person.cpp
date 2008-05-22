@@ -18,16 +18,19 @@ using namespace io;
 #include "inputmanager.h"
 #include "area.h"
 #include "tile.h"
+#include "logmanager.h"
 
 namespace Annchienta
 {
 
     Person::Person( const char *_name, const char *_configfile ): StaticObject(_name, _configfile), control(0), frozen(false)
     {
+        LogManager *logManager = getLogManager();
+
         IrrXMLReader *xml = createIrrXMLReader( _configfile );
 
         if( !xml )
-            printf("Could not open config file %s for %s\n", _configfile, _name );
+            logManager->warning("Could not open config file '%s' for '%s'.", _configfile, _name );
 
         while( xml && xml->read() )
         {
@@ -275,11 +278,8 @@ namespace Annchienta
         }
         if( !setAnimationResult )
         {
-            //printf("Could not find animation.\n");
             this->setAnimation("stand");
         }
-
-        //printf("Animations is now: %s\n", animations[currentAnimation].name );
     }
 
     void Person::lookAt( StaticObject *other )

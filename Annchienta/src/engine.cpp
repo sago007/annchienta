@@ -8,6 +8,7 @@
 #include <GL/gl.h>
 #include <Python.h>
 
+#include "logmanager.h"
 #include "videomanager.h"
 #include "inputmanager.h"
 #include "mapmanager.h"
@@ -31,6 +32,7 @@ namespace Annchienta
 
         /* Init other Single-Instance classes.
          */
+        logManager = new LogManager();
         videoManager = new VideoManager();
         inputManager = new InputManager();
         mapManager = new MapManager();
@@ -51,6 +53,12 @@ namespace Annchienta
         delete mapManager;
         delete audioManager;
         delete cacheManager;
+
+        /* LogManager goes last because errors might have
+         * happened in the other delete statements, and
+         * we want all errors to be reported.
+         */
+        delete logManager;
 
         /* Quit our libraries.
          */

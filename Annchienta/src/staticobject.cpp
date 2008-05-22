@@ -18,7 +18,10 @@ using namespace io;
 #include "layer.h"
 #include "tileset.h"
 #include "engine.h"
+#include "logmanager.h"
 
+/* Used for quickly sorting Entities based on depth.
+ */
 bool DepthSortPredicate( Annchienta::Tile* tilep1, Annchienta::Tile* tilep2 )
 {
     return tilep1->getDepth() < tilep2->getDepth();
@@ -26,17 +29,18 @@ bool DepthSortPredicate( Annchienta::Tile* tilep1, Annchienta::Tile* tilep2 )
 
 namespace Annchienta
 {
-
     StaticObject *activeObject=0, *passiveObject=0;
 
     StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), needsUpdate(true), onInteractScript(0), onInteractCode(0)
     {
+        LogManager *logManager = getLogManager();
+
         IrrXMLReader *xml = createIrrXMLReader( configfile );
 
         strcpy( xmlFile, configfile );
 
         if( !xml )
-            printf("Could not open config file %s for %s\n", configfile, _name );
+            logManager->warning( "Could not open config file '%s' for '%s'.", configfile, _name );
 
         while( xml && xml->read() )
         {
@@ -48,12 +52,12 @@ namespace Annchienta
                         if( xml->getAttributeValue("image") )
                             sprite = getCacheManager()->getSurface( xml->getAttributeValue("image") );
                         else
-                            printf("Warning - No sprite defined in %s.\n", configfile);
+                            logManager->warning( "No sprite defined in '%s'.", configfile);
 
                         if( xml->getAttributeValue("mask") )
                             mask = getCacheManager()->getMask( xml->getAttributeValue("mask") );
                         else
-                            printf("Warning - No mask defined in %s.\n", configfile);
+                            logManager->warning( "No mask defined in '%s'.", configfile);
                     }
                     if( !strcmpCaseInsensitive("frame", xml->getNodeName()) )
                     {
@@ -62,7 +66,7 @@ namespace Annchienta
                         if( xml->getAttributeValue("number") )
                             frame.number = xml->getAttributeValueAsInt("number");
                         else
-                            printf("Warning - number not defined for frame in %s.\n", configfile);
+                            logManager->warning("Number not defined for frame in '%s'.", configfile);
 
                         if( xml->getAttributeValue("x1") )
                         {
@@ -126,7 +130,7 @@ namespace Annchienta
         delete xml;
 
         if( !setAnimation( "stand" ) )
-            printf("Warning - StaticObject %s does not provide a 'stand' animation.\n", configfile );
+            logManager->warning("StaticObject '%s' does not provide the default 'stand' animation.", configfile );
         speedTimer = 0;
     }
 
@@ -181,7 +185,6 @@ namespace Annchienta
 
                 if( tile->hasPoint(position) )
                 {
-                    //printf("Standing on ( %d, %d )\n", tx, ty );
                     tileStandingOn = tile;
                 }
             }
@@ -282,11 +285,6 @@ namespace Annchienta
             }
         }
 
-        if( !strcmpCaseInsensitive("aelaan", getName()) )
-        {
-            //printf("Drawing frame %d of %s\n", frameNumber, animations[currentAnimation].name );
-        }
-
         Point pos = this->getMaskPosition();
 
         glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
@@ -354,7 +352,6 @@ namespace Annchienta
         {
             if( !strcmpCaseInsensitive( aname, animations[i].name ) )
             {
-                //printf("Set %s to %s or %s\n", getName(), aname, animations[i].name );
                 currentAnimation = i;
                 currentFrame %= animations[i].numberOfFrames;
                 animationRunning = true;
@@ -374,7 +371,8 @@ namespace Annchienta
         }
         else
         {
-            return "Warning - request for unset animation.";
+            getLogManager()->warning( "StaticObject::getAnimation() called while there is no animation set." );
+            return "none";
         }
     }
 
@@ -408,7 +406,7 @@ namespace Annchienta
 
     bool StaticObject::stepTo( Point p )
     {
-        printf("Warning - attempt to step static object %s to %d, %d. Warping.\n", this->getName(), p.x, p.y );
+        getLogManager()->warning("Attempt to step static object '%s'. Warping.\n", this->getName(), p.x, p.y );
         position = p.to(IsometricPoint);
         needsUpdate = true;
         return true;

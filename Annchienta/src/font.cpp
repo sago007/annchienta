@@ -8,6 +8,7 @@
 #include FT_FREETYPE_H
 
 #include "auxfunc.h"
+#include "logmanager.h"
 
 #define NUM_CHARACTERS 256
 
@@ -15,23 +16,21 @@ namespace Annchienta
 {
     Font::Font( const char *filename, int size )
     {
+        /* What could possible go wrong here?
+         */
+        LogManager *logManager = getLogManager();
+
         /* Create the main library and init it.
          */
         FT_Library library;
         if( FT_Init_FreeType( &library ) )
-        {
-            printf( "Error - could not create main FreeType library.\n" );
-            return;
-        }
+            logManager->error( "Could not create main FreeType library." );
     
         /* Load the actual font.
          */
         FT_Face face;
         if( FT_New_Face( library, filename, 0, &face ) )
-        {
-            printf( "Error - could not open %s as TTF font.\n", filename );
-            return;
-        }
+            logManager->error( "Could not open '%s' as TTF font.", filename );
 
         /* Set some members.
          */
@@ -55,10 +54,7 @@ namespace Annchienta
         {
             FT_UInt index = FT_Get_Char_Index( face, i );
             if( FT_Load_Glyph( face, index, FT_LOAD_RENDER ) )
-            {
-                printf( "Ft_Load_Glyph for %c int %s returned error code.\n", (char)i, filename );
-                return;
-            }
+                logManager->error( "Ft_Load_Glyph for '%c' in '%s' returned error code, possibly corrupt font.", (char)i, filename );
     
             FT_GlyphSlot glyph = face->glyph;
             FT_Bitmap &bitmap = glyph->bitmap;
@@ -181,7 +177,6 @@ namespace Annchienta
 
         glListBase( list );
         glCallLists( strlen(text), GL_UNSIGNED_BYTE, text );
-        //printf("Drawing %s.\n", text);
 
         glPopMatrix();
     }

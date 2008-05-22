@@ -199,8 +199,9 @@ namespace Annchienta
         VideoManager *videoManager = getVideoManager();
         inputManager = getInputManager();
 
-        unsigned int lastFpsUpdate = SDL_GetTicks();
-        unsigned int frames = 0;
+        /* unsigned int lastFpsUpdate = SDL_GetTicks();
+         * unsigned int frames = 0;
+         */
 
         SDL_TimerID timer = SDL_AddTimer( 1000/updatesPerSecond, incrementUpdatesNeeded, 0 );
 
@@ -215,16 +216,17 @@ namespace Annchienta
                 videoManager->end();
             }
 
-            frames++;
-            if( lastFpsUpdate+1000<=SDL_GetTicks() )
-            {
-                char title[256];
-                sprintf( title, "Annchienta FPS: %d", frames );
-                SDL_WM_SetCaption( title, NULL );
-
-                lastFpsUpdate = SDL_GetTicks();
-                frames = 0;
-            }
+            /* frames++;
+             * if( lastFpsUpdate+1000<=SDL_GetTicks() )
+             * {
+             *     char title[256];
+             *     sprintf( title, "Annchienta FPS: %d", frames );
+             *     SDL_WM_SetCaption( title, NULL );
+             *
+             *     lastFpsUpdate = SDL_GetTicks();
+             *     frames = 0;
+             * }
+             */
         }
 
         SDL_RemoveTimer( timer );

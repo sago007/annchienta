@@ -23,6 +23,7 @@ using namespace io;
 #include "area.h"
 #include "engine.h"
 #include "cachemanager.h"
+#include "logmanager.h"
 
 namespace Annchienta
 {
@@ -30,17 +31,19 @@ namespace Annchienta
     Map::Map( const char *_filename ): sortedLayers(0), currentLayer(0), onPreRenderCode(0), onPreRenderScript(0),
                                        onPostRenderCode(0), onPostRenderScript(0)
     {
+        LogManager *logManager = getLogManager();
+
         Layer *layer = 0;
 
         if( !isValidFile(_filename) )
-            printf( "Error - %s is not a valid file.\n", _filename );
+            logManager->error( "'%s' is not a valid file.", _filename );
 
         IrrXMLReader *xml = createIrrXMLReader( _filename );
 
         strcpy( filename, _filename );
 
         if( !xml )
-            printf( "Error - could not open given map file %s as xml\n.", _filename );
+            logManager->error( "Could not open given map file '%s' as xml.", _filename );
 
         Engine *engine = getEngine();
         CacheManager *cacheManager = getCacheManager();
@@ -58,7 +61,7 @@ namespace Annchienta
                             height = xml->getAttributeValueAsInt("height");
                         }
                         else
-                            printf("Warning - %s does not provide width and height.\n", filename);
+                            logManager->warning( "'%s' does not provide map width and height.", filename);
 
                         if( xml->getAttributeValue("tilewidth") && xml->getAttributeValue("tileheight") )
                         {
@@ -66,12 +69,12 @@ namespace Annchienta
                             getMapManager()->setTileHeight( xml->getAttributeValueAsInt("tileheight") );
                         }
                         else
-                            printf("Warning - %s does not provide tilewidth and tileheight.\n", filename);
+                            logManager->warning("'%s' does not provide tilewidth and tileheight.", filename);
 
                         if( xml->getAttributeValue("tileset") )
                             tileSet = new TileSet( xml->getAttributeValue("tileset") );
                         else
-                            printf("Warning - %s does not provide a valid tileset.\n", filename);
+                            logManager->warning("'%s' does not provide a valid tileset.", filename);
                     }
                     if( !strcmpCaseInsensitive("layer", xml->getNodeName()) )
                     {
@@ -140,7 +143,7 @@ namespace Annchienta
                         }
                         else
                         {
-                            printf("Warning - obstruction defined before tile data in %s. Ignoring.\n", filename);
+                            logManager->warning("Obstruction defined before tile data in '%s'. Ignoring.", filename);
                         }
                         xml->read();
                     }
@@ -187,7 +190,7 @@ namespace Annchienta
                         if( xml->getAttributeValue("name") && xml->getAttributeValue("config") )
                             person = new Person( xml->getAttributeValue("name"), xml->getAttributeValue("config") );
                         else
-                            printf("Error - no name and config specified for person in %s.\n", filename);
+                            logManager->error("No name and config specified for person in %s.", filename);
 
                         if( xml->getAttributeValue("isox") && xml->getAttributeValue("isoy") )
                             person->setPosition( Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),

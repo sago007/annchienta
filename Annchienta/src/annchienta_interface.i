@@ -3,6 +3,7 @@
 %{
 #include "point.h"
 #include "engine.h"
+#include "logmanager.h"
 #include "videomanager.h"
 #include "inputmanager.h"
 #include "mapmanager.h"
@@ -24,6 +25,7 @@
 
 %include "point.h"
 %include "engine.h"
+%include "logmanager.h"
 %include "videomanager.h"
 %include "inputmanager.h"
 %include "mapmanager.h"

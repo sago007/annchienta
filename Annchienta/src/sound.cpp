@@ -3,6 +3,7 @@
  */
 
 #include "sound.h"
+#include "logmanager.h"
 
 namespace Annchienta
 {
@@ -11,7 +12,7 @@ namespace Annchienta
     {
         chunk = Mix_LoadWAV( filename );
         if( !chunk )
-            printf("Error - could not open %s as sound.\n", filename );
+            getLogManager()->error( "Could not open '%s' as sound.", filename );
     }
 
     Sound::~Sound()

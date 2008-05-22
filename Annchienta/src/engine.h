@@ -8,6 +8,7 @@
 namespace Annchienta
 {
 
+    class LogManager;
     class VideoManager;
     class InputManager;
     class MapManager;
@@ -21,6 +22,7 @@ namespace Annchienta
     class Engine
     {
         private:
+            LogManager *logManager;
             VideoManager *videoManager;
             InputManager *inputManager;
             MapManager *mapManager;
