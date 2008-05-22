@@ -24,7 +24,7 @@ if not partyManager.hasRecord("tetia_met_baniran"):
 
     partyManager.addRecord("tetia_met_baniran")
     sceneManager.speak( baniran, "Aelaan! What the heck have you been doing?" )
-    sceneManager.chat( esana, "Do you know this lad?", ["Sure, our hideout is in Tetia. I know pretty much everyone here."] )
+    sceneManager.chat( esana, "Do you know this guy?", ["Sure, our hideout is in Tetia. I know pretty much everyone here."] )
     sceneManager.speak( baniran, "I heard you were arrested for murder. I'm glad to see you back. I knew they were wrong, you wouldn't do anything so cruel." )
     a = sceneManager.chat( baniran, "So, how did they find out you were innocent?", ["Well, actually they didn't...", "I had an alibi."] )
     if a==0:

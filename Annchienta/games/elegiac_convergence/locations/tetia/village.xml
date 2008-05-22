@@ -35,6 +35,11 @@ partyManager.changeLayer( 1, annchienta.Point( annchienta.TilePoint, 1, 3 ) )
 <!-- Baniran. -->
 <staticobject name="baniran" config="locations/tetia/baniran.xml" tilex="20" tiley="9" />
 
+<!-- Event upon entering of town. -->
+<if code="import party;partyManager=party.getPartyManager()" cond="not partyManager.hasRecord('tetia_entered_town')">
+    <area tilex1="21" tiley1="12" tilex2="23" tiley2="14" script="locations/tetia/enter_town.py"/>
+</if>
+
 </layer>
 
 <layer z="118">
