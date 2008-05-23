@@ -25,7 +25,7 @@ sceneManager.chat( esana, "Exactly... now, where do we begin our search...", ["I
 sceneManager.chat( esana, "The hideout of your bandit club?", ["If that's how you refer to it, yes."] )
 sceneManager.speak( esana, "Allright, we start our search there. Let's go." )
 
-sceneManager.thoughts( "What did I get myself into now? Looking for the head of the father of a girl way out of my league..." )
+sceneManager.thoughts( "What did I get myself into now? Looking for the head of the dead father of a girl way out of my league..." )
 
 pp.y -= 30
 
