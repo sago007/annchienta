@@ -68,6 +68,13 @@ partyManager = party.getPartyManager()
 partyManager.changeLayer( 0, annchienta.Point( annchienta.TilePoint, 3, 5 ) )
 </area>
 
+<!-- Way to the hideout. -->
+<area tilex1="16" tilex2="17" tiley1="14" tiley2="15">
+import party, annchienta
+partyManager = party.getPartyManager()
+partyManager.changeMap( &quot;locations/tetia/hideout.xml&quot;, annchienta.Point( annchienta.TilePoint, 5, 2 ) )
+</area>
+
 </layer>
 
 <onload>
