@@ -22,6 +22,9 @@ partyManager = party.getPartyManager()
 partyManager.changeMap( &quot;locations/tetia/village.xml&quot;, annchienta.Point( annchienta.TilePoint, 17, 13 ), 1 )
 </area>
 
+<!-- test -->
+<person name="inyse" config="locations/tetia/inyse.xml" tilex="8" tiley="8" />
+
 </layer>
 
 <onload>

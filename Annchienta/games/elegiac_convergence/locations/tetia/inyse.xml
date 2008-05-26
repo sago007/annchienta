@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<sprite image="sprites/inyse.png" mask="masks/inyse.png">
+    
+    <frame number="1" x1="0" y1="0" x2="35" y2="82">
+    <frame number="2" x1="35" y1="0" x2="70" y2="82">
+        
+    <frame number="3" x1="70" y1="0" x2="105" y2="82">
+    <frame number="4" x1="105" y1="0" x2="140" y2="82">
+        
+    <frame number="5" x1="0" y1="82" x2="35" y2="164">
+    <frame number="6" x1="35" y1="82" x2="70" y2="164">
+    
+    <frame number="7" x1="70" y1="82" x2="105" y2="164">
+    <frame number="8" x1="105" y1="82" x2="140" y2="164">
+        
+    <animation name="stand" frames="1" speed="20" />
+    <animation name="walknorth" frames="12" speed="15" />
+    <animation name="walkeast" frames="34" speed="15" />
+    <animation name="walkwest" frames="56" speed="15" />
+    <animation name="walksouth" frames="78" speed="15" />
+    <animation name="standnorth" frames="1" speed="15" />
+    <animation name="standeast" frames="3" speed="15" />
+    <animation name="standwest" frames="5" speed="15" />
+    <animation name="standsouth" frames="7" speed="15" />
+    
+    <control type="sample" />
+
+</sprite>
