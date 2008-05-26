@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<combatant name="inyse">
+    <sprite filename="sprites/inyse.png" x1="140" x2="210" y1="0" y2="82"/>
+    <status defense="20" health="100" magic="20" maxhealth="100" resistance="20" strength="20"/>
+    <strategies>
+        warrior healer adept 
+    </strategies>
+    <experience warrior="3" />
+    <growth needed="32" points="0"/>
+</combatant>

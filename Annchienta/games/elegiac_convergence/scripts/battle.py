@@ -32,12 +32,12 @@ class Battle:
         for i in range( len(self.allies) ):
             a = self.allies[i]
             w, h = a.getSize()
-            a.setPosition( self.videoManager.getScreenWidth()/2-30-i*20-w, 100+i*40-h )
+            a.setPosition( self.videoManager.getScreenWidth()/2-20-i*20-w, 100+i*40-h )
 
         for i in range( len(self.enemies) ):
             e = self.enemies[i]
             w, h = e.getSize()
-            e.setPosition( self.videoManager.getScreenWidth()/2+30+i*20, 100+i*40-h )
+            e.setPosition( self.videoManager.getScreenWidth()/2+20+i*20, 100+i*40-h )
 
         self.updateCombatantArrays()
 
@@ -87,6 +87,11 @@ class Battle:
 
             if not self.inputManager.running():
                 return
+
+            # Perform dying animations.
+            for a in self.activeCombatants:
+                if a.status.get("health")<=0:
+                    self.dieAnimation(a)
 
             self.updateCombatantArrays()
 
@@ -209,16 +214,23 @@ class Battle:
             self.videoManager.end()
             self.engine.delay(1)
 
-class BattleManager:
+    def dieAnimation( self, actor ):
 
-    audioManager = annchienta.getAudioManager()
-    engine = annchienta.getEngine()
+        self.moveAnimation( actor, actor.x + (20 if actor.hostile else -20), actor.y )
+        self.activeCombatants = filter( lambda a: a is not actor, self.activeCombatants )
+        self.draw()
+
+class BattleManager:
 
     enemyElements = []
     m_battle = None
 
     def __init__( self ):
         
+        self.audioManager = annchienta.getAudioManager()
+        self.logManager = annchienta.getLogManager()
+        self.engine = annchienta.getEngine()
+    
         self.enemiesInMap = []
         self.battleBackground = None
         self.randomBattleDelay = annchienta.randInt( 300, 1000 )
@@ -232,7 +244,7 @@ class BattleManager:
 
         candidates = filter( lambda e: str(e.getAttribute("name")).lower()==name.lower(), self.enemyElements )
         if not len(candidates):
-            self.engine.write( "Error - could not find an enemy called "+str(name)+"." )
+            self.logManager.error( "Could not find an enemy called '"+str(name)+"'." )
         else:
             return combatant.Enemy( candidates[0] )
 

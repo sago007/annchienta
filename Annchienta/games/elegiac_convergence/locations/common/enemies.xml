@@ -16,4 +16,12 @@
         </strategies>
         <drop experience="10"/>
     </combatant>
+    <combatant name="ghost">
+        <sprite filename="sprites/ghost.png"/>
+        <status strength="12" defense="40" magic="18" resistance="20" health="90" maxhealth="90"/>
+        <strategies>
+            adept
+        </strategies>
+        <drop experience="14"/>
+    </combatant>
 </enemies>

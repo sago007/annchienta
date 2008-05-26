@@ -104,6 +104,12 @@ class Combatant:
 
     def draw( self ):
 
+        # Fade a little when death.
+        if self.status.get("health")>0:
+            self.videoManager.setColor()
+        else:
+            self.videoManager.setColor(255,255,255,127)
+
         if self.sx1 is None:
             self.videoManager.drawSurface( self.sprite, self.x, self.y )
         else:
