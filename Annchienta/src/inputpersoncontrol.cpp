@@ -40,8 +40,13 @@ namespace Annchienta
             if( inputManager->buttonDown(0) )
             {
                 Point mouse = inputManager->getMousePoint();
+                mouse.convert( MapPoint );
+
+                /* Exception if on hight layer.
+                 */
+                mouse.y += person->getLayer()->getZ();
                 mouse.convert( IsometricPoint );
-    
+
                 Point pos = person->getPosition();
                 pos.convert( IsometricPoint );
     

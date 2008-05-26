@@ -2,17 +2,17 @@
 <sprite image="sprites/kator.png" mask="masks/mask.png">
     
     
-    <frame number="1" x1="0" y1="0" x2="36" y2="78">
-    <frame number="2" x1="36" y1="0" x2="72" y2="78">
+    <frame number="1" x1="0" y1="0" x2="36" y2="78"/>
+    <frame number="2" x1="36" y1="0" x2="72" y2="78"/>
         
-    <frame number="3" x1="72" y1="0" x2="108" y2="78">
-    <frame number="4" x1="108" y1="0" x2="144" y2="78">
+    <frame number="3" x1="72" y1="0" x2="108" y2="78"/>
+    <frame number="4" x1="108" y1="0" x2="144" y2="78"/>
         
-    <frame number="5" x1="0" y1="78" x2="36" y2="156">
-    <frame number="6" x1="36" y1="78" x2="72" y2="156">
+    <frame number="5" x1="0" y1="78" x2="36" y2="156"/>
+    <frame number="6" x1="36" y1="78" x2="72" y2="156"/>
     
-    <frame number="7" x1="72" y1="78" x2="108" y2="156">
-    <frame number="8" x1="108" y1="78" x2="144" y2="156">
+    <frame number="7" x1="72" y1="78" x2="108" y2="156"/>
+    <frame number="8" x1="108" y1="78" x2="144" y2="156"/>
         
     <animation name="stand" frames="1" speed="20" />
     <animation name="walknorth" frames="12" speed="15" />

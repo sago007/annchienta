@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <sprite image="sprites/baniran.png" mask="masks/baniran.png">
-    <frame number="1">
+    <frame number="1"/>
     <animation name="stand" frames="1" speed="20" />
     <oninteract script="locations/tetia/baniran.py" />
 </sprite>

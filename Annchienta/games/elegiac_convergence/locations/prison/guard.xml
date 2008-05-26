@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <sprite image="sprites/guard.png" mask="masks/guard.png">
 
-    <frame number="1" x1="0" y1="0" x2="35" y2="73">
-    <frame number="2" x1="35" y1="0" x2="70" y2="73">
-    <frame number="3" x1="70" y1="0" x2="105" y2="73">
-    <frame number="4" x1="105" y1="0" x2="140" y2="73">
-    <frame number="5" x1="0" y1="73" x2="35" y2="146">
-    <frame number="6" x1="35" y1="73" x2="70" y2="146">
-    <frame number="7" x1="70" y1="73" x2="105" y2="146">
-    <frame number="8" x1="105" y1="73" x2="140" y2="146">
+    <frame number="1" x1="0" y1="0" x2="35" y2="73"/>
+    <frame number="2" x1="35" y1="0" x2="70" y2="73"/>
+    <frame number="3" x1="70" y1="0" x2="105" y2="73"/>
+    <frame number="4" x1="105" y1="0" x2="140" y2="73"/>
+    <frame number="5" x1="0" y1="73" x2="35" y2="146"/>
+    <frame number="6" x1="35" y1="73" x2="70" y2="146"/>
+    <frame number="7" x1="70" y1="73" x2="105" y2="146"/>
+    <frame number="8" x1="105" y1="73" x2="140" y2="146"/>
     <animation name="stand" frames="1" speed="20" />
     <animation name="walknorth" frames="12" speed="15" />
     <animation name="walkeast" frames="34" speed="15" />
