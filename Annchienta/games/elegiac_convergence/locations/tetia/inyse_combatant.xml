@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <combatant name="inyse">
     <sprite filename="sprites/inyse.png" x1="140" x2="210" y1="0" y2="82"/>
-    <status defense="20" health="100" magic="20" maxhealth="100" resistance="20" strength="20"/>
+    <status defense="25" health="150" magic="25" maxhealth="150" resistance="25" strength="25"/>
     <strategies>
         warrior healer adept 
     </strategies>

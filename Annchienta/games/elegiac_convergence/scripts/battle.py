@@ -154,6 +154,9 @@ class Battle:
         points = sum( map(lambda e: e.experience, filter( lambda c: c.hostile, self.combatants) ) )
         for e in experienceGaining:
             e.addGrowthPoints( points )
+        # Give some health.
+        for a in self.allies:
+            a.addHealth( 0.2*a.status.get("maxhealth") )
 
     def onLose( self ):
         self.won = False

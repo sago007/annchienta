@@ -27,13 +27,13 @@ partyManager.changeMap( &quot;locations/tetia/village.xml&quot;, annchienta.Poin
 <if code="import party;partyManager=party.getPartyManager()" cond="not partyManager.hasRecord('tetia_met_inyse')">
     <staticobject name="inyse" config="locations/tetia/inyse.xml" tilex="5" tiley="9" animation="standfight"/>
     <staticobject name="ghost1" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="3" tiley="6" />
-    <staticobject name="ghost1" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="4" tiley="7" />
-    <staticobject name="ghost1" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="5" tiley="6" />
-    <staticobject name="ghost1" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="6" tiley="7" />
-    <staticobject name="ghost1" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="7" tiley="6" />
-    <staticobject name="ghost1" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="8" tiley="7" />
-    <staticobject name="ghost1" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="9" tiley="6" />
-    <staticobject name="ghost1" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="10" tiley="7" />
+    <staticobject name="ghost2" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="4" tiley="7" />
+    <staticobject name="ghost3" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="5" tiley="6" />
+    <staticobject name="ghost4" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="6" tiley="7" />
+    <staticobject name="ghost5" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="7" tiley="6" />
+    <staticobject name="ghost6" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="8" tiley="7" />
+    <staticobject name="ghost7" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="9" tiley="6" />
+    <staticobject name="ghost8" sprite="sprites/ghost.png" mask="masks/aelaan.png" tilex="10" tiley="7" />
     <!-- The battle event. -->
     <area tilex1="4" tiley1="1" tilex2="6" tiley2="3" script="locations/tetia/meet_inyse.py"/>
 </if>

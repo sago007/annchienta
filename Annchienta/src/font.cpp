@@ -57,7 +57,7 @@ namespace Annchienta
                 logManager->error( "Ft_Load_Glyph for '%c' in '%s' returned error code, possibly corrupt font.", (char)i, filename );
     
             FT_GlyphSlot glyph = face->glyph;
-            FT_Bitmap &bitmap = glyph->bitmap;
+            FT_Bitmap bitmap = glyph->bitmap;
 
             int width = bitmap.width;
             int height = bitmap.rows;
