@@ -3,7 +3,7 @@
     <sprite filename="sprites/inyse.png" x1="140" x2="210" y1="0" y2="82"/>
     <status defense="25" health="150" magic="25" maxhealth="150" resistance="25" strength="25"/>
     <strategies>
-        warrior healer adept 
+        warrior dragon healer monk adept 
     </strategies>
     <experience warrior="3" />
     <growth needed="32" points="0"/>

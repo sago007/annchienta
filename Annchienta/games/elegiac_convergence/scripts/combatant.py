@@ -269,10 +269,10 @@ class Ally(Combatant):
 
         # 'Level up'
         while self.growth.get("points")>=self.growth.get("needed"):
-            
+
             s = float(sum( map(lambda n: self.growth.get(n), self.strategies) ))
             relative = map( lambda n: float(self.growth.get(n))/float(s), self.strategies )
-            
+
             for i in range(len(self.strategies)):
                 sn = self.strategies[i]
                 strat = strategy.getStrategy( sn )
@@ -282,7 +282,7 @@ class Ally(Combatant):
                 self.status.add("resistance", int(round( relative[i]*float(strat.resistance) )) )
                 self.status.add("maxhealth", int(s))
                 self.status.set("health", self.status.get("maxhealth"))
-            
+
             # Update needed points
             self.growth.set("needed", int(float(self.growth.get("needed"))*1.5) )
 
@@ -292,7 +292,7 @@ class Ally(Combatant):
 
         # Check for new strategies:
         for strat in strategy.all:
-            # Unfortunately we need an instance.
+            # Unfortunately we need an instance of every strategy.
             inst = strat(None,None)
             if inst.isAvailableFor( self ) and strat.name not in self.strategies:
                 self.strategies += [strat.name]

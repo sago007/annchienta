@@ -95,6 +95,9 @@ class Battle:
 
             self.updateCombatantArrays()
 
+            # Sort the combatants on depth.
+            self.activeCombatants.sort( lambda c1, c2: c1.y-c2.y )
+
             # Check for game over or victory
             if not len(self.enemies) or self.inputManager.keyDown(annchienta.SDLK_a):
                 self.onWin()
@@ -110,9 +113,6 @@ class Battle:
         # Draw the background
         if self.background is not None:
             self.videoManager.drawSurface( self.background, 0, 0 )
-
-        # Sort them before drawing
-        self.activeCombatants.sort( lambda c1, c2: c1.y-c2.y )
 
         for a in self.activeCombatants:
 

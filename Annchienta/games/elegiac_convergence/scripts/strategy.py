@@ -145,7 +145,7 @@ class Adept(Strategy):
         # Select any random target.
         array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
 
-        # Attack all targets with 12 attack power.
+        # Attack all targets with 20 attack power.
         self.sceneManager.info( self.m_combatant.name.capitalize()+" casts ice!" )
         surf = self.cacheManager.getSurface("images/animations/ice.png")
         sound = self.cacheManager.getSound("sounds/ice.ogg")
@@ -297,8 +297,94 @@ class Poisoner(Strategy):
     def isAvailableFor( self, m_combatant ):
         return m_combatant.experience.get("adept")>6
 
+## DRAGON
+#
+#  A melee-based class only available for Inyse. Attacks a
+#  random target with some serious power.
+#
+class Dragon(Strategy):
+
+    name = "dragon"
+    description = "Randomly brutally attacks enemies."
+    strength, defense, magic, resistance = 4, 2, 1, 3
+
+    category = "melee"
+
+    def __init__( self, m_battle, m_combatant ):
+
+        Strategy.__init__( self, m_battle, m_combatant )
+        self.turns = 3
+
+    def control( self ):
+
+        # Decrease our turns for this strategy.
+        self.turns -= 1
+
+        # Add some delay now. Quite much delay, since we're doing a lot of damage.
+        self.m_combatant.delay += 9
+
+        # Select any random target.
+        array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
+        if not len(array):
+            return
+        target = array[ annchienta.randInt(0,len(array)-1) ]
+
+        # Attack that target with serious attack power (=50).
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
+        # A jump in the air first.
+        self.m_battle.moveAnimation( self.m_combatant, self.m_combatant.x + (-10 if self.m_combatant.hostile else 10 ), self.m_combatant.y-200 )
+        self.m_battle.physicalAttackAnimation( self.m_combatant, target )
+        sound = self.cacheManager.getSound("sounds/sword.ogg")
+        if self.m_combatant.physicalAttack( target, 50, 0.8 ):
+            self.audioManager.playSound( sound )
+        self.m_battle.returnHomeAnimation( self.m_combatant )
+
+    def isAvailableFor( self, m_combatant ):
+        return False
+
+## LICH
+#
+#  Simple black-magic based class which is also used by
+#  ghosts etc.
+#
+class Lich(Strategy):
+
+    name = "lich"
+    description = "Dark arcane arts."
+    strength, defense, magic, resistance = 1, 3, 3, 3
+
+    category = "black magic"
+
+    def __init__( self, m_battle, m_combatant ):
+
+        Strategy.__init__( self, m_battle, m_combatant )
+        self.turns = 3
+
+    def control( self ):
+
+        # Decrease our turns for this strategy.
+        self.turns -= 1
+
+        # Add some delay now.
+        self.m_combatant.delay += 6
+
+        # Select all targets
+        array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
+
+        # Attack all targets with 24 attack power.
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" casts bleed!" )
+        surf = self.cacheManager.getSurface("images/animations/bleed.png")
+        sound = self.cacheManager.getSound("sounds/bleed.ogg")
+        self.audioManager.playSound( sound )
+        self.m_battle.surfaceOverSpritesAnimation( array, surf, -50 if self.m_combatant.hostile else 50, 0 )
+        for e in array:
+            self.m_combatant.magicalAttack( e, 25, 0.7 )
+
+    def isAvailableFor( self, m_combatant ):
+        return False
+
 # List with all strategies, used by getStrategy()
-all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner]
+all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner, Dragon, Lich]
 
 def getStrategy( name ):
     for s in all:

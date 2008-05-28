@@ -20,7 +20,7 @@
         <sprite filename="sprites/ghost.png"/>
         <status strength="12" defense="40" magic="18" resistance="20" health="90" maxhealth="90"/>
         <strategies>
-            adept
+            warrior lich
         </strategies>
         <drop experience="14"/>
     </combatant>

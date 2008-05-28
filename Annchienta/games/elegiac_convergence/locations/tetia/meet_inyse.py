@@ -3,6 +3,7 @@ import combatant, xml.dom.minidom
 import battle
 
 mapManager = annchienta.getMapManager()
+audioManager = annchienta.getAudioManager()
 partyManager = party.getPartyManager()
 sceneManager = scene.getSceneManager()
 
@@ -31,6 +32,8 @@ document = xml.dom.minidom.parse( "locations/tetia/inyse_combatant.xml" )
 e = document.getElementsByTagName("combatant")
 comb = combatant.Ally( e[0] )
 partyManager.team += [comb]
+
+audioManager.playMusic( "music/battle_2.ogg" )
 
 # Three similar battles.
 for i in range(3):
@@ -72,7 +75,6 @@ sceneManager.thoughts( "I told her what had happened, and how we were searching 
 sceneManager.speak( player, "The one who did all this... who is it..." )
 sceneManager.speak( esana, "Could he, and the one who sent these ghosts at us, be one and the same?" )
 sceneManager.speak( inyse, "I believe so. We'd better ask around in town." )
-sceneManager.text( "THIS IS THE END OF THE DEMO. THANKS FOR PLAYING." )
 
 sceneManager.fadeOut()
 
