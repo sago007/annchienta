@@ -141,6 +141,10 @@ namespace Annchienta
             /** \return The interact key. See \ref keycodes
              */
             int getInteractKey() const;
+
+            /** \return Quick check for interact key.
+             */
+            bool interactKeyTicked() const;
     };
 
     InputManager *getInputManager();

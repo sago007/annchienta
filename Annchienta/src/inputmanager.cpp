@@ -178,4 +178,9 @@ namespace Annchienta
         return interactKey;
     }
 
+    bool InputManager::interactKeyTicked() const
+    {
+        return this->keyTicked( interactKey );
+    }
+
 };

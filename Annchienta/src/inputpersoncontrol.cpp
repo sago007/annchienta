@@ -74,7 +74,7 @@ namespace Annchienta
 
             person->move( x, y );
 
-            if( inputManager->buttonTicked( 0 ) )
+            if( inputManager->buttonTicked( 0 ) || inputManager->interactKeyTicked() )
                 this->tryInteract();
 
         }
@@ -105,11 +105,17 @@ namespace Annchienta
                 /* Check if the object is clicked.
                  */
                 Point mp = object->getMaskPosition().to( ScreenPoint );
-                bool clicked = ( getInputManager()->hover( mp.x, mp.y, mp.x+object->getMask()->getWidth(), mp.y+object->getMask()->getHeight() ) );
+                bool clicked = ( inputManager->hover( mp.x, mp.y, mp.x+object->getMask()->getWidth(), mp.y+object->getMask()->getHeight() ) );
     
                 mp.convert( MapPoint );
                 Point p = person->getMaskPosition().to( MapPoint );
                 bool boxCollision = person->getMask()->collision( p.x, p.y, object->getMask(), mp.x, mp.y, true );
+
+                /* If the object is not clicked, but the default interact
+                 * key is pressed, maybe we still want to interact.
+                 */
+                if( !clicked && inputManager->keyTicked( inputManager->getInteractKey() ) )
+                    clicked = true;
 
                 if( clicked && boxCollision )
                 {

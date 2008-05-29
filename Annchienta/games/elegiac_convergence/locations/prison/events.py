@@ -41,7 +41,7 @@ if not partyManager.hasRecord("prison_awakening"):
     sceneManager.thoughts( "Ouch... Why can't I remember?" )
     sceneManager.speak( player, "Why can't I remember?!" )
     sceneManager.speak( player, "I need to find out what happened... I must find the others! I must speak to them!" )
-    sceneManager.text( "Click and hold left mouse button to move. Click objects to interact with them if you're close enough. Alternatively, use the arrow keys to move." )
+    sceneManager.text( "Click and hold left mouse button to move. Click objects to interact with them if you're close enough. Alternatively, use the arrow keys to move and the spacebar to interact." )
     sceneManager.quitDialog()
     partyManager.refreshMap()
 
@@ -66,7 +66,7 @@ if partyManager.hasRecord("prison_awakening") and not partyManager.hasRecord("pr
     player.lookAt( guard )
 
     # Chat a little.
-    sceneManager.chat( guard, "What's all that noise? Did our precious newcomer wake up at last?.", ["Let me out of here!"] )
+    sceneManager.chat( guard, "What's all that noise? Did our precious newcomer wake up at last?", ["Let me out of here!"] )
     sceneManager.chat( guard, "Letting you out?! You've got to be kidding! You're the cruelest murderer we've ever had down here.", ["How.. what!?"] )
     sceneManager.chat( guard, "So you are indeed suffering from amnesia. The doctor told us something like that could happen.", ["The doctor?"] )
     sceneManager.chat( guard, "Yeah, they called a doctor to look after your head injury. Pretty much a waste of time, since you are going to be executed very soon anyway.", ["Executed? Why!?"] )

@@ -64,7 +64,14 @@ while inputManager.running():
 
             if inputManager.buttonTicked(0):
                 if options[i]=="Continue" or options[i]=="New Game":
-                    partyManager.load("saves/save.xml" if options[i]=="Continue" else "saves/new.xml")
+
+                    # Choose appropriate filename.
+                    filename = "saves/save.xml" if options[i]=="Continue" else "saves/new.xml"
+                    # Fallback
+                    if not annchienta.isValidFile( filename ):
+                        filename = "saves/new.xml"
+
+                    partyManager.load( filename )
                     mapManager.run()
                     partyManager.free()
                     inputManager.update()
