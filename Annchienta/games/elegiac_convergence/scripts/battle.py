@@ -165,7 +165,7 @@ class Battle:
         # Little animation
         s = annchienta.Surface( "images/animations/game_over.png" )
         self.videoManager.drawSurface( s, 0, 0 )
-        self.sceneManager.fadeOut( 150, 0, 0, 2000 )
+        self.sceneManager.fadeOut( 100, 0, 0, 5000 )
 
         #self.sceneManager.info( "You lost...", None )
         self.mapManager.stop()
