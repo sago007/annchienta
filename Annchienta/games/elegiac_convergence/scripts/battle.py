@@ -161,7 +161,13 @@ class Battle:
     def onLose( self ):
         self.won = False
         self.running = False
-        self.sceneManager.info( "You lost...", None )
+
+        # Little animation
+        s = annchienta.Surface( "images/animations/game_over.png" )
+        self.videoManager.drawSurface( s, 0, 0 )
+        self.sceneManager.fadeOut( 150, 0, 0, 2000 )
+
+        #self.sceneManager.info( "You lost...", None )
         self.mapManager.stop()
 
     def getCombatantWithLowestHealth( self, hostile ):
