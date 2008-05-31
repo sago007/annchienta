@@ -32,12 +32,12 @@ class Battle:
         for i in range( len(self.allies) ):
             a = self.allies[i]
             w, h = a.getSize()
-            a.setPosition( self.videoManager.getScreenWidth()/2-20-i*20-w, 100+i*40-h )
+            a.setPosition( self.videoManager.getScreenWidth()/2-30-i*10-w, 100+i*40-h )
 
         for i in range( len(self.enemies) ):
             e = self.enemies[i]
             w, h = e.getSize()
-            e.setPosition( self.videoManager.getScreenWidth()/2+20+i*20, 100+i*40-h )
+            e.setPosition( self.videoManager.getScreenWidth()/2+30+i*10, 100+i*40-h )
 
         self.updateCombatantArrays()
 
@@ -155,8 +155,8 @@ class Battle:
         for e in experienceGaining:
             e.addGrowthPoints( points )
         # Give some health.
-        for a in self.allies:
-            a.addHealth( 0.2*a.status.get("maxhealth") )
+        for a in filter( lambda c: not c.hostile, self.combatants ):
+            a.addHealth( int(0.2*float(a.status.get("maxhealth"))) )
 
     def onLose( self ):
         self.won = False

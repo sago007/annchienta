@@ -11,6 +11,7 @@
 #include "tileset.h"
 #include "staticobject.h"
 #include "area.h"
+#include "logmanager.h"
 
 namespace Annchienta
 {
@@ -77,7 +78,9 @@ namespace Annchienta
     void Layer::update()
     {
         for( unsigned int i=0; i<entities.size(); i++ )
+        {
             entities[i]->update();
+        }
 
         this->depthSort();
     }

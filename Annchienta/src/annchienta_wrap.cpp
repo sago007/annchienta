@@ -7055,6 +7055,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_InputManager_interactKeyTicked(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_interactKeyTicked",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_interactKeyTicked" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  result = (bool)((Annchienta::InputManager const *)arg1)->interactKeyTicked();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_InputManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::InputManager *result = 0 ;
@@ -13497,6 +13519,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"InputManager_getInputMode", _wrap_InputManager_getInputMode, METH_VARARGS, NULL},
 	 { (char *)"InputManager_setInteractKey", _wrap_InputManager_setInteractKey, METH_VARARGS, NULL},
 	 { (char *)"InputManager_getInteractKey", _wrap_InputManager_getInteractKey, METH_VARARGS, NULL},
+	 { (char *)"InputManager_interactKeyTicked", _wrap_InputManager_interactKeyTicked, METH_VARARGS, NULL},
 	 { (char *)"new_InputManager", _wrap_new_InputManager, METH_VARARGS, NULL},
 	 { (char *)"delete_InputManager", _wrap_delete_InputManager, METH_VARARGS, NULL},
 	 { (char *)"InputManager_swigregister", InputManager_swigregister, METH_VARARGS, NULL},

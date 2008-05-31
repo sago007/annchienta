@@ -5,10 +5,8 @@
 <oninteract>
 import party, annchienta
 partyManager = party.getPartyManager()
-
-partyManager.changeMap(&quot;locations/tetia/village.xml&quot;, annchienta.Point( annchienta.TilePoint, 22, 13 ) )
-
 # Change to field sprite
 partyManager.player.setSprite(&quot;sprites/aelaan.png&quot;)
+partyManager.changeMap(&quot;locations/tetia/village.xml&quot;, annchienta.Point( annchienta.TilePoint, 22, 13 ) )
 </oninteract>
 </sprite>

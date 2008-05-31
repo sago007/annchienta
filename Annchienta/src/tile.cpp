@@ -174,7 +174,7 @@ namespace Annchienta
 
 
     Tile::Tile( TileSet *ts, Point p0, int s0, Point p1, int s1, Point p2, int s2,
-                Point p3, int s3, int sso, int side ): list(0), tileSet(ts),
+                Point p3, int s3, int sso, int side ): Entity("tile"), list(0), tileSet(ts),
                 sideSurfaceOffset(sso), nullTile(false), needsRecompiling(true),
                 obstruction(DefaultObstruction)
     {

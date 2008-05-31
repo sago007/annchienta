@@ -13,6 +13,8 @@ class PartyManager:
         self.mapManager = annchienta.getMapManager()
         self.sceneManager = scene.getSceneManager()
 
+        self.lastMaps = []
+
     def free( self ):
         self.currentMap.removeObject(self.player)
         self.currentMap = 0
@@ -69,6 +71,9 @@ class PartyManager:
 
     # Creates new xml document
     def update( self ):
+
+        # Clear our map cache.
+        self.lastMaps = []
 
         self.document = xml.dom.minidom.Document()
         partyElement = self.document.createElement("party")
@@ -147,11 +152,13 @@ class PartyManager:
         return record.lower() in self.records
 
     def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ), newLayer = 0, fade=True ):
+
         if fade:
             self.sceneManager.fadeOut()
+
         self.player.setPosition( newPosition )
         self.currentMap.removeObject( self.player )
-        self.lastMap = self.currentMap
+        self.lastMaps += [self.currentMap]
         self.currentMap = annchienta.Map( newMapFileName )
         self.currentMap.setCurrentLayer( newLayer )
         self.currentMap.addObject( self.player )

@@ -27,7 +27,7 @@ class Status:
     def writeTo( self, element ):
 
         for a in self.attributes:
-            element.setAttribute( a.name, str(a.value) )
+            element.setAttribute( a.name, str(int(a.value)) )
 
     def get( self, name ):
 

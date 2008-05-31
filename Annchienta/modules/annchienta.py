@@ -194,6 +194,7 @@ class InputManager(_object):
     def getInputMode(*args): return _annchienta.InputManager_getInputMode(*args)
     def setInteractKey(*args): return _annchienta.InputManager_setInteractKey(*args)
     def getInteractKey(*args): return _annchienta.InputManager_getInteractKey(*args)
+    def interactKeyTicked(*args): return _annchienta.InputManager_interactKeyTicked(*args)
     def __init__(self, *args): 
         this = _annchienta.new_InputManager(*args)
         try: self.this.append(this)
