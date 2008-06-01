@@ -7,11 +7,38 @@
 
 namespace Annchienta
 {
+    /** These enums are used for indicating types of Points we
+     *  can be dealing with.
+     */
     enum PointType
     {
+        /** A Point defined by an x, y (and z) coordinate. The x and
+         *  y coordinates indicate which tile this point is situated
+         *  on. The most northern point of the Map is considered to
+         *  be (0,0).
+         *  \image html point_tilepoints.png
+         */
         TilePoint=0,
+
+        /** A Point defined by an x, y (and z) coordinate. The x and
+         *  y coordinates indicate a point in an isometric axis system.
+         *  The most northern point of the Map is considered to be (0,0)
+         *  \image html point_isometricpoints.png
+         */
         IsometricPoint,
+
+        /** A Point defined by an x, y (and z) coordinate. The x and
+         *  y coordinates indicate a point in an orthogonal axis system
+         *  where the most northern point of the Map is (0,0).
+         *  \image html point_mappoints.png
+         */
         MapPoint,
+
+        /** A Point defined by an x and y coordinate. This indicates
+         *  a point on the screen. The top-left corner of the window
+         *  is considered (0,0).
+         *  \image html point_screenpoints.png
+         */
         ScreenPoint
     };
 

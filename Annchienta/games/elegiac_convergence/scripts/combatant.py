@@ -157,6 +157,10 @@ class Combatant:
 
     def physicalAttack( self, target, attackPower=20, chanceOnHit=0.8 ):
 
+        # Miss a lot when you're blinded.
+        if "blind" in target.buffers:
+            chanceOnHit /= 2.0
+
         # Check if we hit first.
         r = annchienta.randFloat()
         if r > chanceOnHit:
@@ -170,6 +174,7 @@ class Combatant:
         dmg *= annchienta.randFloat(0.9,1.1)
         dmg = int(dmg)
 
+        # Half damage if we have protect.
         if "protect" in target.buffers:
             dmg /= 2
 

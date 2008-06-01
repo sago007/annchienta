@@ -383,6 +383,51 @@ class Lich(Strategy):
     def isAvailableFor( self, m_combatant ):
         return False
 
+## THUG
+#
+#  A melee-based class that uses powerful attacks but
+#  takes quite long for the next turn to come up.
+#
+class Thug(Strategy):
+
+    name = "thug"
+    description = "A slow attacker trying to blind enemies."
+    strength, defense, magic, resistance = 4, 3, 1, 2
+
+    category = "melee"
+
+    def __init__( self, m_battle, m_combatant ):
+
+        Strategy.__init__( self, m_battle, m_combatant )
+        self.turns = 3
+
+    def control( self ):
+
+        # Decrease our turns for this strategy.
+        self.turns -= 1
+
+        # Add some delay now.
+        self.m_combatant.delay += 9
+
+        # Select any random target.
+        array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
+        if not len(array):
+            return
+        target = array[ annchienta.randInt(0,len(array)-1) ]
+
+        # Attack that target with quit high attack power (=45).
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
+        self.m_battle.physicalAttackAnimation( self.m_combatant, target )
+        sound = self.cacheManager.getSound("sounds/sword.ogg")
+        if self.m_combatant.physicalAttack( target, 45, 0.7 ):
+            self.audioManager.playSound( sound )
+        if not "blind" in target.ailments:
+            target.ailments += ["blind"]
+        self.m_battle.returnHomeAnimation( self.m_combatant )
+
+    def isAvailableFor( self, m_combatant ):
+        return m_combatant.experience.get("fighter")>6
+
 # List with all strategies, used by getStrategy()
 all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner, Dragon, Lich]
 
