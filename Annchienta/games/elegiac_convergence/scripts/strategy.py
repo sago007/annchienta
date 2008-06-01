@@ -428,8 +428,52 @@ class Thug(Strategy):
     def isAvailableFor( self, m_combatant ):
         return m_combatant.experience.get("fighter")>6
 
+## CHRONOMANCER
+#
+#  A white-magic based class that delays enemies and speeds
+#  up allies.
+#
+class Chronomancer(Strategy):
+
+    name = "chronomancer"
+    description = "Manipulates time in order to help allies."
+    strength, defense, magic, resistance = 1, 3, 2, 4
+
+    category = "white magic"
+
+    def __init__( self, m_battle, m_combatant ):
+
+        Strategy.__init__( self, m_battle, m_combatant )
+        self.turns = 2
+
+    def control( self ):
+
+        # Decrease our turns for this strategy.
+        self.turns -= 1
+
+        # Add some delay now.
+        self.m_combatant.delay += 6
+
+        # Select first array.
+        allies = self.m_battle.enemies if self.m_combatant.hostile else self.m_battle.allies
+        enemies = self.m_battle.enemies if not self.m_combatant.hostile else self.m_battle.allies
+
+        # Subtract 1 from ally delay.
+        for a in allies:
+            if a.delay > 1:
+                a.delay -= 1
+
+        # Add 1 to enemy delay.
+        for e in enemies:
+            e.delay += 1
+
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" delays all enemies!" )
+
+    def isAvailableFor( self, m_combatant ):
+        return m_combatant.experience.get("monk")>5
+
 # List with all strategies, used by getStrategy()
-all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner, Dragon, Lich]
+all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner, Dragon, Lich, Thug, Chronomancer]
 
 def getStrategy( name ):
     for s in all:
