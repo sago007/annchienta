@@ -472,6 +472,47 @@ class Chronomancer(Strategy):
     def isAvailableFor( self, m_combatant ):
         return m_combatant.experience.get("monk")>5
 
+## MEDIC
+#
+#  Simple white magic class that heals everyone
+#  all the time.
+#
+class Healer(Strategy):
+
+    name = "healer"
+    description = "Heals allies."
+    strength, defense, magic, resistance = 1, 3, 2, 4
+
+    category = "white magic"
+
+    def __init__( self, m_battle, m_combatant ):
+
+        Strategy.__init__( self, m_battle, m_combatant )
+        self.turns = 3
+
+    def control( self ):
+
+        # Decrease our turns for this strategy.
+        self.turns -= 1
+
+        # Add some delay now.
+        self.m_combatant.delay += 7
+
+        # Select the allie with the lowest health.
+        array = self.m_battle.enemies if self.hostile else self.m_battle.enemies
+
+        # Heal that target for 1/4 of his health.
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" heals the party!" )
+        for t in array:
+            t.addHealth( t.status.get("maxhealth")/5 )
+        surf = self.cacheManager.getSurface("images/animations/cure.png")
+        sound = self.cacheManager.getSound("sounds/cure.ogg")
+        self.audioManager.playSound( sound )
+        self.m_battle.surfaceOverSpritesAnimation( [array], surf, 0, -50 )
+
+    def isAvailableFor( self, m_combatant ):
+        return True
+
 # List with all strategies, used by getStrategy()
 all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner, Dragon, Lich, Thug, Chronomancer]
 

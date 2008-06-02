@@ -23,6 +23,32 @@ def read():
         return
 
     sceneManager.text( "... The island is divided by two natural structures: the central mountains, and the Tasumian woods." )
-    sceneManager.text( "Since most travellers would not be able to go through either of those, a road was built in between..." )
+    sceneManager.text( "Since most travellers were not be able to go through either of those, a road was built in between..." )
+
+    if not keepOnReading():
+        return
+
+    sceneManager.text( "... Since the colonisation of this island Welsar, contact with other islands was always maintained very well." )
+    sceneManager.text( "This island, however, is situated rather far from most islands in the Alliance..." )
+
+    if not keepOnReading():
+        return
+
+    sceneManager.text( "... That's why, until today, Aldwar remains our most important trade contact." )
+    sceneManager.text( "A ship for Aldwar parts every three days..." )
+
+    if not partyManager.hasRecord("tetia_read_book"):
+
+        if not keepOnReading():
+            return
+
+        # Should give something to readers here.
+        sceneManager.text( "... For the attentive readers..." )
+        sceneManager.text( "You received the Medic strategy!" )
+
+        for c in partyManager.team:
+            c.strategies += ["medic"]
+
+        partyManager.addRecord("tetia_read_book")
 
 read()
