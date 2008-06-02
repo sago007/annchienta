@@ -72,6 +72,10 @@ elif partyManager.hasRecord("tetia_met_inyse"):
     sceneManager.speak( esana, "That island is huge, and there's a large jungle to the east. If he gets there... we'll probably never find him." )
     sceneManager.speak( inyse, "So we stop him. If he's heading there, our best chance is to head to Anpere." )
     sceneManager.speak( player, "Anpere is this island's only port, situated to the south... We have to head through the Tasumian woods to get there. Let's go." )
+    sceneManager.speak( esana, "The Tasumian woods? Why not just take the main road, just south of those?" )
+    sceneManager.speak( inyse, "We can't afford to get arrested. Not now." )
+    sceneManager.speak( esana, "But I heard so many... awful stories about those woods." )
+    sceneManager.speak( inyse, "Many travellers return from those woods with fabulous stories. Many do not return. Unfortunately, It's our only chance." )
 
     sceneManager.text( "END OF ANNCHIENTA DEMO. THANKS FOR PLAYING." )
 
