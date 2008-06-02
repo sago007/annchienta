@@ -511,7 +511,7 @@ class Healer(Strategy):
         self.m_battle.surfaceOverSpritesAnimation( [array], surf, 0, -50 )
 
     def isAvailableFor( self, m_combatant ):
-        return True
+        return False
 
 # List with all strategies, used by getStrategy()
 all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner, Dragon, Lich, Thug, Chronomancer]
