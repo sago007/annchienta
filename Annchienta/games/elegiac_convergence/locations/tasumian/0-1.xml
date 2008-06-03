@@ -17,16 +17,16 @@
 0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 0 2 0 0    0 2 8 2 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 3 0 0    8 3 0 2 0 2 0 3 0 0    0 3 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
 0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
 </tiles>
-<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="2" tiley="2"/>
-<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="6" tiley="10"/>
-<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="13" tiley="12"/>
-<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="4" tiley="14"/>
-<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="12" tiley="4"/>
+<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="8" tiley="12"/>
+<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="9" tiley="5"/>
+<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="4" tiley="4"/>
+<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="14" tiley="11"/>
+<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="11" tiley="8"/>
 
-<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="4" tiley="2"/>
-<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="8" tiley="8"/>
-<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="2" tiley="9"/>
-<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="12" tiley="2"/>
+<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="5" tiley="5"/>
+<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="9" tiley="4"/>
+<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="13" tiley="2"/>
+<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="14" tiley="6"/>
 
 <!-- Way east. -->
 <area tilex1="5" tilex2="8" tiley1="0" tiley2="1">

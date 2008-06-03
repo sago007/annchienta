@@ -8,6 +8,8 @@ import annchienta
 
 engine = annchienta.getEngine()
 
+logManager = annchienta.getLogManager()
+
 videoManager = annchienta.getVideoManager()
 videoManager.setVideoMode( 400, 300, "Annchienta", False )
 videoManager.setClearColor(0,0,0)
@@ -89,3 +91,5 @@ while inputManager.running():
     #videoManager.begin()
     #videoManager.drawSurface( surf, 0, 0, 0, 0, 200, 100 )
     videoManager.end()
+
+logManager.message("Finished playing Elegiac Convergence.")

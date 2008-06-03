@@ -41,6 +41,23 @@ namespace Annchienta
         return enabled;
     }
 
+    void LogManager::message( const char *fmt, ... )
+    {
+        va_list arg;
+
+        va_start( arg, fmt );
+
+        if( logFile )
+        {
+            fprintf( logFile, "Message - " );
+            vfprintf( logFile, fmt, arg );
+            fprintf( logFile, "\n" );
+            fflush( logFile );
+        }
+
+        va_end( arg );
+    }
+
     void LogManager::warning( const char *fmt, ... )
     {
         va_list arg;

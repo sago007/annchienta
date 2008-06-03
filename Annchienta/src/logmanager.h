@@ -35,6 +35,10 @@ namespace Annchienta
              */
             bool isEnabled() const;
 
+            /** Prints a message to the log file.
+             */
+            void message( const char *fmt, ... );
+
             /** Prints a warning to the log file.
              */
             void warning( const char *fmt, ... );

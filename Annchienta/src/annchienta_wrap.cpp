@@ -3807,6 +3807,54 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_LogManager_message__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs) {
+  PyObject *resultobj = 0;
+  Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:LogManager_message",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LogManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "LogManager_message" "', argument " "1"" of type '" "Annchienta::LogManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::LogManager * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "LogManager_message" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  (arg1)->message((char const *)arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_LogManager_message(PyObject *self, PyObject *args) {
+  PyObject *resultobj;
+  PyObject *varargs;
+  PyObject *newargs;
+  
+  newargs = PyTuple_GetSlice(args,0,2);
+  varargs = PyTuple_GetSlice(args,2,PyTuple_Size(args)+1);
+  resultobj = _wrap_LogManager_message__varargs__(self,newargs,varargs);
+  Py_XDECREF(newargs);
+  Py_XDECREF(varargs);
+  return resultobj;
+}
+
+
 SWIGINTERN PyObject *_wrap_LogManager_warning__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs) {
   PyObject *resultobj = 0;
   Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
@@ -13461,6 +13509,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"getEngine", _wrap_getEngine, METH_VARARGS, NULL},
 	 { (char *)"LogManager_enable", _wrap_LogManager_enable, METH_VARARGS, NULL},
 	 { (char *)"LogManager_isEnabled", _wrap_LogManager_isEnabled, METH_VARARGS, NULL},
+	 { (char *)"LogManager_message", _wrap_LogManager_message, METH_VARARGS, NULL},
 	 { (char *)"LogManager_warning", _wrap_LogManager_warning, METH_VARARGS, NULL},
 	 { (char *)"LogManager_error", _wrap_LogManager_error, METH_VARARGS, NULL},
 	 { (char *)"new_LogManager", _wrap_new_LogManager, METH_VARARGS, NULL},
