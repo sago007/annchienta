@@ -13,6 +13,8 @@ class Strategy:
     description = "Empty strategy class."
     strength, defense, magic, resistance = 3, 2, 3, 2
 
+    category = "none"
+
     def __init__( self, m_battle, m_combatant ):
 
         self.cacheManager = annchienta.getCacheManager()
@@ -477,9 +479,9 @@ class Chronomancer(Strategy):
 #  Simple white magic class that heals everyone
 #  all the time.
 #
-class Healer(Strategy):
+class Medic(Strategy):
 
-    name = "healer"
+    name = "medic"
     description = "Heals allies."
     strength, defense, magic, resistance = 1, 3, 2, 4
 
@@ -514,7 +516,7 @@ class Healer(Strategy):
         return False
 
 # List with all strategies, used by getStrategy()
-all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner, Dragon, Lich, Thug, Chronomancer]
+all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner, Dragon, Lich, Thug, Chronomancer, Medic]
 
 def getStrategy( name ):
     for s in all:

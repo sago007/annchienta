@@ -3,8 +3,15 @@
     <frame number="1"/>
     <animation name="stand" frames="1" speed="20" />
 <oninteract>
-import party, scene
+import party, scene, annchienta
 partyManager, sceneManager = party.getPartyManager(), scene.getSceneManager()
-sceneManager.speak( partyManager.player, &quot;We'd better not go back there...&quot; )
+
+if not partyManager.hasRecord('tetia_baniran_clues'):
+    sceneManager.speak( partyManager.player, &quot;The Tasumian woods are considered dangerous... we'd better stay away from them.&quot; )
+
+else:
+    # Change to regular sprite
+    partyManager.player.setSprite(&quot;sprites/aelaan.png&quot;)
+    partyManager.changeMap(&quot;locations/tasumian/1-0.xml&quot;, annchienta.Point( annchienta.TilePoint, 7, 2 ) )
 </oninteract>
 </sprite>

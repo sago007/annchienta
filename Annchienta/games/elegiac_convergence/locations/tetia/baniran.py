@@ -47,7 +47,7 @@ if not partyManager.hasRecord("tetia_met_baniran"):
     sceneManager.speak( esana, "Thanks... But I don't think you can help us... unless you have any idea on who really killed my father?" )
     sceneManager.speak( baniran, "No, I'm sorry." )
 
-elif partyManager.hasRecord("tetia_met_inyse"):
+elif partyManager.hasRecord("tetia_met_inyse") and not partyManager.hasRecord("tetia_baniran_clues"):
 
     partyManager.addRecord("tetia_baniran_clues")
     sceneManager.speak( baniran, "Inyse! Long time no see... how've you been doing?" )
@@ -76,8 +76,6 @@ elif partyManager.hasRecord("tetia_met_inyse"):
     sceneManager.speak( inyse, "We can't afford to get arrested. Not now." )
     sceneManager.speak( esana, "But I heard so many... awful stories about those woods." )
     sceneManager.speak( inyse, "Many travellers return from those woods with fabulous stories. Many do not return. Unfortunately, It's our only chance." )
-
-    sceneManager.text( "END OF ANNCHIENTA DEMO. THANKS FOR PLAYING." )
 
 sceneManager.speak( baniran, "Why don't you sit here for a while and enjoy the sun?" )
 partyManager.heal()

@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<map height="15" tileheight="32" tileset="tiles/tasumian" tilewidth="64" width="15">
+<layer z="0">
+<tiles>
+0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 0 2 0 0    0 2 8 2 8 1 0 1 0 0    0 1 8 1 8 1 0 1 0 0    0 1 8 1 8 2 0 2 0 0    0 2 8 2 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 2 0 2 8 2 0 2 0 0    0 2 8 2 8 3 0 2 0 0    0 2 8 3 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 8 2 8 2 0 0    8 2 8 2 0 2 8 1 0 0    8 1 0 2 0 2 8 1 0 0    8 1 0 2 0 2 8 2 0 0    8 2 0 2 8 2 8 2 0 0    8 2 8 2 8 2 0 2 0 0    0 2 8 2 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 2 0 2 0 2 8 2 0 0    8 2 0 2 0 3 8 3 0 0    8 3 0 3 8 2 8 2 0 0    8 2 8 2 0 2 0 2 0 0    0 2 0 2 8 2 8 2 0 0    8 2 8 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 0 3 0 0    0 3 8 2 8 2 8 2 0 0    8 2 8 2 8 2 0 2 0 0    0 2 8 2 8 2 8 2 0 0    8 2 8 2 0 2 0 2 0 0    0 2 0 2 0 3 0 2 0 0    0 2 0 3 0 2 0 2 0 0    0 2 0 2 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 3 0 2 0 0    0 2 0 3 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 2 0 1 0 1 0 2 0 0    0 2 0 1 8 1 8 2 0 0    8 2 8 1 0 2 8 2 0 0    8 2 0 2 8 2 8 2 0 0    8 2 8 2 0 2 8 2 0 0    8 2 0 2 8 2 0 2 0 0    0 2 8 2 0 2 0 3 0 0    0 3 0 2 0 2 0 2 0 0    0 2 0 2 8 2 8 2 0 0    8 2 8 2 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 3 0 3 0 0    0 3 0 3 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 8 1 0 0    8 1 0 1 0 2 0 2 0 0    0 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 2 0 0    8 2 0 2 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 8 2 8 2 0 0    8 2 8 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 3 0 3 0 0    0 3 0 3 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 1 0 2 0 2 0 1 0 0    0 1 0 2 8 2 0 1 0 0    0 1 8 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 8 2 0 0    8 2 8 2 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 1 0 3 0 0    0 3 0 1 0 1 0 2 0 0    0 2 0 1 0 1 0 2 0 0    
+0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 0 2 0 0    0 2 8 2 0 2 8 2 0 0    8 2 0 2 8 2 8 2 0 0    8 2 8 2 0 2 0 2 0 0    0 2 0 2 8 1 0 2 0 0    0 2 8 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    
+0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 0 2 0 0    0 2 8 2 0 2 8 2 0 0    8 2 0 2 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 8 2 0 0    8 2 8 2 8 2 0 2 0 0    0 2 8 2 8 3 8 2 0 0    8 2 8 3 0 2 0 2 0 0    0 2 0 2 0 2 8 1 0 0    8 1 0 2 8 2 0 1 0 0    0 1 8 2 0 2 0 1 0 0    0 1 0 2 0 2 0 1 0 0    
+0 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 0 2 0 0    0 2 8 2 8 2 8 2 0 0    8 2 8 2 8 3 0 2 0 0    0 2 8 3 8 3 8 2 0 0    8 2 8 3 8 2 0 2 0 0    0 2 8 2 8 2 0 2 0 0    0 2 8 2 8 2 8 2 0 0    8 2 8 2 8 3 8 2 0 0    8 2 8 3 8 3 8 3 0 0    8 3 8 3 0 2 0 2 0 0    0 2 0 2 8 2 0 2 0 0    0 2 8 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 8 3 0 0    8 3 0 2 0 2 8 3 0 0    8 3 0 2 0 2 8 2 0 0    8 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 8 3 0 0    8 3 0 2 0 2 8 3 0 0    8 3 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 1 0 2 0 0    0 2 0 1 0 1 0 2 0 0    0 2 0 1 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 8 3 0 2 0 0    0 2 8 3 0 3 0 2 0 0    0 2 0 3 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 0 2 0 0    0 2 8 2 8 2 0 2 0 0    0 2 8 2 0 2 0 2 0 0    0 2 0 2 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 3 0 0    8 3 0 2 0 2 0 3 0 0    0 3 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
+</tiles>
+<staticobject name="tree" sprite="sprites/tree.png" mask="masks/tree.png" tilex="2" tiley="2"/>
+<staticobject name="tree" sprite="sprites/tree.png" mask="masks/tree.png" tilex="6" tiley="10"/>
+<staticobject name="tree" sprite="sprites/tree.png" mask="masks/tree.png" tilex="13" tiley="12"/>
+<staticobject name="tree" sprite="sprites/tree.png" mask="masks/tree.png" tilex="4" tiley="14"/>
+<staticobject name="tree" sprite="sprites/tree.png" mask="masks/tree.png" tilex="12" tiley="4"/>
+
+<staticobject name="bush" sprite="sprites/bush.png" mask="masks/bush.png" tilex="4" tiley="2"/>
+<staticobject name="bush" sprite="sprites/bush.png" mask="masks/bush.png" tilex="8" tiley="8"/>
+<staticobject name="bush" sprite="sprites/bush.png" mask="masks/bush.png" tilex="2" tiley="9"/>
+<staticobject name="bush" sprite="sprites/bush.png" mask="masks/bush.png" tilex="12" tiley="2"/>
+
+<!-- Way north. -->
+<area tilex1="0" tiley1="5" tilex2="1" tiley2="8">
+import party, annchienta
+partyManager = party.getPartyManager()
+partyManager.changeMap( &quot;locations/tasumian/0-&quot;+str(annchienta.randInt(2))+&quot;.xml&quot;, annchienta.Point( annchienta.TilePoint, 13, 8 ) )
+</area>
+
+<!-- Way east = WAY BACK TO WORLD MAP -->
+<area tilex1="5" tiley1="0" tilex2="8" tiley2="1">
+import party, annchienta
+partyManager = party.getPartyManager()
+partyManager.changeMap( &quot;locations/world/world.xml&quot;, annchienta.Point( annchienta.TilePoint, 7, 10 ) )
+</area>
+
+<!-- Way south. -->
+<area tilex1="14" tiley1="7" tilex2="15" tiley2="10">
+import party, annchienta
+partyManager = party.getPartyManager()
+partyManager.changeMap( &quot;locations/tasumian/2-&quot;+str(annchienta.randInt(2))+&quot;.xml&quot;, annchienta.Point( annchienta.TilePoint, 2, 7 ) )
+</area>
+
+<!-- Way west. -->
+<area tilex1="6" tiley1="14" tilex2="9" tiley2="15">
+import party, annchienta
+partyManager = party.getPartyManager()
+partyManager.changeMap( &quot;locations/tasumian/&quot;+str(annchienta.randInt(2))+&quot;-1.xml&quot;, annchienta.Point( annchienta.TilePoint, 6, 2 ) )
+</area>
+
+</layer>
+<onload script="locations/tasumian/onload.py"/>
+</map>
