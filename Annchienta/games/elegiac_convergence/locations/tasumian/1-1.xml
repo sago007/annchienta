@@ -17,16 +17,19 @@
 0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 8 2 0 2 0 0    0 2 8 2 8 2 0 2 0 0    0 2 8 2 0 2 8 2 0 0    8 2 0 2 0 1 8 1 0 0    8 1 0 1 0 1 0 1 0 0    0 1 0 1 8 2 0 2 0 0    0 2 8 2 8 2 0 2 0 0    0 2 8 2 0 2 8 3 0 0    8 3 0 2 0 2 8 3 0 0    8 3 0 2 0 2 0 3 0 0    0 3 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
 0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 2 8 2 0 0    8 2 0 2 0 2 8 2 0 0    8 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    0 2 0 2 0 2 0 2 0 0    
 </tiles>
-<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="3" tiley="8"/>
-<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="7" tiley="9"/>
+<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="3" tiley="12"/>
+<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="7" tiley="10"/>
 <staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="12" tiley="2"/>
 <staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="3" tiley="2"/>
 <staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="12" tiley="14"/>
 
-<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="3" tiley="6"/>
-<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="2" tiley="7"/>
+<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="4" tiley="9"/>
+<staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="3" tiley="11"/>
 <staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="4" tiley="14"/>
 <staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="12" tiley="2"/>
+
+<!-- Well. -->
+<staticobject name="well" config="locations/tasumian/well.xml" tilex="8" tiley="8"/>
 
 <!-- Way north. -->
 <area tilex1="0" tilex2="1" tiley1="5" tiley2="8">

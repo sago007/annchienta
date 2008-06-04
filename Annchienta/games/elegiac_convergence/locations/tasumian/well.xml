@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<sprite image="sprites/well.png" mask="masks/well.png">
+    <frame number="1"/>
+    <animation name="stand" frames="1" speed="20" />
+<oninteract>
+import scene, party
+partyManager, sceneManager = party.getPartyManager(), scene.getSceneManager()
+sceneManager.text( "You drink some water and rest near the well. Your health was restored." )
+partyManager.heal()
+</oninteract>
+</sprite>
