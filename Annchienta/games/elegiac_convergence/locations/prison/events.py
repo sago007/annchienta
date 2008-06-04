@@ -5,6 +5,7 @@ import party
 engine = annchienta.getEngine()
 mapManager = annchienta.getMapManager()
 inputManager = annchienta.getInputManager()
+videoManager = annchienta.getVideoManager()
 sceneManager = scene.getSceneManager()
 partyManager = party.getPartyManager()
 
@@ -20,6 +21,17 @@ player = partyManager.player
 
 # The first event
 if not partyManager.hasRecord("prison_awakening"):
+
+    # Quick quote.
+    f1, f2 = annchienta.Font( "assets/italics.ttf", 15 ), annchienta.Font( "assets/italics.ttf", 11 )
+    videoManager.begin()
+    videoManager.drawStringCentered( f1, "Non fueram, non sum, nescio, non ad me pertinet.", videoManager.getScreenWidth()/2, 100 )
+    videoManager.drawStringCentered( f2, "I haven't been, I am not, I don't know, nothing touches me at all.", videoManager.getScreenWidth()/2, 120 )
+    videoManager.drawStringCentered( f2, "- Found on an epitaph.", videoManager.getScreenWidth()/2, 135 )
+    f1, f2 = 0, 0
+    sceneManager.waitForClick()
+    sceneManager.fadeOut(255,255,255,3000)
+
     partyManager.addRecord("prison_awakening")
     player.setPosition( annchienta.Point( annchienta.TilePoint, 8, 5 ) )
     sceneManager.initDialog( [player] )
