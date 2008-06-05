@@ -27,6 +27,9 @@
 <staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="13" tiley="14"/>
 <staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="3" tiley="7"/>
 
+<!-- Wolf. -->
+<staticobject name="wolf1" config="locations/tasumian/wolf.xml" tilex="1" tiley="5"/>
+
 <!-- Way south. -->
 <area tilex1="14" tiley1="7" tilex2="15" tiley2="10">
 import party, annchienta

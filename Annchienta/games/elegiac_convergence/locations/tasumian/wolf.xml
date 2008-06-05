@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<sprite image="sprites/wolf.png" mask="masks/wolf.png">
+    <frame number="1"/>
+    <animation name="stand" frames="1" speed="20" />
+    <oninteract script="locations/tasumian/wolf.py"/>
+</sprite>
