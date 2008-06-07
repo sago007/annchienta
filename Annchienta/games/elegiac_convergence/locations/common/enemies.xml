@@ -43,7 +43,7 @@
     <!-- Should be pretty much impossible to defeat. -->
     <combatant name="krelshar">
         <sprite filename="sprites/krelshar.png" x1="67" y1="0" x2="134" y2="72"/>
-        <status strength="60" defense="60" magic="100" resistance="50" health="350" maxhealth="350"/>
+        <status strength="600" defense="600" magic="600" resistance="500" health="1350" maxhealth="1350"/>
         <strategies>
             warrior lich
         </strategies>

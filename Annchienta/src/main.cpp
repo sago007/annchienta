@@ -58,11 +58,6 @@ execfile( os.path.basename( \"%s\" ) )\n\
     modules, modules, filename, filename );
 
     PyRun_SimpleString( initScript );
-
-    /* Show debugging information.
-     */
-    if( PyErr_Occurred() )
-        PyErr_Print();
 }
 
 
@@ -98,4 +93,7 @@ int main( int argc, char **argv )
      */
     delete engine;
 
+    /* Return zero, everything went ok.
+     */
+    return 0;
 };

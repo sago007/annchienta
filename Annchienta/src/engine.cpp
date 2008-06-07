@@ -54,15 +54,15 @@ namespace Annchienta
         delete audioManager;
         delete cacheManager;
 
+        /* Quit our libraries.
+         */
+        SDL_Quit();
+
         /* LogManager goes last because errors might have
          * happened in the other delete statements, and
          * we want all errors to be reported.
          */
         delete logManager;
-
-        /* Quit our libraries.
-         */
-        SDL_Quit();
     }
 
     void Engine::runPythonScript( const char *filename ) const
