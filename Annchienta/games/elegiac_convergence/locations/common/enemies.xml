@@ -24,4 +24,20 @@
         </strategies>
         <drop experience="14"/>
     </combatant>
+    <combatant name="wolf">
+        <sprite filename="sprites/wolf.png"/>
+        <status strength="45" defense="40" magic="18" resistance="40" health="150" maxhealth="150"/>
+        <strategies>
+            fighter
+        </strategies>
+        <drop experience="20"/>
+    </combatant>
+    <combatant name="krelshar">
+        <sprite filename="sprites/krelshar.png" x1="67" y1="0" x2="134" y2="72"/>
+        <status strength="40" defense="50" magic="60" resistance="40" health="250" maxhealth="250"/>
+        <strategies>
+            warrior lich
+        </strategies>
+        <drop experience="60"/>
+    </combatant>
 </enemies>

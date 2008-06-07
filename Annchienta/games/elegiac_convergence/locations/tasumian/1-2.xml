@@ -51,12 +51,7 @@ partyManager.changeMap( &quot;locations/tasumian/2-&quot;+str(annchienta.randInt
 </area>
 
 <!-- Way west. == EXIT!-->
-<area tilex1="6" tilex2="9" tiley1="14" tiley2="15">
-import party, scene, annchienta
-partyManager = party.getPartyManager()
-#partyManager.changeMap( &quot;locations/tasumian/&quot;+str(annchienta.randInt(2))+&quot;-2.xml&quot;, annchienta.Point( annchienta.TilePoint, 6, 2 ) )
-scene.getSceneManager().text('Congrats, you found the exit.')
-</area>
+<area tilex1="6" tilex2="9" tiley1="14" tiley2="15" script="locations/tasumian/reach_exit.py"/>
 
 </layer>
 <onload script="locations/tasumian/onload.py"/>

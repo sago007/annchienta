@@ -254,10 +254,10 @@ class Monk(Strategy):
     def isAvailableFor( self, m_combatant ):
         return m_combatant.experience.get("healer")>6
 
-## ADEPT
+## POISONER
 #
-#  Most simple black-magic based class. Casts a spell on
-#  all opponents.
+#  Simple black-magic class that casts a curse upon an
+#  enemy which poisons him as well.
 #
 class Poisoner(Strategy):
 
@@ -500,17 +500,17 @@ class Medic(Strategy):
         # Add some delay now.
         self.m_combatant.delay += 7
 
-        # Select the allie with the lowest health.
-        array = self.m_battle.enemies if self.hostile else self.m_battle.enemies
+        # Select the allies or enemies.
+        array = self.m_battle.enemies if self.m_combatant.hostile else self.m_battle.allies
 
         # Heal that target for 1/4 of his health.
         self.sceneManager.info( self.m_combatant.name.capitalize()+" heals the party!" )
         for t in array:
-            t.addHealth( t.status.get("maxhealth")/5 )
+            t.addHealth( t.status.get("maxhealth")/6 )
         surf = self.cacheManager.getSurface("images/animations/cure.png")
         sound = self.cacheManager.getSound("sounds/cure.ogg")
         self.audioManager.playSound( sound )
-        self.m_battle.surfaceOverSpritesAnimation( [array], surf, 0, -50 )
+        self.m_battle.surfaceOverSpritesAnimation( array, surf, 0, -50 )
 
     def isAvailableFor( self, m_combatant ):
         return False

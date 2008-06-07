@@ -28,6 +28,11 @@
 <staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="13" tiley="12"/>
 <staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="4" tiley="2"/>
 
+<!-- If we have already talked to krelshar, and not killed this wolf already, there's a wolf. -->
+<if code="import party;partyManager=party.getPartyManager()" cond="partyManager.hasRecord('tasumian_met_krelshar') and not partyManager.hasRecord('tasumian_killed_wolf3')">
+    <staticobject name="wolf3" config="locations/tasumian/wolf.xml" tilex="6" tiley="10"/>
+</if>
+
 <!-- Way east. -->
 <area tilex1="5" tilex2="8" tiley1="0" tiley2="1">
 import party, annchienta

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<sprite image="sprites/krelshar.png" mask="masks/krelshar.png">
+    <frame number="1" x1="0" y1="0" x2="67" y2="72"/>
+    <animation name="stand" frames="1" speed="20" />
+</sprite>
