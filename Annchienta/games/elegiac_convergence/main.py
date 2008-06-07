@@ -54,6 +54,9 @@ title_font = annchienta.Font("assets/italics.ttf", 24)
 surf = annchienta.Surface( 400, 300, 3 )
 while inputManager.running():
 
+    # Doesn't do anything when title is already playing anyway.
+    audioManager.playMusic("music/title.ogg")
+
     inputManager.update()
 
     videoManager.begin()

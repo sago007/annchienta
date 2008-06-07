@@ -24,6 +24,14 @@
         </strategies>
         <drop experience="14"/>
     </combatant>
+    <combatant name="hawk">
+        <sprite filename="sprites/hawk.png"/>
+        <status strength="30" defense="40" magic="45" resistance="40" health="140" maxhealth="140"/>
+        <strategies>
+            bird warrior
+        </strategies>
+        <drop experience="20"/>
+    </combatant>
     <combatant name="wolf">
         <sprite filename="sprites/wolf.png"/>
         <status strength="45" defense="40" magic="18" resistance="40" health="150" maxhealth="150"/>
@@ -32,12 +40,13 @@
         </strategies>
         <drop experience="20"/>
     </combatant>
+    <!-- Should be pretty much impossible to defeat. -->
     <combatant name="krelshar">
         <sprite filename="sprites/krelshar.png" x1="67" y1="0" x2="134" y2="72"/>
-        <status strength="40" defense="50" magic="60" resistance="40" health="250" maxhealth="250"/>
+        <status strength="60" defense="60" magic="100" resistance="50" health="350" maxhealth="350"/>
         <strategies>
             warrior lich
         </strategies>
-        <drop experience="60"/>
+        <drop experience="100"/>
     </combatant>
 </enemies>

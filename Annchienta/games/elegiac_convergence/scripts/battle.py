@@ -162,10 +162,13 @@ class Battle:
         self.won = False
         self.running = False
 
+        self.audioManager.playMusic( "music/game_over.ogg" )
+
         # Little animation
         s = annchienta.Surface( "images/animations/game_over.png" )
         self.videoManager.drawSurface( s, 0, 0 )
         self.sceneManager.fadeOut( 100, 0, 0, 5000 )
+        self.sceneManager.waitForClick()
 
         #self.sceneManager.info( "You lost...", None )
         self.mapManager.stop()

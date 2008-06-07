@@ -180,8 +180,11 @@ namespace Annchienta
         if( entity->getEntityType() == StaticObjectEntity || entity->getEntityType() == PersonEntity )
             staticObjects.push_back( (StaticObject*) entity );
 
-        /* Entity needs to go in the right place.
+        /* Entity needs to go in the right place. Depthsort is of course
+         * nessecary, but we also need to do an update to the entity has
+         * has the right colliding tiles et cetera.
          */
+        entity->update();
         this->depthSort();
     }
 

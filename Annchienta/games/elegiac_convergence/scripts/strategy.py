@@ -515,8 +515,50 @@ class Medic(Strategy):
     def isAvailableFor( self, m_combatant ):
         return False
 
+## BIRD
+#
+#  Simple black-magic class for enemies.
+#
+class Bird(Strategy):
+
+    name = "bird"
+    description = "Casts wind attacks."
+    strength, defense, magic, resistance = 1, 3, 4, 2
+
+    category = "black magic"
+
+    def __init__( self, m_battle, m_combatant ):
+
+        Strategy.__init__( self, m_battle, m_combatant )
+        self.turns = 3
+
+    def control( self ):
+
+        # Decrease our turns for this strategy.
+        self.turns -= 1
+
+        # Add some delay now.
+        self.m_combatant.delay += 6
+
+        # Select any random target.
+        array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
+        if not len(array):
+            return
+        target = array[ annchienta.randInt(0,len(array)-1) ]
+
+        # Attack all targets with 12 attack power.
+        self.sceneManager.info( self.m_combatant.name.capitalize()+" casts wind on "+target.name.capitalize()+"!" )
+        surf = self.cacheManager.getSurface("images/animations/wind.png")
+        sound = self.cacheManager.getSound("sounds/wind.ogg")
+        self.audioManager.playSound( sound )
+        self.m_battle.surfaceOverSpritesAnimation( [target], surf, -50 if self.m_combatant.hostile else 50, 0 )
+        self.m_combatant.magicalAttack( target, 30, 0.8 )
+
+    def isAvailableFor( self, m_combatant ):
+        return False
+
 # List with all strategies, used by getStrategy()
-all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner, Dragon, Lich, Thug, Chronomancer, Medic]
+all = [Warrior, Healer, Adept, Fighter, Monk, Poisoner, Dragon, Lich, Thug, Chronomancer, Medic, Bird]
 
 def getStrategy( name ):
     for s in all:
