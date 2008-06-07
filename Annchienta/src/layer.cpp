@@ -179,6 +179,10 @@ namespace Annchienta
 
         if( entity->getEntityType() == StaticObjectEntity || entity->getEntityType() == PersonEntity )
             staticObjects.push_back( (StaticObject*) entity );
+
+        /* Entity needs to go in the right place.
+         */
+        this->depthSort();
     }
 
     void Layer::addArea( Area *area )

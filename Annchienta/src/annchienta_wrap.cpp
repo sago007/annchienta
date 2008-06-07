@@ -7866,6 +7866,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_MapManager_isRunning(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  bool result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_isRunning",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_isRunning" "', argument " "1"" of type '" "Annchienta::MapManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  result = (bool)((Annchienta::MapManager const *)arg1)->isRunning();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_MapManager_stop(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
@@ -13595,6 +13617,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_setOnUpdateScript", _wrap_MapManager_setOnUpdateScript, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setOnUpdateCode", _wrap_MapManager_setOnUpdateCode, METH_VARARGS, NULL},
 	 { (char *)"MapManager_run", _wrap_MapManager_run, METH_VARARGS, NULL},
+	 { (char *)"MapManager_isRunning", _wrap_MapManager_isRunning, METH_VARARGS, NULL},
 	 { (char *)"MapManager_stop", _wrap_MapManager_stop, METH_VARARGS, NULL},
 	 { (char *)"MapManager_update", _wrap_MapManager_update, METH_VARARGS, NULL},
 	 { (char *)"MapManager_updateOnce", _wrap_MapManager_updateOnce, METH_VARARGS, NULL},

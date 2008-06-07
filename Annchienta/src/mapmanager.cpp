@@ -232,6 +232,11 @@ namespace Annchienta
         SDL_RemoveTimer( timer );
     }
 
+    bool MapManager::isRunning() const
+    {
+        return running;
+    }
+
     void MapManager::stop()
     {
         running = false;

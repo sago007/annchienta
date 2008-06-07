@@ -324,7 +324,10 @@ namespace Annchienta
         }
 
         delete xml;
+
+        /* Initial updates. */
         sortLayers();
+        depthSort();
     }
 
     Map::Map( int w, int h, const char *tileSetFilename ): width(w), height(h), sortedLayers(0), currentLayer(0), onPreRenderCode(0), onPreRenderScript(0), onPostRenderCode(0), onPostRenderScript(0)

@@ -69,6 +69,7 @@ namespace Annchienta
             /* This function should basically run the game.
              */
             void run();
+            bool isRunning() const;
             void stop();
 
             void update( bool updateInput=true );
