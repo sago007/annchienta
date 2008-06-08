@@ -1,3 +1,2 @@
 cd `dirname $0`
-cd bin
-./annchienta_linux ../games/elegiac_convergence/main.py ../modules $PWD/../write
+bin/annchienta.bin games/elegiac_convergence/main.py $PWD/modules $PWD/write
