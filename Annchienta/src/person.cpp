@@ -200,6 +200,7 @@ namespace Annchienta
         */
         if( squaredDistance( position.x, position.y, tx, ty ) <= 25 )
         {
+            //printf("We're close enough.\n");
             this->setStandAnimation();
             return false;
         }
@@ -212,8 +213,12 @@ namespace Annchienta
 
             bool result;
 
+            //printf("We're moving: %d, %d.\n", x, y );
+
             this->move( x, y, true );
         }
+
+        //printf("Reached the end.\n");
 
         return true;
     }

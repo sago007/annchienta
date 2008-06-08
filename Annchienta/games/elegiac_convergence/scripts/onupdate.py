@@ -1,6 +1,7 @@
 import annchienta
 import party
 
+engine = annchienta.getEngine()
 inputManager = annchienta.getInputManager()
 mapManager = annchienta.getMapManager()
 
@@ -33,7 +34,7 @@ if inputManager.buttonTicked(1):
         if a.name == "save":
             import scene
             partyManager = party.getPartyManager()
-            partyManager.save("saves/save.xml")
+            partyManager.save( engine.getWriteDirectory()+"elegiac_convergence.xml" )
             sceneManager = scene.getSceneManager()
             sceneManager.text("Game saved!")
         if a.name == "quit":

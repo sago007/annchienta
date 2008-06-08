@@ -5,6 +5,8 @@
 #ifndef ANNCHIENTA_TILESET_H
 #define ANNCHIENTA_TILESET_H
 
+#include "engine.h"
+
 namespace Annchienta
 {
 
@@ -14,7 +16,7 @@ namespace Annchienta
     class TileSet
     {
         private:
-            char directory[512];
+            char directory[DEFAULT_STRING_SIZE];
 
             Surface **surfaces;
             int numberOfSurfaces;

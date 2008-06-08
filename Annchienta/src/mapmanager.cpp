@@ -244,6 +244,7 @@ namespace Annchienta
 
     void MapManager::update( bool updateInput )
     {
+        //printf("Updating %d times...\n", updatesNeeded );
         while( updatesNeeded>0 )
         {
             this->updateOnce( updateInput );

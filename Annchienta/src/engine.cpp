@@ -7,6 +7,7 @@
 #include <SDL.h>
 #include <GL/gl.h>
 #include <Python.h>
+#include <stdio.h>
 
 #include "logmanager.h"
 #include "videomanager.h"
@@ -19,8 +20,12 @@ namespace Annchienta
 {
     Engine *engine = 0;
 
-    Engine::Engine()
+    Engine::Engine( const char *_writeDirectory )
     {
+        /* Store write directory.
+         */
+        sprintf( writeDirectory, "%s/", _writeDirectory );
+
         /* Set global engine...
          */
         engine = this;
@@ -30,9 +35,14 @@ namespace Annchienta
         Py_Initialize();
         SDL_Init( SDL_INIT_EVERYTHING );
 
+        /* Create a filename in our writeDirectory.
+         */
+        char logFile[DEFAULT_STRING_SIZE];
+        sprintf( logFile, "%slog.txt", writeDirectory ); 
+
         /* Init other Single-Instance classes.
          */
-        logManager = new LogManager();
+        logManager = new LogManager( logFile );
         videoManager = new VideoManager();
         inputManager = new InputManager();
         mapManager = new MapManager();
@@ -101,6 +111,11 @@ namespace Annchienta
         *strptr = newCode;
     }
 
+    const char *Engine::getWriteDirectory() const
+    {
+        return writeDirectory;
+    }
+
     void Engine::write( const char *text ) const
     {
         printf( text );
@@ -128,10 +143,10 @@ namespace Annchienta
         pythonBoolean = b;
     }
 
-    Engine *getEngine()
+    Engine *getEngine( const char *writeDir )
     {
         if( !engine )
-            return (engine = new Engine);
+            return (engine = new Engine(writeDir));
         return engine;
     }
 

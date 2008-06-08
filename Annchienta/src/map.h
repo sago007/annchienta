@@ -6,6 +6,7 @@
 #define ANNCHIENTA_MAP_H
 
 #include <vector>
+#include "engine.h"
 
 namespace Annchienta
 {
@@ -28,7 +29,7 @@ namespace Annchienta
             Layer **sortedLayers;
             int currentLayer;
 
-            char filename[512];
+            char filename[DEFAULT_STRING_SIZE];
 
             char *onPreRenderScript, *onPreRenderCode;
             char *onPostRenderScript, *onPostRenderCode;

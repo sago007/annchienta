@@ -12,6 +12,7 @@
 #include "staticobject.h"
 #include "area.h"
 #include "logmanager.h"
+#include "inputmanager.h"
 
 namespace Annchienta
 {
@@ -182,9 +183,15 @@ namespace Annchienta
 
         /* Entity needs to go in the right place. Depthsort is of course
          * nessecary, but we also need to do an update to the entity has
-         * has the right colliding tiles et cetera.
+         * has the right colliding tiles et cetera. We also set inputMode
+         * to cinematic because we don't want to trigger collision areas
+         * yet.
          */
+        InputManager *inputManager = getInputManager();
+        InputMode mode = inputManager->getInputMode();
+        inputManager->setInputMode( CinematicMode );
         entity->update();
+        inputManager->setInputMode( mode );
         this->depthSort();
     }
 

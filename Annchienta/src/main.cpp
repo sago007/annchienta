@@ -16,8 +16,12 @@ extern "C" void init_annchienta(void);
 Annchienta::Engine *engine;
 Annchienta::LogManager *logManager;
 
-void runGame( const char *filename, const char *modules )
+void runGame( const char *filename, const char *modules, const char *writeDir )
 {
+    /* Creates a new engine, and get LogManager.
+     */
+    engine = Annchienta::getEngine( writeDir );
+    logManager = Annchienta::getLogManager();
 
     /* Make sure the given filename is valid.
      */
@@ -58,6 +62,10 @@ execfile( os.path.basename( \"%s\" ) )\n\
     modules, modules, filename, filename );
 
     PyRun_SimpleString( initScript );
+
+    /* Clear up.
+     */
+    delete engine;
 }
 
 
@@ -67,31 +75,23 @@ int main( int argc, char **argv )
      */
     srand( time(NULL) );
 
-    /* Creates a new engine, and get LogManager.
-     */
-    engine = Annchienta::getEngine();
-    logManager = Annchienta::getLogManager();
-
-    char gameToRun[512];
-    char moduleDir[512];
+    char gameToRun[DEFAULT_STRING_SIZE];
+    char moduleDir[DEFAULT_STRING_SIZE];
+    char writeDir[DEFAULT_STRING_SIZE];
 
     /* Select default values for parameters not given.
      */
-    if( argc<2 )
-        strcpy( gameToRun, "../games/elegiac_convergence/main.py" );
-    else
-        strcpy( gameToRun, argv[1] );
+    if( argc<4 )
+    {
+        printf("Usage: %s gameToRun moduleDirectory writeDirectory\n", argv[0] );
+        return 0;
+    }
 
-    if( argc<3 )
-        strcpy( moduleDir, "../modules" );
-    else
-        strcpy( moduleDir, argv[2] );
+    strcpy( gameToRun, argv[1] );
+    strcpy( moduleDir, argv[2] );
+    strcpy( writeDir, argv[3] );
 
-    runGame( gameToRun, moduleDir );
-
-    /* Clear up.
-     */
-    delete engine;
+    runGame( gameToRun, moduleDir, writeDir );
 
     /* Return zero, everything went ok.
      */

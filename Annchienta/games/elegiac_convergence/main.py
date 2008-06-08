@@ -71,7 +71,7 @@ while inputManager.running():
                 if options[i]=="Continue" or options[i]=="New Game":
 
                     # Choose appropriate filename.
-                    filename = "saves/save.xml" if options[i]=="Continue" else "saves/new.xml"
+                    filename = engine.getWriteDirectory()+"elegiac_convergence.xml" if options[i]=="Continue" else "saves/new.xml"
                     # Fallback
                     if not annchienta.isValidFile( filename ):
                         filename = "saves/new.xml"

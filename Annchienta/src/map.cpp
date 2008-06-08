@@ -24,6 +24,7 @@ using namespace io;
 #include "engine.h"
 #include "cachemanager.h"
 #include "logmanager.h"
+#include "inputmanager.h"
 
 namespace Annchienta
 {

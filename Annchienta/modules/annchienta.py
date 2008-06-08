@@ -81,12 +81,15 @@ class Point(_object):
 Point_swigregister = _annchienta.Point_swigregister
 Point_swigregister(Point)
 
+DEFAULT_STRING_SIZE = _annchienta.DEFAULT_STRING_SIZE
+SMALL_STRING_SIZE = _annchienta.SMALL_STRING_SIZE
 class Engine(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Engine, name, value)
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, Engine, name)
     __repr__ = _swig_repr
+    def getWriteDirectory(*args): return _annchienta.Engine_getWriteDirectory(*args)
     def write(*args): return _annchienta.Engine_write(*args)
     def setWindowTitle(*args): return _annchienta.Engine_setWindowTitle(*args)
     def getTicks(*args): return _annchienta.Engine_getTicks(*args)
@@ -101,7 +104,6 @@ class Engine(_object):
 Engine_swigregister = _annchienta.Engine_swigregister
 Engine_swigregister(Engine)
 
-getEngine = _annchienta.getEngine
 class LogManager(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, LogManager, name, value)
@@ -121,6 +123,7 @@ class LogManager(_object):
     __del__ = lambda self : None;
 LogManager_swigregister = _annchienta.LogManager_swigregister
 LogManager_swigregister(LogManager)
+getEngine = _annchienta.getEngine
 
 getLogManager = _annchienta.getLogManager
 class VideoManager(_object):

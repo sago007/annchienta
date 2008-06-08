@@ -5,6 +5,9 @@
 #ifndef ANNCHIENTA_ENGINE_H
 #define ANNCHIENTA_ENGINE_H
 
+#define DEFAULT_STRING_SIZE 512
+#define SMALL_STRING_SIZE 128
+
 namespace Annchienta
 {
 
@@ -29,11 +32,16 @@ namespace Annchienta
             AudioManager *audioManager;
             CacheManager *cacheManager;
 
+            char writeDirectory[DEFAULT_STRING_SIZE];
+
             bool pythonBoolean;
 
         public:
             #ifndef SWIG
-                Engine();
+                /** Write directory is the directory where files such
+		 *  as save files and logs will be placed.
+                 */
+                Engine( const char *writeDirectory="." );
                 ~Engine();
 
                 /** Safe method for running Python scripts.
@@ -58,6 +66,11 @@ namespace Annchienta
                  */
                 void toPythonCode( char **code );
             #endif
+
+            /** Finds out the writing directory. This should be used
+             *  if you want to know where to place save files etc.
+             */
+            const char *getWriteDirectory() const;
 
             /** This simply writes some text to stdout. This is
              *  preferred to the default Python "print" function
@@ -89,7 +102,10 @@ namespace Annchienta
             void setPythonBoolean( bool b );
     };
 
-    Engine *getEngine();
+    /** writeDir is only respected the first time this function
+     *  is called.
+     */
+    Engine *getEngine( const char *writeDir="." );
 };
 
 #endif

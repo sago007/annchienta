@@ -6,6 +6,7 @@
 #define ANNCHIENTA_AUDIOMANAGER_H
 
 #include <SDL_mixer.h>
+#include "engine.h"
 
 namespace Annchienta
 {
@@ -18,7 +19,7 @@ namespace Annchienta
     {
         private:
             Mix_Music *music;
-            char musicFilename[512];
+            char musicFilename[DEFAULT_STRING_SIZE];
 
         public:
             #ifndef SWIG

@@ -31,6 +31,7 @@ if not partyManager.hasRecord("prison_awakening"):
     f1, f2 = 0, 0
     sceneManager.waitForClick()
     sceneManager.fadeOut(255,255,255,3000)
+    mapManager.resync()
 
     partyManager.addRecord("prison_awakening")
     player.setPosition( annchienta.Point( annchienta.TilePoint, 8, 5 ) )

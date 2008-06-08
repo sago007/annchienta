@@ -7,6 +7,7 @@
 
 #include <list>
 #include <stdio.h>
+#include "engine.h"
 
 namespace Annchienta
 {
@@ -20,7 +21,7 @@ namespace Annchienta
         struct CacheObject
         {
             public:
-                char name[512];
+                char name[DEFAULT_STRING_SIZE];
                 T *data;
                 int references;
 

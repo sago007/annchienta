@@ -10,6 +10,7 @@
 #include <vector>
 #include <list>
 #include "point.h"
+#include "engine.h"
 
 namespace Annchienta
 {
@@ -26,8 +27,8 @@ namespace Annchienta
 
         struct Animation
         {
-            char name[512];
-            char frames[128];
+            char name[DEFAULT_STRING_SIZE];
+            char frames[SMALL_STRING_SIZE];
             int numberOfFrames;
             int speed;
         };
@@ -62,7 +63,7 @@ namespace Annchienta
 
             char *onInteractScript, *onInteractCode;
 
-            char xmlFile[512];
+            char xmlFile[DEFAULT_STRING_SIZE];
 
         public:
             StaticObject( const char *name, const char *configfile );

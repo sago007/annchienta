@@ -2778,6 +2778,30 @@ SWIG_pchar_descriptor(void)
 }
 
 
+SWIGINTERNINLINE PyObject *
+SWIG_FromCharPtrAndSize(const char* carray, size_t size)
+{
+  if (carray) {
+    if (size > INT_MAX) {
+      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+      return pchar_descriptor ? 
+	SWIG_NewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
+    } else {
+      return PyString_FromStringAndSize(carray, static_cast< int >(size));
+    }
+  } else {
+    return SWIG_Py_Void();
+  }
+}
+
+
+SWIGINTERNINLINE PyObject * 
+SWIG_FromCharPtr(const char *cptr)
+{ 
+  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
+}
+
+
 SWIGINTERN int
 SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 {
@@ -2879,30 +2903,6 @@ SWIG_AsVal_float (PyObject * obj, float *val)
     }
   }  
   return res;
-}
-
-
-SWIGINTERNINLINE PyObject *
-SWIG_FromCharPtrAndSize(const char* carray, size_t size)
-{
-  if (carray) {
-    if (size > INT_MAX) {
-      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-      return pchar_descriptor ? 
-	SWIG_NewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
-    } else {
-      return PyString_FromStringAndSize(carray, static_cast< int >(size));
-    }
-  } else {
-    return SWIG_Py_Void();
-  }
-}
-
-
-SWIGINTERNINLINE PyObject * 
-SWIG_FromCharPtr(const char *cptr)
-{ 
-  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
 }
 
 
@@ -3552,6 +3552,28 @@ SWIGINTERN PyObject *Point_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_Engine_getWriteDirectory(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Engine *arg1 = (Annchienta::Engine *) 0 ;
+  char *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Engine_getWriteDirectory",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Engine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Engine_getWriteDirectory" "', argument " "1"" of type '" "Annchienta::Engine const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Engine * >(argp1);
+  result = (char *)((Annchienta::Engine const *)arg1)->getWriteDirectory();
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Engine_write(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Engine *arg1 = (Annchienta::Engine *) 0 ;
@@ -3742,7 +3764,32 @@ SWIGINTERN PyObject *Engine_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_getEngine(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_getEngine__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  Annchienta::Engine *result = 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:getEngine",&obj0)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "getEngine" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  result = (Annchienta::Engine *)Annchienta::getEngine((char const *)arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Engine, 0 |  0 );
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_getEngine__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Engine *result = 0 ;
   
@@ -3751,6 +3798,34 @@ SWIGINTERN PyObject *_wrap_getEngine(PyObject *SWIGUNUSEDPARM(self), PyObject *a
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Engine, 0 |  0 );
   return resultobj;
 fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_getEngine(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[2];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 1); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 0) {
+    return _wrap_getEngine__SWIG_1(self, args);
+  }
+  if (argc == 1) {
+    int _v;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_getEngine__SWIG_0(self, args);
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'getEngine'.\n  Possible C/C++ prototypes are:\n    Annchienta::getEngine(char const *)\n    Annchienta::getEngine()\n");
   return NULL;
 }
 
@@ -13520,6 +13595,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Point_isEnclosedBy", _wrap_Point_isEnclosedBy, METH_VARARGS, NULL},
 	 { (char *)"Point_distance", _wrap_Point_distance, METH_VARARGS, NULL},
 	 { (char *)"Point_swigregister", Point_swigregister, METH_VARARGS, NULL},
+	 { (char *)"Engine_getWriteDirectory", _wrap_Engine_getWriteDirectory, METH_VARARGS, NULL},
 	 { (char *)"Engine_write", _wrap_Engine_write, METH_VARARGS, NULL},
 	 { (char *)"Engine_setWindowTitle", _wrap_Engine_setWindowTitle, METH_VARARGS, NULL},
 	 { (char *)"Engine_getTicks", _wrap_Engine_getTicks, METH_VARARGS, NULL},
@@ -14437,6 +14513,8 @@ SWIGEXPORT void SWIG_init(void) {
   SWIG_Python_SetConstant(d, "IsometricPoint",SWIG_From_int(static_cast< int >(Annchienta::IsometricPoint)));
   SWIG_Python_SetConstant(d, "MapPoint",SWIG_From_int(static_cast< int >(Annchienta::MapPoint)));
   SWIG_Python_SetConstant(d, "ScreenPoint",SWIG_From_int(static_cast< int >(Annchienta::ScreenPoint)));
+  SWIG_Python_SetConstant(d, "DEFAULT_STRING_SIZE",SWIG_From_int(static_cast< int >(512)));
+  SWIG_Python_SetConstant(d, "SMALL_STRING_SIZE",SWIG_From_int(static_cast< int >(128)));
   SWIG_Python_SetConstant(d, "CinematicMode",SWIG_From_int(static_cast< int >(Annchienta::CinematicMode)));
   SWIG_Python_SetConstant(d, "InteractiveMode",SWIG_From_int(static_cast< int >(Annchienta::InteractiveMode)));
   SWIG_Python_SetConstant(d, "TileEntity",SWIG_From_int(static_cast< int >(Annchienta::TileEntity)));

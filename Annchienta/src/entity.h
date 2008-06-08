@@ -6,6 +6,7 @@
 #define ANNCHIENTA_ENTITY_H
 
 #include "point.h"
+#include "engine.h"
 
 namespace Annchienta
 {
@@ -22,7 +23,7 @@ namespace Annchienta
     {
         protected:
             bool drawn;
-            char name[512];
+            char name[DEFAULT_STRING_SIZE];
             Layer *layer;
 
         public:
