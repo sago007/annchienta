@@ -5,7 +5,7 @@
 #include "videomanager.h"
 
 #include <SDL.h>
-#include <GL/gl.h>
+#include <SDL_opengl.h>
 
 #include "surface.h"
 #include "font.h"

@@ -5,7 +5,7 @@
 #include "mapmanager.h"
 
 #include <SDL.h>
-#include <GL/gl.h>
+#include <SDL_opengl.h>
 #include <Python.h>
 #include "map.h"
 #include "inputmanager.h"

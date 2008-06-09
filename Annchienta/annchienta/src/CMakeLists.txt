@@ -2,30 +2,31 @@
 
 ADD_SUBDIRECTORY( xml )
 
-ADD_CUSTOM_COMMAND(
-    TARGET annchienta
-    PRE_BUILD
-    COMMAND swig -python -c++ -o annchienta_wrap.cpp.i -outdir ${ANNCHIENTA_ROOT}/modules annchienta_interface.i
-)
+# Generate python file through:
+# ADD_CUSTOM_COMMAND(
+#     TARGET annchienta
+#     PRE_BUILD
+#     COMMAND swig -python -c++ -o annchienta_wrap.cpp -outdir ${ANNCHIENTA_BINARY_DIR}/modules annchienta_interface.i
+# )
 
 # Find our needed Packages.
-FIND_PACKAGE(PythonLibs REQUIRED)
-FIND_PACKAGE(SDL REQUIRED)
-FIND_PACKAGE(SDL_mixer REQUIRED)
-FIND_PACKAGE(Freetype REQUIRED)
-FIND_PACKAGE(PNG REQUIRED)
-FIND_PACKAGE(OpenGL REQUIRED)
+# FIND_PACKAGE(PythonLibs REQUIRED)
+# FIND_PACKAGE(SDL REQUIRED)
+# FIND_PACKAGE(SDL_mixer REQUIRED)
+# FIND_PACKAGE(Freetype REQUIRED)
+# FIND_PACKAGE(PNG REQUIRED)
+# FIND_PACKAGE(OpenGL REQUIRED)
 
 #pkg_check_modules(FT2 freetype2)
 
 # Set up include directories.
 INCLUDE_DIRECTORIES(
-    ${PYTHON_INCLUDE_PATH}
     ${SDL_INCLUDE_DIR}
     ${SDLMIXER_INCLUDE_DIR}
-    ${FREETYPE_INCLUDE_DIRS}
+    ${PYTHON_INCLUDE_PATH}
     ${PNG_INLUDE_DIR}
     ${OPENGL_INCLUDE_DIR}
+    ${FREETYPE_INCLUDE_DIRS}
 )
 
 ADD_EXECUTABLE(
@@ -36,13 +37,12 @@ ADD_EXECUTABLE(
 TARGET_LINK_LIBRARIES(
     annchienta
     irrXML
-    ${PYTHON_LIBRARIES}
-    ${PYTHON_DEBUG_LIBRARIES}
     ${SDL_LIBRARY}
     ${SDLMIXER_LIBRARY}
-    ${FREETYPE_LIBRARIES}
+    ${PYTHON_LIBRARIES}
     ${PNG_LIBRARIES}
     ${OPENGL_LIBRARIES}
+    ${FREETYPE_LIBRARIES}
 
     # Needed for python, ld errors without it.
     util

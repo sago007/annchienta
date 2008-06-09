@@ -5,7 +5,7 @@
 #include "engine.h"
 
 #include <SDL.h>
-#include <GL/gl.h>
+#include <SDL_opengl.h>
 #include <Python.h>
 #include <stdio.h>
 

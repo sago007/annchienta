@@ -5,7 +5,7 @@
 #ifndef ANNCHIENTA_SURFACE_H
 #define ANNCHIENTA_SURFACE_H
 
-#include <GL/gl.h>
+#include <SDL_opengl.h>
 
 namespace Annchienta
 {

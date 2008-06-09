@@ -10864,7 +10864,6 @@ SWIGINTERN PyObject *_wrap_Tile_setZ(PyObject *SWIGUNUSEDPARM(self), PyObject *a
   Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
   int arg2 ;
   int arg3 ;
-  int result;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
@@ -10891,8 +10890,8 @@ SWIGINTERN PyObject *_wrap_Tile_setZ(PyObject *SWIGUNUSEDPARM(self), PyObject *a
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tile_setZ" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  result = (int)(arg1)->setZ(arg2,arg3);
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  (arg1)->setZ(arg2,arg3);
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;

@@ -5,7 +5,7 @@
 #ifndef ANNCHIENTA_TILE_H
 #define ANNCHIENTA_TILE_H
 
-#include <GL/gl.h>
+#include <SDL_opengl.h>
 #include "point.h"
 #include "entity.h"
 
@@ -57,7 +57,7 @@ namespace Annchienta
 
             bool isNullTile() const;
 
-            int setZ( int point, int z );
+            void setZ( int point, int z );
             int getZ( int point ) const;
 
             #ifndef SWIG

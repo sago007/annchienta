@@ -254,7 +254,7 @@ namespace Annchienta
         return nullTile;
     }
 
-    int Tile::setZ( int point, int z )
+    void Tile::setZ( int point, int z )
     {
         points[point].z = z;
 
