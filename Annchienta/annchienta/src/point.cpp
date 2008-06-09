@@ -158,7 +158,7 @@ namespace Annchienta
     int Point::distance( Point other ) const
     {
         Point tmp = other.to( type );
-        return (int) sqrt( square(x-tmp.x) + square(y-tmp.y) + square(z-tmp.z) );
+        return (int) sqrt( double(square(x-tmp.x) + square(y-tmp.y) + square(z-tmp.z)) );
     }
 
 };

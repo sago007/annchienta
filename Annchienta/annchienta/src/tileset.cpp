@@ -19,7 +19,7 @@ namespace Annchienta
     {
         strcpy( directory, _directory );
 
-        char buffer[ strlen(directory)+16 ];
+        char buffer[ DEFAULT_STRING_SIZE ];
 
         /* Count the regular surfaces.
          */

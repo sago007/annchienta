@@ -73,7 +73,7 @@ namespace Annchienta
 
             /* Allocate room for some pixels.
              */
-            GLubyte pixels[ glWidth * glHeight * 2 ];
+            GLubyte *pixels = new GLubyte[ glWidth * glHeight * 2 ];
         
             /* Set the pixels to their right values.
              */
@@ -95,6 +95,10 @@ namespace Annchienta
             /* Create our texture.
              */
             glTexImage2D( GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, glWidth, glHeight, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, pixels );
+
+            /* Don't need those pixels anymore.
+			 */
+			delete [] pixels;
 
             /* Start our display list.
              */

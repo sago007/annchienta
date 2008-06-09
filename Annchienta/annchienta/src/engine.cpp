@@ -77,7 +77,7 @@ namespace Annchienta
 
     void Engine::runPythonScript( const char *filename ) const
     {
-        char buffer[ strlen(filename)+32 ];
+        char buffer[ DEFAULT_STRING_SIZE ];
         sprintf( buffer, "execfile(\"%s\")\n", filename );
 
         PyRun_SimpleString( buffer );
@@ -87,7 +87,7 @@ namespace Annchienta
     bool Engine::evaluatePythonBoolean( const char *start, const char *conditional )
     {
         const char script[] = "import annchienta\n%s\nannchienta.getEngine().setPythonBoolean(%s)\n";
-        char code[ strlen(script) + strlen( start ) + strlen( conditional ) + 4 ];
+        char code[ LARGE_STRING_SIZE ];
         sprintf( code, script, start, conditional );
         PyRun_SimpleString( code );
         return pythonBoolean;

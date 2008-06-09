@@ -221,6 +221,8 @@ namespace Annchienta
                 pixels[y*width+x] = value;
             }
         }
+
+		return true;
     }
 
 };

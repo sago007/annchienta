@@ -7,6 +7,7 @@
 
 #define DEFAULT_STRING_SIZE 512
 #define SMALL_STRING_SIZE 128
+#define LARGE_STRING_SIZE 1024
 
 namespace Annchienta
 {
