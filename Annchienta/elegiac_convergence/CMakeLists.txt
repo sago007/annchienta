@@ -5,12 +5,19 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 PROJECT(ELEGIAC_CONVERGENCE)
 
+
 # Install all directories to /usr/share/annchienta/elegiac_convergence
 INSTALL(
     DIRECTORY assets images locations masks music saves scripts sounds sprites tiles
     DESTINATION share/annchienta/elegiac_convergence
     # We don't want any svn shit installed.
     PATTERN ".svn" EXCLUDE
+)
+
+# Install main.py
+INSTALL(
+    FILES main.py
+    DESTINATION share/annchienta/elegiac_convergence
 )
 
 # We determine what the write directory is, based on the OS.
@@ -24,7 +31,7 @@ ENDIF(WIN32)
 FILE(
     WRITE elegiac-convergence
     "mkdir -p ${WRITEDIR}\n"
-    "annchienta ${CMAKE_INSTALL_PREFIX}/share/annchienta/elegiac_convergence/scripts/main.py ${CMAKE_INSTALL_PREFIX}/share/annchienta/modules ${WRITEDIR}\n"
+    "annchienta ${CMAKE_INSTALL_PREFIX}/share/annchienta/elegiac_convergence/main.py ${CMAKE_INSTALL_PREFIX}/share/annchienta/modules ${WRITEDIR}\n"
 )
 
 # Install that script. Use programs instead of files for chmod +x

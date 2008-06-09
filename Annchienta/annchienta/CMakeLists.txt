@@ -3,12 +3,16 @@
 # We need 2.6 because cmake has freetype2 support from then onwards.
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
-
 PROJECT(ANNCHIENTA)
 
-SET( ANNCHIENTA_ROOT ${ANNCHIENTA_BINARY_DIR})
-
 ADD_SUBDIRECTORY(src)
+
+# Install modules to the right place.
+INSTALL(
+    DIRECTORY modules
+    DESTINATION share/annchienta
+    PATTERN ".svn" EXCLUDE
+)
 
 # For the uninstall rule.
 CONFIGURE_FILE(
