@@ -91,6 +91,7 @@ class Engine(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, Engine, name)
     __repr__ = _swig_repr
     def getWriteDirectory(*args): return _annchienta.Engine_getWriteDirectory(*args)
+    def setWriteDirectory(*args): return _annchienta.Engine_setWriteDirectory(*args)
     def write(*args): return _annchienta.Engine_write(*args)
     def setWindowTitle(*args): return _annchienta.Engine_setWindowTitle(*args)
     def getTicks(*args): return _annchienta.Engine_getTicks(*args)
