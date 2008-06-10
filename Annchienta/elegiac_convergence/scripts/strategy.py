@@ -506,7 +506,7 @@ class Medic(Strategy):
         # Heal that target for 1/4 of his health.
         self.sceneManager.info( self.m_combatant.name.capitalize()+" heals the party!" )
         for t in array:
-            t.addHealth( t.status.get("maxhealth")/6 )
+            t.addHealth( t.status.get("maxhealth")/8 )
         surf = self.cacheManager.getSurface("images/animations/cure.png")
         sound = self.cacheManager.getSound("sounds/cure.ogg")
         self.audioManager.playSound( sound )

@@ -52,10 +52,6 @@ namespace Annchienta
 
     Engine::~Engine()
     {
-        /* Free up Python stuff first.
-         */
-        Py_Finalize();
-
         /* Free up other Single-Instance classes.
          */
         delete videoManager;
@@ -73,6 +69,10 @@ namespace Annchienta
          * we want all errors to be reported.
          */
         delete logManager;
+
+        /* At last, free up Python stuff.
+         */
+        Py_Finalize();
     }
 
     void Engine::runPythonScript( const char *filename ) const
