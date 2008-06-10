@@ -195,8 +195,8 @@ namespace Annchienta
         glDisable( GL_TEXTURE_2D );
 
         glBegin( GL_LINES );
-            glVertex2f( x1, y1 );
-            glVertex2f( x2, y2 );
+            glVertex2f( (GLfloat)x1, (GLfloat)y1 );
+            glVertex2f( (GLfloat)x2, (GLfloat)y2 );
         glEnd();
 
         glEnable( GL_TEXTURE_2D );
@@ -207,9 +207,9 @@ namespace Annchienta
         glDisable( GL_TEXTURE_2D );
 
         glBegin( GL_TRIANGLES );
-            glVertex2f( x1, y1 );
-            glVertex2f( x2, y2 );
-            glVertex2f( x3, y3 );
+            glVertex2f( (GLfloat)x1, (GLfloat)y1 );
+            glVertex2f( (GLfloat)x2, (GLfloat)y2 );
+            glVertex2f( (GLfloat)x3, (GLfloat)y3 );
         glEnd();
 
         glEnable( GL_TEXTURE_2D );
@@ -220,10 +220,10 @@ namespace Annchienta
         glDisable( GL_TEXTURE_2D );
 
         glBegin( GL_QUADS );
-            glVertex2f( x1, y1 );
-            glVertex2f( x1, y2 );
-            glVertex2f( x2, y2 );
-            glVertex2f( x2, y1 );
+            glVertex2f( (GLfloat)x1, (GLfloat)y1 );
+            glVertex2f( (GLfloat)x1, (GLfloat)y2 );
+            glVertex2f( (GLfloat)x2, (GLfloat)y2 );
+            glVertex2f( (GLfloat)x2, (GLfloat)y1 );
         glEnd();
 
         glEnable( GL_TEXTURE_2D );
@@ -234,10 +234,10 @@ namespace Annchienta
         glDisable( GL_TEXTURE_2D );
 
         glBegin( GL_QUADS );
-            glVertex2f( x1, y1 );
-            glVertex2f( x2, y2 );
-            glVertex2f( x3, y3 );
-            glVertex2f( x4, y4 );
+            glVertex2f( (GLfloat)x1, (GLfloat)y1 );
+            glVertex2f( (GLfloat)x2, (GLfloat)y2 );
+            glVertex2f( (GLfloat)x3, (GLfloat)y3 );
+            glVertex2f( (GLfloat)x4, (GLfloat)y4 );
         glEnd();
 
         glEnable( GL_TEXTURE_2D );
@@ -259,16 +259,16 @@ namespace Annchienta
         glBegin( GL_QUADS );
 
             glTexCoord2f( left, top );
-            glVertex2f( dx, dy );
+            glVertex2f( (GLfloat)dx, (GLfloat)dy );
 
             glTexCoord2f( left, bottom );
-            glVertex2f( dx, dy+sy2-sy1 );
+            glVertex2f( (GLfloat)dx, (GLfloat)(dy+sy2-sy1) );
 
             glTexCoord2f( right, bottom );
-            glVertex2f( dx+sx2-sx1, dy+sy2-sy1 );
+            glVertex2f( (GLfloat)(dx+sx2-sx1), (GLfloat)(dy+sy2-sy1) );
 
             glTexCoord2f( right, top );
-            glVertex2f( dx+sx2-sx1, dy );
+            glVertex2f( (GLfloat)(dx+sx2-sx1), (GLfloat)dy );
         glEnd();
     }
 

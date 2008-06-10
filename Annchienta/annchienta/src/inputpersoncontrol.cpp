@@ -50,7 +50,7 @@ namespace Annchienta
                 Point pos = person->getPosition();
                 pos.convert( IsometricPoint );
     
-                if( squaredDistance( mouse.x, mouse.y, pos.x, pos.y ) >= 200 )
+                if( squaredDistance( (float)mouse.x, (float)mouse.y, (float)pos.x, (float)pos.y ) >= 200 )
                 {
                     if( absValue(mouse.x-pos.x) > absValue(mouse.y-pos.y) )
                         x += mouse.x<pos.x?-1:1;

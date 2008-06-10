@@ -22,7 +22,7 @@ namespace Annchienta
         leftTexCoord = 0.0f;
         topTexCoord = 1.0f;
         rightTexCoord = (float)(width)/(float)(glWidth);
-        bottomTexCoord = 1.0 - (float)(height)/(float)(glHeight);
+        bottomTexCoord = 1.0f - (float)(height)/(float)(glHeight);
 
         /* If there already is a texture, delete it.
          */
@@ -85,13 +85,13 @@ namespace Annchienta
         glBindTexture( GL_TEXTURE_2D, texture );
         glBegin( GL_QUADS );
             glTexCoord2f( leftTexCoord, topTexCoord );
-            glVertex2f( 0, 0 );
+            glVertex2f( 0.0f, 0.0f );
             glTexCoord2f( leftTexCoord, bottomTexCoord );
-            glVertex2f( 0, height );
+            glVertex2f( 0.0f, (GLfloat)height );
             glTexCoord2f( rightTexCoord, bottomTexCoord );
-            glVertex2f( width, height );
+            glVertex2f( (GLfloat)width, (GLfloat)height );
             glTexCoord2f( rightTexCoord, topTexCoord );
-            glVertex2f( width, 0 );
+            glVertex2f( (GLfloat)width, 0.0f );
         glEnd();
 
         glEndList();
@@ -201,7 +201,7 @@ namespace Annchienta
                 png_byte *row = row_pointers[y];
                 unsigned int firstByte = x * pixelSize;
                 int my = glHeight - y - 1;
-                for( unsigned int b=0; b<pixelSize; b++ )
+                for( int b=0; b<pixelSize; b++ )
                 {
                     pixels[ glWidth*pixelSize*my + x*pixelSize + b ] = row[ firstByte + b ];
                 }
@@ -254,7 +254,7 @@ namespace Annchienta
     {
         glPushMatrix();
 
-        glTranslatef( x, y, 0.0f );
+        glTranslatef( (GLfloat)x, (GLfloat)y, 0.0f );
         glCallList( list );
 
         glPopMatrix();

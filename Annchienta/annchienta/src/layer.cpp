@@ -90,7 +90,7 @@ namespace Annchienta
     {
         glPushMatrix();
 
-        glTranslatef( 0.0f, -z, 0.0f );
+        glTranslatef( 0.0f, (GLfloat)-z, 0.0f );
 
         if( opacity >= 0xff )
         {
@@ -108,7 +108,7 @@ namespace Annchienta
     {
         glPushMatrix();
 
-        glTranslatef( 0.0f, -z, 0.0f );
+        glTranslatef( 0.0f, (GLfloat)-z, 0.0f );
 
         if( opacity < 0xff )
             return;

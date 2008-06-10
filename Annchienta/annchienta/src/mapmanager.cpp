@@ -119,7 +119,7 @@ namespace Annchienta
         else
         {
             int s = 4;
-            while( squaredDistance( cameraX, cameraY, destX, destY )>2500 && --s )
+            while( squaredDistance( (float)cameraX, (float)cameraY, (float)destX, (float)destY )>2500 && --s )
             {
                 cameraX += sign( destX - cameraX );
                 cameraY += sign( destY - cameraY );
@@ -275,7 +275,7 @@ namespace Annchienta
     {
         glLoadIdentity();
 
-        glTranslatef( -cameraX, -cameraY, 0.0f );
+        glTranslatef( (GLfloat)-cameraX, (GLfloat)-cameraY, 0.0f );
 
         if( currentMap )
             currentMap->draw();
@@ -287,7 +287,7 @@ namespace Annchienta
     {
         glLoadIdentity();
 
-        glTranslatef( -cameraX, -cameraY, 0.0f );
+        glTranslatef( (GLfloat)-cameraX, (GLfloat)-cameraY, 0.0f );
 
         if( currentMap )
             currentMap->drawTerrain();

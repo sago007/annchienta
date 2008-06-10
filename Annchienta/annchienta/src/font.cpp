@@ -77,9 +77,9 @@ namespace Annchienta
         
             /* Set the pixels to their right values.
              */
-            for( unsigned int y=0; y<height; y++ )
+            for( int y=0; y<height; y++ )
             {
-                for( unsigned int x=0; x<width; x++ )
+                for( int x=0; x<width; x++ )
                 {
                     pixels[ ((x+glWidth*y)<<1) ] = 255;
                     pixels[ ((x+glWidth*y)<<1) + 1 ] = bitmap.buffer[ x+width*y ];
@@ -107,7 +107,7 @@ namespace Annchienta
             /* Alright. First, we move a little, so the character has
              * some space to it's left.
              */
-            glTranslatef( left, 0.0f, 0.0f );
+            glTranslatef( (GLfloat)left, 0.0f, 0.0f );
 
             /* Now draw a quad.
              */
@@ -115,23 +115,23 @@ namespace Annchienta
             glBegin( GL_QUADS );
 
                 glTexCoord2f( 0.0f, bottomTexCoord );
-                glVertex2f( 0.0f, move_down );
+                glVertex2f( 0.0f, (GLfloat)move_down );
 
                 glTexCoord2f( rightTexCoord, bottomTexCoord );
-                glVertex2f( width, move_down );
+                glVertex2f( (GLfloat)width, (GLfloat)move_down );
 
                 glTexCoord2f( rightTexCoord, 0.0f );
-                glVertex2f( width, -height+move_down );
+                glVertex2f( (GLfloat)width, (GLfloat)(-height+move_down) );
 
                 glTexCoord2f( 0.0f, 0.0f );
-                glVertex2f( 0.0f, -height+move_down );
+                glVertex2f( 0.0f, (GLfloat)(-height+move_down) );
 
             glEnd();
 
             /* Again, move to the right to make space for the
              * next character.
              */
-            glTranslatef( advance[i]-left, 0.0f, 0.0f );
+            glTranslatef( (GLfloat)(advance[i]-left), 0.0f, 0.0f );
 
             /* Finish up our display list.
              */
@@ -177,7 +177,7 @@ namespace Annchienta
     {
         glPushMatrix();
 
-        glTranslatef( x, y+height, 0.0f );
+        glTranslatef( (GLfloat)x, (GLfloat)(y+height), 0.0f );
 
         glListBase( list );
         glCallLists( strlen(text), GL_UNSIGNED_BYTE, text );

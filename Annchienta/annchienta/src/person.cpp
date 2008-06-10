@@ -198,7 +198,7 @@ namespace Annchienta
 
         /* We don't need to take a step if we're close enough.
         */
-        if( squaredDistance( position.x, position.y, tx, ty ) <= 25 )
+        if( squaredDistance( (float)position.x, (float)position.y, (float)tx, (float)ty ) <= 25 )
         {
             //printf("We're close enough.\n");
             this->setStandAnimation();
@@ -210,8 +210,6 @@ namespace Annchienta
 
             int x = tx-position.x>0?1:(tx-position.x<0?-1:0),
                 y = ty-position.y>0?1:(ty-position.y<0?-1:0);
-
-            bool result;
 
             //printf("We're moving: %d, %d.\n", x, y );
 

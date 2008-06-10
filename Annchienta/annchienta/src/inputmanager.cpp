@@ -95,7 +95,7 @@ namespace Annchienta
 
     bool InputManager::keyDown( int keyCode ) const
     {
-        return keyState[keyCode];
+        return (bool)keyState[keyCode];
     }
     
     bool InputManager::keyTicked( int keyCode ) const
@@ -120,7 +120,7 @@ namespace Annchienta
         else
             buttonCode = SDL_BUTTON_RIGHT;
 
-        return ( mouseState & SDL_BUTTON( buttonCode ) );
+        return bool( mouseState & SDL_BUTTON( buttonCode ) );
     }
 
     bool InputManager::buttonTicked( int buttonCode ) const

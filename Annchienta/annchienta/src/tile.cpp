@@ -104,19 +104,19 @@ namespace Annchienta
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[0] || i==0?1.0f:0.0f );
                 glTexCoord2f( xCenter, s->getTopTexCoord() );
-                glVertex2f( points[0].x, points[0].y-points[0].z );
+                glVertex2f( (GLfloat)points[0].x, (GLfloat)(points[0].y-points[0].z) );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[1] || i==0?1.0f:0.0f );
                 glTexCoord2f( s->getLeftTexCoord(), yCenter );
-                glVertex2f( points[1].x, points[1].y-points[1].z );
+                glVertex2f( (GLfloat)points[1].x, (GLfloat)(points[1].y-points[1].z) );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[2] || i==0?1.0f:0.0f );
                 glTexCoord2f( xCenter, s->getBottomTexCoord() );
-                glVertex2f( points[2].x, points[2].y-points[2].z );
+                glVertex2f( (GLfloat)points[2].x, (GLfloat)(points[2].y-points[2].z) );
     
                 glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[3] || i==0?1.0f:0.0f );
                 glTexCoord2f( s->getRightTexCoord(), yCenter );
-                glVertex2f( points[3].x, points[3].y-points[3].z );
+                glVertex2f( (GLfloat)points[3].x, (GLfloat)(points[3].y-points[3].z) );
 
             glEnd();
         }
@@ -145,22 +145,22 @@ namespace Annchienta
             glBegin( GL_TRIANGLE_STRIP );
 
                 glTexCoord2f( sideSurface->getLeftTexCoord(), sideSurface->getTopTexCoord() );
-                glVertex2f( points[1].x, points[1].y - points[1].z );
+                glVertex2f( (GLfloat)points[1].x, (GLfloat)(points[1].y - points[1].z) );
 
                 glTexCoord2f( sideSurface->getLeftTexCoord(), downY );
-                glVertex2f( points[1].x, points[1].y - sideSurfaceOffset );
+                glVertex2f( (GLfloat)points[1].x, (GLfloat)(points[1].y - sideSurfaceOffset) );
 
                 glTexCoord2f( centerX, topY );
-                glVertex2f( points[2].x, points[2].y - points[2].z );
+                glVertex2f( (GLfloat)points[2].x, (GLfloat)(points[2].y - points[2].z) );
 
                 glTexCoord2f( centerX, sideSurface->getBottomTexCoord() );
-                glVertex2f( points[2].x, points[2].y - sideSurfaceOffset );
+                glVertex2f( (GLfloat)points[2].x, (GLfloat)(points[2].y - sideSurfaceOffset) );
 
                 glTexCoord2f( sideSurface->getRightTexCoord(), sideSurface->getTopTexCoord() );
-                glVertex2f( points[3].x, points[3].y - points[3].z );
+                glVertex2f( (GLfloat)points[3].x, (GLfloat)(points[3].y - points[3].z) );
 
                 glTexCoord2f( sideSurface->getRightTexCoord(), downY );
-                glVertex2f( points[3].x, points[3].y - sideSurfaceOffset );
+                glVertex2f( (GLfloat)points[3].x, (GLfloat)(points[3].y - sideSurfaceOffset) );
 
             glEnd();
         }

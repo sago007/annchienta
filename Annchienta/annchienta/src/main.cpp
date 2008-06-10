@@ -76,7 +76,7 @@ int main( int argc, char **argv )
 {
     /* Make sure to initialize random numbers.
      */
-    srand( time(NULL) );
+    srand( (unsigned int)time(NULL) );
 
     char gameToRun[DEFAULT_STRING_SIZE];
     char moduleDir[DEFAULT_STRING_SIZE];
