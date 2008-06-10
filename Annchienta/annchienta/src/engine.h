@@ -73,6 +73,9 @@ namespace Annchienta
              */
             const char *getWriteDirectory() const;
 
+            /** Use with care!!! */
+            void setWriteDirectory( const char* );
+            
             /** This simply writes some text to stdout. This is
              *  preferred to the default Python "print" function
              *  because that might be unsafe on certain operating

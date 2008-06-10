@@ -116,6 +116,11 @@ namespace Annchienta
         return writeDirectory;
     }
 
+    void Engine::setWriteDirectory( const char *wd )
+    {
+        sprintf( writeDirectory, wd );
+    }
+    
     void Engine::write( const char *text ) const
     {
         printf( text );

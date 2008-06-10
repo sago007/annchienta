@@ -41,25 +41,28 @@ void runGame( const char *filename, const char *modules, const char *writeDir )
      * Then, we set the current working directory to the one in which
      * the game script is located.
      */
-    char initScript[1024];
+    char initScript[2048];
 
     /* Append the modules, cd to the filename path, append it
      * and then run the game.
      */
     sprintf( initScript,
 "\
-import sys\n\
+import sys, os\n\
 \n\
-sys.path.append( \"%s\" )\n\
-\
-import os\n\
+# Add modules path, whiwh means we have annchienta now\n\
 sys.path.append( os.path.abspath( \"%s\" )  )\n\
-sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
+\n\
+# Import annchienta and make write dir absolute.\n\
+import annchienta\n\
+engine = annchienta.getEngine()\n\
+engine.setWriteDirectory( os.path.abspath( engine.getWriteDirectory() ) )\n\
+\n\
+# Cd to main.py file and execute.\n\
 os.chdir( os.path.dirname( \"%s\" ) )\n\
-sys.path.append( os.path.abspath( os.getcwdu() ) )\n\
 execfile( os.path.basename( \"%s\" ) )\n\
 ",
-    modules, modules, filename, filename );
+    modules, filename, filename );
 
     PyRun_SimpleString( initScript );
 

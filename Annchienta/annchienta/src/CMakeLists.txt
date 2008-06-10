@@ -49,6 +49,6 @@ TARGET_LINK_LIBRARIES(
 
 # Put annchienta in the right location.
 INSTALL(
-    PROGRAMS annchienta
+    TARGETS annchienta
     DESTINATION bin
 )
