@@ -20,6 +20,25 @@ namespace Annchienta
 {
     Engine *engine = 0;
 
+    /* When we really want to stop...
+     */
+    Uint32 forcedExitCallback( Uint32 interval, void *param )
+    {
+        getLogManager()->warning("Grace period for Py_Finalize() exceeded... forcing exit.");
+
+        /* Try to free a little anyway so we don't waste too much.
+         */
+        delete getVideoManager();
+        delete getInputManager();
+        delete getMapManager();
+        delete getAudioManager();
+        delete getCacheManager();
+        SDL_Quit();
+
+        exit(0);
+        return interval;
+    }
+
     Engine::Engine( const char *_writeDirectory )
     {
         /* Store write directory.
@@ -52,6 +71,14 @@ namespace Annchienta
 
     Engine::~Engine()
     {
+        /* At last, free up Python stuff. At some operating systems,
+         * this will cause an indefinite hang. That's why we grant
+         * a ten seconds period for it to complete.
+         */
+        SDL_TimerID timer = SDL_AddTimer( 10000, forcedExitCallback, 0 );
+        Py_Finalize();
+        SDL_RemoveTimer( timer );
+
         /* Free up other Single-Instance classes.
          */
         delete videoManager;
@@ -69,10 +96,6 @@ namespace Annchienta
          * we want all errors to be reported.
          */
         delete logManager;
-
-        /* At last, free up Python stuff.
-         */
-        Py_Finalize();
     }
 
     void Engine::runPythonScript( const char *filename ) const
