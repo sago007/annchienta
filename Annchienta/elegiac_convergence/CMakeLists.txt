@@ -22,7 +22,7 @@ INSTALL(
 
 # We determine what the write directory is, based on the OS.
 IF(WIN32)
-    SET(WRITEDIR "${CMAKE_INSTALL_PREFIX}/write")
+    SET(WRITEDIR "write")
 ELSE(WIN32)
     SET(WRITEDIR "~/.annchienta")
 ENDIF(WIN32)
@@ -33,8 +33,9 @@ ENDIF(WIN32)
 IF(WIN32)
     FILE(
         WRITE elegiac-convergence.bat
+       "echo off\n"
        "mkdir ${WRITEDIR}\n"
-        "bin/annchienta ${CMAKE_INSTALL_PREFIX}/share/annchienta/elegiac_convergence/main.py ${CMAKE_INSTALL_PREFIX}/share/annchienta/modules ${WRITEDIR}\n"
+        "bin\\annchienta.exe share/annchienta/elegiac_convergence/main.py share/annchienta/modules ${WRITEDIR}\n"
     )
     INSTALL(
         PROGRAMS elegiac-convergence.bat
