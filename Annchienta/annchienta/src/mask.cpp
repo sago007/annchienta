@@ -212,7 +212,7 @@ namespace Annchienta
         return false;
     }
 
-    bool Mask::fillRectangle( int x1, int y1, int x2, int y2, bool value )
+    void Mask::fillRectangle( int x1, int y1, int x2, int y2, bool value )
     {
         for( int y=(y1>=0?y1:0); y<(y2<=height?y2:height-1); y++ )
         {
@@ -221,8 +221,6 @@ namespace Annchienta
                 pixels[y*width+x] = value;
             }
         }
-
-		return true;
     }
 
 };

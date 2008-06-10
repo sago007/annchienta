@@ -11766,7 +11766,6 @@ SWIGINTERN PyObject *_wrap_Mask_fillRectangle(PyObject *SWIGUNUSEDPARM(self), Py
   int arg4 ;
   int arg5 ;
   bool arg6 ;
-  bool result;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
@@ -11817,8 +11816,8 @@ SWIGINTERN PyObject *_wrap_Mask_fillRectangle(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "Mask_fillRectangle" "', argument " "6"" of type '" "bool""'");
   } 
   arg6 = static_cast< bool >(val6);
-  result = (bool)(arg1)->fillRectangle(arg2,arg3,arg4,arg5,arg6);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  (arg1)->fillRectangle(arg2,arg3,arg4,arg5,arg6);
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -14512,8 +14511,9 @@ SWIGEXPORT void SWIG_init(void) {
   SWIG_Python_SetConstant(d, "IsometricPoint",SWIG_From_int(static_cast< int >(Annchienta::IsometricPoint)));
   SWIG_Python_SetConstant(d, "MapPoint",SWIG_From_int(static_cast< int >(Annchienta::MapPoint)));
   SWIG_Python_SetConstant(d, "ScreenPoint",SWIG_From_int(static_cast< int >(Annchienta::ScreenPoint)));
-  SWIG_Python_SetConstant(d, "DEFAULT_STRING_SIZE",SWIG_From_int(static_cast< int >(512)));
   SWIG_Python_SetConstant(d, "SMALL_STRING_SIZE",SWIG_From_int(static_cast< int >(128)));
+  SWIG_Python_SetConstant(d, "DEFAULT_STRING_SIZE",SWIG_From_int(static_cast< int >(512)));
+  SWIG_Python_SetConstant(d, "LARGE_STRING_SIZE",SWIG_From_int(static_cast< int >(1024)));
   SWIG_Python_SetConstant(d, "CinematicMode",SWIG_From_int(static_cast< int >(Annchienta::CinematicMode)));
   SWIG_Python_SetConstant(d, "InteractiveMode",SWIG_From_int(static_cast< int >(Annchienta::InteractiveMode)));
   SWIG_Python_SetConstant(d, "TileEntity",SWIG_From_int(static_cast< int >(Annchienta::TileEntity)));

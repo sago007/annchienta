@@ -81,8 +81,9 @@ class Point(_object):
 Point_swigregister = _annchienta.Point_swigregister
 Point_swigregister(Point)
 
-DEFAULT_STRING_SIZE = _annchienta.DEFAULT_STRING_SIZE
 SMALL_STRING_SIZE = _annchienta.SMALL_STRING_SIZE
+DEFAULT_STRING_SIZE = _annchienta.DEFAULT_STRING_SIZE
+LARGE_STRING_SIZE = _annchienta.LARGE_STRING_SIZE
 class Engine(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Engine, name, value)

@@ -22,23 +22,35 @@ INSTALL(
 
 # We determine what the write directory is, based on the OS.
 IF(WIN32)
-    SET(WRITEDIR ".annchienta")
+    SET(WRITEDIR "${CMAKE_INSTALL_PREFIX}/write")
 ELSE(WIN32)
     SET(WRITEDIR "~/.annchienta")
 ENDIF(WIN32)
 
 # We create a small startup script that will launch elegiac_convergence
-FILE(
-    WRITE elegiac-convergence
-    "mkdir -p ${WRITEDIR}\n"
-    "annchienta ${CMAKE_INSTALL_PREFIX}/share/annchienta/elegiac_convergence/main.py ${CMAKE_INSTALL_PREFIX}/share/annchienta/modules ${WRITEDIR}\n"
-)
-
 # Install that script. Use programs instead of files for chmod +x
-INSTALL(
-    PROGRAMS elegiac-convergence
-    DESTINATION bin
-)
+# If win32, put don't put the file in bin but in the installation dir.
+IF(WIN32)
+    FILE(
+        WRITE elegiac-convergence.bat
+       "mkdir ${WRITEDIR}\n"
+        "bin/annchienta ${CMAKE_INSTALL_PREFIX}/share/annchienta/elegiac_convergence/main.py ${CMAKE_INSTALL_PREFIX}/share/annchienta/modules ${WRITEDIR}\n"
+    )
+    INSTALL(
+        PROGRAMS elegiac-convergence.bat
+        DESTINATION ${CMAKE_INSTALL_PREFIX}
+    )
+ELSE(WIN32)
+    FILE(
+        WRITE elegiac-convergence
+       "mkdir -p ${WRITEDIR}\n"
+        "annchienta ${CMAKE_INSTALL_PREFIX}/share/annchienta/elegiac_convergence/main.py ${CMAKE_INSTALL_PREFIX}/share/annchienta/modules ${WRITEDIR}\n"
+    )
+    INSTALL(
+        PROGRAMS elegiac-convergence
+        DESTINATION bin
+    )
+ENDIF(WIN32)
 
 # For the uninstall rule.
 CONFIGURE_FILE(

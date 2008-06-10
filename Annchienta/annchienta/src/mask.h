@@ -42,7 +42,7 @@ namespace Annchienta
 
             bool collision( int x1, int y1, Mask *mask2, int x2, int y2, bool box=false );
 
-            bool fillRectangle( int x1, int y1, int x2, int y2, bool value );
+            void fillRectangle( int x1, int y1, int x2, int y2, bool value );
     };
 };
 

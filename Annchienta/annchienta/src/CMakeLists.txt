@@ -3,11 +3,10 @@
 ADD_SUBDIRECTORY( xml )
 
 # Generate python file through:
-# ADD_CUSTOM_COMMAND(
-#     TARGET annchienta
-#     PRE_BUILD
-#     COMMAND swig -python -c++ -o annchienta_wrap.cpp -outdir ${ANNCHIENTA_BINARY_DIR}/modules annchienta_interface.i
-# )
+ADD_CUSTOM_TARGET(
+     swig
+     swig -python -c++ -o ${ANNCHIENTA_BINARY_DIR}/src/annchienta_wrap.cpp -outdir ${ANNCHIENTA_BINARY_DIR}/modules ${ANNCHIENTA_BINARY_DIR}/src/annchienta_interface.i
+)
 
 # Find our needed Packages.
 # FIND_PACKAGE(PythonLibs REQUIRED)
