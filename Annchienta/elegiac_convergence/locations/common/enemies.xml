@@ -32,6 +32,14 @@
         </strategies>
         <drop experience="20"/>
     </combatant>
+    <combatant name="bovinasaur">
+        <sprite filename="sprites/bovinasaur.png"/>
+        <status strength="44" defense="30" magic="45" resistance="40" health="160" maxhealth="160"/>
+        <strategies>
+            warrior fighter lich
+        </strategies>
+        <drop experience="20"/>
+    </combatant>
     <combatant name="wolf">
         <sprite filename="sprites/wolf.png"/>
         <status strength="45" defense="40" magic="18" resistance="40" health="150" maxhealth="150"/>

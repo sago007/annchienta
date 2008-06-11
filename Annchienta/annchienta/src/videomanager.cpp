@@ -10,6 +10,7 @@
 #include "surface.h"
 #include "font.h"
 #include "auxfunc.h"
+#include "logmanager.h"
 
 namespace Annchienta
 {
@@ -24,10 +25,14 @@ namespace Annchienta
         backBuffers = new Surface*[numberOfBackBuffers];
         for( int i=0; i<numberOfBackBuffers; i++ )
             backBuffers[i] = 0;
+
+        getLogManager()->message("Succesfully started VideoManager.");
     }
 
     VideoManager::~VideoManager()
     {
+        getLogManager()->message("Deleting VideoManager...");
+
         for( int i=0; i<numberOfBackBuffers; i++ )
             if( backBuffers[i] )
                 delete backBuffers[i];
@@ -91,6 +96,10 @@ namespace Annchienta
                 delete backBuffers[i];
             backBuffers[i] = new Surface( screenWidth, screenHeight );
         }
+
+        LogManager *logManager = getLogManager();
+        logManager->message( "Set video mode as %d x %d pixels.", screenWidth, screenHeight );
+        logManager->message( "Using OpenGL %s by %s on renderer %s.", glGetString(GL_VERSION), glGetString(GL_VENDOR), glGetString(GL_RENDERER) );
     }
 
     int VideoManager::getScreenWidth() const

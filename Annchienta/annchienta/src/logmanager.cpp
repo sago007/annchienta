@@ -21,13 +21,15 @@ namespace Annchienta
 
         if( !logFile )
             printf( "Could not open log file %s for writing.\n", filename );
+        else
+            message( "Succesfully started LogManager." );
 
         enabled = true;
     }
 
     LogManager::~LogManager()
     {
-        fprintf( logFile, "Quitting LogManager.\n" );
+        message( "Deleting LogManager..." );
         fclose( logFile );
     }
 

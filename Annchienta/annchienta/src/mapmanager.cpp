@@ -7,9 +7,10 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <Python.h>
-#include "map.h"
 #include "inputmanager.h"
 #include "videomanager.h"
+#include "logmanager.h"
+#include "map.h"
 #include "staticobject.h"
 #include "mask.h"
 #include "layer.h"
@@ -41,10 +42,14 @@ namespace Annchienta
         mapManager = this;
 
         updatesNeeded = updatesPerSecond;
+
+        getLogManager()->message("Succesfully started MapManager.");
     }
 
     MapManager::~MapManager()
     {
+        getLogManager()->message("Deleting MapManager...");
+
         if( onUpdateScript )
             delete[] onUpdateScript;
         if( onUpdateCode )

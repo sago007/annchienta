@@ -3,6 +3,7 @@
  */
 
 #include "inputmanager.h"
+#include "logmanager.h"
 
 namespace Annchienta
 {
@@ -32,10 +33,13 @@ namespace Annchienta
         /* We want key repeats.
          */
         SDL_EnableKeyRepeat( SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL );
+
+        getLogManager()->message("Succesfully started InputManager.");
     }
 
     InputManager::~InputManager()
     {
+        getLogManager()->message("Deleting InputManager...");
     }
 
     void InputManager::update()

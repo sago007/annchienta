@@ -21,6 +21,8 @@ namespace Annchienta
          */
         if( Mix_OpenAudio( MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024 ) )
             getLogManager()->warning( "Could not init SDL_mixer: '%s'.", SDL_GetError() );
+        else
+            getLogManager()->message( "Succesfully started AudioManager." );
 
         /* Initialize musicFilename.
          */
@@ -29,6 +31,8 @@ namespace Annchienta
 
     AudioManager::~AudioManager()
     {
+        getLogManager()->message( "Deleting AudioManager..." );
+
         /* Quit SDL_mixer.
          */
         Mix_CloseAudio();

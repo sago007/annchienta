@@ -7,6 +7,7 @@
 #include "surface.h"
 #include "mask.h"
 #include "sound.h"
+#include "logmanager.h"
 
 namespace Annchienta
 {
@@ -18,10 +19,12 @@ namespace Annchienta
          */
         cacheManager = this;
 
+        getLogManager()->message("Succesfully started CacheManager.");
     }
 
     CacheManager::~CacheManager()
     {
+        getLogManager()->message("Deleting CacheManager...");
         this->clear();
     }
 
