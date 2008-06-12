@@ -26,7 +26,7 @@
     </combatant>
     <combatant name="hawk">
         <sprite filename="sprites/hawk.png"/>
-        <status strength="30" defense="40" magic="45" resistance="40" health="140" maxhealth="140"/>
+        <status strength="24" defense="40" magic="33" resistance="30" health="140" maxhealth="140"/>
         <strategies>
             bird warrior
         </strategies>
@@ -34,7 +34,7 @@
     </combatant>
     <combatant name="bovinasaur">
         <sprite filename="sprites/bovinasaur.png"/>
-        <status strength="44" defense="30" magic="45" resistance="40" health="160" maxhealth="160"/>
+        <status strength="33" defense="30" magic="24" resistance="40" health="160" maxhealth="160"/>
         <strategies>
             warrior fighter lich
         </strategies>

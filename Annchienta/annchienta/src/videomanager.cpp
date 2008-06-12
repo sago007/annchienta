@@ -20,8 +20,10 @@ namespace Annchienta
     {
         videoManager = this;
 
-        reset();
-
+        /* Create room for pointers to backbuffers but don't
+         * actually create them, we can only do that when we
+         * know the screen size.
+         */
         backBuffers = new Surface*[numberOfBackBuffers];
         for( int i=0; i<numberOfBackBuffers; i++ )
             backBuffers[i] = 0;
@@ -38,7 +40,7 @@ namespace Annchienta
                 delete backBuffers[i];
         delete[] backBuffers;
     }
-    
+
     void VideoManager::setVideoMode( int w, int h, const char *title, bool fullscreen )
     {
         /* Get some variables.
@@ -97,9 +99,15 @@ namespace Annchienta
             backBuffers[i] = new Surface( screenWidth, screenHeight );
         }
 
+        /* Give some information to our good friend Log.
+         */
         LogManager *logManager = getLogManager();
         logManager->message( "Set video mode as %d x %d pixels.", screenWidth, screenHeight );
         logManager->message( "Using OpenGL %s by %s on renderer %s.", glGetString(GL_VERSION), glGetString(GL_VENDOR), glGetString(GL_RENDERER) );
+
+        /* Reset colors and martices.
+         */
+        this->reset();
     }
 
     int VideoManager::getScreenWidth() const

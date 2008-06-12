@@ -180,7 +180,7 @@ namespace Annchienta
     
         /* HERE WE SHOULD DO STUFF WITH IT */
         png_get_IHDR( png_ptr, info_ptr, &png_width, &png_height, &bit_depth, &color_type, &interlace_type, NULL, NULL );
-        
+
         width = png_width;
         height = png_height;
         glWidth = nearestPowerOfTwo( png_width ),
@@ -189,10 +189,10 @@ namespace Annchienta
         /* The pixel size: 1, 2, 3 or 4 usually */
         pixelSize = png_get_rowbytes( png_ptr, info_ptr ) / png_width;
         /* allocate memory for the pixel data */
-        pixels = (GLubyte*) malloc( pixelSize * glWidth * glHeight );
+        pixels = new GLubyte[ pixelSize * glWidth * glHeight ];
         /* pointers to rows */
         png_byte **row_pointers = png_get_rows(png_ptr, info_ptr);
-        
+
         /* set all pixels to their right values */
         for( unsigned int y=0; y<png_height; y++ )
         {

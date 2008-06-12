@@ -334,7 +334,7 @@ class Dragon(Strategy):
         # Attack that target with serious attack power (=50).
         self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
         # A jump in the air first.
-        self.m_battle.moveAnimation( self.m_combatant, self.m_combatant.x + (-10 if self.m_combatant.hostile else 10 ), self.m_combatant.y-200 )
+        self.m_battle.moveAnimation( self.m_combatant, self.m_combatant.x + (500 if self.m_combatant.hostile else -500 ), self.m_combatant.y )
         self.m_battle.physicalAttackAnimation( self.m_combatant, target )
         sound = self.cacheManager.getSound("sounds/sword.ogg")
         if self.m_combatant.physicalAttack( target, 50, 0.8 ):
@@ -460,14 +460,14 @@ class Chronomancer(Strategy):
         allies = self.m_battle.enemies if self.m_combatant.hostile else self.m_battle.allies
         enemies = self.m_battle.enemies if not self.m_combatant.hostile else self.m_battle.allies
 
-        # Subtract 1 from ally delay.
+        # Subtract 2 from ally delay.
         for a in allies:
-            if a.delay > 1:
+            if a.delay > 2:
                 a.delay -= 1
 
-        # Add 1 to enemy delay.
+        # Add 2 to enemy delay.
         for e in enemies:
-            e.delay += 1
+            e.delay += 3/len(enemies)
 
         self.sceneManager.info( self.m_combatant.name.capitalize()+" delays all enemies!" )
 

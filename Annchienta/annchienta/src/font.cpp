@@ -97,8 +97,8 @@ namespace Annchienta
             glTexImage2D( GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, glWidth, glHeight, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, pixels );
 
             /* Don't need those pixels anymore.
-			 */
-			delete [] pixels;
+             */
+            delete [] pixels;
 
             /* Start our display list.
              */
