@@ -62,10 +62,13 @@ while inputManager.running():
     videoManager.begin()
     videoManager.drawSurface( title_background, 0, 0 )
 
+    videoManager.setColor(255,255,255)
+    videoManager.drawStringCentered( title_font, "Elegiac Convergence", videoManager.getScreenWidth()/2, 10 )
+
     options = ["Continue", "New Game", "Quit"]
     for i in range(len(options)):
-        if inputManager.hover( 0, 120+i*title_font.getLineHeight(), videoManager.getScreenWidth(), 120+(i+1)*title_font.getLineHeight() ):
-            videoManager.setColor(0,0,0)
+        if inputManager.hover( 0, 40+i*title_font.getLineHeight(), videoManager.getScreenWidth(), 40+(i+1)*title_font.getLineHeight() ):
+            videoManager.setColor(255,255,255)
 
             if inputManager.buttonTicked(0):
                 if options[i]=="Continue" or options[i]=="New Game":
@@ -84,10 +87,10 @@ while inputManager.running():
                     inputManager.stop()
 
         else:
-            videoManager.setColor(0,0,0,150)
+            videoManager.setColor(150,150,0)
 
         if inputManager.running():
-            videoManager.drawStringCentered( title_font, str(options[i]), 200, 120+i*title_font.getLineHeight() )
+            videoManager.drawStringCentered( title_font, str(options[i]), videoManager.getScreenWidth()/2, 40+i*title_font.getLineHeight() )
 
     #videoManager.boxBlur( 100, 100, 300, 200, 6 )
     #videoManager.grabBuffer( surf )
