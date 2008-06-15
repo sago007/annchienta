@@ -28,7 +28,7 @@ sceneManager.move( [player,esana,inyse], [pp,ep,ip] )
 
 # Some dialog now.
 sceneManager.speak( esana, "I really can't believe we're doing this." )
-sceneManager.speak( inyse, "There's no other way, they'd be expecting us on the road." )
+sceneManager.speak( inyse, "There's no other way, they'd be expecting us on the road. There's really no other way to Anpere, it would take us too long to go through the mountains..." )
 sceneManager.speak( player, "Besides, these woods can't be that dangerous, can they?" )
 sceneManager.speak( esana, "I read they were never the same, always changing..." )
 sceneManager.speak( inyse, "I don't know... things just aren't what they seem here, I think." )

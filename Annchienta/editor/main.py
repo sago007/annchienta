@@ -1,5 +1,8 @@
-from editor import *
 import sys
+
+sys.path.append(".")
+
+from editor import *
 
 app = QApplication( [] )
 widget = Editor()
