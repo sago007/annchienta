@@ -294,17 +294,26 @@ class SceneManager:
 
     ## \moves someone.
     #
-    def move(self, object, point ):
+    def move(self, objects, points ):
+
+        # Convert objects and points to lists if they aren't.
+        if type(objects) is not type([]):
+            objects = [objects]
+            points = [points]
 
         self.inputManager.update()
         self.inputManager.setInputMode( annchienta.CinematicMode )
 
-        while self.inputManager.running() and object.stepTo(point):
+        going = 1
+
+        while self.inputManager.running() and going:
+
+            going = sum( map( lambda i: int(objects[i].stepTo(points[i])), range(len(objects)) ) )
 
             self.mapManager.update(False)
             self.inputManager.update()
 
-            self.mapManager.cameraPeekAt( object, True )
+            self.mapManager.cameraPeekAt( objects[0], True )
 
             self.videoManager.begin()
             self.mapManager.renderFrame()

@@ -170,6 +170,11 @@ namespace Annchienta
     {
         collidingTiles.clear();
 
+        /* If there is no layer...
+         */
+        if( !layer )
+            return;
+
         Point pos = this->getMaskPosition(), point;
 
         /* First we need to collect all colliding tiles.

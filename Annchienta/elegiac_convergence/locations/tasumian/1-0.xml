@@ -28,6 +28,11 @@
 <staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="2" tiley="9"/>
 <staticobject mask="masks/bush.png" name="bush" sprite="sprites/bush.png" tilex="12" tiley="2"/>
 
+<!-- An event upon entering the woods. -->
+<if code="import party;partyManager=party.getPartyManager()" cond="not partyManager.hasRecord('tasumian_entered_woods')">
+    <area tilex1="0" tiley1="0" tilex2="15" tiley2="15" script="locations/tasumian/on_enter.py"/>
+</if>
+
 <!-- Way north. -->
 <area tilex1="0" tilex2="1" tiley1="5" tiley2="8">
 import party, annchienta

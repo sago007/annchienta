@@ -211,8 +211,6 @@ namespace Annchienta
             int x = tx-position.x>0?1:(tx-position.x<0?-1:0),
                 y = ty-position.y>0?1:(ty-position.y<0?-1:0);
 
-            //printf("We're moving: %d, %d.\n", x, y );
-
             this->move( x, y, true );
         }
 

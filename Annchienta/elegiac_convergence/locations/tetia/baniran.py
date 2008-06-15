@@ -22,11 +22,12 @@ ip = annchienta.Point( annchienta.IsometricPoint, pp.x, pp.y+30 )
 
 esana.setPosition( pp )
 partyManager.currentMap.addObject( esana )
-sceneManager.move( esana, ep )
 if inyseInParty:
     inyse.setPosition( pp )
     partyManager.currentMap.addObject( inyse )
-    sceneManager.move( inyse, ip )
+    sceneManager.move( [inyse,esana], [ip,ep] )
+else:
+    sceneManager.move( esana, ep )
 
 esana.lookAt( baniran )
 player.lookAt( baniran )
@@ -82,9 +83,10 @@ partyManager.heal()
 sceneManager.info( "Your health was restored.", None )
 
 if inyseInParty:
-    sceneManager.move( inyse, pp )
+    sceneManager.move( [inyse,esana], [pp,pp] )
+else:
+    sceneManager.move( esana, pp )
 
-sceneManager.move( esana, pp )
 sceneManager.quitDialog()
 partyManager.currentMap.removeObject( esana )
 if inyseInParty:

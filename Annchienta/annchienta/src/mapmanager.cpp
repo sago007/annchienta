@@ -114,7 +114,12 @@ namespace Annchienta
         targetPosition.convert( MapPoint );
 
         int destX = targetPosition.x - videoManager->getScreenWidth()/2;
-        int destY = targetPosition.y - targetPosition.z - object->getMask()->getHeight()/2 - videoManager->getScreenHeight()/2 - object->getLayer()->getZ();
+        int destY = targetPosition.y - targetPosition.z - object->getMask()->getHeight()/2 - videoManager->getScreenHeight()/2;
+
+        /* Avoid segfaults.
+         */
+        if( object->getLayer() )
+            destY -= object->getLayer()->getZ();
 
         if( instantly )
         {
