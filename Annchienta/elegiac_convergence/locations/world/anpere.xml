@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<sprite image="sprites/anpere.png" mask="masks/anpere.png">
+    <frame number="1"/>
+    <animation name="stand" frames="1" speed="20" />
+<oninteract>
+import party, annchienta
+partyManager = party.getPartyManager()
+# Change to regular sprite
+partyManager.player.setSprite(&quot;sprites/aelaan.png&quot;)
+partyManager.changeMap(&quot;locations/anpere/port.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 28 ) )
+</oninteract>
+</sprite>

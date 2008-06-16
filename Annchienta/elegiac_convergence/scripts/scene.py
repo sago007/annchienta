@@ -343,7 +343,8 @@ class SceneManager:
     def fadeOut( self, r=0, g=0, b=0, ms = 500 ):
         start = self.engine.getTicks()
         self.videoManager.storeBuffer(7)
-        while self.engine.getTicks() < start+ms:
+        while self.engine.getTicks() < start+ms and self.inputManager.running():
+            self.inputManager.update()
             alpha = float(self.engine.getTicks() - start)/float(ms)*255.0
             self.videoManager.begin()
             self.videoManager.restoreBuffer(7)
@@ -355,7 +356,7 @@ class SceneManager:
     def rotateEffect( self, duration=1500 ):
         start = self.engine.getTicks()
         self.videoManager.storeBuffer(7)
-        while self.engine.getTicks() < start+duration:
+        while self.engine.getTicks() < start+duration and self.inputManager.running():
             factor = float(self.engine.getTicks() - start)/float(duration)
             self.videoManager.begin()
             self.videoManager.translate( self.videoManager.getScreenWidth()/2, self.videoManager.getScreenHeight()/2 )
@@ -372,6 +373,7 @@ class SceneManager:
         s = self.cacheManager.getSound("sounds/noise.ogg")
         self.audioManager.playSound( s )
         while self.engine.getTicks() < start+duration and self.inputManager.running():
+            self.inputManager.update()
             self.videoManager.begin()
             r = annchienta.randInt(0,255)
             self.videoManager.setColor( r, r, r )
