@@ -43,6 +43,8 @@ namespace Annchienta
 
     void VideoManager::setVideoMode( int w, int h, const char *title, bool fullscreen )
     {
+        LogManager *logManager = getLogManager();
+
         /* Get some variables.
          */
         screenWidth = w;
@@ -69,6 +71,10 @@ namespace Annchienta
         SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
         SDL_GL_SetAttribute( SDL_GL_SWAP_CONTROL, 1 );
         SDL_Surface *screen = SDL_SetVideoMode( w, h, bpp, flags );
+
+        if( !screen )
+            logManager->error("Could not set video mode.");
+
 
         /* Set the window title.
          */
@@ -101,7 +107,6 @@ namespace Annchienta
 
         /* Give some information to our good friend Log.
          */
-        LogManager *logManager = getLogManager();
         logManager->message( "Set video mode as %d x %d pixels.", screenWidth, screenHeight );
         logManager->message( "Using OpenGL %s by %s on renderer %s.", glGetString(GL_VERSION), glGetString(GL_VENDOR), glGetString(GL_RENDERER) );
 
