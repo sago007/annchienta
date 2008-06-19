@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<sprite image="sprites/kator.png" mask="masks/mask.png">
+<sprite image="sprites/daser.png" mask="masks/mask.png">
     
     
     <frame number="1" x1="0" y1="0" x2="36" y2="78"/>
@@ -25,21 +25,7 @@
     <animation name="standsouth" frames="7" speed="15" />
     
     <control type="sample" />
+
+    <oninteract script="locations/anpere/daser.py"/>
     
-<oninteract>
-import scene
-import annchienta
-import party
-
-sceneManager = scene.getSceneManager()
-this = annchienta.getPassiveObject()
-player = annchienta.getActiveObject()
-#sceneManager.initDialog( [player, this] )
-
-a = sceneManager.chat( "You must be Aelaan. It would be an understatement to say we've been waiting for you for a long time, you know.", ["Aelaan? Speak no nonsense, I have never even heard that name!", "I am afraid you are right indeed."] )
-sceneManager.text( str(a) )
-
-#sceneManager.quitDialog()
-</oninteract>
-
 </sprite>

@@ -54,6 +54,9 @@ partyManager.changeMap(&quot;locations/world/world.xml&quot;, annchienta.Point( 
 <staticobject name="barrel" sprite="sprites/wood.png" mask="masks/wood.png" tilex="21" tiley="24"/>
 <staticobject name="barrel" sprite="sprites/wood.png" mask="masks/wood.png" tilex="23" tiley="6"/>
 
+<!-- Some daser dude. -->
+<person name="daser" config="locations/anpere/daser.xml" tilex="20" tiley="12"/>
+
 </layer>
 
 <onload>
