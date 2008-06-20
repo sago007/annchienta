@@ -7,6 +7,7 @@
 
 #include <list>
 #include <stdio.h>
+#include <string.h>
 #include "engine.h"
 
 namespace Annchienta

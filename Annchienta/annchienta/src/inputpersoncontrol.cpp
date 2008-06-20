@@ -42,12 +42,16 @@ namespace Annchienta
                 Point mouse = inputManager->getMousePoint();
                 mouse.convert( MapPoint );
 
-                /* Exception if on hight layer.
+                Point pos = person->getPosition();
+		pos.convert( MapPoint );
+
+                /* Don't forget to take Z in account here.
                  */
                 mouse.y += person->getLayer()->getZ();
+		mouse.y += pos.z;
+
                 mouse.convert( IsometricPoint );
 
-                Point pos = person->getPosition();
                 pos.convert( IsometricPoint );
     
                 if( squaredDistance( (float)mouse.x, (float)mouse.y, (float)pos.x, (float)pos.y ) >= 200 )

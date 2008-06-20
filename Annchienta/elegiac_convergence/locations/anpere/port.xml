@@ -57,6 +57,13 @@ partyManager.changeMap(&quot;locations/world/world.xml&quot;, annchienta.Point( 
 <!-- Some daser dude. -->
 <person name="daser" config="locations/anpere/daser.xml" tilex="20" tiley="12"/>
 
+<!-- Way to the ship. -->
+<area tilex1="29" tiley1="26" tilex2="30" tiley2="27">
+import party, annchienta
+partyManager = party.getPartyManager()
+partyManager.changeMap(&quot;locations/anpere/ship.xml&quot;, annchienta.Point( annchienta.TilePoint, 11, 10 ) )
+</area>
+
 </layer>
 
 <onload>
@@ -69,3 +76,4 @@ battleManager.battleBackground = &quot;images/backgrounds/prison.png&quot;
 </onload>
 
 </map>
+
