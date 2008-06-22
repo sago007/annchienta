@@ -62,10 +62,38 @@ if not partyManager.hasRecord("anpere_met_kator"):
     player.setAnimation("standsouth")
     partyManager.changeMap( "locations/anpere/flashback.xml", annchienta.Point( annchienta.TilePoint, 2, 6 ) )
 
+else:
+    kator.setPosition( annchienta.Point( annchienta.TilePoint, 11, 6 ) )
+    esana.setPosition( annchienta.Point( annchienta.TilePoint, 9, 5 ) )
+    inyse.setPosition( annchienta.Point( annchienta.TilePoint, 11, 8 ) )
+    player.setPosition( annchienta.Point( annchienta.TilePoint, 13, 5 ) )
+    sceneManager.move( player, annchienta.Point(annchienta.TilePoint,13,6) )
+
+    sceneManager.speak( player, "And I..." )
+
+    sceneManager.speak( kator, "And you made the wrong choice. You should've listened to that old fool. On the other hand, it was convenient to take you out after that and cut off Barong's head." )
+
+    sceneManager.move( player, annchienta.Point(annchienta.TilePoint,13,9) )
+
+    sceneManager.speak( inyse, "Aelaan, wait! We can't take him without you!" )
+    sceneManager.speak( player, "Why would you fight anymore... It was me after all... I'm a rotten apple..." )
+    sceneManager.speak( esana, "You're not, Aelaan! We still believe in you... It was him who set you up!" )
+    sceneManager.speak( inyse, "You need to help us, Aelaan!" )
+    sceneManager.speak( player, "Don't you see it... I'm not fit to help anyone. Not you, not Esana. Not even myself..." )
+
+    sceneManager.move( player, annchienta.Point(annchienta.TilePoint,13,10) )
+
+    sceneManager.speak( esana, "Aelaan! You can't run now! You're always running! You never face the truth!" )
+
+    player.lookAt( esana )
+
+    sceneManager.speak( player, "But I'm so afraid to speak the truth..." )
+
 sceneManager.quitDialog()
 
 # Remove people
 thisMap.removeObject( esana )
 thisMap.removeObject( inyse )
 thisMap.removeObject( kator )
+
 
