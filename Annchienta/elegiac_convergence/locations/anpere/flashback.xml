@@ -1,5 +1,8 @@
 <?xml version="1.0" ?>
-<map height="10" tileheight="32" tileset="tiles/anpere" tilewidth="64" width="10"><layer z="0"><tiles>0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 4 0 0    
+<map height="10" tileheight="32" tileset="tiles/anpere" tilewidth="64" width="10">
+<layer z="0">
+<tiles>
+0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    
 0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 4 0 5 0 0    0 5 0 4 0 4 0 5 0 0    0 5 0 4 0 4 0 5 0 0    0 5 0 4 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    
 0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 4 0 5 0 0    0 5 0 4 0 4 0 4 0 0    0 4 0 4 0 4 0 4 0 0    0 4 0 4 0 4 0 4 0 0    0 4 0 4 0 4 0 5 0 0    0 5 0 4 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    
 0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 4 0 4 0 0    0 4 0 4 0 4 0 4 0 0    0 4 0 4 0 4 0 4 0 0    0 4 0 4 0 4 0 4 0 0    0 4 0 4 0 4 0 4 0 0    0 4 0 4 0 4 0 5 0 0    0 5 0 4 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    
@@ -9,4 +12,21 @@
 0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 4 0 0    0 4 0 5 0 4 0 4 0 0    0 4 0 4 0 4 0 4 0 0    0 4 0 4 0 4 0 4 0 0    0 4 0 4 0 5 0 4 0 0    0 4 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    
 0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 4 0 0    0 4 0 5 0 5 0 4 0 0    0 4 0 5 0 5 0 4 0 0    0 4 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    
 0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    0 5 0 5 0 5 0 5 0 0    
-</tiles></layer></map>
+</tiles>
+
+<staticobject name="bardolph" sprite="sprites/bardolph.png" mask="masks/mask.png" tilex="7" tiley="4"/>
+<person name="kator" config="locations/anpere/kator.xml" tilex="7" tiley="6" animation="standeast"/>
+
+</layer>
+
+<onload>
+import annchienta, battle
+battleManager = battle.getBattleManager()
+annchienta.getAudioManager().playMusic(&quot;music/title.ogg&quot;)
+annchienta.getVideoManager().setClearColor(0,0,0)
+battleManager.enemiesInMap = []
+battleManager.battleBackground = &quot;images/backgrounds/prison.png&quot;
+</onload>
+
+</map>
+

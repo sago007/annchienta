@@ -71,16 +71,17 @@ class MapFile:
             while tileElements[0].hasChildNodes():
                 tileElements[0].removeChild( tileElements[0].lastChild )
 
-            data = ""
+            data = "\n"
 
             for y in range(layer.getHeight()):
-               for x in range(layer.getWidth()):
+                data += "    "
+                for x in range(layer.getWidth()):
                     tile = layer.getTile(x,y)
                     for i in range(4):
                         data += (str(tile.getPointPointer(i).z)+" "+str(tile.getSurface(i))+" ")
                     data += (str(tile.getSideSurfaceOffset())+" ")
                     data += (str(tile.getSideSurface())+"    ")
-               data += "\n"
+                data += "\n"
 
             dataNode = self.document.createTextNode( data )
             tileElements[0].appendChild( dataNode )
@@ -102,10 +103,12 @@ class MapFile:
                 while obstructionElements[0].hasChildNodes():
                     obstructionElements[0].removeChild( obstructionElements[0].lastChild )
 
-                data = ""
+                data = "\n    "
 
                 for i in obstructions:
                     data += str(i) + " "
+
+                data += "\n"
 
                 dataNode = self.document.createTextNode( data )
                 obstructionElements[0].appendChild( dataNode )
