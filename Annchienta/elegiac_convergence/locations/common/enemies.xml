@@ -57,4 +57,14 @@
         </strategies>
         <drop experience="100"/>
     </combatant>
+    <!-- Kator gets adapted to player stats and has a bit of all abilities. -->
+    <combatant name="kator">
+        <sprite filename="sprites/kator.png" x1="144" y1="0" x2="202" y2="77"/>
+        <status strength="1" defense="1" magic="1" resistance="1" health="1" maxhealth="1"/>
+        <strategies>
+            warrior lich fighter poisoner dragon adept
+        </strategies>
+        <drop experience="100"/>
+    </combatant>
 </enemies>
+

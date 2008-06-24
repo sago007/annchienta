@@ -1,9 +1,18 @@
-import annchienta, scene, party, battle
+import annchienta, scene, party, battle, combatant
 
 partyManager = party.getPartyManager()
 sceneManager = scene.getSceneManager()
+battleManager = battle.getBattleManager()
 
 thisMap = partyManager.currentMap
+
+# Fuction that adapts Kator's stats to the players
+def adapt( katorEnemy ):
+    stats = ["strength", "defense", "magic", "resistance", "health", "maxhealth"]
+    for stat in stats:
+        s = int(1.5*sum( map( lambda t: t.status.get(stat), partyManager.team ) ))
+        katorEnemy.status.set(stat, s)
+    
 
 # Persons for scenes
 player = partyManager.player
@@ -63,6 +72,8 @@ if not partyManager.hasRecord("anpere_met_kator"):
     partyManager.changeMap( "locations/anpere/flashback.xml", annchienta.Point( annchienta.TilePoint, 2, 6 ) )
 
 else:
+    partyManager.addRecord("anpere_fought_kator")
+
     kator.setPosition( annchienta.Point( annchienta.TilePoint, 11, 6 ) )
     esana.setPosition( annchienta.Point( annchienta.TilePoint, 9, 5 ) )
     inyse.setPosition( annchienta.Point( annchienta.TilePoint, 11, 8 ) )
@@ -89,11 +100,25 @@ else:
 
     sceneManager.speak( player, "But I'm so afraid to speak the truth..." )
 
+    # Create kator enemy
+    katorEnemy = battleManager.createEnemy("kator")
+
+    # Heal party
+    partyManager.heal()
+
+    # Adapt to player stats.
+    adapt( katorEnemy )
+    annchienta.getLogManager().message( str(katorEnemy.status.get("strength")) )
+
+    b = battle.Battle( partyManager.team + [katorEnemy] )
+    b.background = annchienta.Surface("images/backgrounds/wooden_floor.png")
+    b.run()
+
 sceneManager.quitDialog()
 
 # Remove people
 thisMap.removeObject( esana )
 thisMap.removeObject( inyse )
 thisMap.removeObject( kator )
-
+partyManager.refreshMap()
 
