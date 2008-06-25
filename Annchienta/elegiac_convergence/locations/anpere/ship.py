@@ -74,11 +74,11 @@ if not partyManager.hasRecord("anpere_met_kator"):
 else:
     partyManager.addRecord("anpere_fought_kator")
 
-    kator.setPosition( annchienta.Point( annchienta.TilePoint, 11, 6 ) )
-    esana.setPosition( annchienta.Point( annchienta.TilePoint, 9, 5 ) )
+    kator.setPosition( annchienta.Point( annchienta.TilePoint, 8, 6 ) )
+    esana.setPosition( annchienta.Point( annchienta.TilePoint, 9, 10 ) )
     inyse.setPosition( annchienta.Point( annchienta.TilePoint, 11, 8 ) )
     player.setPosition( annchienta.Point( annchienta.TilePoint, 13, 5 ) )
-    sceneManager.move( player, annchienta.Point(annchienta.TilePoint,13,6) )
+    sceneManager.move( player, annchienta.Point(annchienta.TilePoint,13,7) )
 
     sceneManager.speak( player, "And I..." )
 
@@ -113,6 +113,22 @@ else:
     b = battle.Battle( partyManager.team + [katorEnemy] )
     b.background = annchienta.Surface("images/backgrounds/wooden_floor.png")
     b.run()
+    #b.won = True
+
+    if b.won:
+        sceneManager.speak( kator, "Why... you..." )
+
+        # Fall from boat
+        sceneManager.move( kator, annchienta.Point( annchienta.TilePoint, 6, 6 ) )
+
+        sceneManager.speak( player, "I'm... I'm so sorry for everything... but I have to speak the truth... I love you." )
+        sceneManager.speak( esana, "So much has been happening..." )
+        sceneManager.speak( esana, "I never... I... I just don't know it anymore..." )
+        sceneManager.speak( esana, "Hold me." )
+
+        sceneManager.move( player, annchienta.Point( annchienta.TilePoint, 9, 10 ) )
+
+        sceneManager.text( "THE END!!!1!!!111!")
 
 sceneManager.quitDialog()
 

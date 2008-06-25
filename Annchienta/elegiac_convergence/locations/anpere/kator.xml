@@ -15,7 +15,8 @@
     <frame number="8" x1="108" y1="78" x2="144" y2="156"/>
         
     <animation name="stand" frames="1" speed="20" />
-    <animation name="walknorth" frames="12" speed="15" />
+    <!-- Walk backwards. -->
+    <animation name="walknorth" frames="78" speed="15" />
     <animation name="walkeast" frames="34" speed="15" />
     <animation name="walkwest" frames="56" speed="15" />
     <animation name="walksouth" frames="78" speed="15" />
