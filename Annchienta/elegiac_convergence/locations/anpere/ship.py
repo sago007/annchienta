@@ -3,6 +3,8 @@ import annchienta, scene, party, battle, combatant
 partyManager = party.getPartyManager()
 sceneManager = scene.getSceneManager()
 battleManager = battle.getBattleManager()
+videoManager = annchienta.getVideoManager()
+mapManager = annchienta.getMapManager()
 
 thisMap = partyManager.currentMap
 
@@ -75,6 +77,7 @@ else:
     partyManager.addRecord("anpere_fought_kator")
 
     kator.setPosition( annchienta.Point( annchienta.TilePoint, 8, 6 ) )
+    kator.setAnimation( "standsouth" )
     esana.setPosition( annchienta.Point( annchienta.TilePoint, 9, 10 ) )
     inyse.setPosition( annchienta.Point( annchienta.TilePoint, 11, 8 ) )
     player.setPosition( annchienta.Point( annchienta.TilePoint, 13, 5 ) )
@@ -116,10 +119,15 @@ else:
     #b.won = True
 
     if b.won:
-        sceneManager.speak( kator, "Why... you..." )
 
         # Fall from boat
+        sceneManager.speak( kator, "Why... you..." )
+        sceneManager.move( kator, annchienta.Point( annchienta.TilePoint, 7, 6 ) )
+        kator.setAnimation( "standsouth" )
+        sceneManager.speak( kator, "Argh..." )
         sceneManager.move( kator, annchienta.Point( annchienta.TilePoint, 6, 6 ) )
+
+        sceneManager.speak( inyse, "We did it." )
 
         sceneManager.speak( player, "I'm... I'm so sorry for everything... but I have to speak the truth... I love you." )
         sceneManager.speak( esana, "So much has been happening..." )
@@ -128,7 +136,14 @@ else:
 
         sceneManager.move( player, annchienta.Point( annchienta.TilePoint, 9, 10 ) )
 
-        sceneManager.text( "THE END!!!1!!!111!")
+        sceneManager.fadeOut(0,0,0,1000)
+        videoManager.setClearColor(0,0,0)
+        videoManager.begin()
+        videoManager.drawStringCentered( sceneManager.italicsFont, "The End", videoManager.getScreenWidth()/2, 100 )
+        videoManager.drawStringCentered( sceneManager.defaultFont, "By Jasper Van der Jeugt", videoManager.getScreenWidth()/2, 130 )
+        videoManager.end()
+        sceneManager.waitForClick()
+        mapManager.stop()
 
 sceneManager.quitDialog()
 
