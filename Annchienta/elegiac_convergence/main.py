@@ -50,7 +50,7 @@ partyManager = party.getPartyManager()
 
 # Main menu
 title_background = annchienta.Surface("assets/title.png")
-title_font = annchienta.Font("assets/italics.ttf", 24)
+title_font = annchienta.Font("assets/italics.ttf", 14)
 surf = annchienta.Surface( 400, 300, 3 )
 while inputManager.running():
 
@@ -63,12 +63,11 @@ while inputManager.running():
     videoManager.drawSurface( title_background, 0, 0 )
 
     videoManager.setColor(255,255,255)
-    videoManager.drawStringCentered( title_font, "Elegiac Convergence", videoManager.getScreenWidth()/2, 10 )
 
     options = ["Continue", "New Game", "Quit"]
     for i in range(len(options)):
-        if inputManager.hover( 0, 40+i*title_font.getLineHeight(), videoManager.getScreenWidth(), 40+(i+1)*title_font.getLineHeight() ):
-            videoManager.setColor(255,255,255)
+        if inputManager.hover( 0, 240+i*title_font.getLineHeight(), videoManager.getScreenWidth(), 240+(i+1)*title_font.getLineHeight() ):
+            videoManager.setColor(238,206,51)
 
             if inputManager.buttonTicked(0):
                 if options[i]=="Continue" or options[i]=="New Game":
@@ -87,15 +86,12 @@ while inputManager.running():
                     inputManager.stop()
 
         else:
-            videoManager.setColor(150,150,0)
+            videoManager.setColor(198,126,23)
 
         if inputManager.running():
-            videoManager.drawStringCentered( title_font, str(options[i]), videoManager.getScreenWidth()/2, 40+i*title_font.getLineHeight() )
+            videoManager.drawStringCentered( title_font, str(options[i]), videoManager.getScreenWidth()/2, 240+i*title_font.getLineHeight() )
 
-    #videoManager.boxBlur( 100, 100, 300, 200, 6 )
-    #videoManager.grabBuffer( surf )
-    #videoManager.begin()
-    #videoManager.drawSurface( surf, 0, 0, 0, 0, 200, 100 )
     videoManager.end()
 
 logManager.message("Finished playing Elegiac Convergence.")
+
