@@ -64,3 +64,4 @@ partyManager.changeMap( &quot;locations/tasumian/&quot;+str(annchienta.randInt(2
 </layer>
 <onload script="locations/tasumian/onload.py"/>
 </map>
+

@@ -48,4 +48,16 @@ battleManager.battleBackground = 0
 partyManager.player.setSprite(&quot;sprites/aelaan_world.png&quot;)
 </onload>
 
+<onpostrender>
+import annchienta, math
+
+videoManager = annchienta.getVideoManager()
+cacheManager = annchienta.getCacheManager()
+engine = annchienta.getEngine()
+surf = cacheManager.getSurface(&quot;fog.png&quot;)
+
+t = engine.getTicks()/6
+videoManager.drawSurface( surf, t%videoManager.getScreenWidth(), 0)
+videoManager.drawSurface( surf, t%videoManager.getScreenWidth()-videoManager.getScreenWidth(), 0)
+</onpostrender>
 </map>

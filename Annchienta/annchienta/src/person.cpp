@@ -173,7 +173,9 @@ namespace Annchienta
             StaticObject *so = layer->getObject(i);
             if( (StaticObject*) this != so )
             {
-                if( !so->isPassable() )
+                /* Check this only if they're both unpassable.
+                 */
+                if( !so->isPassable() && !this->isPassable())
                 {
                     Point otherMaskPosition( so->getMaskPosition() );
                     if( mask->collision( maskPosition.x, maskPosition.y, so->getMask(), otherMaskPosition.x, otherMaskPosition.y ) )
