@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <sprite image="sprites/daser.png" mask="masks/mask.png">
     
-    
     <frame number="1" x1="0" y1="0" x2="36" y2="78"/>
     <frame number="2" x1="36" y1="0" x2="72" y2="78"/>
         
@@ -27,5 +26,8 @@
     <control type="sample" />
 
     <oninteract script="locations/anpere/daser.py"/>
-    
+
+    <!--<passable value="1"/>-->
+
 </sprite>
+

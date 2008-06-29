@@ -173,9 +173,12 @@ namespace Annchienta
             StaticObject *so = layer->getObject(i);
             if( (StaticObject*) this != so )
             {
-                Point otherMaskPosition( so->getMaskPosition() );
-                if( mask->collision( maskPosition.x, maskPosition.y, so->getMask(), otherMaskPosition.x, otherMaskPosition.y ) )
-                    possible = false;
+                if( !so->isPassable() )
+                {
+                    Point otherMaskPosition( so->getMaskPosition() );
+                    if( mask->collision( maskPosition.x, maskPosition.y, so->getMask(), otherMaskPosition.x, otherMaskPosition.y ) )
+                        possible = false;
+                }
             }
         }
 

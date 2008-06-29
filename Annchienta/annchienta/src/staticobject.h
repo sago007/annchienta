@@ -59,6 +59,8 @@ namespace Annchienta
             int currentAnimation, currentFrame, speedTimer;
             bool animationRunning;
 
+            bool passable;
+
             bool needsUpdate;
 
             char *onInteractScript, *onInteractCode;
@@ -100,6 +102,9 @@ namespace Annchienta
             virtual const char *getAnimation() const;
             //virtual void stopAnimation();
             //virtual void startAnimation();
+
+            virtual void setPassable( bool value );
+            virtual bool isPassable() const;
 
             virtual bool canInteract() const;
             virtual void onInteract();

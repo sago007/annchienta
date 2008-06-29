@@ -31,7 +31,7 @@ namespace Annchienta
 {
     StaticObject *activeObject=0, *passiveObject=0;
 
-    StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), needsUpdate(true), onInteractScript(0), onInteractCode(0)
+    StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), passable(false), needsUpdate(true), onInteractScript(0), onInteractCode(0)
     {
         LogManager *logManager = getLogManager();
 
@@ -123,6 +123,13 @@ namespace Annchienta
                             getEngine()->toPythonCode( &onInteractCode );
                         }
                     }
+                    if( !strcmpCaseInsensitive("passable", xml->getNodeName()) )
+                    {
+                        if( xml->getAttributeValue("value") )
+                        {
+                            passable = (bool)xml->getAttributeValueAsInt("value");
+                        }
+                    }
                     break;
             }
         }
@@ -134,7 +141,7 @@ namespace Annchienta
         speedTimer = 0;
     }
 
-    StaticObject::StaticObject( const char *_name, Surface *_surf, Mask *_mask ): Entity(_name), sprite(_surf), mask(_mask), tileStandingOn(0), currentFrame(0), needsUpdate(true), onInteractScript(0), onInteractCode(0)
+    StaticObject::StaticObject( const char *_name, Surface *_surf, Mask *_mask ): Entity(_name), sprite(_surf), mask(_mask), tileStandingOn(0), currentFrame(0), passable(false), needsUpdate(true), onInteractScript(0), onInteractCode(0)
     {
         /* Create a default frame.
          */
@@ -390,6 +397,16 @@ namespace Annchienta
     {
         animationRunning = true;
     }*/
+
+    void StaticObject::setPassable( bool value )
+    {
+        passable = value;
+    }
+
+    bool StaticObject::isPassable() const
+    {
+        return passable;
+    }
 
     bool StaticObject::canInteract() const
     {
