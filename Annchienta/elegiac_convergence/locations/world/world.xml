@@ -54,7 +54,7 @@ import annchienta, math
 videoManager = annchienta.getVideoManager()
 cacheManager = annchienta.getCacheManager()
 engine = annchienta.getEngine()
-surf = cacheManager.getSurface(&quot;fog.png&quot;)
+surf = cacheManager.getSurface(&quot;images/storyline/fog.png&quot;)
 
 t = engine.getTicks()/6
 videoManager.drawSurface( surf, t%videoManager.getScreenWidth(), 0)
