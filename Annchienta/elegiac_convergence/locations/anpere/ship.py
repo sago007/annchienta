@@ -9,21 +9,21 @@ mapManager = annchienta.getMapManager()
 thisMap = partyManager.currentMap
 
 # Fuction that adapts Kator's stats to the players
-def adapt( katorEnemy ):
+def adapt( jelobatEnemy ):
     stats = ["strength", "defense", "magic", "resistance", "health", "maxhealth"]
     for stat in stats:
         s = int(1.5*sum( map( lambda t: t.status.get(stat), partyManager.team ) ))
-        katorEnemy.status.set(stat, s)
+        jelobatEnemy.status.set(stat, s)
     
 
 # Persons for scenes
 player = partyManager.player
 esana = annchienta.Person("esana", "locations/prison/esana.xml")
 inyse = annchienta.Person("inyse", "locations/tetia/inyse.xml")
-kator = annchienta.Person("kator", "locations/anpere/kator.xml")
+jelobat = annchienta.Person("jelobat", "locations/anpere/jelobat.xml")
 
 # Set positions.
-kator.setPosition( annchienta.Point( annchienta.TilePoint, 11, 6 ) )
+jelobat.setPosition( annchienta.Point( annchienta.TilePoint, 11, 6 ) )
 esana.setPosition( annchienta.Point( annchienta.TilePoint, 9, 14 ) )
 inyse.setPosition( annchienta.Point( annchienta.TilePoint, 11, 14 ) )
 player.setPosition( annchienta.Point( annchienta.TilePoint, 13, 14 ) )
@@ -31,26 +31,26 @@ player.setPosition( annchienta.Point( annchienta.TilePoint, 13, 14 ) )
 # Add persons to map
 thisMap.addObject( esana )
 thisMap.addObject( inyse )
-thisMap.addObject( kator )
+thisMap.addObject( jelobat )
 
 thisMap.depthSort()
 
 # Init dialog
-sceneManager.initDialog( [player, esana, inyse, kator] )
+sceneManager.initDialog( [player, esana, inyse, jelobat] )
 
 # First part of scene, ends with flashback of murder.
-if not partyManager.hasRecord("anpere_met_kator"):
+if not partyManager.hasRecord("anpere_met_jelobat"):
     
     # Kator looks away from the party.
-    kator.setAnimation("standeast")
+    jelobat.setAnimation("standeast")
 
     # Move a little.
     sceneManager.move( [esana, inyse, player], [annchienta.Point(annchienta.TilePoint,9,5), annchienta.Point(annchienta.TilePoint,11,8), annchienta.Point(annchienta.TilePoint,13,5) ] )
 
     # Let's all look at Kator.
-    player.lookAt( kator )
-    esana.lookAt( kator )
-    inyse.lookAt( kator )
+    player.lookAt( jelobat )
+    esana.lookAt( jelobat )
+    inyse.lookAt( jelobat )
 
     # Say some lines.
     sceneManager.speak( player, "Your path ends here, Kator." )
@@ -58,26 +58,26 @@ if not partyManager.hasRecord("anpere_met_kator"):
     sceneManager.speak( inyse, "It was your fault the guards killed Cristopher!" )    
 
     # Kator reacts
-    kator.lookAt( player )
-    sceneManager.speak( kator, "The irony... are you going to stop me, Aelaan? Just liked you stopped Esana's father?" )
-    sceneManager.speak( kator, "You remember now, do you not? Indeed, I was paid to kill her father, but I could never have done that without your help..." )
+    jelobat.lookAt( player )
+    sceneManager.speak( jelobat, "The irony... are you going to stop me, Aelaan? Just liked you stopped Esana's father?" )
+    sceneManager.speak( jelobat, "You remember now, do you not? Indeed, I was paid to kill her father, but I could never have done that without your help..." )
     
     # Aelaan backs off
     sceneManager.move( player, annchienta.Point( annchienta.TilePoint, 13, 7 ) )
     sceneManager.speak( player, "You betrayed us..." )
-    sceneManager.speak( kator, "Well, the path had to be cleared, hadn't it? Until then I found out that I couldn't take him out at all... he was pretty strong for such an old guy." )
+    sceneManager.speak( jelobat, "Well, the path had to be cleared, hadn't it? Until then I found out that I couldn't take him out at all... he was pretty strong for such an old guy." )
     sceneManager.speak( player, "You... you pretended you were hurt..." )
 
     # Now change to flashback.
-    partyManager.addRecord("anpere_met_kator")
+    partyManager.addRecord("anpere_met_jelobat")
     player.setAnimation("standsouth")
     partyManager.changeMap( "locations/anpere/flashback.xml", annchienta.Point( annchienta.TilePoint, 2, 6 ) )
 
 else:
-    partyManager.addRecord("anpere_fought_kator")
+    partyManager.addRecord("anpere_fought_jelobat")
 
-    kator.setPosition( annchienta.Point( annchienta.TilePoint, 8, 6 ) )
-    kator.setAnimation( "standsouth" )
+    jelobat.setPosition( annchienta.Point( annchienta.TilePoint, 8, 6 ) )
+    jelobat.setAnimation( "standsouth" )
     esana.setPosition( annchienta.Point( annchienta.TilePoint, 9, 10 ) )
     inyse.setPosition( annchienta.Point( annchienta.TilePoint, 11, 8 ) )
     player.setPosition( annchienta.Point( annchienta.TilePoint, 13, 5 ) )
@@ -85,7 +85,7 @@ else:
 
     sceneManager.speak( player, "And I..." )
 
-    sceneManager.speak( kator, "And you made the wrong choice. You should've listened to that old fool. On the other hand, it was convenient to take you out after that and cut off Barong's head." )
+    sceneManager.speak( jelobat, "And you made the wrong choice. You should've listened to that old fool. On the other hand, it was convenient to take you out after that and cut off Barong's head." )
 
     sceneManager.move( player, annchienta.Point(annchienta.TilePoint,13,9) )
 
@@ -103,17 +103,17 @@ else:
 
     sceneManager.speak( player, "But I'm so afraid to speak the truth..." )
 
-    # Create kator enemy
-    katorEnemy = battleManager.createEnemy("kator")
+    # Create jelobat enemy
+    jelobatEnemy = battleManager.createEnemy("jelobat")
 
     # Heal party
     partyManager.heal()
 
     # Adapt to player stats.
-    adapt( katorEnemy )
-    annchienta.getLogManager().message( str(katorEnemy.status.get("strength")) )
+    adapt( jelobatEnemy )
+    annchienta.getLogManager().message( str(jelobatEnemy.status.get("strength")) )
 
-    b = battle.Battle( partyManager.team + [katorEnemy] )
+    b = battle.Battle( partyManager.team + [jelobatEnemy] )
     b.background = annchienta.Surface("images/backgrounds/wooden_floor.png")
     b.run()
     #b.won = True
@@ -121,11 +121,11 @@ else:
     if b.won:
 
         # Fall from boat
-        sceneManager.speak( kator, "Why... you..." )
-        sceneManager.move( kator, annchienta.Point( annchienta.TilePoint, 7, 6 ) )
-        kator.setAnimation( "standsouth" )
-        sceneManager.speak( kator, "Argh..." )
-        sceneManager.move( kator, annchienta.Point( annchienta.TilePoint, 6, 6 ) )
+        sceneManager.speak( jelobat, "Why... you..." )
+        sceneManager.move( jelobat, annchienta.Point( annchienta.TilePoint, 7, 6 ) )
+        jelobat.setAnimation( "standsouth" )
+        sceneManager.speak( jelobat, "Argh..." )
+        sceneManager.move( jelobat, annchienta.Point( annchienta.TilePoint, 6, 6 ) )
 
         sceneManager.speak( inyse, "We did it." )
 
@@ -150,6 +150,6 @@ sceneManager.quitDialog()
 # Remove people
 thisMap.removeObject( esana )
 thisMap.removeObject( inyse )
-thisMap.removeObject( kator )
+thisMap.removeObject( jelobat )
 partyManager.refreshMap()
 

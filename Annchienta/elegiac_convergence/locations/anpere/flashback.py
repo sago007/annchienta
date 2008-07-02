@@ -5,17 +5,17 @@ sceneManager = scene.getSceneManager()
 
 player = partyManager.player
 bardolph = partyManager.currentMap.getObject("bardolph")
-kator = partyManager.currentMap.getObject("kator")
+jelobat = partyManager.currentMap.getObject("jelobat")
 
-sceneManager.initDialog( [player, bardolph, kator] )
+sceneManager.initDialog( [player, bardolph, jelobat] )
 
-kator.lookAt( bardolph )
+jelobat.lookAt( bardolph )
 
-sceneManager.speak( kator, "Aelaan, help me!" )
+sceneManager.speak( jelobat, "Aelaan, help me!" )
 sceneManager.speak( bardolph, "Stay away! I don't know what he told you, but this man is an assassin!" )
-sceneManager.speak( kator, "I... what? You don't believe that, Aelaan, do you?" )
+sceneManager.speak( jelobat, "I... what? You don't believe that, Aelaan, do you?" )
 sceneManager.speak( bardolph, "Don't listen to him! Stay out of this!" )
-sceneManager.speak( kator, "Trust me, Aelaan! We'll get through this!" )
+sceneManager.speak( jelobat, "Trust me, Aelaan! We'll get through this!" )
 
 pos = player.getPosition().to( annchienta.IsometricPoint )
 pos.x += 30

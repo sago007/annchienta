@@ -15,7 +15,7 @@
 </tiles>
 
 <staticobject name="bardolph" sprite="sprites/bardolph.png" mask="masks/mask.png" tilex="7" tiley="4"/>
-<person name="kator" config="locations/anpere/kator.xml" tilex="7" tiley="6" animation="standeast"/>
+<person name="jelobat" config="locations/anpere/jelobat.xml" tilex="7" tiley="6" animation="standeast"/>
 
 <!-- Flashback script. -->
 <area tilex1="4" tilex2="10" tiley1="0" tiley2="10" script="locations/anpere/flashback.py"/>

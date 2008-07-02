@@ -24,7 +24,7 @@
 </tiles>
 
 <!-- Ending scipt, kinda large. -->
-<if code="import party;partyManager=party.getPartyManager()" cond="not partyManager.hasRecord('anpere_fought_kator')">
+<if code="import party;partyManager=party.getPartyManager()" cond="not partyManager.hasRecord('anpere_fought_jelobat')">
     <area tilex1="0" tilex2="20" tiley1="0" tiley2="20" script="locations/anpere/ship.py"/>
 </if>
 

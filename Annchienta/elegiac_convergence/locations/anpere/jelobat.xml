@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<sprite image="sprites/kator.png" mask="masks/mask.png">
+<sprite image="sprites/jelobat.png" mask="masks/mask.png">
     
     
     <frame number="1" x1="0" y1="0" x2="36" y2="78"/>
