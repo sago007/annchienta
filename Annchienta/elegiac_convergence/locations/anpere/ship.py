@@ -4,6 +4,7 @@ partyManager = party.getPartyManager()
 sceneManager = scene.getSceneManager()
 battleManager = battle.getBattleManager()
 videoManager = annchienta.getVideoManager()
+audioManager = annchienta.getAudioManager()
 mapManager = annchienta.getMapManager()
 
 thisMap = partyManager.currentMap
@@ -115,11 +116,14 @@ else:
 
     b = battle.Battle( partyManager.team + [jelobatEnemy] )
     b.background = annchienta.Surface("images/backgrounds/wooden_floor.png")
+    
+    audioManager.playMusic("music/anpere.ogg")
     b.run()
     #b.won = True
 
     if b.won:
 
+        audioManager.playMusic("music/title.ogg")
         # Fall from boat
         sceneManager.speak( jelobat, "Why... you..." )
         sceneManager.move( jelobat, annchienta.Point( annchienta.TilePoint, 7, 6 ) )

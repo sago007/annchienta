@@ -140,7 +140,7 @@ class Combatant:
             self.m_strategy.control()
 
         if "poison" in self.ailments:
-            self.addHealth( -self.status.get("maxhealth")/8 )
+            self.addHealth( -self.status.get("maxhealth")/12 )
 
     def createStrategy( self ):
 
