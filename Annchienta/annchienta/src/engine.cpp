@@ -71,14 +71,6 @@ namespace Annchienta
 
     Engine::~Engine()
     {
-        /* At last, free up Python stuff. At some operating systems,
-         * this will cause an indefinite hang. That's why we grant
-         * a ten seconds period for it to complete.
-         */
-        SDL_TimerID timer = SDL_AddTimer( 10000, forcedExitCallback, 0 );
-        Py_Finalize();
-        SDL_RemoveTimer( timer );
-
         /* Free up other Single-Instance classes.
          */
         delete videoManager;
@@ -171,11 +163,20 @@ namespace Annchienta
         pythonBoolean = b;
     }
 
-    Engine *getEngine( const char *writeDir )
+    void init( const char *writeDir )
     {
-        if( !engine )
-            return (engine = new Engine(writeDir));
+        engine = new Engine( writeDir );
+    }
+    
+    void quit()
+    {
+        delete engine;
+    }
+
+    Engine *getEngine()
+    {
         return engine;
     }
 
 };
+

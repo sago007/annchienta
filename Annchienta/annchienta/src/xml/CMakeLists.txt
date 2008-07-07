@@ -2,5 +2,5 @@
 
 # Add our XML library.
 ADD_LIBRARY(
-    irrXML irrXML.cpp
+    irrXML STATIC irrXML.cpp
 )

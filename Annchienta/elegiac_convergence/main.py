@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import sys
 
 # Add the scripts directory to the path so we can
@@ -5,6 +6,9 @@ import sys
 sys.path.append("scripts")
 
 import annchienta
+
+# Fire up the engine.
+annchienta.init("saves")
 
 engine = annchienta.getEngine()
 
@@ -94,4 +98,7 @@ while inputManager.running():
     videoManager.end()
 
 logManager.message("Finished playing Elegiac Convergence.")
+
+# Free the engine.
+annchienta.quit()
 

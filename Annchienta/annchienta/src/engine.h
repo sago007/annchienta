@@ -106,10 +106,20 @@ namespace Annchienta
             void setPythonBoolean( bool b );
     };
 
-    /** writeDir is only respected the first time this function
-     *  is called.
+    /* Starts the engine. Call this before using any functions from the
+     * annchienta module.
+     * \param writeDir path to directory where temporary log files can be placed.
      */
-    Engine *getEngine( const char *writeDir="." );
+    void init( const char *writeDir="." );
+    
+    /** Quits and deletes the engine. Call this at the end of your game...
+     */
+    void quit();
+
+    /** Returns the global engine.
+     */
+    Engine *getEngine();
 };
 
 #endif
+

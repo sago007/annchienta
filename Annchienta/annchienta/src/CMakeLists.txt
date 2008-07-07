@@ -28,8 +28,8 @@ INCLUDE_DIRECTORIES(
     ${FREETYPE_INCLUDE_DIRS}
 )
 
-ADD_EXECUTABLE(
-    annchienta annchienta_wrap.cpp area.cpp audiomanager.cpp auxfunc.cpp cachemanager.cpp engine.cpp entity.cpp font.cpp inputmanager.cpp inputpersoncontrol.cpp layer.cpp logmanager.cpp main.cpp map.cpp mapmanager.cpp mask.cpp personcontrol.cpp person.cpp point.cpp samplepersoncontrol.cpp sound.cpp staticobject.cpp surface.cpp tile.cpp tileset.cpp videomanager.cpp
+ADD_LIBRARY( 
+    annchienta SHARED annchienta_wrap.cpp area.cpp audiomanager.cpp auxfunc.cpp cachemanager.cpp engine.cpp entity.cpp font.cpp inputmanager.cpp inputpersoncontrol.cpp layer.cpp logmanager.cpp map.cpp mapmanager.cpp mask.cpp personcontrol.cpp person.cpp point.cpp samplepersoncontrol.cpp sound.cpp staticobject.cpp surface.cpp tile.cpp tileset.cpp videomanager.cpp
 )
 
 # Link to the following libraries
@@ -47,8 +47,12 @@ TARGET_LINK_LIBRARIES(
     util
 )
 
+# Right name for annchienta so we can import it.
+SET_TARGET_PROPERTIES( annchienta PROPERTIES PREFIX "_" )
+
 # Put annchienta in the right location.
 INSTALL(
     TARGETS annchienta
-    DESTINATION bin
+    DESTINATION ${PYTHON_SITE_PACKAGES}
 )
+

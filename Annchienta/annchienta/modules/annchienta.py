@@ -106,6 +106,8 @@ class Engine(_object):
 Engine_swigregister = _annchienta.Engine_swigregister
 Engine_swigregister(Engine)
 
+quit = _annchienta.quit
+getEngine = _annchienta.getEngine
 class LogManager(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, LogManager, name, value)
@@ -125,7 +127,7 @@ class LogManager(_object):
     __del__ = lambda self : None;
 LogManager_swigregister = _annchienta.LogManager_swigregister
 LogManager_swigregister(LogManager)
-getEngine = _annchienta.getEngine
+init = _annchienta.init
 
 getLogManager = _annchienta.getLogManager
 class VideoManager(_object):

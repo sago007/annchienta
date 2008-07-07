@@ -3827,23 +3827,22 @@ SWIGINTERN PyObject *Engine_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_getEngine__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_init__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   char *arg1 = (char *) 0 ;
-  Annchienta::Engine *result = 0 ;
   int res1 ;
   char *buf1 = 0 ;
   int alloc1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:getEngine",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:init",&obj0)) SWIG_fail;
   res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "getEngine" "', argument " "1"" of type '" "char const *""'");
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "init" "', argument " "1"" of type '" "char const *""'");
   }
   arg1 = reinterpret_cast< char * >(buf1);
-  result = (Annchienta::Engine *)Annchienta::getEngine((char const *)arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Engine, 0 |  0 );
+  Annchienta::init((char const *)arg1);
+  resultobj = SWIG_Py_Void();
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
 fail:
@@ -3852,20 +3851,19 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_getEngine__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_init__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  Annchienta::Engine *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)":getEngine")) SWIG_fail;
-  result = (Annchienta::Engine *)Annchienta::getEngine();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Engine, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)":init")) SWIG_fail;
+  Annchienta::init();
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_getEngine(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_init(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[2];
   int ii;
@@ -3876,22 +3874,47 @@ SWIGINTERN PyObject *_wrap_getEngine(PyObject *self, PyObject *args) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
   if (argc == 0) {
-    return _wrap_getEngine__SWIG_1(self, args);
+    return _wrap_init__SWIG_1(self, args);
   }
   if (argc == 1) {
     int _v;
     int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_getEngine__SWIG_0(self, args);
+      return _wrap_init__SWIG_0(self, args);
     }
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'getEngine'.\n"
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'init'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Annchienta::getEngine(char const *)\n"
-    "    Annchienta::getEngine()\n");
+    "    Annchienta::init(char const *)\n"
+    "    Annchienta::init()\n");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_quit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  
+  if (!PyArg_ParseTuple(args,(char *)":quit")) SWIG_fail;
+  Annchienta::quit();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_getEngine(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Engine *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":getEngine")) SWIG_fail;
+  result = (Annchienta::Engine *)Annchienta::getEngine();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Engine, 0 |  0 );
+  return resultobj;
+fail:
   return NULL;
 }
 
@@ -13798,6 +13821,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_Engine", _wrap_new_Engine, METH_VARARGS, NULL},
 	 { (char *)"delete_Engine", _wrap_delete_Engine, METH_VARARGS, NULL},
 	 { (char *)"Engine_swigregister", Engine_swigregister, METH_VARARGS, NULL},
+	 { (char *)"init", _wrap_init, METH_VARARGS, NULL},
+	 { (char *)"quit", _wrap_quit, METH_VARARGS, NULL},
 	 { (char *)"getEngine", _wrap_getEngine, METH_VARARGS, NULL},
 	 { (char *)"LogManager_enable", _wrap_LogManager_enable, METH_VARARGS, NULL},
 	 { (char *)"LogManager_isEnabled", _wrap_LogManager_isEnabled, METH_VARARGS, NULL},
