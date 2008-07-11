@@ -10,6 +10,7 @@ class Squirrel:
         # Get references
         self.videoManager = annchienta.getVideoManager()
         self.cacheManager = annchienta.getCacheManager()
+        self.audioManager = annchienta.getAudioManager()
         
         # Load sprites...
         self.sprite = self.cacheManager.getSurface("data/squirrel1.png")
@@ -63,7 +64,10 @@ class Squirrel:
                 self.yVel += ms*self.yAccel
                 
         # Update balloon
+        t = not self.showingBalloon()
         self.balloonTimer += ms
+        if t and self.showingBalloon():
+            self.audioManager.playSound( self.cacheManager.getSound("data/talk.ogg") )
         if self.balloonTimer > 2000:
             self.balloonTimer = random.randint(-5000,-1000)
             

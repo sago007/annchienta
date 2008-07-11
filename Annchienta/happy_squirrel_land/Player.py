@@ -2,7 +2,7 @@ import math, annchienta, Level
 
 class Player:
 
-    maxRage = 20000
+    maxRage = 40000
 
     def __init__( self ):
     

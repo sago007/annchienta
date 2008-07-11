@@ -113,6 +113,7 @@ class Game:
                     self.nextSquirrelSpawn -= 500
                     self.bodycount += 1
                     self.squirrels.remove(s)
+                    self.audioManager.playSound( self.cacheManager.getSound("data/die.ogg") )
                     
                     # There will be blood
                     self.splatters += [Splatter.Splatter(x,y,math.radians(self.player.angle),True)]
