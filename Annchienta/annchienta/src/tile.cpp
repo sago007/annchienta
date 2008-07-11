@@ -82,6 +82,8 @@ namespace Annchienta
             list = glGenLists( 1 );
         glNewList( list, GL_COMPILE_AND_EXECUTE );
 
+        /* Don't draw back faces of tiles. */
+        glEnable( GL_CULL_FACE );
         glPushMatrix();
 
         /* For every surface, draw with thee correct alpha value
@@ -166,7 +168,10 @@ namespace Annchienta
         }
 
         glPopMatrix();
-
+        
+        /* Reset face culling. */
+        glDisable( GL_CULL_FACE );
+        
         /* End the display list.
          */
         glEndList();

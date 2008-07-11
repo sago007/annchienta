@@ -145,6 +145,10 @@ namespace Annchienta
             /** \return Quick check for interact key.
              */
             bool interactKeyTicked() const;
+            
+            /** \param value Whether the mouse should be visible or not.
+             */
+            void setMouseVisibility( bool value ) const;
     };
 
     InputManager *getInputManager();

@@ -157,11 +157,6 @@ namespace Annchienta
         return inputControlledPerson;
     }
 
-    InputManager *getInputManager()
-    {
-        return inputManager;
-    }
-
     void InputManager::setInputMode( InputMode mode )
     {
         inputMode = mode;
@@ -185,6 +180,16 @@ namespace Annchienta
     bool InputManager::interactKeyTicked() const
     {
         return this->keyTicked( interactKey );
+    }
+
+    void InputManager::setMouseVisibility( bool value ) const
+    {
+        SDL_ShowCursor( (int)value );
+    }
+
+    InputManager *getInputManager()
+    {
+        return inputManager;
     }
 
 };

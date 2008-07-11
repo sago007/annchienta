@@ -7317,6 +7317,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_InputManager_setMouseVisibility(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_setMouseVisibility",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_setMouseVisibility" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_setMouseVisibility" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  ((Annchienta::InputManager const *)arg1)->setMouseVisibility(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_InputManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::InputManager *result = 0 ;
@@ -13886,6 +13916,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"InputManager_setInteractKey", _wrap_InputManager_setInteractKey, METH_VARARGS, NULL},
 	 { (char *)"InputManager_getInteractKey", _wrap_InputManager_getInteractKey, METH_VARARGS, NULL},
 	 { (char *)"InputManager_interactKeyTicked", _wrap_InputManager_interactKeyTicked, METH_VARARGS, NULL},
+	 { (char *)"InputManager_setMouseVisibility", _wrap_InputManager_setMouseVisibility, METH_VARARGS, NULL},
 	 { (char *)"new_InputManager", _wrap_new_InputManager, METH_VARARGS, NULL},
 	 { (char *)"delete_InputManager", _wrap_delete_InputManager, METH_VARARGS, NULL},
 	 { (char *)"InputManager_swigregister", InputManager_swigregister, METH_VARARGS, NULL},

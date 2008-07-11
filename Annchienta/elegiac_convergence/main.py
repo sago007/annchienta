@@ -5,6 +5,10 @@ import sys
 # import modules from it.
 sys.path.append("scripts")
 
+# This is only to be sure... the windows release
+# might need it.
+sys.path.append("../lib")
+
 import annchienta
 
 # Fire up the engine.

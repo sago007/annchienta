@@ -93,7 +93,9 @@ namespace Annchienta
         glEnable( GL_TEXTURE_2D );
         glEnable( GL_BLEND );
         glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-        glEnable( GL_CULL_FACE );
+        
+        /* Only enable culling under certain circumstances. */
+        //glEnable( GL_CULL_FACE );
         glCullFace( GL_BACK );
 
         glClearColor( 0.388f, 0.694f, 0.706f, 1.0f );
