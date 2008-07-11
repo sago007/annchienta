@@ -17,3 +17,7 @@ def yInTree( y ):
 def yBelowTree( y ):
     return y>treeLowerY()
 
+def insideScreen( x, y ):
+    videoManager = annchienta.getVideoManager()
+    return x>=0 and x<videoManager.getScreenWidth() and y>=0 and y<videoManager.getScreenHeight()
+

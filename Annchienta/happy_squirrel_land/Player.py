@@ -20,6 +20,8 @@ class Player:
         self.xScale = 1
         self.angle = 0
         
+        self.weaponReloadTimer = 0
+        
     def draw( self ):
     
         self.videoManager.pushMatrix()
@@ -38,6 +40,7 @@ class Player:
         
     def update( self, ms ):
     
+        # Update x position
         if self.inputManager.keyDown( annchienta.SDLK_LEFT ):
             if self.x-self.sprite.getWidth()/2>0:
                 self.x -= 0.2*ms
@@ -59,4 +62,14 @@ class Player:
             self.xScale = -1
         else:
             self.xScale = 1
+
+        # Update weapon timer
+        if self.weaponReloadTimer<0:
+            self.weaponReloadTimer += int(ms)
+    
+    def weaponLoaded( self ):
+        return self.weaponReloadTimer>=0
+        
+    def unloadWeapon( self ):
+        self.weaponReloadTimer = -1000
 

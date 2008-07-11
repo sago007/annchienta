@@ -1,4 +1,4 @@
-import random, annchienta, Player, Squirrel
+import random, math, annchienta, Player, Squirrel, Splatter, Level
 
 class Game:
 
@@ -23,6 +23,7 @@ class Game:
     
         self.player = Player.Player()
         self.squirrels = []
+        self.splatters = []
     
         self.running = True
         ms = self.engine.getTicks()
@@ -42,11 +43,8 @@ class Game:
         # Start with the background
         self.videoManager.drawSurface( self.background, 0, 0 )
         
-        # Draw the player
-        self.player.draw()
-        
         # Draw the Squirrels
-        map( lambda s: s.draw(), self.squirrels )
+        map( lambda o: o.draw(), [self.player]+self.squirrels+self.splatters )
         
         # Draw the target
         self.videoManager.pushMatrix()
@@ -60,17 +58,51 @@ class Game:
 
         ms = float(ms)
 
-        self.nextSquirrelSpawn -= ms
-        while( self.nextSquirrelSpawn < 0 ):
-            self.nextSquirrelSpawn += random.randint(1000,4000)
-            self.squirrels += [Squirrel.Squirrel()]
-        
+        # Check if the user quit the game
         self.inputManager.update()
         if not self.inputManager.running():
             self.running = False
             return
-
-        self.player.update( ms )
-        map( lambda s: s.update(ms), self.squirrels )
+            
+        # Spawn new Squirrels
+        self.nextSquirrelSpawn -= ms
+        while( self.nextSquirrelSpawn < 0 ):
+            self.nextSquirrelSpawn += random.randint(0,3000)
+            self.squirrels += [Squirrel.Squirrel()]
         
+        # Update player and squirrels and splatters
+        map( lambda o: o.update(ms), [self.player]+self.squirrels+self.splatters )
+        
+        # Remove splatters outside of screen
+        self.splatters = filter( lambda s: s.insideScreen(), self.splatters )
+        
+        # Remove dead squirrels outside of screen
+        self.squirrels = filter( lambda s: (not s.dead) or s.insideScreen(), self.squirrels )
+        
+        # If the player shot...
+        if self.player.weaponLoaded() and self.inputManager.buttonDown(0):
+            self.shoot()
+            
+    def shoot( self ):
+
+        self.player.unloadWeapon()
+        
+        x, y = self.player.x, self.player.y
+        dx, dy = float(self.inputManager.getMouseX())-x, float(self.inputManager.getMouseY())-y
+        l = math.sqrt( dx*dx + dy*dy )
+        l = 1 if l==0 else l
+        dx /= l
+        dy /= l
+        
+        while Level.insideScreen(x,y):
+            x += dx*5
+            y += dy*5
+            for s in filter( lambda s: not s.dead, self.squirrels):
+                if s.hasPoint( x, y ):
+                    self.nextSquirrelSpawn -= 600
+                    s.dead = True
+                    
+                    # There will be blood
+                    self.splatters += map( lambda a: Splatter.Splatter(x,y), range(20) )
+                    return
 
