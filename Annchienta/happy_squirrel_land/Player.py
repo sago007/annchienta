@@ -21,7 +21,7 @@ class Player:
     def draw( self ):
     
         self.videoManager.pushMatrix()
-        self.videoManager.translate( self.x, self.y )
+        self.videoManager.translate( int(self.x), int(self.y) )
         self.videoManager.scale( self.xScale, 1 )
         self.videoManager.drawSurface( self.sprite, -self.sprite.getWidth()/2, -self.sprite.getHeight()/2 )
         self.videoManager.popMatrix()

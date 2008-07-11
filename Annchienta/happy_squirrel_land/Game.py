@@ -15,7 +15,8 @@ class Game:
         self.videoManager.setVideoMode( 480, 320, "Happy Squirrel Land!" )
         self.inputManager.setMouseVisibility( False )
         
-        # Mouse replacement
+        # Various sprites
+        self.background = self.cacheManager.getSurface("data/background.png")
         self.target = self.cacheManager.getSurface("data/target.png")
         
     def run( self ):
@@ -34,6 +35,9 @@ class Game:
     def draw( self ):
     
         self.videoManager.begin()
+        
+        # Start with the background
+        self.videoManager.drawSurface( self.background, 0, 0 )
         
         # Draw the player
         self.player.draw()
