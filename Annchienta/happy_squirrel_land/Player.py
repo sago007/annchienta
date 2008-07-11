@@ -2,12 +2,15 @@ import math, annchienta, Level
 
 class Player:
 
+    maxRage = 20000
+
     def __init__( self ):
     
         # Get references
         self.videoManager = annchienta.getVideoManager()
         self.inputManager = annchienta.getInputManager()
         self.cacheManager = annchienta.getCacheManager()
+        self.audioManager = annchienta.getAudioManager()
         
         # Load sprites...
         self.sprite = self.cacheManager.getSurface("data/player.png")
@@ -20,7 +23,8 @@ class Player:
         self.xScale = 1
         self.angle = 0
         
-        self.weaponReloadTimer = 0
+        self.weaponReloadTimer = -1000
+        self.rage = self.maxRage
         
     def draw( self ):
     
@@ -39,6 +43,10 @@ class Player:
         self.videoManager.popMatrix()
         
     def update( self, ms ):
+    
+        # Update rage
+        if self.rage<0:
+            self.rage = 0
     
         # Update x position
         if self.inputManager.keyDown( annchienta.SDLK_LEFT ):
@@ -72,4 +80,5 @@ class Player:
         
     def unloadWeapon( self ):
         self.weaponReloadTimer = -1000
+        self.audioManager.playSound( self.cacheManager.getSound("data/shotgun.ogg") )
 

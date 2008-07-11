@@ -11,19 +11,19 @@ class Game:
         self.audioManager = annchienta.getAudioManager()
         self.cacheManager = annchienta.getCacheManager()
         
-        # Set video mode.
-        self.videoManager.setVideoMode( 480, 320, "Happy Squirrel Land!" )
-        self.inputManager.setMouseVisibility( False )
-        
         # Various sprites
         self.background = self.cacheManager.getSurface("data/background.png")
         self.target = self.cacheManager.getSurface("data/target.png")
+        
+        # Main font
+        self.font = annchienta.Font( "data/regular.ttf", 14 )
         
     def run( self ):
     
         self.player = Player.Player()
         self.squirrels = []
         self.splatters = []
+        self.bodycount = 0
     
         self.running = True
         ms = self.engine.getTicks()
@@ -52,6 +52,14 @@ class Game:
         self.videoManager.drawSurface( self.target, -self.target.getWidth()/2, -self.target.getHeight()/2 )
         self.videoManager.popMatrix()
         
+        # Draw the rage bar
+        self.videoManager.setColor( 0, 0, 0, 100 )
+        self.videoManager.drawRectangle( 8, 8, self.videoManager.getScreenWidth()-8, 30 )
+        self.videoManager.setColor( 200, 0, 0, 255 )
+        width = float(self.videoManager.getScreenWidth()-20)*float(self.player.rage)/float(self.player.maxRage)
+        self.videoManager.drawRectangle( 10, 10, 10+int(width), 28 )
+        self.videoManager.setColor()
+        self.videoManager.drawStringCentered( self.font, "RAGE", self.videoManager.getScreenWidth()/2, 10 )
         self.videoManager.end()
         
     def update( self, ms ):
@@ -76,12 +84,15 @@ class Game:
         # Remove splatters outside of screen
         self.splatters = filter( lambda s: s.insideScreen(), self.splatters )
         
-        # Remove dead squirrels outside of screen
-        self.squirrels = filter( lambda s: (not s.dead) or s.insideScreen(), self.squirrels )
-        
         # If the player shot...
         if self.player.weaponLoaded() and self.inputManager.buttonDown(0):
             self.shoot()
+            
+        # Subtract rage from player
+        self.player.rage -= ms*len( filter( lambda s: s.showingBalloon(), self.squirrels ) )
+            
+        if self.player.rage <= 0:
+            self.running = False
             
     def shoot( self ):
 
@@ -97,12 +108,14 @@ class Game:
         while Level.insideScreen(x,y):
             x += dx*5
             y += dy*5
-            for s in filter( lambda s: not s.dead, self.squirrels):
+            for s in self.squirrels:
                 if s.hasPoint( x, y ):
-                    self.nextSquirrelSpawn -= 600
-                    s.dead = True
+                    self.nextSquirrelSpawn -= 500
+                    self.bodycount += 1
+                    self.squirrels.remove(s)
                     
                     # There will be blood
-                    self.splatters += map( lambda a: Splatter.Splatter(x,y), range(20) )
+                    self.splatters += [Splatter.Splatter(x,y,math.radians(self.player.angle),True)]
+                    self.splatters += map( lambda a: Splatter.Splatter(x,y,math.radians(self.player.angle)), range(20) )
                     return
 

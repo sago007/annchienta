@@ -2,28 +2,36 @@ import random, math, annchienta, Level
 
 class Splatter:
 
-    velStart = 0.1
+    velStart = 0.2
     yAccel = 0.0005
 
-    def __init__( self, x, y ):
+    def __init__( self, x, y, angle, squirrel=False ):
+    
+        self.squirrel = squirrel
     
         # Get references
         self.videoManager = annchienta.getVideoManager()
         self.cacheManager = annchienta.getCacheManager()
         
         # Load sprites...
-        self.sprite = self.cacheManager.getSurface("data/splatter"+str(random.randint(1,5))+
+        if self.squirrel:
+            self.sprite = self.cacheManager.getSurface("data/squirrel1.png")
+        else:
+            self.sprite = self.cacheManager.getSurface("data/splatter"+str(random.randint(1,5))+
 ".png")
         # Set X and Y
         self.x = x
         self.y = y
         
         # Choose start direction
-        angle = random.uniform(0, 2*math.pi)
+        angle += random.uniform(-math.pi/8, math.pi/8)
         self.xVel = self.velStart*math.cos( angle )
         self.yVel = self.velStart*math.sin( angle )
         
         self.sticksToTree = random.random()<0.5
+        
+        self.xScale = -1 if random.random()<0.5 else 1
+        self.yScale = -1 if self.squirrel else 1
         
     def draw( self ):
     
@@ -32,6 +40,8 @@ class Splatter:
         # Go to main body and draw it
         self.videoManager.translate( int(self.x), int(self.y) )
 
+        self.videoManager.scale( self.xScale, self.yScale )
+            
         self.videoManager.drawSurface( self.sprite, -self.sprite.getWidth()/2, -self.sprite.getHeight()/2 )
         
         self.videoManager.popMatrix()
@@ -45,7 +55,7 @@ class Splatter:
         if Level.yAboveTree( self.y ):
             self.yVel += ms*self.yAccel
         elif Level.yInTree( self.y ):
-            self.yVel = 0 if self.sticksToTree else 0.02
+            self.yVel = 0.002 if self.sticksToTree else 0.02
             self.xVel = 0
         else:
             self.yVel = 0.5
