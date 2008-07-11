@@ -1,4 +1,4 @@
-import annchienta, Player
+import random, annchienta, Player, Squirrel
 
 class Game:
 
@@ -22,9 +22,12 @@ class Game:
     def run( self ):
     
         self.player = Player.Player()
+        self.squirrels = []
     
         self.running = True
         ms = self.engine.getTicks()
+        
+        self.nextSquirrelSpawn = 1000
         
         while self.running:
         
@@ -42,6 +45,9 @@ class Game:
         # Draw the player
         self.player.draw()
         
+        # Draw the Squirrels
+        map( lambda s: s.draw(), self.squirrels )
+        
         # Draw the target
         self.videoManager.pushMatrix()
         self.videoManager.translate( self.inputManager.getMouseX(), self.inputManager.getMouseY() )
@@ -53,6 +59,11 @@ class Game:
     def update( self, ms ):
 
         ms = float(ms)
+
+        self.nextSquirrelSpawn -= ms
+        while( self.nextSquirrelSpawn < 0 ):
+            self.nextSquirrelSpawn += random.randint(1000,4000)
+            self.squirrels += [Squirrel.Squirrel()]
         
         self.inputManager.update()
         if not self.inputManager.running():
@@ -60,5 +71,6 @@ class Game:
             return
 
         self.player.update( ms )
+        map( lambda s: s.update(ms), self.squirrels )
         
 
