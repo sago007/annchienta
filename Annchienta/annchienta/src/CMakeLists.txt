@@ -29,7 +29,8 @@ INCLUDE_DIRECTORIES(
 )
 
 ADD_LIBRARY( 
-    annchienta SHARED annchienta_wrap.cpp area.cpp audiomanager.cpp auxfunc.cpp cachemanager.cpp engine.cpp entity.cpp font.cpp inputmanager.cpp inputpersoncontrol.cpp layer.cpp logmanager.cpp map.cpp mapmanager.cpp mask.cpp personcontrol.cpp person.cpp point.cpp samplepersoncontrol.cpp sound.cpp staticobject.cpp surface.cpp tile.cpp tileset.cpp videomanager.cpp
+    annchienta SHARED annchienta_wrap.cpp 
+    Area.cpp AudioManager.cpp CacheManager.cpp Engine.cpp Entity.cpp Font.cpp GeneralFunctions.cpp InputManager.cpp InputPersonControl.cpp Layer.cpp LogManager.cpp Map.cpp MapManager.cpp Mask.cpp PersonControl.cpp Person.cpp Point.cpp SamplePersonControl.cpp Sound.cpp StaticObject.cpp Surface.cpp Tile.cpp TileSet.cpp VideoManager.cpp
 )
 
 # Link to the following libraries

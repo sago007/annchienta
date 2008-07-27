@@ -117,6 +117,6 @@ class Game:
                     
                     # There will be blood
                     self.splatters += [Splatter.Splatter(x,y,math.radians(self.player.angle),True)]
-                    self.splatters += map( lambda a: Splatter.Splatter(x,y,math.radians(self.player.angle)), range(20) )
+                    self.splatters += map( lambda a: Splatter.Splatter(x,y,math.radians(self.player.angle)), range(40) )
                     return
 
