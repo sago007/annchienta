@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<sprite image="data/sprites/baniran.png" mask="data/masks/baniran.png">
+    <frame number="1"/>
+    <animation name="stand" frames="1" speed="20" />
+    <oninteract>
+import annchienta, SceneManager
+sceneManager = SceneManager.getSceneManager()
+b = annchienta.getPassiveObject()
+pl = annchienta.getActiveObject()
+c = annchienta.getMapManager().getCurrentMap().getObject("candle")
+sceneManager.initDialog( [b,pl,c] )
+sceneManager.speak( b, "Hello" )
+sceneManager.speak( c, "Whatever..." )
+sceneManager.speak( pl, "Hey" )
+sceneManager.quitDialog()
+    </oninteract>
+</sprite>

@@ -48,6 +48,7 @@ namespace Annchienta
             int getCameraY() const;
 
             void cameraFollow( StaticObject *object );
+            StaticObject *getCameraFollow() const;
             void cameraPeekAt( StaticObject *object, bool instantly=false );
 
             void setUpdatesPerSecond( int );
@@ -75,6 +76,9 @@ namespace Annchienta
             void update( bool updateInput=true );
             void updateOnce( bool updateInput=true );
 
+            void draw() const;
+            /** The same as draw()
+             */
             void renderFrame() const;
             void renderTerrain() const;
 

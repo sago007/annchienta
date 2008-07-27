@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<sprite image="data/sprites/candle.png" mask="data/masks/candle.png">
+    
+    <frame number="1" x1="0" y1="0" x2="28" y2="92"/>
+    <frame number="2" x1="28" y1="0" x2="56" y2="92"/>
+    <frame number="3" x1="56" y1="0" x2="84" y2="92"/>
+    <frame number="4" x1="84" y1="0" x2="112" y2="92"/>
+    
+    <animation name="stand" frames="1234" speed="10" />
+    
+</sprite>
+

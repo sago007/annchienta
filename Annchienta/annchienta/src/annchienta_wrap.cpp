@@ -7640,6 +7640,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_MapManager_getCameraFollow(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  Annchienta::StaticObject *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_getCameraFollow",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_getCameraFollow" "', argument " "1"" of type '" "Annchienta::MapManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  result = (Annchienta::StaticObject *)((Annchienta::MapManager const *)arg1)->getCameraFollow();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_MapManager_cameraPeekAt__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
@@ -8320,6 +8342,27 @@ fail:
     "  Possible C/C++ prototypes are:\n"
     "    updateOnce(Annchienta::MapManager *,bool)\n"
     "    updateOnce(Annchienta::MapManager *)\n");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MapManager_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_draw",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_draw" "', argument " "1"" of type '" "Annchienta::MapManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
+  ((Annchienta::MapManager const *)arg1)->draw();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
   return NULL;
 }
 
@@ -13930,6 +13973,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_setCameraY", _wrap_MapManager_setCameraY, METH_VARARGS, NULL},
 	 { (char *)"MapManager_getCameraY", _wrap_MapManager_getCameraY, METH_VARARGS, NULL},
 	 { (char *)"MapManager_cameraFollow", _wrap_MapManager_cameraFollow, METH_VARARGS, NULL},
+	 { (char *)"MapManager_getCameraFollow", _wrap_MapManager_getCameraFollow, METH_VARARGS, NULL},
 	 { (char *)"MapManager_cameraPeekAt", _wrap_MapManager_cameraPeekAt, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setUpdatesPerSecond", _wrap_MapManager_setUpdatesPerSecond, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setCurrentMap", _wrap_MapManager_setCurrentMap, METH_VARARGS, NULL},
@@ -13947,6 +13991,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_stop", _wrap_MapManager_stop, METH_VARARGS, NULL},
 	 { (char *)"MapManager_update", _wrap_MapManager_update, METH_VARARGS, NULL},
 	 { (char *)"MapManager_updateOnce", _wrap_MapManager_updateOnce, METH_VARARGS, NULL},
+	 { (char *)"MapManager_draw", _wrap_MapManager_draw, METH_VARARGS, NULL},
 	 { (char *)"MapManager_renderFrame", _wrap_MapManager_renderFrame, METH_VARARGS, NULL},
 	 { (char *)"MapManager_renderTerrain", _wrap_MapManager_renderTerrain, METH_VARARGS, NULL},
 	 { (char *)"MapManager_resync", _wrap_MapManager_resync, METH_VARARGS, NULL},

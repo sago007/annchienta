@@ -106,6 +106,11 @@ namespace Annchienta
         cameraTarget = object;
     }
 
+    StaticObject *MapManager::getCameraFollow() const
+    {
+        return cameraTarget;
+    }
+
     void MapManager::cameraPeekAt( StaticObject *object, bool instantly )
     {
         VideoManager *videoManager = getVideoManager();
@@ -129,7 +134,7 @@ namespace Annchienta
         else
         {
             int s = 4;
-            while( squaredDistance( (float)cameraX, (float)cameraY, (float)destX, (float)destY )>2500 && --s )
+            while( squaredDistance( (float)cameraX, (float)cameraY, (float)destX, (float)destY )>1 && --s )
             {
                 cameraX += sign( destX - cameraX );
                 cameraY += sign( destY - cameraY );
@@ -272,13 +277,18 @@ namespace Annchienta
 
         if( cameraTarget )
         {
-            cameraPeekAt( cameraTarget, true );
+            cameraPeekAt( cameraTarget, false );
         }
 
         if( onUpdateCode )
             PyRun_SimpleString( onUpdateCode );
         if( onUpdateScript )
             getEngine()->runPythonScript( onUpdateScript );
+    }
+
+    void MapManager::draw() const
+    {
+        this->renderFrame();
     }
 
     void MapManager::renderFrame() const
