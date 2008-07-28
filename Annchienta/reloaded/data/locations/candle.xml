@@ -8,5 +8,21 @@
     
     <animation name="stand" frames="1234" speed="10" />
     
+    <oninteract>
+import Menu
+gameMenu = Menu.Menu("In-Game Menu")
+
+options = [ Menu.MenuItem("continue", "Continue the game."),
+            Menu.MenuItem("save", "Save your progress."),
+            Menu.MenuItem("quit", "Quit the game.") ]
+
+gameMenu.setOptions( options )
+gameMenu.top()
+a = gameMenu.pop()
+if a is None:
+    print "canceled"
+else:
+    print a.name
+    </oninteract>
 </sprite>
 

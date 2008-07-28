@@ -20,17 +20,6 @@ class SceneManager:
     cacheManager = annchienta.getCacheManager()
     mapManager = annchienta.getMapManager()
 
-    def waitForClick( self ):
-        self.videoManager.storeBuffer(7)
-        self.inputManager.update()
-        while self.inputManager.running() and not self.inputManager.buttonTicked(0):
-            self.inputManager.update()
-            self.videoManager.begin()
-            self.videoManager.restoreBuffer(7)
-            self.videoManager.end()
-
-        self.mapManager.resync()
-
     def defaultColor( self ):
         self.videoManager.setColor(255,255,255)
 
