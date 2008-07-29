@@ -13,3 +13,9 @@ class Weapon:
         for k in statsElement.attributes.keys():
             self.stats[k] = int(statsElement.attributes[k].value)
 
+        # Create a dictionary describing the elemental properties
+        self.elemental = {}
+        elementalElement = xmlElement.getElementsByTagName("elemental")[0]
+        for k in elementalElement.attributes.keys():
+            self.elemental[k] = int(elementalElement.attributes[k].value)
+            

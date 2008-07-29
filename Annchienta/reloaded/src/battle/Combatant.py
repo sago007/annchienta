@@ -67,6 +67,13 @@ class BaseCombatant:
                 self.logManager.error("No action called "+a+" was found for "+self.name+" in "+self.actionsLocation+".")
         print map( lambda a: a.name, self.actions )
             
+        # Create a dictionary describing the elemental properties
+        # Only enemies have them, usually
+        self.primaryElemental = {}
+        elementalElements = xmlElement.getElementsByTagName("elemental")
+        if len(elementalElements):
+            for k in elementalElement.attributes.keys():
+                self.primaryElemental[k] = int(elementalElements[0].attributes[k].value)
     
         # Generate derived stats
         self.generateDerivedStats()
@@ -89,6 +96,12 @@ class BaseCombatant:
         for key in self.derivedStats:
             self.derivedStats[key] = self.derivedStats[key] if self.derivedStats[key]<255 else 255
     
+        # Base elemental properties on weapon
+        if self.weapon:
+            self.derivedElemental = self.weapon.elemental
+        else:
+            self.derivedElemental = self.primaryElemental
+    
     # base damage for physical attacks
     def physicalBaseDamage( self ):
         att = self.derivedStats["att"]
@@ -99,5 +112,9 @@ class BaseCombatant:
     def magicalBaseDamage( self ):
         mat = self.derivedStats["mat"]
         lvl = self.level["lvl"]
-        return 6 * (att + lvl)
+        return 6 * (mat + lvl)
+
+    # prototype, not correct
+    def selectAction( self ):
+        return self.actions[ annchienta.randInt( 0, len(self.actions)-1 ) ]
 

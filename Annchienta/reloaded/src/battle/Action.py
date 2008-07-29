@@ -15,10 +15,11 @@ class Action:
         for k in elementalElement.attributes.keys():
             self.elemental[k] = int(elementalElement.attributes[k].value)
 
-        # Set factor and hit
+        # Set factor, hit and type
         powerElement = xmlElement.getElementsByTagName("power")[0]
         self.factor = float( powerElement.getAttribute("factor") )
         self.hit = float( powerElement.getAttribute("hit") )
+        self.type = powerElement.getAttribute("type")
         
         # Set statusEffect and statusHit
         statusElement = xmlElement.getElementsByTagName("status")[0]
