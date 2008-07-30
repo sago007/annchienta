@@ -78,8 +78,16 @@ class BaseCombatant:
         # Generate derived stats
         self.generateDerivedStats()
     
+        self.reset()
+    
+    # Must be called before every battle
+    def reset( self ):
+    
         # Reset status effects
         self.statusEffects = []
+        
+        # Reset time bar
+        self.timer = 100.0
     
     # Will generate derived stats based on equipped weapon.
     def generateDerivedStats( self ):
@@ -115,7 +123,7 @@ class BaseCombatant:
         return 6 * (mat + lvl)
 
     # prototype, not correct
-    def selectAction( self ):
+    def selectAction( self, battle ):
         return self.actions[ annchienta.randInt( 0, len(self.actions)-1 ) ]
 
 ## Now the graphical interface
@@ -127,4 +135,28 @@ class Combatant(BaseCombatant):
         # Call superclass constructor
         BaseCombatant.__init__( self, xmlElement )
         
+        # Get references
+        self.videoManager = annchienta.getVideoManager()
+        
+        # Load sprite
+        spriteElement = xmlElement.getElementsByTagName("sprite")[0]
+        self.sprite = annchienta.Surface( str(spriteElement.getAttribute("filename")) )
+        if spriteElement.hasAttribute("x1"):
+            self.sx1 = int(spriteElement.getAttribute("x1"))
+            self.sy1 = int(spriteElement.getAttribute("y1"))
+            self.sx2 = int(spriteElement.getAttribute("x2"))
+            self.sy2 = int(spriteElement.getAttribute("y2"))
+        else:
+            self.sx1, self.sy1 = 0, 0
+            self.sx2 = self.sprite.getWidth()
+            self.sy2 = self.sprite.getHeight()
+
+        self.position = annchienta.Vector( 0, 0 )
+        
+    def draw( self ):
+    
+        self.videoManager.pushMatrix()
+        self.videoManager.translate( self.position.x, self.position.y )
+        self.videoManager.drawSurface( self.sprite, -(self.sx2-self.sx1)/2, -(self.sx2-self.sx1)/2, self.sx1, self.sy1, self.sx2, self.sy2 )
+        self.videoManager.popMatrix()
         

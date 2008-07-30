@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <actions>
     <action name="attack" category="top">
+        <description>Attack an enemy.</description>
         <elemental fire="1" ice="0" water="0" thunder="0" restorative="0"/>
         <power factor="1.0" hit="0.9" type="physical"/>
         <status effect="poison" hit="0.4"/>
@@ -8,6 +9,7 @@
         <animation type="attack" data="none"/>
     </action>
     <action name="cure" category="white magic">
+        <description>Heal an ally.</description>
         <elemental fire="0" ice="0" water="0" thunder="0" restorative="1"/>
         <power factor="1.0" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>

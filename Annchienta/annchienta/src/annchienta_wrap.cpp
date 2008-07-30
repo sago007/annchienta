@@ -2514,12 +2514,13 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__Surface swig_types[16]
 #define SWIGTYPE_p_Annchienta__Tile swig_types[17]
 #define SWIGTYPE_p_Annchienta__TileSet swig_types[18]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[19]
-#define SWIGTYPE_p_SDLKey swig_types[20]
-#define SWIGTYPE_p_SDLMod swig_types[21]
-#define SWIGTYPE_p_char swig_types[22]
-static swig_type_info *swig_types[24];
-static swig_module_info swig_module = {swig_types, 23, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__Vector swig_types[19]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[20]
+#define SWIGTYPE_p_SDLKey swig_types[21]
+#define SWIGTYPE_p_SDLMod swig_types[22]
+#define SWIGTYPE_p_char swig_types[23]
+static swig_type_info *swig_types[25];
+static swig_module_info swig_module = {swig_types, 24, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2631,6 +2632,7 @@ namespace swig {
 #include "StaticObject.h"
 #include "Person.h"
 #include "GeneralFunctions.h"
+#include "Vector.h"
 
 
   #define SWIG_From_long   PyInt_FromLong 
@@ -13869,6 +13871,656 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Vector_x_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector_x_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_x_set" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Vector_x_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->x = arg2;
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector_x_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Vector_x_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_x_get" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  result = (float) ((arg1)->x);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector_y_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector_y_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_y_set" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Vector_y_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->y = arg2;
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector_y_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Vector_y_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_y_get" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  result = (float) ((arg1)->y);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Vector__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  float arg1 ;
+  float arg2 ;
+  Annchienta::Vector *result = 0 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_Vector",&obj0,&obj1)) SWIG_fail;
+  ecode1 = SWIG_AsVal_float(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Vector" "', argument " "1"" of type '" "float""'");
+  } 
+  arg1 = static_cast< float >(val1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Vector" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  result = (Annchienta::Vector *)new Annchienta::Vector(arg1,arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Vector__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = 0 ;
+  Annchienta::Vector *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_Vector",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_Annchienta__Vector,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Vector" "', argument " "1"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Vector" "', argument " "1"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  result = (Annchienta::Vector *)new Annchienta::Vector((Annchienta::Vector const &)*arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Vector(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = (int)PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_Annchienta__Vector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_Vector__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      int res = SWIG_AsVal_float(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_new_Vector__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Vector'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Annchienta::Vector(float,float)\n"
+    "    Annchienta::Vector(Annchienta::Vector const &)\n");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Vector(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_Vector",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Vector" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  delete arg1;
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector___add__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  Annchienta::Vector *arg2 = 0 ;
+  SwigValueWrapper< Annchienta::Vector > result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector___add__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___add__" "', argument " "1"" of type '" "Annchienta::Vector const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Annchienta__Vector,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Vector___add__" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Vector___add__" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Vector * >(argp2);
+  result = ((Annchienta::Vector const *)arg1)->operator +((Annchienta::Vector const &)*arg2);
+  resultobj = SWIG_NewPointerObj((new Annchienta::Vector(static_cast< const Annchienta::Vector& >(result))), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector___sub__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  Annchienta::Vector *arg2 = 0 ;
+  SwigValueWrapper< Annchienta::Vector > result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector___sub__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___sub__" "', argument " "1"" of type '" "Annchienta::Vector const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Annchienta__Vector,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Vector___sub__" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Vector___sub__" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Vector * >(argp2);
+  result = ((Annchienta::Vector const *)arg1)->operator -((Annchienta::Vector const &)*arg2);
+  resultobj = SWIG_NewPointerObj((new Annchienta::Vector(static_cast< const Annchienta::Vector& >(result))), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector___mul____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float *arg2 = 0 ;
+  SwigValueWrapper< Annchienta::Vector > result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector___mul__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___mul__" "', argument " "1"" of type '" "Annchienta::Vector const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Vector___mul__" "', argument " "2"" of type '" "float""'");
+  } 
+  temp2 = static_cast< float >(val2);
+  arg2 = &temp2;
+  result = ((Annchienta::Vector const *)arg1)->operator *((float const &)*arg2);
+  resultobj = SWIG_NewPointerObj((new Annchienta::Vector(static_cast< const Annchienta::Vector& >(result))), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector___div__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float *arg2 = 0 ;
+  SwigValueWrapper< Annchienta::Vector > result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector___div__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___div__" "', argument " "1"" of type '" "Annchienta::Vector const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Vector___div__" "', argument " "2"" of type '" "float""'");
+  } 
+  temp2 = static_cast< float >(val2);
+  arg2 = &temp2;
+  result = ((Annchienta::Vector const *)arg1)->operator /((float const &)*arg2);
+  resultobj = SWIG_NewPointerObj((new Annchienta::Vector(static_cast< const Annchienta::Vector& >(result))), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector___iadd__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  Annchienta::Vector *arg2 = 0 ;
+  Annchienta::Vector *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector___iadd__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___iadd__" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Annchienta__Vector,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Vector___iadd__" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Vector___iadd__" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Vector * >(argp2);
+  {
+    Annchienta::Vector &_result_ref = (arg1)->operator +=((Annchienta::Vector const &)*arg2);
+    result = (Annchienta::Vector *) &_result_ref;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector___isub__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  Annchienta::Vector *arg2 = 0 ;
+  Annchienta::Vector *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector___isub__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___isub__" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Annchienta__Vector,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Vector___isub__" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Vector___isub__" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Vector * >(argp2);
+  {
+    Annchienta::Vector &_result_ref = (arg1)->operator -=((Annchienta::Vector const &)*arg2);
+    result = (Annchienta::Vector *) &_result_ref;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector___imul__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float *arg2 = 0 ;
+  Annchienta::Vector *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector___imul__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___imul__" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Vector___imul__" "', argument " "2"" of type '" "float""'");
+  } 
+  temp2 = static_cast< float >(val2);
+  arg2 = &temp2;
+  {
+    Annchienta::Vector &_result_ref = (arg1)->operator *=((float const &)*arg2);
+    result = (Annchienta::Vector *) &_result_ref;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector___idiv__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float *arg2 = 0 ;
+  Annchienta::Vector *result = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector___idiv__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___idiv__" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Vector___idiv__" "', argument " "2"" of type '" "float""'");
+  } 
+  temp2 = static_cast< float >(val2);
+  arg2 = &temp2;
+  {
+    Annchienta::Vector &_result_ref = (arg1)->operator /=((float const &)*arg2);
+    result = (Annchienta::Vector *) &_result_ref;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector___mul____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  Annchienta::Vector *arg2 = 0 ;
+  float result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector___mul__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector___mul__" "', argument " "1"" of type '" "Annchienta::Vector const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Annchienta__Vector,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Vector___mul__" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Vector___mul__" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Vector * >(argp2);
+  result = (float)((Annchienta::Vector const *)arg1)->operator *((Annchienta::Vector const &)*arg2);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector___mul__(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = (int)PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Vector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_Annchienta__Vector, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Vector___mul____SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Vector, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Vector___mul____SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector_length(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Vector_length",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_length" "', argument " "1"" of type '" "Annchienta::Vector const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  result = (float)((Annchienta::Vector const *)arg1)->length();
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector_distance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  Annchienta::Vector *arg2 = 0 ;
+  float result;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Vector_distance",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_distance" "', argument " "1"" of type '" "Annchienta::Vector const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Annchienta__Vector,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Vector_distance" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Vector_distance" "', argument " "2"" of type '" "Annchienta::Vector const &""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Vector * >(argp2);
+  result = (float)((Annchienta::Vector const *)arg1)->distance((Annchienta::Vector const &)*arg2);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Vector_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__Vector, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"Point_x_set", _wrap_Point_x_set, METH_VARARGS, NULL},
 	 { (char *)"Point_x_get", _wrap_Point_x_get, METH_VARARGS, NULL},
@@ -14170,6 +14822,23 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"squaredDistance", _wrap_squaredDistance, METH_VARARGS, NULL},
 	 { (char *)"copyFile", _wrap_copyFile, METH_VARARGS, NULL},
 	 { (char *)"strcmpCaseInsensitive", _wrap_strcmpCaseInsensitive, METH_VARARGS, NULL},
+	 { (char *)"Vector_x_set", _wrap_Vector_x_set, METH_VARARGS, NULL},
+	 { (char *)"Vector_x_get", _wrap_Vector_x_get, METH_VARARGS, NULL},
+	 { (char *)"Vector_y_set", _wrap_Vector_y_set, METH_VARARGS, NULL},
+	 { (char *)"Vector_y_get", _wrap_Vector_y_get, METH_VARARGS, NULL},
+	 { (char *)"new_Vector", _wrap_new_Vector, METH_VARARGS, NULL},
+	 { (char *)"delete_Vector", _wrap_delete_Vector, METH_VARARGS, NULL},
+	 { (char *)"Vector___add__", _wrap_Vector___add__, METH_VARARGS, NULL},
+	 { (char *)"Vector___sub__", _wrap_Vector___sub__, METH_VARARGS, NULL},
+	 { (char *)"Vector___div__", _wrap_Vector___div__, METH_VARARGS, NULL},
+	 { (char *)"Vector___iadd__", _wrap_Vector___iadd__, METH_VARARGS, NULL},
+	 { (char *)"Vector___isub__", _wrap_Vector___isub__, METH_VARARGS, NULL},
+	 { (char *)"Vector___imul__", _wrap_Vector___imul__, METH_VARARGS, NULL},
+	 { (char *)"Vector___idiv__", _wrap_Vector___idiv__, METH_VARARGS, NULL},
+	 { (char *)"Vector___mul__", _wrap_Vector___mul__, METH_VARARGS, NULL},
+	 { (char *)"Vector_length", _wrap_Vector_length, METH_VARARGS, NULL},
+	 { (char *)"Vector_distance", _wrap_Vector_distance, METH_VARARGS, NULL},
+	 { (char *)"Vector_swigregister", Vector_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -14207,6 +14876,7 @@ static swig_type_info _swigt__p_Annchienta__StaticObject = {"_p_Annchienta__Stat
 static swig_type_info _swigt__p_Annchienta__Surface = {"_p_Annchienta__Surface", "Annchienta::Surface *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Tile = {"_p_Annchienta__Tile", "Annchienta::Tile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__TileSet = {"_p_Annchienta__TileSet", "Annchienta::TileSet *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__Vector = {"_p_Annchienta__Vector", "Annchienta::Vector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__VideoManager = {"_p_Annchienta__VideoManager", "Annchienta::VideoManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDLKey = {"_p_SDLKey", "enum SDLKey *|SDLKey *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDLMod = {"_p_SDLMod", "enum SDLMod *|SDLMod *", 0, 0, (void*)0, 0};
@@ -14232,6 +14902,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Surface,
   &_swigt__p_Annchienta__Tile,
   &_swigt__p_Annchienta__TileSet,
+  &_swigt__p_Annchienta__Vector,
   &_swigt__p_Annchienta__VideoManager,
   &_swigt__p_SDLKey,
   &_swigt__p_SDLMod,
@@ -14257,6 +14928,7 @@ static swig_cast_info _swigc__p_Annchienta__StaticObject[] = {  {&_swigt__p_Annc
 static swig_cast_info _swigc__p_Annchienta__Surface[] = {  {&_swigt__p_Annchienta__Surface, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Tile[] = {  {&_swigt__p_Annchienta__Tile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__TileSet[] = {  {&_swigt__p_Annchienta__TileSet, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__Vector[] = {  {&_swigt__p_Annchienta__Vector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__VideoManager[] = {  {&_swigt__p_Annchienta__VideoManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDLKey[] = {  {&_swigt__p_SDLKey, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDLMod[] = {  {&_swigt__p_SDLMod, 0, 0, 0},{0, 0, 0, 0}};
@@ -14282,6 +14954,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Surface,
   _swigc__p_Annchienta__Tile,
   _swigc__p_Annchienta__TileSet,
+  _swigc__p_Annchienta__Vector,
   _swigc__p_Annchienta__VideoManager,
   _swigc__p_SDLKey,
   _swigc__p_SDLMod,

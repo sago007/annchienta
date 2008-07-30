@@ -23,6 +23,14 @@ class Battle:
         
     def run( self ):
     
+        # Reset combatants
+        for c in self.combatants:
+            c.reset()
+    
+        # Update the lists
+        self.updateCombatantLists()
+        self.positionCombatants()
+    
         while self.running:
         
             self.update()
@@ -30,7 +38,21 @@ class Battle:
             self.videoManager.begin()
             self.draw()
             self.videoManager.end()
-        
+    
+    def updateCombatantLists( self ):
+    
+        self.allies = filter( lambda q: q.ally, self.combatants )
+        self.enemies = filter( lambda q: not q.ally, self.combatants )
+    
+    def positionCombatants( self ):
+    
+        # Align them and stuff
+        for i in range(len(self.allies)):
+            allies[i].position = annchienta.Vector( 80, 40+(i+1)*70 )
+            
+        for i in range(len(self.enemies)):
+            self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-80, 40+i*70 )
+    
     def update( self, updateInputManagerToo=True ):
     
         if updateInputManagerToo:
@@ -60,6 +82,10 @@ class Battle:
         for i in range(len(self.lines)):
             self.videoManager.drawString( self.sceneManager.defaultFont, self.lines[i], self.sceneManager.margin, self.sceneManager.margin+self.sceneManager.defaultFont.getLineHeight()*i )
         self.videoManager.setColor()
+        
+        # Draw the combatants
+        for c in self.combatants:
+            c.draw()
 
     ## Make an combatant do an action
     #

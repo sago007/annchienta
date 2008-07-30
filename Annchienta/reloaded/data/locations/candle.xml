@@ -12,10 +12,13 @@
 import annchienta
 import Battle
 import Combatant
+import Enemy
 import xml.dom.minidom
 
+doc = xml.dom.minidom.parse("data/locations/test.xml")
+com = map( lambda element: Enemy.Enemy(element), doc.getElementsByTagName("combatant") )
 s = annchienta.Surface("data/images/woods.png")
-b = Battle.Battle( [] )
+b = Battle.Battle( com )
 b.background = s
 b.run()
 

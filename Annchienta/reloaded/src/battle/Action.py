@@ -9,6 +9,10 @@ class Action:
         self.name = xmlElement.getAttribute("name")
         self.category = xmlElement.getAttribute("category")
     
+        # Get the description
+        descriptionElement = xmlElement.getElementsByTagName("description")[0]
+        self.description = descriptionElement.firstChild.data
+    
         # Create a dictionary describing the elemental properties
         self.elemental = {}
         elementalElement = xmlElement.getElementsByTagName("elemental")[0]

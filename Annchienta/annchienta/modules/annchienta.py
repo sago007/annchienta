@@ -594,6 +594,39 @@ distance = _annchienta.distance
 squaredDistance = _annchienta.squaredDistance
 copyFile = _annchienta.copyFile
 strcmpCaseInsensitive = _annchienta.strcmpCaseInsensitive
+class Vector(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Vector, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Vector, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["x"] = _annchienta.Vector_x_set
+    __swig_getmethods__["x"] = _annchienta.Vector_x_get
+    if _newclass:x = _swig_property(_annchienta.Vector_x_get, _annchienta.Vector_x_set)
+    __swig_setmethods__["y"] = _annchienta.Vector_y_set
+    __swig_getmethods__["y"] = _annchienta.Vector_y_get
+    if _newclass:y = _swig_property(_annchienta.Vector_y_get, _annchienta.Vector_y_set)
+    def __init__(self, *args): 
+        this = _annchienta.new_Vector(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Vector
+    __del__ = lambda self : None;
+    def __add__(*args): return _annchienta.Vector___add__(*args)
+    def __sub__(*args): return _annchienta.Vector___sub__(*args)
+    def __div__(*args): return _annchienta.Vector___div__(*args)
+    def __iadd__(*args): return _annchienta.Vector___iadd__(*args)
+    def __isub__(*args): return _annchienta.Vector___isub__(*args)
+    def __imul__(*args): return _annchienta.Vector___imul__(*args)
+    def __idiv__(*args): return _annchienta.Vector___idiv__(*args)
+    def __mul__(*args): return _annchienta.Vector___mul__(*args)
+    def length(*args): return _annchienta.Vector_length(*args)
+    def distance(*args): return _annchienta.Vector_distance(*args)
+Vector_swigregister = _annchienta.Vector_swigregister
+Vector_swigregister(Vector)
+randInt = _annchienta.randInt
+randFloat = _annchienta.randFloat
+
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN
 SDLK_FIRST = _annchienta.SDLK_FIRST
 SDLK_BACKSPACE = _annchienta.SDLK_BACKSPACE
@@ -842,6 +875,4 @@ KMOD_CAPS = _annchienta.KMOD_CAPS
 KMOD_MODE = _annchienta.KMOD_MODE
 KMOD_RESERVED = _annchienta.KMOD_RESERVED
 
-randInt = _annchienta.randInt
-randFloat = _annchienta.randFloat
 
