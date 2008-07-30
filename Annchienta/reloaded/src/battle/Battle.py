@@ -31,6 +31,8 @@ class Battle:
         self.updateCombatantLists()
         self.positionCombatants()
     
+        self.lastUpdate = None
+    
         while self.running:
         
             self.update()
@@ -48,7 +50,7 @@ class Battle:
     
         # Align them and stuff
         for i in range(len(self.allies)):
-            allies[i].position = annchienta.Vector( 80, 40+(i+1)*70 )
+            self.allies[i].position = annchienta.Vector( 80, 40+(i+1)*70 )
             
         for i in range(len(self.enemies)):
             self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-80, 40+i*70 )
@@ -58,17 +60,20 @@ class Battle:
         if updateInputManagerToo:
             self.inputManager.update()
         
-        # For now
-        # take first combatant, have it attack and stick it up the back
-        #c = self.combatants.pop(0)
-        #action = c.selectAction()
-        
         if not self.inputManager.running():
             self.running = False
             return
         
-        #self.takeAction( action, c )
-        #self.combatants += [c]
+        # Calculate number of ms passed
+        ms = 0.0
+        if self.lastUpdate is not None:
+            ms = self.engine.getTicks() - self.lastUpdate
+        
+        self.lastUpdate = self.engine.getTicks()
+        
+        # Update combatants
+        for c in self.combatants:
+            c.update( ms )
         
     def draw( self ):
     
@@ -86,6 +91,14 @@ class Battle:
         # Draw the combatants
         for c in self.combatants:
             c.draw()
+            
+        # Draw the allies info
+        self.videoManager.pushMatrix()
+        self.videoManager.translate( 0, self.videoManager.getScreenHeight()-20*len(self.allies) )
+        for a in self.allies:
+            a.drawInfo()
+            self.videoManager.translate( 0, 20 )
+        self.videoManager.popMatrix()
 
     ## Make an combatant do an action
     #

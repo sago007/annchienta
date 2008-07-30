@@ -37,6 +37,7 @@ SceneManager.initSceneManager()
 sceneManager = SceneManager.getSceneManager()
 sceneManager.defaultFont = annchienta.Font("data/assets/regular.ttf", 14)
 sceneManager.italicsFont = annchienta.Font("data/assets/italics.ttf", 14)
+sceneManager.largeItalicsFont = annchienta.Font("data/assets/italics.ttf", 20)
 sceneManager.boxTextures = map( lambda i: annchienta.Surface("data/assets/box"+str(i)+".png"), range(9) )
 
 # load a map

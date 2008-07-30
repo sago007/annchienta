@@ -20,7 +20,7 @@ class BaseCombatant:
         self.logManager = annchienta.getLogManager()
     
         # Set our name
-        self.name = xmlElement.getAttribute("name")
+        self.name = str(xmlElement.getAttribute("name"))
     
         # Create a dictionary describing the primary stats
         self.primaryStats = {}
@@ -28,6 +28,12 @@ class BaseCombatant:
         for k in primaryStatsElement.attributes.keys():
             self.primaryStats[k] = int(primaryStatsElement.attributes[k].value)
     
+        # Create a dictionary describing the health stats
+        self.healthStats = {}
+        healthStatsElement = xmlElement.getElementsByTagName("healthstats")[0]
+        for k in healthStatsElement.attributes.keys():
+            self.healthStats[k] = int(healthStatsElement.attributes[k].value)
+            
         # Create a dictionary describing the level stuff
         self.level = {}
         levelElement = xmlElement.getElementsByTagName("level")[0]
@@ -38,7 +44,7 @@ class BaseCombatant:
         weaponElements = xmlElement.getElementsByTagName("weapon")
         if len(weaponElements):
             # Get the weapon name and search for the corresponding element
-            weaponName = weaponElements[0].getAttribute("name")
+            weaponName = str(weaponElements[0].getAttribute("name"))
             weaponElements = self.weaponsXmlFile.getElementsByTagName("weapon")
             found = filter( lambda w: w.getAttribute("name")==weaponName, weaponElements )
             if len(found):
@@ -87,7 +93,8 @@ class BaseCombatant:
         self.statusEffects = []
         
         # Reset time bar
-        self.timer = 100.0
+        #self.timer = 100.0
+        self.timer = 0.0
     
     # Will generate derived stats based on equipped weapon.
     def generateDerivedStats( self ):
@@ -121,6 +128,12 @@ class BaseCombatant:
         mat = self.derivedStats["mat"]
         lvl = self.level["lvl"]
         return 6 * (mat + lvl)
+
+    def update( self, ms ):
+        
+        self.timer += 0.01*ms* float(512-self.derivedStats["spd"])/512.0
+        if self.timer >= 100.0:
+            self.timer = 100.0
 
     # prototype, not correct
     def selectAction( self, battle ):
