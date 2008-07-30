@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<weapon name="sword">
+    <stats att="5" mat="5" def="5" mdf="5" spd="5"/>
+    <elemental fire="2" ice="1" water="1" thunder="1" restorative="0"/>
+</weapon>
+

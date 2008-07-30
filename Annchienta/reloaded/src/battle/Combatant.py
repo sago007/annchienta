@@ -8,10 +8,10 @@ import Weapon, Action
 class BaseCombatant:
 
     # Where we should get the weapons from
-    weaponsLocation = "weapons.xml"
+    weaponsLocation = "data/battle/weapons.xml"
     weaponsXmlFile = xml.dom.minidom.parse( weaponsLocation )
     # Where we should get the actions from
-    actionsLocation = "actions.xml"
+    actionsLocation = "data/battle/actions.xml"
     actionsXmlFile = xml.dom.minidom.parse( actionsLocation )
 
     def __init__( self, xmlElement ):
@@ -118,3 +118,13 @@ class BaseCombatant:
     def selectAction( self ):
         return self.actions[ annchienta.randInt( 0, len(self.actions)-1 ) ]
 
+## Now the graphical interface
+#
+class Combatant(BaseCombatant):
+
+    def __init__( self, xmlElement ):
+    
+        # Call superclass constructor
+        BaseCombatant.__init__( self, xmlElement )
+        
+        

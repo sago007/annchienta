@@ -1,4 +1,5 @@
 import annchienta
+import SceneManager
 
 ## Holds a battle...
 #
@@ -8,29 +9,57 @@ class Battle:
     
         # Set variables
         self.combatants = combatants
+        self.running = True
+        self.background = None
+    
+        # Get references
+        self.engine = annchienta.getEngine()
+        self.videoManager = annchienta.getVideoManager()
+        self.inputManager = annchienta.getInputManager()
+        self.sceneManager = SceneManager.getSceneManager()
+        
+        # Lines for the 'console' window
+        self.lines = [ "An enemy appeared!", "Omg!" ]
         
     def run( self ):
     
-        while raw_input() is not 'q':
-            self.update()
-            self.draw()
+        while self.running:
         
-    def update( self ):
+            self.update()
+            
+            self.videoManager.begin()
+            self.draw()
+            self.videoManager.end()
+        
+    def update( self, updateInputManagerToo=True ):
     
-        # Something with ms...
-        pass
+        if updateInputManagerToo:
+            self.inputManager.update()
         
         # For now
         # take first combatant, have it attack and stick it up the back
-        c = self.combatants.pop(0)
-        action = c.selectAction()
-        self.takeAction( action, c )
-        self.combatants += [c]
+        #c = self.combatants.pop(0)
+        #action = c.selectAction()
+        
+        if not self.inputManager.running():
+            self.running = False
+            return
+        
+        #self.takeAction( action, c )
+        #self.combatants += [c]
         
     def draw( self ):
     
-        # Text based for now
-        print map( lambda a: a.name, self.combatants )
+        # Start with background
+        self.videoManager.drawSurface( self.background, 0, 0 )
+
+        # Draw the console and lines
+        self.videoManager.setColor( 0, 0, 0, 100 )
+        self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()*2 )
+        self.sceneManager.inactiveColor()
+        for i in range(len(self.lines)):
+            self.videoManager.drawString( self.sceneManager.defaultFont, self.lines[i], self.sceneManager.margin, self.sceneManager.margin+self.sceneManager.defaultFont.getLineHeight()*i )
+        self.videoManager.setColor()
 
     ## Make an combatant do an action
     #
@@ -66,6 +95,12 @@ class Battle:
                     # Multiply damage by the factor the
                     # target has set for it
                     baseDamage *= target.derivedElemental[element]
+    
+        # Check for status effects
+        if action.statusEffect!="none" and action.statusEffect not in target.statusEffects:
+            if annchienta.randFloat() <= action.statusHit:
+                target.statusEffects += [action.statusEffect]
+                print target.name+" is now "+action.statusEffect+"!"
     
         print "The final damage is "+str(int(baseDamage))+"!"
 

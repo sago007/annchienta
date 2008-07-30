@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<test>
+    <combatant name="aelaan">
+        <level lvl="4"/>
+        <primarystats att="5" mat="5" def="5" mdf="5" spd="5"/>
+        <weapon name="sword"/>
+        <actions>attack cure</actions>
+    </combatant>
+    <combatant name="enemy">
+        <level lvl="4"/>
+        <primarystats att="5" mat="5" def="5" mdf="5" spd="5"/>
+        <weapon name="sword"/>
+        <actions>attack cure</actions>
+    </combatant>
+</test>
+

@@ -227,7 +227,7 @@ namespace Annchienta
             if( running )
             {
                 videoManager->begin();
-                this->renderFrame();
+                this->draw();
                 videoManager->end();
             }
 
