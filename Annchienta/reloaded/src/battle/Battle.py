@@ -32,6 +32,9 @@ class Battle:
         self.positionCombatants()
     
         self.lastUpdate = None
+        
+        # If there is currently a menu open
+        self.menuOpen = False
     
         while self.running:
         
@@ -45,6 +48,8 @@ class Battle:
     
         self.allies = filter( lambda q: q.ally, self.combatants )
         self.enemies = filter( lambda q: not q.ally, self.combatants )
+        self.readyEnemies = filter( lambda q: q.timer >= 100.0, self.enemies )
+        self.readyAllies = filter( lambda q: q.timer >= 100.0, self.allies )
     
     def positionCombatants( self ):
     
@@ -53,7 +58,7 @@ class Battle:
             self.allies[i].position = annchienta.Vector( 80, 40+(i+1)*70 )
             
         for i in range(len(self.enemies)):
-            self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-80, 40+i*70 )
+            self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-80, 40+(i+1)*70 )
     
     def update( self, updateInputManagerToo=True ):
     
@@ -63,6 +68,10 @@ class Battle:
         if not self.inputManager.running():
             self.running = False
             return
+        
+        # Remove unnecessary lines
+        while len(self.lines)>2:
+            self.lines.pop(0)
         
         # Calculate number of ms passed
         ms = 0.0
@@ -75,6 +84,27 @@ class Battle:
         for c in self.combatants:
             c.update( ms )
         
+        # Update lists
+        self.updateCombatantLists()
+        
+        # Let allies take actions
+        if (not self.menuOpen) and len(self.readyAllies):
+            self.menuOpen = True
+            actor = self.readyAllies.pop(0)
+            action = actor.selectAction( self )
+            if action is None:
+                # Put this ready ally in the back
+                self.readyAllies += [actor]
+            else:
+                self.takeAction( action, actor )
+            self.menuOpen = False
+        
+        # Let enemies take actions
+        if len(self.readyEnemies):
+            actor = self.readyEnemies.pop(0)
+            action = actor.selectAction( self )
+            self.takeAction( action, actor )
+        
     def draw( self ):
     
         # Start with background
@@ -84,7 +114,7 @@ class Battle:
         self.videoManager.setColor( 0, 0, 0, 100 )
         self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()*2 )
         self.sceneManager.inactiveColor()
-        for i in range(len(self.lines)):
+        for i in range(len(self.lines))[:2]:
             self.videoManager.drawString( self.sceneManager.defaultFont, self.lines[i], self.sceneManager.margin, self.sceneManager.margin+self.sceneManager.defaultFont.getLineHeight()*i )
         self.videoManager.setColor()
         
@@ -106,7 +136,7 @@ class Battle:
         
         #Info
         target = self.combatants[ annchienta.randInt(0,len(self.combatants)-1) ]
-        print combatant.name+" uses "+action.name+" on "+target.name+"!"
+        self.lines += [combatant.name+" uses "+action.name+" on "+target.name+"!"]
         
         # Let's assume we are dealing with a regular action for now
         baseDamage = 0.0
@@ -141,5 +171,6 @@ class Battle:
                 target.statusEffects += [action.statusEffect]
                 print target.name+" is now "+action.statusEffect+"!"
     
-        print "The final damage is "+str(int(baseDamage))+"!"
+        # That took some effort, rest
+        combatant.timer = 0.0
 

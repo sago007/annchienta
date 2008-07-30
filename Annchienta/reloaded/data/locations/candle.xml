@@ -12,11 +12,14 @@
 import annchienta
 import Battle
 import Combatant
-import Ally
+import Ally, Enemy
 import xml.dom.minidom
 
 doc = xml.dom.minidom.parse("data/locations/test.xml")
-com = map( lambda element: Ally.Ally(element), doc.getElementsByTagName("combatant") )
+elements = doc.getElementsByTagName("combatant")
+
+com = [ Ally.Ally( elements[0] ), Ally.Ally( elements[0] ), Enemy.Enemy( elements[1] ), Enemy.Enemy( elements[1] ) ]
+
 s = annchienta.Surface("data/images/woods.png")
 b = Battle.Battle( com )
 b.background = s

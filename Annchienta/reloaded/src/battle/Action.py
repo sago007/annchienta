@@ -6,12 +6,12 @@ class Action:
     def __init__( self, xmlElement ):
     
         # Set our name and category
-        self.name = xmlElement.getAttribute("name")
-        self.category = xmlElement.getAttribute("category")
+        self.name = str(xmlElement.getAttribute("name"))
+        self.category = str(xmlElement.getAttribute("category"))
     
         # Get the description
         descriptionElement = xmlElement.getElementsByTagName("description")[0]
-        self.description = descriptionElement.firstChild.data
+        self.description = str(descriptionElement.firstChild.data)
     
         # Create a dictionary describing the elemental properties
         self.elemental = {}

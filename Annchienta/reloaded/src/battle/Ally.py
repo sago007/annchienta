@@ -1,4 +1,4 @@
-import Combatant, SceneManager
+import Combatant, SceneManager, Menu
 
 class Ally( Combatant.Combatant ):
 
@@ -13,11 +13,24 @@ class Ally( Combatant.Combatant ):
         # Variables
         self.ally = True
 
+        self.buildMenu()
+
+    # Create a menu
+    def buildMenu( self ):
+    
+        self.menu = Menu.Menu( self.name, "Select an action." )
+        options = map( lambda q: Menu.MenuItem( q.name, q.description ), self.actions )
+        self.menu.setOptions( options )
+        self.menu.leftBottom()
+
     # Allies select an action from the menu
     def selectAction( self, battle ):
     
-        
-        return self.actions[ annchienta.randInt( 0, len(self.actions)-1 ) ]
+        menuItem = self.menu.pop( battle )
+        if menuItem is None:
+            return None
+        found = filter( lambda a: a.name == menuItem.name, self.actions )
+        return found[0]
         
     def drawInfo( self ):
     

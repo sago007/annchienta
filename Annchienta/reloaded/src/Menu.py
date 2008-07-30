@@ -67,7 +67,7 @@ class Menu(MenuItem):
     # Sets the menu in the left bottom of the screen
     def leftBottom( self ):
         self.toolTipOnTop = True
-        self.y = self.videoManager.getScreenHeight()-self.height #-self.sceneManager.margin*4-self.sceneManager.defaultFont.getLineHeight()
+        self.y = self.videoManager.getScreenHeight()-self.height-self.sceneManager.margin#*4-self.sceneManager.defaultFont.getLineHeight()
         self.x = self.sceneManager.margin
         # Work recursive for submenus
         for m in self.options:
