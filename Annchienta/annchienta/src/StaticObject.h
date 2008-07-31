@@ -21,7 +21,7 @@ namespace Annchienta
     #ifndef SWIG
         struct Frame
         {
-            int number;
+            char number;
             int x1, y1, x2, y2;
         };
 

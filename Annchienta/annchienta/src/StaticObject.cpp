@@ -64,7 +64,7 @@ namespace Annchienta
                         Frame frame;
 
                         if( xml->getAttributeValue("number") )
-                            frame.number = xml->getAttributeValueAsInt("number");
+                            frame.number = (int) (*xml->getAttributeValue("number"));
                         else
                             logManager->warning("Number not defined for frame in '%s'.", configfile);
 
@@ -287,7 +287,7 @@ namespace Annchienta
         /* Select the right frame.
          */
         Frame *frame;
-        int frameNumber = animations[currentAnimation].frames[currentFrame] - '0';
+        char frameNumber = animations[currentAnimation].frames[currentFrame];
         for( unsigned int i=0; i<frames.size(); i++ )
         {
             if( frames[i].number == frameNumber )
