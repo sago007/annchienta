@@ -24,4 +24,4 @@ class Enemy( Combatant.Combatant ):
         return action, target
 
     def selectTarget( self, battle ):
-        return battle.combatants[ annchienta.randInt( 0, len(battle.combatants)-1 ) ]
+        return battle.allies[ annchienta.randInt( 0, len(battle.allies)-1 ) ]

@@ -1,6 +1,7 @@
 import annchienta
 import xml.dom.minidom
 import Weapon, Action
+import SceneManager
 
 ## Defines a combatant who takes part in a battle. BaseCombatant only
 #  describes the mechanics part, Combatant also handles the drawing etc.
@@ -149,6 +150,7 @@ class Combatant(BaseCombatant):
         
         # Get references
         self.videoManager = annchienta.getVideoManager()
+        self.sceneManager = SceneManager.getSceneManager()
         
         # Load sprite
         spriteElement = xmlElement.getElementsByTagName("sprite")[0]
@@ -171,16 +173,53 @@ class Combatant(BaseCombatant):
         # We will draw ourselves in another color if this is set to True
         self.hover = False
         
+        # Damage done by an attack
+        self.damage = 0
+        self.damageTimer = 0.0
+
+    def update( self, ms ):
+
+        # Call base update
+        BaseCombatant.update( self, ms )
+
+        if self.damage != 0:
+            self.damageTimer += 0.0005*ms
+            if self.damageTimer >= 1.0:
+                self.damage = 0
+                self.damageTimer = 0.0
+
     def draw( self ):
     
         self.videoManager.pushMatrix()
         self.videoManager.translate( self.position.x, self.position.y )
-        
+
         if self.hover:
             self.videoManager.setColor( 0, 255, 0 )
         else:
             self.videoManager.setColor()
         
         self.videoManager.drawSurface( self.sprite, -self.width/2, -self.height/2, self.sx1, self.sy1, self.sx2, self.sy2 )
+
+        # Draw damage stuff
+        if self.damage != 0:
+
+            string = str(self.damage if self.damage>0 else -self.damage)
+            dy = int(-40.0*self.damageTimer)
+            self.videoManager.setColor( 0, 0, 0 )
+
+            # Draw a black border first
+            self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, -1, dy )
+            self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, 1, dy )
+            self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, 0, dy-1 )
+            self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, 0, dy+1 )
+
+            if self.damage > 0:
+                self.videoManager.setColor( 255, 0, 0 )
+            else:
+                self.videoManager.setColor( 0, 255, 0 )
+            
+            # Now go for the real thing
+            self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, 0, dy )
+
         self.videoManager.popMatrix()
         

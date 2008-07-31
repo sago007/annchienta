@@ -1,4 +1,4 @@
-import Combatant, SceneManager, Menu
+import Combatant, Menu
 
 class Ally( Combatant.Combatant ):
 
@@ -6,9 +6,6 @@ class Ally( Combatant.Combatant ):
         
         # Base constructor
         Combatant.Combatant.__init__( self, xmlElement )
-        
-        # References
-        self.sceneManager = SceneManager.getSceneManager()
         
         # Variables
         self.ally = True

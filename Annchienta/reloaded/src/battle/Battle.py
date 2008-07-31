@@ -175,18 +175,24 @@ class Battle:
                     # target has set for it
                     baseDamage *= target.derivedElemental[element]
     
+        # Round it
+        baseDamage = int(baseDamage)
+
         # Check for status effects
         if action.statusEffect!="none" and action.statusEffect not in target.statusEffects:
             if annchienta.randFloat() <= action.statusHit:
                 target.statusEffects += [action.statusEffect]
                 print target.name+" is now "+action.statusEffect+"!"
-    
+
         # Finally, do damage to damaged ones
-        target.healthStats["hp"] -= int(baseDamage)
+        target.healthStats["hp"] -= baseDamage
         if target.healthStats["hp"] < 0:
             target.healthStats["hp"] = 0
         if target.healthStats["hp"] > target.healthStats["mhp"]:
             target.healthStats["hp"] = target.healthStats["mhp"]
+
+        # Damage animation
+        target.damage = baseDamage
 
         # That took some effort, rest and get mp
         combatant.timer = 0.0
