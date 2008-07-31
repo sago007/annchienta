@@ -134,16 +134,14 @@ class Battle:
     #
     def takeAction( self, action, combatant ):
         
+        # Check if there is enough mp
+        if combatant.healthStats["mp"] < action.cost:
+            self.lines += [combatant.name.capitalize()+" doesn't have enough MP!"]
+            return
+            
         # Select a target
         target = combatant.selectTarget( self )
         if target is None:
-            return
-        
-        # Check if there is enough mp
-        if combatant.healthStats["mp"] >= action.cost:
-            combatant.healthStats["mp"] -= action.cost
-        else:
-            self.lines += [combatant.name.capitalize()+" doesn't have enough MP!"]
             return
             
         # Info
@@ -182,6 +180,7 @@ class Battle:
                 target.statusEffects += [action.statusEffect]
                 print target.name+" is now "+action.statusEffect+"!"
     
-        # That took some effort, rest
+        # That took some effort, rest and get mp
         combatant.timer = 0.0
+        combatant.healthStats["mp"] -= action.cost
 

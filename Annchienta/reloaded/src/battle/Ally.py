@@ -19,8 +19,20 @@ class Ally( Combatant.Combatant ):
     def buildMenu( self ):
     
         self.menu = Menu.Menu( self.name, "Select an action." )
-        options = map( lambda q: Menu.MenuItem( q.name, q.description ), self.actions )
-        self.menu.setOptions( options )
+        subs = []
+        for action in self.actions:
+            added = False
+            for sub in subs:
+                if sub.name == action.category:
+                    sub.options += [Menu.MenuItem( action.name, action.description+" ("+str(action.cost)+"MP)" )]
+                    added = True
+            if not added:
+                newsub = Menu.Menu( action.category )
+                newsub.options += [Menu.MenuItem( action.name, action.description+" ("+str(action.cost)+"MP)" )]
+                subs += [newsub]
+                
+        # set options and align
+        self.menu.setOptions( subs )
         self.menu.leftBottom()
 
     # Allies select an action from the menu
@@ -93,6 +105,11 @@ class Ally( Combatant.Combatant ):
             # Draw
             battle.videoManager.begin()
             battle.draw()
+            
+            # Draw "select target"
+            self.sceneManager.activeColor()
+            self.videoManager.drawString( self.sceneManager.largeItalicsFont, "Select Target", self.sceneManager.margin, self.videoManager.getScreenHeight()-20*(len(battle.allies)+1) )
+            
             battle.videoManager.end()
 
             # Reset hover

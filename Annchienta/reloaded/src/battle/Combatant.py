@@ -130,7 +130,7 @@ class BaseCombatant:
 
     def update( self, ms ):
         
-        self.timer += 0.02*ms* float(512-self.derivedStats["spd"])/512.0
+        self.timer += 0.015*ms* float(255+self.derivedStats["spd"])/512.0
         if self.timer >= 100.0:
             self.timer = 100.0
 

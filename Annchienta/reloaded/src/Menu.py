@@ -54,6 +54,11 @@ class Menu(MenuItem):
         self.width = self.sceneManager.margin + (self.longest + self.sceneManager.margin)*self.columns
         self.height = self.rows*self.sceneManager.defaultFont.getLineHeight() + self.sceneManager.italicsFont.getLineHeight() + 2*self.sceneManager.margin
 
+        # Work recursive for submenus
+        for m in self.options:
+            if m.isMenu:
+                m.setOptions()
+
     # Sets the menu on top of the screen
     def top( self ):
         self.toolTipOnTop = False
@@ -143,10 +148,10 @@ class Menu(MenuItem):
         else:
             # If the chosen item is a submenu, recursively call that submenu.
             if self.clickedItem.isMenu:
-                sub = self.clickedItem.pop()
+                sub = self.clickedItem.pop( backgroundProcess )
                 # If the submenu was canceled, we return to this menu
                 if sub is None:
-                    return self.pop()
+                    return self.pop( backgroundProcess )
                 # Return the item chosen by the submenu
                 else:
                     return sub
@@ -192,11 +197,12 @@ class Menu(MenuItem):
 
         # Render tooltip
         if hover is not None:
-            self.videoManager.pushMatrix()
-            h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()
-            y = self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin*3-self.sceneManager.defaultFont.getLineHeight()
-            self.sceneManager.drawBox( self.sceneManager.margin, y, self.videoManager.getScreenWidth()-self.sceneManager.margin, y+h )
-            self.videoManager.translate( 0, y )
-            self.videoManager.drawString( self.sceneManager.defaultFont,hover.toolTip, self.sceneManager.margin*2, self.sceneManager.margin )
-            self.videoManager.popMatrix()
+            if hover.toolTip is not None:
+                self.videoManager.pushMatrix()
+                h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()
+                y = self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin*3-self.sceneManager.defaultFont.getLineHeight()
+                self.sceneManager.drawBox( self.sceneManager.margin, y, self.videoManager.getScreenWidth()-self.sceneManager.margin, y+h )
+                self.videoManager.translate( 0, y )
+                self.videoManager.drawString( self.sceneManager.defaultFont,hover.toolTip, self.sceneManager.margin*2, self.sceneManager.margin )
+                self.videoManager.popMatrix()
 
