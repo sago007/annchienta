@@ -32,7 +32,7 @@ class Action:
         
         # Set cost
         costElement = xmlElement.getElementsByTagName("cost")[0]
-        self.cost = costElement.getAttribute("mp")
+        self.cost = int(costElement.getAttribute("mp"))
         
         # Set animation and animationData
         animationElement = xmlElement.getElementsByTagName("animation")[0]

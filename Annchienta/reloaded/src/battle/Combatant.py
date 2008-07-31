@@ -93,8 +93,7 @@ class BaseCombatant:
         self.statusEffects = []
         
         # Reset time bar
-        #self.timer = 100.0
-        self.timer = 0.0
+        self.timer = 100.0 * annchienta.randFloat()
     
     # Will generate derived stats based on equipped weapon.
     def generateDerivedStats( self ):
@@ -164,12 +163,24 @@ class Combatant(BaseCombatant):
             self.sx2 = self.sprite.getWidth()
             self.sy2 = self.sprite.getHeight()
 
+        self.width = self.sx2-self.sx1
+        self.height = self.sy2-self.sy1
+
         self.position = annchienta.Vector( 0, 0 )
+        
+        # We will draw ourselves in another color if this is set to True
+        self.hover = False
         
     def draw( self ):
     
         self.videoManager.pushMatrix()
         self.videoManager.translate( self.position.x, self.position.y )
-        self.videoManager.drawSurface( self.sprite, -(self.sx2-self.sx1)/2, -(self.sx2-self.sx1)/2, self.sx1, self.sy1, self.sx2, self.sy2 )
+        
+        if self.hover:
+            self.videoManager.setColor( 0, 255, 0 )
+        else:
+            self.videoManager.setColor()
+        
+        self.videoManager.drawSurface( self.sprite, -self.width/2, -self.height/2, self.sx1, self.sy1, self.sx2, self.sy2 )
         self.videoManager.popMatrix()
         

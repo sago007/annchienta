@@ -15,3 +15,5 @@ class Enemy( Combatant.Combatant ):
     def selectAction( self, battle ):
         return self.actions[ annchienta.randInt( 0, len(self.actions)-1 ) ]
 
+    def selectTarget( self, battle ):
+        return battle.combatants[ annchienta.randInt( 0, len(battle.combatants)-1 ) ]

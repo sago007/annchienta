@@ -63,3 +63,41 @@ class Ally( Combatant.Combatant ):
         
         self.videoManager.popMatrix()
 
+    def selectTarget( self, battle ):
+    
+        done = False
+        target = None
+        while not done:
+            
+            # Update
+            battle.update( False )
+            
+            # Update input
+            battle.inputManager.update()
+            
+            target = None
+            
+            # Find out hover target
+            for c in battle.combatants:
+                if battle.inputManager.hover( int(c.position.x-c.width/2), int(c.position.y-c.height/2), int(c.position.x+c.width/2), int(c.position.y+c.height/2) ):
+                    target = c
+                    c.hover = True
+            
+            # Check for input
+            if not battle.inputManager.running() or battle.inputManager.buttonTicked(1):
+                target = None
+                done = True
+            if battle.inputManager.buttonTicked(0):
+                done = True
+            
+            # Draw
+            battle.videoManager.begin()
+            battle.draw()
+            battle.videoManager.end()
+
+            # Reset hover
+            for c in battle.combatants:
+                c.hover = False
+
+        return target
+

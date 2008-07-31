@@ -134,8 +134,19 @@ class Battle:
     #
     def takeAction( self, action, combatant ):
         
-        #Info
-        target = self.combatants[ annchienta.randInt(0,len(self.combatants)-1) ]
+        # Select a target
+        target = combatant.selectTarget( self )
+        if target is None:
+            return
+        
+        # Check if there is enough mp
+        if combatant.healthStats["mp"] >= action.cost:
+            combatant.healthStats["mp"] -= action.cost
+        else:
+            self.lines += [combatant.name.capitalize()+" doesn't have enough MP!"]
+            return
+            
+        # Info
         self.lines += [combatant.name+" uses "+action.name+" on "+target.name+"!"]
         
         # Let's assume we are dealing with a regular action for now

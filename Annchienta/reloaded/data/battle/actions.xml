@@ -13,7 +13,7 @@
         <elemental fire="0" ice="0" water="0" thunder="0" restorative="1"/>
         <power factor="1.0" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
-        <cost mp="4"/>
+        <cost mp="8"/>
         <animation type="sprite" data="cure.png"/>
     </action>
 </actions>

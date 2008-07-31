@@ -3,7 +3,7 @@
     <combatant name="aelaan">
         <level lvl="4"/>
         <primarystats att="5" mat="5" def="5" mdf="5" spd="225"/>
-        <healthstats hp="100" mph="100" mp="30" mhp="100"/>
+        <healthstats hp="100" mph="100" mp="10" mhp="100"/>
         <weapon name="sword"/>
         <actions>attack cure</actions>
         <sprite filename="data/sprites/aelaan.png" x1="148" x2="182" y1="0" y2="75"/>
@@ -11,7 +11,7 @@
     <combatant name="enemy">
         <level lvl="4"/>
         <primarystats att="5" mat="5" def="5" mdf="5" spd="255"/>
-        <healthstats hp="100" mph="100" mp="30" mhp="100"/>
+        <healthstats hp="100" mph="100" mp="10" mhp="100"/>
         <weapon name="sword"/>
         <actions>attack cure</actions>
         <sprite filename="data/sprites/bovinasaur.png"/>
