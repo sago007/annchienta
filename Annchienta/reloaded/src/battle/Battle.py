@@ -36,6 +36,10 @@ class Battle:
         # If there is currently a menu open
         self.menuOpen = False
     
+        # Reset action que [ (action, combatant, target) ]
+        self.actionQueue = []
+        self.actionInProgress = False
+
         while self.running:
         
             self.update()
@@ -91,19 +95,26 @@ class Battle:
         if (not self.menuOpen) and len(self.readyAllies):
             self.menuOpen = True
             actor = self.readyAllies.pop(0)
-            action = actor.selectAction( self )
-            if action is None:
+            action, target = actor.selectAction( self )
+            if action is None or target is None:
                 # Put this ready ally in the back
                 self.readyAllies += [actor]
             else:
-                self.takeAction( action, actor )
+                self.actionQueue += [ (action, actor, target) ]
             self.menuOpen = False
         
         # Let enemies take actions
         if len(self.readyEnemies):
             actor = self.readyEnemies.pop(0)
-            action = actor.selectAction( self )
-            self.takeAction( action, actor )
+            action, target = actor.selectAction( self )
+            self.actionQueue += [ (action, actor, target) ]
+
+        # Update actionqueue
+        if len(self.actionQueue) and not self.actionInProgress:
+            self.actionInProgress = True
+            action, actor, target = self.actionQueue.pop()
+            self.takeAction( action, actor, target )
+            self.actionInProgress = False
         
     def draw( self ):
     
@@ -132,17 +143,7 @@ class Battle:
 
     ## Make an combatant do an action
     #
-    def takeAction( self, action, combatant ):
-        
-        # Check if there is enough mp
-        if combatant.healthStats["mp"] < action.cost:
-            self.lines += [combatant.name.capitalize()+" doesn't have enough MP!"]
-            return
-            
-        # Select a target
-        target = combatant.selectTarget( self )
-        if target is None:
-            return
+    def takeAction( self, action, combatant, target ):
             
         # Info
         self.lines += [combatant.name+" uses "+action.name+" on "+target.name+"!"]
@@ -180,6 +181,13 @@ class Battle:
                 target.statusEffects += [action.statusEffect]
                 print target.name+" is now "+action.statusEffect+"!"
     
+        # Finally, do damage to damaged ones
+        target.healthStats["hp"] -= int(baseDamage)
+        if target.healthStats["hp"] < 0:
+            target.healthStats["hp"] = 0
+        if target.healthStats["hp"] > target.healthStats["mhp"]:
+            target.healthStats["hp"] = target.healthStats["mhp"]
+
         # That took some effort, rest and get mp
         combatant.timer = 0.0
         combatant.healthStats["mp"] -= action.cost

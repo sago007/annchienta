@@ -35,14 +35,27 @@ class Ally( Combatant.Combatant ):
         self.menu.setOptions( subs )
         self.menu.leftBottom()
 
-    # Allies select an action from the menu
+    # Allies select an action from the menu. returns (action, target)
     def selectAction( self, battle ):
     
         menuItem = self.menu.pop( battle )
         if menuItem is None:
-            return None
+            return None, None
         found = filter( lambda a: a.name == menuItem.name, self.actions )
-        return found[0]
+
+        action = found[0]
+
+        # Check if there is enough mp
+        if self.healthStats["mp"] < action.cost:
+            battle.lines += [combatant.name.capitalize()+" doesn't have enough MP!"]
+            return None, None
+            
+        # Select a target
+        target = self.selectTarget( battle )
+        if target is None:
+            return None, None
+
+        return action, target
         
     def drawInfo( self ):
     

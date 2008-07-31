@@ -10,7 +10,8 @@ import annchienta
 class SceneManager:
 
     margin = 6
-    defaultFont, italicsFont, largeItalicsFont = None, None, None
+    defaultFont, italicsFont = None, None
+    largeRegularFont, largeItalicsFont = None, None
     boxTextures = []
 
     engine = annchienta.getEngine()
