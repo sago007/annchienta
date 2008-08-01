@@ -27,7 +27,7 @@ class Action:
         
         # Set statusEffect and statusHit
         statusElement = xmlElement.getElementsByTagName("status")[0]
-        self.statusEffect = statusElement.getAttribute("effect")
+        self.statusEffect = str(statusElement.getAttribute("effect"))
         self.statusHit = float( statusElement.getAttribute("hit") )
         
         # Set cost
@@ -36,6 +36,6 @@ class Action:
         
         # Set animation and animationData
         animationElement = xmlElement.getElementsByTagName("animation")[0]
-        self.animation = animationElement.getAttribute("type")
-        self.animationData = animationElement.getAttribute("data")
+        self.animation = str(animationElement.getAttribute("type"))
+        self.animationData = str(animationElement.getAttribute("data"))
 

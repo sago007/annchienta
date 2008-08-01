@@ -16,6 +16,7 @@ class Battle:
         self.engine = annchienta.getEngine()
         self.videoManager = annchienta.getVideoManager()
         self.inputManager = annchienta.getInputManager()
+        self.cacheManager = annchienta.getCacheManager()
         self.sceneManager = SceneManager.getSceneManager()
         
         # Lines for the 'console' window
@@ -64,6 +65,10 @@ class Battle:
         for i in range(len(self.enemies)):
             self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-80, 40+(i+1)*70 )
     
+    # We have to be very careful in this function because it
+    # might very well recurse. That's why we need booleans to
+    # ensure some things are not executed in the same time,
+    # for example two animations or two open menu's.
     def update( self, updateInputManagerToo=True ):
     
         if updateInputManagerToo:
@@ -92,7 +97,7 @@ class Battle:
         self.updateCombatantLists()
         
         # Let allies take actions
-        if (not self.menuOpen) and len(self.readyAllies):
+        if (not self.menuOpen) and len(self.readyAllies) and not self.actionInProgress:
             self.menuOpen = True
             actor = self.readyAllies.pop(0)
             action, target = actor.selectAction( self )
@@ -101,6 +106,8 @@ class Battle:
                 self.readyAllies += [actor]
             else:
                 self.actionQueue += [ (action, actor, target) ]
+                # Make sure to reset time
+                actor.timer = 0.0
             self.menuOpen = False
         
         # Let enemies take actions
@@ -108,14 +115,18 @@ class Battle:
             actor = self.readyEnemies.pop(0)
             action, target = actor.selectAction( self )
             self.actionQueue += [ (action, actor, target) ]
+            # Make sure to reset timer
+            actor.timer = 0.0
 
         # Update actionqueue
-        if len(self.actionQueue) and not self.actionInProgress:
+        if len(self.actionQueue) and not self.actionInProgress and not self.menuOpen:
             self.actionInProgress = True
             action, actor, target = self.actionQueue.pop()
             self.takeAction( action, actor, target )
             self.actionInProgress = False
         
+        print "Queue length: "+str(len(self.actionQueue))
+
     def draw( self ):
     
         # Start with background
@@ -178,23 +189,89 @@ class Battle:
         # Round it
         baseDamage = int(baseDamage)
 
-        # Check for status effects
-        if action.statusEffect!="none" and action.statusEffect not in target.statusEffects:
-            if annchienta.randFloat() <= action.statusHit:
-                target.statusEffects += [action.statusEffect]
-                print target.name+" is now "+action.statusEffect+"!"
+        # We can always miss, of course...
+        hit = annchienta.randFloat() <= action.hit
 
-        # Finally, do damage to damaged ones
-        target.healthStats["hp"] -= baseDamage
-        if target.healthStats["hp"] < 0:
-            target.healthStats["hp"] = 0
-        if target.healthStats["hp"] > target.healthStats["mhp"]:
-            target.healthStats["hp"] = target.healthStats["mhp"]
+        if hit:
+            # Check for status effects
+            if action.statusEffect!="none" and action.statusEffect not in target.statusEffects:
+                if annchienta.randFloat() <= action.statusHit:
+                    target.statusEffects += [action.statusEffect]
+                    print target.name+" is now "+action.statusEffect+"!"
 
-        # Damage animation
-        target.damage = baseDamage
+            # Finally, do damage to damaged ones
+            target.healthStats["hp"] -= baseDamage
+            if target.healthStats["hp"] < 0:
+                target.healthStats["hp"] = 0
+            if target.healthStats["hp"] > target.healthStats["mhp"]:
+                target.healthStats["hp"] = target.healthStats["mhp"]
+        else:
+            self.lines += [ combatant.name.capitalize()+" misses!" ]
 
         # That took some effort, rest and get mp
-        combatant.timer = 0.0
         combatant.healthStats["mp"] -= action.cost
+
+        # Play animation
+        self.playAnimation( action, combatant, target )
+
+        # Damage animation only if hit
+        if hit:
+            target.damage = baseDamage
+
+    # Plays the animation for the given parameters
+    # This calls to playXAnimation, where X depends on the action
+    def playAnimation( self, action, combatant, target ):
+
+        if action.animation == "attack":
+            self.playAttackAnimation( combatant, target )
+        elif action.animation == "sprite":
+            self.playSpriteAnimation( target, action.animationData )
+
+    # Animation that moves the given combatant to
+    # the given position
+    def playMoveAnimation( self, combatant, position, duration=400.0 ):
+
+        start = self.engine.getTicks()
+        origPosition = annchienta.Vector(combatant.position)
+        while self.inputManager.running() and self.engine.getTicks()<start+duration:
+            
+            self.update()
+
+            factor = float(self.engine.getTicks()-start)/duration
+            combatant.position = origPosition*(1.0-factor) + position*factor
+
+            self.videoManager.begin()
+            self.draw()
+            self.videoManager.end()
+
+        # Make sure we're in the right position in the end.
+        combatant.position = annchienta.Vector( position )
+
+    # Moves the combatant to the target and back again
+    def playAttackAnimation( self, combatant, target ):
+
+        origPosition = annchienta.Vector( combatant.position )
+        position = annchienta.Vector( target.position )
+        dx = ( target.width/2 + combatant.width/2 )
+        dx = dx if target.ally else -dx
+        position.x += dx
+        self.playMoveAnimation( combatant, position )
+        self.playMoveAnimation( combatant, origPosition )
+
+    def playSpriteAnimation( self, combatant, sprite, duration=800.0 ):
+
+        start = self.engine.getTicks()
+        surf = self.cacheManager.getSurface( sprite )
+
+        while self.inputManager.running() and self.engine.getTicks()<start+duration:
+            
+            self.update()
+
+            factor = float(self.engine.getTicks()-start)/duration
+            position = combatant.position + annchienta.Vector(0,-30)*factor
+
+            self.videoManager.begin()
+            self.draw()
+            self.videoManager.drawSurface( surf, int(position.x)-surf.getWidth()/2, int(position.y)-surf.getHeight()/2 )
+            self.videoManager.end()
 
