@@ -41,6 +41,9 @@ class Battle:
         self.actionQueue = []
         self.actionInProgress = False
 
+        # Total experience earned in this battle
+        self.xp = 0
+
         while self.running:
         
             self.update()
@@ -51,6 +54,9 @@ class Battle:
     
     def updateCombatantLists( self ):
     
+        # Sort combatant based on y (virtual z)
+        self.combatants.sort( lambda c1, c2: int(c1.position.y - c2.position.y) )
+
         self.allies = filter( lambda q: q.ally, self.combatants )
         self.enemies = filter( lambda q: not q.ally, self.combatants )
         self.readyEnemies = filter( lambda q: q.timer >= 100.0, self.enemies )
@@ -96,6 +102,16 @@ class Battle:
         # Update lists
         self.updateCombatantLists()
         
+        # Are all enemies dead? 'cause we win if they are
+        # Then again, are we dead?
+        if not len(self.enemies) or not len(self.allies):
+            if len(self.allies):
+                print "We win!!!!! Gain "+str(self.xp)+"xp!"
+            else:
+                print "Game over..."
+            self.running = False
+            return
+
         # Let allies take actions
         if (not self.menuOpen) and len(self.readyAllies) and not self.actionInProgress:
             self.menuOpen = True
@@ -126,7 +142,7 @@ class Battle:
             self.actionInProgress = False
 
     def draw( self ):
-    
+
         # Start with background
         self.videoManager.drawSurface( self.background, 0, 0 )
 
@@ -216,6 +232,19 @@ class Battle:
         if hit:
             target.damage = baseDamage
 
+        # Check if the target died
+        if target.healthStats["hp"] <= 0:
+
+            # Die die die!!!!11!!!!1
+            self.playDieAnimation( target )
+
+            # Add experience if we killed an enemy
+            if not target.ally:
+                self.xp += target.dropXp
+
+            # Remove this enemy now
+            self.combatants.remove( target )
+
     # Plays the animation for the given parameters
     # This calls to playXAnimation, where X depends on the action
     def playAnimation( self, action, combatant, target ):
@@ -272,4 +301,11 @@ class Battle:
             self.draw()
             self.videoManager.drawSurface( surf, int(position.x)-surf.getWidth()/2, int(position.y)-surf.getHeight()/2 )
             self.videoManager.end()
+
+    # Make combatant move away from battle centre
+    def playDieAnimation( self, combatant ):
+
+        position = annchienta.Vector( combatant.position )
+        position.x -= 30 if combatant.ally else -30
+        self.playMoveAnimation( combatant, position )
 

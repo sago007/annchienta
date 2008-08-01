@@ -11,6 +11,10 @@ class Enemy( Combatant.Combatant ):
         # Variables
         self.ally = False
 
+        # We need a drop element for enemies
+        dropElement = xmlElement.getElementsByTagName("drop")[0]
+        self.dropXp = int( dropElement.getAttribute("xp") )
+
     # Enemies perform a random action for now
     def selectAction( self, battle ):
     
@@ -25,3 +29,4 @@ class Enemy( Combatant.Combatant ):
 
     def selectTarget( self, battle ):
         return battle.allies[ annchienta.randInt( 0, len(battle.allies)-1 ) ]
+
