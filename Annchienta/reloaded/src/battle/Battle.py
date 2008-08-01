@@ -124,8 +124,6 @@ class Battle:
             action, actor, target = self.actionQueue.pop()
             self.takeAction( action, actor, target )
             self.actionInProgress = False
-        
-        print "Queue length: "+str(len(self.actionQueue))
 
     def draw( self ):
     

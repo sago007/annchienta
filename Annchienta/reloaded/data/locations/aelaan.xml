@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<sprite image="data/sprites/template.png" mask="data/masks/aelaan.png">
+<sprite image="data/sprites/sun.png" mask="data/masks/aelaan.png">
 
     <frame number="1" x1="0" y1="0" x2="30" y2="40"/>
     <frame number="2" x1="30" y1="0" x2="60" y2="40"/>
