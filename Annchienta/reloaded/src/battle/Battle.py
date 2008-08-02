@@ -20,7 +20,7 @@ class Battle:
         self.sceneManager = SceneManager.getSceneManager()
         
         # Lines for the 'console' window
-        self.lines = [ "An enemy appeared!", "Omg!" ]
+        self.lines = []
         
     def run( self ):
     
@@ -43,6 +43,17 @@ class Battle:
 
         # Total experience earned in this battle
         self.xp = 0
+
+        # Preemptive strike / ambush
+        if annchienta.randFloat() <= 0.1:
+            for a in self.allies:
+                a.timer = 100.0
+            self.lines += ["Preemptive strike!"]
+        elif annchienta.randFloat() <= 0.1:
+            for a in self.allies:
+                a.timer = 0.0
+            self.lines += ["Ambushed!"]
+            
 
         while self.running:
         

@@ -8,6 +8,8 @@
 #include <SDL_opengl.h>
 #include <Python.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "LogManager.h"
 #include "VideoManager.h"
@@ -19,25 +21,6 @@
 namespace Annchienta
 {
     Engine *engine = 0;
-
-    /* When we really want to stop...
-     */
-    Uint32 forcedExitCallback( Uint32 interval, void *param )
-    {
-        getLogManager()->warning("Grace period for Py_Finalize() exceeded... forcing exit.");
-
-        /* Try to free a little anyway so we don't waste too much.
-         */
-        delete getVideoManager();
-        delete getInputManager();
-        delete getMapManager();
-        delete getAudioManager();
-        delete getCacheManager();
-        SDL_Quit();
-
-        exit(0);
-        return interval;
-    }
 
     Engine::Engine( const char *_writeDirectory )
     {
@@ -58,6 +41,10 @@ namespace Annchienta
          */
         char logFile[DEFAULT_STRING_SIZE];
         sprintf( logFile, "%slog.txt", writeDirectory ); 
+
+        /* Start random numbers.
+         */
+        srand( time(0) );
 
         /* Init other Single-Instance classes.
          */
