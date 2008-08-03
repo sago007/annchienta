@@ -1,5 +1,6 @@
 import annchienta
 import xml.dom.minidom
+import Ally
 
 ## Manages the player, party, etc.
 #
@@ -12,6 +13,7 @@ class PartyManager:
         self.mapManager = annchienta.getMapManager()
 
         # Set variables
+        self.player = 0
         self.records = []
         self.lastMaps = []
         self.currentMap = 0
@@ -22,124 +24,134 @@ class PartyManager:
         self.team = 0
         self.records = []
         self.mapManager.setNullMap()
+        self.player = 0
 
     def load( self, filename ):
+
+        # Store filename for later use
         self.filename = filename
         self.document = xml.dom.minidom.parse( self.filename )
 
         # Let's asume this is a valid file and
         # the needed elements are there.
-
-        # <PLAYER>
-        playerElement = self.document.getElementsByTagName("player")[0]
-        self.player = annchienta.Person( str(playerElement.getAttribute("name")), str(playerElement.getAttribute("xmlfile")) )
-        point = None
-        if playerElement.hasAttribute("isox"):
-            point = annchienta.Point( annchienta.IsometricPoint, int(playerElement.getAttribute("isox")), int(playerElement.getAttribute("isoy")) )
-        if playerElement.hasAttribute("tilex"):
-            point = annchienta.Point( annchienta.TilePoint, int(playerElement.getAttribute("tilex")), int(playerElement.getAttribute("tiley")) )
-        self.player.setPosition( point )
-
-        # <TEAM>
-        teamElement = self.document.getElementsByTagName("team")[0]
-        self.team = map( lambda e: combatant.Ally(e), teamElement.getElementsByTagName("combatant") )
-
-        # <RECORDS>
+        
+        # Start by loading the records, because they are needed by the map
         recordsElement = self.document.getElementsByTagName("records")[0]
-        self.records = recordsElement.firstChild.data.split()
+        self.records = str(recordsElement.firstChild.data).split()
 
-        # <MAP>
-        # Load this after <RECORDS> because <RECORDS> might influence <MAP>.
+        # Now we can safely load the map
         mapElement = self.document.getElementsByTagName("map")[0]
         self.currentMap = annchienta.Map( str(mapElement.getAttribute("filename")) )
         self.currentMap.setCurrentLayer( int(mapElement.getAttribute("layer")) )
         self.mapManager.setCurrentMap( self.currentMap )
 
-        # Stuff to do when everything is loaded
-        self.player.setInputControl()
+        # Now that we have a map we can place the player in it
+        playerElement = self.document.getElementsByTagName("player")[0]
+        self.player = annchienta.Person( str(playerElement.getAttribute("name")), str(playerElement.getAttribute("config")) )
+        self.player.setPosition( annchienta.Point( annchienta.IsometricPoint, int(playerElement.getAttribute("isox")), int(playerElement.getAttribute("isoy")) ) )
+
+        # Add the player to the map and give him control
         self.currentMap.addObject( self.player )
+        self.player.setInputControl()
         self.mapManager.cameraFollow( self.player )
-        self.inputManager.setInputControlledPerson( self.player )
+        self.mapManager.cameraPeekAt( self.player, True )
+
+        # Load the team
+        teamElement = self.document.getElementsByTagName("team")[0]
+        self.team = map( Ally.Ally, teamElement.getElementsByTagName("combatant") )
 
     def save( self, filename=None ):
 
         self.filename = self.filename if filename is None else filename
 
-        self.update()
+        self.generateDocument()
         file = open( self.filename, "wb" )
         file.write( self.document.toprettyxml() )
         file.close()
 
     # Creates new xml document
-    def update( self ):
+    def generateDocument( self ):
 
         # Clear our map cache.
         self.lastMaps = []
 
+        # Create the document and main document node.
         self.document = xml.dom.minidom.Document()
         partyElement = self.document.createElement("party")
         self.document.appendChild( partyElement )
 
-        # <PLAYER>
+        # Append the records to the party node.
+        recordsElement = self.document.createElement("records")
+        # Create a text with the records
+        text = reduce( lambda a, b: a+' '+b, self.records )
+        textNode = self.document.createTextNode( text )
+        recordsElement.appendChild( textNode )
+        partyElement.appendChild( recordsElement )
+
+        # Create an element for the map and add it to the party node
+        mapElement = self.document.createElement("map")
+        currentMap = self.mapManager.getCurrentMap()
+        mapElement.setAttribute( "filename", currentMap.getFileName() )
+        mapElement.setAttribute( "layer", str(currentMap.getCurrentLayerIndex()) )
+        partyElement.appendChild( mapElement )
+
+        # Create an element for the player
         playerElement = self.document.createElement("player")
-        player = self.inputManager.getInputControlledPerson()
-        playerElement.setAttribute( "name", player.getName() )
-        playerElement.setAttribute( "xmlfile", player.getXmlFile() )
-        point = player.getPosition()
+        playerElement.setAttribute( "name", self.player.getName() )
+        playerElement.setAttribute( "xmlfile", self.player.getXmlFile() )
+        point = self.player.getPosition()
         point.convert( annchienta.IsometricPoint )
         playerElement.setAttribute( "isox", str(point.x) )
         playerElement.setAttribute( "isoy", str(point.y) )
         partyElement.appendChild( playerElement )
 
-        # <MAP>
-        mapElement = self.document.createElement("map")
-        currentMap = self.mapManager.getCurrentMap()
-        mapElement.setAttribute("filename", currentMap.getFileName() )
-        mapElement.setAttribute("layer", str(currentMap.getCurrentLayerIndex()) )
-        partyElement.appendChild( mapElement )
-
-        # <RECORDS>
-        recordsElement = self.document.createElement("records")
-        data = ""
-        for r in self.records:
-            data += r+" "
-        dataNode = self.document.createTextNode( data )
-        recordsElement.appendChild( dataNode )
-        partyElement.appendChild( recordsElement )
-
-        # <TEAM>
+        # Create an element for the team
         teamElement = self.document.createElement("team")
-        for c in self.team:
+        for combatant in self.team:
             combatantElement = self.document.createElement("combatant")
-            combatantElement.setAttribute( "name", c.name )
+            
+            # Set name
+            combatantElement.setAttribute("name", combatant.name)
 
+            # Set level info
+            levelElement = self.document.createElement("level")
+            for key in combatant.level:
+                levelElement.setAttribute( str(key), str(combatant.level[key]) )
+            combatantElement.appendChild( levelElement )
+
+            # Set primaryStats info
+            primaryStatsElement = self.document.createElement("primarystats")
+            for key in combatant.primaryStats:
+                primaryStatsElement.setAttribute( str(key), str(combatant.primaryStats[key]) )
+            combatantElement.appendChild( primaryStatsElement )
+            
+            # Set healthStats info
+            healthStatsElement = self.document.createElement("healthstats")
+            for key in combatant.healthStats:
+                healthStatsElement.setAttribute( str(key), str(combatant.healthStats[key]) )
+            combatantElement.appendChild( healthStatsElement )
+
+            # Set weapon name
+            weaponElement = self.document.createElement("weapon")
+            weaponElement.setAttribute("name", str(combatant.weapon.name) )
+            combatantElement.appendChild( weaponElement )
+
+            # Set possible actions      
+            actionsElement = self.document.createElement("actions")
+            # Create a text with the actions
+            text = reduce( lambda a, b: a+' '+b, map( lambda a: str(a.name), combatant.actions ) )
+            textNode = self.document.createTextNode( text )
+            actionsElement.appendChild( textNode )
+            combatantElement.appendChild( actionsElement )
+
+            # Set sprite info
             spriteElement = self.document.createElement("sprite")
-            spriteElement.setAttribute( "filename", c.spriteFileName )
-            spriteElement.setAttribute( "x1", str(c.sx1) )
-            spriteElement.setAttribute( "y1", str(c.sy1) )
-            spriteElement.setAttribute( "x2", str(c.sx2) )
-            spriteElement.setAttribute( "y2", str(c.sy2) )
+            spriteElement.setAttribute( "filename", combatant.spriteFilename )
+            spriteElement.setAttribute( "x1", str(combatant.sx1) )
+            spriteElement.setAttribute( "x1", str(combatant.sy1) )
+            spriteElement.setAttribute( "x1", str(combatant.sx2) )
+            spriteElement.setAttribute( "x1", str(combatant.sy2) )
             combatantElement.appendChild( spriteElement )
-
-            statusElement = self.document.createElement("status")
-            c.status.writeTo( statusElement )
-            combatantElement.appendChild( statusElement )
-
-            strategiesElement = self.document.createElement("strategies")
-            data = ""
-            for s in c.strategies:
-                data += s+" "
-            dataNode = self.document.createTextNode( data )
-            strategiesElement.appendChild( dataNode )
-            combatantElement.appendChild( strategiesElement )
-
-            experienceElement = self.document.createElement("experience")
-            c.experience.writeTo( experienceElement )
-            combatantElement.appendChild( experienceElement )
-
-            growthElement = self.document.createElement("growth")
-            c.growth.writeTo( growthElement )
-            combatantElement.appendChild( growthElement )
 
             teamElement.appendChild( combatantElement )
 
@@ -185,7 +197,8 @@ class PartyManager:
 
     def heal( self ):
         for c in self.team:
-            c.status.set("health", c.status.get("maxhealth") )
+            c.healthStats["hp"] = c.healthStats["mhp"]
+            c.healthStats["mp"] = c.healthStats["mhp"]
 
 def initPartyManager():
     global globalPartyManagerInstance

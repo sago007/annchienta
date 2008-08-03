@@ -3,15 +3,9 @@
     <frame number="1"/>
     <animation name="stand" frames="1" speed="20" />
     <oninteract>
-import annchienta, SceneManager
-sceneManager = SceneManager.getSceneManager()
-b = annchienta.getPassiveObject()
-pl = annchienta.getActiveObject()
-c = annchienta.getMapManager().getCurrentMap().getObject("candle")
-sceneManager.initDialog( [b,pl,c] )
-sceneManager.speak( b, "Hello" )
-sceneManager.speak( c, "Whatever..." )
-sceneManager.speak( pl, "Hey" )
-sceneManager.quitDialog()
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.save("save/save.xml")
     </oninteract>
 </sprite>
+

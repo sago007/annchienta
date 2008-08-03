@@ -23,6 +23,12 @@ class BaseCombatant:
         # Set our name
         self.name = str(xmlElement.getAttribute("name"))
     
+        # Create a dictionary describing the level stuff
+        self.level = {}
+        levelElement = xmlElement.getElementsByTagName("level")[0]
+        for k in levelElement.attributes.keys():
+            self.level[k] = int(levelElement.attributes[k].value)
+
         # Create a dictionary describing the primary stats
         self.primaryStats = {}
         primaryStatsElement = xmlElement.getElementsByTagName("primarystats")[0]
@@ -34,12 +40,6 @@ class BaseCombatant:
         healthStatsElement = xmlElement.getElementsByTagName("healthstats")[0]
         for k in healthStatsElement.attributes.keys():
             self.healthStats[k] = int(healthStatsElement.attributes[k].value)
-            
-        # Create a dictionary describing the level stuff
-        self.level = {}
-        levelElement = xmlElement.getElementsByTagName("level")[0]
-        for k in levelElement.attributes.keys():
-            self.level[k] = int(levelElement.attributes[k].value)
     
         # Get our weapon (if there is one! enemies usually have no weapons)
         weaponElements = xmlElement.getElementsByTagName("weapon")
@@ -72,7 +72,6 @@ class BaseCombatant:
                 self.actions += [ Action.Action( found[0] ) ]
             else:
                 self.logManager.error("No action called "+a+" was found for "+self.name+" in "+self.actionsLocation+".")
-        print map( lambda a: a.name, self.actions )
             
         # Create a dictionary describing the elemental properties
         # Only enemies have them, usually
@@ -154,7 +153,9 @@ class Combatant(BaseCombatant):
         
         # Load sprite
         spriteElement = xmlElement.getElementsByTagName("sprite")[0]
-        self.sprite = annchienta.Surface( str(spriteElement.getAttribute("filename")) )
+        # Keep the filename so we can save it later on
+        self.spriteFilename = str(spriteElement.getAttribute("filename"))
+        self.sprite = annchienta.Surface( self.spriteFilename )
         if spriteElement.hasAttribute("x1"):
             self.sx1 = int(spriteElement.getAttribute("x1"))
             self.sy1 = int(spriteElement.getAttribute("y1"))

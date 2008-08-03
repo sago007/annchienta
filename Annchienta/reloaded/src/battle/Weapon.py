@@ -5,7 +5,7 @@ class Weapon:
     def __init__( self, xmlElement ):
     
         # Set our name
-        self.name = xmlElement.getAttribute("name")
+        self.name = str(xmlElement.getAttribute("name"))
     
         # Create a dictionary describing the weapon stats
         self.stats = {}

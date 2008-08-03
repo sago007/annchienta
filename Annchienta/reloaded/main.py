@@ -41,19 +41,14 @@ sceneManager.largeRegularFont = annchienta.Font("data/assets/regular.ttf", 20)
 sceneManager.largeItalicsFont = annchienta.Font("data/assets/italics.ttf", 20)
 sceneManager.boxTextures = map( lambda i: annchienta.Surface("data/assets/box"+str(i)+".png"), range(9) )
 
-# load a map
-m = annchienta.Map( "data/locations/map.xml" )
+import PartyManager
+PartyManager.initPartyManager()
+partyManager = PartyManager.getPartyManager()
+partyManager.load( "save/new.xml" )
 
-# load the player
-p = annchienta.Person( "aelaan", "data/locations/aelaan.xml" )
-p.setInputControl()
-p.setPosition( annchienta.Point( annchienta.TilePoint, 22, 10 ) )
-m.addObject( p )
-
-mapManager.cameraFollow( p )
-mapManager.setCurrentMap( m )
 mapManager.run()
 
-m.removeObject( p )
+partyManager.free()
 
 annchienta.quit()
+
