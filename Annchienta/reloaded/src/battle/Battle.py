@@ -128,7 +128,7 @@ class Battle:
             self.menuOpen = True
             actor = self.readyAllies.pop(0)
             action, target = actor.selectAction( self )
-            if action is None or target is None:
+            if action is None or (action.target and target is None):
                 # Put this ready ally in the back
                 self.readyAllies += [actor]
             else:
@@ -177,12 +177,26 @@ class Battle:
             self.videoManager.translate( 0, 20 )
         self.videoManager.popMatrix()
 
+    # Takes any action, might call to takeXAction
+    def takeAction( self, action, combatant, target ):
+
+        # If the action needs a target we're dealing with
+        # a generic action
+        if action.target:
+            self.takeGenericAction( action, combatant, target )
+            return
+
+        # Now check for special, built-in actions
+        if action.name == "row":
+            self.takeRowAction( combatant )
+            return
+
     ## Make an combatant do an action
     #
-    def takeAction( self, action, combatant, target ):
+    def takeGenericAction( self, action, combatant, target ):
             
         # Info
-        self.lines += [combatant.name+" uses "+action.name+" on "+target.name+"!"]
+        self.lines += [combatant.name.capitalize()+" uses "+action.name+" on "+target.name.capitalize()+"!"]
         
         # Let's assume we are dealing with a regular action for now
         baseDamage = 0.0
@@ -214,6 +228,15 @@ class Battle:
         # Round it
         baseDamage = int(baseDamage)
 
+        # Rows only matter when it's physical damage
+        if action.type == "physical":
+            # If attacker is in back row, half damage...
+            if combatant.row == "back":
+                baseDamage /= 2
+            # If target is in back row, half damage...
+            if target.row == "back":
+                baseDamage /= 2
+
         # We can always miss, of course...
         hit = annchienta.randFloat() <= action.hit
 
@@ -242,6 +265,7 @@ class Battle:
         # Damage animation only if hit
         if hit:
             target.damage = baseDamage
+            target.damageTimer = 0.0
 
         # Check if the target died
         if target.healthStats["hp"] <= 0:
@@ -255,6 +279,20 @@ class Battle:
 
             # Remove this enemy now
             self.combatants.remove( target )
+
+    # Switches back/front row with small animation
+    def takeRowAction( self, combatant ):
+
+        rowDeltaX = 30
+        position = annchienta.Vector( combatant.position )
+        if combatant.row == "front":
+            combatant.row = "back"
+            position.x += -rowDeltaX if combatant.ally else rowDeltaX
+        else:
+            combatant.row = "front"
+            position.x += rowDeltaX if combatant.ally else -rowDeltaX
+        self.lines += [combatant.name.capitalize()+" moves to the "+combatant.row+" row!"]
+        self.playMoveAnimation( combatant, position )
 
     # Plays the animation for the given parameters
     # This calls to playXAnimation, where X depends on the action

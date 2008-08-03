@@ -95,6 +95,9 @@ class BaseCombatant:
         # Reset time bar
         self.timer = 100.0 * annchienta.randFloat()
     
+        # Start in the front row
+        self.row = "front"
+
     # Will generate derived stats based on equipped weapon.
     def generateDerivedStats( self ):
         

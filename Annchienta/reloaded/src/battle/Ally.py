@@ -24,9 +24,12 @@ class Ally( Combatant.Combatant ):
                     sub.options += [Menu.MenuItem( action.name, action.description+" ("+str(action.cost)+"MP)" )]
                     added = True
             if not added:
-                newsub = Menu.Menu( action.category )
-                newsub.options += [Menu.MenuItem( action.name, action.description+" ("+str(action.cost)+"MP)" )]
-                subs += [newsub]
+                if action.category=="top":
+                    subs += [Menu.MenuItem( action.name, action.description+" ("+str(action.cost)+"MP)" )]
+                else:
+                    newsub = Menu.Menu( action.category )
+                    newsub.options += [Menu.MenuItem( action.name, action.description+" ("+str(action.cost)+"MP)" )]
+                    subs += [newsub]
                 
         # set options and align
         self.menu.setOptions( subs )
@@ -47,10 +50,12 @@ class Ally( Combatant.Combatant ):
             battle.lines += [combatant.name.capitalize()+" doesn't have enough MP!"]
             return None, None
             
-        # Select a target
-        target = self.selectTarget( battle )
-        if target is None:
-            return None, None
+        # Select a target when needed
+        target = None
+        if action.target:
+            target = self.selectTarget( battle )
+            if target is None:
+                return None, None
 
         return action, target
         
