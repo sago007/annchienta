@@ -27,7 +27,7 @@ mapManager.setTileHeight(32)
 mapManager.setUpdatesPerSecond(60)
 mapManager.setMaxAscentHeight(32)
 mapManager.setMaxDescentHeight(32)
-#mapManager.setOnUpdateScript("scripts/onupdate.py")
+mapManager.setOnUpdateScript("src/OnUpdate.py")
 
 inputManager = annchienta.getInputManager()
 inputManager.setInteractKey( annchienta.SDLK_SPACE )
