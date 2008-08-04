@@ -117,7 +117,10 @@ class Battle:
         # Then again, are we dead?
         if not len(self.enemies) or not len(self.allies):
             if len(self.allies):
-                print "We win!!!!! Gain "+str(self.xp)+"xp!"
+                # We won!
+                self.sceneManager.text("Victorious! Gained "+str(self.xp)+" xp!", None)
+                for ally in self.allies:
+                    ally.addXp( self.xp )
             else:
                 print "Game over..."
             self.running = False

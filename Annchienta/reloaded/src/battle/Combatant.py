@@ -102,7 +102,7 @@ class BaseCombatant:
     def generateDerivedStats( self ):
         
         # Base them on the primaries
-        self.derivedStats = self.primaryStats
+        self.derivedStats = dict(self.primaryStats)
         
         # Then add weapon stats
         if self.weapon:

@@ -15,7 +15,7 @@
         <weapon name="sword"/>
         <actions>attack</actions>
         <sprite filename="data/sprites/bovinasaur.png"/>
-        <drop xp="10"/>
+        <drop xp="400"/>
     </combatant>
 </test>
 

@@ -119,6 +119,12 @@ class PartyManager:
                 levelElement.setAttribute( str(key), str(combatant.level[key]) )
             combatantElement.appendChild( levelElement )
 
+            # Set grades info
+            gradesElement = self.document.createElement("grades")
+            for key in combatant.grades:
+                gradesElement.setAttribute( str(key), str(combatant.grades[key]) )
+            combatantElement.appendChild( gradesElement )
+
             # Set primaryStats info
             primaryStatsElement = self.document.createElement("primarystats")
             for key in combatant.primaryStats:

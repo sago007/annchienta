@@ -1,3 +1,4 @@
+import annchienta
 import Combatant, Menu
 
 class Ally( Combatant.Combatant ):
@@ -6,7 +7,13 @@ class Ally( Combatant.Combatant ):
         
         # Base constructor
         Combatant.Combatant.__init__( self, xmlElement )
-        
+            
+        # Create a dictionary describing the level grades
+        self.grades = {}
+        gradesElement = xmlElement.getElementsByTagName("grades")[0]
+        for k in gradesElement.attributes.keys():
+            self.grades[k] = int(gradesElement.attributes[k].value)
+
         # Variables
         self.ally = True
 
@@ -80,7 +87,7 @@ class Ally( Combatant.Combatant ):
         
         # Draw the combatant's name
         self.videoManager.setColor()
-        self.videoManager.drawString( self.sceneManager.largeItalicsFont, self.name, self.sceneManager.margin, -3 )
+        self.videoManager.drawString( self.sceneManager.largeItalicsFont, self.name.capitalize(), self.sceneManager.margin, -3 )
         
         # Draw the combatant's hp
         self.videoManager.drawString( self.sceneManager.largeItalicsFont, str(self.healthStats["hp"])+"/"+str(self.healthStats["mhp"])+"HP", int(self.videoManager.getScreenWidth()*0.4)+self.sceneManager.margin, -3 )
@@ -132,4 +139,50 @@ class Ally( Combatant.Combatant ):
                 c.hover = False
 
         return target
+
+    def addXp( self, xp, showDialog=True ):
+
+        # Start by adding the xp
+        self.level["xp"] += xp
+
+        # Function to determine next level xp
+        xpNeeded = lambda lvl: int(lvl*75)
+
+        # If the amount is reached... cap at 99
+        while self.level["xp"] >= xpNeeded(self.level["lvl"]) and self.level["lvl"]<=99:
+            
+            # Use up xp to level
+            self.level["xp"] -= xpNeeded(self.level["lvl"])
+            # Increase level
+            self.level["lvl"] += 1
+
+            for key in self.primaryStats:
+
+                grade = self.grades[key]
+
+                # Determine baseline
+                baseline = int( float(self.level["lvl"] * 2.5)/float(grade) )
+
+                # Difference baseline - current value
+                difference = baseline - self.primaryStats[key]
+                
+                # Add a certain random factor
+                gain = difference + annchienta.randInt(0,3)
+
+                # Now gain
+                self.primaryStats[key] += gain
+
+            # Seperate formulas for hp, mp
+            for string in ["hp", "mp"]:
+                mstring = "m"+string
+                gain = int( float(self.grades[mstring]*annchienta.randFloat(0.9,1.1)) )
+                self.healthStats[mstring] += gain
+                self.healthStats[string] += gain
+
+            if showDialog:
+                self.sceneManager.text( self.name.capitalize()+" gains a level!", None )
+
+
+            # Update derived stats
+            self.generateDerivedStats()
 
