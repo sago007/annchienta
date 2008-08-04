@@ -172,6 +172,10 @@ class Ally( Combatant.Combatant ):
                 # Now gain
                 self.primaryStats[key] += gain
 
+                # Cap at 100
+                if self.primaryStats[key] > 100:
+                    self.primaryStats[key] = 100
+
             # Seperate formulas for hp, mp
             for string in ["hp", "mp"]:
                 mstring = "m"+string

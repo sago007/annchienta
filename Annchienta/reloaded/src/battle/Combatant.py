@@ -46,13 +46,7 @@ class BaseCombatant:
         if len(weaponElements):
             # Get the weapon name and search for the corresponding element
             weaponName = str(weaponElements[0].getAttribute("name"))
-            weaponElements = self.weaponsXmlFile.getElementsByTagName("weapon")
-            found = filter( lambda w: w.getAttribute("name")==weaponName, weaponElements )
-            if len(found):
-                # Construct a weapon
-                self.weapon = Weapon.Weapon( found[0] )
-            else:
-                self.logManager.error("No weapon called "+weaponName+" was found for "+self.name+" in "+self.weaponsLocation+".")
+            self.setWeapon( weaponName )
         else:
             self.weapon = 0
     
@@ -115,10 +109,20 @@ class BaseCombatant:
     
         # Base elemental properties on weapon
         if self.weapon:
-            self.derivedElemental = self.weapon.elemental
+            self.derivedElemental = dict(self.weapon.elemental)
         else:
-            self.derivedElemental = self.primaryElemental
+            self.derivedElemental = dict(self.primaryElemental)
     
+    def setWeapon( self, weaponName ):
+        weaponElements = self.weaponsXmlFile.getElementsByTagName("weapon")
+        found = filter( lambda w: w.getAttribute("name")==weaponName, weaponElements )
+        if len(found):
+            # Construct a weapon
+            self.weapon = Weapon.Weapon( found[0] )
+        else:
+            self.logManager.error("No weapon called "+weaponName+" was found for "+self.name+" in "+self.weaponsLocation+".")
+        self.generateDerivedStats()
+
     # base damage for physical attacks
     def physicalBaseDamage( self ):
         att = self.derivedStats["att"]

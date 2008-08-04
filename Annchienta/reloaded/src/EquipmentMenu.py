@@ -3,7 +3,7 @@ import Menu, PartyManager
 
 class EquipmentMenu( Menu.Menu ):
 
-    def __init__( self, name="Equipment", description="Manage and view equipment." ):
+    def __init__( self, name="Equipment", description="Manage and view equipment.", combatantIndex = 0 ):
 
         # Call superclass constructor
         Menu.Menu.__init__( self, name, description )
@@ -17,6 +17,9 @@ class EquipmentMenu( Menu.Menu ):
         self.options += [ Menu.MenuItem("cancel", "Quit this menu.") ]
         self.setOptions( self.options )
 
+        # Set index
+        self.combatantIndex = combatantIndex
+
         # On top.
         self.top()
 
@@ -27,9 +30,14 @@ class EquipmentMenu( Menu.Menu ):
 
         self.combatant = self.partyManager.team[ self.combatantIndex ]
         
+        x1 = self.sceneManager.margin
+        y1 = self.height + self.sceneManager.margin*4
+        x2 = self.videoManager.getScreenWidth() - self.sceneManager.margin
+        y2 = y1 + 100
+
         self.videoManager.pushMatrix()
-        self.videoManager.translate( self.sceneManager.margin, self.height+self.sceneManager.margin*4 )
-        self.sceneManager.drawBox( 0, 0, self.videoManager.getScreenWidth()-self.sceneManager.margin*2, 100 )
+        self.sceneManager.drawBox( x1, y1, x2, y2 )
+        self.videoManager.translate( x1, y1 )
 
         self.videoManager.translate( self.sceneManager.margin, self.sceneManager.margin )
         self.videoManager.drawString( self.sceneManager.defaultFont, self.combatant.name.capitalize(), 0, 0 )
@@ -43,14 +51,10 @@ class EquipmentMenu( Menu.Menu ):
         text = reduce( lambda a,b:a+' '+b, map( lambda a: a.upper()+": "+str( self.combatant.derivedStats[a]), self.combatant.derivedStats.keys() ) )
         self.videoManager.drawString( self.sceneManager.defaultFont, str(text), 0, 0 )
         
-
         self.videoManager.popMatrix()
         
     # Pops and handles stuff.
     def run( self ):
-
-        # Start with the first combatant
-        self.combatantIndex = 0
 
         running = True
         while running and self.inputManager.running():
@@ -66,7 +70,16 @@ class EquipmentMenu( Menu.Menu ):
                     self.combatantIndex %= len( self.partyManager.team )
 
                 elif ans.name == "weapon":
-                    pass
+                    weaponMenu = EquipmentMenu( "Weapon", "Select a weapon.", self.combatantIndex )
+                    options = []
+                    for weapon in self.partyManager.weapons:
+                        if self.partyManager.hasWeaponAvailable( weapon ):
+                            options += [ Menu.MenuItem( weapon, "Equip "+weapon.capitalize()+"." ) ]
+                    weaponMenu.setOptions( options )
+                    weaponMenu.top()
+                    w = weaponMenu.pop()
+                    if w is not None:
+                        self.partyManager.team[ self.combatantIndex ].setWeapon( w.name )
 
                 elif ans.name == "cancel":
                     running = False

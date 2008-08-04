@@ -3,6 +3,7 @@
     <records>started had_lunch</records>
     <map filename="data/locations/map.xml" layer="0"/>
     <player name="aelaan" config="data/locations/aelaan.xml" isox="350" isoy="150"/>
+    <weapons>sword stave dagger</weapons>
     <team>
         <combatant name="aelaan">
             <level lvl="4" xp="0"/>
@@ -22,7 +23,7 @@
             <grades att="1" mat="1" def="1" mdf="5" spd="5" mhp="90" mmp="9"/>
             <primarystats att="50" mat="5" def="5" mdf="5" spd="5"/>
             <healthstats hp="100" mmp="100" mp="30" mhp="100"/>
-            <weapon name="sword"/>
+            <weapon name="stave"/>
             <actions>attack cure row</actions>
             <sprite filename="data/sprites/aelaan.png" x1="148" x2="182" y1="0" y2="75"/>
         </combatant>
