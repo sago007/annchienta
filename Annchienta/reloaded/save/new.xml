@@ -3,7 +3,7 @@
     <records>started had_lunch</records>
     <map filename="data/locations/map.xml" layer="0"/>
     <player name="aelaan" config="data/locations/aelaan.xml" isox="350" isoy="150"/>
-    <weapons>sword stave dagger</weapons>
+    <inventory>potion 1 sword 1 stave 1 dagger 1 spear 2 hammer 1 axe 1</inventory>
     <team>
         <combatant name="aelaan">
             <level lvl="4" xp="0"/>

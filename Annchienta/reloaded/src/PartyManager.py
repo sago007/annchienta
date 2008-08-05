@@ -1,6 +1,7 @@
 import annchienta
 import xml.dom.minidom
 import Ally
+import Inventory
 
 ## Manages the player, party, etc.
 #
@@ -15,7 +16,7 @@ class PartyManager:
         # Set variables
         self.player = 0
         self.records = []
-        self.weapons = []
+        self.inventory = 0
         self.lastMaps = []
         self.currentMap = 0
 
@@ -24,7 +25,7 @@ class PartyManager:
         self.currentMap = 0
         self.team = 0
         self.records = []
-        self.weapons = []
+        self.inventory = 0
         self.mapManager.setNullMap()
         self.player = 0
 
@@ -58,9 +59,9 @@ class PartyManager:
         self.mapManager.cameraFollow( self.player )
         self.mapManager.cameraPeekAt( self.player, True )
 
-        # Load all the weapons we have
-        weaponsElement = self.document.getElementsByTagName("weapons")[0]
-        self.weapons = str(weaponsElement.firstChild.data).split()
+        # Load our inventory
+        inventoryElement = self.document.getElementsByTagName("inventory")[0]
+        self.inventory = Inventory.Inventory( inventoryElement )
 
         # Load the team
         teamElement = self.document.getElementsByTagName("team")[0]
@@ -111,13 +112,13 @@ class PartyManager:
         playerElement.setAttribute( "isoy", str(point.y) )
         partyElement.appendChild( playerElement )
 
-        # Append the weapons to the party node.
-        weaponsElement = self.document.createElement("weapons")
+        # Append the inventory to the party node.
+        inventoryElement = self.document.createElement("inventory")
         # Create a text with the records
-        text = reduce( lambda a, b: a+' '+b, self.weapons )
+        text = self.inventory.toXml()
         textNode = self.document.createTextNode( text )
-        weaponsElement.appendChild( textNode )
-        partyElement.appendChild( weaponsElement )
+        inventoryElement.appendChild( textNode )
+        partyElement.appendChild( inventoryElement )
 
         # Create an element for the team
         teamElement = self.document.createElement("team")
@@ -183,20 +184,6 @@ class PartyManager:
 
     def hasRecord( self, record ):
         return record.lower() in self.records
-
-    def addWeapon( self, weapon ):
-        if weapon.lower() not in self.weapons:
-            self.records.append( weapon.lower() )
-
-    def hasWeaponAvailable( self, weapon ):
-        # We should have it
-        if weapon.lower() not in self.weapons:
-            return False
-        # It should not be already equipped
-        if weapon.lower() in map( lambda a: a.weapon.name, self.team ):
-            return False
-        # It's available
-        return True
 
     def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ), newLayer = 0, fade=True ):
 

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<items>
+    <item name="sword" type="weapon"/>
+    <item name="stave" type="weapon"/>
+    <item name="dagger" type="weapon"/>
+    <item name="spear" type="weapon"/>
+    <item name="hammer" type="weapon"/>
+    <item name="axe" type="weapon"/>
+
+    <item name="potion" type="loot"/>
+</items>
+

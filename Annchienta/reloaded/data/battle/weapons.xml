@@ -12,5 +12,17 @@
         <stats att="10" mat="10" def="5" mdf="5" spd="20"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
     </weapon>
+    <weapon name="spear">
+        <stats att="10" mat="10" def="5" mdf="5" spd="20"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+    </weapon>
+    <weapon name="hammer">
+        <stats att="10" mat="10" def="5" mdf="5" spd="20"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+    </weapon>
+    <weapon name="axe">
+        <stats att="10" mat="10" def="5" mdf="5" spd="20"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+    </weapon>
 </weapons>
 

@@ -72,14 +72,19 @@ class EquipmentMenu( Menu.Menu ):
                 elif ans.name == "weapon":
                     weaponMenu = EquipmentMenu( "Weapon", "Select a weapon.", self.combatantIndex )
                     options = []
-                    for weapon in self.partyManager.weapons:
-                        if self.partyManager.hasWeaponAvailable( weapon ):
-                            options += [ Menu.MenuItem( weapon, "Equip "+weapon.capitalize()+"." ) ]
+                    for weapon in self.partyManager.inventory.getAvailableWeapons():
+                        options += [ Menu.MenuItem( weapon, "Equip "+weapon.capitalize()+"." ) ]
+
                     weaponMenu.setOptions( options )
                     weaponMenu.top()
                     w = weaponMenu.pop()
                     if w is not None:
+                        # Remove old weapon from combatant and add it back to inventory
+                        self.partyManager.inventory.addItem( self.partyManager.team[ self.combatantIndex ].weapon.name )
+                        # Set new weapon
                         self.partyManager.team[ self.combatantIndex ].setWeapon( w.name )
+                        # Remove new weapon from inventory
+                        self.partyManager.inventory.removeItem( w.name )
 
                 elif ans.name == "cancel":
                     running = False
