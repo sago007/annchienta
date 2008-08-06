@@ -32,6 +32,14 @@ class Inventory:
         element = self.getElement( itemName )
         return str(element.getAttribute("type"))
 
+    def getItemCount( self, itemName ):
+        return self.dictionary[itemName]
+
+    # Returns the description of an item
+    def getItemDescription( self, itemName ):
+        element = self.getElement( itemName )
+        return str(element.getAttribute("description"))
+
     # Searches for the given itemName in the xml file
     # and possibly returns the corresponding element.
     def getElement( self, itemName ):
@@ -51,6 +59,18 @@ class Inventory:
         weapons = filter( lambda w: self.dictionary[w]>0, weapons )
         return weapons
 
+    def getAvailableLoot( self ):
+
+        # Find all items of type loot
+        loot = filter( lambda i: self.getItemType(i)=="loot", self.dictionary.keys() )
+        # Make sure we have one
+        loot = filter( lambda l: self.dictionary[l]>0, loot )
+        return loot
+
+    def hasItem( self, itemName ):
+
+        return itemName in self.dictionary.keys()
+
     def addItem( self, itemName ):
 
         if itemName in self.dictionary.keys():
@@ -64,5 +84,10 @@ class Inventory:
         if self.dictionary[ itemName ] <= 0:
             del self.dictionary[ itemName ]
 
+    def useItemOn( self, itemName, target ):
 
+        if itemName=="potion":
+            target.healthStats["hp"] = target.healthStats["mhp"]
+
+        self.removeItem( itemName )
 

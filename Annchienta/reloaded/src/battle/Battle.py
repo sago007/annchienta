@@ -1,5 +1,5 @@
 import annchienta
-import SceneManager
+import SceneManager, PartyManager
 
 ## Holds a battle...
 #
@@ -18,6 +18,7 @@ class Battle:
         self.inputManager = annchienta.getInputManager()
         self.cacheManager = annchienta.getCacheManager()
         self.sceneManager = SceneManager.getSceneManager()
+        self.partyManager = PartyManager.getPartyManager()
         
         # Lines for the 'console' window
         self.lines = []
@@ -131,7 +132,7 @@ class Battle:
             self.menuOpen = True
             actor = self.readyAllies.pop(0)
             action, target = actor.selectAction( self )
-            if action is None or (action.target and target is None):
+            if action is None:
                 # Put this ready ally in the back
                 self.readyAllies += [actor]
             else:
@@ -182,6 +183,13 @@ class Battle:
 
     # Takes any action, might call to takeXAction
     def takeAction( self, action, combatant, target ):
+
+        # If the action is a string...
+        if type(action) == type("string"):
+            # And is an item...
+            if self.partyManager.inventory.hasItem( action ):
+                self.takeItemAction( action, combatant, target )
+                return
 
         # If the action needs a target we're dealing with
         # a generic action
@@ -251,11 +259,8 @@ class Battle:
                     print target.name+" is now "+action.statusEffect+"!"
 
             # Finally, do damage to damaged ones
-            target.healthStats["hp"] -= baseDamage
-            if target.healthStats["hp"] < 0:
-                target.healthStats["hp"] = 0
-            if target.healthStats["hp"] > target.healthStats["mhp"]:
-                target.healthStats["hp"] = target.healthStats["mhp"]
+            target.addHealth( -baseDamage )
+
         else:
             self.lines += [ combatant.name.capitalize()+" misses!" ]
 
@@ -282,6 +287,16 @@ class Battle:
 
             # Remove this enemy now
             self.combatants.remove( target )
+
+    # Uses an item
+    def takeItemAction( self, item, combatant, target ):
+        
+        self.lines += [ combatant.name.capitalize()+" uses "+item+" on "+target.name.capitalize()+"!" ]
+        self.partyManager.inventory.useItemOn( item, target )
+
+        # Rebuild item menus
+        for ally in self.allies:
+            ally.buildItemMenu()
 
     # Switches back/front row with small animation
     def takeRowAction( self, combatant ):

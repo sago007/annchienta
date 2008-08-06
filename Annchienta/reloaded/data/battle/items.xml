@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <items>
-    <item name="sword" type="weapon"/>
-    <item name="stave" type="weapon"/>
-    <item name="dagger" type="weapon"/>
-    <item name="spear" type="weapon"/>
-    <item name="hammer" type="weapon"/>
-    <item name="axe" type="weapon"/>
+    <item name="sword" type="weapon" description="A common sword."/>
+    <item name="stave" type="weapon" description="Simple magical stave."/>
+    <item name="dagger" type="weapon" description="A short dagger."/>
+    <item name="spear" type="weapon" description="A wooden spear."/>
+    <item name="hammer" type="weapon" description="A brutal melee weapon."/>
+    <item name="axe" type="weapon" description="Can also be used to cut trees."/>
 
-    <item name="potion" type="loot"/>
+    <item name="potion" type="loot" description="Restores 250 HP."/>
 </items>
 

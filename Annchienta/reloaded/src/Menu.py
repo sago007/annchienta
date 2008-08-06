@@ -46,6 +46,9 @@ class Menu(MenuItem):
         if len(self.options)%self.maxItemsInColumn:
             self.columns += 1
 
+        if self.columns <= 1:
+            self.columns = 1
+
         # Find the longest name in pixels to base the width on
         names = map( lambda o: o.name, self.options ) + [self.name]
         self.longest = max( map( lambda n: self.sceneManager.defaultFont.getStringWidth(n.capitalize()), names ) )
@@ -85,6 +88,8 @@ class Menu(MenuItem):
     #  \return The chosen menu option, or None if canceled.
     def pop( self, backgroundProcess = annchienta.getMapManager() ):
 
+        self.backgroundProcess = backgroundProcess
+
         # Disable character input/movement
         originalInputMode = self.inputManager.getInputMode()
         self.inputManager.setInputMode( annchienta.CinematicMode )
@@ -102,10 +107,10 @@ class Menu(MenuItem):
         self.inputManager.update()
         
         # Initialize some stuff
-        done = False
+        self.done = False
         self.clickedItem = None
 
-        while not done and self.clickedItem is None:
+        while not self.done and self.clickedItem is None:
         
             self.videoManager.begin()
             
@@ -120,17 +125,7 @@ class Menu(MenuItem):
             
             self.videoManager.end()
 
-            # Update everything
-            self.inputManager.update()
-            if backgroundProcess:
-                backgroundProcess.update(False)
-
-            # Check for actions
-            if self.inputManager.buttonTicked( 1 ):
-                done = True
-
-            if not self.inputManager.running():
-                done = True
+            self.update()
 
         self.mapManager.resync()
 
@@ -158,6 +153,20 @@ class Menu(MenuItem):
             # Simply return the item.
             else:
                 return self.clickedItem
+
+    def update( self ):
+
+        # Update everything
+        self.inputManager.update()
+        if self.backgroundProcess:
+            self.backgroundProcess.update(False)
+
+        # Check for actions
+        if self.inputManager.buttonTicked( 1 ):
+            self.done = True
+
+        if not self.inputManager.running():
+            self.done = True
 
     def render( self ):
 

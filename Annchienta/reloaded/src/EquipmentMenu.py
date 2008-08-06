@@ -14,6 +14,7 @@ class EquipmentMenu( Menu.Menu ):
         # Set options...
         self.options += [ Menu.MenuItem("next", "View next party member.") ]
         self.options += [ Menu.MenuItem("weapon", "Change party member weapon.") ]
+        self.options += [ Menu.MenuItem("item", "Use an item on this party member.") ]
         self.options += [ Menu.MenuItem("cancel", "Quit this menu.") ]
         self.setOptions( self.options )
 
@@ -41,6 +42,7 @@ class EquipmentMenu( Menu.Menu ):
 
         self.videoManager.translate( self.sceneManager.margin, self.sceneManager.margin )
         self.videoManager.drawString( self.sceneManager.defaultFont, self.combatant.name.capitalize(), 0, 0 )
+
         self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
         self.videoManager.drawString( self.sceneManager.defaultFont, "Current weapon: "+self.combatant.weapon.name.capitalize(), 0, 0 )
 
@@ -51,8 +53,23 @@ class EquipmentMenu( Menu.Menu ):
         text = reduce( lambda a,b:a+' '+b, map( lambda a: a.upper()+": "+str( self.combatant.derivedStats[a]), self.combatant.derivedStats.keys() ) )
         self.videoManager.drawString( self.sceneManager.defaultFont, str(text), 0, 0 )
         
+        self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
+        self.videoManager.drawString( self.sceneManager.italicsFont, "Arrow keys to cycle through party members.", 0, 0 )
+
         self.videoManager.popMatrix()
         
+    # Overwrite update to allow left & right keys.
+    def update( self ):
+        
+        Menu.Menu.update( self )
+        if self.inputManager.keyTicked( annchienta.SDLK_LEFT ):
+            self.combatantIndex -= 1
+
+        if self.inputManager.keyTicked( annchienta.SDLK_RIGHT ):
+            self.combatantIndex += 1
+
+        self.combatantIndex %= len( self.partyManager.team )
+
     # Pops and handles stuff.
     def run( self ):
 
@@ -73,7 +90,7 @@ class EquipmentMenu( Menu.Menu ):
                     weaponMenu = EquipmentMenu( "Weapon", "Select a weapon.", self.combatantIndex )
                     options = []
                     for weapon in self.partyManager.inventory.getAvailableWeapons():
-                        options += [ Menu.MenuItem( weapon, "Equip "+weapon.capitalize()+"." ) ]
+                        options += [ Menu.MenuItem( weapon, self.partyManager.inventory.getItemDescription(weapon) ) ]
 
                     weaponMenu.setOptions( options )
                     weaponMenu.top()
@@ -85,6 +102,19 @@ class EquipmentMenu( Menu.Menu ):
                         self.partyManager.team[ self.combatantIndex ].setWeapon( w.name )
                         # Remove new weapon from inventory
                         self.partyManager.inventory.removeItem( w.name )
+
+                elif ans.name == "item":
+                    itemMenu = Menu.Menu( "Item", "Use an item." )
+                    inv = inv = self.partyManager.inventory
+                    loot = inv.getAvailableLoot()
+                    items = []
+                    for l in loot:
+                        items += [ Menu.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
+                    itemMenu.setOptions( items )
+                    itemMenu.top()
+                    item = itemMenu.pop()
+                    if item is not None:
+                        inv.useItemOn( item.name, self.partyManager.team[ self.combatantIndex ] )
 
                 elif ans.name == "cancel":
                     running = False

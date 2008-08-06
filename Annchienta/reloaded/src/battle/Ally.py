@@ -1,5 +1,6 @@
 import annchienta
 import Combatant, Menu
+import PartyManager
 
 class Ally( Combatant.Combatant ):
 
@@ -7,7 +8,10 @@ class Ally( Combatant.Combatant ):
         
         # Base constructor
         Combatant.Combatant.__init__( self, xmlElement )
-            
+        
+        # References
+        self.partyManager = PartyManager.getPartyManager()
+    
         # Create a dictionary describing the level grades
         self.grades = {}
         gradesElement = xmlElement.getElementsByTagName("grades")[0]
@@ -38,9 +42,25 @@ class Ally( Combatant.Combatant ):
                     newsub.options += [Menu.MenuItem( action.name, action.description+" ("+str(action.cost)+"MP)" )]
                     subs += [newsub]
                 
+        self.itemMenu = Menu.Menu( "item", "Use items." )
+        subs += [ self.itemMenu ]
+        self.buildItemMenu()
+
         # set options and align
         self.menu.setOptions( subs )
         self.menu.leftBottom()
+
+    # create the item menu
+    def buildItemMenu( self ):
+        
+        inv = self.partyManager.inventory
+        loot = inv.getAvailableLoot()
+        items = []
+        for l in loot:
+            items += [ Menu.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
+        self.itemMenu.setOptions( items )
+        self.itemMenu.leftBottom()
+        
 
     # Allies select an action from the menu. returns (action, target)
     def selectAction( self, battle ):
@@ -48,18 +68,32 @@ class Ally( Combatant.Combatant ):
         menuItem = self.menu.pop( battle )
         if menuItem is None:
             return None, None
+
         found = filter( lambda a: a.name == menuItem.name, self.actions )
 
-        action = found[0]
+        needsTarget = True
 
-        # Check if there is enough mp
-        if self.healthStats["mp"] < action.cost:
-            battle.lines += [combatant.name.capitalize()+" doesn't have enough MP!"]
-            return None, None
-            
+        # We found an action
+        if len(found):
+
+            action = found[0]
+
+            # Check if there is enough mp
+            if self.healthStats["mp"] < action.cost:
+                battle.lines += [combatant.name.capitalize()+" doesn't have enough MP!"]
+                return None, None
+        
+            if not action.target:
+                needsTarget = False
+
+        # No action, check if it's an item
+        elif self.partyManager.inventory.hasItem( menuItem.name ):
+
+            action = menuItem.name            
+
         # Select a target when needed
         target = None
-        if action.target:
+        if needsTarget:
             target = self.selectTarget( battle )
             if target is None:
                 return None, None
