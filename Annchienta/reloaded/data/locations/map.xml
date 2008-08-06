@@ -23,6 +23,9 @@
 <!-- Baniran. -->
 <staticobject config="data/locations/baniran.xml" name="baniran" tilex="20" tiley="9"/>
 
+<!-- March. -->
+<person config="data/locations/march.xml" name="march" tilex="20" tiley="12"/>
+
 <!-- Some candles. -->
 <staticobject config="data/locations/candle.xml" name="candle" tilex="19" tiley="15"/>
 <staticobject config="data/locations/candle.xml" name="candle" tilex="23" tiley="9"/>
