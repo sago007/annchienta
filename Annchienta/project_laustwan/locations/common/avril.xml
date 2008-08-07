@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<sprite image="data/sprites/avril.png" mask="data/masks/aelaan.png">
+<sprite image="sprites/avril.png" mask="masks/generic.png">
 
     <frame number="1" x1="0" y1="0" x2="30" y2="40"/>
     <frame number="2" x1="30" y1="0" x2="60" y2="40"/>
@@ -26,5 +26,7 @@
     <animation name="standeast" frames="6" speed="8" />
     <animation name="standwest" frames="7" speed="8" />
     <animation name="standsouth" frames="c" speed="8" />
+
+    <control type="sample" />
 
 </sprite>
