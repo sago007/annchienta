@@ -31,6 +31,11 @@ class EquipmentMenu( Menu.Menu ):
 
         self.combatant = self.partyManager.team[ self.combatantIndex ]
         
+        # Start by drawing the combatant itself.
+        self.sceneManager.drawBox( self.sceneManager.margin, self.sceneManager.margin, self.sceneManager.margin*3+self.combatant.width, self.sceneManager.margin*3+self.combatant.height )
+        self.videoManager.drawSurface( self.combatant.sprite, self.sceneManager.margin*2, self.sceneManager.margin*2, self.combatant.sx1, self.combatant.sy1, self.combatant.sx2, self.combatant.sy2 ) 
+
+
         x1 = self.sceneManager.margin
         y1 = self.height + self.sceneManager.margin*4
         x2 = self.videoManager.getScreenWidth() - self.sceneManager.margin
