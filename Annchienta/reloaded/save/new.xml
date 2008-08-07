@@ -15,8 +15,9 @@
             <primarystats att="50" mat="5" def="5" mdf="5" spd="5"/>
             <healthstats hp="100" mmp="100" mp="30" mhp="100"/>
             <weapon name="sword"/>
-            <actions>attack cure row</actions>
+            <actions>attack row</actions>
             <sprite filename="data/sprites/aelaan.png" x1="148" x2="182" y1="0" y2="75"/>
+            <learn>5 cure</learn>
         </combatant>
         <combatant name="inyse">
             <level lvl="4" xp="0"/>
@@ -24,8 +25,9 @@
             <primarystats att="50" mat="5" def="5" mdf="5" spd="5"/>
             <healthstats hp="100" mmp="100" mp="30" mhp="100"/>
             <weapon name="stave"/>
-            <actions>attack cure row</actions>
+            <actions>attack row</actions>
             <sprite filename="data/sprites/aelaan.png" x1="148" x2="182" y1="0" y2="75"/>
+            <learn>5 cure</learn>
         </combatant>
     </team>
 </party>

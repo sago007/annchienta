@@ -15,7 +15,7 @@ class EquipmentMenu( Menu.Menu ):
         self.options += [ Menu.MenuItem("next", "View next party member.") ]
         self.options += [ Menu.MenuItem("weapon", "Change party member weapon.") ]
         self.options += [ Menu.MenuItem("item", "Use an item on this party member.") ]
-        self.options += [ Menu.MenuItem("cancel", "Quit this menu.") ]
+        self.options += [ Menu.MenuItem("confirm", "Quit this menu.") ]
         self.setOptions( self.options )
 
         # Set index
@@ -121,7 +121,7 @@ class EquipmentMenu( Menu.Menu ):
                     if item is not None:
                         inv.useItemOn( item.name, self.partyManager.team[ self.combatantIndex ] )
 
-                elif ans.name == "cancel":
+                elif ans.name == "confirm":
                     running = False
 
 

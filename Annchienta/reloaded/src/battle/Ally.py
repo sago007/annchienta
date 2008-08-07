@@ -1,5 +1,5 @@
 import annchienta
-import Combatant, Menu
+import Combatant, Menu, Action
 import PartyManager
 
 class Ally( Combatant.Combatant ):
@@ -17,6 +17,15 @@ class Ally( Combatant.Combatant ):
         gradesElement = xmlElement.getElementsByTagName("grades")[0]
         for k in gradesElement.attributes.keys():
             self.grades[k] = int(gradesElement.attributes[k].value)
+
+        # Create dictionary describing the level learns
+        self.learn = {}
+        learnElement = xmlElement.getElementsByTagName("learn")[0]
+        text = str(learnElement.firstChild.data)
+        words = text.split()
+        for i in range( len(words)/2 ):
+            self.learn[ int( words[i*2] ) ] = words[i*2+1]
+        print self.learn
 
         # Variables
         self.ally = True
@@ -190,6 +199,8 @@ class Ally( Combatant.Combatant ):
             # Increase level
             self.level["lvl"] += 1
 
+            text = self.name.capitalize()+" gains a level!"
+
             for key in self.primaryStats:
 
                 grade = self.grades[key]
@@ -217,8 +228,16 @@ class Ally( Combatant.Combatant ):
                 self.healthStats[mstring] += gain
                 self.healthStats[string] += gain
 
+            # Check for new abilities
+            if self.level["lvl"] in self.learn.keys():
+                ability = self.learn[ self.level["lvl"] ]
+                text += " Learned "+ability+"!"
+
+                self.addAction( ability )
+                self.buildMenu()
+
             if showDialog:
-                self.sceneManager.text( self.name.capitalize()+" gains a level!", None )
+                self.sceneManager.text( text, None )
 
 
             # Update derived stats

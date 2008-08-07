@@ -56,16 +56,9 @@ class BaseCombatant:
         actionNames = actionsElement.firstChild.data.split()
         # Prepare to get the from the xml data
         self.actions = []
-        actionElements = self.actionsXmlFile.getElementsByTagName("action")
         # Get them
         for a in actionNames:
-            # Convert '_' to ' '
-            a = a.replace( '_', ' ' )
-            found = filter( lambda w: w.getAttribute("name")==a, actionElements )
-            if len(found):
-                self.actions += [ Action.Action( found[0] ) ]
-            else:
-                self.logManager.error("No action called "+a+" was found for "+self.name+" in "+self.actionsLocation+".")
+            self.addAction( a )
             
         # Create a dictionary describing the elemental properties
         # Only enemies have them, usually
@@ -122,6 +115,17 @@ class BaseCombatant:
         else:
             self.logManager.error("No weapon called "+weaponName+" was found for "+self.name+" in "+self.weaponsLocation+".")
         self.generateDerivedStats()
+
+    def addAction( self, actionName ):
+
+        actionElements = self.actionsXmlFile.getElementsByTagName("action")
+        # Get them
+        actionName = actionName.replace( '_', ' ' )
+        found = filter( lambda w: w.getAttribute("name")==actionName, actionElements )
+        if len(found):
+            self.actions += [ Action.Action( found[0] ) ]
+        else:
+            self.logManager.error("No action called "+a+" was found for "+self.name+" in "+self.actionsLocation+".")
 
     # base damage for physical attacks
     def physicalBaseDamage( self ):
