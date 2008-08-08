@@ -40,6 +40,11 @@
 <!-- A well to save our game. -->
 <staticobject config="locations/common/well.xml" name="well" tilex="5" tiley="20"/>
 
+<!-- The very first event of the game. -->
+<if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('inaran_intro')">
+    <area script="locations/inaran/beach.py" tilex1="0" tilex2="30" tiley1="0" tiley2="30"/>
+</if>
+
 </layer>
 <layer z="100">
 <tiles>

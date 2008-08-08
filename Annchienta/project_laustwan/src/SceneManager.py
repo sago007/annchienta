@@ -123,10 +123,13 @@ class SceneManager:
     #
     #  \param text The text to be displayed.
     #  \param backgroundProcess The process handling the background. This object should have update( updateInputToo ) and draw() methods. This is usually the MapManager instance. If set to None, the initial background is kept.
-    def text( self, text, backgroundProcess = annchienta.getMapManager() ):
+    def text( self, text, backgroundProcess = annchienta.getMapManager(), italics=False ):
 
         # Make sure we're dealing with text
         text = str(text)
+
+        # Choose font
+        font = self.italicsFont if italics else self.defaultFont
 
         # No accidental clicks
         self.inputManager.update()
@@ -149,12 +152,12 @@ class SceneManager:
                 backgroundProcess.draw()
             else:
                 self.videoManager.restoreBuffer(7)
-            
+
             self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
             self.videoManager.setClippingRectangle( 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, 110-self.margin )
             self.defaultColor()
-            height = self.renderTextInArea( text, 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, self.defaultFont )
-            height -= 110 - self.defaultFont.getLineHeight()
+            height = self.renderTextInArea( text, 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, font )
+            height -= 110 - font.getLineHeight()
             self.videoManager.disableClipping()
             self.videoManager.end()
 
@@ -166,14 +169,14 @@ class SceneManager:
 
     ## \brief lets someone say something.
     #
-    def speak(self, speaker, text):
+    def speak(self, speaker, text, italics=False):
 
         # Quick backup, then look at speaker
         originalCameraFollow = self.mapManager.getCameraFollow()
         self.mapManager.cameraFollow( speaker )
         
         # Run text
-        self.text( speaker.getName().capitalize() + ":\n" + text )
+        self.text( speaker.getName().capitalize() + ":\n" + text, annchienta.getMapManager(), italics )
 
         # Reset stuff
         self.mapManager.cameraFollow( originalCameraFollow )
@@ -188,9 +191,10 @@ class SceneManager:
             points = [points]
 
         self.inputManager.update()
-        self.inputManager.setInputMode( annchienta.CinematicMode )
 
         going = 1
+
+        self.mapManager.resync()
 
         while self.inputManager.running() and going:
 
@@ -199,13 +203,12 @@ class SceneManager:
             self.mapManager.update(False)
             self.inputManager.update()
 
-            self.mapManager.cameraPeekAt( objects[0], True )
+            #self.mapManager.cameraPeekAt( objects[0], True )
 
             self.videoManager.begin()
             self.mapManager.renderFrame()
             self.videoManager.end()
 
-        self.inputManager.setInputMode( annchienta.InteractiveMode )
         self.mapManager.resync()
 
     ## \brief Inits a dialog.

@@ -4,7 +4,7 @@
         <description>Attack an enemy.</description>
         <elemental fire="1" ice="0" water="0" thunder="0" restorative="0"/>
         <power factor="1.0" hit="0.9" type="physical"/>
-        <status effect="poison" hit="0.4"/>
+        <status effect="none" hit="0"/>
         <cost mp="0"/>
         <animation type="attack" data="none"/>
     </action>
@@ -13,8 +13,16 @@
         <elemental fire="0" ice="0" water="0" thunder="0" restorative="1"/>
         <power factor="1.0" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
-        <cost mp="8"/>
+        <cost mp="4"/>
         <animation type="sprite" data="images/animations/cure.png"/>
+    </action>
+    <action name="fog" category="black magic" target="1">
+        <description>Create a dense fog that might blind enemies.</description>
+        <elemental fire="0" ice="0" water="0" thunder="0" restorative="0"/>
+        <power factor="0.2" hit="1.0" type="magical"/>
+        <status effect="blinded" hit="0.7"/>
+        <cost mp="4"/>
+        <animation type="sprite" data="images/animations/fog.png"/>
     </action>
     <action name="row" category="top" target="0">
         <description>Switch back/front row.</description>

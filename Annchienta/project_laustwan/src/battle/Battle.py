@@ -87,10 +87,10 @@ class Battle:
     
         # Align them and stuff
         for i in range(len(self.allies)):
-            self.allies[i].position = annchienta.Vector( 80, 50+(i+1)*35 )
+            self.allies[i].position = annchienta.Vector( 100, 50+(i+1)*35 )
             
         for i in range(len(self.enemies)):
-            self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-80, 50+(i+1)*35 )
+            self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-100, 50+(i+1)*35 )
     
     # We have to be very careful in this function because it
     # might very well recurse. That's why we need booleans to
@@ -263,15 +263,20 @@ class Battle:
             if target.row == "back":
                 baseDamage /= 2
 
-        # We can always miss, of course...
-        hit = annchienta.randFloat() <= action.hit
+        # Our hit rate
+        rate = action.hit
+        # ... is influenced by blindness
+        if "blinded" in combatant.statusEffects:
+            rate /= 2.0
+
+        hit = annchienta.randFloat() <= rate
 
         if hit:
             # Check for status effects
             if action.statusEffect!="none" and action.statusEffect not in target.statusEffects:
                 if annchienta.randFloat() <= action.statusHit:
                     target.statusEffects += [action.statusEffect]
-                    print target.name+" is now "+action.statusEffect+"!"
+                    self.lines += [ target.name.capitalize()+" is now "+action.statusEffect+"!" ]
 
             # Finally, do damage to damaged ones
             target.addHealth( -baseDamage )
@@ -301,7 +306,7 @@ class Battle:
                 self.xp += target.dropXp
                 if target.dropItem:
                     if annchienta.randFloat() < target.dropRate:
-                        self.lines += [ target.name.capitalize()+" drops a "+target.dropItem ]
+                        self.lines += [ target.name.capitalize()+" drops a "+target.dropItem+"!" ]
                         self.partyManager.inventory.addItem( target.dropItem )
 
             # Remove this enemy now

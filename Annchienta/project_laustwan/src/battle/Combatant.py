@@ -169,6 +169,7 @@ class Combatant(BaseCombatant):
         
         # Get references
         self.videoManager = annchienta.getVideoManager()
+        self.cacheManager = annchienta.getCacheManager()
         self.sceneManager = SceneManager.getSceneManager()
         
         # Load sprite
@@ -198,6 +199,9 @@ class Combatant(BaseCombatant):
         self.damage = 0
         self.damageTimer = 0.0
 
+        # Status effect currently displayed
+        self.statusEffectTimer = 0.0
+
     def update( self, ms ):
 
         # Call base update
@@ -208,6 +212,11 @@ class Combatant(BaseCombatant):
             if self.damageTimer >= 1.0:
                 self.damage = 0
                 self.damageTimer = 0.0
+
+        if len(self.statusEffects):
+            self.statusEffectTimer += 0.001*ms
+            while self.statusEffectTimer>=len(self.statusEffects):
+                self.statusEffectTimer -= len( self.statusEffects )
 
     def draw( self ):
     
@@ -223,7 +232,16 @@ class Combatant(BaseCombatant):
             self.videoManager.setColor()
 
             self.videoManager.popMatrix()
+
+        # Status effects
+        if len(self.statusEffects):    
+            effect = self.statusEffects[ int(self.statusEffectTimer) % len(self.statusEffects) ]
+            if self.ally:
+                self.videoManager.drawStringRight( self.sceneManager.defaultFont, effect, -self.width/2, -self.height/2 )
+            else:
+                self.videoManager.drawString( self.sceneManager.defaultFont, effect, self.width/2, -self.height/2 )
         
+        # Actual sprite
         self.videoManager.drawSurface( self.sprite, -self.width/2, -self.height/2, self.sx1, self.sy1, self.sx2, self.sy2 )
 
         # Draw damage stuff
