@@ -67,7 +67,7 @@ class BaseCombatant:
         self.primaryElemental = {}
         elementalElements = xmlElement.getElementsByTagName("elemental")
         if len(elementalElements):
-            for k in elementalElement.attributes.keys():
+            for k in elementalElements[0].attributes.keys():
                 self.primaryElemental[k] = int(elementalElements[0].attributes[k].value)
     
         # Generate derived stats
@@ -191,8 +191,8 @@ class Combatant(BaseCombatant):
 
         self.position = annchienta.Vector( 0, 0 )
         
-        # We will draw ourselves in another color if this is set to True
-        self.hover = False
+        # We will draw a mark upon ourselves sometimes
+        self.marked = False
         
         # Damage done by an attack
         self.damage = 0
@@ -214,10 +214,15 @@ class Combatant(BaseCombatant):
         self.videoManager.pushMatrix()
         self.videoManager.translate( self.position.x, self.position.y )
 
-        if self.hover:
-            self.videoManager.setColor( 0, 255, 0 )
-        else:
+        if self.marked:
+            self.videoManager.pushMatrix()
+
+            self.videoManager.translate( 0, -self.height )
+            self.videoManager.setColor( 255, 255, 0 )
+            self.videoManager.drawTriangle( -self.width/2, 0, 0, self.height/2, self.width/2, 0 )
             self.videoManager.setColor()
+
+            self.videoManager.popMatrix()
         
         self.videoManager.drawSurface( self.sprite, -self.width/2, -self.height/2, self.sx1, self.sy1, self.sx2, self.sy2 )
 
@@ -242,5 +247,6 @@ class Combatant(BaseCombatant):
             # Now go for the real thing
             self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, 0, dy )
 
+        self.videoManager.setColor()
         self.videoManager.popMatrix()
         

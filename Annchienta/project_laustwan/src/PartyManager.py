@@ -20,6 +20,10 @@ class PartyManager:
         self.lastMaps = []
         self.currentMap = 0
 
+        # Battle variables
+        self.randomBattleDelay = annchienta.randInt(300,1000)
+        self.background = None
+
     def free( self ):
         self.currentMap.removeObject(self.player)
         self.currentMap = 0
@@ -90,7 +94,7 @@ class PartyManager:
         # Append the records to the party node.
         recordsElement = self.document.createElement("records")
         # Create a text with the records
-        text = reduce( lambda a, b: a+' '+b, self.records )
+        text = reduce( lambda a, b: a+' '+b, self.records ) if len(self.records) else " "
         textNode = self.document.createTextNode( text )
         recordsElement.appendChild( textNode )
         partyElement.appendChild( recordsElement )
@@ -219,7 +223,7 @@ class PartyManager:
     def heal( self ):
         for c in self.team:
             c.healthStats["hp"] = c.healthStats["mhp"]
-            c.healthStats["mp"] = c.healthStats["mhp"]
+            c.healthStats["mp"] = c.healthStats["mmp"]
 
 def initPartyManager():
     global globalPartyManagerInstance

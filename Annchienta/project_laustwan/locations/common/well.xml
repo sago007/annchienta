@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<sprite image="sprites/well.png" mask="masks/well.png">
+
+    <frame number="1" x1="0" y1="0" x2="30" y2="40"/>
+    <frame number="2" x1="30" y1="0" x2="60" y2="40"/>
+
+    <animation name="stand" frames="12" speed="20" />
+
+    <oninteract script="locations/common/well.py"/>
+
+</sprite>
+

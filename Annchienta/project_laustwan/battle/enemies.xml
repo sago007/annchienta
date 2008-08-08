@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<enemies>
+    <enemy name="goblin">
+        <level lvl="1"/>
+        <primarystats att="20" mat="20" def="20" mdf="20" spd="20"/>
+        <healthstats hp="50" mph="50" mp="10" mhp="10"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <actions>attack</actions>
+        <sprite filename="sprites/goblin.png"/>
+        <drop xp="10"/>
+    </enemy>
+</enemies>
+

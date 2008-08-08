@@ -1,9 +1,15 @@
 import annchienta
+import xml.dom.minidom
 import SceneManager, PartyManager
+import Enemy
 
 ## Holds a battle...
 #
 class Battle:
+
+    # Enemy locations
+    enemiesLocation = "battle/enemies.xml"
+    enemiesFile = xml.dom.minidom.parse( enemiesLocation )
 
     def __init__( self, combatants ):
     
@@ -11,12 +17,14 @@ class Battle:
         self.combatants = combatants
         self.running = True
         self.background = None
+        self.won = False
     
         # Get references
         self.engine = annchienta.getEngine()
         self.videoManager = annchienta.getVideoManager()
         self.inputManager = annchienta.getInputManager()
         self.cacheManager = annchienta.getCacheManager()
+        self.mapManager = annchienta.getMapManager()
         self.sceneManager = SceneManager.getSceneManager()
         self.partyManager = PartyManager.getPartyManager()
         
@@ -78,10 +86,10 @@ class Battle:
     
         # Align them and stuff
         for i in range(len(self.allies)):
-            self.allies[i].position = annchienta.Vector( 80, 40+(i+1)*70 )
+            self.allies[i].position = annchienta.Vector( 80, 50+(i+1)*35 )
             
         for i in range(len(self.enemies)):
-            self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-80, 40+(i+1)*70 )
+            self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-80, 50+(i+1)*35 )
     
     # We have to be very careful in this function because it
     # might very well recurse. That's why we need booleans to
@@ -119,11 +127,13 @@ class Battle:
         if not len(self.enemies) or not len(self.allies):
             if len(self.allies):
                 # We won!
+                self.won = True
                 self.sceneManager.text("Victorious! Gained "+str(self.xp)+" xp!", None)
                 for ally in self.allies:
                     ally.addXp( self.xp )
             else:
-                print "Game over..."
+                self.won = False
+                self.mapManager.stop()
             self.running = False
             return
 
@@ -375,4 +385,47 @@ class Battle:
         position = annchienta.Vector( combatant.position )
         position.x -= 30 if combatant.ally else -30
         self.playMoveAnimation( combatant, position )
+
+
+## A more simple function to run a battle.
+#
+def runBattle( enemyNames, background ):
+
+    logManager = annchienta.getLogManager()
+    partyManager = PartyManager.getPartyManager()
+
+    combatants = partyManager.team
+
+    enemyElements = Battle.enemiesFile.getElementsByTagName("enemy")
+    for name in enemyNames:
+        found = filter( lambda e: str(e.getAttribute("name"))==name, enemyElements )
+        if len(found):
+            combatants += [ Enemy.Enemy( found[0] ) ]
+        else:
+            logManager.error( "No enemy called "+name+" found in "+Battle.enemiesLocation+"." )
+
+    battle = Battle( combatants )
+    battle.background = background
+    battle.run()
+
+    return battle.won
+
+# Tries a random battle
+def throwRandomBattle():
+
+    partyManager = PartyManager.getPartyManager()
+
+    if partyManager.randomBattleDelay>0:
+        partyManager.randomBattleDelay -= 1
+        return
+    else:
+        partyManager.randomBattleDelay = annchienta.randInt( 300, 1000 )
+
+        # Return if there are no enemies in this level.
+        if not len(partyManager.enemiesInMap):
+            return
+
+        enames = map( lambda a: partyManager.enemiesInMap[annchienta.randInt(0,len(partyManager.enemiesInMap)-1)], range(annchienta.randInt(2,3)))
+
+        runBattle( enames, annchienta.Surface( partyManager.background ) )
 

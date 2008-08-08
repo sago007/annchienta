@@ -4,7 +4,13 @@ engine = annchienta.getEngine()
 inputManager = annchienta.getInputManager()
 mapManager = annchienta.getMapManager()
 
-if inputManager.buttonTicked(1):
+# Check for random battles
+if not "stand" in partyManager.player.getAnimation() and not inputManager.keyDown(annchienta.SDLK_q):
+    if inputManager.getInputMode() is annchienta.InteractiveMode:
+        import Battle
+        Battle.throwRandomBattle()
+
+if inputManager.buttonTicked(1) and inputManager.getInputMode() is annchienta.InteractiveMode:
 
     # Create the main menu
     import Menu

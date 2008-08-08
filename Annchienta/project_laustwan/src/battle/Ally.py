@@ -37,17 +37,25 @@ class Ally( Combatant.Combatant ):
         self.menu = Menu.Menu( self.name, "Select an action." )
         subs = []
         for action in self.actions:
+
+            # Create a decription first
+            description = action.description
+            if action.cost>0:
+                description += " ("+str(action.cost)+"MP)"
+
+            menuItem = Menu.MenuItem( action.name, description )
             added = False
+
             for sub in subs:
                 if sub.name == action.category:
-                    sub.options += [Menu.MenuItem( action.name, action.description+" ("+str(action.cost)+"MP)" )]
+                    sub.options += [menuItem]
                     added = True
             if not added:
                 if action.category=="top":
-                    subs += [Menu.MenuItem( action.name, action.description+" ("+str(action.cost)+"MP)" )]
+                    subs += [menuItem]
                 else:
                     newsub = Menu.Menu( action.category )
-                    newsub.options += [Menu.MenuItem( action.name, action.description+" ("+str(action.cost)+"MP)" )]
+                    newsub.options += [menuItem]
                     subs += [newsub]
                 
         self.itemMenu = Menu.Menu( "item", "Use items." )
@@ -72,7 +80,7 @@ class Ally( Combatant.Combatant ):
 
     # Allies select an action from the menu. returns (action, target)
     def selectAction( self, battle ):
-    
+
         menuItem = self.menu.pop( battle )
         if menuItem is None:
             return None, None
@@ -140,7 +148,7 @@ class Ally( Combatant.Combatant ):
         self.videoManager.popMatrix()
 
     def selectTarget( self, battle ):
-    
+
         done = False
         target = None
         while not done:
@@ -156,8 +164,9 @@ class Ally( Combatant.Combatant ):
             # Find out hover target
             for c in battle.combatants:
                 if battle.inputManager.hover( int(c.position.x-c.width/2), int(c.position.y-c.height/2), int(c.position.x+c.width/2), int(c.position.y+c.height/2) ):
-                    target = c
-                    c.hover = True
+                    if target is None:
+                        target = c
+                        c.marked = True
             
             # Check for input
             if not battle.inputManager.running() or battle.inputManager.buttonTicked(1):
@@ -176,9 +185,9 @@ class Ally( Combatant.Combatant ):
             
             battle.videoManager.end()
 
-            # Reset hover
+            # Reset marked
             for c in battle.combatants:
-                c.hover = False
+                c.marked = False
 
         return target
 

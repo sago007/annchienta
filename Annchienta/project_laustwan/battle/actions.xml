@@ -14,7 +14,7 @@
         <power factor="1.0" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="8"/>
-        <animation type="sprite" data="data/images/cure.png"/>
+        <animation type="sprite" data="images/animations/cure.png"/>
     </action>
     <action name="row" category="top" target="0">
         <description>Switch back/front row.</description>
