@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<party>
+    <records> </records>
+    <map filename="locations/inaran/beach.xml" layer="0"/>
+    <player name="august" config="locations/common/august.xml" isox="100" isoy="300"/>
+    <inventory>potion 3</inventory>
+    <team>
+        <combatant name="august">
+            <level lvl="1" xp="0"/>
+            <!-- Determines how character levels up. Grades are [1..5], and the lower,
+                 the better.
+                 -->
+            <grades att="3" mat="3" def="2" mdf="2" spd="1" mhp="50" mmp="10"/>
+            <!-- Stats without the weapon. Capped at 100. -->
+            <primarystats att="1" mat="1" def="2" mdf="2" spd="3"/>
+            <healthstats hp="74" mmp="8" mp="8" mhp="74"/>
+            <weapon name="shortsword"/>
+            <actions>attack row</actions>
+            <sprite filename="sprites/august.png" x1="150" x2="180" y1="40" y2="80"/>
+            <learn>5 cure</learn>
+        </combatant>
+        <combatant name="avril">
+            <level lvl="1" xp="0"/>
+            <grades att="5" mat="1" def="4" mdf="1" spd="3" mhp="40" mmp="14"/>
+            <primarystats att="1" mat="3" def="1" mdf="3" spd="2"/>
+            <healthstats hp="68" mmp="20" mp="20" mhp="68"/>
+            <weapon name="stave"/>
+            <actions>attack row cure</actions>
+            <sprite filename="sprites/avril.png" x1="150" x2="180" y1="40" y2="80"/>
+            <learn>5 cure</learn>
+        </combatant>
+        <combatant name="march">
+            <level lvl="1" xp="0"/>
+            <grades att="1" mat="5" def="1" mdf="4" spd="4" mhp="60" mmp="8"/>
+            <primarystats att="3" mat="1" def="3" mdf="1" spd="1"/>
+            <healthstats hp="80" mmp="10" mp="10" mhp="80"/>
+            <weapon name="broadsword"/>
+            <actions>attack row</actions>
+            <sprite filename="sprites/march.png" x1="150" x2="180" y1="40" y2="80"/>
+            <learn>5 cure</learn>
+        </combatant>
+    </team>
+</party>
+
