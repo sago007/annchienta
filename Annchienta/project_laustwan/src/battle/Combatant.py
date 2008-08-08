@@ -55,7 +55,7 @@ class BaseCombatant:
         # Get all possible actions. The actual actions are in the first child
         # of the element, hence the code. <actions> action1 action2 </actions>
         actionsElement = xmlElement.getElementsByTagName("actions")[0]
-        actionNames = actionsElement.firstChild.data.split()
+        actionNames = str(actionsElement.firstChild.data).split()
         # Prepare to get the from the xml data
         self.actions = []
         # Get them
@@ -127,7 +127,7 @@ class BaseCombatant:
         if len(found):
             self.actions += [ Action.Action( found[0] ) ]
         else:
-            self.logManager.error("No action called "+a+" was found for "+self.name+" in "+self.actionsLocation+".")
+            self.logManager.error("No action called "+actionName+" was found for "+self.name+" in "+self.actionsLocation+".")
 
     # base damage for physical attacks
     def physicalBaseDamage( self ):

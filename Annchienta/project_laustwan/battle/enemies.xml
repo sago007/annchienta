@@ -7,7 +7,7 @@
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack</actions>
         <sprite filename="sprites/goblin.png"/>
-        <drop xp="10"/>
+        <drop xp="10" item="potion" rate="0.6"/>
     </enemy>
 </enemies>
 

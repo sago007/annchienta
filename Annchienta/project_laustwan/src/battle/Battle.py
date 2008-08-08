@@ -11,12 +11,13 @@ class Battle:
     enemiesLocation = "battle/enemies.xml"
     enemiesFile = xml.dom.minidom.parse( enemiesLocation )
 
-    def __init__( self, combatants ):
+    def __init__( self, combatants, background, canFlee ):
     
         # Set variables
         self.combatants = combatants
         self.running = True
-        self.background = None
+        self.background = background
+        self.canFlee = canFlee
         self.won = False
     
         # Get references
@@ -212,6 +213,10 @@ class Battle:
             self.takeRowAction( combatant )
             return
 
+        if action.name == "flee":
+            self.takeFleeAction( combatant )
+            return
+
     ## Make an combatant do an action
     #
     def takeGenericAction( self, action, combatant, target ):
@@ -294,6 +299,10 @@ class Battle:
             # Add experience if we killed an enemy
             if not target.ally:
                 self.xp += target.dropXp
+                if target.dropItem:
+                    if annchienta.randFloat() < target.dropRate:
+                        self.lines += [ target.name.capitalize()+" drops a "+target.dropItem ]
+                        self.partyManager.inventory.addItem( target.dropItem )
 
             # Remove this enemy now
             self.combatants.remove( target )
@@ -321,6 +330,20 @@ class Battle:
             position.x += rowDeltaX if combatant.ally else -rowDeltaX
         self.lines += [combatant.name.capitalize()+" moves to the "+combatant.row+" row!"]
         self.playMoveAnimation( combatant, position )
+
+    # Tries to flee from battle
+    def takeFleeAction( self, combatant ):
+
+        if not self.canFlee:
+            self.lines += ["You cannot flee from this battle!"]
+            return
+
+        # 0.6% chance to run away
+        if annchienta.randFloat() < 0.6:
+            self.running = False
+
+        else:
+            self.lines += ["Couldn't run away!"]
 
     # Plays the animation for the given parameters
     # This calls to playXAnimation, where X depends on the action
@@ -389,12 +412,12 @@ class Battle:
 
 ## A more simple function to run a battle.
 #
-def runBattle( enemyNames, background ):
+def runBattle( enemyNames, background, canFlee=True ):
 
     logManager = annchienta.getLogManager()
     partyManager = PartyManager.getPartyManager()
 
-    combatants = partyManager.team
+    combatants = list(partyManager.team)
 
     enemyElements = Battle.enemiesFile.getElementsByTagName("enemy")
     for name in enemyNames:
@@ -404,8 +427,7 @@ def runBattle( enemyNames, background ):
         else:
             logManager.error( "No enemy called "+name+" found in "+Battle.enemiesLocation+"." )
 
-    battle = Battle( combatants )
-    battle.background = background
+    battle = Battle( combatants, background, canFlee )
     battle.run()
 
     return battle.won
@@ -419,7 +441,7 @@ def throwRandomBattle():
         partyManager.randomBattleDelay -= 1
         return
     else:
-        partyManager.randomBattleDelay = annchienta.randInt( 300, 1000 )
+        partyManager.randomBattleDelay = annchienta.randInt( 300, 400 )
 
         # Return if there are no enemies in this level.
         if not len(partyManager.enemiesInMap):
@@ -427,5 +449,5 @@ def throwRandomBattle():
 
         enames = map( lambda a: partyManager.enemiesInMap[annchienta.randInt(0,len(partyManager.enemiesInMap)-1)], range(annchienta.randInt(2,3)))
 
-        runBattle( enames, annchienta.Surface( partyManager.background ) )
+        runBattle( enames, annchienta.Surface( partyManager.background ), True )
 

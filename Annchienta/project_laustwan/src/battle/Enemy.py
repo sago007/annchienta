@@ -14,6 +14,11 @@ class Enemy( Combatant.Combatant ):
         # We need a drop element for enemies
         dropElement = xmlElement.getElementsByTagName("drop")[0]
         self.dropXp = int( dropElement.getAttribute("xp") )
+        if dropElement.hasAttribute("item"):
+            self.dropItem = str( dropElement.getAttribute("item") )
+            self.dropRate = float( dropElement.getAttribute("rate") )
+        else:
+            self.dropItem = None
 
     # Enemies perform a random action for now
     def selectAction( self, battle ):

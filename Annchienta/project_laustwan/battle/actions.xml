@@ -20,5 +20,9 @@
         <description>Switch back/front row.</description>
         <cost mp="0"/>
     </action>
+    <action name="flee" category="top" target="0">
+        <description>Run away from battle.</description>
+        <cost mp="0"/>
+    </action>
 </actions>
 

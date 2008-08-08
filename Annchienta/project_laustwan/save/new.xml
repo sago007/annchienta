@@ -15,7 +15,7 @@
             <primarystats att="1" mat="1" def="2" mdf="2" spd="3"/>
             <healthstats hp="74" mmp="8" mp="8" mhp="74"/>
             <weapon name="shortsword"/>
-            <actions>attack row</actions>
+            <actions>attack row flee</actions>
             <sprite filename="sprites/august.png" x1="150" x2="180" y1="40" y2="80"/>
             <learn>5 cure</learn>
         </combatant>
@@ -25,7 +25,7 @@
             <primarystats att="1" mat="3" def="1" mdf="3" spd="2"/>
             <healthstats hp="68" mmp="20" mp="20" mhp="68"/>
             <weapon name="stave"/>
-            <actions>attack row cure</actions>
+            <actions>attack cure row flee</actions>
             <sprite filename="sprites/avril.png" x1="150" x2="180" y1="40" y2="80"/>
             <learn>5 cure</learn>
         </combatant>
@@ -35,7 +35,7 @@
             <primarystats att="3" mat="1" def="3" mdf="1" spd="1"/>
             <healthstats hp="80" mmp="10" mp="10" mhp="80"/>
             <weapon name="broadsword"/>
-            <actions>attack row</actions>
+            <actions>attack row flee</actions>
             <sprite filename="sprites/march.png" x1="150" x2="180" y1="40" y2="80"/>
             <learn>5 cure</learn>
         </combatant>
