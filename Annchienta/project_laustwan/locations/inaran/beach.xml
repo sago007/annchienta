@@ -49,6 +49,7 @@
 <if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('inaran_intro_done')">
     <person name="march" config="locations/common/march.xml" isox="160" isoy="230" animation="standsouth"/>
     <person name="avril" config="locations/common/avril.xml" isox="100" isoy="230" animation="standsouth"/>
+    <person name="laustwan" config="locations/common/laustwan.xml" isox="130" isoy="260"/>
 </if>
 
 <!-- Way to cave1. -->
