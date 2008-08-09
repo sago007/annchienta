@@ -132,6 +132,8 @@ class Battle:
                 self.sceneManager.text("Victorious! Gained "+str(self.xp)+" xp!", None)
                 for ally in self.allies:
                     ally.addXp( self.xp )
+                for ally in self.partyManager.team:
+                    ally.addHealth( ally.healthStats["mhp"]/5 )
             else:
                 self.won = False
                 self.mapManager.stop()

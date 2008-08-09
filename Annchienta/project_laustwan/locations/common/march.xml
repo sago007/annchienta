@@ -27,6 +27,8 @@
     <animation name="standwest" frames="7" speed="8" />
     <animation name="standsouth" frames="c" speed="8" />
 
-    <control type="sample" />
+    <control type="null" />
+
+    <oninteract script="locations/common/march.py"/>
 
 </sprite>

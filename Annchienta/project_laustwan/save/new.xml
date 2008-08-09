@@ -2,7 +2,7 @@
 <party>
     <records> </records>
     <map filename="locations/inaran/beach.xml" layer="0"/>
-    <player name="august" config="locations/common/august.xml" isox="100" isoy="300"/>
+    <player name="august" config="locations/common/august.xml" isox="100" isoy="200"/>
     <inventory>potion 3</inventory>
     <team>
         <combatant name="august">

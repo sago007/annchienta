@@ -45,6 +45,13 @@
     <area script="locations/inaran/beach.py" tilex1="0" tilex2="30" tiley1="0" tiley2="30"/>
 </if>
 
+<!-- Some characters. -->
+<if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('inaran_intro_done')">
+    <person name="march" config="locations/common/march.xml" isox="160" isoy="230" animation="standsouth"/>
+    <person name="avril" config="locations/common/avril.xml" isox="100" isoy="230" animation="standsouth"/>
+</if>
+
+
 </layer>
 <layer z="100">
 <tiles>
