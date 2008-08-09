@@ -51,6 +51,12 @@
     <person name="avril" config="locations/common/avril.xml" isox="100" isoy="230" animation="standsouth"/>
 </if>
 
+<!-- Way to cave1. -->
+<area tilex1="18" tilex2="20" tiley1="3" tiley2="5">
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point( annchienta.TilePoint, 14, 27 ) )
+</area>
 
 </layer>
 <layer z="100">

@@ -191,8 +191,8 @@ class PartyManager:
 
     def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ), newLayer = 0, fade=True ):
 
-        if fade:
-            self.sceneManager.fadeOut()
+        #if fade:
+        #    self.sceneManager.fadeOut()
 
         self.player.setPosition( newPosition )
         self.currentMap.removeObject( self.player )
@@ -201,13 +201,14 @@ class PartyManager:
         self.currentMap.setCurrentLayer( newLayer )
         self.currentMap.addObject( self.player )
         self.mapManager.setCurrentMap( self.currentMap )
+        self.mapManager.cameraPeekAt( self.player, True )
 
         # Because loading a map can take some time:
         self.mapManager.resync()
 
     def changeLayer( self, index, newPosition = annchienta.Point( annchienta.TilePoint, 2, 2 ), fade = True ):
-        if fade:
-            self.sceneManager.fadeOut()
+        #if fade:
+        #    self.sceneManager.fadeOut()
         self.player.setPosition( newPosition )
         self.currentMap.removeObject( self.player )
         self.currentMap.setCurrentLayer( index )
