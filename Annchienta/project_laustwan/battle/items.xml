@@ -20,5 +20,6 @@
     LOOT
     -->
     <item name="potion" type="loot" description="Restores 250 HP."/>
+    <item name="eyedrops" type="loot" description="Cures blindness."/>
 </items>
 

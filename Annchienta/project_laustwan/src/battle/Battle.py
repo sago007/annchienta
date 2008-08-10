@@ -204,10 +204,9 @@ class Battle:
                 self.takeItemAction( action, combatant, target )
                 return
 
-        # If the action needs a target we're dealing with
-        # a generic action
-        if action.target:
-            self.takeGenericAction( action, combatant, target )
+        # First check for special actions
+        if action.name == "steal":
+            self.takeStealAction( combatant, target )
             return
 
         # Now check for special, built-in actions
@@ -218,6 +217,11 @@ class Battle:
         if action.name == "flee":
             self.takeFleeAction( combatant )
             return
+
+        # If we reach this point, we're dealing with a generic action.
+        self.takeGenericAction( action, combatant, target )
+
+
 
     ## Make an combatant do an action
     #
@@ -267,9 +271,10 @@ class Battle:
 
         # Our hit rate
         rate = action.hit
-        # ... is influenced by blindness
-        if "blinded" in combatant.statusEffects:
-            rate /= 2.0
+        # ... is influenced by blindness (but only on physical attacks)
+        if action.type == "physical":
+            if "blinded" in combatant.statusEffects:
+                rate /= 2.0
 
         hit = annchienta.randFloat() <= rate
 
@@ -313,6 +318,32 @@ class Battle:
 
             # Remove this enemy now
             self.combatants.remove( target )
+
+    # Might steal an item
+    def takeStealAction( self, combatant, target ):
+
+        # Play a quick animation
+        self.playAttackAnimation( combatant, target )
+
+        # Allies have no item to be stolen
+        if not target.ally:
+
+            # Only if enemy is carrying an item
+            if target.steal:
+                if annchienta.randFloat()<=0.7:
+                    self.lines += [ combatant.name.capitalize()+" stole "+target.steal+" from "+target.name.capitalize()+"!" ]
+                    self.partyManager.inventory.addItem( target.steal )
+                    # Remove item from target when stolen
+                    target.steal = None
+
+                    # Rebuild item menus
+                    for ally in self.allies:
+                        ally.buildItemMenu()
+
+                else:
+                    self.lines += [ combatant.name.capitalize()+" could not steal from "+target.name.capitalize()+"!" ]
+            else:
+                self.lines += [ target.name.capitalize()+" has nothing to steal!" ]
 
     # Uses an item
     def takeItemAction( self, item, combatant, target ):

@@ -89,5 +89,9 @@ class Inventory:
         if itemName=="potion":
             target.healthStats["hp"] = target.healthStats["mhp"]
 
+        elif itemName=="eyedrops":
+            if "blinded" in target.statusEffects:
+                target.statusEffects.remove( "blinded" )
+
         self.removeItem( itemName )
 

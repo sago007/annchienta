@@ -24,6 +24,10 @@
         <cost mp="4"/>
         <animation type="sprite" data="images/animations/fog.png"/>
     </action>
+    <action name="steal" category="top" target="1">
+        <description>Try to take an item from an enemy.</description>
+        <cost mp="0"/>
+    </action>
     <action name="row" category="top" target="0">
         <description>Switch back/front row.</description>
         <cost mp="0"/>

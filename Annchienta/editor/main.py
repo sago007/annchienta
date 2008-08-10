@@ -13,5 +13,5 @@ widget = Editor()
 widget.show()
 app.exec_()
 
-annchienta.quit()
+#annchienta.quit()
 

@@ -18,28 +18,33 @@ class Action:
         costElement = xmlElement.getElementsByTagName("cost")[0]
         self.cost = int(costElement.getAttribute("mp"))
 
-        # Only valid when there is a target
-        if self.target:
-
-            # Create a dictionary describing the elemental properties
-            self.elemental = {}
-            elementalElement = xmlElement.getElementsByTagName("elemental")[0]
+        # Create a dictionary describing the elemental properties
+        self.elemental = {}
+        found = xmlElement.getElementsByTagName("elemental")
+        if len(found):
+            elementalElement = found[0]
             for k in elementalElement.attributes.keys():
                 self.elemental[k] = int(elementalElement.attributes[k].value)
 
-            # Set factor, hit and type
-            powerElement = xmlElement.getElementsByTagName("power")[0]
+        # Set factor, hit and type
+        found = xmlElement.getElementsByTagName("power")
+        if len(found):
+            powerElement = found[0]
             self.factor = float( powerElement.getAttribute("factor") )
             self.hit = float( powerElement.getAttribute("hit") )
             self.type = powerElement.getAttribute("type")
             
-            # Set statusEffect and statusHit
-            statusElement = xmlElement.getElementsByTagName("status")[0]
+        # Set statusEffect and statusHit
+        found = xmlElement.getElementsByTagName("status")
+        if len(found):
+            statusElement = found[0]
             self.statusEffect = str(statusElement.getAttribute("effect"))
             self.statusHit = float( statusElement.getAttribute("hit") )
             
-            # Set animation and animationData
-            animationElement = xmlElement.getElementsByTagName("animation")[0]
+        # Set animation and animationData
+        found = xmlElement.getElementsByTagName("animation")
+        if len(found):
+            animationElement = found[0]
             self.animation = str(animationElement.getAttribute("type"))
             self.animationData = str(animationElement.getAttribute("data"))
 

@@ -109,7 +109,7 @@ class PartyManager:
         # Create an element for the player
         playerElement = self.document.createElement("player")
         playerElement.setAttribute( "name", self.player.getName() )
-        playerElement.setAttribute( "xmlfile", self.player.getXmlFile() )
+        playerElement.setAttribute( "config", self.player.getXmlFile() )
         point = self.player.getPosition()
         point.convert( annchienta.IsometricPoint )
         playerElement.setAttribute( "isox", str(point.x) )
@@ -173,10 +173,20 @@ class PartyManager:
             spriteElement = self.document.createElement("sprite")
             spriteElement.setAttribute( "filename", combatant.spriteFilename )
             spriteElement.setAttribute( "x1", str(combatant.sx1) )
-            spriteElement.setAttribute( "x1", str(combatant.sy1) )
-            spriteElement.setAttribute( "x1", str(combatant.sx2) )
-            spriteElement.setAttribute( "x1", str(combatant.sy2) )
+            spriteElement.setAttribute( "y1", str(combatant.sy1) )
+            spriteElement.setAttribute( "x2", str(combatant.sx2) )
+            spriteElement.setAttribute( "y2", str(combatant.sy2) )
             combatantElement.appendChild( spriteElement )
+
+            # Set learn info
+            learnElement = self.document.createElement("learn")
+            # Create a text with the actions
+            text = ' '
+            if len( combatant.learn ):
+                text = reduce( lambda a,b: a+' '+b, map( lambda key: str(key)+' '+str(combatant.learn[key]), combatant.learn.keys() ) )
+            textNode = self.document.createTextNode( text )
+            learnElement.appendChild( textNode )
+            combatantElement.appendChild( learnElement )
 
             teamElement.appendChild( combatantElement )
 

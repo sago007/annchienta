@@ -41,10 +41,14 @@ sceneManager.largeRegularFont = annchienta.Font("assets/regular.ttf", 20)
 sceneManager.largeItalicsFont = annchienta.Font("assets/italics.ttf", 20)
 sceneManager.boxTextures = map( lambda i: annchienta.Surface("assets/box"+str(i)+".png"), range(9) )
 
+loadFile = "save/new.xml"
+if "--load" in sys.argv:
+    loadFile = "save/save.xml"
+
 import PartyManager
 PartyManager.initPartyManager()
 partyManager = PartyManager.getPartyManager()
-partyManager.load( "save/new.xml" )
+partyManager.load( loadFile )
 
 mapManager.run()
 

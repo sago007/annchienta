@@ -137,7 +137,7 @@ namespace Annchienta
         delete xml;
 
         if( !setAnimation( "stand" ) )
-            logManager->warning("StaticObject '%s' does not provide the default 'stand' animation.", configfile );
+            logManager->warning("StaticObject '%s' (loaded from '%s') does not provide the default 'stand' animation.", name, configfile );
         speedTimer = 0;
     }
 

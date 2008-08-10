@@ -10,6 +10,12 @@ if not "stand" in partyManager.player.getAnimation() and not inputManager.keyDow
         import Battle
         Battle.throwRandomBattle()
 
+# Quick save option to test the game. Must be disabled in the release
+if inputManager.keyTicked( annchienta.SDLK_s ):
+    import PartyManager
+    partyManager = PartyManager.getPartyManager()
+    partyManager.save( "save/save.xml" )
+
 if inputManager.buttonTicked(1) and inputManager.getInputMode() is annchienta.InteractiveMode:
 
     # Create the main menu

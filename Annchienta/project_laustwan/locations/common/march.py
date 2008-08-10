@@ -21,6 +21,13 @@ if not partyManager.hasRecord("inaran_intro_march"):
 
     sceneManager.speak( august, "We had been searching these Inaran areas for a week.", True )
     sceneManager.speak( august, "It was supposed to be our last test before we could join the Fifth Guard.", True )
+    sceneManager.speak( august, "We were young and full of hope. We would join the Fifth Guard, the elite section of our army.", True )
+    sceneManager.speak( august, "We could not know how this mission would change our lives... foregood.", True )
+    sceneManager.speak( august, "March, Avril and me were the only candidates remaining.", True )
+    sceneManager.speak( august, "The others had failed during their missions... or even died... like my brother.", True )
+    sceneManager.speak( august, "This was the end of our five years of training. We had all looked forward to this point.", True )
+    sceneManager.speak( august, "Nearby fishermen had been attacked by some sea creature. Our job was to exterminate it.", True )
+    sceneManager.speak( august, "We tracked it down to this beach quite easily.", True )
 
     lp = laustwan.getPosition().to( annchienta.IsometricPoint )
     lp.x += 60
@@ -32,16 +39,21 @@ if not partyManager.hasRecord("inaran_intro_march"):
     sceneManager.speak( laustwan, "Gri-huk." )
 
     sceneManager.speak( avril, "Well, you've been really helpful... I'm glad we had you with us. You are free now." )
-    sceneManager.speak( august, "Why doesn't it run off? You released it, right?" )
 
     sceneManager.speak( laustwan, "Hog-hu." )
 
-    sceneManager.speak( avril, "Maybe he doesn't realize it yet. Or he thinks I'll take him back. Anyway, we're not here to talk about laustwan." )
+    lp.x = 0
+    sceneManager.move( laustwan, lp )
+
     sceneManager.speak( august, "I never really understood these helpful human-like creatures.", True )
     sceneManager.speak( august, "Still, I was grateful to them that they were there, always helping humans out.", True )
     sceneManager.speak( march, "One final test. Let's go." )
 
-    partyManager.addRecord("inaran_intro_march")
+    ap = august.getPosition()
+    sceneManager.move( [avril, march], [ap,ap] )
+
+    partyManager.addRecord("inaran_intro_done")
+    partyManager.refreshMap()
 
 sceneManager.quitDialog()
 

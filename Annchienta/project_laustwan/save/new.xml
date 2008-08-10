@@ -15,7 +15,7 @@
             <primarystats att="1" mat="1" def="2" mdf="2" spd="3"/>
             <healthstats hp="74" mmp="8" mp="8" mhp="74"/>
             <weapon name="shortsword"/>
-            <actions>attack row flee</actions>
+            <actions>attack steal row flee</actions>
             <sprite filename="sprites/august.png" x1="150" x2="180" y1="40" y2="80"/>
             <learn>5 cure</learn>
         </combatant>

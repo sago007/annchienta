@@ -19,6 +19,10 @@ class Enemy( Combatant.Combatant ):
             self.dropRate = float( dropElement.getAttribute("rate") )
         else:
             self.dropItem = None
+        if dropElement.hasAttribute("steal"):
+            self.steal = str( dropElement.getAttribute("steal") )
+        else:
+            self.steal = None
 
     # Enemies perform a random action for now
     def selectAction( self, battle ):
