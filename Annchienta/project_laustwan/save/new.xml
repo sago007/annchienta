@@ -10,7 +10,7 @@
             <!-- Determines how character levels up. Grades are [1..5], and the lower,
                  the better.
                  -->
-            <grades att="3" mat="3" def="2" mdf="2" spd="1" mhp="50" mmp="10"/>
+            <grades att="3" mat="3" def="2" mdf="2" spd="1" mhp="35" mmp="8"/>
             <!-- Stats without the weapon. Capped at 100. -->
             <primarystats att="1" mat="1" def="2" mdf="2" spd="3"/>
             <healthstats hp="74" mmp="8" mp="8" mhp="74"/>
@@ -21,9 +21,9 @@
         </combatant>
         <combatant name="avril">
             <level lvl="1" xp="0"/>
-            <grades att="5" mat="1" def="4" mdf="1" spd="3" mhp="40" mmp="14"/>
+            <grades att="5" mat="1" def="4" mdf="1" spd="3" mhp="30" mmp="10"/>
             <primarystats att="1" mat="3" def="1" mdf="3" spd="2"/>
-            <healthstats hp="68" mmp="20" mp="20" mhp="68"/>
+            <healthstats hp="68" mmp="25" mp="25" mhp="68"/>
             <weapon name="stave"/>
             <actions>attack cure row flee</actions>
             <sprite filename="sprites/avril.png" x1="150" x2="180" y1="40" y2="80"/>
@@ -31,7 +31,7 @@
         </combatant>
         <combatant name="march">
             <level lvl="1" xp="0"/>
-            <grades att="1" mat="5" def="1" mdf="4" spd="4" mhp="60" mmp="8"/>
+            <grades att="1" mat="5" def="1" mdf="4" spd="4" mhp="35" mmp="7"/>
             <primarystats att="3" mat="1" def="3" mdf="1" spd="1"/>
             <healthstats hp="80" mmp="10" mp="10" mhp="80"/>
             <weapon name="broadsword"/>
