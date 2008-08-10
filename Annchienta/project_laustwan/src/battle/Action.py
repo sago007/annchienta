@@ -46,5 +46,10 @@ class Action:
         if len(found):
             animationElement = found[0]
             self.animation = str(animationElement.getAttribute("type"))
-            self.animationData = str(animationElement.getAttribute("data"))
+            if animationElement.hasAttribute("data"):
+                self.animationData = str(animationElement.getAttribute("data"))
+            else:
+                self.animationData = None
+
+
 

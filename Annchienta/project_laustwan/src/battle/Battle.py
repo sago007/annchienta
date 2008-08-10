@@ -133,7 +133,7 @@ class Battle:
                 for ally in self.allies:
                     ally.addXp( self.xp )
                 for ally in self.partyManager.team:
-                    ally.addHealth( ally.healthStats["mhp"]/5 )
+                    ally.addHp( ally.healthStats["mhp"]/5 )
             else:
                 self.won = False
                 self.mapManager.stop()
@@ -286,7 +286,7 @@ class Battle:
                     self.lines += [ target.name.capitalize()+" is now "+action.statusEffect+"!" ]
 
             # Finally, do damage to damaged ones
-            target.addHealth( -baseDamage )
+            target.addHp( -baseDamage )
 
         else:
             self.lines += [ combatant.name.capitalize()+" misses!" ]
@@ -315,6 +315,10 @@ class Battle:
                     if annchienta.randFloat() < target.dropRate:
                         self.lines += [ target.name.capitalize()+" drops a "+target.dropItem+"!" ]
                         self.partyManager.inventory.addItem( target.dropItem )
+
+                        # Rebuild menus
+                        for a in self.allies:
+                            a.buildMenu()
 
             # Remove this enemy now
             self.combatants.remove( target )
@@ -388,7 +392,7 @@ class Battle:
     def playAnimation( self, action, combatant, target ):
 
         if action.animation == "attack":
-            self.playAttackAnimation( combatant, target )
+            self.playAttackAnimation( combatant, target, action.animationData )
         elif action.animation == "sprite":
             self.playSpriteAnimation( target, action.animationData )
 
@@ -413,7 +417,7 @@ class Battle:
         combatant.position = annchienta.Vector( position )
 
     # Moves the combatant to the target and back again
-    def playAttackAnimation( self, combatant, target ):
+    def playAttackAnimation( self, combatant, target, optionalSprite=None ):
 
         origPosition = annchienta.Vector( combatant.position )
         position = annchienta.Vector( target.position )
@@ -421,6 +425,10 @@ class Battle:
         dx = dx if target.ally else -dx
         position.x += dx
         self.playMoveAnimation( combatant, position )
+
+        if optionalSprite:
+            self.playSpriteAnimation( target, optionalSprite )
+
         self.playMoveAnimation( combatant, origPosition )
 
     def playSpriteAnimation( self, combatant, sprite, duration=800.0 ):
@@ -485,7 +493,7 @@ def throwRandomBattle():
         if not len(partyManager.enemiesInMap):
             return
 
-        enames = map( lambda a: partyManager.enemiesInMap[annchienta.randInt(0,len(partyManager.enemiesInMap)-1)], range(annchienta.randInt(2,3)))
+        enames = map( lambda a: partyManager.enemiesInMap[annchienta.randInt(0,len(partyManager.enemiesInMap)-1)], range(annchienta.randInt(2,4)))
 
         runBattle( enames, annchienta.Surface( partyManager.background ), True )
 

@@ -141,12 +141,19 @@ class BaseCombatant:
         lvl = self.level["lvl"]
         return 6 * (mat + lvl)
 
-    def addHealth( self, health ):
+    def addHp( self, health ):
         self.healthStats["hp"] += health
         if self.healthStats["hp"]<0:
             self.healthStats["hp"] = 0
         if self.healthStats["hp"]>self.healthStats["mhp"]:
             self.healthStats["hp"] = self.healthStats["mhp"]
+
+    def addMp( self, health ):
+        self.healthStats["mp"] += health
+        if self.healthStats["mp"]<0:
+            self.healthStats["mp"] = 0
+        if self.healthStats["mp"]>self.healthStats["mmp"]:
+            self.healthStats["mp"] = self.healthStats["mmp"]
 
     def update( self, ms ):
         

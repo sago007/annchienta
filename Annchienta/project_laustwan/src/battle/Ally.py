@@ -96,7 +96,7 @@ class Ally( Combatant.Combatant ):
 
             # Check if there is enough mp
             if self.healthStats["mp"] < action.cost:
-                battle.lines += [combatant.name.capitalize()+" doesn't have enough MP!"]
+                battle.lines += [self.name.capitalize()+" doesn't have enough MP!"]
                 return None, None
         
             if not action.target:

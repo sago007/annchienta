@@ -1,13 +1,31 @@
 <?xml version="1.0"?>
 <actions>
+
     <action name="attack" category="melee" target="1">
         <description>Attack an enemy.</description>
-        <elemental fire="1" ice="0" water="0" thunder="0" restorative="0"/>
+        <elemental fire="0" ice="0" water="0" thunder="0" restorative="0"/>
         <power factor="1.0" hit="0.9" type="physical"/>
         <status effect="none" hit="0"/>
         <cost mp="0"/>
-        <animation type="attack" data="none"/>
+        <animation type="attack"/>
     </action>
+    <action name="swing" category="melee" target="1">
+        <description>A more powerful attack.</description>
+        <elemental fire="0" ice="0" water="0" thunder="0" restorative="0"/>
+        <power factor="1.5" hit="0.6" type="physical"/>
+        <status effect="none" hit="0"/>
+        <cost mp="4"/>
+        <animation type="attack"/>
+    </action>
+    <action name="thunderstab" category="melee" target="1">
+        <description>Attack an enemy with the power of thunder.</description>
+        <elemental fire="0" ice="0" water="0" thunder="1" restorative="0"/>
+        <power factor="1.1" hit="0.8" type="physical"/>
+        <status effect="none" hit="0"/>
+        <cost mp="4"/>
+        <animation type="attack" data="images/animations/thunder.png"/>
+    </action>
+
     <action name="cure" category="white magic" target="1">
         <description>Heal an ally.</description>
         <elemental fire="0" ice="0" water="0" thunder="0" restorative="1"/>
@@ -16,6 +34,7 @@
         <cost mp="4"/>
         <animation type="sprite" data="images/animations/cure.png"/>
     </action>
+
     <action name="fog" category="black magic" target="1">
         <description>Create a dense fog that might blind enemies.</description>
         <elemental fire="0" ice="0" water="0" thunder="0" restorative="0"/>
@@ -24,6 +43,15 @@
         <cost mp="4"/>
         <animation type="sprite" data="images/animations/fog.png"/>
     </action>
+    <action name="fire" category="black magic" target="1">
+        <description>Use a flame attack on an enemy.</description>
+        <elemental fire="1" ice="0" water="0" thunder="0" restorative="0"/>
+        <power factor="0.3" hit="1.0" type="magical"/>
+        <status effect="none" hit="0"/>
+        <cost mp="4"/>
+        <animation type="sprite" data="images/animations/fire.png"/>
+    </action>
+
     <action name="steal" category="top" target="1">
         <description>Try to take an item from an enemy.</description>
         <cost mp="0"/>
@@ -36,5 +64,6 @@
         <description>Run away from battle.</description>
         <cost mp="0"/>
     </action>
+
 </actions>
 

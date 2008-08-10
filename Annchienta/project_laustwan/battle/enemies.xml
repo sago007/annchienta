@@ -2,12 +2,21 @@
 <enemies>
     <enemy name="goblin">
         <level lvl="1"/>
-        <primarystats att="20" mat="20" def="20" mdf="20" spd="20"/>
+        <primarystats att="14" mat="14" def="20" mdf="20" spd="20"/>
         <healthstats hp="50" mph="50" mp="10" mhp="10"/>
-        <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <elemental fire="2" ice="1" water="1" thunder="1"/>
         <actions>attack fog</actions>
         <sprite filename="sprites/goblin.png"/>
-        <drop xp="10" item="potion" rate="0.6" steal="eyedrops"/>
+        <drop xp="12" item="eyedrops" rate="0.6" steal="potion"/>
+    </enemy>
+    <enemy name="stauld">
+        <level lvl="1"/>
+        <primarystats att="5" mat="14" def="40" mdf="20" spd="10"/>
+        <healthstats hp="40" mph="40" mp="15" mhp="15"/>
+        <elemental fire="2" ice="2" water="2" thunder="2"/>
+        <actions>attack fire</actions>
+        <sprite filename="sprites/stauld.png"/>
+        <drop xp="14" item="tincture" rate="0.6" steal="potion"/>
     </enemy>
 </enemies>
 

@@ -87,11 +87,14 @@ class Inventory:
     def useItemOn( self, itemName, target ):
 
         if itemName=="potion":
-            target.healthStats["hp"] = target.healthStats["mhp"]
+            target.addHp( 250 )
 
         elif itemName=="eyedrops":
             if "blinded" in target.statusEffects:
                 target.statusEffects.remove( "blinded" )
+
+        elif itemName=="tincture":
+            target.addMp( 30 )
 
         self.removeItem( itemName )
 
