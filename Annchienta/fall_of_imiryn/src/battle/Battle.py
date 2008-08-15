@@ -305,9 +305,6 @@ class Battle:
         # Check if the target died
         if target.healthStats["hp"] <= 0:
 
-            # Die die die!!!!11!!!!1
-            self.playDieAnimation( target )
-
             # Add experience if we killed an enemy
             if not target.ally:
                 self.xp += target.dropXp
@@ -320,6 +317,8 @@ class Battle:
                         for a in self.allies:
                             a.buildMenu()
 
+            # Die die die!!!!11!!!!1
+            self.playDieAnimation( target )
             # Remove this enemy now
             self.combatants.remove( target )
 
