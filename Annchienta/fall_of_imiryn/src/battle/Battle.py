@@ -73,6 +73,33 @@ class Battle:
             self.draw()
             self.videoManager.end()
     
+    def removeDeadCombatants( self ):
+
+        for combatant in self.combatants:
+
+            # Check if the target died
+            if combatant.healthStats["hp"] <= 0 and not self.actionInProgress:
+
+                # Add experience if we killed an enemy
+                if not combatant.ally:
+                    self.xp += combatant.dropXp
+                    if combatant.dropItem:
+                        if annchienta.randFloat() < combatant.dropRate:
+                            self.lines += [ combatant.name.capitalize()+" drops "+combatant.dropItem+"!" ]
+                            self.partyManager.inventory.addItem( combatant.dropItem )
+
+                            # Rebuild menus
+                            for a in self.allies:
+                                a.buildMenu()
+
+                # Die die die!!!!11!!!!1
+                self.actionInProgress = True
+                self.playDieAnimation( combatant )
+
+                self.combatants.remove( combatant )
+
+                self.actionInProgress = False
+
     def updateCombatantLists( self ):
     
         # Sort combatant based on y (virtual z)
@@ -120,6 +147,9 @@ class Battle:
         for c in self.combatants:
             c.update( ms )
         
+        # Check for dead combatants
+        self.removeDeadCombatants()
+
         # Update lists
         self.updateCombatantLists()
         
@@ -278,6 +308,9 @@ class Battle:
 
         hit = annchienta.randFloat() <= rate
 
+        # Play animation
+        self.playAnimation( action, combatant, target )
+
         if hit:
             # Check for status effects
             if action.statusEffect!="none" and action.statusEffect not in target.statusEffects:
@@ -294,33 +327,10 @@ class Battle:
         # That took some effort, rest and get mp
         combatant.healthStats["mp"] -= action.cost
 
-        # Play animation
-        self.playAnimation( action, combatant, target )
-
         # Damage animation only if hit
         if hit:
             target.damage = baseDamage
             target.damageTimer = 0.0
-
-        # Check if the target died
-        if target.healthStats["hp"] <= 0:
-
-            # Add experience if we killed an enemy
-            if not target.ally:
-                self.xp += target.dropXp
-                if target.dropItem:
-                    if annchienta.randFloat() < target.dropRate:
-                        self.lines += [ target.name.capitalize()+" drops "+target.dropItem+"!" ]
-                        self.partyManager.inventory.addItem( target.dropItem )
-
-                        # Rebuild menus
-                        for a in self.allies:
-                            a.buildMenu()
-
-            # Die die die!!!!11!!!!1
-            self.playDieAnimation( target )
-            # Remove this enemy now
-            self.combatants.remove( target )
 
     # Might steal an item
     def takeStealAction( self, combatant, target ):

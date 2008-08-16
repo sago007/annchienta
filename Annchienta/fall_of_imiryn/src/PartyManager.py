@@ -11,6 +11,7 @@ class PartyManager:
     def __init__( self ):
     
         # Get some references
+        self.engine = annchienta.getEngine()
         self.inputManager = annchienta.getInputManager()
         self.mapManager = annchienta.getMapManager()
         self.cacheManager = annchienta.getCacheManager()
@@ -56,7 +57,11 @@ class PartyManager:
 
         # Let's asume this is a valid file and
         # the needed elements are there.
-        
+       
+        # Load the playtime for profiling reasons
+        playTimeElement = self.document.getElementsByTagName("playtime")[0]
+        self.seconds = int(playTimeElement.getAttribute("seconds"))
+ 
         # Start by loading the records, because they are needed by the map
         recordsElement = self.document.getElementsByTagName("records")[0]
         self.records = str(recordsElement.firstChild.data).split()
@@ -104,6 +109,11 @@ class PartyManager:
         self.document = xml.dom.minidom.Document()
         partyElement = self.document.createElement("party")
         self.document.appendChild( partyElement )
+
+        # Add the playtime to the party node
+        playTimeElement = self.document.createElement("playtime")
+        playTimeElement.setAttribute( "seconds", str(self.seconds + self.engine.getTicks()/1000) )
+        partyElement.appendChild( playTimeElement )
 
         # Append the records to the party node.
         recordsElement = self.document.createElement("records")

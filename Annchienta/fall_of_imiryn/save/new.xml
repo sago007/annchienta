@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <party>
+    <playtime seconds="0"/>
     <records> </records>
     <map filename="locations/inaran/beach.xml" layer="0"/>
     <player name="august" config="locations/common/august.xml" isox="100" isoy="200"/>
