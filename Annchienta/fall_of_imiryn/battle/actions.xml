@@ -51,6 +51,30 @@
         <cost mp="4"/>
         <animation type="sprite" data="images/animations/fire.png"/>
     </action>
+    <action name="ice" category="black magic" target="1">
+        <description>Use an ice attack on an enemy.</description>
+        <elemental fire="0" ice="1" water="0" thunder="0" restorative="0"/>
+        <power factor="0.3" hit="1.0" type="magical"/>
+        <status effect="none" hit="0"/>
+        <cost mp="4"/>
+        <animation type="sprite" data="images/animations/ice.png"/>
+    </action>
+    <action name="water" category="black magic" target="1">
+        <description>Use a flood attack on an enemy.</description>
+        <elemental fire="0" ice="0" water="1" thunder="0" restorative="0"/>
+        <power factor="0.3" hit="1.0" type="magical"/>
+        <status effect="none" hit="0"/>
+        <cost mp="4"/>
+        <animation type="sprite" data="images/animations/water.png"/>
+    </action>
+    <action name="thunder" category="black magic" target="1">
+        <description>Use a thunder on an enemy.</description>
+        <elemental fire="0" ice="0" water="0" thunder="1" restorative="0"/>
+        <power factor="0.3" hit="1.0" type="magical"/>
+        <status effect="none" hit="0"/>
+        <cost mp="4"/>
+        <animation type="sprite" data="images/animations/thunder.png"/>
+    </action>
 
     <action name="steal" category="top" target="1">
         <description>Try to take an item from an enemy.</description>

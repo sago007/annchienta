@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <enemies>
+
+    <!-- GOBLIN -->
     <enemy name="goblin">
         <level lvl="1"/>
         <primarystats att="14" mat="14" def="20" mdf="20" spd="20"/>
@@ -9,6 +11,7 @@
         <sprite filename="sprites/goblin.png"/>
         <drop xp="12" item="eyedrops" rate="0.6" steal="potion"/>
     </enemy>
+    <!-- STAULD -->
     <enemy name="stauld">
         <level lvl="1"/>
         <primarystats att="5" mat="14" def="40" mdf="20" spd="10"/>
@@ -18,5 +21,16 @@
         <sprite filename="sprites/stauld.png"/>
         <drop xp="14" item="tincture" rate="0.6" steal="potion"/>
     </enemy>
+    <!-- SQUID -->
+    <enemy name="squid">
+        <level lvl="1"/>
+        <primarystats att="5" mat="12" def="20" mdf="20" spd="12"/>
+        <healthstats hp="60" mph="60" mp="20" mhp="20"/>
+        <elemental fire="1" ice="1" water="-1" thunder="2"/>
+        <actions>attack fog water</actions>
+        <sprite filename="sprites/squid.png"/>
+        <drop xp="15" item="potion" rate="0.6" steal="eyedrops"/>
+    </enemy>
+
 </enemies>
 

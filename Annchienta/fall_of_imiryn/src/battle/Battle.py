@@ -310,7 +310,7 @@ class Battle:
                 self.xp += target.dropXp
                 if target.dropItem:
                     if annchienta.randFloat() < target.dropRate:
-                        self.lines += [ target.name.capitalize()+" drops a "+target.dropItem+"!" ]
+                        self.lines += [ target.name.capitalize()+" drops "+target.dropItem+"!" ]
                         self.partyManager.inventory.addItem( target.dropItem )
 
                         # Rebuild menus

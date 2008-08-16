@@ -2,6 +2,7 @@ import annchienta
 import xml.dom.minidom
 import Ally
 import Inventory
+import SceneManager
 
 ## Manages the player, party, etc.
 #
@@ -13,6 +14,7 @@ class PartyManager:
         self.inputManager = annchienta.getInputManager()
         self.mapManager = annchienta.getMapManager()
         self.cacheManager = annchienta.getCacheManager()
+        self.sceneManager = SceneManager.getSceneManager()
 
         # Set variables
         self.player = 0
@@ -28,10 +30,9 @@ class PartyManager:
 
     def free( self ):
 
-        for m in self.lastMaps + [self.currentMap]:
-            self.freeMap( m )
-
         self.currentMap.removeObject(self.player)
+        self.lastMaps += [self.currentMap]
+        self.clearMapCache()
         self.currentMap = 0
         self.team = 0
         self.records = []
@@ -39,6 +40,13 @@ class PartyManager:
         self.mapManager.setNullMap()
         self.chestObjects = []
         self.player = 0
+
+    def clearMapCache( self ):
+
+        for m in self.lastMaps:
+            self.freeMap( m )
+
+        self.lastMaps = []
 
     def load( self, filename ):
 
@@ -81,7 +89,6 @@ class PartyManager:
     def save( self, filename=None ):
 
         self.filename = self.filename if filename is None else filename
-
         self.generateDocument()
         file = open( self.filename, "wb" )
         file.write( self.document.toprettyxml() )
@@ -91,7 +98,7 @@ class PartyManager:
     def generateDocument( self ):
 
         # Clear our map cache.
-        self.lastMaps = []
+        self.clearMapCache()
 
         # Create the document and main document node.
         self.document = xml.dom.minidom.Document()
@@ -246,7 +253,7 @@ class PartyManager:
                 code += "if not partyManager.hasRecord('"+chestUniqueName+"'):\n"
                 code += " partyManager.inventory.addItem('"+item+"')\n"
                 code += " partyManager.addRecord('"+chestUniqueName+"')\n"
-                code += " sceneManager.text('Found a "+item+".')\n"
+                code += " sceneManager.text('Found "+item+".')\n"
                 code += "else:\n"
                 code += " sceneManager.text('This chest is empty!')\n"
 
@@ -267,12 +274,12 @@ class PartyManager:
 
         # Remove chests from map
         while fMap.getObject( "chest" ):
-            fMap.removeObject( self.currentMap.getObject( "chest" ) )
+            fMap.removeObject( fMap.getObject( "chest" ) )
 
     def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ), newLayer = 0, fade=True ):
 
-        #if fade:
-        #    self.sceneManager.fadeOut()
+        if fade:
+            self.sceneManager.fade()
 
         self.player.setPosition( newPosition )
 
@@ -290,8 +297,10 @@ class PartyManager:
         self.mapManager.resync()
 
     def changeLayer( self, index, newPosition = annchienta.Point( annchienta.TilePoint, 2, 2 ), fade = True ):
-        #if fade:
-        #    self.sceneManager.fadeOut()
+
+        if fade:
+            self.sceneManager.fade()
+
         self.player.setPosition( newPosition )
         self.currentMap.removeObject( self.player )
         self.currentMap.setCurrentLayer( index )

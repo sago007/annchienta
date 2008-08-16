@@ -17,7 +17,7 @@
             <weapon name="shortsword"/>
             <actions>attack steal row flee</actions>
             <sprite filename="sprites/august.png" x1="150" x2="180" y1="40" y2="80"/>
-            <learn>2 thunderstab 3 cure</learn>
+            <learn>2 thunderstab 3 cure 6 fire 9 ice 12 water 15 thunder</learn>
         </combatant>
         <combatant name="avril">
             <level lvl="1" xp="0"/>
@@ -27,7 +27,7 @@
             <weapon name="stave"/>
             <actions>attack cure row flee</actions>
             <sprite filename="sprites/avril.png" x1="150" x2="180" y1="40" y2="80"/>
-            <learn>2 fire</learn>
+            <learn>2 fire 4 ice 6 water 8 thunder</learn>
         </combatant>
         <combatant name="march">
             <level lvl="1" xp="0"/>
@@ -37,7 +37,7 @@
             <weapon name="broadsword"/>
             <actions>attack row flee</actions>
             <sprite filename="sprites/march.png" x1="150" x2="180" y1="40" y2="80"/>
-            <learn>2 swing</learn>
+            <learn>2 swing 4 fire 9 ice 14 water 19 thunder</learn>
         </combatant>
     </team>
 </party>

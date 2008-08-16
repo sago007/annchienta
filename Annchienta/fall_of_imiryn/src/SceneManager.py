@@ -229,6 +229,29 @@ class SceneManager:
             object.freeze(False)
         self.inputManager.setInputMode( annchienta.InteractiveMode )
 
+    # Quick fade animation
+    def fade( self, r=0, g=0, b=0, duration=1000 ):
+
+        start = self.engine.getTicks()
+        end = start + duration
+
+        # Backup buffer
+        self.videoManager.storeBuffer(7)
+
+        while self.inputManager.running() and self.engine.getTicks() < end:
+
+            a = int(255.0*float( self.engine.getTicks()-start ) / float( duration ))
+
+            self.videoManager.begin()
+            self.videoManager.restoreBuffer(7)
+            self.videoManager.setColor( r, g, b, a )
+            self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
+            self.videoManager.end()
+
+            self.inputManager.update()
+
+        self.mapManager.resync()
+
 ## \brief Init the SceneManager global instance.
 #
 #  You should call this function only once, usually at the

@@ -15,6 +15,10 @@
         <stats att="20" mat="5" def="15" mdf="5" spd="10"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
     </item>
+    <item name="scepter" type="weapon" description="A water-absorbing stave.">
+        <stats att="6" mat="22" def="6" mdf="20" spd="12"/>
+        <elemental fire="1" ice="1" water="-1" thunder="1"/>
+    </item>
 
 <!--
     LOOT
