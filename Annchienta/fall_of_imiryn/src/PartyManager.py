@@ -12,6 +12,7 @@ class PartyManager:
         # Get some references
         self.inputManager = annchienta.getInputManager()
         self.mapManager = annchienta.getMapManager()
+        self.cacheManager = annchienta.getCacheManager()
 
         # Set variables
         self.player = 0
@@ -19,18 +20,24 @@ class PartyManager:
         self.inventory = 0
         self.lastMaps = []
         self.currentMap = 0
+        self.chestObjects = []
 
         # Battle variables
         self.randomBattleDelay = annchienta.randInt(300,400)
         self.background = None
 
     def free( self ):
+
+        for m in self.lastMaps + [self.currentMap]:
+            self.freeMap( m )
+
         self.currentMap.removeObject(self.player)
         self.currentMap = 0
         self.team = 0
         self.records = []
         self.inventory = 0
         self.mapManager.setNullMap()
+        self.chestObjects = []
         self.player = 0
 
     def load( self, filename ):
@@ -48,7 +55,7 @@ class PartyManager:
 
         # Now we can safely load the map
         mapElement = self.document.getElementsByTagName("map")[0]
-        self.currentMap = annchienta.Map( str(mapElement.getAttribute("filename")) )
+        self.currentMap = self.loadMap( str(mapElement.getAttribute("filename")) )
         self.currentMap.setCurrentLayer( int(mapElement.getAttribute("layer")) )
         self.mapManager.setCurrentMap( self.currentMap )
 
@@ -199,15 +206,81 @@ class PartyManager:
     def hasRecord( self, record ):
         return record.lower() in self.records
 
+    # Loads a map an extra stuff defined in the map, 
+    # but not in the core engine.
+    def loadMap( self, filename ):
+
+        newMap = annchienta.Map( filename )
+
+        # Get the pure xml
+        document = xml.dom.minidom.parse( filename )
+
+        # Go through layers
+        layers = document.getElementsByTagName( "layer" )
+        for i in range(len(layers)):
+
+            # Set correct layer
+            newMap.setCurrentLayer( i )            
+
+            # Add chests
+            chests = layers[i].getElementsByTagName( "chest" )
+
+            for c in range(len(chests)):
+
+                # Use c to get chest id
+                chest = chests[c]
+
+                # Create object and set position
+                chestObject = annchienta.StaticObject( "chest", self.cacheManager.getSurface("sprites/chest.png"), self.cacheManager.getMask("masks/chest.png") )
+
+                chestObject.setPosition( annchienta.Point( annchienta.TilePoint, int(chest.getAttribute("tilex")), int(chest.getAttribute("tiley")) ) )
+
+                # Create a unique id in the form of filename_layer_chestnr
+                chestUniqueName = filename+"_"+str(i)+"_"+str(c)
+
+                item = str( chest.getAttribute("item") )
+
+                # Generate interact code
+                code =  "import PartyManager, SceneManager\n"
+                code += "partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()\n"
+                code += "if not partyManager.hasRecord('"+chestUniqueName+"'):\n"
+                code += " partyManager.inventory.addItem('"+item+"')\n"
+                code += " partyManager.addRecord('"+chestUniqueName+"')\n"
+                code += " sceneManager.text('Found a "+item+".')\n"
+                code += "else:\n"
+                code += " sceneManager.text('This chest is empty!')\n"
+
+                chestObject.setOnInteractCode( code )
+
+                #print code
+
+                # Add object to layer
+                newMap.addObject( chestObject )
+
+                # Make sure to keep a reference to avoid segmentation shit
+                self.chestObjects += [chestObject]
+
+        return newMap
+
+    # Removes extra stuff from map.
+    def freeMap( self, fMap ):
+
+        # Remove chests from map
+        while fMap.getObject( "chest" ):
+            fMap.removeObject( self.currentMap.getObject( "chest" ) )
+
     def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ), newLayer = 0, fade=True ):
 
         #if fade:
         #    self.sceneManager.fadeOut()
 
         self.player.setPosition( newPosition )
+
+        # Remove player from map
         self.currentMap.removeObject( self.player )
+
         self.lastMaps += [self.currentMap]
-        self.currentMap = annchienta.Map( newMapFileName )
+        self.currentMap = self.loadMap( newMapFileName )
         self.currentMap.setCurrentLayer( newLayer )
         self.currentMap.addObject( self.player )
         self.mapManager.setCurrentMap( self.currentMap )

@@ -12623,6 +12623,72 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_StaticObject_setOnInteractScript(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:StaticObject_setOnInteractScript",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_setOnInteractScript" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "StaticObject_setOnInteractScript" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  (arg1)->setOnInteractScript((char const *)arg2);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_StaticObject_setOnInteractCode(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:StaticObject_setOnInteractCode",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_setOnInteractCode" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "StaticObject_setOnInteractCode" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  (arg1)->setOnInteractCode((char const *)arg2);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_StaticObject_canInteract(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
@@ -14790,6 +14856,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"StaticObject_getAnimation", _wrap_StaticObject_getAnimation, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_setPassable", _wrap_StaticObject_setPassable, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_isPassable", _wrap_StaticObject_isPassable, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_setOnInteractScript", _wrap_StaticObject_setOnInteractScript, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_setOnInteractCode", _wrap_StaticObject_setOnInteractCode, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_canInteract", _wrap_StaticObject_canInteract, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_onInteract", _wrap_StaticObject_onInteract, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_freeze", _wrap_StaticObject_freeze, METH_VARARGS, NULL},

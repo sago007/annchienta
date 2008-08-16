@@ -548,6 +548,8 @@ class StaticObject(Entity):
     def getAnimation(*args): return _annchienta.StaticObject_getAnimation(*args)
     def setPassable(*args): return _annchienta.StaticObject_setPassable(*args)
     def isPassable(*args): return _annchienta.StaticObject_isPassable(*args)
+    def setOnInteractScript(*args): return _annchienta.StaticObject_setOnInteractScript(*args)
+    def setOnInteractCode(*args): return _annchienta.StaticObject_setOnInteractCode(*args)
     def canInteract(*args): return _annchienta.StaticObject_canInteract(*args)
     def onInteract(*args): return _annchienta.StaticObject_onInteract(*args)
     def freeze(*args): return _annchienta.StaticObject_freeze(*args)

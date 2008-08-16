@@ -106,6 +106,8 @@ namespace Annchienta
             virtual void setPassable( bool value );
             virtual bool isPassable() const;
 
+            virtual void setOnInteractScript( const char * );
+            virtual void setOnInteractCode( const char * );
             virtual bool canInteract() const;
             virtual void onInteract();
 

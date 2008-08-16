@@ -108,19 +108,15 @@ namespace Annchienta
                     {
                         if( xml->getAttributeValue("script") )
                         {
-                            onInteractScript = new char[ strlen(xml->getAttributeValue("script"))+1 ];
-                            strcpy( onInteractScript, xml->getAttributeValue("script") );
+                            setOnInteractScript( xml->getAttributeValue("script") );
                             onInteractCode = 0;
                         }
                         else
                         {
                             xml->read();
-                            onInteractCode = new char[ strlen(xml->getNodeData())+1 ];
-                            strcpy( onInteractCode, xml->getNodeData() );
+                            setOnInteractCode( xml->getNodeData() );
                             xml->read();
                             onInteractScript = 0;
-
-                            getEngine()->toPythonCode( &onInteractCode );
                         }
                     }
                     if( !strcmpCaseInsensitive("passable", xml->getNodeName()) )
@@ -146,7 +142,7 @@ namespace Annchienta
         /* Create a default frame.
          */
         Frame frame;
-        frame.number = 1;
+        frame.number = '1';
         frame.x1 = frame.y1 = 0;
         frame.x2 = sprite->getWidth();
         frame.y2 = sprite->getHeight();
@@ -406,6 +402,25 @@ namespace Annchienta
     bool StaticObject::isPassable() const
     {
         return passable;
+    }
+
+    void StaticObject::setOnInteractScript( const char *script )
+    {
+        if( onInteractScript )
+            delete[] onInteractScript;
+
+        onInteractScript = new char[ strlen(script)+1 ];
+        strcpy( onInteractScript, script );
+    }
+
+    void StaticObject::setOnInteractCode( const char *code )
+    {
+        if( onInteractCode )
+            delete[] onInteractCode;
+
+        onInteractCode = new char[ strlen(code)+1 ];
+        strcpy( onInteractCode, code );
+        getEngine()->toPythonCode( &onInteractCode );
     }
 
     bool StaticObject::canInteract() const

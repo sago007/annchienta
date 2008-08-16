@@ -41,6 +41,9 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 18 ) )
 </area>
 
+<!-- Treasure chest. -->
+<chest item="potion" tilex="2" tiley="12"/>
+
 </layer>
 
 <onload script="locations/inaran/onload.py"/>
