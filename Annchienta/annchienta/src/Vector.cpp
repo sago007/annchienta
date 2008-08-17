@@ -88,9 +88,12 @@ namespace Annchienta
 
     void Vector::normalize()
     {
-        float l = 1/length();
-        x *= l;
-        y *= l;
+        float l = length();
+        if( l>0.0f )
+        {
+            x /= l;
+            y /= l;
+        }
     }
     
 };

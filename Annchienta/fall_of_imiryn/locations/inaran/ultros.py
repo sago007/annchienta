@@ -24,8 +24,10 @@ if won:
 
     sceneManager.speak( august, "The cave is collapsing!" )
     sceneManager.text( "March:\nGet on this raft. Now." )
-    sceneManager.text( "Use the mouse cursor to steer the raft." )
+    sceneManager.text( "Use the mouse cursor to steer the raft. You will reach the cave exit in approximately one minute." )
     execfile("locations/inaran/raft.py")
+    if mapManager.isRunning():
+        print "Boo! You made it out!"
 
 mapManager.resync()
 
