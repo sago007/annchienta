@@ -73,6 +73,8 @@ class Battle:
             self.draw()
             self.videoManager.end()
     
+        self.mapManager.resync()
+
     def removeDeadCombatants( self ):
 
         for combatant in self.combatants:
@@ -168,6 +170,7 @@ class Battle:
                         ally.addHp( ally.healthStats["mhp"]/7 )
             else:
                 self.won = False
+                self.sceneManager.gameOver()
                 self.mapManager.stop()
             self.running = False
             return

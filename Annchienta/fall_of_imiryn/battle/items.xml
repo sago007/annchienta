@@ -19,6 +19,10 @@
         <stats att="6" mat="22" def="6" mdf="20" spd="12"/>
         <elemental fire="1" ice="1" water="-1" thunder="1"/>
     </item>
+    <item name="shuriken" type="weapon" description="A fast ninja weapon. Protects against fire.">
+        <stats att="20" mat="10" def="20" mdf="10" spd="25"/>
+        <elemental fire="0" ice="1" water="1" thunder="1"/>
+    </item>
 
 <!--
     LOOT

@@ -14,12 +14,26 @@ class SceneManager:
     largeRegularFont, largeItalicsFont = None, None
     boxTextures = []
 
-    engine = annchienta.getEngine()
-    videoManager = annchienta.getVideoManager()
-    inputManager = annchienta.getInputManager()
-    audioManager = annchienta.getAudioManager()
-    cacheManager = annchienta.getCacheManager()
-    mapManager = annchienta.getMapManager()
+    def __init__( self ):
+
+        # Get references
+        self.engine = annchienta.getEngine()
+        self.videoManager = annchienta.getVideoManager()
+        self.inputManager = annchienta.getInputManager()
+        self.audioManager = annchienta.getAudioManager()
+        self.cacheManager = annchienta.getCacheManager()
+        self.mapManager = annchienta.getMapManager()
+
+    def waitForClick( self ):
+        self.videoManager.storeBuffer(7)
+        self.inputManager.update()
+        while self.inputManager.running() and not self.inputManager.buttonTicked(0):
+            self.inputManager.update()
+            self.videoManager.begin()
+            self.videoManager.restoreBuffer(7)
+            self.videoManager.end()
+
+        self.mapManager.resync()
 
     def defaultColor( self ):
         self.videoManager.setColor(255,255,255)
@@ -252,6 +266,17 @@ class SceneManager:
 
         self.mapManager.resync()
 
+    # Game over animation
+    def gameOver( self ):
+
+        self.videoManager.setColor( 0, 0, 0, 150 )
+        self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
+        self.videoManager.setColor( 255, 255, 255 )
+        self.videoManager.drawStringCentered( self.largeItalicsFont, "Game Over", self.videoManager.getScreenWidth()/2, 120 )
+        self.videoManager.end()
+        self.waitForClick()
+        self.fade()
+
 ## \brief Init the SceneManager global instance.
 #
 #  You should call this function only once, usually at the
@@ -271,3 +296,4 @@ def initSceneManager():
 #  \return The global SceneManager instance.
 def getSceneManager():
     return globalSceneManagerInstance
+

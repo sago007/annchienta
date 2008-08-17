@@ -5,7 +5,7 @@
     <enemy name="goblin">
         <level lvl="1"/>
         <primarystats att="14" mat="14" def="20" mdf="20" spd="20"/>
-        <healthstats hp="50" mph="50" mp="10" mhp="10"/>
+        <healthstats hp="50" mhp="50" mp="10" mmp="10"/>
         <elemental fire="2" ice="1" water="1" thunder="1"/>
         <actions>attack fog</actions>
         <sprite filename="sprites/goblin.png"/>
@@ -15,7 +15,7 @@
     <enemy name="stauld">
         <level lvl="1"/>
         <primarystats att="5" mat="14" def="40" mdf="20" spd="10"/>
-        <healthstats hp="40" mph="40" mp="15" mhp="15"/>
+        <healthstats hp="40" mhp="40" mp="15" mmp="15"/>
         <elemental fire="2" ice="2" water="2" thunder="2"/>
         <actions>attack fire</actions>
         <sprite filename="sprites/stauld.png"/>
@@ -25,11 +25,21 @@
     <enemy name="squid">
         <level lvl="1"/>
         <primarystats att="5" mat="12" def="20" mdf="20" spd="12"/>
-        <healthstats hp="60" mph="60" mp="20" mhp="20"/>
+        <healthstats hp="60" mhp="60" mp="20" mmp="20"/>
         <elemental fire="1" ice="1" water="-1" thunder="2"/>
         <actions>attack fog water</actions>
         <sprite filename="sprites/squid.png"/>
         <drop xp="15" item="potion" rate="0.6" steal="eyedrops"/>
+    </enemy>
+    <!-- ULTROS -->
+    <enemy name="ultros">
+        <level lvl="5"/>
+        <primarystats att="20" mat="20" def="20" mdf="20" spd="200"/>
+        <healthstats hp="500" mhp="500" mp="60" mmp="60"/>
+        <elemental fire="1" ice="1" water="-1" thunder="2"/>
+        <actions>attack fog water ice</actions>
+        <sprite filename="sprites/ultros.png"/>
+        <drop xp="15" item="shuriken" rate="1.0" steal="eyedrops"/>
     </enemy>
 
 </enemies>
