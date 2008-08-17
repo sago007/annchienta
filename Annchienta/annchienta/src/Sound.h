@@ -9,12 +9,15 @@
 
 namespace Annchienta
 {
+    class AudioManager;
+
     /** Used to hold a chunk of audio, obviously.
      */
     class Sound
     {
         private:
             Mix_Chunk *chunk;
+            AudioManager *audioManager;
 
         public:
 

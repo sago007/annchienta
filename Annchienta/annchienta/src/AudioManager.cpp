@@ -20,9 +20,15 @@ namespace Annchienta
         /* Init SDL_mixer and print error when failed.
          */
         if( Mix_OpenAudio( MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024 ) )
+        {
             getLogManager()->warning( "Could not init SDL_mixer: '%s'.", SDL_GetError() );
+            initted = false;
+        }
         else
+        {
             getLogManager()->message( "Succesfully started AudioManager." );
+            initted = true;
+        }
 
         /* Initialize musicFilename.
          */
@@ -35,7 +41,8 @@ namespace Annchienta
 
         /* Quit SDL_mixer.
          */
-        Mix_CloseAudio();
+        if( initted )
+            Mix_CloseAudio();
     }
 
     Mix_Music *AudioManager::getMusic() const
@@ -43,9 +50,15 @@ namespace Annchienta
         return music;
     }
 
+    bool AudioManager::inittedSuccesfully() const
+    {
+        return initted;
+    }
+
     void AudioManager::playSound( Sound *sound ) const
     {
-        sound->play();
+        if( initted )
+            sound->play();
     }
 
     void AudioManager::playMusic( const char *filename )
@@ -59,6 +72,9 @@ namespace Annchienta
          * if needed.
          */
         sprintf( musicFilename, filename );
+
+        if( !initted )
+            return;
 
         if( Mix_PlayingMusic() )
             Mix_FadeOutMusic( 100 );

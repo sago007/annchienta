@@ -162,8 +162,10 @@ class Battle:
                 self.sceneManager.text("Victorious! Gained "+str(self.xp)+" xp!", None)
                 for ally in self.allies:
                     ally.addXp( self.xp )
+                # Revive dead combatants
                 for ally in self.partyManager.team:
-                    ally.addHp( ally.healthStats["mhp"]/5 )
+                    if ally.healthStats["hp"] <= 0:
+                        ally.addHp( ally.healthStats["mhp"]/7 )
             else:
                 self.won = False
                 self.mapManager.stop()

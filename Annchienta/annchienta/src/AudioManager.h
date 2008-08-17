@@ -21,6 +21,10 @@ namespace Annchienta
             Mix_Music *music;
             char musicFilename[DEFAULT_STRING_SIZE];
 
+            /* We can continue happily without audio.
+             */
+            bool initted;
+
         public:
             #ifndef SWIG
                 AudioManager();
@@ -31,6 +35,11 @@ namespace Annchienta
                  */
                 Mix_Music *getMusic() const;
             #endif
+
+            /** Checks if the AudioManager was succesfully
+             *  initted.
+             */
+            bool inittedSuccesfully() const;
 
             /** Play back a loaded Sound.
              *  \param sound Sound to play.

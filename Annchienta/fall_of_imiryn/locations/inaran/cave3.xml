@@ -48,6 +48,13 @@ partyManager.changeMap( &quot;locations/inaran/cave2.xml&quot;, annchienta.Point
 <!-- Treasure chest. -->
 <chest item="scepter" tilex="19" tiley="4"/>
 
+<!-- Way to cave4. -->
+<area tilex1="2" tilex2="5" tiley1="0" tiley2="2">
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.changeMap( &quot;locations/inaran/cave4.xml&quot;, annchienta.Point( annchienta.TilePoint, 9, 27 ) )
+</area>
+
 </layer>
 
 <onload script="locations/inaran/onload.py"/>

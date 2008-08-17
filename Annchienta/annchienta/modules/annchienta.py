@@ -267,6 +267,7 @@ class AudioManager(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, AudioManager, name)
     __repr__ = _swig_repr
+    def inittedSuccesfully(*args): return _annchienta.AudioManager_inittedSuccesfully(*args)
     def playSound(*args): return _annchienta.AudioManager_playSound(*args)
     def playMusic(*args): return _annchienta.AudioManager_playMusic(*args)
     def getPlayingMusic(*args): return _annchienta.AudioManager_getPlayingMusic(*args)
