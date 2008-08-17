@@ -8,7 +8,7 @@ sys.path.append("src/battle")
 
 # This is only to be sure... the windows release
 # might need it.
-sys.path.append("../lib")
+sys.path.append("lib")
 
 import annchienta
 
@@ -54,6 +54,10 @@ options = [ Menu.MenuItem("new", "Start a new game."),
           ]
 menu.setOptions( options )
 menu.top()
+
+videoManager.begin()
+videoManager.end()
+videoManager.end()
 
 running = True
 while running and inputManager.running():

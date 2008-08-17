@@ -34,6 +34,7 @@ if won:
         surface = annchienta.Surface("images/storyline/sea_at_night.png")
         videoManager.drawSurface( surface, 0, 0 )
         videoManager.end()
+        videoManager.end()
         sceneManager.text("August:\nThe current had taken us away from our beloved homeland.", None, True )
         sceneManager.text("August:\nThe moments where we could still see our Jemor continent in the distance... were gone.", None, True )
         sceneManager.text("August:\nThere was nothing but sea.", None, True )

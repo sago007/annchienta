@@ -20,6 +20,7 @@ if not partyManager.hasRecord( "inaran_intro" ):
     videoManager.begin()
     videoManager.drawSurface( imiryn, 0, 0 )
     videoManager.end()
+    videoManager.end()
 
     sceneManager.text( "Our story unfolds in a place where magic was commonplace and airships plied the skies, crowding out the heavens... the Imiryn Empire.", None )
     sceneManager.text( "The Empire was built on technology and magic. Then, the Laustwan were discovered.", None )
