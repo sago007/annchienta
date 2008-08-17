@@ -625,6 +625,7 @@ class Vector(_object):
     def __mul__(*args): return _annchienta.Vector___mul__(*args)
     def length(*args): return _annchienta.Vector_length(*args)
     def distance(*args): return _annchienta.Vector_distance(*args)
+    def normalize(*args): return _annchienta.Vector_normalize(*args)
 Vector_swigregister = _annchienta.Vector_swigregister
 Vector_swigregister(Vector)
 randInt = _annchienta.randInt

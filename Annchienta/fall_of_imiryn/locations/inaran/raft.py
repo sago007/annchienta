@@ -1,5 +1,21 @@
 import annchienta
 
+class RaftObject:
+
+    def __init__( self, surface, position ):
+
+        self.videoManager = annchienta.getVideoManager()
+
+        self.surface = surface
+        self.position = position
+
+    def draw( self ):
+
+        self.videoManager.pushMatrix()
+        self.videoManager.translate( int(self.position.x), int(self.position.y) )
+        self.videoManager.drawSurface( self.surface, -self.surface.getWidth()/2, -self.surface.getHeight()/2 )
+        self.videoManager.popMatrix()
+
 class RaftGame:
 
     def __init__( self ):
@@ -15,8 +31,11 @@ class RaftGame:
         # Load images
         self.background = annchienta.Surface("images/backgrounds/water.png")
 
+        # Initial positions
         self.backgroundY = 0.0
         self.speed = 0.1
+
+        self.raft = RaftObject( annchienta.Surface("sprites/raft.png"), annchienta.Vector( self.videoManager.getScreenWidth()/2, self.videoManager.getScreenHeight()/2 ) )
 
     def run( self ):
 
@@ -44,13 +63,25 @@ class RaftGame:
         while self.backgroundY >= self.background.getHeight():
             self.backgroundY -= self.background.getHeight()
 
+        # Move raft towards cursor
+        mouse = annchienta.Vector( self.inputManager.getMouseX(), self.inputManager.getMouseY() )
+        mouse -= self.raft.position
+        mouse.normalize()
+        self.raft.position += mouse*self.speed*ms
+
     def draw( self ):
 
         self.videoManager.begin()
 
+        # To make the cave tremble
+        self.videoManager.translate( annchienta.randInt(-1,1), annchienta.randInt(-1,1) )
+
         # Draw background
         self.videoManager.drawSurface( self.background, 0, int(self.backgroundY) )
         self.videoManager.drawSurface( self.background, 0, int(self.backgroundY)-self.background.getHeight() )
+
+        # draw player
+        self.raft.draw()
 
         self.videoManager.end()
 

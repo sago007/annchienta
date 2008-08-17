@@ -39,7 +39,8 @@ namespace Annchienta
             
             float length() const;
             float distance( const Vector &other ) const;
-            
+
+            void normalize();
     };
 
 };

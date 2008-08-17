@@ -85,6 +85,13 @@ namespace Annchienta
     {
         return ((*this)-other).length();
     }
+
+    void Vector::normalize()
+    {
+        float l = 1/length();
+        x *= l;
+        y *= l;
+    }
     
 };
 

@@ -14602,6 +14602,27 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Vector_normalize(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Vector_normalize",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_normalize" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  (arg1)->normalize();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Vector_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
@@ -14929,6 +14950,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Vector___mul__", _wrap_Vector___mul__, METH_VARARGS, NULL},
 	 { (char *)"Vector_length", _wrap_Vector_length, METH_VARARGS, NULL},
 	 { (char *)"Vector_distance", _wrap_Vector_distance, METH_VARARGS, NULL},
+	 { (char *)"Vector_normalize", _wrap_Vector_normalize, METH_VARARGS, NULL},
 	 { (char *)"Vector_swigregister", Vector_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
