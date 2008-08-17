@@ -264,6 +264,12 @@ class SceneManager:
 
             self.inputManager.update()
 
+        # Fill it at the end
+        self.videoManager.begin()
+        self.videoManager.setColor( r, g, b, 255 )
+        self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
+        self.videoManager.end()
+
         self.mapManager.resync()
 
     # Game over animation
