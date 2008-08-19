@@ -501,7 +501,7 @@ def throwRandomBattle():
         partyManager.randomBattleDelay -= 1
         return
     else:
-        partyManager.randomBattleDelay = annchienta.randInt( 300, 400 )
+        partyManager.randomBattleDelay = annchienta.randInt( 400, 500 )
 
         # Return if there are no enemies in this level.
         if not len(partyManager.enemiesInMap):
