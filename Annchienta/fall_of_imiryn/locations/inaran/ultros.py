@@ -43,10 +43,9 @@ if won:
         sceneManager.text("August:\nMy brother had been killed by Enthavos in the Fifth Guard, and my mother had recently passed away. And my father... I had never known him.", None, True )
         sceneManager.text("August:\nI don't think I was really afraid of dying. Yet we just kept holding on. After all, we were in the Fifth Guard now.", None, True )
         sceneManager.text("August:\nThat must've been the point when we hit land.", None, True )
+        sceneManager.text("August:\nWhere were we?", None, True )
 
-        # Demo end
-        sceneManager.text("Want to know how our story end? I'm afraid you'll have to wait a little longer, as this is the end of the demo. Thanks for playing, drop comments at jaspervdj@gmail.com.", None )
-        mapManager.stop()
+        partyManager.changeMap( "locations/unknown/beach_start.xml", annchienta.Point( annchienta.TilePoint, 15, 15 ), 0, False )
 
 mapManager.resync()
 

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<sprite image="sprites/campfire.png" mask="masks/campfire.png">
+
+    <frame number="1" x1="0" y1="0" x2="50" y2="60"/>
+
+    <frame number="2" x1="50" y1="0" x2="100" y2="60"/>
+    <frame number="3" x1="100" y1="0" x2="150" y2="60"/>
+    <frame number="4" x1="150" y1="0" x2="200" y2="60"/>
+    <frame number="5" x1="200" y1="0" x2="250" y2="60"/>
+
+    <animation name="stand" frames="1" speed="10" />
+    <animation name="burn" frames="2345" speed="10" />
+
+    <oninteract script="locations/unknown/campfire.py"/>
+
+</sprite>
+

@@ -39,7 +39,7 @@
         <elemental fire="1" ice="1" water="-1" thunder="2"/>
         <actions>attack fog water ice</actions>
         <sprite filename="sprites/ultros.png"/>
-        <drop xp="15" item="shuriken" rate="1.0" steal="eyedrops"/>
+        <drop xp="93" item="shuriken" rate="1.0" steal="eyedrops"/>
     </enemy>
 
 </enemies>
