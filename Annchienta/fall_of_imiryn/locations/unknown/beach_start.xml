@@ -43,6 +43,17 @@
 <!-- The campfire. -->
 <staticobject name="campfire" config="locations/unknown/campfire.xml" tilex="18" tiley="16"/>
 
+<!-- A lot of palm trees. -->
+<staticobject name="palm" sprite="sprites/palm.png" mask="masks/palm.png" tilex="3" tiley="12"/>
+<staticobject name="palm" sprite="sprites/palm.png" mask="masks/palm.png" tilex="4" tiley="15"/>
+<staticobject name="palm" sprite="sprites/palm.png" mask="masks/palm.png" tilex="10" tiley="17"/>
+<staticobject name="palm" sprite="sprites/palm.png" mask="masks/palm.png" tilex="21" tiley="15"/>
+<staticobject name="palm" sprite="sprites/palm.png" mask="masks/palm.png" tilex="27" tiley="15"/>
+<staticobject name="palm" sprite="sprites/palm.png" mask="masks/palm.png" tilex="25" tiley="24"/>
+<staticobject name="palm" sprite="sprites/palm.png" mask="masks/palm.png" tilex="23" tiley="28"/>
+<staticobject name="palm" sprite="sprites/palm.png" mask="masks/palm.png" tilex="17" tiley="27"/>
+<staticobject name="palm" sprite="sprites/palm.png" mask="masks/palm.png" tilex="6" tiley="22"/>
+
 </layer>
 </map>
 
