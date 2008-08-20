@@ -157,7 +157,14 @@ class BaseCombatant:
 
     def update( self, ms ):
         
-        self.timer += 0.015*ms* float(255+self.derivedStats["spd"])/512.0
+        factor = 1.0
+        # Slow/haste
+        if "slowed" in self.statusEffects:
+            factor = 0.5
+        elif "hasted" in self.statusEffects:
+            factor = 1.7
+
+        self.timer += factor * 0.015*ms* float(255+self.derivedStats["spd"])/512.0
         if self.timer >= 100.0:
             self.timer = 100.0
 

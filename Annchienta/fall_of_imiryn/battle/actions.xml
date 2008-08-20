@@ -25,6 +25,14 @@
         <cost mp="4"/>
         <animation type="attack" data="images/animations/thunder.png"/>
     </action>
+    <action name="bite" category="melee" target="1">
+        <description>Painful but misses a lot.</description>
+        <elemental fire="0" ice="0" water="0" thunder="0" restorative="0"/>
+        <power factor="2.0" hit="0.5" type="physical"/>
+        <status effect="none" hit="0"/>
+        <cost mp="4"/>
+        <animation type="attack"/>
+    </action>
 
     <action name="cure" category="white magic" target="1">
         <description>Heal an ally.</description>
@@ -74,6 +82,14 @@
         <status effect="none" hit="0"/>
         <cost mp="4"/>
         <animation type="sprite" data="images/animations/thunder.png"/>
+    </action>
+    <action name="slime" category="black magic" target="1">
+        <description>Spit slime over enemy to slow them down.</description>
+        <elemental fire="0" ice="0" water="0" thunder="0" restorative="0"/>
+        <power factor="0.3" hit="1.0" type="magical"/>
+        <status effect="slowed" hit="0.7"/>
+        <cost mp="4"/>
+        <animation type="sprite" data="images/animations/slime.png"/>
     </action>
 
     <action name="steal" category="top" target="1">

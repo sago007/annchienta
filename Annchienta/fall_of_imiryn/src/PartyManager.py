@@ -223,6 +223,10 @@ class PartyManager:
     def hasRecord( self, record ):
         return record.lower() in self.records
 
+    def removeRecord( self, record ):
+        if self.hasRecord( record ):
+            self.records.remove( record )
+
     # Loads a map an extra stuff defined in the map, 
     # but not in the core engine.
     def loadMap( self, filename ):

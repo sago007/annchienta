@@ -96,5 +96,14 @@ class Inventory:
         elif itemName=="tincture":
             target.addMp( 30 )
 
+        elif itemName=="feather":
+            if "slowed" in target.statusEffects:
+                target.statusEffects.remove( "slowed" )
+            if not "hasted" in target.statusEffects:
+                target.statusEffects += ["hasted"]
+
+        elif itemName=="grenade":
+            target.addHp( -120 )
+
         self.removeItem( itemName )
 

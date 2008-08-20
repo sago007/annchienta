@@ -45,3 +45,4 @@ if inputManager.buttonTicked(1) and inputManager.getInputMode() is annchienta.In
         elif ans.name == "quit":
             mapManager.stop()
 
+

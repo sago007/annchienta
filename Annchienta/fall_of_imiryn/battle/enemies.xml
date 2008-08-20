@@ -31,6 +31,7 @@
         <sprite filename="sprites/squid.png"/>
         <drop xp="15" item="potion" rate="0.6" steal="eyedrops"/>
     </enemy>
+
     <!-- ULTROS -->
     <enemy name="ultros">
         <level lvl="5"/>
@@ -40,6 +41,39 @@
         <actions>attack fog water ice</actions>
         <sprite filename="sprites/ultros.png"/>
         <drop xp="93" item="shuriken" rate="1.0" steal="eyedrops"/>
+    </enemy>
+
+    <!-- WORM -->
+    <enemy name="worm">
+        <level lvl="4"/>
+        <primarystats att="10" mat="18" def="25" mdf="25" spd="10"/>
+        <healthstats hp="100" mhp="100" mp="20" mmp="20"/>
+        <elemental fire="1" ice="1" water="0" thunder="0"/>
+        <actions>attack slime</actions>
+        <sprite filename="sprites/worm.png"/>
+        <drop xp="35" item="potion" rate="0.4" steal="feather"/>
+    </enemy>
+
+    <!-- SPIDER -->
+    <enemy name="spider">
+        <level lvl="4"/>
+        <primarystats att="15" mat="12" def="15" mdf="15" spd="40"/>
+        <healthstats hp="120" mhp="120" mp="30" mmp="30"/>
+        <elemental fire="1" ice="1" water="1" thunder="2"/>
+        <actions>attack bite</actions>
+        <sprite filename="sprites/spider.png"/>
+        <drop xp="35" item="tincture" rate="0.4" steal="eyedrops"/>
+    </enemy>
+
+    <!-- GHOST -->
+    <enemy name="ghost">
+        <level lvl="4"/>
+        <primarystats att="5" mat="25" def="20" mdf="20" spd="20"/>
+        <healthstats hp="80" mhp="80" mp="50" mmp="50"/>
+        <elemental fire="2" ice="1" water="1" thunder="2"/>
+        <actions>attack fog thunder fire water</actions>
+        <sprite filename="sprites/ghost.png"/>
+        <drop xp="40" item="grenade" rate="0.6" steal="feather"/>
     </enemy>
 
 </enemies>

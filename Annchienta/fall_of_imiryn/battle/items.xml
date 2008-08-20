@@ -30,5 +30,7 @@
     <item name="potion" type="loot" description="Restores 250 HP."/>
     <item name="eyedrops" type="loot" description="Cures blindness."/>
     <item name="tincture" type="loot" description="Restores 30 MP."/>
+    <item name="feather" type="loot" description="Speeds up ally."/>
+    <item name="grenade" type="loot" description="Deals 120 damage."/>
 </items>
 
