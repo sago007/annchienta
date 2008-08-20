@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<sprite image="sprites/axe.png" mask="masks/axe.png">
+
+    <frame number="1"/>
+
+    <animation name="stand" frames="1" speed="20" />
+
+    <oninteract>
+import PartyManager, SceneManager
+partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
+partyManager.addRecord('unknown_found_axe')
+
+august = partyManager.player
+sceneManager.initDialog( [august] )
+
+sceneManager.speak( august, &quot;This looks like a primitive axe... could it be that we're not alone here?&quot; )
+sceneManager.speak( august, 'Anyway... I can use this to chop some wood.' )
+
+sceneManager.quitDialog()
+partyManager.refreshMap()
+
+    </oninteract>
+
+</sprite>
+

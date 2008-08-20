@@ -216,7 +216,10 @@ namespace Annchienta
             int x = tx-position.x>0?1:(tx-position.x<0?-1:0),
                 y = ty-position.y>0?1:(ty-position.y<0?-1:0);
 
-            this->move( x, y, true );
+            if( x )
+                this->move( x, 0, true );
+            else
+                this->move( 0, y, true );
         }
 
         //printf("Reached the end.\n");

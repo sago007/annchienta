@@ -64,6 +64,19 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/unknown/beach_north.xml&quot;, annchienta.Point( annchienta.TilePoint, 27, 19 ) )
 </area>
 
+<!-- Way to inland -->
+<area tilex1="9" tilex2="12" tiley1="28" tiley2="30">
+import annchienta, PartyManager, SceneManager
+partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
+if partyManager.hasRecord( &quot;unknown_can_leave&quot; ):
+    partyManager.changeMap( &quot;locations/unknown/beach_north.xml&quot;, annchienta.Point( annchienta.TilePoint, 27, 19 ) )
+else:
+    sceneManager.initDialog( [partyManager.player] )
+    sceneManager.move( partyManager.player, annchienta.Point( annchienta.TilePoint, 10, 27 ) )
+    sceneManager.speak( partyManager.player, &quot;It's probably not a good idea to head inland now. We need to get some food and rest first.&quot; )
+    sceneManager.quitDialog()
+</area>
+
 </layer>
 
 <!-- Draw dark blue if night. -->
