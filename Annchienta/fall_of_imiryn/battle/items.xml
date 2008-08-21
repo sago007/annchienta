@@ -23,6 +23,10 @@
         <stats att="20" mat="10" def="20" mdf="10" spd="25"/>
         <elemental fire="0" ice="1" water="1" thunder="1"/>
     </item>
+    <item name="katana" type="weapon" description="A long thunder-protecting ninja blade.">
+        <stats att="35" mat="5" def="10" mdf="5" spd="10"/>
+        <elemental fire="1" ice="1" water="1" thunder="0"/>
+    </item>
 
 <!--
     LOOT

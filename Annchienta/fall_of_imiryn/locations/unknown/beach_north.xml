@@ -45,11 +45,29 @@
     <staticobject name="axe" config="locations/unknown/axe.xml" tilex="13" tiley="26"/>
 </if>
 
+<!-- Katana. -->
+<chest item="katana" tilex="20" tiley="25"/>
+
 <!-- Way to beach_start -->
 <area tilex1="28" tilex2="30" tiley1="18" tiley2="21">
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/unknown/beach_start.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 16 ) )
+</area>
+
+<!-- A good fishing spot. -->
+<area tilex1="2" tilex2="8" tiley1="1" tiley2="5">
+import annchienta, PartyManager, SceneManager
+partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
+if partyManager.hasRecord( &quot;unknown_found_wood&quot; ) and not partyManager.hasRecord( &quot;unknown_found_food&quot; ):
+
+    sceneManager.initDialog( [partyManager.player] )
+    partyManager.addRecord( &quot;unknown_found_food&quot; )
+    sceneManager.move( partyManager.player, annchienta.Point( annchienta.TilePoint, 4, 2 ) )
+    sceneManager.speak( partyManager.player, &quot;This looks like a good fishing spot.&quot; )
+    sceneManager.fade()
+    sceneManager.text( &quot;You caught some fish!&quot; )
+    sceneManager.quitDialog()
 </area>
 
 <obstruction>

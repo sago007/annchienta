@@ -64,6 +64,13 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/unknown/beach_north.xml&quot;, annchienta.Point( annchienta.TilePoint, 27, 19 ) )
 </area>
 
+<!-- Way to beach_south -->
+<area tilex1="28" tilex2="30" tiley1="20" tiley2="23">
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.changeMap( &quot;locations/unknown/beach_south.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 18 ) )
+</area>
+
 <!-- Way to inland -->
 <area tilex1="9" tilex2="12" tiley1="28" tiley2="30">
 import annchienta, PartyManager, SceneManager

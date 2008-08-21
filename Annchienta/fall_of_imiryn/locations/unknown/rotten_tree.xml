@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<sprite image="sprites/rotten_tree.png" mask="masks/palm.png">
+
+    <frame number="1"/>
+
+    <animation name="stand" frames="1" speed="20" />
+
+    <oninteract>
+import PartyManager, SceneManager
+partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
+
+august = partyManager.player
+sceneManager.initDialog( [august] )
+
+if partyManager.hasRecord( &quot;unknown_found_axe&quot; ):
+
+    partyManager.addRecord(&quot;unknown_found_wood&quot;)
+    sceneManager.speak( august, &quot;Great, I can use this axe to chop some wood.&quot; )
+    sceneManager.text( &quot;You also manage to make a fishing rod from a remaining stick.&quot; )
+    sceneManager.speak( august, &quot;If I can find a good fishing spot, we'd be able to get some food...&quot; )
+
+else:
+    sceneManager.speak( august, &quot;Hmm... I'll need something to cut this tree down, I'm afraid.&quot; )
+
+sceneManager.quitDialog()
+partyManager.refreshMap()
+
+    </oninteract>
+
+</sprite>
+

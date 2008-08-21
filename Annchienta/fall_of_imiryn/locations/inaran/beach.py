@@ -31,6 +31,8 @@ if not partyManager.hasRecord( "inaran_intro" ):
     sceneManager.text( "Our story handles about three aspiring young warriors, hoping to join this Fifth Guard.", None )
 
     sceneManager.speak( march, "It must be here." )
+    sceneManager.speak( august, "March is a strange guy... wandering the world with only one arm. He doesn't want to tell us when he lost the other one.", True )
+    sceneManager.speak( august, "In fact... he doesn't say a lot at all. But when he says something... it's usually correct.", True )
     sceneManager.speak( avril, "Are you sure?" )
     sceneManager.speak( march, "... Yes. Come over here, August." )
     sceneManager.text( "Hold down the left mouse button to move. Then click March when you are close enough." )

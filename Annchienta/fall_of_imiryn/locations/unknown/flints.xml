@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<sprite image="sprites/flints.png" mask="masks/flints.png">
+
+    <frame number="1"/>
+
+    <animation name="stand" frames="1" speed="20" />
+
+    <oninteract>
+import PartyManager, SceneManager
+partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
+partyManager.addRecord('unknown_found_flints')
+
+august = partyManager.player
+sceneManager.initDialog( [august] )
+
+sceneManager.speak( august, &quot;A flint! We can use this to start a fire!&quot; )
+
+sceneManager.quitDialog()
+partyManager.refreshMap()
+
+    </oninteract>
+
+</sprite>
+
