@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<sprite image="sprites/enthavos.png" mask="masks/generic.png">
+
+    <frame number="1" x1="0" y1="0" x2="30" y2="40"/>
+    <frame number="2" x1="30" y1="0" x2="60" y2="40"/>
+    <frame number="3" x1="60" y1="0" x2="90" y2="40"/>
+
+    <frame number="4" x1="90" y1="0" x2="120" y2="40"/>
+    <frame number="5" x1="120" y1="0" x2="150" y2="40"/>
+    <frame number="6" x1="150" y1="0" x2="180" y2="40"/>
+
+    <frame number="7" x1="0" y1="40" x2="30" y2="80"/>
+    <frame number="8" x1="30" y1="40" x2="60" y2="80"/>
+    <frame number="9" x1="60" y1="40" x2="90" y2="80"/>
+
+    <frame number="a" x1="90" y1="40" x2="120" y2="80"/>
+    <frame number="b" x1="120" y1="40" x2="150" y2="80"/>
+    <frame number="c" x1="150" y1="40" x2="180" y2="80"/>
+
+    <animation name="stand" frames="1" speed="20" />
+    <animation name="walknorth" frames="1213" speed="8" />
+    <animation name="walkeast" frames="6465" speed="8" />
+    <animation name="walkwest" frames="7879" speed="8" />
+    <animation name="walksouth" frames="cacb" speed="8" />
+    <animation name="standnorth" frames="1" speed="8" />
+    <animation name="standeast" frames="6" speed="8" />
+    <animation name="standwest" frames="7" speed="8" />
+    <animation name="standsouth" frames="c" speed="8" />
+
+    <control type="null" />
+
+</sprite>

@@ -10,7 +10,11 @@ currentMap = partyManager.currentMap
 
 august = partyManager.player
 
-if not (partyManager.hasRecord("unknown_found_flints") and partyManager.hasRecord("unknown_found_wood") and partyManager.hasRecord("unknown_found_food")): # If not all_objects_collected
+if partyManager.hasRecord("unknown_can_leave"):
+
+    pass
+
+elif not (partyManager.hasRecord("unknown_found_flints") and partyManager.hasRecord("unknown_found_wood") and partyManager.hasRecord("unknown_found_food")): # If not all_objects_collected
 
     sceneManager.initDialog( [august] )
 
@@ -30,12 +34,15 @@ else:
     # Addobject and stuff...
     march = annchienta.Person( "march", "locations/common/march.xml" )
     avril = annchienta.Person( "avril", "locations/common/avril.xml" )
+    enthavos = annchienta.Person( "enthavos", "locations/unknown/enthavos.xml" )
     august.setPosition( annchienta.Point( annchienta.TilePoint, 18, 17 ) )
     march.setPosition( annchienta.Point( annchienta.TilePoint, 17, 15 ) )
     avril.setPosition( annchienta.Point( annchienta.TilePoint, 19, 15 ) )
+    enthavos.setPosition( annchienta.Point( annchienta.TilePoint, 0, 0 ) )
     currentMap.addObject( march )
     currentMap.addObject( avril )
-    sceneManager.initDialog( [august, march, avril] )
+    currentMap.addObject( enthavos )
+    sceneManager.initDialog( [august, march, avril, enthavos] )
     sceneManager.fade()
 
     partyManager.addRecord( "unknown_night" )
@@ -74,13 +81,24 @@ else:
     sceneManager.speak( avril, "They say he still wanders the world. My grandmother saw him one day!" )
     sceneManager.speak( march, "Avril... grow up. Those are fairy tales." )
     sceneManager.speak( march, "I'm going to get some sleep. We'd better all do that. Tomorrow, we head inland." )
+    sceneManager.speak( avril, "But we're not alone here! I mean, the axe we found, the..." )
+    sceneManager.speak( march, "Alright, enough already! You take the first guard, then." )
+
+    # Enthavos walks near
+    enthavos.setPosition( annchienta.Point( annchienta.TilePoint, 10, 22 ) )
+    sceneManager.move( enthavos, annchienta.Point( annchienta.TilePoint, 17, 22 ), True )
+    sceneManager.speak( avril, "I still have the feeling someone is watching us." )
+    sceneManager.speak( march, "Do me a pleasure and shut up. All we need sleep." )
+    sceneManager.move( enthavos, annchienta.Point( annchienta.TilePoint, 10, 27 ), True )
 
     sceneManager.fade()
     partyManager.removeRecord( "unknown_night" )
+    partyManager.addRecord( "unknown_can_leave" )
 
     sceneManager.quitDialog()
     currentMap.removeObject( march )
     currentMap.removeObject( avril )
+    currentMap.removeObject( enthavos )
 
 partyManager.refreshMap()
 

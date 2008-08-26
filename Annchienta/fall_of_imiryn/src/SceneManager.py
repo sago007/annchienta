@@ -197,7 +197,7 @@ class SceneManager:
 
     ## \moves someone.
     #
-    def move(self, objects, points ):
+    def move(self, objects, points, followMover=False ):
 
         # Convert objects and points to lists if they aren't.
         if type(objects) is not type([]):
@@ -217,7 +217,8 @@ class SceneManager:
             self.mapManager.update(False)
             self.inputManager.update()
 
-            #self.mapManager.cameraPeekAt( objects[0], True )
+            if followMover:
+                self.mapManager.cameraPeekAt( objects[0], True )
 
             self.videoManager.begin()
             self.mapManager.renderFrame()
