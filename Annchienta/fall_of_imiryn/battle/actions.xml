@@ -56,7 +56,7 @@
         <elemental fire="1" ice="0" water="0" thunder="0" restorative="0"/>
         <power factor="0.3" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
-        <cost mp="4"/>
+        <cost mp="6"/>
         <animation type="sprite" data="images/animations/fire.png"/>
     </action>
     <action name="ice" category="black magic" target="1">
@@ -64,7 +64,7 @@
         <elemental fire="0" ice="1" water="0" thunder="0" restorative="0"/>
         <power factor="0.3" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
-        <cost mp="4"/>
+        <cost mp="6"/>
         <animation type="sprite" data="images/animations/ice.png"/>
     </action>
     <action name="water" category="black magic" target="1">
@@ -72,7 +72,7 @@
         <elemental fire="0" ice="0" water="1" thunder="0" restorative="0"/>
         <power factor="0.3" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
-        <cost mp="4"/>
+        <cost mp="6"/>
         <animation type="sprite" data="images/animations/water.png"/>
     </action>
     <action name="thunder" category="black magic" target="1">
@@ -80,7 +80,7 @@
         <elemental fire="0" ice="0" water="0" thunder="1" restorative="0"/>
         <power factor="0.3" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
-        <cost mp="4"/>
+        <cost mp="6"/>
         <animation type="sprite" data="images/animations/thunder.png"/>
     </action>
     <action name="slime" category="black magic" target="1">

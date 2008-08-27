@@ -9,7 +9,7 @@
         <elemental fire="2" ice="1" water="1" thunder="1"/>
         <actions>attack fog</actions>
         <sprite filename="sprites/goblin.png"/>
-        <drop xp="12" item="eyedrops" rate="0.6" steal="potion"/>
+        <drop xp="12" item="eyedrops" rate="0.3" steal="potion"/>
     </enemy>
     <!-- STAULD -->
     <enemy name="stauld">
@@ -19,7 +19,7 @@
         <elemental fire="2" ice="2" water="2" thunder="2"/>
         <actions>attack fire</actions>
         <sprite filename="sprites/stauld.png"/>
-        <drop xp="14" item="tincture" rate="0.6" steal="potion"/>
+        <drop xp="14" item="tincture" rate="0.3" steal="potion"/>
     </enemy>
     <!-- SQUID -->
     <enemy name="squid">
@@ -29,7 +29,7 @@
         <elemental fire="1" ice="1" water="-1" thunder="2"/>
         <actions>attack fog water</actions>
         <sprite filename="sprites/squid.png"/>
-        <drop xp="15" item="potion" rate="0.6" steal="eyedrops"/>
+        <drop xp="15" item="potion" rate="0.3" steal="eyedrops"/>
     </enemy>
 
     <!-- ULTROS -->
@@ -46,34 +46,34 @@
     <!-- WORM -->
     <enemy name="worm">
         <level lvl="4"/>
-        <primarystats att="10" mat="18" def="25" mdf="25" spd="10"/>
+        <primarystats att="14" mat="18" def="25" mdf="25" spd="10"/>
         <healthstats hp="100" mhp="100" mp="20" mmp="20"/>
         <elemental fire="1" ice="1" water="0" thunder="0"/>
         <actions>attack slime</actions>
         <sprite filename="sprites/worm.png"/>
-        <drop xp="35" item="potion" rate="0.4" steal="feather"/>
+        <drop xp="35" item="potion" rate="0.3" steal="feather"/>
     </enemy>
 
     <!-- SPIDER -->
     <enemy name="spider">
         <level lvl="4"/>
-        <primarystats att="15" mat="12" def="15" mdf="15" spd="40"/>
+        <primarystats att="18" mat="12" def="15" mdf="15" spd="40"/>
         <healthstats hp="120" mhp="120" mp="30" mmp="30"/>
         <elemental fire="1" ice="1" water="1" thunder="2"/>
         <actions>attack bite</actions>
         <sprite filename="sprites/spider.png"/>
-        <drop xp="35" item="tincture" rate="0.4" steal="eyedrops"/>
+        <drop xp="35" item="tincture" rate="0.3" steal="eyedrops"/>
     </enemy>
 
     <!-- GHOST -->
     <enemy name="ghost">
         <level lvl="4"/>
-        <primarystats att="5" mat="25" def="20" mdf="20" spd="20"/>
+        <primarystats att="8" mat="25" def="20" mdf="20" spd="20"/>
         <healthstats hp="80" mhp="80" mp="50" mmp="50"/>
         <elemental fire="2" ice="1" water="1" thunder="2"/>
         <actions>attack fog thunder fire water</actions>
         <sprite filename="sprites/ghost.png"/>
-        <drop xp="40" item="grenade" rate="0.6" steal="feather"/>
+        <drop xp="40" item="grenade" rate="0.3" steal="feather"/>
     </enemy>
 
 </enemies>

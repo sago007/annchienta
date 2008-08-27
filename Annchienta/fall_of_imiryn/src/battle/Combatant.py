@@ -216,6 +216,14 @@ class Combatant(BaseCombatant):
         # Status effect currently displayed
         self.statusEffectTimer = 0.0
 
+    def reset( self ):
+
+        BaseCombatant.reset( self )
+        
+        # Damage done by an attack
+        self.damage = 0
+        self.damageTimer = 0.0
+
     def update( self, ms ):
 
         # Call base update

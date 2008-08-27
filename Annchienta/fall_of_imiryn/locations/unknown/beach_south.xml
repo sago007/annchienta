@@ -59,5 +59,9 @@ partyManager.changeMap( &quot;locations/unknown/beach_start.xml&quot;, annchient
 <staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="28" tiley="17"/>
 
 </layer>
+
+<!-- Area onload script. -->
+<onload script="locations/unknown/onload.py"/>
+
 </map>
 
