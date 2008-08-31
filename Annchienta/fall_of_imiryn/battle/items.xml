@@ -31,10 +31,11 @@
 <!--
     LOOT
     -->
-    <item name="potion" type="loot" description="Restores 250 HP."/>
+    <item name="potion" type="loot" description="Restores 100 HP."/>
     <item name="eyedrops" type="loot" description="Cures blindness."/>
     <item name="tincture" type="loot" description="Restores 30 MP."/>
-    <item name="feather" type="loot" description="Speeds up ally."/>
+    <item name="feather" type="loot" description="Speeds up ally, doesn't work for paralysis."/>
     <item name="grenade" type="loot" description="Deals 120 damage."/>
+    <item name="oil" type="loot" description="Restores paralysis."/>
 </items>
 

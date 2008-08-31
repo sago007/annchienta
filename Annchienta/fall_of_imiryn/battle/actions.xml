@@ -33,6 +33,14 @@
         <cost mp="4"/>
         <animation type="attack"/>
     </action>
+    <action name="fist" category="melee" target="1">
+        <description>Very effective, causes paralysis.</description>
+        <elemental fire="0" ice="0" water="0" thunder="0" restorative="0"/>
+        <power factor="2.0" hit="0.5" type="physical"/>
+        <status effect="paralysed" hit="0.3"/>
+        <cost mp="4"/>
+        <animation type="attack"/>
+    </action>
 
     <action name="cure" category="white magic" target="1">
         <description>Heal an ally.</description>

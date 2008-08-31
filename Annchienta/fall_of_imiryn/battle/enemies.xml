@@ -76,5 +76,28 @@
         <drop xp="40" item="grenade" rate="0.3" steal="feather"/>
     </enemy>
 
+    <!-- COEURL -->
+    <enemy name="coeurl">
+        <level lvl="6"/>
+        <primarystats att="16" mat="35" def="30" mdf="30" spd="23"/>
+        <healthstats hp="160" mhp="160" mp="60" mmp="60"/>
+        <elemental fire="1.4" ice="0.5" water="1" thunder="1"/>
+        <actions>attack ice bite water</actions>
+        <sprite filename="sprites/coeurl.png"/>
+        <drop xp="60" item="potion" rate="0.3" steal="tincture"/>
+    </enemy>
+
+
+    <!-- ICE WARRIOR -->
+    <enemy name="ice warrior">
+        <level lvl="6"/>
+        <primarystats att="35" mat="26" def="45" mdf="30" spd="23"/>
+        <healthstats hp="200" mhp="200" mp="60" mmp="60"/>
+        <elemental fire="2" ice="0.5" water="1" thunder="1"/>
+        <actions>attack ice fist</actions>
+        <sprite filename="sprites/ice_warrior.png"/>
+        <drop xp="60" item="oil" rate="0.4" steal="feather"/>
+    </enemy>
+
 </enemies>
 
