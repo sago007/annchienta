@@ -109,5 +109,8 @@ class Inventory:
             if "paralysed" in target.statusEffects:
                 target.statusEffects.remove( "paralysed" )
 
+        elif itemName=="hi-potion":
+            target.addHp( 350 )
+
         self.removeItem( itemName )
 

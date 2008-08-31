@@ -37,5 +37,6 @@
     <item name="feather" type="loot" description="Speeds up ally, doesn't work for paralysis."/>
     <item name="grenade" type="loot" description="Deals 120 damage."/>
     <item name="oil" type="loot" description="Restores paralysis."/>
+    <item name="hi-potion" type="loot" description="Restores 350 HP."/>
 </items>
 

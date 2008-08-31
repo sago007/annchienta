@@ -76,7 +76,7 @@ partyManager.changeMap( &quot;locations/unknown/beach_south.xml&quot;, annchient
 import annchienta, PartyManager, SceneManager
 partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
 if partyManager.hasRecord( &quot;unknown_can_leave&quot; ):
-    partyManager.changeMap( &quot;locations/unknown/beach_north.xml&quot;, annchienta.Point( annchienta.TilePoint, 27, 19 ) )
+    partyManager.changeMap( &quot;locations/mountains/start.xml&quot;, annchienta.Point( annchienta.TilePoint, 26, 3 ) )
 else:
     sceneManager.initDialog( [partyManager.player] )
     sceneManager.move( partyManager.player, annchienta.Point( annchienta.TilePoint, 10, 27 ) )
