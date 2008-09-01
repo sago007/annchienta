@@ -68,7 +68,7 @@ class BaseCombatant:
         elementalElements = xmlElement.getElementsByTagName("elemental")
         if len(elementalElements):
             for k in elementalElements[0].attributes.keys():
-                self.primaryElemental[k] = int(elementalElements[0].attributes[k].value)
+                self.primaryElemental[k] = float(elementalElements[0].attributes[k].value)
     
         # Generate derived stats
         self.generateDerivedStats()
