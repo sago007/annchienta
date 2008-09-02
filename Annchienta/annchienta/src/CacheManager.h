@@ -34,6 +34,10 @@ namespace Annchienta
         };
     #endif
 
+    /** This describes a class which is used to create
+	 *  an engine cache, so certain data objects can be
+	 *  loaded quicker.
+	 */
     class CacheManager
     {
         private:
@@ -47,18 +51,36 @@ namespace Annchienta
                 ~CacheManager();
             #endif
 
+            /** Fetches a Surface from the cache. The Surface
+             *  is loaded if it isn't found in the cache.
+             *  \param filename File to be loaded.
+             *  \return The desired Surface.
+             */
             Surface *getSurface( const char *filename );
-            //void deleteSurface( Surface *surface );
 
+            /** Fetches a Mask from the cache. The Mask
+             *  is loaded if it isn't found in the cache.
+             *  \param filename File to be loaded.
+             *  \return The desired Mask.
+             */
             Mask *getMask( const char *filename );
-            //void deleteMask( Mask *mask );
 
+            /** Fetches a Sound from the cache. The Sound
+             *  is loaded if it isn't found in the cache.
+             *  \param filename File to be loaded.
+             *  \return The desired Sound.
+             */
             Sound *getSound( const char *filename );
 
+            /** Clears the cache. All objects are removed
+             *  from the cache.
+             */
             void clear();
 
     };
 
+    /** \return An instance of the global CacheManager.
+     */
     CacheManager *getCacheManager();
 
 };
