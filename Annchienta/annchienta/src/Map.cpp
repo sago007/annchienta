@@ -470,22 +470,6 @@ namespace Annchienta
         this->onPostRender();
     }
 
-    void Map::drawTerrain() const
-    {
-        glPushMatrix();
-
-        glLoadIdentity();
-        this->onPreRender();
-
-        glPopMatrix();
-
-        for( unsigned int i=0; i<layers.size(); i++ )
-            sortedLayers[i]->drawTerrain();
-
-        glLoadIdentity();
-        this->onPostRender();
-    }
-
     void Map::depthSort()
     {
         for( unsigned int i=0; i<layers.size(); i++ )

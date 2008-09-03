@@ -249,7 +249,6 @@ class MapManager(_object):
     def updateOnce(*args): return _annchienta.MapManager_updateOnce(*args)
     def draw(*args): return _annchienta.MapManager_draw(*args)
     def renderFrame(*args): return _annchienta.MapManager_renderFrame(*args)
-    def renderTerrain(*args): return _annchienta.MapManager_renderTerrain(*args)
     def resync(*args): return _annchienta.MapManager_resync(*args)
     def __init__(self, *args): 
         this = _annchienta.new_MapManager(*args)
@@ -369,7 +368,6 @@ class Layer(_object):
     def getZ(*args): return _annchienta.Layer_getZ(*args)
     def update(*args): return _annchienta.Layer_update(*args)
     def draw(*args): return _annchienta.Layer_draw(*args)
-    def drawTerrain(*args): return _annchienta.Layer_drawTerrain(*args)
     def depthSort(*args): return _annchienta.Layer_depthSort(*args)
     def addEntity(*args): return _annchienta.Layer_addEntity(*args)
     def addArea(*args): return _annchienta.Layer_addArea(*args)

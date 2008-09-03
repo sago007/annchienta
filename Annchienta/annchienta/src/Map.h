@@ -71,34 +71,80 @@ namespace Annchienta
              */
             void setCurrentLayer( int index );
             
-            /** \return The number of layers in the current Map.
+            /** \return The number of layers in this Map.
              */
             int getNumberOfLayers() const;
 
+            /** \return The filename from which this Map was loaded.
+             */
             const char *getFileName() const;
 
+            /** \return The width of this Map.
+             */
             int getWidth() const;
+
+            /** \return The height of this Map.
+             */
             int getHeight() const;
 
-            void addNewLayer( int z );
+            /** Adds a new, empty Layer to this Map.
+             *  \param z Initial Z offset of the new Layer.
+             */
+            void addNewLayer( int z=0 );
 
+            /** \return The TileSet used in this Map.
+             */
             TileSet *getTileSet() const;
 
+            /** Finds an object in this Map. This function starts
+             *  searching in the current Layer, when not found in
+             *  continues to search the other Layers.
+             *  \param name Name of the StaticObject to be found.
+             *  \return The found object.
+             */
             StaticObject *getObject( const char *name );
+
+            /** Adds a StaticObject to this Map. The object is
+             *  placed in the current Layer.
+             *  \param so StaticObject to be added.
+             */
             void addObject( StaticObject *so );
+
+            /** Removes an object from this Map. If you don't have
+             *  a pointer to it, only the name, use getObject() first.
+             *  \param so StaticObject to be removed.
+             */
             void removeObject( StaticObject *so );
 
+            /** Updates this Map, all Layers and all objects in
+             *  those Layers.
+             */
             void update();
+
+            /** Draws the Map to the screen.
+             */
             void draw() const;
-            void drawTerrain() const;
+
+            /** Depthsorts this Map. Calls Layer::depthSort() for all Layers.
+             */
             void depthSort();
 
+            /** Sorts Layers by their respective Z offset.
+             */
             void sortLayers();
 
+            /** Executes onPreRender code. Automatically called
+             *  by draw().
+             */
             void onPreRender() const;
+
+            /** Executes onPostRender code. Automatically called
+             *  by draw().
+             */
             void onPostRender() const;
 
     };
 };
 
 #endif
+

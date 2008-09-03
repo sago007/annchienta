@@ -8390,27 +8390,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_MapManager_renderTerrain(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_renderTerrain",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_renderTerrain" "', argument " "1"" of type '" "Annchienta::MapManager const *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
-  ((Annchienta::MapManager const *)arg1)->renderTerrain();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_MapManager_resync(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
@@ -9591,27 +9570,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Layer_drawTerrain(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Layer_drawTerrain",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_drawTerrain" "', argument " "1"" of type '" "Annchienta::Layer const *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
-  ((Annchienta::Layer const *)arg1)->drawTerrain();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Layer_depthSort(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
@@ -10333,7 +10291,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Map_addNewLayer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Map_addNewLayer__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
   int arg2 ;
@@ -10359,6 +10317,71 @@ SWIGINTERN PyObject *_wrap_Map_addNewLayer(PyObject *SWIGUNUSEDPARM(self), PyObj
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Map_addNewLayer__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Map_addNewLayer",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_addNewLayer" "', argument " "1"" of type '" "Annchienta::Map *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
+  (arg1)->addNewLayer();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Map_addNewLayer(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = (int)PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Map, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_Map_addNewLayer__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__Map, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Map_addNewLayer__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'Map_addNewLayer'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    addNewLayer(Annchienta::Map *,int)\n"
+    "    addNewLayer(Annchienta::Map *)\n");
   return NULL;
 }
 
@@ -14754,7 +14777,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_updateOnce", _wrap_MapManager_updateOnce, METH_VARARGS, NULL},
 	 { (char *)"MapManager_draw", _wrap_MapManager_draw, METH_VARARGS, NULL},
 	 { (char *)"MapManager_renderFrame", _wrap_MapManager_renderFrame, METH_VARARGS, NULL},
-	 { (char *)"MapManager_renderTerrain", _wrap_MapManager_renderTerrain, METH_VARARGS, NULL},
 	 { (char *)"MapManager_resync", _wrap_MapManager_resync, METH_VARARGS, NULL},
 	 { (char *)"new_MapManager", _wrap_new_MapManager, METH_VARARGS, NULL},
 	 { (char *)"delete_MapManager", _wrap_delete_MapManager, METH_VARARGS, NULL},
@@ -14799,7 +14821,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Layer_getZ", _wrap_Layer_getZ, METH_VARARGS, NULL},
 	 { (char *)"Layer_update", _wrap_Layer_update, METH_VARARGS, NULL},
 	 { (char *)"Layer_draw", _wrap_Layer_draw, METH_VARARGS, NULL},
-	 { (char *)"Layer_drawTerrain", _wrap_Layer_drawTerrain, METH_VARARGS, NULL},
 	 { (char *)"Layer_depthSort", _wrap_Layer_depthSort, METH_VARARGS, NULL},
 	 { (char *)"Layer_addEntity", _wrap_Layer_addEntity, METH_VARARGS, NULL},
 	 { (char *)"Layer_addArea", _wrap_Layer_addArea, METH_VARARGS, NULL},

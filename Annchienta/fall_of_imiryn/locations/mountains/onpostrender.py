@@ -14,10 +14,7 @@ videoManager.pushMatrix()
 
 videoManager.translate( -(mapManager.getCameraX()%videoManager.getScreenWidth()), -((mapManager.getCameraY()-p)%videoManager.getScreenHeight()) )
 
-videoManager.drawSurface( surf, 0, 0 )
-videoManager.drawSurface( surf, videoManager.getScreenWidth(), 0 )
-videoManager.drawSurface( surf, videoManager.getScreenWidth(), videoManager.getScreenHeight() )
-videoManager.drawSurface( surf, 0, videoManager.getScreenHeight() )
+videoManager.drawPattern( surf, 0, 0, videoManager.getScreenWidth()*2, videoManager.getScreenHeight()*2 )
 
 videoManager.popMatrix()
 

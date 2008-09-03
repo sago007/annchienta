@@ -104,29 +104,6 @@ namespace Annchienta
         glPopMatrix();
     }
 
-    void Layer::drawTerrain() const
-    {
-        glPushMatrix();
-
-        glTranslatef( 0.0f, (GLfloat)-z, 0.0f );
-
-        if( opacity < 0xff )
-            return;
-
-        for( unsigned int i=0; i<entities.size(); i++ )
-        {
-            if( entities[i]->getEntityType() != PersonEntity )
-                entities[i]->setDrawn( false );
-            else
-                entities[i]->setDrawn( true );
-        }
-
-        for( unsigned int i=0; i<entities.size(); i++ )
-            entities[i]->draw();
-
-        glPopMatrix();
-    }
-
     void Layer::depthSort()
     {
         /* The layer should be more or less sorted already, that's

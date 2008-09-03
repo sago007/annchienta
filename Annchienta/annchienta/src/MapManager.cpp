@@ -303,18 +303,6 @@ namespace Annchienta
         glLoadIdentity();
     }
 
-    void MapManager::renderTerrain() const
-    {
-        glLoadIdentity();
-
-        glTranslatef( (GLfloat)-cameraX, (GLfloat)-cameraY, 0.0f );
-
-        if( currentMap )
-            currentMap->drawTerrain();
-
-        glLoadIdentity();
-    }
-
     void MapManager::resync()
     {
         updatesNeeded = 0;

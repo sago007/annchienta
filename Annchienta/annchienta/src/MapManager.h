@@ -80,7 +80,6 @@ namespace Annchienta
             /** The same as draw()
              */
             void renderFrame() const;
-            void renderTerrain() const;
 
             void resync();
     };
