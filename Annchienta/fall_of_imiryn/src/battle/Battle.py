@@ -166,7 +166,7 @@ class Battle:
                     ally.addXp( self.xp )
                 # Revive dead combatants
                 for ally in self.partyManager.team:
-                    if ally.healthStats["hp"] <= 0:
+                    if ally.healthStats["hp"] <= 1:
                         ally.addHp( ally.healthStats["mhp"]/7 )
             else:
                 self.won = False
