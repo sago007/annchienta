@@ -41,6 +41,13 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/mountains/path1.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 9 ) )
 </area>
 
+<!-- Way to path3 -->
+<area tilex1="7" tilex2="10" tiley1="0" tiley2="2">
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.changeMap( &quot;locations/mountains/path3.xml&quot;, annchienta.Point( annchienta.TilePoint, 20,  27 ) )
+</area>
+
 <!-- A chest. -->
 <chest item="dragonspear" tilex="6" tiley="6"/>
 
