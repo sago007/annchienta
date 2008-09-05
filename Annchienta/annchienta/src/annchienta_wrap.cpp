@@ -10544,27 +10544,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Map_drawTerrain(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Map_drawTerrain",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_drawTerrain" "', argument " "1"" of type '" "Annchienta::Map const *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::Map * >(argp1);
-  ((Annchienta::Map const *)arg1)->drawTerrain();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Map_depthSort(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
@@ -14850,7 +14829,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Map_removeObject", _wrap_Map_removeObject, METH_VARARGS, NULL},
 	 { (char *)"Map_update", _wrap_Map_update, METH_VARARGS, NULL},
 	 { (char *)"Map_draw", _wrap_Map_draw, METH_VARARGS, NULL},
-	 { (char *)"Map_drawTerrain", _wrap_Map_drawTerrain, METH_VARARGS, NULL},
 	 { (char *)"Map_depthSort", _wrap_Map_depthSort, METH_VARARGS, NULL},
 	 { (char *)"Map_sortLayers", _wrap_Map_sortLayers, METH_VARARGS, NULL},
 	 { (char *)"Map_onPreRender", _wrap_Map_onPreRender, METH_VARARGS, NULL},

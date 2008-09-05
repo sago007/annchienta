@@ -410,7 +410,6 @@ class Map(_object):
     def removeObject(*args): return _annchienta.Map_removeObject(*args)
     def update(*args): return _annchienta.Map_update(*args)
     def draw(*args): return _annchienta.Map_draw(*args)
-    def drawTerrain(*args): return _annchienta.Map_drawTerrain(*args)
     def depthSort(*args): return _annchienta.Map_depthSort(*args)
     def sortLayers(*args): return _annchienta.Map_sortLayers(*args)
     def onPreRender(*args): return _annchienta.Map_onPreRender(*args)

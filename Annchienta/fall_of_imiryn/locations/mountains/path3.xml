@@ -41,6 +41,10 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/mountains/path2.xml&quot;, annchienta.Point( annchienta.TilePoint, 8, 3 ) )
 </area>
 
+<!-- Area that triggers encouter with enthavos (1) -->
+<if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('mountains_first_enthavos_encounter')">
+    <area script="locations/mountains/enthavos1.py"/>
+</if>
 
 </layer>
 
