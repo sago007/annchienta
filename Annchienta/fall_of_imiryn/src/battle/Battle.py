@@ -7,10 +7,6 @@ import Enemy
 #
 class Battle:
 
-    # Enemy locations
-    enemiesLocation = "battle/enemies.xml"
-    enemiesFile = xml.dom.minidom.parse( enemiesLocation )
-
     def __init__( self, combatants, background, canFlee ):
     
         # Set variables

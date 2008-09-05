@@ -27,7 +27,6 @@ class PartyManager:
 
         # Battle variables
         self.randomBattleDelay = annchienta.randInt(300,400)
-        self.background = None
 
     def free( self ):
 

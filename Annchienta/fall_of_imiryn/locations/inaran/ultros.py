@@ -1,5 +1,5 @@
 import annchienta
-import PartyManager, SceneManager, Battle
+import PartyManager, SceneManager, BattleManager
 
 mapManager = annchienta.getMapManager()
 engine = annchienta.getEngine()
@@ -7,6 +7,7 @@ videoManager = annchienta.getVideoManager()
 audioManager = annchienta.getAudioManager()
 partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
+battleManager = BattleManager.getBattleManager()
 
 currentMap = partyManager.currentMap
 
@@ -15,7 +16,7 @@ august = partyManager.player
 sceneManager.initDialog( [august] )
 
 sceneManager.text("Ultros:\nYaaaouch! Seafood soup!")
-won = Battle.runBattle( ["ultros"], annchienta.Surface("images/backgrounds/cave.png"), False )
+won = BattleManager.runBattle( ["ultros"], annchienta.Surface("images/backgrounds/cave.png"), False )
 #won = True
 
 if won:

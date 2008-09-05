@@ -1,8 +1,9 @@
-import annchienta, PartyManager
+import annchienta, PartyManager, BattleManager
 
 partyManager = PartyManager.getPartyManager()
+battleManager = BattleManager.getBattleManager()
 annchienta.getAudioManager().playMusic( "music/inaran.ogg")
 annchienta.getVideoManager().setClearColor(0,0,0)
-partyManager.enemiesInMap = ["goblin", "stauld", "squid"]
-partyManager.background = "images/backgrounds/cave.png"
+battleManager.enemiesInMap = ["goblin", "stauld", "squid"]
+battleManager.background = "images/backgrounds/cave.png"
 

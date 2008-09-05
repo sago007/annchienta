@@ -17,10 +17,12 @@ annchienta.init("save")
 
 engine = annchienta.getEngine()
 
+# Init VideoManager.
 videoManager = annchienta.getVideoManager()
 videoManager.setVideoMode( 400, 300, "Annchienta", False )
 videoManager.setClearColor(0,0,0)
 
+# Init MapManager.
 mapManager = annchienta.getMapManager()
 mapManager.setTileWidth(64)
 mapManager.setTileHeight(32)
@@ -29,9 +31,11 @@ mapManager.setMaxAscentHeight(32)
 mapManager.setMaxDescentHeight(32)
 mapManager.setOnUpdateScript("src/OnUpdate.py")
 
+# Init InputManager.
 inputManager = annchienta.getInputManager()
 inputManager.setInteractKey( annchienta.SDLK_SPACE )
 
+# Init SceneManager.
 import SceneManager
 SceneManager.initSceneManager()
 sceneManager = SceneManager.getSceneManager()
@@ -41,10 +45,16 @@ sceneManager.largeRegularFont = annchienta.Font("assets/regular.ttf", 20)
 sceneManager.largeItalicsFont = annchienta.Font("assets/italics.ttf", 20)
 sceneManager.boxTextures = map( lambda i: annchienta.Surface("assets/box"+str(i)+".png"), range(9) )
 
+# Init PartyManager.
 import PartyManager
 PartyManager.initPartyManager()
 partyManager = PartyManager.getPartyManager()
 
+# Init BattleManager.
+import BattleManager
+BattleManager.initBattleManager()
+
+# Start Main menu.
 import Menu
 
 menu = Menu.Menu( "Main Menu", "I love my girlfriend." )

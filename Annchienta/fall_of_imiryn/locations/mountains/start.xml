@@ -53,12 +53,13 @@ partyManager.changeMap( &quot;locations/mountains/path1.xml&quot;, annchienta.Po
 </layer>
 
 <onload>
-import annchienta, PartyManager
+import annchienta, PartyManager, BattleManager
 partyManager = PartyManager.getPartyManager()
+battleManager = BattleManager.getBattleManager()
 annchienta.getAudioManager().playMusic( &quot;music/mountains.ogg&quot;)
 annchienta.getVideoManager().setClearColor(147,201,233)
-partyManager.enemiesInMap = []
-partyManager.background = None
+BattleManager.enemiesInMap = []
+BattleManager.background = None
 </onload>
 
 </map>

@@ -1,10 +1,11 @@
-import annchienta, PartyManager
+import annchienta, PartyManager, BattleManager
 
 partyManager = PartyManager.getPartyManager()
+battleManager = BattleManager.getBattleManager()
 annchienta.getAudioManager().playMusic( "music/mountains.ogg")
 annchienta.getVideoManager().setClearColor(147,201,233)
-partyManager.enemiesInMap = ["ice warrior", "coeurl"]
-partyManager.background = "images/backgrounds/ice.png"
+battleManager.enemiesInMap = ["ice warrior", "coeurl"]
+battleManager.background = "images/backgrounds/ice.png"
 
 # Load images we need for rendering into the cache
 # so we don't have to do this on-the-fly.
