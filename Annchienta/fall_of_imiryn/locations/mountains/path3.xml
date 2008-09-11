@@ -34,11 +34,18 @@
     0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 200 3 0 0    200 3 0 0 200 3 200 3 0 0    200 3 200 3 200 3 200 3 0 0    200 3 200 3 200 3 200 3 0 0    200 3 200 3 200 3 200 3 0 0    200 3 200 3 200 3 100 3 0 0    100 3 200 3 100 3 200 3 0 0    200 3 100 3 100 3 100 3 0 0    100 3 100 3 100 3 100 3 0 0    100 3 100 3 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 -16 1 -16 1 0 0    -16 1 -16 1 -100 1 -200 1 0 0    -200 1 -100 1 -200 3 -200 3 0 0    -200 3 -200 3 -200 3 0 0 0 0    0 0 -200 3 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    
 </tiles>
 
-<!-- Way to path2 -->
+<!-- Way back to path2 -->
 <area tilex1="20" tilex2="23" tiley1="28" tiley2="30">
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/mountains/path2.xml&quot;, annchienta.Point( annchienta.TilePoint, 8, 3 ) )
+</area>
+
+<!-- Way to path4 -->
+<area tilex1="6" tilex2="9" tiley1="0" tiley2="2">
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.changeMap( &quot;locations/mountains/path4.xml&quot;, annchienta.Point( annchienta.TilePoint, 21, 27 ) )
 </area>
 
 <!-- Area that triggers encouter with enthavos (1) -->
