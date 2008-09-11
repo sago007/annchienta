@@ -5,21 +5,21 @@
     <enemy name="goblin">
         <level lvl="1"/>
         <primarystats att="14" mat="14" def="20" mdf="20" spd="20"/>
-        <healthstats hp="50" mhp="50" mp="10" mmp="10"/>
+        <healthstats hp="40" mhp="40" mp="10" mmp="10"/>
         <elemental fire="2" ice="1" water="1" thunder="1"/>
         <actions>attack fog</actions>
         <sprite filename="sprites/goblin.png"/>
-        <drop xp="12" item="eyedrops" rate="0.3" steal="potion"/>
+        <drop xp="15" item="eyedrops" rate="0.3" steal="tincture"/>
     </enemy>
     <!-- STAULD -->
     <enemy name="stauld">
         <level lvl="1"/>
         <primarystats att="5" mat="14" def="40" mdf="20" spd="10"/>
-        <healthstats hp="40" mhp="40" mp="15" mmp="15"/>
+        <healthstats hp="30" mhp="30" mp="15" mmp="15"/>
         <elemental fire="2" ice="2" water="2" thunder="2"/>
         <actions>attack fire</actions>
         <sprite filename="sprites/stauld.png"/>
-        <drop xp="14" item="tincture" rate="0.3" steal="potion"/>
+        <drop xp="17" item="tincture" rate="0.3" steal="potion"/>
     </enemy>
     <!-- SQUID -->
     <enemy name="squid">
@@ -29,7 +29,7 @@
         <elemental fire="1" ice="1" water="-1" thunder="2"/>
         <actions>attack fog water</actions>
         <sprite filename="sprites/squid.png"/>
-        <drop xp="15" item="potion" rate="0.3" steal="eyedrops"/>
+        <drop xp="23" item="potion" rate="0.3" steal="eyedrops"/>
     </enemy>
 
     <!-- ULTROS -->
