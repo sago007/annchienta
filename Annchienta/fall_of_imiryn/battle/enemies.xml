@@ -99,5 +99,15 @@
         <drop xp="60" item="oil" rate="0.4" steal="feather"/>
     </enemy>
 
+    <!-- ENTHAVOS -->
+    <enemy name="enthavos">
+        <level lvl="10"/>
+        <primarystats att="56" mat="37" def="60" mdf="60" spd="200"/>
+        <healthstats hp="1300" mhp="1300" mp="200" mmp="200"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <actions>attack ice water thunder fire thunderstab</actions>
+        <sprite filename="sprites/enthavos.png" x1="0" x2="30" y1="40" y2="80"/>
+        <drop xp="230" item="hi-potion" rate="1.0" steal="grenade"/>
+    </enemy>
 </enemies>
 

@@ -189,9 +189,11 @@ class Battle:
         if len(self.readyEnemies):
             actor = self.readyEnemies.pop(0)
             action, target = actor.selectAction( self )
-            self.actionQueue += [ (action, actor, target) ]
-            # Make sure to reset timer
-            actor.timer = 0.0
+            # An enemy can't queue twice, so check if the enemy isn't there already.
+            if not len( filter( lambda a: a[1]==actor, self.actionQueue ) ):
+                self.actionQueue += [ (action, actor, target) ]
+                # Make sure to reset timer
+                actor.timer = 0.0
 
         # Update actionqueue
         if len(self.actionQueue) and not self.actionInProgress and not self.menuOpen:
