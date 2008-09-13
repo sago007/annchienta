@@ -21,8 +21,8 @@ class EquipmentMenu( Menu.Menu ):
         # Set index
         self.combatantIndex = combatantIndex
 
-        # On top.
-        self.top()
+        # On top right.
+        self.topRight()
 
     # Overwrite render: we also want to draw combatant info
     def render( self ):
@@ -31,10 +31,24 @@ class EquipmentMenu( Menu.Menu ):
 
         self.combatant = self.partyManager.team[ self.combatantIndex ]
         
-        # Start by drawing the combatant itself.
-        self.sceneManager.drawBox( self.sceneManager.margin, self.sceneManager.margin, self.sceneManager.margin*3+self.combatant.width, self.sceneManager.margin*3+self.combatant.height )
-        self.videoManager.drawSurface( self.combatant.sprite, self.sceneManager.margin*2, self.sceneManager.margin*2, self.combatant.sx1, self.combatant.sy1, self.combatant.sx2, self.combatant.sy2 ) 
+        # We want to draw a box with all combatants in it.
+        self.sceneManager.drawBox( self.sceneManager.margin, self.sceneManager.margin, self.sceneManager.margin*3+self.combatant.width*3, self.sceneManager.margin*3+self.combatant.height )
 
+        # Loop through combatant in team and draw their sprite. We assume the dimensions of all
+        # character sprites are equal.
+        for i in range(len(self.partyManager.team)):
+            
+            c = self.partyManager.team[ i ]
+
+            # Draw the combatant transparantly if it's not active
+            if i==self.combatantIndex:
+                self.videoManager.setColor()
+            else:
+                self.videoManager.setColor( 255, 255, 255, 80 )
+
+            self.videoManager.drawSurface( c.sprite, self.sceneManager.margin*2 + self.combatant.width*i, self.sceneManager.margin*2, c.sx1, c.sy1, c.sx2, c.sy2 ) 
+
+        self.videoManager.setColor()
 
         x1 = self.sceneManager.margin
         y1 = self.height + self.sceneManager.margin*4
@@ -59,21 +73,24 @@ class EquipmentMenu( Menu.Menu ):
         self.videoManager.drawString( self.sceneManager.defaultFont, str(text), 0, 0 )
         
         self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
-        self.videoManager.drawString( self.sceneManager.italicsFont, "Arrow keys to cycle through party members.", 0, 0 )
+        self.videoManager.drawString( self.sceneManager.italicsFont, "Click combatants to select them.", 0, 0 )
 
         self.videoManager.popMatrix()
         
-    # Overwrite update to allow left & right keys.
+    # Overwrite update to allow character cycling.
     def update( self ):
         
         Menu.Menu.update( self )
-        if self.inputManager.keyTicked( annchienta.SDLK_LEFT ):
-            self.combatantIndex -= 1
 
-        if self.inputManager.keyTicked( annchienta.SDLK_RIGHT ):
-            self.combatantIndex += 1
-
-        self.combatantIndex %= len( self.partyManager.team )
+        # Check if one of the party members on top is clicked.
+        self.combatant = self.partyManager.team[ self.combatantIndex ]
+        for i in range(len(self.partyManager.team)):
+            x1 = self.sceneManager.margin*2 + i*self.combatant.width
+            y1 = self.sceneManager.margin*2
+            x2 = x1 + self.combatant.width
+            y2 = y1 + self.combatant.height
+            if self.inputManager.clicked( x1, y1, x2, y2 ):
+                self.combatantIndex = i
 
     # Pops and handles stuff.
     def run( self ):

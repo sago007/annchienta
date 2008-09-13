@@ -72,6 +72,16 @@ class Menu(MenuItem):
             if m.isMenu:
                 m.top()
 
+    # Sets the menu on top of the screen, on the right side...
+    def topRight( self ):
+        self.toolTipOnTop = False
+        self.y = self.sceneManager.margin
+        self.x = self.videoManager.getScreenWidth()-self.width-self.sceneManager.margin
+        # Work recursive for submenus
+        for m in self.options:
+            if m.isMenu:
+                m.topRight()
+
     # Sets the menu in the left bottom of the screen
     def leftBottom( self ):
         self.toolTipOnTop = True
