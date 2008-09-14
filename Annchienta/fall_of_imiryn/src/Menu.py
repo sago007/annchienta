@@ -26,12 +26,22 @@ class Menu(MenuItem):
         self.mapManager = annchienta.getMapManager()
         self.sceneManager = SceneManager.getSceneManager()
         
-        # Set variables
+        # This is a menu, not just a menu item.
         self.isMenu = True
+
+        # Size of the menu
         self.width, self.height = 0, 0
+
+        # Position on the screen
         self.x, self.y = 0, 0
+
+        # If the tooltip should be drawn on top of the screen
         self.toolTipOnTop = True
+
+        # Kinda self explanatory
         self.maxItemsInColumn = 4
+
+        # The options in the menu. Use setOptions() to set them!
         self.options = []
 
     def setOptions( self, options=None ):
