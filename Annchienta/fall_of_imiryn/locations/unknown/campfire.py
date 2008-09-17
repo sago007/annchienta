@@ -11,7 +11,6 @@ currentMap = partyManager.currentMap
 august = partyManager.player
 
 if partyManager.hasRecord("unknown_can_leave"):
-
     pass
 
 elif not (partyManager.hasRecord("unknown_found_flints") and partyManager.hasRecord("unknown_found_wood") and partyManager.hasRecord("unknown_found_food")): # If not all_objects_collected
@@ -58,7 +57,9 @@ else:
     sceneManager.speak( march, "The Nupol continent. I'm quite sure. I've been here once with my old man." )
     sceneManager.speak( march, "The very south of the Nupol continent, of course..." )
     sceneManager.speak( august, "March's father is quite a rich man. He has high function at the Ministry of Laustwan, and is required to travel a lot.", True )
-    sceneManager.speak( august, "March doesn't seem to like his father, though, for some strange reason.", True )
+    sceneManager.speak( august, "... The Ministry of Laustwan makes sure nobody abuses these creatures, as they would offer their help to anyone." )
+    sceneManager.speak( august, "This lead me to think March's father would be a kind and gentle man." )
+    sceneManager.speak( august, "Well, maybe he is, but March doesn't seem to like his father, though.", True )
     sceneManager.speak( march, "The air feels differently here... less polluted..." )
     sceneManager.speak( august, "The Nupol continent is situared to the south of the Jemor continent, where we came from.", True )
     sceneManager.speak( august, "Our Imiryn Empire only recently conquered this continent... and we only have some trade cities in the north of this continent.", True )

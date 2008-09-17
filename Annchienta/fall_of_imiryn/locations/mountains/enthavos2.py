@@ -41,8 +41,8 @@ sceneManager.speak( avril, "We figured that much! Are you Enthavos? What are you
 sceneManager.speak( enthavos, "Mostly, I want it all to go away..." )
 sceneManager.speak( enthavos, "But now the time has come for a little test. Engage!" )
 
-#won = battleManager.runBattle( ["enthavos"], annchienta.Surface("images/backgrounds/ice.png"), False )
-won = True
+won = battleManager.runBattle( ["enthavos"], annchienta.Surface("images/backgrounds/ice.png"), False )
+#won = True
 
 if won:
     sceneManager.speak( enthavos, "Good... very good. This will be sufficient." )
@@ -68,7 +68,9 @@ if won:
     sceneManager.speak( enthavos, "Once there, read this letter. All will become clear." )
     sceneManager.speak( enthavos, "I'm sorry, but I can't help you any more. I am risking my life already." )
     sceneManager.speak( enthavos, "I wish you a safe journey, but I fear it will be more of the contrary. Goodbye... brother."  )
-    sceneManager.speak( august, "Goodbye..." )
+    sceneManager.speak( august, "Goodbye... you are coming back, right?" )
+    sceneManager.speak( enthavos, "I... hmm. Never mind." )
+    sceneManager.fade()
 
     partyManager.addRecord("mountains_second_enthavos_encounter")
 

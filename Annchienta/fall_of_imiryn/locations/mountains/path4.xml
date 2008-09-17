@@ -34,11 +34,21 @@
     0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 200 3 200 3 0 0    200 3 200 3 200 3 200 3 0 0    200 3 200 3 200 3 150 3 0 0    150 3 200 3 100 3 100 3 0 0    100 3 100 3 100 3 100 3 0 0    100 3 100 3 100 3 100 3 0 0    100 3 100 3 100 3 100 3 0 0    100 3 100 3 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 -16 3 0 0    -16 3 0 1 -150 3 -150 3 0 0    -150 3 -150 3 -150 3 -150 3 0 0    -150 3 -150 3 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    
 </tiles>
 
+<!-- A save crystal. -->
+<staticobject config="locations/common/crystal.xml" name="crystal" tilex="7" tiley="8"/>
+
 <!-- Way back to path3 -->
 <area tilex1="20" tilex2="25" tiley1="28" tiley2="30">
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/mountains/path3.xml&quot;, annchienta.Point( annchienta.TilePoint, 9, 3 ) )
+</area>
+
+<!-- Way to end of the mountains. -->
+<area tilex1="2" tilex2="5" tiley1="0" tiley2="2">
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.changeMap( &quot;locations/mountains/end.xml&quot;, annchienta.Point( annchienta.TilePoint, 13, 9 ) )
 </area>
 
 <!-- Area that triggers encouter with enthavos (2) -->
