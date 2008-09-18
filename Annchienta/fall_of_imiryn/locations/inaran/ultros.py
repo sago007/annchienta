@@ -16,7 +16,7 @@ august = partyManager.player
 sceneManager.initDialog( [august] )
 
 sceneManager.text("Ultros:\nYaaaouch! Seafood soup!")
-won = BattleManager.runBattle( ["ultros"], annchienta.Surface("images/backgrounds/cave.png"), False )
+won = battleManager.runBattle( ["ultros"], annchienta.Surface("images/backgrounds/cave.png"), False )
 #won = True
 
 if won:
