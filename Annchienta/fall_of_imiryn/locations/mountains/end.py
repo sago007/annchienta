@@ -57,6 +57,10 @@ sceneManager.fade()
 
 partyManager.addRecord("mountains_read_letter")
 
+# Quit demo for now.
+sceneManager.text("You have reached the end of the Fall of Imiryn demo. I hope you had a lot of fun. You can drop any comments at jaspervdj@gmail.com.")
+mapManager.stop()
+
 sceneManager.quitDialog()
 currentMap.removeObject( march )
 currentMap.removeObject( avril )

@@ -65,12 +65,12 @@ options = [ Menu.MenuItem("new", "Start a new game."),
 menu.setOptions( options )
 menu.top()
 
-videoManager.begin()
-videoManager.end()
-videoManager.end()
-
 running = True
 while running and inputManager.running():
+
+    videoManager.begin()
+    videoManager.end()
+    videoManager.end()
 
     ans = menu.pop( None )
 
