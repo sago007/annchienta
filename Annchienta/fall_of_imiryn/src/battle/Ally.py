@@ -162,11 +162,21 @@ class Ally( Combatant.Combatant ):
             target = None
             
             # Find out hover target
+            # Just have it point to the closest combatant.
+            distance = 0
             for c in battle.combatants:
-                if battle.inputManager.hover( int(c.position.x-c.width/2), int(c.position.y-c.height/2), int(c.position.x+c.width/2), int(c.position.y+c.height/2) ):
-                    if target is None:
-                        target = c
-                        c.marked = True
+                
+                # Use Vectors to calculate distance between mouse and combatant c.
+                mouse = annchienta.Vector( battle.inputManager.getMouseX(), battle.inputManager.getMouseY() )
+                pos = annchienta.Vector( c.position.x, c.position.y )
+
+                d = mouse.distance( pos )
+
+                if d<distance or target is None:
+                    target = c
+                    distance = d
+
+            target.marked = True
             
             # Check for input
             if not battle.inputManager.running() or battle.inputManager.buttonTicked(1):
