@@ -62,5 +62,10 @@ partyManager.refreshMap()
     </area>
 </if>
 
+<!-- Some trees. -->
+<staticobject name="tree" config="locations/facilities/tree.xml" tilex="12" tiley="27"/>
+<staticobject name="tree" config="locations/facilities/tree.xml" tilex="15" tiley="30"/>
+<staticobject name="tree" config="locations/facilities/tree.xml" tilex="22" tiley="28"/>
+
 </layer>
 </map>
