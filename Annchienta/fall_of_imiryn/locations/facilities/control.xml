@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<sprite image="sprites/control.png" mask="masks/control.png">
+
+    <frame number="1" x1="0" y1="0" x2="24" y2="30"/>
+    <frame number="2" x1="24" y1="0" x2="48" y2="30"/>
+
+    <animation name="stand" frames="1" speed="10" />
+    <animation name="green" frames="2" speed="10" />
+
+<!-- On interact, simply allow access. -->
+<oninteract>
+import annchienta, PartyManager, SceneManager
+
+sceneManager = SceneManager.getSceneManager()
+sceneManager.speak( partyManager.player, 'I can use Kyzano\'s access pass here...' )
+
+partyManager = PartyManager.getPartyManager()
+partyManager.addRecord('facilities_outer_access')
+partyManager.refreshMap()
+</oninteract>
+
+</sprite>
+
