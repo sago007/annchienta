@@ -22,6 +22,20 @@ namespace Annchienta
     class Surface;
     class TileSet;
 
+/** \brief Holds a Tile.
+ *
+ * This class is used to hold parts of the Layer, called tiles.
+ * Because we are using an isometric system, tiles are usually
+ * shaped like a rhombus.
+ *
+ * A Tile consist of four Points, indexed like this:
+ * \image html tile_pointindexes.png
+ *
+ * A Tile has a top Surface and a Side Surface.
+ * \image html tile_anatomy.png
+ */
+class Tile(Entity):
+
     class Tile: public Entity
     {
 

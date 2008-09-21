@@ -116,6 +116,7 @@ ENDIF(FREETYPE_INCLUDE_DIRS)
 
 # Continue.
 ADD_SUBDIRECTORY(src)
+ADD_SUBDIRECTORY(doc)
 
 # Install modules to the right place.
 INSTALL(
