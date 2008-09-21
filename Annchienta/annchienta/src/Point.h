@@ -42,6 +42,33 @@ namespace Annchienta
         ScreenPoint
     };
 
+    /** \brief Holds a Point.
+     *
+     *  This class is used for holding Points. You can
+     *  manipulate the coordinates directly.
+     *
+     *  \section point_example1 Example:
+     *  \code
+     * import annchienta
+     * point = annchienta.Point( annchienta.TilePoint, 2, 2 )
+     * point.x = point.y = point.z = 0
+     *  \endcode
+     *
+     *  Their are different types of point, I therefore
+     *  recommend you read the PointType documentation.
+     *
+     *  Converting between types is easy, just use the to() and
+     *  convert() functions.
+     *
+     *  \section point_example2 Example:
+     *  \code
+     * import annchienta
+     * videoManager = annchienta.getVideoManager()
+     * point = annchienta.Point( annchienta.TilePoint, 2, 2 )
+     * point.convert( ScreenPoint )
+     * videoManager.drawLine( point.x, point.y, 0, 0 )
+     *  \endcode
+     */
     class Point
     {
         private:

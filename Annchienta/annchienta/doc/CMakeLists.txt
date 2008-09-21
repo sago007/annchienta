@@ -1,5 +1,5 @@
 # GEnerate Doxygen documentation
 ADD_CUSTOM_TARGET(
-    documentation
+    doc
     doxygen Doxyfile
 )
