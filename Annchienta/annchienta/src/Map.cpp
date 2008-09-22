@@ -148,6 +148,28 @@ namespace Annchienta
                         }
                         xml->read();
                     }
+                    if( !strcmpCaseInsensitive("shadowed", xml->getNodeName()) )
+                    {
+                        xml->read();
+                        if( layer->hasTiles() )
+                        {
+                            std::stringstream data( xml->getNodeData() );
+                            for( int y=0; y<height; y++ )
+                            {
+                                for( int x=0; x<width; x++ )
+                                {
+                                    int shadowed;
+                                    data >> shadowed;
+                                    layer->getTile(x,y)->setShadowed( (bool) shadowed );
+                                }
+                            }
+                        }
+                        else
+                        {
+                            logManager->warning("Shadow properties defined before tile data in '%s'. Ignoring.", filename);
+                        }
+                        xml->read();
+                    }
                     if( !strcmpCaseInsensitive("staticobject", xml->getNodeName() ) )
                     {
                         StaticObject *staticObject;

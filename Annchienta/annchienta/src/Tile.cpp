@@ -40,6 +40,12 @@ namespace Annchienta
         Surface *orderedSurfaces[5] = { 0, 0, 0, 0, 0 };
         int surfaceCount[4] = { 1, 0, 0, 0 };
 
+        /* Draw darker if this tile is shadowed.
+         */
+        float r=1.0, g=1.0, b=1.0;
+        if( shadowed )
+            r = g = b = 0.5;
+
         /* Count how many surfaces there are of each, save to surfaceCount[].
          */
         for( int i=0; i<4; i++ )
@@ -104,19 +110,19 @@ namespace Annchienta
             glBindTexture( GL_TEXTURE_2D, orderedSurfaces[i]->getTexture() );
             glBegin( GL_QUADS );
     
-                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[0] || i==0?1.0f:0.0f );
+                glColor4f( r, g, b, orderedSurfaces[i]==surfaces[0] || i==0?1.0f:0.0f );
                 glTexCoord2f( xCenter, s->getTopTexCoord() );
                 glVertex2f( (GLfloat)points[0].x, (GLfloat)(points[0].y-points[0].z) );
     
-                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[1] || i==0?1.0f:0.0f );
+                glColor4f( r, g, b, orderedSurfaces[i]==surfaces[1] || i==0?1.0f:0.0f );
                 glTexCoord2f( s->getLeftTexCoord(), yCenter );
                 glVertex2f( (GLfloat)points[1].x, (GLfloat)(points[1].y-points[1].z) );
     
-                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[2] || i==0?1.0f:0.0f );
+                glColor4f( r, g, b, orderedSurfaces[i]==surfaces[2] || i==0?1.0f:0.0f );
                 glTexCoord2f( xCenter, s->getBottomTexCoord() );
                 glVertex2f( (GLfloat)points[2].x, (GLfloat)(points[2].y-points[2].z) );
     
-                glColor4f( 1.0f, 1.0f, 1.0f, orderedSurfaces[i]==surfaces[3] || i==0?1.0f:0.0f );
+                glColor4f( r, g, b, orderedSurfaces[i]==surfaces[3] || i==0?1.0f:0.0f );
                 glTexCoord2f( s->getRightTexCoord(), yCenter );
                 glVertex2f( (GLfloat)points[3].x, (GLfloat)(points[3].y-points[3].z) );
 
@@ -141,7 +147,7 @@ namespace Annchienta
              *       -|||-
              *         -
              */
-            glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
+            glColor4f( r, g, b, 1.0f );
             glBindTexture( GL_TEXTURE_2D, sideSurface->getTexture() );
             //sideSurface->draw( points[1].x, points[0].y-points[0].z );
             glBegin( GL_TRIANGLE_STRIP );
@@ -180,7 +186,7 @@ namespace Annchienta
 
     Tile::Tile( TileSet *ts, Point p0, int s0, Point p1, int s1, Point p2, int s2,
                 Point p3, int s3, int sso, int side ): Entity("tile"), list(0), tileSet(ts),
-                sideSurfaceOffset(sso), nullTile(false), needsRecompiling(true),
+                sideSurfaceOffset(sso), shadowed(false), nullTile(false), needsRecompiling(true),
                 obstruction(DefaultObstruction)
     {
         points[0] = p0;
@@ -326,6 +332,17 @@ namespace Annchienta
     int Tile::getSideSurfaceOffset() const
     {
         return sideSurfaceOffset;
+    }
+
+    void Tile::setShadowed( bool shadow )
+    {
+        shadowed = shadow;
+        needsRecompiling = true;
+    }
+
+    bool Tile::isShadowed() const
+    {
+        return shadowed;
     }
 
     void Tile::setObstructionType( ObstructionType o )

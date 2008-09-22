@@ -472,6 +472,8 @@ class Tile(Entity):
     def getSurface(*args): return _annchienta.Tile_getSurface(*args)
     def getSideSurface(*args): return _annchienta.Tile_getSideSurface(*args)
     def getSideSurfaceOffset(*args): return _annchienta.Tile_getSideSurfaceOffset(*args)
+    def setShadowed(*args): return _annchienta.Tile_setShadowed(*args)
+    def isShadowed(*args): return _annchienta.Tile_isShadowed(*args)
     def setObstructionType(*args): return _annchienta.Tile_setObstructionType(*args)
     def getObstructionType(*args): return _annchienta.Tile_getObstructionType(*args)
 Tile_swigregister = _annchienta.Tile_swigregister

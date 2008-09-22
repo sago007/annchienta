@@ -278,6 +278,9 @@ class Editor(QWidget):
             for at in self.selected.tiles:
                 at.tile.setObstructionType( int(self.obstructionTypeBox.currentIndex()) )
 
+        for at in self.selected.tiles:
+            at.tile.setShadowed( bool(self.shadowedBox.isChecked() ) )
+
         #if needsRecompiling:
         #    for at in self.selected.tiles:
         #        at.tile.makeList()

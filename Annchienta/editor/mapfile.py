@@ -119,3 +119,36 @@ class MapFile:
                 for o in obstructionElements:
                     layerElements[l].removeChild(o)
 
+            # collect shadowed values
+            shadowed = []
+            for y in range(layer.getHeight()):
+                for x in range(layer.getWidth()):
+                    shadowed.append( layer.getTile(x,y).isShadowed() )
+
+            # write only if there are non-default values.
+            if len( filter( lambda s: s, shadowed ) ):
+                shadowedElements = layerElements[l].getElementsByTagName("shadowed")
+                if not len(shadowedElements):
+                    shadowedElements = [ self.document.createElement("shadowed") ]
+                    layerElements[l].appendChild( shadowedElements[0] )
+
+                # remove all children
+                while shadowedElements[0].hasChildNodes():
+                    shadowedElements[0].removeChild( shadowedElements[0].lastChild )
+
+                data = "\n    "
+
+                for i in shadowed:
+                    data += str(int(i)) + " "
+
+                data += "\n"
+
+                dataNode = self.document.createTextNode( data )
+                shadowedElements[0].appendChild( dataNode )
+
+            # remove the shadowed element (if there is one)
+            else:
+                shadowedElements = layerElements[l].getElementsByTagName("shadowed")
+                for s in shadowedElements:
+                    layerElements[l].removeChild(s)
+

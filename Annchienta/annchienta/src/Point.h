@@ -55,7 +55,7 @@ namespace Annchienta
      *  \endcode
      *
      *  Their are different types of point, I therefore
-     *  recommend you read the PointType documentation.
+     *  recommend you read the \ref PointType documentation.
      *
      *  Converting between types is easy, just use the to() and
      *  convert() functions.

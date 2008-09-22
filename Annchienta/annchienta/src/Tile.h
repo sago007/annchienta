@@ -49,6 +49,12 @@ namespace Annchienta
             int sideSurfaceNumber;
             int sideSurfaceOffset;
 
+            /* If the tile lies in the shadow or not.
+             * Should be drawn darker in shadow, of
+             * course...
+             */
+            bool shadowed;
+
             bool nullTile;
             bool needsRecompiling;
 
@@ -121,6 +127,9 @@ namespace Annchienta
             int getSurface( int i ) const;
             int getSideSurface() const;
             int getSideSurfaceOffset() const;
+
+            void setShadowed( bool shadowed );
+            bool isShadowed() const;
 
             /** \brief Sets the ObstructionType.
              *
