@@ -110,4 +110,6 @@ partyManager.refreshMap()
 
 </layer>
 
+<onload script="locations/facilities/onload.py"/>
+
 </map>

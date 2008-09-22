@@ -30,7 +30,7 @@ class BattleManager:
             if len(found):
                 combatants += [ Enemy.Enemy( found[0] ) ]
             else:
-                logManager.error( "No enemy called "+name+" found in "+Battle.enemiesLocation+"." )
+                logManager.error( "No enemy called "+name+" found in "+self.enemiesLocation+"." )
 
         battle = Battle.Battle( combatants, background, canFlee )
         battle.run()

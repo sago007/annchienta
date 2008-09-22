@@ -109,5 +109,17 @@
         <sprite filename="sprites/enthavos.png" x1="0" x2="30" y1="40" y2="80"/>
         <drop xp="230" item="hi-potion" rate="1.0" steal="grenade"/>
     </enemy>
+
+    <!-- BRAINFUCK MUTANT -->
+    <enemy name="brainfuck mutant">
+        <level lvl="8"/>
+        <primarystats att="45" mat="35" def="55" mdf="42" spd="45"/>
+        <healthstats hp="350" mhp="350" mp="80" mmp="80"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <actions>attack bite slime fire</actions>
+        <sprite filename="sprites/brainfuck_mutant.png"/>
+        <drop xp="60" item="hi-potion" rate="0.4" steal="feather"/>
+    </enemy>
+
 </enemies>
 
