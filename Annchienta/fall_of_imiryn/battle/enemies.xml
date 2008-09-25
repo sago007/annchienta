@@ -121,5 +121,17 @@
         <drop xp="60" item="hi-potion" rate="0.4" steal="feather"/>
     </enemy>
 
+    <!-- SOLDIER -->
+    <enemy name="soldier">
+        <level lvl="8"/>
+        <primarystats att="55" mat="30" def="40" mdf="60" spd="45"/>
+        <healthstats hp="400" mhp="400" mp="80" mmp="80"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <actions>attack swing</actions>
+        <sprite filename="sprites/soldier.png" x1="0" x2="30" y1="40" y2="80"/>
+        <drop xp="60" item="tincture" rate="0.4" steal="feather"/>
+    </enemy>
+
+
 </enemies>
 
