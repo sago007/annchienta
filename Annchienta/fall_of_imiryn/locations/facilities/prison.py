@@ -32,9 +32,6 @@ sceneManager.speak( august, "What?" )
 sceneManager.speak( march, "What else could it be? Why else would someone want that many Laustwan, and hide away from the Jemor continent?" )
 sceneManager.speak( august, "So that was what my brother was talking about... a terrible secret indeed." )
 sceneManager.speak( avril, "We need to set them free. We have to!" )
-sceneManager.speak( march, "These are probably not the only ones. I mean, how many buildings are there?! Twenty? Thirty? Maybe even more..." )
-sceneManager.speak( august, "Do we have another choice, then?" )
-sceneManager.speak( march, "We take out the guy who's behind all this." )
 
 sceneManager.fade()
 

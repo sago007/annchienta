@@ -77,8 +77,17 @@ namespace Annchienta
         public:
             int x, y, z;
 
+            /** Creates a new Point with the given coordinates.
+             *  The Z coordinate is not used most of the time.
+             *  For more information, see \ref PointType
+             */
             Point( PointType type=TilePoint, int x=0, int y=0, int z=0 );
+
+            /** A copy constructor that creates a new Point
+             *  based on a Point that already exists.
+             */
             Point( const Point &other );
+
             ~Point();
 
             #ifndef SWIG /* Gets ignored anyway. */
@@ -86,11 +95,28 @@ namespace Annchienta
                 void setType( PointType type );
             #endif
 
+            /** \return The \ref PointType for this Point.
+             */
             PointType getType() const;
+
+            /** This function converts this Point to a Point
+             *  of another type.
+             */
             void convert( PointType newtype );
+
+            /** This function is similar to the convert function,
+             *  but this one will make no changes to this Point,
+             *  returning a new Point instead.
+             */
             Point to( PointType newtype ) const;
 
+            /** Returns True if this Point lies in the rectangular
+             *  area defined by leftTop and rightBottom.
+             */
             bool isEnclosedBy( Point *leftTop, Point *rightBottom );
+
+            /** Returns the distance to another Point.
+             */
             int distance( Point other ) const;
 
     };

@@ -70,4 +70,7 @@ partyManager.changeMap( &quot;locations/facilities/entrance.xml&quot;, annchient
 
 
 </layer>
+
+<onload script="locations/facilities/onload.py"/>
+
 </map>

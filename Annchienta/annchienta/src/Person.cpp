@@ -97,6 +97,10 @@ namespace Annchienta
 
     bool Person::move( int x, int y, bool force )
     {
+        /* Do nothing when frozen. */
+        if( !force && this->isFrozen() )
+            return false;
+
         Point oldPosition = position;
 
         position.x += x;

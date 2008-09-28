@@ -30,9 +30,6 @@ namespace Annchienta
     {
         int x = 0, y = 0;
 
-        if( person->isFrozen() )
-            return;
-
         if( inputManager->getInputMode()==InteractiveMode && person==inputManager->getInputControlledPerson() )
         {
             /* Mouse input. Listen to it.

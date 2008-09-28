@@ -23,13 +23,6 @@ namespace Annchienta
 
     void SamplePersonControl::affect()
     {
-        /* Never move when frozen!
-         */
-        if( person->isFrozen() )
-        {
-            return;
-        }
-
         /* Stops walking and choose a new direction,
          * or wait a little.
          */

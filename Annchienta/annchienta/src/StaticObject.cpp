@@ -33,15 +33,18 @@ namespace Annchienta
 
     StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), passable(false), needsUpdate(true), onInteractScript(0), onInteractCode(0)
     {
+        /* We might need to log stuff here. */
         LogManager *logManager = getLogManager();
 
+        /* Open up our file and store the filename for later use. */
         IrrXMLReader *xml = createIrrXMLReader( configfile );
-
         strcpy( xmlFile, configfile );
 
+        /* Make sure the config file exists. */
         if( !xml )
-            logManager->warning( "Could not open config file '%s' for '%s'.", configfile, _name );
+            logManager->error( "Could not open config file '%s' for '%s'.", configfile, _name );
 
+        /* Read through the entire file. */
         while( xml && xml->read() )
         {
             switch( xml->getNodeType() )
@@ -68,7 +71,8 @@ namespace Annchienta
                         else
                             logManager->warning("Number not defined for frame in '%s'.", configfile);
 
-                        if( xml->getAttributeValue("x1") )
+                        if( xml->getAttributeValue("x1") && xml->getAttributeValue("y1") &&
+                            xml->getAttributeValue("x2") && xml->getAttributeValue("y2") )
                         {
                             frame.x1 = xml->getAttributeValueAsInt("x1");
                             frame.y1 = xml->getAttributeValueAsInt("y1");
@@ -77,8 +81,7 @@ namespace Annchienta
                         }
                         else
                         {
-                            /* Default to complete sprite, if available.
-                             */
+                            /* Default to complete sprite, if available. */
                             if( sprite )
                             {
                                 frame.x1 = frame.y1 = 0;
