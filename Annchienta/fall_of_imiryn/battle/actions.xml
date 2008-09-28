@@ -63,11 +63,20 @@
     <action name="cure" category="white magic" target="1">
         <description>Heal an ally.</description>
         <elemental fire="0" ice="0" water="0" thunder="0" restorative="1"/>
-        <power factor="1.0" hit="1.0" type="magical"/>
+        <power factor="0.66" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="4"/>
         <animation type="sprite" data="images/animations/cure.png"/>
     </action>
+    <action name="cura" category="white magic" target="1">
+        <description>Heal an ally properly.</description>
+        <elemental fire="0" ice="0" water="0" thunder="0" restorative="1"/>
+        <power factor="1.3" hit="1.0" type="magical"/>
+        <status effect="none" hit="0"/>
+        <cost mp="8"/>
+        <animation type="sprite" data="images/animations/cura.png"/>
+    </action>
+
 
     <action name="fog" category="black magic" target="1">
         <description>Create a dense fog that might blind enemies.</description>
