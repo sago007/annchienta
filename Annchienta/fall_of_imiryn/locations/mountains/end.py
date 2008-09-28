@@ -51,7 +51,8 @@ sceneManager.speak( august, "Don't bother going after me, I will already be gone
 sceneManager.speak( august, "Eternal sleep is really something I can use. Goodbye, brother...", True )
 sceneManager.speak( avril, "August! I'm so sorry..." )
 sceneManager.speak( august, "... I want to go now. We invade these facilities this very day." )
-sceneManager.speak( august, "I don't know what is going on there. I don't know who's behind this, but that person will pay for it." )
+sceneManager.speak( august, "I'm not sure if that's such a good idea. If we wait until nightfall and find a hole in their security..." )
+sceneManager.speak( august, "I'm sorry, but this is my call." )
 
 sceneManager.fade()
 

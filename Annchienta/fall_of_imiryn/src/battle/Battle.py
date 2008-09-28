@@ -309,6 +309,10 @@ class Battle:
             if "blinded" in combatant.statusEffects:
                 rate /= 2.0
 
+            # We also have double damage on injured units.
+            if "injured" in combatant.statusEffects:
+                baseDamage *= 2
+
         hit = annchienta.randFloat() <= rate
 
         # Play animation

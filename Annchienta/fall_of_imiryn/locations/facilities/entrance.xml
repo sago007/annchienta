@@ -71,6 +71,13 @@ partyManager.refreshMap()
 <staticobject config="locations/facilities/tree.xml" name="tree" tilex="15" tiley="30"/>
 <staticobject config="locations/facilities/tree.xml" name="tree" tilex="22" tiley="28"/>
 
+<!-- Way to the prison part. -->
+<area tilex1="11" tilex2="13" tiley1="0" tiley2="2">
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.changeMap( &quot;locations/facilities/prison.xml&quot;, annchienta.Point( annchienta.TilePoint, 25, 10 ) )
+</area>
+
 </layer>
 
 <layer z="48">
