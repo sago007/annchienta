@@ -27,7 +27,7 @@
     <animation name="standwest" frames="7" speed="8" />
     <animation name="standsouth" frames="c" speed="8" />
 
-    <control type="null" />
+    <control type="sample" />
 
     <oninteract script="locations/common/laustwan.py"/>
 
