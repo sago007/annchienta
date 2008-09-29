@@ -21,7 +21,8 @@ namespace Annchienta
 
         char buffer[ DEFAULT_STRING_SIZE ];
 
-        /* Count the regular surfaces.
+        /* Count the regular surfaces: try directory/n.png, starting
+         * with n = 1, until it fails.
          */
         do
         {
@@ -33,7 +34,8 @@ namespace Annchienta
          */
         surfaces = new Surface*[numberOfSurfaces];
 
-        /* Load the actual surfaces.
+        /* Load the actual surfaces. The first surface does not
+         * exist as it is a NullTile.
          */
         surfaces[0] = 0;
 
@@ -43,7 +45,7 @@ namespace Annchienta
             surfaces[i] = new Surface( buffer );
         }
 
-        /* Repeat it all for the side surfaces.
+        /* Repeat it all for the side surfaces. Start by counting...
          */
         do
         {
@@ -55,7 +57,7 @@ namespace Annchienta
          */
         sideSurfaces = new Surface*[numberOfSideSurfaces];
 
-        /* Load the actual surfaces.
+        /* Load the actual surfaces. The first one is a NullTile, too.
          */
         sideSurfaces[0] = 0;
 
@@ -65,6 +67,9 @@ namespace Annchienta
             sideSurfaces[i] = new Surface( buffer );
         }
 
+        /* Create a new mask with the good size. Masks are tile-shaped
+         * by default, so that's OK.
+         */
         mask = new Mask( getMapManager()->getTileWidth(), getMapManager()->getTileHeight() );
     }
 

@@ -531,8 +531,8 @@ class StaticObject(Entity):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_StaticObject
     __del__ = lambda self : None;
-    def setCollidingTiles(*args): return _annchienta.StaticObject_setCollidingTiles(*args)
-    def setZFromCollidingTiles(*args): return _annchienta.StaticObject_setZFromCollidingTiles(*args)
+    def calculateCollidingTiles(*args): return _annchienta.StaticObject_calculateCollidingTiles(*args)
+    def calculateZFromCollidingTiles(*args): return _annchienta.StaticObject_calculateZFromCollidingTiles(*args)
     def getEntityType(*args): return _annchienta.StaticObject_getEntityType(*args)
     def update(*args): return _annchienta.StaticObject_update(*args)
     def draw(*args): return _annchienta.StaticObject_draw(*args)

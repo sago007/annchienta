@@ -12184,20 +12184,20 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_StaticObject_setCollidingTiles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_StaticObject_calculateCollidingTiles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_setCollidingTiles",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_calculateCollidingTiles",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_setCollidingTiles" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_calculateCollidingTiles" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
-  (arg1)->setCollidingTiles();
+  (arg1)->calculateCollidingTiles();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -12205,20 +12205,20 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_StaticObject_setZFromCollidingTiles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_StaticObject_calculateZFromCollidingTiles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_setZFromCollidingTiles",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_calculateZFromCollidingTiles",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_setZFromCollidingTiles" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_calculateZFromCollidingTiles" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
-  (arg1)->setZFromCollidingTiles();
+  (arg1)->calculateZFromCollidingTiles();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -14820,8 +14820,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Mask_swigregister", Mask_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_StaticObject", _wrap_new_StaticObject, METH_VARARGS, NULL},
 	 { (char *)"delete_StaticObject", _wrap_delete_StaticObject, METH_VARARGS, NULL},
-	 { (char *)"StaticObject_setCollidingTiles", _wrap_StaticObject_setCollidingTiles, METH_VARARGS, NULL},
-	 { (char *)"StaticObject_setZFromCollidingTiles", _wrap_StaticObject_setZFromCollidingTiles, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_calculateCollidingTiles", _wrap_StaticObject_calculateCollidingTiles, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_calculateZFromCollidingTiles", _wrap_StaticObject_calculateZFromCollidingTiles, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getEntityType", _wrap_StaticObject_getEntityType, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_update", _wrap_StaticObject_update, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_draw", _wrap_StaticObject_draw, METH_VARARGS, NULL},

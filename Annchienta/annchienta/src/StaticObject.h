@@ -72,8 +72,8 @@ namespace Annchienta
             StaticObject( const char *name, Surface *surf, Mask *mask );
             virtual ~StaticObject();
 
-            void setCollidingTiles();
-            void setZFromCollidingTiles();
+            void calculateCollidingTiles();
+            void calculateZFromCollidingTiles();
 
             virtual EntityType getEntityType() const;
 

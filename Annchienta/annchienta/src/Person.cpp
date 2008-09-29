@@ -101,14 +101,17 @@ namespace Annchienta
         if( !force && this->isFrozen() )
             return false;
 
+        /* Store our old position, as we might need to
+         * return there if this move gets not accepted. */
         Point oldPosition = position;
 
+        /* Calculate the new position. */
         position.x += x;
         position.y += y;
         mapPosition = position.to( MapPoint );
 
-        /* Adjust animation.
-         */
+        /* Adjust animation based on the direction our
+         * Person is heading now. */
         if( x<0 )
         {
             heading = 0;
@@ -134,51 +137,52 @@ namespace Annchienta
             this->setStandAnimation();
         }
 
+        /* Always execute move under certain conditions. */
         if( force || !layer || (!x && !y) )
             return true;
 
+        /* Keep a copy of our old tiles. As I said, we might
+         * need to return to our old position. */
         std::list<Tile*> oldCollidingTiles = collidingTiles;
 
-        setCollidingTiles();
-        setZFromCollidingTiles();
+        /* Calculate the tiles we're colliding with and
+         * our new Z. */
+        calculateCollidingTiles();
+        calculateZFromCollidingTiles();
 
+        /* It is possible to move by default. Then, check
+         * for some rejections... */
         bool possible = true;
 
         /* Reject if there are now colliding tiles.
-         * (This means the player is probably outside the level.)
-         */
+         * (This means the player is probably outside the level.) */
         if( possible && collidingTiles.size() <= 0 )
             possible = false;
 
-        /* Reject if the person ascents too high.
-         */
+        /* Reject if the person ascents too high. */
         if( possible && oldPosition.z + getMapManager()->getMaxAscentHeight() < position.z )
             possible = false;
 
-        /* Reject if the person descents too deep.
-         */
+        /* Reject if the person descents too deep. */
         if( possible && (oldPosition.z - getMapManager()->getMaxDescentHeight() > position.z ) )
             possible = false;
 
         /* Reject if the person steps on a nulltile, or if that
-         * tile is fully obstructed.
-         */
+         * tile is fully obstructed. */
         for( std::list<Tile*>::iterator i = collidingTiles.begin(); possible && i!=collidingTiles.end(); i++ )
         {
             if( (*i)->isNullTile() || ((*i)->getObstructionType() == FullObstruction) )
                 possible = false;
         }
 
-        /* Reject if the person collides with something else.
-         */
+        /* Reject if the person collides with something else. */
         Point maskPosition = this->getMaskPosition();
         for( int i=0; possible && layer->getObject(i); i++ )
         {
             StaticObject *so = layer->getObject(i);
             if( (StaticObject*) this != so )
             {
-                /* Check this only if they're both unpassable.
-                 */
+                /* Check this only if they're both unpassable. */
                 if( !so->isPassable() && !this->isPassable())
                 {
                     Point otherMaskPosition( so->getMaskPosition() );
@@ -188,6 +192,9 @@ namespace Annchienta
             }
         }
 
+        /* If the whole thing ended up not being possible,
+         * revert everything to the original state before
+         * we moved. */
         if( !possible )
         {
             position = oldPosition;

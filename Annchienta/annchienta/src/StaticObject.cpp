@@ -172,7 +172,7 @@ namespace Annchienta
             delete[] onInteractScript;
     }
 
-    void StaticObject::setCollidingTiles()
+    void StaticObject::calculateCollidingTiles()
     {
         collidingTiles.clear();
 
@@ -206,7 +206,7 @@ namespace Annchienta
         collidingTiles.sort( DepthSortPredicate );
     }
 
-    void StaticObject::setZFromCollidingTiles()
+    void StaticObject::calculateZFromCollidingTiles()
     {
         /* Now, we set out Z to the highest one of the colliding tiles.
             */
@@ -251,8 +251,8 @@ namespace Annchienta
 
         if( needsUpdate && layer )
         {
-            setCollidingTiles();
-            setZFromCollidingTiles();
+            calculateCollidingTiles();
+            calculateZFromCollidingTiles();
 
             needsUpdate = false;
         }

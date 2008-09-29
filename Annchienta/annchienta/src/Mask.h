@@ -25,7 +25,8 @@ namespace Annchienta
             Mask( const char *filename );
 
             /** This creates a new mask with given dimensions. It will
-             *  have the form of an isometric Tile by default.
+             *  have the form of an isometric Tile by default, so you
+             *  can directly use this to do tile collision.
              *  \param w Width for the new Mask.
              *  \param h Height for the new Mask.
              */

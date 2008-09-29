@@ -43,7 +43,17 @@ namespace Annchienta
         #define square( a ) ((a)*(a))
         #define min( a, b ) ( (a)>(b)?(b):(a) )
         #define max( a, b ) ( (a)>(b)?(a):(b) )
+
+        /** Returns the absolute value of a number.
+         */
         #define absValue( a ) ( (a)>0? (a):-(a) )
+
+        /** Sign is a 'method' to determine the sign
+         *  of a number. If this function returns -1,
+         *  we're dealing with a negative number, if
+         *  it returns 1, our number is positive. It
+         *  returns 0 if our number is 0.
+         */
         #define sign( a ) ( (a)>0?1:((a)<0?-1:0) )
 
     #endif

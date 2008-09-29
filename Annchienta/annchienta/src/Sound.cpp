@@ -15,6 +15,7 @@ namespace Annchienta
 
         if( audioManager->inittedSuccesfully() )
         {
+            /* Load our chunk and start complaining if it failed. */
             chunk = Mix_LoadWAV( filename );
             if( !chunk )
                 getLogManager()->error( "Could not open '%s' as sound.", filename );
@@ -29,6 +30,8 @@ namespace Annchienta
 
     void Sound::play() const
     {
+        /* Simply play once, automatically choose any
+         * free channel to play it on. */
         if( audioManager->inittedSuccesfully() )
             Mix_PlayChannel( -1, chunk, 0 );
     }
