@@ -118,8 +118,20 @@
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack bite slime fire</actions>
         <sprite filename="sprites/brainfuck_mutant.png"/>
-        <drop xp="60" item="hi-potion" rate="0.4" steal="feather"/>
+        <drop xp="80" item="hi-potion" rate="0.4" steal="feather"/>
     </enemy>
+
+    <!-- SAMPLE 0x4a  -->
+    <enemy name="sample 0x4a">
+        <level lvl="8"/>
+        <primarystats att="50" mat="40" def="40" mdf="35" spd="50"/>
+        <healthstats hp="400" mhp="400" mp="100" mmp="80"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <actions>attack bite slime fire thunder water ice</actions>
+        <sprite filename="sprites/sample_0x4a.png"/>
+        <drop xp="80" item="ticture" rate="0.4" steal="potion"/>
+    </enemy>
+
 
     <!-- SOLDIER -->
     <enemy name="soldier">
@@ -129,7 +141,7 @@
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack swing</actions>
         <sprite filename="sprites/soldier.png" x1="0" x2="30" y1="40" y2="80"/>
-        <drop xp="60" item="tincture" rate="0.4" steal="feather"/>
+        <drop xp="80" item="tincture" rate="0.4" steal="feather"/>
     </enemy>
 
 

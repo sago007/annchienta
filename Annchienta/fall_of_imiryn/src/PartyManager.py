@@ -90,6 +90,7 @@ class PartyManager:
         teamElement = self.document.getElementsByTagName("team")[0]
         self.team = map( Ally.Ally, teamElement.getElementsByTagName("combatant") )
 
+    # Saves the game to filename.
     def save( self, filename=None ):
 
         self.filename = self.filename if filename is None else filename
@@ -98,7 +99,8 @@ class PartyManager:
         file.write( self.document.toprettyxml() )
         file.close()
 
-    # Creates new xml document
+    # Creates new xml document with all save information
+    # in it.
     def generateDocument( self ):
 
         # Clear our map cache.
