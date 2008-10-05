@@ -25,7 +25,7 @@ avril.lookAt( august )
 
 sceneManager.speak( august, "Laustwan?" )
 sceneManager.speak( avril, "Laustwan indeed. I wonder why someone would lock them up? You could just order them to stay, right?" )
-sceneManager.speak( march, "The principle of peaceful actions." )
+sceneManager.speak( march, "The principle of peaceful actions..." )
 sceneManager.speak( avril, "The what?" )
 sceneManager.speak( march, "I think someone is using these Laustwan as tools of war..." )
 sceneManager.speak( august, "What?" )

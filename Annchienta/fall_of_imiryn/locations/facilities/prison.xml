@@ -68,6 +68,13 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/facilities/entrance.xml&quot;, annchienta.Point( annchienta.TilePoint, 12, 3 ) )
 </area>
 
+<!-- Way back to the stairs -->
+<area tilex1="3" tilex2="6" tiley1="11" tiley2="12">
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.changeMap( &quot;locations/facilities/stairs.xml&quot;, annchienta.Point( annchienta.TilePoint, 25, 3 ) )
+</area>
+
 
 </layer>
 
