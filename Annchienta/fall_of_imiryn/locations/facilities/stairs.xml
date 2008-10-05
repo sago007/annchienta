@@ -42,4 +42,7 @@ partyManager.changeMap( &quot;locations/facilities/prison.xml&quot;, annchienta.
 </area>
 
 </layer>
+
+<onload script="locations/facilities/onload.py"/>
+
 </map>
