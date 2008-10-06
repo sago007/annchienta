@@ -144,6 +144,18 @@
         <drop xp="80" item="tincture" rate="0.4" steal="feather"/>
     </enemy>
 
+    <!-- BANVER -->
+    <enemy name="banver">
+        <level lvl="8"/>
+        <primarystats att="100" mat="80" def="80" mdf="80" spd="100"/>
+        <healthstats hp="1400" mhp="1400" mp="120" mmp="120"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <actions>attack swing flametongue thunderstab thundara fira</actions>
+        <sprite filename="sprites/banver.png" x1="0" x2="30" y1="40" y2="80"/>
+        <drop xp="120" item="tincture" rate="0.4" steal="feather"/>
+    </enemy>
+
+
 
 </enemies>
 

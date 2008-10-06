@@ -120,7 +120,7 @@ class Editor(QWidget):
             l = self.currentMap.getCurrentLayer()
             for o in range(l.getNumberOfObjects()):
                 l.getObject(o).calculateCollidingTiles()
-                l.getObject(o).setZFromCollidingTiles()
+                l.getObject(o).calculateZFromCollidingTiles()
 
     # Creates a new map.
     def newMap(self):

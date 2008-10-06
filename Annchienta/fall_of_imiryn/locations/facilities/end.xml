@@ -20,7 +20,9 @@
 </tiles>
 
 <!-- Events when entering this area. -->
-<area script="locations/facilities/end.py"/>
+<if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('facilities_met_banver')">
+    <area script="locations/facilities/end.py"/>
+</if>
 
 </layer>
 
