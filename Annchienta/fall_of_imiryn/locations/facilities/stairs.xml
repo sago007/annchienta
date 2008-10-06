@@ -41,6 +41,9 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/facilities/prison.xml&quot;, annchienta.Point( annchienta.TilePoint, 4, 10 ) )
 </area>
 
+<!-- The masamune. -->
+<chest item="masamune" tilex="26" tiley="25"/>
+
 </layer>
 
 <onload script="locations/facilities/onload.py"/>

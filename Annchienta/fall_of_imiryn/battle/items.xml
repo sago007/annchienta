@@ -29,8 +29,22 @@
     </item>
     <item name="dragonspear" type="weapon" description="A fire and ice protecting, slow weapon.">
         <stats att="45" mat="7" def="10" mdf="10" spd="5"/>
-        <elemental fire="0" ice="0" water="1" thunder="0"/>
+        <elemental fire="0" ice="0" water="1" thunder="1"/>
     </item>
+    <item name="masamune" type="weapon" description="Better than a vegetable knife.">
+        <stats att="85" mat="10" def="35" mdf="15" spd="50" />
+        <elemental fire="1" ice="1" water="1" thunder="0"/>
+    </item>
+    <item name="spellcaster" type="weapon" description="An ancient spellbinding stave.">
+        <stats att="20" mat="135" def="50" mdf="120" spd="70"/>
+        <elemental fire="1" ice="1" water="1" thunder="0"/>
+    </item>
+    <item name="excalibur" type="weapon" description="Quite a legendary weapon.">
+        <stats att="135" mat="80" def="120" mdf="100" spd="90" />
+        <elemental fire="1" ice="1" water="1" thunder="0"/>
+    </item>
+
+
 
 <!--
     LOOT

@@ -96,7 +96,7 @@
         <elemental fire="2" ice="0.5" water="1" thunder="1"/>
         <actions>attack ice fist</actions>
         <sprite filename="sprites/ice_warrior.png"/>
-        <drop xp="60" item="oil" rate="0.4" steal="feather"/>
+        <drop xp="60" item="oil" rate="0.4" steal="oil"/>
     </enemy>
 
     <!-- ENTHAVOS -->

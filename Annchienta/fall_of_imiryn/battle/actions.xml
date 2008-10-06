@@ -59,7 +59,6 @@
     </action>
 
 
-
     <action name="cure" category="white magic" target="1">
         <description>Heal an ally.</description>
         <elemental fire="0" ice="0" water="0" thunder="0" restorative="1"/>
@@ -76,7 +75,11 @@
         <cost mp="8"/>
         <animation type="sprite" data="images/animations/cura.png"/>
     </action>
-
+    <action name="esuna" category="white magic" target="1">
+        <description>Remove a status effect from an ally.</description>
+        <cost mp="6"/>
+    </action>
+    
 
     <action name="fog" category="black magic" target="1">
         <description>Create a dense fog that might blind enemies.</description>

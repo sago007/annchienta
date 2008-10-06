@@ -241,14 +241,14 @@ class Battle:
         if action.name == "steal":
             self.takeStealAction( combatant, target )
             return
-
-        # Now check for special, built-in actions
         if action.name == "row":
             self.takeRowAction( combatant )
             return
-
         if action.name == "flee":
             self.takeFleeAction( combatant )
+            return
+        if action.name == "esuna":
+            self.takeEsunaAction( combatant, target )
             return
 
         # If we reach this point, we're dealing with a generic action.
@@ -402,6 +402,17 @@ class Battle:
 
         else:
             self.lines += ["Couldn't run away!"]
+
+    # Removes a status effect from a target.
+    def takeEsunaAction( self, combatant, target ):
+        
+        if not len(target.statusEffects):
+            self.lines += [target.name.capitalize()+" is not suffering from status effects!"]
+            return
+
+        effect = target.statusEffects[ annchienta.randInt( 0, len(target.statusEffects)-1 ) ]
+        self.lines += [combatant.name.capitalize()+" cures "+target.name.capitalize()+" from "+effect+"!"]
+        target.statusEffects.remove( effect )
 
     # Plays the animation for the given parameters
     # This calls to playXAnimation, where X depends on the action

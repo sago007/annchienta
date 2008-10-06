@@ -28,7 +28,7 @@
             <weapon name="stave"/>
             <actions>attack cure row flee</actions>
             <sprite filename="sprites/avril.png" x1="150" x2="180" y1="40" y2="80"/>
-            <learn>2 fire 4 ice 6 water 8 thunder 11 cura 14 fira 16 blizzara 18 watera 20 thundara</learn>
+            <learn>2 fire 4 ice 5 esuna 6 water 8 thunder 11 cura 14 fira 16 blizzara 18 watera 20 thundara</learn>
         </combatant>
         <combatant name="march">
             <level lvl="1" xp="0"/>
