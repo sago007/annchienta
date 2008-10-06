@@ -18,6 +18,7 @@
     <frame number="c" x1="150" y1="40" x2="180" y2="80"/>
 
     <frame number="d" x1="0" y1="80" x2="30" y2="120"/>
+    <frame number="e" x1="30" y1="80" x2="60" y2="120"/>
 
     <animation name="stand" frames="1" speed="20" />
     <animation name="walknorth" frames="1213" speed="8" />
@@ -29,6 +30,7 @@
     <animation name="standwest" frames="7" speed="8" />
     <animation name="standsouth" frames="c" speed="8" />
     <animation name="reveal" frames="d" speed="250506" />
+    <animation name="dying" frames="e" speed="250506" />
 
     <control type="null" />
 

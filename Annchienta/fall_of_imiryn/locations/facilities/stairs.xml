@@ -44,6 +44,16 @@ partyManager.changeMap( &quot;locations/facilities/prison.xml&quot;, annchienta.
 <!-- The masamune. -->
 <chest item="masamune" tilex="26" tiley="25"/>
 
+<!-- Save crystal. -->
+<staticobject name="crystal" tilex="5" tiley="25" config="locations/common/crystal.xml"/>
+
+<!-- Way to the end. -->
+<area tilex1="0" tilex2="2" tiley1="21" tiley2="27">
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.changeMap( &quot;locations/facilities/end.xml&quot;, annchienta.Point( annchienta.TilePoint, 4, 10 ) )
+</area>
+
 </layer>
 
 <onload script="locations/facilities/onload.py"/>
