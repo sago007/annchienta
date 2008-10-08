@@ -6,7 +6,7 @@ import SceneManager, PartyManager
 ## Defines a combatant who takes part in a battle. BaseCombatant only
 #  describes the mechanics part, Combatant also handles the drawing etc.
 #
-class BaseCombatant:
+class Combatant:
 
     # Where we should get the weapons from
     # weaponsLocation = "battle/weapons.xml"
@@ -21,7 +21,12 @@ class BaseCombatant:
     
         # We need to log stuff
         self.logManager = annchienta.getLogManager()
-    
+
+        # Get references
+        self.videoManager = annchienta.getVideoManager()
+        self.cacheManager = annchienta.getCacheManager()
+        self.sceneManager = SceneManager.getSceneManager()
+
         # Set our name
         self.name = str(xmlElement.getAttribute("name"))
     
@@ -72,7 +77,37 @@ class BaseCombatant:
     
         # Generate derived stats
         self.generateDerivedStats()
-    
+
+        # Load sprite
+        spriteElement = xmlElement.getElementsByTagName("sprite")[0]
+        # Keep the filename so we can save it later on
+        self.spriteFilename = str(spriteElement.getAttribute("filename"))
+        self.sprite = annchienta.Surface( self.spriteFilename )
+        if spriteElement.hasAttribute("x1"):
+            self.sx1 = int(spriteElement.getAttribute("x1"))
+            self.sy1 = int(spriteElement.getAttribute("y1"))
+            self.sx2 = int(spriteElement.getAttribute("x2"))
+            self.sy2 = int(spriteElement.getAttribute("y2"))
+        else:
+            self.sx1, self.sy1 = 0, 0
+            self.sx2 = self.sprite.getWidth()
+            self.sy2 = self.sprite.getHeight()
+
+        self.width = self.sx2-self.sx1
+        self.height = self.sy2-self.sy1
+
+        self.position = annchienta.Vector( 0, 0 )
+        
+        # We will draw a mark upon ourselves sometimes
+        self.marked = False
+        
+        # Damage done by an attack
+        self.damage = 0
+        self.damageTimer = 0.0
+
+        # Status effect currently displayed
+        self.statusEffectTimer = 0.0
+
         self.reset()
     
     # Must be called before every battle
@@ -86,6 +121,10 @@ class BaseCombatant:
     
         # Start in the front row
         self.row = "front"
+
+        # Reset damage signs.
+        self.damage = 0
+        self.damageTimer = 0.0
 
     # Will generate derived stats based on equipped weapon.
     def generateDerivedStats( self ):
@@ -170,78 +209,26 @@ class BaseCombatant:
         if self.timer >= 100.0:
             self.timer = 100.0
 
-    # prototype, not correct
-    def selectAction( self, battle ):
-        return self.actions[ annchienta.randInt( 0, len(self.actions)-1 ) ]
-
-## Now the graphical interface
-#
-class Combatant(BaseCombatant):
-
-    def __init__( self, xmlElement ):
-    
-        # Call superclass constructor
-        BaseCombatant.__init__( self, xmlElement )
-        
-        # Get references
-        self.videoManager = annchienta.getVideoManager()
-        self.cacheManager = annchienta.getCacheManager()
-        self.sceneManager = SceneManager.getSceneManager()
-        
-        # Load sprite
-        spriteElement = xmlElement.getElementsByTagName("sprite")[0]
-        # Keep the filename so we can save it later on
-        self.spriteFilename = str(spriteElement.getAttribute("filename"))
-        self.sprite = annchienta.Surface( self.spriteFilename )
-        if spriteElement.hasAttribute("x1"):
-            self.sx1 = int(spriteElement.getAttribute("x1"))
-            self.sy1 = int(spriteElement.getAttribute("y1"))
-            self.sx2 = int(spriteElement.getAttribute("x2"))
-            self.sy2 = int(spriteElement.getAttribute("y2"))
-        else:
-            self.sx1, self.sy1 = 0, 0
-            self.sx2 = self.sprite.getWidth()
-            self.sy2 = self.sprite.getHeight()
-
-        self.width = self.sx2-self.sx1
-        self.height = self.sy2-self.sy1
-
-        self.position = annchienta.Vector( 0, 0 )
-        
-        # We will draw a mark upon ourselves sometimes
-        self.marked = False
-        
-        # Damage done by an attack
-        self.damage = 0
-        self.damageTimer = 0.0
-
-        # Status effect currently displayed
-        self.statusEffectTimer = 0.0
-
-    def reset( self ):
-
-        BaseCombatant.reset( self )
-        
-        # Damage done by an attack
-        self.damage = 0
-        self.damageTimer = 0.0
-
-    def update( self, ms ):
-
-        # Call base update
-        BaseCombatant.update( self, ms )
-
+        # Update damage sign
         if self.damage != 0:
             self.damageTimer += 0.0005*ms
             if self.damageTimer >= 1.0:
                 self.damage = 0
                 self.damageTimer = 0.0
 
+        # Update status effect displayed.
         if len(self.statusEffects):
             self.statusEffectTimer += 0.001*ms
             while self.statusEffectTimer>=len(self.statusEffects):
                 self.statusEffectTimer -= len( self.statusEffects )
 
+
+    # prototype, not correct
+    def selectAction( self, battle ):
+        return self.actions[ annchienta.randInt( 0, len(self.actions)-1 ) ]
+
+ 
+    # Draw combatant to the screen.
     def draw( self ):
     
         self.videoManager.pushMatrix()
@@ -292,4 +279,3 @@ class Combatant(BaseCombatant):
 
         self.videoManager.setColor()
         self.videoManager.popMatrix()
-        
