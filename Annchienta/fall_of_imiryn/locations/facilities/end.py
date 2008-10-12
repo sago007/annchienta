@@ -80,8 +80,8 @@ sceneManager.speak( soldier2, "Why can't those arrogant thieves leave us alone?"
 sceneManager.speak( banver, "Allright then. Let's finish them off and fly back." )
 
 battleManager = BattleManager.getBattleManager()
-won = battleManager.runBattle( ["soldier", "banver", "soldier"], annchienta.Surface("images/backgrounds/facilities.png"), False )
-#won = True
+#won = battleManager.runBattle( ["soldier", "banver", "soldier"], annchienta.Surface("images/backgrounds/facilities.png"), False )
+won = True
 
 # Soldiers come, soldiers go...
 currentMap.removeObject( banver )
@@ -107,9 +107,6 @@ if won:
 
     sceneManager.fade()
 
-    sceneManager.text( "This is, again, the end of the demo. Until next time! Your obedient servant, jaspervdj@gmail.com." )
-    mapManager.stop()
-
 # Done. clean up everything.
 sceneManager.quitDialog()
 currentMap.removeObject( march )
@@ -117,4 +114,7 @@ currentMap.removeObject( avril )
 currentMap.removeObject( ship )
 currentMap.removeObject( kyzano )
 
-partyManager.refreshMap()
+if won:
+    partyManager.changeMap( "locations/fleet/room.xml", annchienta.Point( annchienta.TilePoint, 4, 4 ) )
+else:
+    partyManager.refreshMap()
