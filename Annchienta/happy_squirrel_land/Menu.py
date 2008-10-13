@@ -69,6 +69,7 @@ class Menu:
         
     def waitForClick( self ):
 
+        self.videoManager.end()
         self.videoManager.storeBuffer(7)
         self.inputManager.update()
         while self.inputManager.running() and not self.inputManager.buttonTicked(0):

@@ -63,7 +63,7 @@ class Game:
         self.lastUpdate = self.engine.getTicks()
 
         # Update background
-        self.backgroundY += ms*0.5
+        self.backgroundY += ms*1.0
         while( self.backgroundY > self.videoManager.getScreenHeight() ):
             self.backgroundY -= self.videoManager.getScreenHeight()
 
@@ -71,7 +71,7 @@ class Game:
         mouse = annchienta.Vector( self.inputManager.getMouseX(), self.inputManager.getMouseY() )
         mouse -= self.ship.pos
         mouse.normalize()
-        mouse *= (ms * 0.2)
+        mouse *= (ms * 0.3)
         self.ship.pos += mouse
 
         # Check if we should spawn enemies
@@ -82,7 +82,7 @@ class Game:
             sprite = self.cacheManager.getSurface("sprites/ship_pirate.png")
             pos = annchienta.Vector( annchienta.randInt( 0, videoManager.getScreenWidth() ), videoManager.getScreenHeight() + sprite.getHeight() )
             self.enemies += [ GameObject( pos, sprite ) ]
-            self.nextEnemySpawn += annchienta.randInt( 1000, 2000 )
+            self.nextEnemySpawn += annchienta.randInt( 500, 2000 )
 
         # Move enemies
         for enemy in self.enemies:
