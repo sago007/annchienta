@@ -40,7 +40,7 @@ gameOver = False
 # Three similar battles.
 for i in range(3):
 
-    if mapManager.isRunning():
+    if mapManager.running():
         # Create some enemies
         enemies = map( lambda a:battle.getBattleManager().createEnemy("ghost"), range(3) )
 

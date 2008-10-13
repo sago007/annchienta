@@ -25,6 +25,8 @@ class Game:
         self.videoManager = annchienta.getVideoManager()
         self.inputManager = annchienta.getInputManager()
         self.cacheManager = annchienta.getCacheManager()
+        self.mapManager   = annchienta.getMapManager()
+        self.sceneManager = SceneManager.getSceneManager()
 
         # Background spriteace
         self.background = annchienta.Surface( "images/backgrounds/sky.png" )
@@ -35,16 +37,25 @@ class Game:
                                 annchienta.Surface( "sprites/ship_small.png" ) )
 
         # Load sprites into cache
-        self.cacheManager.getSurface("sprites/ship_pirate.png")
+        self.enemySprite = annchienta.Surface("sprites/ship_pirate.png")
 
         # All enemies
         self.enemies = []
+
+        # The final enemy
+        self.captain = None
+
+        # Number of miliseconds we need to fly to gain victory
+        self.victoryTime = 60000
 
     def run( self ):
 
         self.running = True
         self.lastUpdate = None
         self.nextEnemySpawn = 0
+
+        # Set start time
+        self.victoryTime += self.engine.getTicks()
 
         while( self.inputManager.running() and self.running ):
 
@@ -75,32 +86,76 @@ class Game:
         self.ship.pos += mouse
 
         # Check if we should spawn enemies
-        self.nextEnemySpawn -= ms
-        while self.nextEnemySpawn <= 0:
-            
-            # Spawn a new enemy
-            sprite = self.cacheManager.getSurface("sprites/ship_pirate.png")
-            pos = annchienta.Vector( annchienta.randInt( 0, videoManager.getScreenWidth() ), videoManager.getScreenHeight() + sprite.getHeight() )
-            self.enemies += [ GameObject( pos, sprite ) ]
-            self.nextEnemySpawn += annchienta.randInt( 500, 2000 )
+        if self.engine.getTicks()<self.victoryTime:
+            self.nextEnemySpawn -= ms
+            while self.nextEnemySpawn <= 0:
+               
+                # Spawn a new enemy
+                pos = annchienta.Vector( annchienta.randInt( 0, videoManager.getScreenWidth() ), videoManager.getScreenHeight() + self.enemySprite.getHeight() )
+                self.enemies += [ GameObject( pos, self.enemySprite ) ]
+                self.nextEnemySpawn += annchienta.randInt( 500, 2000 )
+        # Check if we should spawn the captain
+        else:
+            # Wait until all enemies are gone
+            if not len(self.enemies) and not self.captain:
+
+                # Spawn our captain
+                pos = annchienta.Vector( videoManager.getScreenWidth()/2, videoManager.getScreenHeight()+100 )
+                self.captain = GameObject( pos, annchienta.Surface("sprites/ship_captain.png") )
 
         # Move enemies
         for enemy in self.enemies:
 
             vect = None
 
+            # Just fly on in current direction when we
+            # already passed the player
             if enemy.pos.y < self.ship.pos.y:
                 vect = annchienta.Vector( enemy.dir )
+            # Else, approach the player's ship
             else:
                 vect = self.ship.pos - enemy.pos
                 vect.normalize()
                 enemy.dir = annchienta.Vector( vect )
 
             vect.y = -1
-
             vect *= ( ms * 0.2 )
 
             enemy.pos += vect
+
+        # Move captain
+        if self.captain:
+            vect = self.ship.pos - self.captain.pos
+            vect.normalize()
+            vect *= ( ms * 0.2 )
+            self.captain.pos += vect
+
+        # Minimum distance between player and enemies
+        minDistance = 0.25*( self.enemySprite.getWidth() + self.enemySprite.getHeight() +
+                             self.ship.sprite.getWidth() + self.ship.sprite.getHeight() )
+
+        # Check for collision between enemies and
+        # the player
+        for enemy in self.enemies:
+
+            if enemy.pos.distance( self.ship.pos ) < minDistance:
+
+                # Game over
+                self.running = False
+                self.sceneManager.fade()
+                self.sceneManager.text("We were caught by some sky pirate and executed...", None)
+                self.mapManager.stop()
+
+        # Check for collision between player and
+        # the captain
+        if self.captain:
+
+            if self.captain.pos.distance( self.ship.pos ) < minDistance:
+
+                self.running = False
+                self.sceneManager.fade()
+                self.sceneManager.text("We were lucky. We were caught by one of their captains, who was impressed by our flying.", None)
+                self.sceneManager.text("He brouht us aboard their mothership...", None)
 
         # Remove enemies out of screen
         self.enemies = filter( lambda e: e.pos.y > -e.sprite.getHeight(), self.enemies )
@@ -119,6 +174,10 @@ class Game:
         # Draw enemies
         for enemy in self.enemies:
             enemy.draw()
+        
+        # Draw captain
+        if self.captain:
+            self.captain.draw()
 
         self.videoManager.end()
 
@@ -127,6 +186,7 @@ class Game:
 sceneManager = SceneManager.getSceneManager()
 partyManager = PartyManager.getPartyManager()
 videoManager = annchienta.getVideoManager()
+mapManager = annchienta.getMapManager()
 
 sceneManager.initDialog( [] )
 
@@ -151,3 +211,7 @@ game.run()
 
 sceneManager.quitDialog()
 
+# If we made it...
+if mapManager.running():
+    partyManager.addRecord("fleet_caught_by_captain")
+    partyManager.refreshMap()

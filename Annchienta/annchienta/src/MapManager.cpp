@@ -35,7 +35,7 @@ namespace Annchienta
     MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0),
                               updatesPerSecond(60), currentMap(0), cameraTarget(0),
                               maxAscentHeight(16), maxDescentHeight(32),
-                              onUpdateScript(0), onUpdateCode(0)
+                              onUpdateScript(0), onUpdateCode(0), m_running(false)
     {
         /* Set reference to single-instance class.
          */
@@ -209,7 +209,7 @@ namespace Annchienta
 
     void MapManager::run()
     {
-        running = true;
+        m_running = true;
 
         VideoManager *videoManager = getVideoManager();
         inputManager = getInputManager();
@@ -220,11 +220,11 @@ namespace Annchienta
 
         SDL_TimerID timer = SDL_AddTimer( 1000/updatesPerSecond, incrementUpdatesNeeded, 0 );
 
-        while( inputManager->running() && running )
+        while( inputManager->running() && m_running )
         {
             this->update();
 
-            if( running )
+            if( m_running )
             {
                 videoManager->begin();
                 this->draw();
@@ -247,14 +247,14 @@ namespace Annchienta
         SDL_RemoveTimer( timer );
     }
 
-    bool MapManager::isRunning() const
+    bool MapManager::running() const
     {
-        return running;
+        return m_running && inputManager->running();
     }
 
     void MapManager::stop()
     {
-        running = false;
+        m_running = false;
     }
 
     void MapManager::update( bool updateInput )

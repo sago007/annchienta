@@ -27,7 +27,7 @@ namespace Annchienta
 
             char *onUpdateScript, *onUpdateCode;
 
-            bool running;
+            bool m_running;
 
         public:
             #ifndef SWIG
@@ -161,7 +161,7 @@ namespace Annchienta
 
             /** Polls if the game is running.
              */
-            bool isRunning() const;
+            bool running() const;
 
             /** Stops the MapManager from running. You should
              *  call this on game over, when the player
