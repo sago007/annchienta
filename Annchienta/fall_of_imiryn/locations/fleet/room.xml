@@ -12,8 +12,13 @@
     0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    0 0 0 0 0 0 0 0 0 0    
 </tiles>
 
+<!-- Play our minigame if we haven't been caught yet. -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('fleet_caught_by_captain')">
     <area script="locations/fleet/minigame.py"/>
+</if>
+<!-- If we have been caught, we want the room events. -->
+<if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="partyManager.hasRecord('fleet_caught_by_captain')">
+    <area script="locations/fleet/room.py"/>
 </if>
 
 </layer>
