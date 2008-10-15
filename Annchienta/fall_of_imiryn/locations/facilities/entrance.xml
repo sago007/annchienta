@@ -48,6 +48,9 @@
     <staticobject isox="331" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
 </if>
 
+<!-- Save crystal. -->
+<staticobject name="crystal" tilex="14" tiley="21" config="locations/common/crystal.xml"/>
+
 <!-- Machine that controls the gate. -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('facilities_outer_access')">
     <staticobject config="locations/facilities/control.xml" name="control" tilex="14" tiley="26"/>
