@@ -1,5 +1,6 @@
 import annchienta
 import xml.dom.minidom
+import Weapon
 
 ## Holds all items
 class Inventory:
@@ -66,6 +67,11 @@ class Inventory:
         # Make sure we have one
         loot = filter( lambda l: self.dictionary[l]>0, loot )
         return loot
+
+    # Finds, creates and returns a weapon
+    def getWeapon( self, weaponName ):
+
+        return Weapon.Weapon( self.getElement( weaponName ) )
 
     def hasItem( self, itemName ):
 

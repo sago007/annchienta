@@ -152,9 +152,7 @@ class Combatant:
         partyManager = PartyManager.getPartyManager()
         inventory = partyManager.inventory
 
-        element = inventory.getElement( weaponName )
-        
-        self.weapon = Weapon.Weapon( element )
+        self.weapon = inventory.getWeapon( weaponName )
         self.generateDerivedStats()
 
     def addAction( self, actionName ):

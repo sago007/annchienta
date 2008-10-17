@@ -52,7 +52,7 @@ class Game:
 
         self.running = True
         self.lastUpdate = None
-        self.nextEnemySpawn = 0
+        self.nextEnemySpawn = 2000
 
         # Set start time
         self.victoryTime += self.engine.getTicks()

@@ -228,10 +228,23 @@ class Menu(MenuItem):
         if hover is not None:
             if hover.toolTip is not None:
                 self.videoManager.pushMatrix()
-                h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()
-                y = self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin*3-self.sceneManager.defaultFont.getLineHeight()
+
+                # Count the lines we have to draw
+                lines = hover.toolTip.split('\n')
+
+                # Calculate tooltip height
+                h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()*len(lines)
+
+                # Calculate tooltip y
+                y = self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin-h
+
+                # Draw the tooltip
                 self.sceneManager.drawBox( self.sceneManager.margin, y, self.videoManager.getScreenWidth()-self.sceneManager.margin, y+h )
-                self.videoManager.translate( 0, y )
-                self.videoManager.drawString( self.sceneManager.defaultFont,hover.toolTip, self.sceneManager.margin*2, self.sceneManager.margin )
+                self.videoManager.translate( 0, y+self.sceneManager.margin )
+
+                for line in lines:
+                    self.videoManager.drawString( self.sceneManager.defaultFont, str(line), self.sceneManager.margin*2, 0 )
+                    self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
+
                 self.videoManager.popMatrix()
 
