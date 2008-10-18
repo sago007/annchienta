@@ -81,22 +81,35 @@ class InGameMenu:
 
                         weapon = self.partyManager.inventory.getWeapon( weaponName )
 
+                        # Create a tooltip with the stats
                         toolTip = self.partyManager.inventory.getItemDescription(weaponName) + '\n'
                         toolTip += reduce( lambda a,b: a+' '+b, map( lambda k: k.upper()+': '+str(weapon.stats[k]), weapon.stats.keys() ) )
 
                         weaponOptions += [ Menu.MenuItem( weaponName, toolTip ) ]
 
+                    # Add a confirm option
+                    weaponOptions += [ Menu.MenuItem( "confirm", "Go back to the party management menu." ) ]
+
                     weaponMenu.setOptions( weaponOptions )
                     weaponMenu.topRight()
 
-                    w = weaponMenu.pop()
-                    if w is not None:
-                        # Remove old weapon from combatant and add it back to inventory
-                        self.partyManager.inventory.addItem( self.partyManager.team[ weaponMenu.combatantIndex ].weapon.name )
-                        # Set new weapon
-                        self.partyManager.team[ weaponMenu.combatantIndex ].setWeapon( w.name )
-                        # Remove new weapon from inventory
-                        self.partyManager.inventory.removeItem( w.name )
+                    weaponPopping = True
+
+                    while weaponPopping and self.inputManager.running():
+
+                        w = weaponMenu.pop()
+                        if w is not None:
+                            if w.name != "confirm":
+                                # Remove old weapon from combatant and add it back to inventory
+                                self.partyManager.inventory.addItem( self.partyManager.team[ weaponMenu.combatantIndex ].weapon.name )
+                                # Set new weapon
+                                self.partyManager.team[ weaponMenu.combatantIndex ].setWeapon( w.name )
+                                # Remove new weapon from inventory
+                                self.partyManager.inventory.removeItem( w.name )
+                            else:
+                                weaponPopping = False
+                        else:
+                            weaponPopping = False
 
                     # Update combatant
                     partyManagementMenu.combatantIndex = weaponMenu.combatantIndex
@@ -113,14 +126,25 @@ class InGameMenu:
                     for l in loot:
                         items += [ Menu.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
 
+                    # Add a confirm option
+                    items += [ Menu.MenuItem( "confirm", "Go back to the party management menu." ) ]
+
                     # Set options
                     itemMenu.setOptions( items )
                     itemMenu.topRight()
 
-                    # Choose item
-                    item = itemMenu.pop()
-                    if item is not None:
-                        inv.useItemOn( item.name, self.partyManager.team[ itemMenu.combatantIndex ] )
+                    itemPopping = True
+                    while itemPopping and self.inputManager.running():
+
+                        # Choose item
+                        item = itemMenu.pop()
+                        if item is not None:
+                            if item.name != "confirm":
+                                inv.useItemOn( item.name, self.partyManager.team[ itemMenu.combatantIndex ] )
+                            else:
+                                itemPopping = False
+                        else:
+                            itemPopping = False
 
                     # Update combatant
                     partyManagementMenu.combatantIndex = itemMenu.combatantIndex

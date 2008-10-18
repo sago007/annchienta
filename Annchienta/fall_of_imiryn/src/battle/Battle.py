@@ -199,7 +199,9 @@ class Battle:
         if len(self.actionQueue) and not self.actionInProgress and not self.menuOpen:
             self.actionInProgress = True
             action, actor, target = self.actionQueue.pop()
-            self.takeAction( action, actor, target )
+            # Check if the target and actor still exist
+            if actor in self.combatants and target in self.combatants:
+                self.takeAction( action, actor, target )
             self.actionInProgress = False
 
     def draw( self ):
