@@ -20,7 +20,7 @@ class InGameMenu:
         options += [ Menu.MenuItem("continue", "Close menu and continue playing.") ]
 
         # A submenu for party management.
-        options += [ Menu.MenuItem( "party management", "Change equipment, heal...") ]
+        options += [ Menu.MenuItem( "party", "Change equipment, heal...") ]
 
         # An option to quit.
         options += [ Menu.MenuItem("quit", "Stop playing.") ]
