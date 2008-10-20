@@ -32,11 +32,13 @@ namespace Annchienta
     Map::Map( const char *_filename ): sortedLayers(0), currentLayer(0), onPreRenderCode(0), onPreRenderScript(0),
                                        onPostRenderCode(0), onPostRenderScript(0)
     {
+        Engine *engine = getEngine();
         LogManager *logManager = getLogManager();
+        CacheManager *cacheManager = getCacheManager();
 
         Layer *layer = 0;
 
-        if( !isValidFile(_filename) )
+        if( !engine->isValidFile(_filename) )
             logManager->error( "'%s' is not a valid file.", _filename );
 
         IrrXMLReader *xml = createIrrXMLReader( _filename );
@@ -46,15 +48,12 @@ namespace Annchienta
         if( !xml )
             logManager->error( "Could not open given map file '%s' as xml.", _filename );
 
-        Engine *engine = getEngine();
-        CacheManager *cacheManager = getCacheManager();
-
         while( xml && xml->read() )
         {
             switch( xml->getNodeType() )
             {
                 case EXN_ELEMENT:
-                    if( !strcmpCaseInsensitive("map", xml->getNodeName()) )
+                    if( !strcmp("map", xml->getNodeName()) )
                     {
                         if( xml->getAttributeValue("width") && xml->getAttributeValue("height") )
                         {
@@ -77,14 +76,14 @@ namespace Annchienta
                         else
                             logManager->warning("'%s' does not provide a valid tileset.", filename);
                     }
-                    if( !strcmpCaseInsensitive("layer", xml->getNodeName()) )
+                    if( !strcmp("layer", xml->getNodeName()) )
                     {
                         int opacity = xml->getAttributeValue("opacity") ? xml->getAttributeValueAsInt("opacity"):0xff,
                             z = xml->getAttributeValue("z") ? xml->getAttributeValueAsInt("z"):0;
 
                         layer = new Layer( tileSet, width, height, opacity, z );
                     }
-                    if( !strcmpCaseInsensitive("tiles", xml->getNodeName()) )
+                    if( !strcmp("tiles", xml->getNodeName()) )
                     {
                         xml->read();
                         std::stringstream data( xml->getNodeData() );
@@ -126,7 +125,7 @@ namespace Annchienta
 
                         layer->setTiles( tiles );
                     }
-                    if( !strcmpCaseInsensitive("obstruction", xml->getNodeName()) )
+                    if( !strcmp("obstruction", xml->getNodeName()) )
                     {
                         xml->read();
                         if( layer->hasTiles() )
@@ -148,7 +147,7 @@ namespace Annchienta
                         }
                         xml->read();
                     }
-                    if( !strcmpCaseInsensitive("shadowed", xml->getNodeName()) )
+                    if( !strcmp("shadowed", xml->getNodeName()) )
                     {
                         xml->read();
                         if( layer->hasTiles() )
@@ -170,7 +169,7 @@ namespace Annchienta
                         }
                         xml->read();
                     }
-                    if( !strcmpCaseInsensitive("staticobject", xml->getNodeName() ) )
+                    if( !strcmp("staticobject", xml->getNodeName() ) )
                     {
                         StaticObject *staticObject;
 
@@ -206,7 +205,7 @@ namespace Annchienta
                         layer->addEntity( staticObject );
 
                     }
-                    if( !strcmpCaseInsensitive("person", xml->getNodeName() ) )
+                    if( !strcmp("person", xml->getNodeName() ) )
                     {
                         Person *person;
 
@@ -236,7 +235,7 @@ namespace Annchienta
                         layer->addEntity( person );
 
                     }
-                    if( !strcmpCaseInsensitive("area", xml->getNodeName() ) )
+                    if( !strcmp("area", xml->getNodeName() ) )
                     {
                         Point p1, p2;
 
@@ -280,7 +279,7 @@ namespace Annchienta
 
                         layer->addArea( area );
                     }
-                    if( !strcmpCaseInsensitive("if", xml->getNodeName() ) )
+                    if( !strcmp("if", xml->getNodeName() ) )
                     {
                         bool result = engine->evaluatePythonBoolean( xml->getAttributeValue("code"),
                                                                      xml->getAttributeValue("cond") );
@@ -296,7 +295,7 @@ namespace Annchienta
                         }
 
                     }
-                    if( !strcmpCaseInsensitive("onload", xml->getNodeName() ) )
+                    if( !strcmp("onload", xml->getNodeName() ) )
                     {
                         if( xml->getAttributeValue("script") )
                         {
@@ -309,7 +308,7 @@ namespace Annchienta
                             xml->read();
                         }
                     }
-                    if( !strcmpCaseInsensitive("onprerender", xml->getNodeName() ) )
+                    if( !strcmp("onprerender", xml->getNodeName() ) )
                     {
                         if( xml->getAttributeValue("script") )
                         {
@@ -326,7 +325,7 @@ namespace Annchienta
                             engine->toPythonCode( &onPreRenderCode );
                         }
                     }
-                    if( !strcmpCaseInsensitive("onpostrender", xml->getNodeName() ) )
+                    if( !strcmp("onpostrender", xml->getNodeName() ) )
                     {
                         if( xml->getAttributeValue("script") )
                         {
@@ -346,7 +345,7 @@ namespace Annchienta
                     break;
 
                 case EXN_ELEMENT_END:
-                    if( !strcmpCaseInsensitive("layer", xml->getNodeName()) )
+                    if( !strcmp("layer", xml->getNodeName()) )
                     {
                         layers.push_back( layer );
                         layer = 0;

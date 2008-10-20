@@ -84,6 +84,12 @@ namespace Annchienta
              */
             void write( const char *text ) const;
 
+            /** Checks if the given file exists and can be read.
+             *  \param filename File to be checked.
+             *  \return If the file can be accessed.
+             */
+            bool isValidFile( const char *filename ) const;
+
             /** Sets the window caption.
              *  \param title The new window caption.
              */

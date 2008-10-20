@@ -4,7 +4,7 @@
 
 #include "Area.h"
 
-#include <string.h>
+#include <cstring>
 #include <Python.h>
 #include "Engine.h"
 

@@ -4,11 +4,12 @@
 
 #include "TileSet.h"
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include "Surface.h"
 #include "Mask.h"
 #include "GeneralFunctions.h"
+#include "Engine.h"
 #include "MapManager.h"
 #include "LogManager.h"
 
@@ -17,8 +18,12 @@ namespace Annchienta
 
     TileSet::TileSet( const char *_directory ): numberOfSurfaces(0), numberOfSideSurfaces(0)
     {
+        Engine *engine = getEngine();
+
+        /* Store directory where we search for later use. */
         strcpy( directory, _directory );
 
+        /* A buffer for filename manipulation. */
         char buffer[ DEFAULT_STRING_SIZE ];
 
         /* Count the regular surfaces: try directory/n.png, starting
@@ -28,7 +33,7 @@ namespace Annchienta
         {
             sprintf( buffer, "%s/%d.png", directory, ++numberOfSurfaces );
         }
-        while( isValidFile( buffer ) );
+        while( engine->isValidFile( buffer ) );
 
         /* Allocate room for (numberOfTiles) Surface pointers.
          */
@@ -51,7 +56,7 @@ namespace Annchienta
         {
             sprintf( buffer, "%s/side%d.png", directory, ++numberOfSideSurfaces );
         }
-        while( isValidFile( buffer ) );
+        while( engine->isValidFile( buffer ) );
 
         /* Allocate room for (numberOfTiles) Surface pointers.
          */

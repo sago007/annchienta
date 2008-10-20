@@ -6,8 +6,8 @@
 #define ANNCHIENTA_CACHEMANAGER_H
 
 #include <list>
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include "Engine.h"
 
 namespace Annchienta

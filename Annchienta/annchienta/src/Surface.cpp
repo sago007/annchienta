@@ -4,7 +4,7 @@
 
 #include "Surface.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <png.h>
 
 #include "GeneralFunctions.h"

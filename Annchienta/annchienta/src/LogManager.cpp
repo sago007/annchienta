@@ -4,8 +4,8 @@
 
 #include "LogManager.h"
 
-#include <stdlib.h>
-#include <stdarg.h>
+#include <cstdlib>
+#include <cstdarg>
 
 namespace Annchienta
 {

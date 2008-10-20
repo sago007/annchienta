@@ -136,8 +136,12 @@ namespace Annchienta
             int s = 4;
             while( squaredDistance( (float)cameraX, (float)cameraY, (float)destX, (float)destY )>1 && --s )
             {
-                cameraX += sign( destX - cameraX );
-                cameraY += sign( destY - cameraY );
+                /* If there is a difference, move the camera in the
+                 * right direction. Do this for X and Y. */
+                if( destX-cameraX!=0 )
+                    cameraX += (destX-cameraX)>0?1:-1;
+                if( destY-cameraY!=0 )
+                    cameraY += (destY-cameraY)>0?1:-1;
             }
         }
     }

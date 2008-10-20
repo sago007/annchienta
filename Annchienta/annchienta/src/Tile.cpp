@@ -5,7 +5,7 @@
 #include "Tile.h"
 
 #include <GL/gl.h>
-#include <stdio.h>
+#include <cstdio>
 #include "Surface.h"
 #include "MapManager.h"
 #include "TileSet.h"

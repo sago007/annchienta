@@ -4,8 +4,7 @@
 
 #include "Point.h"
 
-#include <stdio.h>
-#include <math.h>
+#include <cmath>
 #include "MapManager.h"
 #include "GeneralFunctions.h"
 

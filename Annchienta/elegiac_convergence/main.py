@@ -83,7 +83,7 @@ while inputManager.running():
                     # Choose appropriate filename.
                     filename = engine.getWriteDirectory()+"elegiac_convergence.xml" if options[i]=="Continue" else "saves/new.xml"
                     # Fallback
-                    if not annchienta.isValidFile( filename ):
+                    if not engine.isValidFile( filename ):
                         filename = "saves/new.xml"
 
                     partyManager.load( filename )

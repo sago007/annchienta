@@ -4,10 +4,10 @@
 
 #include "Mask.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <png.h>
-#include "GeneralFunctions.h"
 #include "LogManager.h"
+#include "GeneralFunctions.h"
 
 #define PNG_BYTES_TO_CHECK 4
 

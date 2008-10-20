@@ -83,7 +83,7 @@ while running and inputManager.running():
         else:
 
             loadFile = "save/new.xml"
-            if ans.name == "load" and annchienta.isValidFile("save/save.xml"):
+            if ans.name == "load" and engine.isValidFile("save/save.xml"):
                 loadFile = "save/save.xml"
 
             partyManager.load( loadFile )

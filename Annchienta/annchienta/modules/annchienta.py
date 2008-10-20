@@ -93,6 +93,7 @@ class Engine(_object):
     def getWriteDirectory(*args): return _annchienta.Engine_getWriteDirectory(*args)
     def setWriteDirectory(*args): return _annchienta.Engine_setWriteDirectory(*args)
     def write(*args): return _annchienta.Engine_write(*args)
+    def isValidFile(*args): return _annchienta.Engine_isValidFile(*args)
     def setWindowTitle(*args): return _annchienta.Engine_setWindowTitle(*args)
     def getTicks(*args): return _annchienta.Engine_getTicks(*args)
     def delay(*args): return _annchienta.Engine_delay(*args)
@@ -591,11 +592,8 @@ Person_swigregister = _annchienta.Person_swigregister
 Person_swigregister(Person)
 
 nearestPowerOfTwo = _annchienta.nearestPowerOfTwo
-isValidFile = _annchienta.isValidFile
 distance = _annchienta.distance
 squaredDistance = _annchienta.squaredDistance
-copyFile = _annchienta.copyFile
-strcmpCaseInsensitive = _annchienta.strcmpCaseInsensitive
 class Vector(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Vector, name, value)

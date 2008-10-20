@@ -4,7 +4,7 @@
 
 #include "SamplePersonControl.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 #include "Person.h"
 #include "InputManager.h"
 

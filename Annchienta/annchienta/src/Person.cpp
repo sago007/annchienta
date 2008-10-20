@@ -37,17 +37,17 @@ namespace Annchienta
             switch( xml->getNodeType() )
             {
                 case EXN_ELEMENT:
-                    if( !strcmpCaseInsensitive( "control", xml->getNodeName() ) )
+                    if( !strcmp( "control", xml->getNodeName() ) )
                     {
                         const char *typestr = xml->getAttributeValue("type");
-                        if( !strcmpCaseInsensitive( "input", typestr ) )
+                        if( !strcmp( "input", typestr ) )
                         {
                             control = new InputPersonControl( this );
                             getInputManager()->setInputControlledPerson( this );
                         }
-                        if( !strcmpCaseInsensitive( "sample", typestr ) )
+                        if( !strcmp( "sample", typestr ) )
                             control = new SamplePersonControl( this );
-                        if( !strcmpCaseInsensitive( "null", typestr ) )
+                        if( !strcmp( "null", typestr ) )
                             control = 0;
                     }
                     break;

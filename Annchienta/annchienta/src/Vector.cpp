@@ -4,7 +4,7 @@
 
 #include "Vector.h"
 
-#include <math.h>
+#include <cmath>
 #include "GeneralFunctions.h"
 
 namespace Annchienta

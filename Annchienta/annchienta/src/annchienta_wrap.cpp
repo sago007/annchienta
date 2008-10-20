@@ -3674,6 +3674,40 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Engine_isValidFile(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Engine *arg1 = (Annchienta::Engine *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Engine_isValidFile",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Engine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Engine_isValidFile" "', argument " "1"" of type '" "Annchienta::Engine const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Engine * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Engine_isValidFile" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  result = (bool)((Annchienta::Engine const *)arg1)->isValidFile((char const *)arg2);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Engine_setWindowTitle(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Engine *arg1 = (Annchienta::Engine *) 0 ;
@@ -13801,31 +13835,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_isValidFile(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  char *arg1 = (char *) 0 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  PyObject * obj0 = 0 ;
-  bool result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:isValidFile",&obj0)) SWIG_fail;
-  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "isValidFile" "', argument " "1"" of type '" "char const *""'");
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  result = (bool)Annchienta::isValidFile((char const *)arg1);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return resultobj;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_distance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   float arg1 ;
@@ -13920,79 +13929,6 @@ SWIGINTERN PyObject *_wrap_squaredDistance(PyObject *SWIGUNUSEDPARM(self), PyObj
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_copyFile(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  char *arg1 = (char *) 0 ;
-  char *arg2 = (char *) 0 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:copyFile",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "copyFile" "', argument " "1"" of type '" "char const *""'");
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "copyFile" "', argument " "2"" of type '" "char const *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  Annchienta::copyFile((char const *)arg1,(char const *)arg2);
-  resultobj = SWIG_Py_Void();
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return resultobj;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_strcmpCaseInsensitive(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  char *arg1 = (char *) 0 ;
-  char *arg2 = (char *) 0 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:strcmpCaseInsensitive",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "strcmpCaseInsensitive" "', argument " "1"" of type '" "char const *""'");
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "strcmpCaseInsensitive" "', argument " "2"" of type '" "char const *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  result = (int)Annchienta::strcmpCaseInsensitive((char const *)arg1,(char const *)arg2);
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return resultobj;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return NULL;
 }
 
@@ -14683,6 +14619,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Engine_getWriteDirectory", _wrap_Engine_getWriteDirectory, METH_VARARGS, NULL},
 	 { (char *)"Engine_setWriteDirectory", _wrap_Engine_setWriteDirectory, METH_VARARGS, NULL},
 	 { (char *)"Engine_write", _wrap_Engine_write, METH_VARARGS, NULL},
+	 { (char *)"Engine_isValidFile", _wrap_Engine_isValidFile, METH_VARARGS, NULL},
 	 { (char *)"Engine_setWindowTitle", _wrap_Engine_setWindowTitle, METH_VARARGS, NULL},
 	 { (char *)"Engine_getTicks", _wrap_Engine_getTicks, METH_VARARGS, NULL},
 	 { (char *)"Engine_delay", _wrap_Engine_delay, METH_VARARGS, NULL},
@@ -14963,11 +14900,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"nearestPowerOfTwo", _wrap_nearestPowerOfTwo, METH_VARARGS, NULL},
 	 { (char *)"randInt", _wrap_randInt, METH_VARARGS, NULL},
 	 { (char *)"randFloat", _wrap_randFloat, METH_VARARGS, NULL},
-	 { (char *)"isValidFile", _wrap_isValidFile, METH_VARARGS, NULL},
 	 { (char *)"distance", _wrap_distance, METH_VARARGS, NULL},
 	 { (char *)"squaredDistance", _wrap_squaredDistance, METH_VARARGS, NULL},
-	 { (char *)"copyFile", _wrap_copyFile, METH_VARARGS, NULL},
-	 { (char *)"strcmpCaseInsensitive", _wrap_strcmpCaseInsensitive, METH_VARARGS, NULL},
 	 { (char *)"Vector_x_set", _wrap_Vector_x_set, METH_VARARGS, NULL},
 	 { (char *)"Vector_x_get", _wrap_Vector_x_get, METH_VARARGS, NULL},
 	 { (char *)"Vector_y_set", _wrap_Vector_y_set, METH_VARARGS, NULL},

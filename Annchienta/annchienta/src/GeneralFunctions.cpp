@@ -4,9 +4,9 @@
 
 #include "GeneralFunctions.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cmath>
 
 namespace Annchienta
 {
@@ -38,69 +38,14 @@ namespace Annchienta
         return randFloat()*(max-min)+min;
     }
 
-    bool isValidFile( const char *filename )
-    {
-        FILE *f = fopen( filename, "r" );
-
-        if( f==NULL )
-            return false;
-
-        fclose( f );
-        return true;
-    }
-
     float distance( float x1, float y1, float x2, float y2 )
     {
         return sqrt( squaredDistance(x1,y1,x2,y2) );
     }
 
-
     float squaredDistance( float x1, float y1, float x2, float y2 )
     {
         return ( square(x2-x1) + square(y2-y1) );
-    }
-
-    void copyFile( const char *srcFname, const char *dstFname )
-    {
-        FILE *src = fopen( srcFname, "r" );
-        FILE *dst = fopen( dstFname, "w" );
-
-        if( !src )
-            return;
-
-        if( !dst )
-            return;
-
-        char ch;
-
-        while( !feof(src) )
-        {
-            ch = getc( src );
-            if( !feof(src) )
-                putc( ch, dst );
-        }
-
-        fclose( src );
-        fclose( dst );
-    }
-
-    int strcmpCaseInsensitive( const char *str1, const char *str2 )
-    {
-        const int caseDiff = 'A' - 'a';
-
-        while( *str1 || *str2 )
-        {
-            if( (*str1 == *str2) || (*str1 == *str2+caseDiff) || (*str1 == *str2-caseDiff) )
-            {
-                str1++;
-                str2++;
-            }
-            else
-            {
-                return 1;
-            }
-        }
-        return 0;
     }
 
 };

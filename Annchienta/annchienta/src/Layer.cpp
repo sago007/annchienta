@@ -114,7 +114,9 @@ namespace Annchienta
         {
             if( entities[i-1]->getDepth() > entities[i]->getDepth() )
             {
-                swap<Entity*>( entities[i-1], entities[i] );
+                Entity *temp = entities[i-1];
+                entities[i-1] = entities[i];
+                entities[i] = temp;
                 if( i>1 )
                     i--;
             }
@@ -133,7 +135,9 @@ namespace Annchienta
 
                     if( p1.y > p2.y )
                     {
-                        swap<Entity*>( entities[i-1], entities[i] );
+                        Entity *temp = entities[i-1];
+                        entities[i-1] = entities[i];
+                        entities[i] = temp;
                         if( i>1 )
                             i--;
                     }
@@ -242,7 +246,7 @@ namespace Annchienta
     StaticObject *Layer::getObject( const char *name ) const
     {
         for( int i=0; getObject(i); i++ )
-            if( !strcmpCaseInsensitive( getObject(i)->getName(), name ) )
+            if( !strcmp( getObject(i)->getName(), name ) )
                 return getObject(i);
         return 0;
     }

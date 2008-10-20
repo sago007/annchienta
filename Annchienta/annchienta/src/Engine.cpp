@@ -7,9 +7,9 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <Python.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
 
 #include "LogManager.h"
 #include "VideoManager.h"
@@ -127,6 +127,17 @@ namespace Annchienta
     {
         printf( text );
         printf( "\n" );
+    }
+
+    bool Engine::isValidFile( const char *filename ) const
+    {
+        FILE *f = fopen( filename, "r" );
+
+        if( f==NULL )
+            return false;
+
+        fclose( f );
+        return true;
     }
 
     void Engine::setWindowTitle( const char *title ) const

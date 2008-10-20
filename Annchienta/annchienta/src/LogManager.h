@@ -5,7 +5,7 @@
 #ifndef ANNCHIENTA_LOGMANAGER_H
 #define ANNCHIENTA_LOGMANAGER_H
 
-#include <stdio.h>
+#include <cstdio>
 
 namespace Annchienta
 {

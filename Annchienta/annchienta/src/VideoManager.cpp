@@ -346,11 +346,6 @@ namespace Annchienta
 
     void VideoManager::grabBuffer( Surface *surface, int x1, int y1, int x2, int y2 ) const
     {
-        if( x1>x2 )
-            swap<int>(x1, x2);
-        if( y1>y2 )
-            swap<int>(y1, y2);
-
         int width  = x2 - x1,
             height = y2 - y1;
 

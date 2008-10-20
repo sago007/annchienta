@@ -50,7 +50,7 @@ namespace Annchienta
             switch( xml->getNodeType() )
             {
                 case EXN_ELEMENT:
-                    if( !strcmpCaseInsensitive("sprite", xml->getNodeName()) )
+                    if( !strcmp("sprite", xml->getNodeName()) )
                     {
                         if( xml->getAttributeValue("image") )
                             sprite = getCacheManager()->getSurface( xml->getAttributeValue("image") );
@@ -62,7 +62,7 @@ namespace Annchienta
                         else
                             logManager->warning( "No mask defined in '%s'.", configfile);
                     }
-                    if( !strcmpCaseInsensitive("frame", xml->getNodeName()) )
+                    if( !strcmp("frame", xml->getNodeName()) )
                     {
                         Frame frame;
 
@@ -92,7 +92,7 @@ namespace Annchienta
 
                         frames.push_back( frame );
                     }
-                    if( !strcmpCaseInsensitive("animation", xml->getNodeName()) )
+                    if( !strcmp("animation", xml->getNodeName()) )
                     {
                         Animation animation;
                         strcpy( animation.name, xml->getAttributeValue("name") );
@@ -107,7 +107,7 @@ namespace Annchienta
 
                         animations.push_back( animation );
                     }
-                    if( !strcmpCaseInsensitive("oninteract", xml->getNodeName()) )
+                    if( !strcmp("oninteract", xml->getNodeName()) )
                     {
                         if( xml->getAttributeValue("script") )
                         {
@@ -122,7 +122,7 @@ namespace Annchienta
                             onInteractScript = 0;
                         }
                     }
-                    if( !strcmpCaseInsensitive("passable", xml->getNodeName()) )
+                    if( !strcmp("passable", xml->getNodeName()) )
                     {
                         if( xml->getAttributeValue("value") )
                         {
@@ -361,7 +361,7 @@ namespace Annchienta
 
         for( unsigned int i=0; i<animations.size(); i++ )
         {
-            if( !strcmpCaseInsensitive( aname, animations[i].name ) )
+            if( !strcmp( aname, animations[i].name ) )
             {
                 currentAnimation = i;
                 currentFrame %= animations[i].numberOfFrames;
