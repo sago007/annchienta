@@ -61,6 +61,7 @@ class Combatant:
 
     videoManager = annchienta.getVideoManager()
     inputManager = annchienta.getInputManager()
+    mathManager = annchienta.getMathManager()
 
     name = "Name"
     delay = 6
@@ -145,7 +146,7 @@ class Combatant:
     def createStrategy( self ):
 
         # Select a random one.
-        n = self.strategies[ annchienta.randInt(0, len(self.strategies)-1 ) ]
+        n = self.strategies[ self.mathManager.randInt(0, len(self.strategies)-1 ) ]
         s = strategy.getStrategy( n )
         return s( self.m_battle, self )
 

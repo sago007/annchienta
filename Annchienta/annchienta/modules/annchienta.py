@@ -610,7 +610,6 @@ class Person(StaticObject):
 Person_swigregister = _annchienta.Person_swigregister
 Person_swigregister(Person)
 
-nearestPowerOfTwo = _annchienta.nearestPowerOfTwo
 distance = _annchienta.distance
 squaredDistance = _annchienta.squaredDistance
 class Vector(_object):
@@ -640,11 +639,11 @@ class Vector(_object):
     def __idiv__(*args): return _annchienta.Vector___idiv__(*args)
     def __mul__(*args): return _annchienta.Vector___mul__(*args)
     def length(*args): return _annchienta.Vector_length(*args)
+    def lengthSquared(*args): return _annchienta.Vector_lengthSquared(*args)
     def distance(*args): return _annchienta.Vector_distance(*args)
     def normalize(*args): return _annchienta.Vector_normalize(*args)
 Vector_swigregister = _annchienta.Vector_swigregister
 Vector_swigregister(Vector)
-randInt = _annchienta.randInt
 randFloat = _annchienta.randFloat
 
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN

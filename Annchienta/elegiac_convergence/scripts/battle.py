@@ -19,6 +19,7 @@ class Battle:
         self.mapManager = annchienta.getMapManager()
         self.audioManager = annchienta.getAudioManager()
         self.cacheManager = annchienta.getCacheManager()
+        self.mathManager = annchienta.getMathManager()
         self.sceneManager = scene.getSceneManager()
         self.battleManager = getBattleManager()
 
@@ -245,7 +246,7 @@ class BattleManager:
     
         self.enemiesInMap = []
         self.battleBackground = None
-        self.randomBattleDelay = annchienta.randInt( 300, 1000 )
+        self.randomBattleDelay = self.mathManager.randInt( 300, 1000 )
 
     def loadEnemies( self, fname ):
 
@@ -269,17 +270,17 @@ class BattleManager:
             self.randomBattleDelay -= 1
             return
         else:
-            self.randomBattleDelay = annchienta.randInt( 300, 1000 )
+            self.randomBattleDelay = self.mathManager.randInt( 300, 1000 )
 
             # Return if there are no enemies in this level.
             if not len(self.enemiesInMap):
                 return
 
             music = self.audioManager.getPlayingMusic()
-            self.audioManager.playMusic( "music/battle_"+str(annchienta.randInt(1,3))+".ogg" )
+            self.audioManager.playMusic( "music/battle_"+str(self.mathManager.randInt(1,4))+".ogg" )
             self.sceneManager.rotateEffect()
 
-            enames = map( lambda a: self.enemiesInMap[annchienta.randInt(0,len(self.enemiesInMap)-1)], range(annchienta.randInt(2,3)))
+            enames = map( lambda a: self.enemiesInMap[self.mathManager.randInt(0,len(self.enemiesInMap))], range(self.mathManager.randInt(2,4)))
             enemies = map( lambda n: self.createEnemy(n), enames )
 
             b = Battle( self.partyManager.team + enemies )

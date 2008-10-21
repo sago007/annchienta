@@ -9,6 +9,7 @@
 
 #include "GeneralFunctions.h"
 #include "LogManager.h"
+#include "MathManager.h"
 
 #define NUM_CHARACTERS 256
 
@@ -17,39 +18,34 @@ namespace Annchienta
     Font::Font( const char *filename, int size )
     {
         /* What could possible go wrong here?
-         */
+         * get some references. */
         LogManager *logManager = getLogManager();
+        MathManager *mathManager = getMathManager();
 
-        /* Create the main library and init it.
-         */
+        /* Create the main library and init it. */
         FT_Library library;
         if( FT_Init_FreeType( &library ) )
             logManager->error( "Could not create main FreeType library." );
     
-        /* Load the actual font.
-         */
+        /* Load the actual font. */
         FT_Face face;
         if( FT_New_Face( library, filename, 0, &face ) )
             logManager->error( "Could not open '%s' as TTF font.", filename );
 
-        /* Set some members.
-         */
+        /* Set some members. */
         textures = new GLuint[NUM_CHARACTERS];
         height = size;
         lineHeight = (int)(1.2f*(float)size);
         advance = new int[NUM_CHARACTERS];
 
-        /* Allocate memory for our font structure.
-         */
+        /* Allocate memory for our font structure. */
         list = glGenLists(NUM_CHARACTERS);
         glGenTextures( NUM_CHARACTERS, textures );
 
-        /* Set the pixel size.
-         */
+        /* Set the pixel size. */
         FT_Set_Pixel_Sizes( face, 0, (FT_UInt) height );
     
-        /* Create a list for every character.
-         */
+        /* Create a list for every character. */
         for( unsigned int i=0; i<NUM_CHARACTERS; i++ )
         {
             FT_UInt index = FT_Get_Char_Index( face, i );
@@ -61,8 +57,8 @@ namespace Annchienta
 
             int width = bitmap.width;
             int height = bitmap.rows;
-            int glWidth = nearestPowerOfTwo( width );
-            int glHeight = nearestPowerOfTwo( height );
+            int glWidth = mathManager->nearestPowerOfTwo( width );
+            int glHeight = mathManager->nearestPowerOfTwo( height );
 
             float rightTexCoord = ((float)width)/((float)glWidth);
             float bottomTexCoord = ((float)height)/((float)glHeight);
@@ -71,12 +67,10 @@ namespace Annchienta
             int left = glyph->metrics.horiBearingX >> 6;
             int move_down = ( glyph->metrics.height - glyph->metrics.horiBearingY ) >> 6;
 
-            /* Allocate room for some pixels.
-             */
+            /* Allocate room for some pixels. */
             GLubyte *pixels = new GLubyte[ glWidth * glHeight * 2 ];
         
-            /* Set the pixels to their right values.
-             */
+            /* Set the pixels to their right values. */
             for( int y=0; y<height; y++ )
             {
                 for( int x=0; x<width; x++ )
@@ -86,31 +80,25 @@ namespace Annchienta
                 }
             }
 
-            /* Select the right texture and set some parameters.
-             */
+            /* Select the right texture and set some parameters. */
             glBindTexture( GL_TEXTURE_2D, textures[i] );
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-            /* Create our texture.
-             */
+            /* Create our texture. */
             glTexImage2D( GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, glWidth, glHeight, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, pixels );
 
-            /* Don't need those pixels anymore.
-             */
+            /* Don't need those pixels anymore. */
             delete [] pixels;
 
-            /* Start our display list.
-             */
+            /* Start our display list. */
             glNewList( list+i, GL_COMPILE );
 
             /* Alright. First, we move a little, so the character has
-             * some space to it's left.
-             */
+             * some space to it's left. */
             glTranslatef( (GLfloat)left, 0.0f, 0.0f );
 
-            /* Now draw a quad.
-             */
+            /* Now draw a quad. */
             glBindTexture( GL_TEXTURE_2D, textures[i] );
             glBegin( GL_QUADS );
 
@@ -129,17 +117,14 @@ namespace Annchienta
             glEnd();
 
             /* Again, move to the right to make space for the
-             * next character.
-             */
+             * next character. */
             glTranslatef( (GLfloat)(advance[i]-left), 0.0f, 0.0f );
 
-            /* Finish up our display list.
-             */
+            /* Finish up our display list. */
             glEndList();
         }
     
-        /* Free up our resources.
-         */
+        /* Free up our resources. */
         FT_Done_Face( face );
         FT_Done_FreeType( library );
     }

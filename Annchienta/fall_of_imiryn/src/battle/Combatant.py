@@ -25,6 +25,7 @@ class Combatant:
         # Get references
         self.videoManager = annchienta.getVideoManager()
         self.cacheManager = annchienta.getCacheManager()
+        self.mathManager  = annchienta.getMathManager()
         self.sceneManager = SceneManager.getSceneManager()
 
         # Set our name
@@ -117,7 +118,7 @@ class Combatant:
         self.statusEffects = []
         
         # Reset time bar
-        self.timer = 100.0 * annchienta.randFloat()
+        self.timer = 100.0 * self.mathManager.randFloat()
     
         # Start in the front row
         self.row = "front"
@@ -223,7 +224,7 @@ class Combatant:
 
     # prototype, not correct
     def selectAction( self, battle ):
-        return self.actions[ annchienta.randInt( 0, len(self.actions)-1 ) ]
+        return self.actions[ self.mathManager.randInt( 0, len(self.actions) ) ]
 
  
     # Draw combatant to the screen.

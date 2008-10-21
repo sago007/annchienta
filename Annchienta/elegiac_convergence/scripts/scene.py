@@ -18,6 +18,7 @@ class SceneManager:
     inputManager = annchienta.getInputManager()
     audioManager = annchienta.getAudioManager()
     cacheManager = annchienta.getCacheManager()
+    mathManager = annchienta.getMathManager()
     mapManager = annchienta.getMapManager()
 
     def waitForClick( self ):
@@ -375,7 +376,7 @@ class SceneManager:
         while self.engine.getTicks() < start+duration and self.inputManager.running():
             self.inputManager.update()
             self.videoManager.begin()
-            r = annchienta.randInt(0,255)
+            r = self.mathManager.randInt(0,256)
             self.videoManager.setColor( r, r, r )
             self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
             self.videoManager.end()

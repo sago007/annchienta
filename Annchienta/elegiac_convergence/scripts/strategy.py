@@ -19,6 +19,7 @@ class Strategy:
 
         self.cacheManager = annchienta.getCacheManager()
         self.audioManager = annchienta.getAudioManager()
+        self.mathManager = annchienta.getMathManager()
         self.sceneManager = scene.getSceneManager()
 
         self.m_combatant = m_combatant
@@ -62,7 +63,7 @@ class Warrior(Strategy):
         array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
         if not len(array):
             return
-        target = array[ annchienta.randInt(0,len(array)-1) ]
+        target = array[ self.mathManager.randInt(0,len(array)) ]
 
         # Attack that target with default attack power (=30).
         self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
@@ -233,7 +234,7 @@ class Monk(Strategy):
         if not len(array):
             return
 
-        target = array[ annchienta.randInt(0,len(array)-1) ]
+        target = array[ self.mathManager.randInt(0,len(array)) ]
 
         status = ""
         if "protect" in target.buffers:
@@ -241,7 +242,7 @@ class Monk(Strategy):
         elif "barrier" in target.buffers:
             status = "protect"
         else:
-            status = "protect" if annchienta.randInt(0,1) else "barrier"
+            status = "protect" if self.mathManager.randInt(0,2) else "barrier"
 
         # Add that status effect.
         if status=="protect":
@@ -284,7 +285,7 @@ class Poisoner(Strategy):
         array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
         if not len(array):
             return
-        target = array[ annchienta.randInt(0,len(array)-1) ]
+        target = array[ self.mathManager.randInt(0,len(array)) ]
 
         # Attack all targets with 12 attack power.
         self.sceneManager.info( self.m_combatant.name.capitalize()+" casts bio on "+target.name.capitalize()+"!" )
@@ -329,7 +330,7 @@ class Dragon(Strategy):
         array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
         if not len(array):
             return
-        target = array[ annchienta.randInt(0,len(array)-1) ]
+        target = array[ self.mathManager.randInt(0,len(array)) ]
 
         # Attack that target with serious attack power (=50).
         self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
@@ -415,7 +416,7 @@ class Thug(Strategy):
         array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
         if not len(array):
             return
-        target = array[ annchienta.randInt(0,len(array)-1) ]
+        target = array[ self.mathManager.randInt(0,len(array)) ]
 
         # Attack that target with quit high attack power (=45).
         self.sceneManager.info( self.m_combatant.name.capitalize()+" attacks "+target.name.capitalize()+"!" )
@@ -544,7 +545,7 @@ class Bird(Strategy):
         array = self.m_battle.allies if self.m_combatant.hostile else self.m_battle.enemies
         if not len(array):
             return
-        target = array[ annchienta.randInt(0,len(array)-1) ]
+        target = array[ self.mathManager.randInt(0,len(array)) ]
 
         # Attack all targets with 12 attack power.
         self.sceneManager.info( self.m_combatant.name.capitalize()+" casts wind on "+target.name.capitalize()+"!" )

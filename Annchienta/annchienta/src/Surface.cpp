@@ -9,6 +9,7 @@
 
 #include "GeneralFunctions.h"
 #include "LogManager.h"
+#include "MathManager.h"
 
 #define PNG_BYTES_TO_CHECK 4
 
@@ -99,8 +100,10 @@ namespace Annchienta
 
     Surface::Surface( int w, int h, int ps ): width(w), height(h), pixelSize(ps), texture(0), list(0)
     {
-        glWidth = nearestPowerOfTwo( width );
-        glHeight = nearestPowerOfTwo( height );
+        /* Calculate the actual memory size. */
+        MathManager *mathManager = getMathManager();
+        glWidth = mathManager->nearestPowerOfTwo( width );
+        glHeight = mathManager->nearestPowerOfTwo( height );
 
         pixels = new GLubyte[ glWidth * glHeight * pixelSize ];
 
@@ -110,9 +113,9 @@ namespace Annchienta
 
     Surface::Surface( const char *filename ): texture(0), list(0)
     {
-        /* We might need some logging here.
-         */
+        /* We might need some logging and some math here. */
         LogManager *logManager = getLogManager();
+        MathManager *mathManager = getMathManager();
 
         png_byte buffer[PNG_BYTES_TO_CHECK];
         
@@ -121,14 +124,12 @@ namespace Annchienta
         if( fp==NULL )
             logManager->error( "Could not open '%s' for reading.", filename );
         
-        /* Read in some of the signature bytes
-         */
+        /* Read in some of the signature bytes */
         if( fread( buffer, 1, PNG_BYTES_TO_CHECK, fp ) != PNG_BYTES_TO_CHECK )
             logManager->error( "Could not check png signature in '%s'.", filename );
         
         /* Compare the first PNG_BYTES_TO_CHECK bytes of the signature.
-         * Return nonzero (true) if they match
-         */
+         * Return nonzero (true) if they match */
         if( png_sig_cmp( buffer, (png_size_t)0, PNG_BYTES_TO_CHECK ) )
             logManager->error( "PNG signature is not correct in '%s'.", filename );
     
@@ -183,8 +184,8 @@ namespace Annchienta
 
         width = png_width;
         height = png_height;
-        glWidth = nearestPowerOfTwo( png_width ),
-        glHeight = nearestPowerOfTwo( png_height );
+        glWidth = mathManager->nearestPowerOfTwo( png_width ),
+        glHeight = mathManager->nearestPowerOfTwo( png_height );
 
         /* The pixel size: 1, 2, 3 or 4 usually */
         pixelSize = png_get_rowbytes( png_ptr, info_ptr ) / png_width;

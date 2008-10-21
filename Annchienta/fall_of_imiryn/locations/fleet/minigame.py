@@ -26,6 +26,7 @@ class Game:
         self.inputManager = annchienta.getInputManager()
         self.cacheManager = annchienta.getCacheManager()
         self.mapManager   = annchienta.getMapManager()
+        self.mathManager  = annchienta.getMathManager()
         self.sceneManager = SceneManager.getSceneManager()
 
         # Background spriteace
@@ -91,9 +92,9 @@ class Game:
             while self.nextEnemySpawn <= 0:
                
                 # Spawn a new enemy
-                pos = annchienta.Vector( annchienta.randInt( 0, videoManager.getScreenWidth() ), videoManager.getScreenHeight() + self.enemySprite.getHeight() )
+                pos = annchienta.Vector( self.mathManager.randInt( 0, videoManager.getScreenWidth() ), videoManager.getScreenHeight() + self.enemySprite.getHeight() )
                 self.enemies += [ GameObject( pos, self.enemySprite ) ]
-                self.nextEnemySpawn += annchienta.randInt( 500, 2000 )
+                self.nextEnemySpawn += self.mathManager.randInt( 500, 2000 )
         # Check if we should spawn the captain
         else:
             # Wait until all enemies are gone

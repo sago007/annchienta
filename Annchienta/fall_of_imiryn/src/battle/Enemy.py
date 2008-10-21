@@ -29,7 +29,7 @@ class Enemy( Combatant.Combatant ):
     
         # Select an action
         actions = filter( lambda a: a.cost <= self.healthStats["mp"], self.actions )
-        action = self.actions[ annchienta.randInt( 0, len(self.actions)-1 ) ]
+        action = self.actions[ self.mathManager.randInt( 0, len(self.actions) ) ]
 
         # Select a target
         target = self.selectTarget( battle )
@@ -37,5 +37,5 @@ class Enemy( Combatant.Combatant ):
         return action, target
 
     def selectTarget( self, battle ):
-        return battle.allies[ annchienta.randInt( 0, len(battle.allies)-1 ) ]
+        return battle.allies[ self.mathManager.randInt( 0, len(battle.allies) ) ]
 

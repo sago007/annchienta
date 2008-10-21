@@ -15,6 +15,7 @@ class PartyManager:
         self.inputManager = annchienta.getInputManager()
         self.mapManager = annchienta.getMapManager()
         self.cacheManager = annchienta.getCacheManager()
+        self.mathManager = annchienta.getMathManager()
         self.sceneManager = SceneManager.getSceneManager()
 
         # Set variables
@@ -26,7 +27,7 @@ class PartyManager:
         self.chestObjects = []
 
         # Battle variables
-        self.randomBattleDelay = annchienta.randInt(300,400)
+        self.randomBattleDelay = self.mathManager.randInt(300,400)
 
     def free( self ):
 

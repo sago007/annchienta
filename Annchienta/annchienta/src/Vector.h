@@ -38,6 +38,7 @@ namespace Annchienta
             float operator*(const Vector &other) const;
             
             float length() const;
+            float lengthSquared() const;
             float distance( const Vector &other ) const;
 
             void normalize();

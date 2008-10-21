@@ -25,7 +25,8 @@ class RaftGame:
         self.videoManager = annchienta.getVideoManager()
         self.inputManager = annchienta.getInputManager()
         self.cacheManager = annchienta.getCacheManager()
-        self.mapManager = annchienta.getMapManager()
+        self.mapManager   = annchienta.getMapManager()
+        self.mathManager  = annchienta.getMathManager()
         self.sceneManager = SceneManager.getSceneManager()
 
         # Load images
@@ -84,11 +85,11 @@ class RaftGame:
         # New spawns
         self.nextSpawn -= ms
         while self.nextSpawn < 0 and self.engine.getTicks()<self.end:
-            surface = self.cacheManager.getSurface( "sprites/rock" + str( annchienta.randInt( 1, 2 ) ) + ".png" )
-            position = annchienta.Vector( annchienta.randInt( 0, self.videoManager.getScreenWidth() ) , -surface.getHeight() )
+            surface = self.cacheManager.getSurface( "sprites/rock" + str( self.mathManager.randInt( 1, 3 ) ) + ".png" )
+            position = annchienta.Vector( self.mathManager.randInt( 0, self.videoManager.getScreenWidth() ) , -surface.getHeight() )
             rock = RaftObject( surface, position )
             self.rocks.insert( 0, rock )
-            self.nextSpawn += annchienta.randInt( 300, 1000 )
+            self.nextSpawn += self.mathManager.randInt( 300, 1000 )
         
         # Remove rocks out of vision
         self.rocks = filter( lambda r: r.position.y < self.videoManager.getScreenHeight()+r.surface.getHeight(), self.rocks )
@@ -112,7 +113,7 @@ class RaftGame:
 
         # To make the cave tremble
         tremble = 3
-        self.videoManager.translate( annchienta.randInt(-tremble,tremble), annchienta.randInt(-tremble,tremble) )
+        self.videoManager.translate( self.mathManager.randInt(-tremble,tremble+1), self.mathManager.randInt(-tremble,tremble+1) )
 
         # Draw background
         self.videoManager.drawSurface( self.background, 0, int(self.backgroundY) )

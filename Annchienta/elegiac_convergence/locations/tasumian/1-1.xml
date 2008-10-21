@@ -33,30 +33,30 @@
 
 <!-- Way north. -->
 <area tilex1="0" tilex2="1" tiley1="5" tiley2="8">
-import party, annchienta
+import party, annchientamathManager = annchienta.getMathManager()
 partyManager = party.getPartyManager()
-partyManager.changeMap( &quot;locations/tasumian/0-&quot;+str(annchienta.randInt(2))+&quot;.xml&quot;, annchienta.Point( annchienta.TilePoint, 13, 8 ) )
+partyManager.changeMap( &quot;locations/tasumian/0-&quot;+str(mathManager.randInt(3))+&quot;.xml&quot;, annchienta.Point( annchienta.TilePoint, 13, 8 ) )
 </area>
 
 <!-- Way east. -->
 <area tilex1="5" tilex2="8" tiley1="0" tiley2="1">
-import party, annchienta
+import party, annchientamathManager = annchienta.getMathManager()
 partyManager = party.getPartyManager()
-partyManager.changeMap( &quot;locations/tasumian/&quot;+str(annchienta.randInt(2))+&quot;-0.xml&quot;, annchienta.Point( annchienta.TilePoint, 8, 13 ) )
+partyManager.changeMap( &quot;locations/tasumian/&quot;+str(mathManager.randInt(3))+&quot;-0.xml&quot;, annchienta.Point( annchienta.TilePoint, 8, 13 ) )
 </area>
 
 <!-- Way south. -->
 <area tilex1="14" tilex2="15" tiley1="7" tiley2="10">
-import party, annchienta
+import party, annchientamathManager = annchienta.getMathManager()
 partyManager = party.getPartyManager()
-partyManager.changeMap( &quot;locations/tasumian/2-&quot;+str(annchienta.randInt(2))+&quot;.xml&quot;, annchienta.Point( annchienta.TilePoint, 2, 7 ) )
+partyManager.changeMap( &quot;locations/tasumian/2-&quot;+str(mathManager.randInt(3))+&quot;.xml&quot;, annchienta.Point( annchienta.TilePoint, 2, 7 ) )
 </area>
 
 <!-- Way west. -->
 <area tilex1="6" tilex2="9" tiley1="14" tiley2="15">
-import party, annchienta
+import party, annchientamathManager = annchienta.getMathManager()
 partyManager = party.getPartyManager()
-partyManager.changeMap( &quot;locations/tasumian/&quot;+str(annchienta.randInt(2))+&quot;-2.xml&quot;, annchienta.Point( annchienta.TilePoint, 6, 2 ) )
+partyManager.changeMap( &quot;locations/tasumian/&quot;+str(mathManager.randInt(3))+&quot;-2.xml&quot;, annchienta.Point( annchienta.TilePoint, 6, 2 ) )
 </area>
 
 </layer>

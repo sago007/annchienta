@@ -36,14 +36,16 @@
 <area tilex1="14" tiley1="7" tilex2="15" tiley2="10">
 import party, annchienta
 partyManager = party.getPartyManager()
-partyManager.changeMap( &quot;locations/tasumian/1-&quot;+str(annchienta.randInt(2))+&quot;.xml&quot;, annchienta.Point( annchienta.TilePoint, 2, 7 ) )
+mathManager = annchienta.getMathManager()
+partyManager.changeMap( &quot;locations/tasumian/1-&quot;+str(mathManager.randInt(3))+&quot;.xml&quot;, annchienta.Point( annchienta.TilePoint, 2, 7 ) )
 </area>
 
 <!-- Way west. -->
 <area tilex1="6" tiley1="14" tilex2="9" tiley2="15">
 import party, annchienta
 partyManager = party.getPartyManager()
-partyManager.changeMap( &quot;locations/tasumian/&quot;+str(annchienta.randInt(2))+&quot;-1.xml&quot;, annchienta.Point( annchienta.TilePoint, 6, 2 ) )
+mathManager = annchienta.getMathManager()
+partyManager.changeMap( &quot;locations/tasumian/&quot;+str(mathManager.randInt(3))+&quot;-1.xml&quot;, annchienta.Point( annchienta.TilePoint, 6, 2 ) )
 </area>
 
 </layer>

@@ -78,7 +78,12 @@ namespace Annchienta
     
     float Vector::length() const
     {
-        return sqrt( square(x)+square(y) );
+        return sqrt( lengthSquared() );
+    }
+
+    float Vector::lengthSquared() const
+    {
+        return x*x + y*y;
     }
 
     float Vector::distance( const Vector &other ) const

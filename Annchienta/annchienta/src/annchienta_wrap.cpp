@@ -13957,135 +13957,6 @@ SWIGINTERN PyObject *Person_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_nearestPowerOfTwo(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int *arg1 = 0 ;
-  int temp1 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:nearestPowerOfTwo",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "nearestPowerOfTwo" "', argument " "1"" of type '" "int""'");
-  } 
-  temp1 = static_cast< int >(val1);
-  arg1 = &temp1;
-  result = (int)Annchienta::nearestPowerOfTwo((int const &)*arg1);
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_randInt__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int *arg1 = 0 ;
-  int temp1 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:randInt",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "randInt" "', argument " "1"" of type '" "int""'");
-  } 
-  temp1 = static_cast< int >(val1);
-  arg1 = &temp1;
-  result = (int)Annchienta::randInt((int const &)*arg1);
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_randInt__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int *arg1 = 0 ;
-  int *arg2 = 0 ;
-  int temp1 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int temp2 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:randInt",&obj0,&obj1)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "randInt" "', argument " "1"" of type '" "int""'");
-  } 
-  temp1 = static_cast< int >(val1);
-  arg1 = &temp1;
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "randInt" "', argument " "2"" of type '" "int""'");
-  } 
-  temp2 = static_cast< int >(val2);
-  arg2 = &temp2;
-  result = (int)Annchienta::randInt((int const &)*arg1,(int const &)*arg2);
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_randInt(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = (int)PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_randInt__SWIG_0(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_randInt__SWIG_1(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'randInt'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Annchienta::randInt(int const &)\n"
-    "    Annchienta::randInt(int const &,int const &)\n");
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_randFloat__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   float result;
@@ -14877,6 +14748,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Vector_lengthSquared(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Vector_lengthSquared",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_lengthSquared" "', argument " "1"" of type '" "Annchienta::Vector const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  result = (float)((Annchienta::Vector const *)arg1)->lengthSquared();
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Vector_distance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
@@ -15242,8 +15135,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Person_lookAt", _wrap_Person_lookAt, METH_VARARGS, NULL},
 	 { (char *)"Person_collisionWithLayerAreas", _wrap_Person_collisionWithLayerAreas, METH_VARARGS, NULL},
 	 { (char *)"Person_swigregister", Person_swigregister, METH_VARARGS, NULL},
-	 { (char *)"nearestPowerOfTwo", _wrap_nearestPowerOfTwo, METH_VARARGS, NULL},
-	 { (char *)"randInt", _wrap_randInt, METH_VARARGS, NULL},
 	 { (char *)"randFloat", _wrap_randFloat, METH_VARARGS, NULL},
 	 { (char *)"distance", _wrap_distance, METH_VARARGS, NULL},
 	 { (char *)"squaredDistance", _wrap_squaredDistance, METH_VARARGS, NULL},
@@ -15262,6 +15153,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Vector___idiv__", _wrap_Vector___idiv__, METH_VARARGS, NULL},
 	 { (char *)"Vector___mul__", _wrap_Vector___mul__, METH_VARARGS, NULL},
 	 { (char *)"Vector_length", _wrap_Vector_length, METH_VARARGS, NULL},
+	 { (char *)"Vector_lengthSquared", _wrap_Vector_lengthSquared, METH_VARARGS, NULL},
 	 { (char *)"Vector_distance", _wrap_Vector_distance, METH_VARARGS, NULL},
 	 { (char *)"Vector_normalize", _wrap_Vector_normalize, METH_VARARGS, NULL},
 	 { (char *)"Vector_swigregister", Vector_swigregister, METH_VARARGS, NULL},

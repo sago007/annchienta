@@ -7,14 +7,6 @@
 
 namespace Annchienta
 {
-    const int nearestPowerOfTwo( const int &input );
-
-    /* 0 <= return value <= maximum
-     */
-    const int randInt( const int &maximum );
-    /* minimum <= return value <= maximum
-     */
-    const int randInt( const int &minimum, const int &maximum );
     /* 0 <= return value <= 1
      */
     const float randFloat();

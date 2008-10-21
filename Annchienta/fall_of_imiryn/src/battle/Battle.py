@@ -21,7 +21,8 @@ class Battle:
         self.videoManager = annchienta.getVideoManager()
         self.inputManager = annchienta.getInputManager()
         self.cacheManager = annchienta.getCacheManager()
-        self.mapManager = annchienta.getMapManager()
+        self.mathManager  = annchienta.getMathManager()
+        self.mapManager   = annchienta.getMapManager()
         self.sceneManager = SceneManager.getSceneManager()
         self.partyManager = PartyManager.getPartyManager()
         
@@ -51,11 +52,11 @@ class Battle:
         self.xp = 0
 
         # Preemptive strike / ambush
-        if annchienta.randFloat() <= 0.1:
+        if self.mathManager.randFloat() <= 0.1:
             for a in self.allies:
                 a.timer = 100.0
             self.lines += ["Preemptive strike!"]
-        elif annchienta.randFloat() <= 0.1:
+        elif self.mathManager.randFloat() <= 0.1:
             for a in self.allies:
                 a.timer = 0.0
             self.lines += ["Ambushed!"]
@@ -82,7 +83,7 @@ class Battle:
                 if not combatant.ally:
                     self.xp += combatant.dropXp
                     if combatant.dropItem:
-                        if annchienta.randFloat() < combatant.dropRate:
+                        if self.mathManager.randFloat() < combatant.dropRate:
                             self.lines += [ combatant.name.capitalize()+" drops "+combatant.dropItem+"!" ]
                             self.partyManager.inventory.addItem( combatant.dropItem )
 
@@ -315,7 +316,7 @@ class Battle:
             if "injured" in combatant.statusEffects:
                 baseDamage *= 2
 
-        hit = annchienta.randFloat() <= rate
+        hit = self.mathManager.randFloat() <= rate
 
         # Play animation
         self.playAnimation( action, combatant, target )
@@ -323,7 +324,7 @@ class Battle:
         if hit:
             # Check for status effects
             if action.statusEffect!="none" and action.statusEffect not in target.statusEffects:
-                if annchienta.randFloat() <= action.statusHit:
+                if self.mathManager.randFloat() <= action.statusHit:
                     target.statusEffects += [action.statusEffect]
                     self.lines += [ target.name.capitalize()+" is now "+action.statusEffect+"!" ]
 
@@ -352,7 +353,7 @@ class Battle:
 
             # Only if enemy is carrying an item
             if target.steal:
-                if annchienta.randFloat()<=0.7:
+                if self.mathManager.randFloat()<=0.7:
                     self.lines += [ combatant.name.capitalize()+" stole "+target.steal+" from "+target.name.capitalize()+"!" ]
                     self.partyManager.inventory.addItem( target.steal )
                     # Remove item from target when stolen
@@ -399,7 +400,7 @@ class Battle:
             return
 
         # 0.6% chance to run away
-        if annchienta.randFloat() < 0.6:
+        if self.mathManager.randFloat() < 0.6:
             self.running = False
 
         else:
@@ -412,7 +413,7 @@ class Battle:
             self.lines += [target.name.capitalize()+" is not suffering from status effects!"]
             return
 
-        effect = target.statusEffects[ annchienta.randInt( 0, len(target.statusEffects)-1 ) ]
+        effect = target.statusEffects[ self.mathManager.randInt( 0, len(target.statusEffects) ) ]
         self.lines += [combatant.name.capitalize()+" cures "+target.name.capitalize()+" from "+effect+"!"]
         target.statusEffects.remove( effect )
 
@@ -483,46 +484,4 @@ class Battle:
         position = annchienta.Vector( combatant.position )
         position.x -= 30 if combatant.ally else -30
         self.playMoveAnimation( combatant, position )
-
-
-## A more simple function to run a battle.
-#
-def runBattle( enemyNames, background, canFlee=True ):
-
-    logManager = annchienta.getLogManager()
-    partyManager = PartyManager.getPartyManager()
-
-    combatants = list(partyManager.team)
-
-    enemyElements = Battle.enemiesFile.getElementsByTagName("enemy")
-    for name in enemyNames:
-        found = filter( lambda e: str(e.getAttribute("name"))==name, enemyElements )
-        if len(found):
-            combatants += [ Enemy.Enemy( found[0] ) ]
-        else:
-            logManager.error( "No enemy called "+name+" found in "+Battle.enemiesLocation+"." )
-
-    battle = Battle( combatants, background, canFlee )
-    battle.run()
-
-    return battle.won
-
-# Tries a random battle
-def throwRandomBattle():
-
-    partyManager = PartyManager.getPartyManager()
-
-    if partyManager.randomBattleDelay>0:
-        partyManager.randomBattleDelay -= 1
-        return
-    else:
-        partyManager.randomBattleDelay = annchienta.randInt( 400, 650 )
-
-        # Return if there are no enemies in this level.
-        if not len(partyManager.enemiesInMap):
-            return
-
-        enames = map( lambda a: partyManager.enemiesInMap[annchienta.randInt(0,len(partyManager.enemiesInMap)-1)], range(annchienta.randInt(2,4)))
-
-        runBattle( enames, annchienta.Surface( partyManager.background ), True )
 

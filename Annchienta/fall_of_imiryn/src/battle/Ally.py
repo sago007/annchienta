@@ -230,7 +230,7 @@ class Ally( Combatant.Combatant ):
                 difference = baseline - self.primaryStats[key]
                 
                 # Add a certain random factor
-                gain = difference + annchienta.randInt(0,3)
+                gain = difference + self.mathManager.randInt(0,4)
 
                 # Now gain
                 self.primaryStats[key] += gain
@@ -242,7 +242,7 @@ class Ally( Combatant.Combatant ):
             # Seperate formulas for hp, mp
             for string in ["hp", "mp"]:
                 mstring = "m"+string
-                gain = int( float(self.grades[mstring]*annchienta.randFloat(0.9,1.1)) )
+                gain = int( float(self.grades[mstring]*self.mathManager.randFloat(0.9,1.1)) )
                 self.healthStats[mstring] += gain
                 self.healthStats[string] += gain
 
