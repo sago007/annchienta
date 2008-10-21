@@ -42,6 +42,14 @@ namespace Annchienta
             float distance( const Vector &other ) const;
 
             void normalize();
+
+            /** Cap the vector coordinates. For example, a vector
+             *  with coordinates (-5,2) would become (-3,2) after
+             *  capping with -3 as mimimum and 3 as maximum.
+             *  \param minimum The mimum value of a coordinate.
+             *  \param maximum The maximum value of a coordinate.
+             */
+            void cap( const float &minimum, const float &maximum );
     };
 
 };

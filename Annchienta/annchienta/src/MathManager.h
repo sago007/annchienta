@@ -65,6 +65,7 @@ namespace Annchienta
             /** Returns the absolute value.
              */
             int abs( const int &value ) const;
+
     };
 
     /** \return An instance of the global MathManager.

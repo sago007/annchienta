@@ -2639,7 +2639,6 @@ namespace swig {
 #include "Mask.h"
 #include "StaticObject.h"
 #include "Person.h"
-#include "GeneralFunctions.h"
 #include "Vector.h"
 
 
@@ -14761,6 +14760,49 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Vector_cap(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float *arg2 = 0 ;
+  float *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  float temp3 ;
+  float val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Vector_cap",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_cap" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Vector_cap" "', argument " "2"" of type '" "float""'");
+  } 
+  temp2 = static_cast< float >(val2);
+  arg2 = &temp2;
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Vector_cap" "', argument " "3"" of type '" "float""'");
+  } 
+  temp3 = static_cast< float >(val3);
+  arg3 = &temp3;
+  (arg1)->cap((float const &)*arg2,(float const &)*arg3);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Vector_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
@@ -15092,6 +15134,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Vector_lengthSquared", _wrap_Vector_lengthSquared, METH_VARARGS, NULL},
 	 { (char *)"Vector_distance", _wrap_Vector_distance, METH_VARARGS, NULL},
 	 { (char *)"Vector_normalize", _wrap_Vector_normalize, METH_VARARGS, NULL},
+	 { (char *)"Vector_cap", _wrap_Vector_cap, METH_VARARGS, NULL},
 	 { (char *)"Vector_swigregister", Vector_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };

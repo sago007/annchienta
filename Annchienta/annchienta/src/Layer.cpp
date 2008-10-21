@@ -5,7 +5,6 @@
 #include "Layer.h"
 
 #include "Entity.h"
-#include "GeneralFunctions.h"
 #include "Tile.h"
 #include "VideoManager.h"
 #include "TileSet.h"

@@ -643,6 +643,7 @@ class Vector(_object):
     def lengthSquared(*args): return _annchienta.Vector_lengthSquared(*args)
     def distance(*args): return _annchienta.Vector_distance(*args)
     def normalize(*args): return _annchienta.Vector_normalize(*args)
+    def cap(*args): return _annchienta.Vector_cap(*args)
 Vector_swigregister = _annchienta.Vector_swigregister
 Vector_swigregister(Vector)
 

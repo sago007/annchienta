@@ -7,7 +7,6 @@
 #include "xml/irrXML.h"
 using namespace irr;
 using namespace io;
-#include "GeneralFunctions.h"
 #include "PersonControl.h"
 #include "InputPersonControl.h"
 #include "InputManager.h"

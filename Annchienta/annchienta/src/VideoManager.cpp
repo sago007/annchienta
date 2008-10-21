@@ -9,7 +9,6 @@
 
 #include "Surface.h"
 #include "Font.h"
-#include "GeneralFunctions.h"
 #include "LogManager.h"
 
 namespace Annchienta

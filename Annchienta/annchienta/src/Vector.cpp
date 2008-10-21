@@ -5,7 +5,6 @@
 #include "Vector.h"
 
 #include <cmath>
-#include "GeneralFunctions.h"
 
 namespace Annchienta
 {
@@ -99,6 +98,18 @@ namespace Annchienta
             x /= l;
             y /= l;
         }
+    }
+
+    void Vector::cap( const float &minimum, const float &maximum )
+    {
+        if( x<minimum )
+            x = minimum;
+        if( y<minimum )
+            y = minimum;
+        if( x>maximum )
+            x = maximum;
+        if( y>maximum )
+            y = maximum;
     }
     
 };

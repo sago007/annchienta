@@ -7,7 +7,6 @@
 #include <cstdlib>
 #include <png.h>
 
-#include "GeneralFunctions.h"
 #include "LogManager.h"
 #include "MathManager.h"
 

@@ -6,7 +6,6 @@
 
 #include <cmath>
 #include "MapManager.h"
-#include "GeneralFunctions.h"
 
 namespace Annchienta
 {

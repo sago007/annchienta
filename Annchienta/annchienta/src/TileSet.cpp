@@ -8,7 +8,6 @@
 #include <cstring>
 #include "Surface.h"
 #include "Mask.h"
-#include "GeneralFunctions.h"
 #include "Engine.h"
 #include "MapManager.h"
 #include "LogManager.h"

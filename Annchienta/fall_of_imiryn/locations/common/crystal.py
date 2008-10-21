@@ -6,6 +6,8 @@ partyManager = PartyManager.getPartyManager()
 partyManager.heal()
 
 sceneManager = SceneManager.getSceneManager()
+
+sceneManager.initDialog( [annchienta.getActiveObject(), annchienta.getPassiveObject()] )
 sceneManager.text("Your health was restored!")
 
 menu = Menu.Menu("Save menu.", "Save your game.")
@@ -19,3 +21,4 @@ if ans is not None:
         partyManager.save( "save/save.xml" )
         sceneManager.text("Game saved!")
 
+sceneManager.quitDialog()

@@ -14,7 +14,6 @@
 #include "StaticObject.h"
 #include "Mask.h"
 #include "Layer.h"
-#include "GeneralFunctions.h"
 #include "Engine.h"
 #include "Vector.h"
 
@@ -119,32 +118,37 @@ namespace Annchienta
         Point targetPosition = object->getPosition();
         targetPosition.convert( MapPoint );
 
+        /* Calculate destX and destY so that they represent the destination
+         * camera coordinates. */
         int destX = targetPosition.x - videoManager->getScreenWidth()/2;
         int destY = targetPosition.y - targetPosition.z - object->getMask()->getHeight()/2 - videoManager->getScreenHeight()/2;
 
-        /* Avoid segfaults.
-         */
+        /* Avoid segfaults: make sure this is a layer before we subtract
+         * the Z offset from it... */
         if( object->getLayer() )
             destY -= object->getLayer()->getZ();
 
+        /* If we're instantly looking at the target, just put our
+         * camera over there. */
         if( instantly )
         {
             cameraX = destX;
             cameraY = destY;
         }
+        /* If this is not the case, move our camera there a little. */
         else
         {
-            int s = 4;
-            Vector deltaVector( cameraX - destX, cameraY - destY );
-            while( deltaVector.lengthSquared()>1 && --s )
+            Vector deltaVector( destX - cameraX, destY - cameraY );
+
+            /* Only perform our move if we are moving properly, because
+             * we don't want a 'jumpy' camera. */
+            if( deltaVector.lengthSquared()>2 )
             {
-                /* If there is a difference, move the camera in the
-                 * right direction. Do this for X and Y. */
-                if( destX-cameraX!=0 )
-                    cameraX += (destX-cameraX)>0?1:-1;
-                if( destY-cameraY!=0 )
-                    cameraY += (destY-cameraY)>0?1:-1;
+                deltaVector.cap( -4.0, 4.0 );
+                cameraX += (int)(deltaVector.x+0.5f);
+                cameraY += (int)(deltaVector.y+0.5f);
             }
+
         }
     }
 

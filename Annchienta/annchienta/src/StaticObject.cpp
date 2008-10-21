@@ -8,7 +8,6 @@
 #include "xml/irrXML.h"
 using namespace irr;
 using namespace io;
-#include "GeneralFunctions.h"
 #include "CacheManager.h"
 #include "VideoManager.h"
 #include "MapManager.h"

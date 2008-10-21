@@ -13,7 +13,6 @@ using namespace irr;
 using namespace io;
 #include "Tile.h"
 #include "TileSet.h"
-#include "GeneralFunctions.h"
 #include "Entity.h"
 #include "Layer.h"
 #include "MapManager.h"

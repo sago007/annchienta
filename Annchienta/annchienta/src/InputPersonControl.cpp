@@ -8,7 +8,6 @@
 #include "MathManager.h"
 #include "MapManager.h"
 #include "Person.h"
-#include "GeneralFunctions.h"
 #include "Point.h"
 #include "Mask.h"
 #include "Layer.h"

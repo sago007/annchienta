@@ -7,7 +7,6 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include "GeneralFunctions.h"
 #include "LogManager.h"
 #include "MathManager.h"
 

@@ -8,7 +8,6 @@
 #include <png.h>
 #include "LogManager.h"
 #include "MathManager.h"
-#include "GeneralFunctions.h"
 
 #define PNG_BYTES_TO_CHECK 4
 
