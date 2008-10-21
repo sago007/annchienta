@@ -13,12 +13,14 @@ using namespace io;
 #include "InputManager.h"
 #include "SamplePersonControl.h"
 #include "MapManager.h"
+#include "MathManager.h"
 #include "Layer.h"
 #include "Mask.h"
 #include "InputManager.h"
 #include "Area.h"
 #include "Tile.h"
 #include "LogManager.h"
+#include "Vector.h"
 
 namespace Annchienta
 {
@@ -212,11 +214,11 @@ namespace Annchienta
         target.convert( IsometricPoint );
         int tx = target.x, ty = target.y;
 
-        /* We don't need to take a step if we're close enough.
-        */
-        if( squaredDistance( (float)position.x, (float)position.y, (float)tx, (float)ty ) <= 25 )
+        /* We don't need to take a step if we're close enough. Use
+         * a vector to calculate the distance. */
+        Vector diffVector( position.x-tx, position.y-ty );
+        if( diffVector.lengthSquared() <= 25 )
         {
-            //printf("We're close enough.\n");
             this->setStandAnimation();
             return false;
         }
@@ -232,8 +234,6 @@ namespace Annchienta
             else
                 this->move( 0, y, true );
         }
-
-        //printf("Reached the end.\n");
 
         return true;
     }
@@ -307,7 +307,9 @@ namespace Annchienta
         int xdiff = this->getPosition().x - other->getPosition().x,
             ydiff = this->getPosition().y - other->getPosition().y;
 
-        if( absValue( xdiff ) > absValue( ydiff ) )
+        MathManager *mathManager = getMathManager();
+
+        if( mathManager->abs( xdiff ) > mathManager->abs( ydiff ) )
         {
             if( xdiff < 0 )
                 heading = 2;

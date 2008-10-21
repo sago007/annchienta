@@ -5,12 +5,14 @@
 #include "InputPersonControl.h"
 
 #include "InputManager.h"
+#include "MathManager.h"
 #include "MapManager.h"
 #include "Person.h"
 #include "GeneralFunctions.h"
 #include "Point.h"
 #include "Mask.h"
 #include "Layer.h"
+#include "Vector.h"
 
 namespace Annchienta
 {
@@ -18,6 +20,7 @@ namespace Annchienta
     InputPersonControl::InputPersonControl( Person *_person ): PersonControl(_person)
     {
         inputManager = getInputManager();
+        mathManager  = getMathManager();
     }
 
     InputPersonControl::~InputPersonControl()
@@ -40,20 +43,21 @@ namespace Annchienta
                 mouse.convert( MapPoint );
 
                 Point pos = person->getPosition();
-		pos.convert( MapPoint );
+                pos.convert( MapPoint );
 
                 /* Don't forget to take Z in account here.
                  */
                 mouse.y += person->getLayer()->getZ();
-		mouse.y += pos.z;
+                mouse.y += pos.z;
 
                 mouse.convert( IsometricPoint );
 
                 pos.convert( IsometricPoint );
     
-                if( squaredDistance( (float)mouse.x, (float)mouse.y, (float)pos.x, (float)pos.y ) >= 200 )
+                Vector deltaVector( mouse.x - pos.x, mouse.y - pos.y );
+                if( deltaVector.lengthSquared() >= 200 )
                 {
-                    if( absValue(mouse.x-pos.x) > absValue(mouse.y-pos.y) )
+                    if( mathManager->abs(mouse.x-pos.x) > mathManager->abs(mouse.y-pos.y) )
                         x += mouse.x<pos.x?-1:1;
                     else
                         y += mouse.y<pos.y?-1:1;
@@ -124,7 +128,7 @@ namespace Annchienta
                      * want the player to be able to talk with eg. someone standing
                      * on a cliff when the player is standing on the ground etc.
                      */
-                    if( absValue(p.z - object->getPosition().z) < getMapManager()->getMaxAscentHeight() )
+                    if( mathManager->abs(p.z - object->getPosition().z) < getMapManager()->getMaxAscentHeight() )
                     {
                         /* We skip object with which can not be interacted.
                          */

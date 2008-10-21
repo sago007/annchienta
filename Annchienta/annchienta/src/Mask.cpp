@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <png.h>
 #include "LogManager.h"
+#include "MathManager.h"
 #include "GeneralFunctions.h"
 
 #define PNG_BYTES_TO_CHECK 4
@@ -148,6 +149,8 @@ namespace Annchienta
 
     bool Mask::collision( int x1, int y1, Mask *mask2, int x2, int y2, bool box )
     {
+        MathManager *mathManager = getMathManager();
+
         int left1, left2, over_left;
         int right1, right2, over_right;
         int top1, top2, over_top;
@@ -180,10 +183,10 @@ namespace Annchienta
 
         /* Ok, compute the rectangle which intersects:
          */
-        over_bottom = min( bottom1, bottom2 );
-        over_top = max( top1, top2 );
-        over_right = min( right1, right2 );
-        over_left = max( left1, left2 );
+        over_bottom = mathManager->min( bottom1, bottom2 );
+        over_top = mathManager->max( top1, top2 );
+        over_right = mathManager->min( right1, right2 );
+        over_left = mathManager->max( left1, left2 );
 
         over_width = over_right - over_left;
         over_height = over_bottom - over_top;

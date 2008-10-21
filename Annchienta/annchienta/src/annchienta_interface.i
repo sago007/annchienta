@@ -21,7 +21,6 @@
 #include "Mask.h"
 #include "StaticObject.h"
 #include "Person.h"
-#include "GeneralFunctions.h"
 #include "Vector.h"
 %}
 
@@ -45,7 +44,6 @@
 %include "Mask.h"
 %include "StaticObject.h"
 %include "Person.h"
-%include "GeneralFunctions.h"
 %include "Vector.h"
 %include "/usr/include/SDL/SDL_keysym.h"
 

@@ -10,11 +10,13 @@
 namespace Annchienta
 {
     class InputManager;
+    class MathManager;
 
     class InputPersonControl: public PersonControl
     {
         protected:
             InputManager *inputManager;
+            MathManager *mathManager;
 
         public:
             InputPersonControl( Person *person );

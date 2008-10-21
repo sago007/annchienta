@@ -16,6 +16,7 @@
 #include "Layer.h"
 #include "GeneralFunctions.h"
 #include "Engine.h"
+#include "Vector.h"
 
 namespace Annchienta
 {
@@ -134,7 +135,8 @@ namespace Annchienta
         else
         {
             int s = 4;
-            while( squaredDistance( (float)cameraX, (float)cameraY, (float)destX, (float)destY )>1 && --s )
+            Vector deltaVector( cameraX - destX, cameraY - destY );
+            while( deltaVector.lengthSquared()>1 && --s )
             {
                 /* If there is a difference, move the camera in the
                  * right direction. Do this for X and Y. */

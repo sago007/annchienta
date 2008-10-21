@@ -53,6 +53,18 @@ namespace Annchienta
              *  \return A floating point number.
              */
             float randFloat( const float &minimum, const float &maximum) const;
+
+            /** Returns a or b, whichever is the smallest.
+             */
+            int min( const int &a, const int &b ) const;
+
+            /** Returns a or b, whichever is the largest.
+             */
+            int max( const int &a, const int &b ) const;
+
+            /** Returns the absolute value.
+             */
+            int abs( const int &value ) const;
     };
 
     /** \return An instance of the global MathManager.

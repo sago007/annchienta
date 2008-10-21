@@ -62,5 +62,20 @@ namespace Annchienta
         return minimum + randFloat()*(maximum-minimum);
     }
 
+    int MathManager::min( const int &a, const int &b ) const
+    {
+        return a<b?a:b;
+    }
+
+    int MathManager::max( const int &a, const int &b ) const
+    {
+        return a>b?a:b;
+    }
+
+    int MathManager::abs( const int &value ) const
+    {
+        return value>0?value:-value;
+    }
+
 };
 

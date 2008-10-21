@@ -310,6 +310,9 @@ class MathManager(_object):
     def nearestPowerOfTwo(*args): return _annchienta.MathManager_nearestPowerOfTwo(*args)
     def randInt(*args): return _annchienta.MathManager_randInt(*args)
     def randFloat(*args): return _annchienta.MathManager_randFloat(*args)
+    def min(*args): return _annchienta.MathManager_min(*args)
+    def max(*args): return _annchienta.MathManager_max(*args)
+    def abs(*args): return _annchienta.MathManager_abs(*args)
     def __init__(self, *args): 
         this = _annchienta.new_MathManager(*args)
         try: self.this.append(this)
@@ -610,8 +613,6 @@ class Person(StaticObject):
 Person_swigregister = _annchienta.Person_swigregister
 Person_swigregister(Person)
 
-distance = _annchienta.distance
-squaredDistance = _annchienta.squaredDistance
 class Vector(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Vector, name, value)
