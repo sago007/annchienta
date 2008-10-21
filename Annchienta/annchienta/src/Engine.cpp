@@ -17,6 +17,7 @@
 #include "MapManager.h"
 #include "AudioManager.h"
 #include "CacheManager.h"
+#include "MathManager.h"
 
 namespace Annchienta
 {
@@ -24,47 +25,39 @@ namespace Annchienta
 
     Engine::Engine( const char *_writeDirectory )
     {
-        /* Store write directory.
-         */
+        /* Store write directory. */
         sprintf( writeDirectory, "%s/", _writeDirectory );
 
-        /* Set global engine...
-         */
+        /* Set global engine... */
         engine = this;
 
-        /* Init some things...
-         */
+        /* Init some things... */
         Py_Initialize();
         SDL_Init( SDL_INIT_EVERYTHING );
 
-        /* Create a filename in our writeDirectory.
-         */
+        /* Create a filename in our writeDirectory. */
         char logFile[DEFAULT_STRING_SIZE];
         sprintf( logFile, "%slog.txt", writeDirectory ); 
 
-        /* Start random numbers.
-         */
-        srand( time(0) );
-
-        /* Init other Single-Instance classes.
-         */
+        /* Init other Single-Instance classes. */
         logManager = new LogManager( logFile );
         videoManager = new VideoManager();
         inputManager = new InputManager();
         mapManager = new MapManager();
         audioManager = new AudioManager();
         cacheManager = new CacheManager();
+        mathManager = new MathManager();
     }
 
     Engine::~Engine()
     {
-        /* Free up other Single-Instance classes.
-         */
+        /* Free up other Single-Instance classes. */
         delete videoManager;
         delete inputManager;
         delete mapManager;
         delete audioManager;
         delete cacheManager;
+        delete mathManager;
 
         /* Quit our libraries.
          */

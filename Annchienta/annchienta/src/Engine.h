@@ -18,6 +18,7 @@ namespace Annchienta
     class MapManager;
     class AudioManager;
     class CacheManager;
+    class MathManager;
 
     /** This is a class that holds most other classes and some
      *  general engine functionality. To obtain it, use
@@ -32,6 +33,7 @@ namespace Annchienta
             MapManager *mapManager;
             AudioManager *audioManager;
             CacheManager *cacheManager;
+            MathManager *mathManager;
 
             char writeDirectory[DEFAULT_STRING_SIZE];
 
@@ -40,7 +42,7 @@ namespace Annchienta
         public:
             #ifndef SWIG
                 /** Write directory is the directory where files such
-		 *  as save files and logs will be placed.
+                 *  as save files and logs will be placed.
                  */
                 Engine( const char *writeDirectory="." );
                 ~Engine();

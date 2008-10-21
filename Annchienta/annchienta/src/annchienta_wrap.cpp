@@ -2513,20 +2513,21 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__Map swig_types[9]
 #define SWIGTYPE_p_Annchienta__MapManager swig_types[10]
 #define SWIGTYPE_p_Annchienta__Mask swig_types[11]
-#define SWIGTYPE_p_Annchienta__Person swig_types[12]
-#define SWIGTYPE_p_Annchienta__Point swig_types[13]
-#define SWIGTYPE_p_Annchienta__Sound swig_types[14]
-#define SWIGTYPE_p_Annchienta__StaticObject swig_types[15]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[16]
-#define SWIGTYPE_p_Annchienta__Tile swig_types[17]
-#define SWIGTYPE_p_Annchienta__TileSet swig_types[18]
-#define SWIGTYPE_p_Annchienta__Vector swig_types[19]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[20]
-#define SWIGTYPE_p_SDLKey swig_types[21]
-#define SWIGTYPE_p_SDLMod swig_types[22]
-#define SWIGTYPE_p_char swig_types[23]
-static swig_type_info *swig_types[25];
-static swig_module_info swig_module = {swig_types, 24, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__MathManager swig_types[12]
+#define SWIGTYPE_p_Annchienta__Person swig_types[13]
+#define SWIGTYPE_p_Annchienta__Point swig_types[14]
+#define SWIGTYPE_p_Annchienta__Sound swig_types[15]
+#define SWIGTYPE_p_Annchienta__StaticObject swig_types[16]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[17]
+#define SWIGTYPE_p_Annchienta__Tile swig_types[18]
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[19]
+#define SWIGTYPE_p_Annchienta__Vector swig_types[20]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[21]
+#define SWIGTYPE_p_SDLKey swig_types[22]
+#define SWIGTYPE_p_SDLMod swig_types[23]
+#define SWIGTYPE_p_char swig_types[24]
+static swig_type_info *swig_types[26];
+static swig_module_info swig_module = {swig_types, 25, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2626,6 +2627,7 @@ namespace swig {
 #include "MapManager.h"
 #include "AudioManager.h"
 #include "CacheManager.h"
+#include "MathManager.h"
 #include "Surface.h"
 #include "Font.h"
 #include "Sound.h"
@@ -8835,6 +8837,342 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_MathManager_nearestPowerOfTwo(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MathManager *arg1 = (Annchienta::MathManager *) 0 ;
+  int *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MathManager_nearestPowerOfTwo",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MathManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MathManager_nearestPowerOfTwo" "', argument " "1"" of type '" "Annchienta::MathManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MathManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "MathManager_nearestPowerOfTwo" "', argument " "2"" of type '" "int""'");
+  } 
+  temp2 = static_cast< int >(val2);
+  arg2 = &temp2;
+  result = (int)((Annchienta::MathManager const *)arg1)->nearestPowerOfTwo((int const &)*arg2);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MathManager_randInt__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MathManager *arg1 = (Annchienta::MathManager *) 0 ;
+  int *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MathManager_randInt",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MathManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MathManager_randInt" "', argument " "1"" of type '" "Annchienta::MathManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MathManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "MathManager_randInt" "', argument " "2"" of type '" "int""'");
+  } 
+  temp2 = static_cast< int >(val2);
+  arg2 = &temp2;
+  result = (int)((Annchienta::MathManager const *)arg1)->randInt((int const &)*arg2);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MathManager_randInt__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MathManager *arg1 = (Annchienta::MathManager *) 0 ;
+  int *arg2 = 0 ;
+  int *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int temp3 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:MathManager_randInt",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MathManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MathManager_randInt" "', argument " "1"" of type '" "Annchienta::MathManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MathManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "MathManager_randInt" "', argument " "2"" of type '" "int""'");
+  } 
+  temp2 = static_cast< int >(val2);
+  arg2 = &temp2;
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "MathManager_randInt" "', argument " "3"" of type '" "int""'");
+  } 
+  temp3 = static_cast< int >(val3);
+  arg3 = &temp3;
+  result = (int)((Annchienta::MathManager const *)arg1)->randInt((int const &)*arg2,(int const &)*arg3);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MathManager_randInt(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[4];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = (int)PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__MathManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_MathManager_randInt__SWIG_0(self, args);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__MathManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_MathManager_randInt__SWIG_1(self, args);
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'MathManager_randInt'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    randInt(Annchienta::MathManager const *,int const &)\n"
+    "    randInt(Annchienta::MathManager const *,int const &,int const &)\n");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MathManager_randFloat__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MathManager *arg1 = (Annchienta::MathManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MathManager_randFloat",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MathManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MathManager_randFloat" "', argument " "1"" of type '" "Annchienta::MathManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MathManager * >(argp1);
+  result = (float)((Annchienta::MathManager const *)arg1)->randFloat();
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MathManager_randFloat__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MathManager *arg1 = (Annchienta::MathManager *) 0 ;
+  float *arg2 = 0 ;
+  float *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  float temp3 ;
+  float val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:MathManager_randFloat",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MathManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MathManager_randFloat" "', argument " "1"" of type '" "Annchienta::MathManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MathManager * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "MathManager_randFloat" "', argument " "2"" of type '" "float""'");
+  } 
+  temp2 = static_cast< float >(val2);
+  arg2 = &temp2;
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "MathManager_randFloat" "', argument " "3"" of type '" "float""'");
+  } 
+  temp3 = static_cast< float >(val3);
+  arg3 = &temp3;
+  result = (float)((Annchienta::MathManager const *)arg1)->randFloat((float const &)*arg2,(float const &)*arg3);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MathManager_randFloat(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[4];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = (int)PyObject_Length(args);
+  for (ii = 0; (ii < argc) && (ii < 3); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__MathManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_MathManager_randFloat__SWIG_0(self, args);
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Annchienta__MathManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_float(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_MathManager_randFloat__SWIG_1(self, args);
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'MathManager_randFloat'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    randFloat(Annchienta::MathManager const *)\n"
+    "    randFloat(Annchienta::MathManager const *,float const &,float const &)\n");
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MathManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MathManager *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_MathManager")) SWIG_fail;
+  result = (Annchienta::MathManager *)new Annchienta::MathManager();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__MathManager, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MathManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MathManager *arg1 = (Annchienta::MathManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MathManager",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MathManager, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MathManager" "', argument " "1"" of type '" "Annchienta::MathManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::MathManager * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MathManager_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__MathManager, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_getMathManager(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::MathManager *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":getMathManager")) SWIG_fail;
+  result = (Annchienta::MathManager *)Annchienta::getMathManager();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__MathManager, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_Surface__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
@@ -14747,6 +15085,13 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_CacheManager", _wrap_delete_CacheManager, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_swigregister", CacheManager_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getCacheManager", _wrap_getCacheManager, METH_VARARGS, NULL},
+	 { (char *)"MathManager_nearestPowerOfTwo", _wrap_MathManager_nearestPowerOfTwo, METH_VARARGS, NULL},
+	 { (char *)"MathManager_randInt", _wrap_MathManager_randInt, METH_VARARGS, NULL},
+	 { (char *)"MathManager_randFloat", _wrap_MathManager_randFloat, METH_VARARGS, NULL},
+	 { (char *)"new_MathManager", _wrap_new_MathManager, METH_VARARGS, NULL},
+	 { (char *)"delete_MathManager", _wrap_delete_MathManager, METH_VARARGS, NULL},
+	 { (char *)"MathManager_swigregister", MathManager_swigregister, METH_VARARGS, NULL},
+	 { (char *)"getMathManager", _wrap_getMathManager, METH_VARARGS, NULL},
 	 { (char *)"new_Surface", _wrap_new_Surface, METH_VARARGS, NULL},
 	 { (char *)"delete_Surface", _wrap_delete_Surface, METH_VARARGS, NULL},
 	 { (char *)"Surface_getWidth", _wrap_Surface_getWidth, METH_VARARGS, NULL},
@@ -14950,6 +15295,7 @@ static swig_type_info _swigt__p_Annchienta__LogManager = {"_p_Annchienta__LogMan
 static swig_type_info _swigt__p_Annchienta__Map = {"_p_Annchienta__Map", "Annchienta::Map *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__MapManager = {"_p_Annchienta__MapManager", "Annchienta::MapManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Mask = {"_p_Annchienta__Mask", "Annchienta::Mask *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__MathManager = {"_p_Annchienta__MathManager", "Annchienta::MathManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Person = {"_p_Annchienta__Person", "Annchienta::Person *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Point = {"_p_Annchienta__Point", "Annchienta::Point *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Sound = {"_p_Annchienta__Sound", "Annchienta::Sound *", 0, 0, (void*)0, 0};
@@ -14976,6 +15322,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Map,
   &_swigt__p_Annchienta__MapManager,
   &_swigt__p_Annchienta__Mask,
+  &_swigt__p_Annchienta__MathManager,
   &_swigt__p_Annchienta__Person,
   &_swigt__p_Annchienta__Point,
   &_swigt__p_Annchienta__Sound,
@@ -15002,6 +15349,7 @@ static swig_cast_info _swigc__p_Annchienta__LogManager[] = {  {&_swigt__p_Annchi
 static swig_cast_info _swigc__p_Annchienta__Map[] = {  {&_swigt__p_Annchienta__Map, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__MapManager[] = {  {&_swigt__p_Annchienta__MapManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Mask[] = {  {&_swigt__p_Annchienta__Mask, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__MathManager[] = {  {&_swigt__p_Annchienta__MathManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Person[] = {  {&_swigt__p_Annchienta__Person, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Point[] = {  {&_swigt__p_Annchienta__Point, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Sound[] = {  {&_swigt__p_Annchienta__Sound, 0, 0, 0},{0, 0, 0, 0}};
@@ -15028,6 +15376,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Map,
   _swigc__p_Annchienta__MapManager,
   _swigc__p_Annchienta__Mask,
+  _swigc__p_Annchienta__MathManager,
   _swigc__p_Annchienta__Person,
   _swigc__p_Annchienta__Point,
   _swigc__p_Annchienta__Sound,

@@ -301,6 +301,25 @@ CacheManager_swigregister = _annchienta.CacheManager_swigregister
 CacheManager_swigregister(CacheManager)
 
 getCacheManager = _annchienta.getCacheManager
+class MathManager(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MathManager, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, MathManager, name)
+    __repr__ = _swig_repr
+    def nearestPowerOfTwo(*args): return _annchienta.MathManager_nearestPowerOfTwo(*args)
+    def randInt(*args): return _annchienta.MathManager_randInt(*args)
+    def randFloat(*args): return _annchienta.MathManager_randFloat(*args)
+    def __init__(self, *args): 
+        this = _annchienta.new_MathManager(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_MathManager
+    __del__ = lambda self : None;
+MathManager_swigregister = _annchienta.MathManager_swigregister
+MathManager_swigregister(MathManager)
+
+getMathManager = _annchienta.getMathManager
 class Surface(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Surface, name, value)
