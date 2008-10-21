@@ -163,7 +163,7 @@ class Combatant:
             chanceOnHit /= 2.0
 
         # Check if we hit first.
-        r = annchienta.randFloat()
+        r = self.mathManager.randFloat()
         if r > chanceOnHit:
             self.sceneManager.info( self.name.capitalize()+" misses "+target.name.capitalize()+"!" )
             return 0
@@ -172,7 +172,7 @@ class Combatant:
         dmg = float(attackPower)*float(self.status.get("strength"))/float(target.status.get("defense"))
 
         # Apply a small random factor and covert to int.
-        dmg *= annchienta.randFloat(0.9,1.1)
+        dmg *= self.mathManager.randFloat(0.9,1.1)
         dmg = int(dmg)
 
         # Half damage if we have protect.
@@ -186,7 +186,7 @@ class Combatant:
     def magicalAttack( self, target, attackPower=20, chanceOnHit=0.8 ):
 
         # Check if we hit first.
-        r = annchienta.randFloat()
+        r = self.mathManager.randFloat()
         if r > chanceOnHit:
             self.sceneManager.info( target.name.capitalize()+" resists the spell cast by "+self.name.capitalize()+"!" )
             return 0
@@ -195,7 +195,7 @@ class Combatant:
         dmg = float(attackPower)*float(self.status.get("magic"))/float(target.status.get("resistance"))
 
         # Apply a small random factor and covert to int.
-        dmg *= annchienta.randFloat(0.9,1.1)
+        dmg *= self.mathManager.randFloat(0.9,1.1)
         dmg = int(dmg)
 
         if "barrier" in target.buffers:

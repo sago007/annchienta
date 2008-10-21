@@ -13957,93 +13957,6 @@ SWIGINTERN PyObject *Person_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_randFloat__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  float result;
-  
-  if (!PyArg_ParseTuple(args,(char *)":randFloat")) SWIG_fail;
-  result = (float)Annchienta::randFloat();
-  resultobj = SWIG_From_float(static_cast< float >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_randFloat__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  float *arg1 = 0 ;
-  float *arg2 = 0 ;
-  float temp1 ;
-  float val1 ;
-  int ecode1 = 0 ;
-  float temp2 ;
-  float val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  float result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:randFloat",&obj0,&obj1)) SWIG_fail;
-  ecode1 = SWIG_AsVal_float(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "randFloat" "', argument " "1"" of type '" "float""'");
-  } 
-  temp1 = static_cast< float >(val1);
-  arg1 = &temp1;
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "randFloat" "', argument " "2"" of type '" "float""'");
-  } 
-  temp2 = static_cast< float >(val2);
-  arg2 = &temp2;
-  result = (float)Annchienta::randFloat((float const &)*arg1,(float const &)*arg2);
-  resultobj = SWIG_From_float(static_cast< float >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_randFloat(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = (int)PyObject_Length(args);
-  for (ii = 0; (ii < argc) && (ii < 2); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 0) {
-    return _wrap_randFloat__SWIG_0(self, args);
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_float(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_float(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_randFloat__SWIG_1(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'randFloat'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Annchienta::randFloat()\n"
-    "    Annchienta::randFloat(float const &,float const &)\n");
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_distance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   float arg1 ;
@@ -15135,7 +15048,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Person_lookAt", _wrap_Person_lookAt, METH_VARARGS, NULL},
 	 { (char *)"Person_collisionWithLayerAreas", _wrap_Person_collisionWithLayerAreas, METH_VARARGS, NULL},
 	 { (char *)"Person_swigregister", Person_swigregister, METH_VARARGS, NULL},
-	 { (char *)"randFloat", _wrap_randFloat, METH_VARARGS, NULL},
 	 { (char *)"distance", _wrap_distance, METH_VARARGS, NULL},
 	 { (char *)"squaredDistance", _wrap_squaredDistance, METH_VARARGS, NULL},
 	 { (char *)"Vector_x_set", _wrap_Vector_x_set, METH_VARARGS, NULL},

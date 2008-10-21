@@ -241,6 +241,7 @@ class BattleManager:
     def __init__( self ):
         
         self.audioManager = annchienta.getAudioManager()
+        self.mathManager = annchienta.getMathManager()
         self.logManager = annchienta.getLogManager()
         self.engine = annchienta.getEngine()
     

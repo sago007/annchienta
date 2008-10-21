@@ -7,13 +7,6 @@
 
 namespace Annchienta
 {
-    /* 0 <= return value <= 1
-     */
-    const float randFloat();
-    /* minimum <= return value <= maximum
-     */
-    const float randFloat( const float &minimum, const float &maximum );
-
     float distance( float x1, float y1, float x2, float y2 );
     float squaredDistance( float x1, float y1, float x2, float y2 );
 

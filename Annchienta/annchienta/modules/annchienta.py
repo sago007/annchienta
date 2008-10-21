@@ -644,7 +644,6 @@ class Vector(_object):
     def normalize(*args): return _annchienta.Vector_normalize(*args)
 Vector_swigregister = _annchienta.Vector_swigregister
 Vector_swigregister(Vector)
-randFloat = _annchienta.randFloat
 
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN
 SDLK_FIRST = _annchienta.SDLK_FIRST
