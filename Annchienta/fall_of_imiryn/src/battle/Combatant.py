@@ -177,7 +177,7 @@ class Combatant:
     def magicalBaseDamage( self ):
         mat = self.derivedStats["mat"]
         lvl = self.level["lvl"]
-        return 6 * (mat + lvl)
+        return 5 * (mat + lvl)
 
     def addHp( self, health ):
         self.healthStats["hp"] += health

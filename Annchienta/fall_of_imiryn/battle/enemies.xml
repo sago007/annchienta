@@ -132,7 +132,6 @@
         <drop xp="80" item="ticture" rate="0.4" steal="potion"/>
     </enemy>
 
-
     <!-- SOLDIER -->
     <enemy name="soldier">
         <level lvl="8"/>
@@ -147,7 +146,7 @@
     <!-- BANVER -->
     <enemy name="banver">
         <level lvl="8"/>
-        <primarystats att="100" mat="80" def="80" mdf="80" spd="100"/>
+        <primarystats att="100" mat="40" def="80" mdf="80" spd="100"/>
         <healthstats hp="1400" mhp="1400" mp="120" mmp="120"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack swing flametongue thunderstab thundara fira</actions>
@@ -155,7 +154,15 @@
         <drop xp="120" item="tincture" rate="0.4" steal="feather"/>
     </enemy>
 
-
+    <!-- CAPTAIN -->
+    <enemy name="captain">
+        <level lvl="8"/>
+        <primarystats att="75" mat="30" def="60" mdf="90" spd="45"/>
+        <healthstats hp="600" mhp="600" mp="120" mmp="120"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <actions>attack swing strike fira</actions>
+        <sprite filename="sprites/captain.png" x1="0" x2="30" y1="40" y2="80"/>
+        <drop xp="130" item="tincture" rate="0.4" steal="feather"/>
+    </enemy>
 
 </enemies>
-

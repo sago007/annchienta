@@ -38,7 +38,7 @@ class InGameMenu:
             if ans.name == "continue":
                 pass
 
-            elif ans.name == "party management":
+            elif ans.name == "party":
                 self.partyManagement()
 
             elif ans.name == "quit":

@@ -45,5 +45,11 @@
 <!-- An irrigation system. -->
 <staticobject name="irrigation" config="locations/kimen/irrigation.xml" tilex="11" tiley="17"/>
 
+<!-- a powerful weapon. -->
+<chest item="spellcaster" tilex="18" tiley="15"/>
+
 </layer>
+
+<onload script="locations/kimen/onload.py"/>
+
 </map>

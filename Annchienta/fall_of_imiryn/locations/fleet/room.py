@@ -84,7 +84,6 @@ sceneManager.speak( pirate1, "Fly with us until we reach the Jemor continent. We
 
 sceneManager.fade()
 sceneManager.text( "And so we arrived in Kimen, where we would find the truth, as Kyzano had told us.", None )
-mapManager.stop()
 
 # Done. clean up everything.
 sceneManager.quitDialog()
@@ -92,3 +91,7 @@ currentMap.removeObject( march )
 currentMap.removeObject( avril )
 currentMap.removeObject( pirate1 )
 currentMap.removeObject( pirate2 )
+
+# Go to Kimen.
+partyManager.changeMap( "locations/kimen/plantation1.xml", annchienta.Point( annchienta.TilePoint, 24, 15 ) )
+

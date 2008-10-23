@@ -16,19 +16,19 @@
         <elemental fire="1" ice="1" water="1" thunder="1"/>
     </item>
     <item name="scepter" type="weapon" description="A water-absorbing stave.">
-        <stats att="6" mat="22" def="6" mdf="20" spd="12"/>
+        <stats att="6" mat="35" def="6" mdf="20" spd="12"/>
         <elemental fire="1" ice="1" water="-1" thunder="1"/>
     </item>
     <item name="shuriken" type="weapon" description="A fast ninja weapon. Protects against fire.">
-        <stats att="20" mat="10" def="20" mdf="10" spd="25"/>
+        <stats att="30" mat="10" def="20" mdf="10" spd="25"/>
         <elemental fire="0" ice="1" water="1" thunder="1"/>
     </item>
     <item name="katana" type="weapon" description="A long thunder-protecting ninja blade.">
-        <stats att="35" mat="5" def="10" mdf="5" spd="10"/>
+        <stats att="45" mat="5" def="10" mdf="5" spd="10"/>
         <elemental fire="1" ice="1" water="1" thunder="0"/>
     </item>
     <item name="dragonspear" type="weapon" description="A fire and ice protecting, slow weapon.">
-        <stats att="45" mat="7" def="10" mdf="10" spd="5"/>
+        <stats att="55" mat="7" def="10" mdf="10" spd="5"/>
         <elemental fire="0" ice="0" water="1" thunder="1"/>
     </item>
     <item name="masamune" type="weapon" description="Better than a vegetable knife.">
@@ -36,11 +36,11 @@
         <elemental fire="1" ice="1" water="1" thunder="0"/>
     </item>
     <item name="spellcaster" type="weapon" description="An ancient spellbinding stave.">
-        <stats att="20" mat="135" def="50" mdf="120" spd="70"/>
+        <stats att="20" mat="85" def="50" mdf="120" spd="70"/>
         <elemental fire="1" ice="1" water="1" thunder="0"/>
     </item>
     <item name="excalibur" type="weapon" description="Quite a legendary weapon.">
-        <stats att="135" mat="80" def="120" mdf="100" spd="90" />
+        <stats att="105" mat="20" def="120" mdf="100" spd="90" />
         <elemental fire="1" ice="1" water="1" thunder="0"/>
     </item>
 
