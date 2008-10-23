@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<sprite image="sprites/plant.png" mask="sprites/plant.png">
+<sprite image="sprites/irrigation.png" mask="sprites/irrigation.png">
     <frame number="1"/>
     <animation name="stand" frames="1"/>
     <oninteract>
