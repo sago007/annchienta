@@ -9,7 +9,8 @@ namespace Annchienta
 {
 
     /** A class which can be used to solve mathematical
-     *  problems.
+     *  problems. It is mainly used for generating random
+     *  numbers.
 	 */
     class MathManager
     {
@@ -55,14 +56,22 @@ namespace Annchienta
             float randFloat( const float &minimum, const float &maximum) const;
 
             /** Returns a or b, whichever is the smallest.
+             *  \param a An integer.
+             *  \param b An integer.
+             *  \return The smallest of a and b.
              */
             int min( const int &a, const int &b ) const;
 
             /** Returns a or b, whichever is the largest.
+             *  \param a An integer.
+             *  \param b An integer.
+             *  \return The largest of a and b.
              */
             int max( const int &a, const int &b ) const;
 
             /** Returns the absolute value.
+             *  \param value An integer.
+             *  \return The absolute value of the input.
              */
             int abs( const int &value ) const;
 

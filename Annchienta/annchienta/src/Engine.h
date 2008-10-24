@@ -75,13 +75,19 @@ namespace Annchienta
              */
             const char *getWriteDirectory() const;
 
-            /** Use with care!!! */
-            void setWriteDirectory( const char* );
+            /** This changes the write directory, which is the directory
+             *  where log and save files should be placed. Use this with
+             *  care, and preferably never as it is better to specify
+             *  the writing directory when calling the Annchienta::init()
+             *  function.
+             *  \param directory Path to the new writing directory.
+             */
+            void setWriteDirectory( const char *directory );
             
             /** This simply writes some text to stdout. This is
              *  preferred to the default Python "print" function
              *  because that might be unsafe on certain operating
-             *  systems.
+             *  systems. (Meaning: windows.)
              *  \param text The string to write.
              */
             void write( const char *text ) const;
@@ -107,16 +113,16 @@ namespace Annchienta
              */
             void delay( int ms ) const;
 
-            /** Used by evaluatePythonBoolean(). I can't imagine
-             *  this is needed in any other situation, so don't use
+            /** Used internally by evaluatePythonBoolean(). I can't imagine
+             *  this is needed in any other situation, so please don't use
              *  it.
              */
             void setPythonBoolean( bool b );
     };
 
-    /* Starts the engine. Call this before using any functions from the
-     * annchienta module.
-     * \param writeDir path to directory where temporary log files can be placed.
+    /** Starts the engine. Call this before using any functions from the
+     *  annchienta module.
+     *  \param writeDir path to directory where log and save files should be placed.
      */
     void init( const char *writeDir="." );
     

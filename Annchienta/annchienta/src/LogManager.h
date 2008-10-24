@@ -9,6 +9,9 @@
 
 namespace Annchienta
 {
+    /** This is a class used to place stuff in the
+     *  log file.
+     */
     class LogManager
     {
         private:
@@ -28,27 +31,35 @@ namespace Annchienta
 
             /** Enables or disables the logger. The logger is
              *  enabled by default.
+             *  \param enableLogger If the LogManager should log.
              */
-            void enable( bool e );
+            void enable( bool enableLogger );
 
             /** Checks if the logger is enabled.
+             *  \return If the LogManager is enabled.
              */
             bool isEnabled() const;
 
             /** Prints a message to the log file.
+             *  \param fmt Text, like passed to prinf in C.
              */
             void message( const char *fmt, ... );
 
             /** Prints a warning to the log file.
+             *  \param fmt Text, like passed to prinf in C.
              */
             void warning( const char *fmt, ... );
 
-            /** Quits with the given error in the log file.
+            /** Prints an error to the log file. And stops
+             *  the engine.
+             *  \param fmt Text, like passed to prinf in C.
              */
             void error( const char *fmt, ... );
 
     };
 
+    /** Retrieve the global LogManager instance.
+     */
     LogManager *getLogManager();
 
 };
