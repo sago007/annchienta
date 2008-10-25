@@ -19,6 +19,10 @@ namespace Annchienta
         PersonEntity
     };
 
+    /** This represents an entity in the Map. This can
+     *  be about anything, a Tile, a StaticObject,
+     *  a Person...
+     */
     class Entity
     {
         protected:
@@ -34,7 +38,8 @@ namespace Annchienta
             Entity( const char *name="none" );
             virtual ~Entity();
 
-            /** To find out which type of Entity this is.
+            /** Get the type of this Entity.
+             *  \return The type of this entity.
              */
             virtual EntityType getEntityType() const = 0;
 
@@ -50,11 +55,16 @@ namespace Annchienta
              */
             virtual int getDepth() = 0;
 
-            /** \return A Point describing where the Mask should be placed.
+            /** Use this when you want to know where you should
+             *  place the Mask for this Entity if you want to
+             *  check collision with other Entities.
+             *  \return A Point describing where the Mask should be placed.
              */
             virtual Point getMaskPosition() const = 0;
 
-            /** \param drawn Set this to true before drawing if you don't want this to be drawn.
+            /** This is used to keep track of which Entities have
+             *  been drawn already this frame and which aren't.
+             *  \param drawn Set this to true before drawing if you don't want this to be drawn.
              */
             void setDrawn( bool drawn );
 
