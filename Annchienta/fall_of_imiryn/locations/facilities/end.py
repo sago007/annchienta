@@ -80,8 +80,8 @@ sceneManager.speak( soldier2, "Why can't those arrogant thieves leave us alone?"
 sceneManager.speak( banver, "Allright then. Let's finish them off and fly back." )
 
 battleManager = BattleManager.getBattleManager()
-#won = battleManager.runBattle( ["soldier", "banver", "soldier"], annchienta.Surface("images/backgrounds/facilities.png"), False )
-won = True
+won = battleManager.runBattle( ["soldier", "banver", "soldier"], annchienta.Surface("images/backgrounds/facilities.png"), False )
+#won = True
 
 # Soldiers come, soldiers go...
 currentMap.removeObject( banver )

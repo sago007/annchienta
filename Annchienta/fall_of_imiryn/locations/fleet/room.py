@@ -8,7 +8,7 @@ sceneManager = SceneManager.getSceneManager()
 
 currentMap = partyManager.currentMap
 
-partyManager.addRecord("fleet_met_pirate2s")
+partyManager.addRecord("fleet_met_pirates")
 
 # Create a whole bunch of objects/persons and set them to
 # their positions.
@@ -84,6 +84,7 @@ sceneManager.speak( pirate1, "Fly with us until we reach the Jemor continent. We
 
 sceneManager.fade()
 sceneManager.text( "And so we arrived in Kimen, where we would find the truth, as Kyzano had told us.", None )
+sceneManager.text( "It looked just like a regular plantation, until we had a better look at the plants...", None )
 
 # Done. clean up everything.
 sceneManager.quitDialog()

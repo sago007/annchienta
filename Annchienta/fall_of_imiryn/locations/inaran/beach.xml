@@ -102,12 +102,13 @@ partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point
 </layer>
 
 <onload>
-import annchienta, PartyManager
+import annchienta, PartyManager, BattleManager
 partyManager = PartyManager.getPartyManager()
+battleManager = BattleManager.getBattleManager()
 annchienta.getAudioManager().playMusic(&quot;music/inaran.ogg&quot;)
 annchienta.getVideoManager().setClearColor(147,201,233)
-partyManager.enemiesInMap = []
-partyManager.background = None
+battleManager.enemiesInMap = []
+battleManager.background = None
 </onload>
 
 </map>

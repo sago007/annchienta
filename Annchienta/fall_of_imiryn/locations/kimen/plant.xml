@@ -2,16 +2,5 @@
 <sprite image="sprites/plant.png" mask="masks/plant.png">
     <frame number="1"/>
     <animation name="stand" frames="1"/>
-    <oninteract>
-import annchienta, SceneManager
-
-player = annchienta.getActiveObject()
-plant = annchienta.getPassiveObject()
-sceneManager = SceneManager.getSceneManager()
-sceneManager.initDialog( [player, plant] )
-
-sceneManager.speak( player, &quot;It is hard to believe these plants cause all this evil...&quot; )
-
-sceneManager.quitDialog()
-    </oninteract>
+    <oninteract script="locations/kimen/plant.py"/>
 </sprite>

@@ -34,6 +34,12 @@
     0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    0 1 0 1 0 1 0 1 0 0    
 </tiles>
 
+<!-- Our ship. -->
+<staticobject name="ship" config="locations/facilities/ship.xml" tilex="27" tiley="13"/>
+
+<!-- A crystal. -->
+<staticobject name="crystal" config="locations/common/crystal.xml" tilex="23" tiley="15"/>
+
 <!-- Some plants. -->
 <staticobject name="plant" config="locations/kimen/plant.xml" tilex="10" tiley="5"/>
 <staticobject name="plant" config="locations/kimen/plant.xml" tilex="6" tiley="4"/>
