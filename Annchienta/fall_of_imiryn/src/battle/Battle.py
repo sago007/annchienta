@@ -201,8 +201,10 @@ class Battle:
             self.actionInProgress = True
             action, actor, target = self.actionQueue.pop()
             # Check if the target and actor still exist
-            if actor in self.combatants and target in self.combatants:
-                self.takeAction( action, actor, target )
+            if actor in self.combatants:
+                # If this attack doesn't need a target or the target is alive.
+                if not target or target in self.combatants:
+                    self.takeAction( action, actor, target )
             self.actionInProgress = False
 
     def draw( self ):

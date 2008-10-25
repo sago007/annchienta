@@ -116,7 +116,7 @@
         <primarystats att="45" mat="35" def="55" mdf="42" spd="45"/>
         <healthstats hp="350" mhp="350" mp="80" mmp="80"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
-        <actions>attack bite slime fire</actions>
+        <actions>attack bite slime water</actions>
         <sprite filename="sprites/brainfuck_mutant.png"/>
         <drop xp="80" item="hi-potion" rate="0.4" steal="feather"/>
     </enemy>
@@ -157,12 +157,23 @@
     <!-- CAPTAIN -->
     <enemy name="captain">
         <level lvl="8"/>
-        <primarystats att="75" mat="30" def="60" mdf="90" spd="45"/>
-        <healthstats hp="600" mhp="600" mp="120" mmp="120"/>
+        <primarystats att="65" mat="30" def="50" mdf="80" spd="45"/>
+        <healthstats hp="500" mhp="500" mp="120" mmp="120"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
-        <actions>attack swing strike fira</actions>
+        <actions>attack swing strike thundara</actions>
         <sprite filename="sprites/captain.png" x1="0" x2="30" y1="40" y2="80"/>
         <drop xp="130" item="tincture" rate="0.4" steal="feather"/>
+    </enemy>
+
+    <!-- DRAGON -->
+    <enemy name="dragon">
+        <level lvl="8"/>
+        <primarystats att="45" mat="40" def="40" mdf="80" spd="45"/>
+        <healthstats hp="450" mhp="450" mp="120" mmp="120"/>
+        <elemental fire="0" ice="2" water="2" thunder="1"/>
+        <actions>attack bite fire fira</actions>
+        <sprite filename="sprites/dragon.png"/>
+        <drop xp="130" item="hi-potion" rate="0.4" steal="grenade"/>
     </enemy>
 
 </enemies>
