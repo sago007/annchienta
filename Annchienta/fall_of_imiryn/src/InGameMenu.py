@@ -44,6 +44,54 @@ class InGameMenu:
             elif ans.name == "quit":
                 self.mapManager.stop()
 
+    # Generate the weapon menu.
+    def createWeaponMenu( self, combatantIndex ):
+
+        weaponMenu = PartyMenu.PartyMenu( "Weapon", "Select a weapon.", combatantIndex )
+            
+        # Create options
+        weaponOptions = []
+        for weaponName in self.partyManager.inventory.getAvailableWeapons():
+
+            weapon = self.partyManager.inventory.getWeapon( weaponName )
+
+            # Create a tooltip with the stats
+            toolTip = self.partyManager.inventory.getItemDescription(weaponName) + '\n'
+            toolTip += reduce( lambda a,b: a+' '+b, map( lambda k: k.upper()+': '+str(weapon.stats[k]), weapon.stats.keys() ) )
+
+            weaponOptions += [ Menu.MenuItem( weaponName, toolTip ) ]
+
+        # Add a confirm option
+        weaponOptions += [ Menu.MenuItem( "confirm", "Go back to the party management menu." ) ]
+
+        weaponMenu.setOptions( weaponOptions )
+        weaponMenu.topRight()
+
+        return weaponMenu
+
+    # Generate the item menu.
+    def createItemMenu( self, combatantIndex ):
+
+        # Construct the menu
+        itemMenu = PartyMenu.PartyMenu( "Item", "Use an item.", combatantIndex )
+        inv = self.partyManager.inventory
+
+        # Add all items
+        loot = inv.getAvailableLoot()
+        items = []
+        for l in loot:
+            items += [ Menu.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
+
+        # Add a confirm option
+        items += [ Menu.MenuItem( "confirm", "Go back to the party management menu." ) ]
+
+        # Set options
+        itemMenu.setOptions( items )
+        itemMenu.topRight()
+
+        return itemMenu
+
+
     # Pops an equipment menu
     def partyManagement( self ):
 
@@ -73,26 +121,7 @@ class InGameMenu:
                 if ans.name == "weapon":
 
                     # Construct a weapon menu
-                    weaponMenu = PartyMenu.PartyMenu( "Weapon", "Select a weapon.", partyManagementMenu.combatantIndex )
-                        
-                    # Create options
-                    weaponOptions = []
-                    for weaponName in self.partyManager.inventory.getAvailableWeapons():
-
-                        weapon = self.partyManager.inventory.getWeapon( weaponName )
-
-                        # Create a tooltip with the stats
-                        toolTip = self.partyManager.inventory.getItemDescription(weaponName) + '\n'
-                        toolTip += reduce( lambda a,b: a+' '+b, map( lambda k: k.upper()+': '+str(weapon.stats[k]), weapon.stats.keys() ) )
-
-                        weaponOptions += [ Menu.MenuItem( weaponName, toolTip ) ]
-
-                    # Add a confirm option
-                    weaponOptions += [ Menu.MenuItem( "confirm", "Go back to the party management menu." ) ]
-
-                    weaponMenu.setOptions( weaponOptions )
-                    weaponMenu.topRight()
-
+                    weaponMenu = self.createWeaponMenu( partyManagementMenu.combatantIndex )
                     weaponPopping = True
 
                     while weaponPopping and self.inputManager.running():
@@ -106,6 +135,8 @@ class InGameMenu:
                                 self.partyManager.team[ weaponMenu.combatantIndex ].setWeapon( w.name )
                                 # Remove new weapon from inventory
                                 self.partyManager.inventory.removeItem( w.name )
+                                # Create a new weaponmenu
+                                weaponMenu = self.createWeaponMenu( weaponMenu.combatantIndex )
                             else:
                                 weaponPopping = False
                         else:
@@ -117,23 +148,13 @@ class InGameMenu:
                 elif ans.name == "item":
 
                     # Create an item menu to choose from.
-                    itemMenu = PartyMenu.PartyMenu( "Item", "Use an item.", partyManagementMenu.combatantIndex )
+                    itemMenu = self.createItemMenu( partyManagementMenu.combatantIndex )
+
+                    # Get a shortcut to the inventory
                     inv = self.partyManager.inventory
 
-                    # Add all items
-                    loot = inv.getAvailableLoot()
-                    items = []
-                    for l in loot:
-                        items += [ Menu.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
-
-                    # Add a confirm option
-                    items += [ Menu.MenuItem( "confirm", "Go back to the party management menu." ) ]
-
-                    # Set options
-                    itemMenu.setOptions( items )
-                    itemMenu.topRight()
-
                     itemPopping = True
+
                     while itemPopping and self.inputManager.running():
 
                         # Choose item
@@ -141,6 +162,7 @@ class InGameMenu:
                         if item is not None:
                             if item.name != "confirm":
                                 inv.useItemOn( item.name, self.partyManager.team[ itemMenu.combatantIndex ] )
+                                itemMenu = self.createItemMenu( itemMenu.combatantIndex )
                             else:
                                 itemPopping = False
                         else:

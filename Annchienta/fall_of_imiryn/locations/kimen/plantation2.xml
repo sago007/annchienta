@@ -40,6 +40,13 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/kimen/plantation1.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 13 ) )
 </area>
 
+<!-- Way to plantation3 -->
+<area tilex1="0" tilex2="2" tiley1="3" tiley2="7">
+import annchienta, PartyManager
+partyManager = PartyManager.getPartyManager()
+partyManager.changeMap( &quot;locations/kimen/plantation3.xml&quot;, annchienta.Point( annchienta.TilePoint, 17, 12 ) )
+</area>
+
 </layer>
 
 <onload script="locations/kimen/onload.py"/>
