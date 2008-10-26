@@ -176,4 +176,15 @@
         <drop xp="130" item="hi-potion" rate="0.4" steal="grenade"/>
     </enemy>
 
+    <!-- WAR MAGE -->
+    <enemy name="war mage">
+        <level lvl="8"/>
+        <primarystats att="45" mat="40" def="40" mdf="80" spd="45"/>
+        <healthstats hp="450" mhp="450" mp="120" mmp="120"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <actions>fira thundara watera blizzara</actions>
+        <sprite filename="sprites/war_mage.png"/>
+        <drop xp="130" item="hi-potion" rate="0.4" steal="grenade"/>
+    </enemy>
+
 </enemies>
