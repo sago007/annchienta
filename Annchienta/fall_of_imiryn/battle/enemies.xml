@@ -187,4 +187,16 @@
         <drop xp="130" item="hi-potion" rate="0.4" steal="grenade"/>
     </enemy>
 
+    <!-- DRAGON TANK -->
+    <enemy name="dragon tank">
+        <level lvl="15"/>
+        <primarystats att="80" mat="60" def="60" mdf="80" spd="120"/>
+        <healthstats hp="2100" mhp="2100" mp="300" mmp="300"/>
+        <elemental fire="1" ice="1" water="1" thunder="2"/>
+        <actions>attack bite fire fira flametongue fog</actions>
+        <sprite filename="sprites/dragon_tank.png"/>
+        <drop xp="130" item="hi-potion" rate="0.4" steal="hi-potion"/>
+    </enemy>
+
+
 </enemies>

@@ -35,7 +35,7 @@
 </tiles>
 
 <!-- Our ship. -->
-<staticobject config="locations/facilities/ship.xml" name="ship" tilex="27" tiley="13"/>
+<staticobject config="locations/kimen/ship.xml" name="ship" tilex="27" tiley="13"/>
 
 <!-- A crystal. -->
 <staticobject config="locations/common/crystal.xml" name="crystal" tilex="23" tiley="15"/>

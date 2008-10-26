@@ -68,7 +68,7 @@ else:
 
     sceneManager.speak( august, "But that's inhuman!" )
     sceneManager.speak( captain, "The inhabitants of the Empire are happy to live comfortable lives thanks to the Laustwan." )
-    sceneManager.speak( captain, "They don't ask questions. Problem solved." )
+    sceneManager.speak( captain, "They don't ask questions. Problem solved. Which idiot would bite the hand that feeds?" )
 
     sceneManager.speak( captain, "Now, of course we can't have you knowing this and telling the world..." )
 
