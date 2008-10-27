@@ -70,10 +70,12 @@ else:
     sceneManager.speak( captain, "The inhabitants of the Empire are happy to live comfortable lives thanks to the Laustwan." )
     sceneManager.speak( captain, "They don't ask questions. Problem solved. Which idiot would bite the hand that feeds?" )
 
-    sceneManager.speak( captain, "Now, of course we can't have you knowing this and telling the world..." )
+    sceneManager.speak( captain, "Well, isn't it ironic? You were so close to freeing the Laustwan." )
+    sceneManager.speak( captain, "After all, these plants here are the only good ones left. We lost a lot of them in our war against the pirates." )
+    sceneManager.speak( captain, "That's why we will guard these plantation no matter what! Now die!" )
 
     battleManager = BattleManager.getBattleManager()
-    battleManager.runBattle( ["captain"]*4, annchienta.Surface( "images/backgrounds/kimen.png" ) )
+    battleManager.runBattle( ["captain", "war mage"]*2, annchienta.Surface( "images/backgrounds/kimen.png" ) )
 
     sceneManager.quitDialog()
     currentMap.removeObject( march )
