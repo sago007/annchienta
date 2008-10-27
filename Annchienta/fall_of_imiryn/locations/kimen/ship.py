@@ -70,6 +70,3 @@ else:
     currentMap.removeObject( march )
     currentMap.removeObject( avril )
 
-    sceneManager.quitDialog()
-
-partyManager.refreshMap()
