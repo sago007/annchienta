@@ -65,10 +65,14 @@ options = [ Menu.MenuItem("new", "Start a new game."),
 menu.setOptions( options )
 menu.top()
 
+# Load a title background.
+titleBackground = annchienta.Surface( "images/backgrounds/title.png" )
+
 running = True
 while running and inputManager.running():
 
     videoManager.begin()
+    videoManager.drawSurface( titleBackground, 0, 0 )
     videoManager.end()
     videoManager.end()
 

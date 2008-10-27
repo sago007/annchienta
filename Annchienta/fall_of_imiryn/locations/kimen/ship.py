@@ -40,10 +40,6 @@ else:
     
     sceneManager.initDialog( [august, march, avril, captain] )
 
-    august.lookAt( plant )
-    march.lookAt( plant )
-    avril.lookAt( plant )
-
     sceneManager.fade()
 
     sceneManager.speak( captain, "This is as far as you go." )
@@ -57,7 +53,9 @@ else:
     sceneManager.speak( captain, "Bring the dragon tank!" )
 
     battleManager = BattleManager.getBattleManager()
-    won = battleManager.runBattle( ["captain", "dragon tank", "war mage"], annchienta.Surface( "images/backgrounds/kimen.png" ) )
+    won = battleManager.runBattle( ["captain", "dragon tank", "war mage"], annchienta.Surface( "images/backgrounds/kimen.png" ), False )
+
+    currentMap.removeObject( captain )
 
     if won:
         sceneManager.speak( avril, "We did it..." )
@@ -71,7 +69,6 @@ else:
     sceneManager.quitDialog()
     currentMap.removeObject( march )
     currentMap.removeObject( avril )
-    currentMap.removeObject( captain )
 
     sceneManager.quitDialog()
 
