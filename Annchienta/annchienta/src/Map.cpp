@@ -47,6 +47,7 @@ namespace Annchienta
         if( !xml )
             logManager->error( "Could not open given map file '%s' as xml.", _filename );
 
+        /** Read through the entire xml file. */
         while( xml && xml->read() )
         {
             switch( xml->getNodeType() )
@@ -280,11 +281,18 @@ namespace Annchienta
                     }
                     if( !strcmp("if", xml->getNodeName() ) )
                     {
+                        /* Use a python boolean to define the result. */
                         bool result = engine->evaluatePythonBoolean( xml->getAttributeValue("code"),
                                                                      xml->getAttributeValue("cond") );
+
+                        /* If the result was false, we want to read on until
+                         * we come across the corresponding </if>.
+                         * If the result was true, we simply ignore this if
+                         * node.
+                         */
                         if( !result )
                         {
-                            // go to the if ending node
+                            /* Seek until the end of this if node. */
                             int endNodesToFind = 1;
                             while( endNodesToFind>0 && xml->read() && xml )
                             {

@@ -17,23 +17,10 @@ namespace Annchienta
     class Mask;
     class Sound;
 
-    #ifndef SWIG
-        template <class T>
-        struct CacheObject
-        {
-            public:
-                char name[DEFAULT_STRING_SIZE];
-                T *data;
-                int references;
-
-                CacheObject( const char *_name, T *_data ): data(_data), references(1)
-                {
-                    if( _name )
-                        strcpy( name, _name );
-                };
-        };
-    #endif
-
+    /** A class used internally by the CacheManager
+     *  to store objects in it's cache.
+     */
+    template <class T> class CacheObject;
     /** This describes a class which is used to create
 	 *  an engine cache, so certain data objects can be
 	 *  loaded quicker.

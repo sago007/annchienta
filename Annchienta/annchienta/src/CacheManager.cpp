@@ -11,6 +11,23 @@
 
 namespace Annchienta
 {
+    /* A class used internall by the cachemanager
+     * to store objects. */
+    template <class T>
+    class CacheObject
+    {
+        public:
+            char name[DEFAULT_STRING_SIZE];
+            T *data;
+            int references;
+
+            CacheObject( const char *_name, T *_data ): data(_data), references(1)
+            {
+                if( _name )
+                    strcpy( name, _name );
+            };
+    };
+
     CacheManager *cacheManager;
 
     CacheManager::CacheManager()

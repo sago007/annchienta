@@ -17,7 +17,8 @@ namespace Annchienta
 
     /** A Map is probably one of the most important
      *  classes in the engine. It holds a game map
-     *  and everything in it.
+     *  and everything in it. For an example map XML
+     *  file, see \ref map_example
      */
     class Map
     {

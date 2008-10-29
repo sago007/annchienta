@@ -24,13 +24,11 @@ namespace Annchienta
     void SamplePersonControl::affect()
     {
         /* Stops walking and choose a new direction,
-         * or wait a little.
-         */
+         * or wait a little. */
         if( walkTimeGiven <= 0 )
         {
             mx = my = 0;
-            /* 50% walk on standing still.
-             */
+            /* 50% chance to walk walk on standing still. */
             if( rand()%2 )
             {
                 int r = rand()%4;
@@ -48,8 +46,10 @@ namespace Annchienta
 
             walkTimeGiven = 10 + rand()%100;
         }
-        /* Take a step in the moving direction.
-         */
+        /* Take a step in the moving direction. if we can't
+         * move in that direction, set walkTimeGiven to 0
+         * so we stop moving and choose a different direction
+         * on the next update. */
         else
         {
             bool result = person->move( mx, my );
