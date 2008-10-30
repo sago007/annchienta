@@ -141,8 +141,7 @@ namespace Annchienta
 
     StaticObject::StaticObject( const char *_name, Surface *_surf, Mask *_mask ): Entity(_name), sprite(_surf), mask(_mask), tileStandingOn(0), currentFrame(0), passable(false), needsUpdate(true), onInteractScript(0), onInteractCode(0)
     {
-        /* Create a default frame.
-         */
+        /* Create a default frame. */
         Frame frame;
         frame.number = '1';
         frame.x1 = frame.y1 = 0;
@@ -150,8 +149,7 @@ namespace Annchienta
         frame.y2 = sprite->getHeight();
         frames.push_back( frame );
 
-        /* Create a default animation.
-         */
+        /* Create a default animation. */
         Animation animation;
         strcpy( animation.name, "stand" );
         strcpy( animation.frames, "1" );
@@ -159,6 +157,7 @@ namespace Annchienta
         animation.speed = 20;
         animations.push_back( animation );
 
+        /* Set the default animation. */
         setAnimation( "stand" );
         speedTimer = 0;
     }
@@ -173,22 +172,23 @@ namespace Annchienta
 
     void StaticObject::calculateCollidingTiles()
     {
+        /* Erase previous colliding tiles. */
         collidingTiles.clear();
 
-        /* If there is no layer...
-         */
+        /* If there is no layer... */
         if( !layer )
             return;
 
         Point pos = this->getMaskPosition(), point;
 
         /* First we need to collect all colliding tiles.
-            */
+         * loop though all of them and add them to collidingTiles
+         * if needed. */
         for( int ty=0; ty<layer->getHeight(); ty++ )
         {
             for( int tx=0; tx<layer->getWidth(); tx++ )
             {
-                Tile *tile = *layer->getTilePointer( tx, ty );
+                Tile *tile = layer->getTile( tx, ty );
                 point = tile->getMaskPosition();
                 if( mask->collision( pos.x, pos.y, layer->getTileSet()->getMask(), point.x, point.y ) )
                     collidingTiles.push_back( tile );
@@ -200,8 +200,7 @@ namespace Annchienta
             }
 
         }
-        /* Do a depthsort on them.
-            */
+        /* Do a depthsort on them. */
         collidingTiles.sort( DepthSortPredicate );
     }
 

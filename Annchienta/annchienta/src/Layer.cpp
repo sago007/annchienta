@@ -205,11 +205,6 @@ namespace Annchienta
         }
     }
 
-    Tile **Layer::getTilePointer( int x, int y )
-    {
-        return &tiles[ y*width+x ];
-    }
-
     void Layer::setTileSet( TileSet *_tileSet )
     {
         tileSet = _tileSet;

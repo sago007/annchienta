@@ -72,7 +72,6 @@ namespace Annchienta
 
             #ifndef SWIG
                 void makeEmpty();
-                Tile **getTilePointer( int x, int y );
                 void setTileSet( TileSet *tileSet );
                 TileSet *getTileSet() const;
             #endif
