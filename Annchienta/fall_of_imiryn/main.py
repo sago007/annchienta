@@ -4,7 +4,6 @@ import sys
 # Add the source directory to the path so we can
 # import modules from it.
 sys.path.append("src")
-sys.path.append("src/battle")
 
 # This is only to be sure... the windows release
 # might need it.

@@ -17,20 +17,17 @@ namespace Annchienta
 
     void Surface::generateTextureFromPixels()
     {
-        /* Find out texture coords.
-         */
+        /* Find out texture coords. */
         leftTexCoord = 0.0f;
         topTexCoord = 1.0f;
         rightTexCoord = (float)(width)/(float)(glWidth);
         bottomTexCoord = 1.0f - (float)(height)/(float)(glHeight);
 
-        /* If there already is a texture, delete it.
-         */
+        /* If there already is a texture, delete it. */
         if( glIsTexture( texture ) == GL_TRUE )
             glDeleteTextures( 1, &texture );
 
-        /* Generate our texture and bind it.
-         */
+        /* Generate our texture and bind it. */
         glGenTextures( 1, &texture );
         glBindTexture( GL_TEXTURE_2D, texture );
 
@@ -39,13 +36,11 @@ namespace Annchienta
          * It is quite important to note that we choose to use GL_NEAREST. Where,
          * in regular OpenGL applications, you would probably want to use GL_LINEAR
          * for better quality. But the reason we choose for GL_NEAREST is because
-         * or drawings will be more "pixel perfect" this way...
-         */
+         * or drawings will be more "pixel perfect" this way... */
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-        /* Choose a fitting format.
-         */
+        /* Choose a fitting format. */
         GLenum format;
         switch( pixelSize )
         {
@@ -63,20 +58,17 @@ namespace Annchienta
                 break;
         }
 
-        /* Write our pixel data to the video memory.
-         */
+        /* Write our pixel data to the video memory. */
         glTexImage2D( GL_TEXTURE_2D, 0, pixelSize, glWidth, glHeight, 0, format, GL_UNSIGNED_BYTE, (GLvoid*) pixels );
 
-        /* Clean up the pixel data.
-         */
+        /* Clean up the pixel data. */
         delete[] pixels;
         pixels = 0;
     }
 
     void Surface::compileList()
     {
-        /* If there is no list already, generate one.
-         */
+        /* If there is no list already, generate one. */
         if( glIsList( list ) == GL_FALSE )
             list = glGenLists( 1 );
 
@@ -174,11 +166,10 @@ namespace Annchienta
         png_set_sig_bytes( png_ptr, PNG_BYTES_TO_CHECK );
     
         /* Use the Hi-level method to read in the whole image
-        * Note that we try not to use any transformations
-        */
+        *  Note that we try not to use any transformation */
         png_read_png( png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL );
     
-        /* HERE WE SHOULD DO STUFF WITH IT */
+        /* Get info about the whole image. */
         png_get_IHDR( png_ptr, info_ptr, &png_width, &png_height, &bit_depth, &color_type, &interlace_type, NULL, NULL );
 
         width = png_width;
@@ -188,8 +179,10 @@ namespace Annchienta
 
         /* The pixel size: 1, 2, 3 or 4 usually */
         pixelSize = png_get_rowbytes( png_ptr, info_ptr ) / png_width;
+
         /* allocate memory for the pixel data */
         pixels = new GLubyte[ pixelSize * glWidth * glHeight ];
+
         /* pointers to rows */
         png_byte **row_pointers = png_get_rows(png_ptr, info_ptr);
 
