@@ -7,6 +7,10 @@ import Enemy
 #
 class Battle:
 
+    ## Constructor for a battle class.
+    #  \param combatants Combatants to participate in the battle.
+    #  \param background A Surface to be used as background.
+    #  \param canFlee If the party can escape this battle.
     def __init__( self, combatants, background, canFlee ):
     
         # Set variables
@@ -23,12 +27,15 @@ class Battle:
         self.cacheManager = annchienta.getCacheManager()
         self.mathManager  = annchienta.getMathManager()
         self.mapManager   = annchienta.getMapManager()
+        self.audioManager = annchienta.getAudioManager()
         self.sceneManager = SceneManager.getSceneManager()
         self.partyManager = PartyManager.getPartyManager()
         
         # Lines for the 'console' window
         self.lines = []
         
+    ## Starts and runs the battle.
+    #
     def run( self ):
     
         # Reset combatants
@@ -72,6 +79,9 @@ class Battle:
     
         self.mapManager.resync()
 
+    ## Cleans up the battle by removing dead
+    #  combatants. This also calculates the experience
+    #  and such when someone dies.
     def removeDeadCombatants( self ):
 
         for combatant in self.combatants:
@@ -99,6 +109,8 @@ class Battle:
 
                 self.actionInProgress = False
 
+    ## Calculate the combatants who are ready
+    #
     def updateCombatantLists( self ):
     
         # Sort combatant based on y (virtual z)
@@ -109,6 +121,8 @@ class Battle:
         self.readyEnemies = filter( lambda q: q.timer >= 100.0, self.enemies )
         self.readyAllies = filter( lambda q: q.timer >= 100.0, self.allies )
     
+    ## Set all combatants to a good position
+    #  on the screen.
     def positionCombatants( self ):
     
         # Align them and stuff
@@ -118,10 +132,10 @@ class Battle:
         for i in range(len(self.enemies)):
             self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-100, 50+(i+1)*35 )
     
-    # We have to be very careful in this function because it
-    # might very well recurse. That's why we need booleans to
-    # ensure some things are not executed in the same time,
-    # for example two animations or two open menu's.
+    ## We have to be very careful in this function because it
+    #  might very well recurse. That's why we need booleans to
+    #  ensure some things are not executed in the same time,
+    #  for example two animations or two open menu's.
     def update( self, updateInputManagerToo=True ):
     
         if updateInputManagerToo:
@@ -207,6 +221,8 @@ class Battle:
                     self.takeAction( action, actor, target )
             self.actionInProgress = False
 
+    ## Draws the battle to the screen.
+    #
     def draw( self ):
 
         # Start with background
@@ -424,9 +440,9 @@ class Battle:
     def playAnimation( self, action, combatant, target ):
 
         if action.animation == "attack":
-            self.playAttackAnimation( combatant, target, action.animationData )
+            self.playAttackAnimation( combatant, target, action.animationData, action.animationSound )
         elif action.animation == "sprite":
-            self.playSpriteAnimation( target, action.animationData )
+            self.playSpriteAnimation( target, action.animationData, action.animationSound )
 
     # Animation that moves the given combatant to
     # the given position
@@ -449,7 +465,7 @@ class Battle:
         combatant.position = annchienta.Vector( position )
 
     # Moves the combatant to the target and back again
-    def playAttackAnimation( self, combatant, target, optionalSprite=None ):
+    def playAttackAnimation( self, combatant, target, optionalSprite=None, animationSound=None ):
 
         origPosition = annchienta.Vector( combatant.position )
         position = annchienta.Vector( target.position )
@@ -458,12 +474,20 @@ class Battle:
         position.x += dx
         self.playMoveAnimation( combatant, position )
 
+        if animationSound:
+            sound = self.cacheManager.getSound( animationSound )
+            self.audioManager.playSound( sound )
+
         if optionalSprite:
             self.playSpriteAnimation( target, optionalSprite )
 
         self.playMoveAnimation( combatant, origPosition )
 
-    def playSpriteAnimation( self, combatant, sprite, duration=800.0 ):
+    def playSpriteAnimation( self, combatant, sprite, animationSound=None, duration=800.0 ):
+
+        if animationSound:
+            sound = self.cacheManager.getSound( animationSound )
+            self.audioManager.playSound( sound )
 
         start = self.engine.getTicks()
         surf = self.cacheManager.getSurface( sprite )

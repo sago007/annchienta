@@ -7,7 +7,7 @@
         <power factor="1.0" hit="0.9" type="physical"/>
         <status effect="none" hit="0"/>
         <cost mp="0"/>
-        <animation type="attack"/>
+        <animation type="attack" sound="sounds/sword.ogg"/>
     </action>
     <action name="swing" category="melee" target="1">
         <description>A more powerful attack.</description>
@@ -15,7 +15,7 @@
         <power factor="1.5" hit="0.6" type="physical"/>
         <status effect="none" hit="0"/>
         <cost mp="4"/>
-        <animation type="attack"/>
+        <animation type="attack" sound="sounds/sword.ogg"/>
     </action>
     <action name="thunderstab" category="melee" target="1">
         <description>Attack an enemy with the power of thunder.</description>
@@ -23,7 +23,7 @@
         <power factor="1.1" hit="0.8" type="physical"/>
         <status effect="none" hit="0"/>
         <cost mp="4"/>
-        <animation type="attack" data="images/animations/thunder.png"/>
+        <animation type="attack" data="images/animations/thunder.png" sound="sounds/sword.ogg"/>
     </action>
     <action name="bite" category="melee" target="1">
         <description>Painful but misses a lot.</description>
@@ -31,7 +31,7 @@
         <power factor="2.0" hit="0.5" type="physical"/>
         <status effect="none" hit="0"/>
         <cost mp="4"/>
-        <animation type="attack"/>
+        <animation type="attack" sound="sounds/sword.ogg"/>
     </action>
     <action name="fist" category="melee" target="1">
         <description>Very effective, causes paralysis.</description>
@@ -39,7 +39,7 @@
         <power factor="2.0" hit="0.5" type="physical"/>
         <status effect="paralysed" hit="0.3"/>
         <cost mp="4"/>
-        <animation type="attack"/>
+        <animation type="attack" sound="sounds/impact.ogg"/>
     </action>
     <action name="strike" category="melee" target="1">
         <description>Strong attack that might injure enemies.</description>
@@ -47,7 +47,7 @@
         <power factor="1.5" hit="0.5" type="physical"/>
         <status effect="injured" hit="0.4"/>
         <cost mp="6"/>
-        <animation type="attack"/>
+        <animation type="attack" sound="sounds/impact.ogg"/>
     </action>
     <action name="flametongue" category="melee" target="1">
         <description>Strong fire-based melee attack.</description>
@@ -55,7 +55,7 @@
         <power factor="2.5" hit="0.5" type="physical"/>
         <status effect="none" hit="0"/>
         <cost mp="8"/>
-        <animation type="attack" data="images/animations/fire.png"/>
+        <animation type="attack" data="images/animations/fire.png" sound="sounds/sword.ogg"/>
     </action>
 
 
@@ -65,7 +65,7 @@
         <power factor="0.66" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="4"/>
-        <animation type="sprite" data="images/animations/cure.png"/>
+        <animation type="sprite" data="images/animations/cure.png" sound="sounds/cure.ogg"/>
     </action>
     <action name="cura" category="white magic" target="1">
         <description>Heal an ally properly.</description>
@@ -73,11 +73,11 @@
         <power factor="1.3" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="8"/>
-        <animation type="sprite" data="images/animations/cura.png"/>
+        <animation type="sprite" data="images/animations/cura.png" sound="sounds/cure.ogg"/>
     </action>
     <action name="esuna" category="white magic" target="1">
         <description>Remove a status effect from an ally.</description>
-        <cost mp="6"/>
+        <cost mp="6" sound="sounds/cure.ogg"/>
     </action>
     
 
@@ -103,7 +103,7 @@
         <power factor="0.3" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="6"/>
-        <animation type="sprite" data="images/animations/ice.png"/>
+        <animation type="sprite" data="images/animations/ice.png" sound="sounds/ice.ogg"/>
     </action>
     <action name="water" category="black magic" target="1">
         <description>Use a flood attack on an enemy.</description>
@@ -143,7 +143,7 @@
         <power factor="1.0" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="12"/>
-        <animation type="sprite" data="images/animations/blizzara.png"/>
+        <animation type="sprite" data="images/animations/blizzara.png" sound="sounds/ice.ogg"/>
     </action>
     <action name="watera" category="black magic" target="1">
         <description>Use a powerul flood attack on an enemy.</description>

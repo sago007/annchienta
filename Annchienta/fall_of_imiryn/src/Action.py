@@ -51,5 +51,7 @@ class Action:
             else:
                 self.animationData = None
 
-
-
+            if animationElement.hasAttribute("sound"):
+                self.animationSound = str(animationElement.getAttribute("sound"))
+            else:
+                self.animationSound = None
