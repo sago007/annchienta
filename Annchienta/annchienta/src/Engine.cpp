@@ -72,8 +72,8 @@ namespace Annchienta
 
     void Engine::runPythonScript( const char *filename ) const
     {
-        char buffer[ DEFAULT_STRING_SIZE ];
-        sprintf( buffer, "execfile(\"%s\")\n", filename );
+        char buffer[ LARGE_STRING_SIZE ];
+        sprintf( buffer, "ann_scriptFile=open(\"%s\",'r')\nexec(ann_scriptFile)\nann_scriptFile.close()\n", filename );
 
         PyRun_SimpleString( buffer );
     }

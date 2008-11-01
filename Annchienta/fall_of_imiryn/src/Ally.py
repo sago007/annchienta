@@ -31,7 +31,8 @@ class Ally( Combatant.Combatant ):
 
         self.buildMenu()
 
-    # Create a menu
+    ## Create a menu with all options this Ally
+    #  can use in battle.
     def buildMenu( self ):
     
         self.menu = Menu.Menu( self.name, "Select an action." )
@@ -76,9 +77,8 @@ class Ally( Combatant.Combatant ):
             items += [ Menu.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
         self.itemMenu.setOptions( items )
         self.itemMenu.leftBottom()
-        
 
-    # Allies select an action from the menu. returns (action, target)
+    ## Allies select an action from the menu. returns (action, target)
     def selectAction( self, battle ):
 
         menuItem = self.menu.pop( battle )
@@ -102,10 +102,13 @@ class Ally( Combatant.Combatant ):
             if not action.target:
                 needsTarget = False
 
-        # No action, check if it's an item
+        # No real action, check if it's an item
         elif self.partyManager.inventory.hasItem( menuItem.name ):
 
-            action = menuItem.name            
+            action = Action.Action()
+            action.name = menuItem.name
+            action.category = "item"
+            action.target = 1
 
         # Select a target when needed
         target = None

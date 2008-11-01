@@ -248,36 +248,26 @@ class Battle:
             self.videoManager.translate( 0, 20 )
         self.videoManager.popMatrix()
 
-    # Takes any action, might call to takeXAction
+    ## This function does nothing more than inspecting
+    #  the action given, and then calling to the appropriate
+    #  takeXAction function in this class.
     def takeAction( self, action, combatant, target ):
 
-        # If the action is a string...
-        if type(action) == type("string"):
-            # And is an item...
-            if self.partyManager.inventory.hasItem( action ):
-                self.takeItemAction( action, combatant, target )
-                return
-
-        # First check for special actions
-        if action.name == "steal":
+        if action.category == "item":
+            self.takeItemAction( action.name, combatant, target )
+        elif action.name == "steal":
             self.takeStealAction( combatant, target )
-            return
-        if action.name == "row":
+        elif action.name == "row":
             self.takeRowAction( combatant )
-            return
-        if action.name == "flee":
+        elif action.name == "flee":
             self.takeFleeAction( combatant )
-            return
-        if action.name == "esuna":
+        elif action.name == "esuna":
             self.takeEsunaAction( combatant, target )
-            return
+        else:
+            # If we reach this point, we're dealing with a generic action.
+            self.takeGenericAction( action, combatant, target )
 
-        # If we reach this point, we're dealing with a generic action.
-        self.takeGenericAction( action, combatant, target )
-
-
-
-    ## Make an combatant do an action
+    ## Make a combatant do a generic action
     #
     def takeGenericAction( self, action, combatant, target ):
             
@@ -285,22 +275,22 @@ class Battle:
         self.lines += [combatant.name.capitalize()+" uses "+action.name+" on "+target.name.capitalize()+"!"]
         
         # Let's assume we are dealing with a regular action for now
-        baseDamage = 0.0
+        damage = 0.0
         if action.type == "physical":
-            baseDamage = combatant.physicalBaseDamage()
+            damage = combatant.physicalBaseDamage()
         else:
-            baseDamage = combatant.magicalBaseDamage()
+            damage = combatant.magicalBaseDamage()
             
         # Invert damage if we are dealing with restorative magic
         if action.elemental["restorative"]:
-            baseDamage = -float(baseDamage)
+            damage = -float(damage)
             
         # Take the power of the attack into account
-        baseDamage *= action.factor
+        damage *= action.factor
         
         # Take the target's defense into account
         defense = target.derivedStats[ "def" if action.type == "physical" else "mdf" ]
-        baseDamage *= ( (512.0 - target.derivedStats["def"])/512.0 )
+        damage *= ( (512.0 - target.derivedStats["def"])/512.0 )
     
         # Elemental properties now
         for element in action.elemental:
@@ -309,19 +299,19 @@ class Battle:
                 if action.elemental[element]:
                     # Multiply damage by the factor the
                     # target has set for it
-                    baseDamage *= target.derivedElemental[element]
+                    damage *= target.derivedElemental[element]
     
         # Round it
-        baseDamage = int(baseDamage)
+        damage = int(damage)
 
         # Rows only matter when it's physical damage
         if action.type == "physical":
             # If attacker is in back row, half damage...
             if combatant.row == "back":
-                baseDamage /= 2
+                damage /= 2
             # If target is in back row, half damage...
             if target.row == "back":
-                baseDamage /= 2
+                damage /= 2
 
         # Our hit rate
         rate = action.hit
@@ -332,7 +322,7 @@ class Battle:
 
             # We also have double damage on injured units.
             if "injured" in combatant.statusEffects:
-                baseDamage *= 2
+                damage *= 2
 
         hit = self.mathManager.randFloat() <= rate
 
@@ -347,7 +337,7 @@ class Battle:
                     self.lines += [ target.name.capitalize()+" is now "+action.statusEffect+"!" ]
 
             # Finally, do damage to damaged ones
-            target.addHp( -baseDamage )
+            target.addHp( -damage )
 
         else:
             self.lines += [ combatant.name.capitalize()+" misses!" ]
@@ -357,10 +347,11 @@ class Battle:
 
         # Damage animation only if hit
         if hit:
-            target.damage = baseDamage
+            target.damage = damage
             target.damageTimer = 0.0
 
-    # Might steal an item
+    ## Might steal an item
+    #
     def takeStealAction( self, combatant, target ):
 
         # Play a quick animation
@@ -386,7 +377,8 @@ class Battle:
             else:
                 self.lines += [ target.name.capitalize()+" has nothing to steal!" ]
 
-    # Uses an item
+    ## Uses an item
+    #
     def takeItemAction( self, item, combatant, target ):
         
         self.lines += [ combatant.name.capitalize()+" uses "+item+" on "+target.name.capitalize()+"!" ]
@@ -396,7 +388,8 @@ class Battle:
         for ally in self.allies:
             ally.buildItemMenu()
 
-    # Switches back/front row with small animation
+    ## Switches back/front row with small animation
+    #
     def takeRowAction( self, combatant ):
 
         rowDeltaX = 30
@@ -410,7 +403,8 @@ class Battle:
         self.lines += [combatant.name.capitalize()+" moves to the "+combatant.row+" row!"]
         self.playMoveAnimation( combatant, position )
 
-    # Tries to flee from battle
+    ## Tries to flee from battle
+    #
     def takeFleeAction( self, combatant ):
 
         if not self.canFlee:
@@ -424,7 +418,8 @@ class Battle:
         else:
             self.lines += ["Couldn't run away!"]
 
-    # Removes a status effect from a target.
+    ## Removes a status effect from a target.
+    #
     def takeEsunaAction( self, combatant, target ):
         
         if not len(target.statusEffects):
@@ -435,8 +430,8 @@ class Battle:
         self.lines += [combatant.name.capitalize()+" cures "+target.name.capitalize()+" from "+effect+"!"]
         target.statusEffects.remove( effect )
 
-    # Plays the animation for the given parameters
-    # This calls to playXAnimation, where X depends on the action
+    ## Plays the animation for the given parameters
+    #  This calls to playXAnimation, where X depends on the action
     def playAnimation( self, action, combatant, target ):
 
         if action.animation == "attack":
@@ -444,8 +439,8 @@ class Battle:
         elif action.animation == "sprite":
             self.playSpriteAnimation( target, action.animationData, action.animationSound )
 
-    # Animation that moves the given combatant to
-    # the given position
+    ## Animation that moves the given combatant to
+    #  the given position
     def playMoveAnimation( self, combatant, position, duration=400.0 ):
 
         start = self.engine.getTicks()
@@ -464,7 +459,8 @@ class Battle:
         # Make sure we're in the right position in the end.
         combatant.position = annchienta.Vector( position )
 
-    # Moves the combatant to the target and back again
+    ## Moves the combatant to the target and back again
+    #
     def playAttackAnimation( self, combatant, target, optionalSprite=None, animationSound=None ):
 
         origPosition = annchienta.Vector( combatant.position )
@@ -483,6 +479,8 @@ class Battle:
 
         self.playMoveAnimation( combatant, origPosition )
 
+    ## Scrolls a sprite over the combatant. Very useful
+    #  for magic-kinda attacks.
     def playSpriteAnimation( self, combatant, sprite, animationSound=None, duration=800.0 ):
 
         if animationSound:
@@ -504,7 +502,8 @@ class Battle:
             self.videoManager.drawSurface( surf, int(position.x)-surf.getWidth()/2, int(position.y)-surf.getHeight()/2 )
             self.videoManager.end()
 
-    # Make combatant move away from battle centre
+    ## Make combatant move away from battle centre
+    #  and die.
     def playDieAnimation( self, combatant ):
 
         position = annchienta.Vector( combatant.position )

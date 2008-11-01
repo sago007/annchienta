@@ -1,6 +1,13 @@
+import annchienta
 import Menu
 import PartyManager
 import SceneManager
+
+cacheManager = annchienta.getCacheManager()
+sound = cacheManager.getSound('sounds/crystal.ogg')
+
+audioManager = annchienta.getAudioManager()
+audioManager.playSound( sound )
 
 partyManager = PartyManager.getPartyManager()
 partyManager.heal()

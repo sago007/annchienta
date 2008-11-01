@@ -56,14 +56,6 @@ BattleManager.initBattleManager()
 # Start Main menu.
 import Menu
 
-menu = Menu.Menu( "Main Menu", "I love my girlfriend." )
-options = [ Menu.MenuItem("new", "Start a new game."),
-            Menu.MenuItem("load", "Continue from the last save point."),
-            Menu.MenuItem("quit", "Leave this great game.")
-          ]
-menu.setOptions( options )
-menu.top()
-
 # Load a title background.
 titleBackground = annchienta.Surface( "images/backgrounds/title.png" )
 
@@ -75,6 +67,13 @@ while running and inputManager.running():
     videoManager.end()
     videoManager.end()
 
+    menu = Menu.Menu( "Main Menu", "I love my girlfriend." )
+    options = [ Menu.MenuItem("new", "Start a new game."),
+                Menu.MenuItem("load", "Continue from the last save point."),
+                Menu.MenuItem("quit", "Leave this great game.")
+              ]
+    menu.setOptions( options )
+    menu.top()
     ans = menu.pop( None )
 
     if ans is not None:

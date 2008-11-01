@@ -95,7 +95,7 @@
         <power factor="0.3" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="6"/>
-        <animation type="sprite" data="images/animations/fire.png"/>
+        <animation type="sprite" data="images/animations/fire.png" sound="sounds/fire.ogg"/>
     </action>
     <action name="ice" category="black magic" target="1">
         <description>Use an ice attack on an enemy.</description>
@@ -111,7 +111,7 @@
         <power factor="0.3" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="6"/>
-        <animation type="sprite" data="images/animations/water.png"/>
+        <animation type="sprite" data="images/animations/water.png" sound="sounds/water.ogg"/>
     </action>
     <action name="thunder" category="black magic" target="1">
         <description>Use a thunder on an enemy.</description>
@@ -119,7 +119,7 @@
         <power factor="0.3" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="6"/>
-        <animation type="sprite" data="images/animations/thunder.png"/>
+        <animation type="sprite" data="images/animations/thunder.png" sound="sounds/thunder.ogg"/>
     </action>
     <action name="slime" category="black magic" target="1">
         <description>Spit slime over enemy to slow them down.</description>
@@ -135,7 +135,7 @@
         <power factor="1.0" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="12"/>
-        <animation type="sprite" data="images/animations/fira.png"/>
+        <animation type="sprite" data="images/animations/fira.png" sound="sounds/fire.ogg"/>
     </action>
     <action name="blizzara" category="black magic" target="1">
         <description>Use a powerul ice attack on an enemy.</description>
@@ -151,7 +151,7 @@
         <power factor="1.0" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="12"/>
-        <animation type="sprite" data="images/animations/watera.png"/>
+        <animation type="sprite" data="images/animations/watera.png" sound="sounds/water.ogg"/>
     </action>
     <action name="thundara" category="black magic" target="1">
         <description>Use a thunder on an enemy.</description>
@@ -159,7 +159,7 @@
         <power factor="1.0" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="12"/>
-        <animation type="sprite" data="images/animations/thundara.png"/>
+        <animation type="sprite" data="images/animations/thundara.png" sound="sounds/thunder.ogg"/>
     </action>
  
     <action name="steal" category="top" target="1">

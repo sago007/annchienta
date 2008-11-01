@@ -156,6 +156,9 @@ class Combatant:
         self.weapon = inventory.getWeapon( weaponName )
         self.generateDerivedStats()
 
+    ## Adds an action to this combatant so he can
+    #  use it in battle.
+    #  \param actionName The name of the action to be added.
     def addAction( self, actionName ):
 
         actionElements = self.actionsXmlFile.getElementsByTagName("action")
@@ -167,18 +170,22 @@ class Combatant:
         else:
             self.logManager.error("No action called "+actionName+" was found for "+self.name+" in "+self.actionsLocation+".")
 
-    # base damage for physical attacks
+    ## Calculates base damage for physical attacks
+    #  \return Basedamage.
     def physicalBaseDamage( self ):
         att = self.derivedStats["att"]
         lvl = self.level["lvl"]
         return att + int( float(att + lvl) / 32.0 ) * int( float(att * lvl) / 32.0 )
         
-    # base damage for magical attacks
+    ## Calculates base damage for magical attacks
+    #  \return Basedamage.
     def magicalBaseDamage( self ):
         mat = self.derivedStats["mat"]
         lvl = self.level["lvl"]
         return 5 * (mat + lvl)
 
+    ## Adds health points to this combatant.
+    #  \param health Health to be added. Can be negative.
     def addHp( self, health ):
         self.healthStats["hp"] += health
         if self.healthStats["hp"]<0:
@@ -186,13 +193,18 @@ class Combatant:
         if self.healthStats["hp"]>self.healthStats["mhp"]:
             self.healthStats["hp"] = self.healthStats["mhp"]
 
-    def addMp( self, health ):
-        self.healthStats["mp"] += health
+    ## Adds magic points to this combatant.
+    #  \param mp Magic points to be added. Can be negative.
+    def addMp( self, mp ):
+        self.healthStats["mp"] += mp
         if self.healthStats["mp"]<0:
             self.healthStats["mp"] = 0
         if self.healthStats["mp"]>self.healthStats["mmp"]:
             self.healthStats["mp"] = self.healthStats["mmp"]
 
+    ## Updates this combatant this includes updating his
+    #  ATB gauge, his appearance...
+    #  \param ms Milliseconds past since last update.
     def update( self, ms ):
         
         factor = 1.0
@@ -222,12 +234,13 @@ class Combatant:
                 self.statusEffectTimer -= len( self.statusEffects )
 
 
-    # prototype, not correct
+    ## Function prototype, not correct, as
+    #  derived classes should overwrite this.
     def selectAction( self, battle ):
         return self.actions[ self.mathManager.randInt( 0, len(self.actions) ) ]
-
  
-    # Draw combatant to the screen.
+    ## Draw combatant to the screen.
+    #
     def draw( self ):
     
         self.videoManager.pushMatrix()

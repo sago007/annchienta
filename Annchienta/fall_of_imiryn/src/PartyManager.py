@@ -264,9 +264,11 @@ class PartyManager:
                 item = str( chest.getAttribute("item") )
 
                 # Generate interact code
-                code =  "import PartyManager, SceneManager\n"
+                code =  "import annchienta, PartyManager, SceneManager\n"
+                code += "audioManager, cacheManager = annchienta.getAudioManager(), annchienta.getCacheManager()\n"
                 code += "partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()\n"
                 code += "if not partyManager.hasRecord('"+chestUniqueName+"'):\n"
+                code += " audioManager.playSound( cacheManager.getSound('sounds/chest.ogg') )\n"
                 code += " partyManager.inventory.addItem('"+item+"')\n"
                 code += " partyManager.addRecord('"+chestUniqueName+"')\n"
                 code += " sceneManager.text('Found "+item+".')\n"
