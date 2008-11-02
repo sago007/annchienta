@@ -5,7 +5,6 @@
 ##########################
 # We need 2.6 because cmake has freetype2 support from then onwards.
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-
 PROJECT(ANNCHIENTA)
 
 ##########################
@@ -54,18 +53,25 @@ ELSE(PYTHON_INCLUDE_PATH)
     MESSAGE( STATUS "A Python installation is required" )
 ENDIF(PYTHON_INCLUDE_PATH)
 
-FIND_PACKAGE(PythonInterp)
-IF(PYTHONINTERP_FOUND)
-	EXEC_PROGRAM( ${PYTHON_EXECUTABLE}
-                  ARGS "-c \"import sys;vi = sys.version_info; print \\\"python%s.%s\\\" %(vi[0],vi[1])\""
-                  OUTPUT_VARIABLE PYTHON_VERSION_DIR	
-	)
-	SET( PYTHON_SITE_PACKAGES "lib/${PYTHON_VERSION_DIR}/site-packages" )
-	MESSAGE( STATUS	"\tVERSION: ${PYTHON_VERSION_DIR}" )
-	MESSAGE( STATUS "\tInstalling modules to: ${PYTHON_SITE_PACKAGES}" )
-ELSE(PYTHONINTERP_FOUND)
-	MESSAGE( STATUS	"Impossible to find the Python Interpreter" )
-ENDIF(PYTHONINTERP_FOUND)
+IF(WIN32)
+    # On win32, just install to 'modules'
+    SET( PYTHON_SITE_PACKAGES "modules" )
+ELSE(WIN32)
+    # On unices, install to site-packages
+    FIND_PACKAGE(PythonInterp)
+    IF(PYTHONINTERP_FOUND)
+        # Find python 
+        EXEC_PROGRAM( ${PYTHON_EXECUTABLE}
+                      ARGS "-c \"import sys;vi = sys.version_info; print \\\"python%s.%s\\\" %(vi[0],vi[1])\""
+                      OUTPUT_VARIABLE PYTHON_VERSION_DIR	
+        )
+        SET( PYTHON_SITE_PACKAGES "lib/${PYTHON_VERSION_DIR}/site-packages" )
+        MESSAGE( STATUS	"\tVERSION: ${PYTHON_VERSION_DIR}" )
+        MESSAGE( STATUS "\tInstalling modules to: ${PYTHON_SITE_PACKAGES}" )
+    ELSE(PYTHONINTERP_FOUND)
+        MESSAGE( STATUS	"Impossible to find the Python Interpreter" )
+    ENDIF(PYTHONINTERP_FOUND)
+ENDIF(WIN32)
 
 #######################
 # libZ
@@ -114,7 +120,7 @@ ELSE(FREETYPE_INCLUDE_DIRS)
     MESSAGE( STATUS "Freetype is required" )
 ENDIF(FREETYPE_INCLUDE_DIRS)
 
-# Continue.
+# Continue for subdirectories.
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(doc)
 

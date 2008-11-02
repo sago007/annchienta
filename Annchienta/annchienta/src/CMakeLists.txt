@@ -1,22 +1,13 @@
 # CMakeLists.txt for annchienta/src
 
+# Also compile subdirectory.
 ADD_SUBDIRECTORY( xml )
 
-# Generate python file through:
+# Generate python swig file through:
 ADD_CUSTOM_TARGET(
      swig
      swig -python -c++ -o ${ANNCHIENTA_BINARY_DIR}/src/annchienta_wrap.cpp -outdir ${ANNCHIENTA_BINARY_DIR}/modules ${ANNCHIENTA_BINARY_DIR}/src/annchienta_interface.i
 )
-
-# Find our needed Packages.
-# FIND_PACKAGE(PythonLibs REQUIRED)
-# FIND_PACKAGE(SDL REQUIRED)
-# FIND_PACKAGE(SDL_mixer REQUIRED)
-# FIND_PACKAGE(Freetype REQUIRED)
-# FIND_PACKAGE(PNG REQUIRED)
-# FIND_PACKAGE(OpenGL REQUIRED)
-
-#pkg_check_modules(FT2 freetype2)
 
 # Set up include directories.
 INCLUDE_DIRECTORIES(
@@ -56,4 +47,3 @@ INSTALL(
     TARGETS annchienta
     DESTINATION ${PYTHON_SITE_PACKAGES}
 )
-
