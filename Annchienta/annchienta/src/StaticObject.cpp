@@ -431,10 +431,12 @@ namespace Annchienta
 
     void StaticObject::onInteract()
     {
+        Engine *engine = getEngine();
+
         if( onInteractCode )
-            PyRun_SimpleString( onInteractCode );
+            engine->runPythonCode( onInteractCode );
         if( onInteractScript )
-            getEngine()->runPythonScript( onInteractScript );
+            engine->runPythonScript( onInteractScript );
     }
 
     void StaticObject::freeze( bool )

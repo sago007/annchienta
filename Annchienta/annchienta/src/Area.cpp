@@ -48,10 +48,12 @@ namespace Annchienta
 
     void Area::onCollision()
     {
+        Engine *engine = getEngine();
+
         if( onCollisionCode )
-            PyRun_SimpleString( onCollisionCode );
+            engine->runPythonCode( onCollisionCode );
         if( onCollisionScript )
-            getEngine()->runPythonScript( onCollisionScript );
+            engine->runPythonScript( onCollisionScript );
     }
 
 };

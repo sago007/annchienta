@@ -70,21 +70,25 @@ namespace Annchienta
         delete logManager;
     }
 
+    void Engine::runPythonCode( const char *code ) const
+    {
+        PyRun_SimpleString( code );
+    }
+
     void Engine::runPythonScript( const char *filename ) const
     {
         char buffer[ LARGE_STRING_SIZE ];
         sprintf( buffer, "ann_scriptFile=open(\"%s\",'r')\nexec(ann_scriptFile)\nann_scriptFile.close()\n", filename );
 
-        PyRun_SimpleString( buffer );
+        runPythonCode( buffer );
     }
-
 
     bool Engine::evaluatePythonBoolean( const char *start, const char *conditional )
     {
         const char script[] = "import annchienta\n%s\nannchienta.getEngine().setPythonBoolean(%s)\n";
         char code[ LARGE_STRING_SIZE ];
         sprintf( code, script, start, conditional );
-        PyRun_SimpleString( code );
+        runPythonCode( code );
         return pythonBoolean;
     }
 

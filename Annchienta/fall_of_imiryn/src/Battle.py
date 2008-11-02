@@ -82,6 +82,7 @@ class Battle:
     ## Cleans up the battle by removing dead
     #  combatants. This also calculates the experience
     #  and such when someone dies.
+    #
     def removeDeadCombatants( self ):
 
         for combatant in self.combatants:

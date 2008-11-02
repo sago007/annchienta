@@ -291,7 +291,7 @@ namespace Annchienta
         }
 
         if( onUpdateCode )
-            PyRun_SimpleString( onUpdateCode );
+            getEngine()->runPythonCode( onUpdateCode );
         if( onUpdateScript )
             getEngine()->runPythonScript( onUpdateScript );
     }

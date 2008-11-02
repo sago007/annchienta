@@ -124,6 +124,9 @@ ENDIF(FREETYPE_INCLUDE_DIRS)
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(doc)
 
+# Random message.
+MESSAGE( STATUS "The Dark Lion Alliance pwns the **** out of you." )
+
 # Install modules to the right place.
 INSTALL(
     FILES modules/annchienta.py

@@ -311,7 +311,7 @@ namespace Annchienta
                         else
                         {
                             xml->read();
-                            PyRun_SimpleString( xml->getNodeData() );
+                            engine->runPythonCode( xml->getNodeData() );
                             xml->read();
                         }
                     }
@@ -538,18 +538,22 @@ namespace Annchienta
 
     void Map::onPreRender() const
     {
+        Engine *engine = getEngine();
+
         if( onPreRenderScript )
-            getEngine()->runPythonScript( onPreRenderScript );
+            engine->runPythonScript( onPreRenderScript );
         if( onPreRenderCode )
-            PyRun_SimpleString( onPreRenderCode );
+            engine->runPythonCode( onPreRenderCode );
     }
 
     void Map::onPostRender() const
     {
+        Engine *engine = getEngine();
+
         if( onPostRenderScript )
-            getEngine()->runPythonScript( onPostRenderScript );
+            engine->runPythonScript( onPostRenderScript );
         if( onPostRenderCode )
-            PyRun_SimpleString( onPostRenderCode );
+            engine->runPythonCode( onPostRenderCode );
     }
 
 };

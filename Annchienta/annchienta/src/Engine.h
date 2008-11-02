@@ -47,6 +47,12 @@ namespace Annchienta
                 Engine( const char *writeDirectory="." );
                 ~Engine();
 
+                /** Safe method for running Python code.
+                 *  \param code Code to be executed.
+                 *  \note Not available in Python.
+                 */
+                void runPythonCode( const char *code ) const;
+
                 /** Safe method for running Python scripts.
                  *  \param filename The script to be ran.
                  *  \note Not available in Python.
