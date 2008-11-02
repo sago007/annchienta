@@ -24,16 +24,18 @@ using namespace io;
 #include "CacheManager.h"
 #include "LogManager.h"
 #include "InputManager.h"
+#include "VideoManager.h"
 
 namespace Annchienta
 {
 
-    Map::Map( const char *_filename ): sortedLayers(0), currentLayer(0), onPreRenderCode(0), onPreRenderScript(0),
-                                       onPostRenderCode(0), onPostRenderScript(0)
+    Map::Map( const char *_filename, bool scripts ): sortedLayers(0), currentLayer(0), onPreRenderCode(0), onPreRenderScript(0),
+                                                     onPostRenderCode(0), onPostRenderScript(0)
     {
         Engine *engine = getEngine();
         LogManager *logManager = getLogManager();
         CacheManager *cacheManager = getCacheManager();
+        videoManager = getVideoManager();
 
         Layer *layer = 0;
 
@@ -282,14 +284,19 @@ namespace Annchienta
                     if( !strcmp("if", xml->getNodeName() ) )
                     {
                         /* Use a python boolean to define the result. */
-                        bool result = engine->evaluatePythonBoolean( xml->getAttributeValue("code"),
-                                                                     xml->getAttributeValue("cond") );
+                        bool result = true;
+
+                        /* Only evaluate the if tag if we are allowed to use scripts. */
+                        if( scripts )
+                        {
+                            result = engine->evaluatePythonBoolean( xml->getAttributeValue("code"),
+                                                                    xml->getAttributeValue("cond") );
+                        }
 
                         /* If the result was false, we want to read on until
                          * we come across the corresponding </if>.
                          * If the result was true, we simply ignore this if
-                         * node.
-                         */
+                         * node. */
                         if( !result )
                         {
                             /* Seek until the end of this if node. */
@@ -304,15 +311,19 @@ namespace Annchienta
                     }
                     if( !strcmp("onload", xml->getNodeName() ) )
                     {
-                        if( xml->getAttributeValue("script") )
+                        /* Only if we are allowed to execute scripts. */
+                        if( scripts )
                         {
-                            engine->runPythonScript( xml->getAttributeValue("script") );
-                        }
-                        else
-                        {
-                            xml->read();
-                            engine->runPythonCode( xml->getNodeData() );
-                            xml->read();
+                            if( xml->getAttributeValue("script") )
+                            {
+                                engine->runPythonScript( xml->getAttributeValue("script") );
+                            }
+                            else
+                            {
+                                xml->read();
+                                engine->runPythonCode( xml->getNodeData() );
+                                xml->read();
+                            }
                         }
                     }
                     if( !strcmp("onprerender", xml->getNodeName() ) )
@@ -491,20 +502,20 @@ namespace Annchienta
             layers[i]->update();
     }
 
-    void Map::draw() const
+    void Map::draw( bool scripts ) const
     {
-        glPushMatrix();
+        if( scripts )
+            this->onPreRender();
 
-        glLoadIdentity();
-        this->onPreRender();
-
-        glPopMatrix();
+        videoManager->pushMatrix();
 
         for( unsigned int i=0; i<layers.size(); i++ )
             sortedLayers[i]->draw();
 
-        glLoadIdentity();
-        this->onPostRender();
+        videoManager->popMatrix();
+
+        if( scripts )
+            this->onPostRender();
     }
 
     void Map::depthSort()
@@ -540,20 +551,26 @@ namespace Annchienta
     {
         Engine *engine = getEngine();
 
+        videoManager->pushMatrix();
+        videoManager->identity();
         if( onPreRenderScript )
             engine->runPythonScript( onPreRenderScript );
         if( onPreRenderCode )
             engine->runPythonCode( onPreRenderCode );
+        videoManager->popMatrix();
     }
 
     void Map::onPostRender() const
     {
         Engine *engine = getEngine();
 
+        videoManager->pushMatrix();
+        videoManager->identity();
         if( onPostRenderScript )
             engine->runPythonScript( onPostRenderScript );
         if( onPostRenderCode )
             engine->runPythonCode( onPostRenderCode );
+        videoManager->popMatrix();
     }
 
 };

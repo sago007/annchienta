@@ -24,12 +24,16 @@ namespace Annchienta
     {
 
         private:
+
+            /* We need to draw some shit. */
+            VideoManager *videoManager;
+
+            /* TileSet used in this map. */
             TileSet *tileSet;
 
             int width, height;
 
-            /* All layers in the level.
-             */
+            /* All layers in the level. */
             std::vector<Layer*> layers;
             Layer **sortedLayers;
             int currentLayer;
@@ -43,8 +47,9 @@ namespace Annchienta
 
             /** Load a new map.
              *  \param filename XML file where the Map should be loaded from.
+             *  \param scripts If the onload scripts should be executed. This also means all \<if> tags will evaluate to true.
              */
-            Map( const char *filename );
+            Map( const char *filename, bool scripts=true );
             
             /** Creates a new, empty Map.
              *  \param w The new map width.
@@ -123,8 +128,9 @@ namespace Annchienta
             void update();
 
             /** Draws the Map to the screen.
+             *  \param scripts If the onPreRender and onPostRender scripts should be executed.
              */
-            void draw() const;
+            void draw( bool scripts=true ) const;
 
             /** Depthsorts this Map. Calls Layer::depthSort() for all Layers.
              */
