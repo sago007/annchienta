@@ -3,6 +3,7 @@ import gtk
 import gtk.glade
 import os
 import annchienta
+import MapControl
 
 class MainWindow:
 
@@ -12,6 +13,9 @@ class MainWindow:
 
         # Get a few annchienta references
         self.mapManager = annchienta.getMapManager()
+
+        # The instance that controls the map
+        self.mapControl = MapControl.MapControl()
 
         # Glade file we'll be using
         self.gladefile = "MainWindow.glade"
