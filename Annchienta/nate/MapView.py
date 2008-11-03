@@ -19,3 +19,15 @@ class MapView:
     #
     def setMap( self, currentMap ):
         self.currentMap = currentMap
+
+    ## Draws the map
+    #
+    def draw( self ):
+
+        self.videoManager.begin()
+
+        # Actually render map
+        if self.currentMap:
+            self.currentMap.draw()
+
+        self.videoManager.end()
