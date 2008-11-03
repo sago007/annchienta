@@ -303,14 +303,15 @@ namespace Annchienta
 
     void MapManager::renderFrame() const
     {
-        glLoadIdentity();
+        VideoManager *videoManager = getVideoManager();
+        videoManager->pushMatrix();
 
-        glTranslatef( (GLfloat)-cameraX, (GLfloat)-cameraY, 0.0f );
+        videoManager->translate( -cameraX, -cameraY );
 
         if( currentMap )
             currentMap->draw();
 
-        glLoadIdentity();
+        videoManager->popMatrix();
     }
 
     void MapManager::resync()

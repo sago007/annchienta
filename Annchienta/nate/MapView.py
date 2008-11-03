@@ -29,11 +29,8 @@ class MapView:
     #
     def draw( self ):
 
-        self.videoManager.begin()
-
         # Actually render map
         if self.currentMap:
+            self.videoManager.begin()
             self.currentMap.draw( False )
-
-        self.videoManager.end()
-
+            self.videoManager.end()

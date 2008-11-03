@@ -1,6 +1,7 @@
 import annchienta
 import MapView
-import UpdateThread
+import gobject
+import gtk
 
 ## A class that controls, edits and holds the Map.
 #
@@ -14,20 +15,18 @@ class MapControl:
         self.currentMap = None 
 
         # Get some references
-        self.engine     = annchienta.getEngine()
-        self.mapManager = annchienta.getMapManager()
+        self.engine       = annchienta.getEngine()
+        self.inputManager = annchienta.getInputManager()
 
         # Create a MapView
         self.mapView = MapView.MapView()
 
-        # Creata a thread to update this
-        self.updateThread = UpdateThread.UpdateThread( self )
+        # Start a function that updates ourselve.
+        gobject.timeout_add( 100, self.tick )
 
     ## Free up stuff
     #
     def free( self ):
-        self.updateThread.stop()
-        self.updateThread = None
         self.currentMap = None
         self.mapView.free()
 
@@ -44,13 +43,9 @@ class MapControl:
         if self.engine.isValidFile( filename ):
 
             # Load the map... use False because we don't want scrips
-            self.currentMap = annchienta.Map( filename, False )
+            loadedMap = annchienta.Map( filename, False )
 
-            # Pass the map to the MapView
-            self.mapView.setMap( self.currentMap )
-
-            if not self.updateThread.isRunning():
-                self.updateThread.start()
+            self.setMap( loadedMap )
 
     ## Create a new map.
     #  \param width Width of the Map.
@@ -60,15 +55,38 @@ class MapControl:
     def createMap( self, width, height, tilesetDirectory ):
 
         # Create the map
-        self.currentMap = annchienta.Map( width, height, tilesetDirectory )
+        createdMap = annchienta.Map( width, height, tilesetDirectory )
 
-        # Pass the map to the MapView
-        self.mapView.setMap( self.currentMap )
+        self.setMap( createdMap )
+
+    ## Sets the map
+    #
+    def setMap( self, currentMap ):
+
+        # set it
+        self.currentMap = currentMap
+        # Do a depthsorth
+        self.currentMap.depthSort()
+        # pass
+        self.mapView.setMap( currentMap )
 
     ## Ticks this object. This will update this and
     #  all of it's associated objects.
     def tick( self ):
 
+        # Update the inputmanager
+        self.inputManager.update()
+
+        # Quit the main function if we quit the annchienta
+        # engine (User closed vide window)
+        if not self.inputManager.running() and gtk.main_level():
+            gtk.main_quit()
+
         # Draw the map
         self.mapView.draw()
+
+        # Return true because this gets called though
+        # a gobject callback and we want it too keep
+        # running.
+        return True
 

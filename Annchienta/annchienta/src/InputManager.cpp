@@ -84,7 +84,6 @@ namespace Annchienta
         /* Take a little look at the mouse.
          */
         mouseState = SDL_GetMouseState( &mouseX, &mouseY );
-
     }
 
     bool InputManager::running()
