@@ -9,4 +9,5 @@ if __name__ == "__main__":
     annchienta.init()
     mainWindow = MainWindow.MainWindow()
     gtk.main()
+    mainWindow.free()
     annchienta.quit()

@@ -26,7 +26,8 @@ class MainWindow:
         # Create a dictionary for events
         dic = { "on_window_delete_event":                              self.close,
                 "on_gameWorkingDirectoryChooser_selection_changed":    self.updateGameWorkingDirectory,
-                "on_tileWidthSpinButton_value_changed":                self.updateTileWidth }
+                "on_tileWidthSpinButton_value_changed":                self.updateTileWidth,
+                "on_openMapFileChooser_selection_changed":             self.updateMapFile }
 
         # Connect that dictionary
         self.widgetTree.signal_autoconnect( dic )
@@ -36,11 +37,16 @@ class MainWindow:
     def close( self, widget=None, event=None ):
         gtk.main_quit()
 
+    ## Free up some files to avoid segmentation faults
+    #
+    def free( self ):
+        self.mapControl.free()
+
     ## Updates the working directory for the game.
     #
     def updateGameWorkingDirectory( self, widget=None ):
         # Cd to that directory
-        os.chdir( widget.get_current_folder() )
+        os.chdir( str(widget.get_filename()) )
 
     ## Updates the tile width
     #
@@ -49,4 +55,11 @@ class MainWindow:
         value = widget.get_value_as_int()
         self.mapManager.setTileWidth( value )
         self.mapManager.setTileHeight( int(value/2) )
+
+    ## Updates the map file, creating a new map
+    #  if necessary
+    def updateMapFile( self, widget=None ):
+
+        filename = str(widget.get_filename())
+        self.mapControl.loadMap( filename )
 

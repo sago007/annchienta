@@ -105,6 +105,7 @@ Tile height will be half of tile width.</property>
                 <child>
                   <widget class="GtkFileChooserButton" id="openMapFileChooser">
                     <property name="visible">True</property>
+                    <signal name="selection_changed" handler="on_openMapFileChooser_selection_changed"/>
                   </widget>
                   <packing>
                     <property name="position">2</property>

@@ -15,6 +15,11 @@ class MapView:
         # Set the video mode
         self.videoManager.setVideoMode( 640, 480, "NATE - Map View" )
 
+    ## Free up stuff
+    #
+    def free( self ):
+        self.currentMap = None
+
     ## Sets the map to be viewed
     #
     def setMap( self, currentMap ):
@@ -28,6 +33,7 @@ class MapView:
 
         # Actually render map
         if self.currentMap:
-            self.currentMap.draw()
+            self.currentMap.draw( False )
 
         self.videoManager.end()
+
