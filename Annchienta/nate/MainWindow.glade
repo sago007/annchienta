@@ -64,7 +64,31 @@ Tile height will be half of tile width.</property>
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <widget class="GtkHButtonBox" id="drawGridBox">
+                <property name="visible">True</property>
+                <child>
+                  <widget class="GtkLabel" id="label7">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Draw a grid on the map:</property>
+                  </widget>
+                </child>
+                <child>
+                  <widget class="GtkComboBox" id="drawGridComboBox">
+                    <property name="visible">True</property>
+                    <property name="active">1</property>
+                    <property name="items" translatable="yes">Don't draw grid
+Draw simple grid
+Draw height-aware grid</property>
+                    <signal name="changed" handler="on_drawGridComboBox_changed"/>
+                  </widget>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="position">2</property>
+              </packing>
             </child>
           </widget>
         </child>

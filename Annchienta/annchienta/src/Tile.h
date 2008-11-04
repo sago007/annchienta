@@ -98,10 +98,12 @@ namespace Annchienta
             #ifndef SWIG
                 /** Where the tile mask should be placed... this is
                  *  mostly used internally.
+                 *  \note Not available in Python.
                  */
                 virtual Point getMaskPosition() const;
 
                 /** Returns a point in this tile with the given index.
+                 *  \note Not available in Python.
                  */
                 Point getPoint( int i ) const;
             #endif

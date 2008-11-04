@@ -4,6 +4,11 @@ import annchienta
 #  that displays the map.
 class MapView:
 
+    # Simple enum
+    NO_DRAW_GRID = 0
+    SIMPLE_DRAW_GRID = 1
+    HEIGHT_DRAW_GRID = 2
+
     def __init__( self ):
 
         # Currently viewed map.
@@ -11,12 +16,16 @@ class MapView:
 
         # Get a few references.
         self.videoManager = annchienta.getVideoManager()
+        self.mapManager   = annchienta.getMapManager()
 
         # Set the video mode
         self.videoManager.setVideoMode( 640, 480, "NATE - Map View" )
 
         # Initial camera position
         self.cameraPosition = annchienta.Vector( 0, 0 )
+
+        # Draw grid method
+        self.drawGridType = self.SIMPLE_DRAW_GRID
 
     ## Free up stuff
     #
@@ -38,6 +47,11 @@ class MapView:
     def setCameraPosition( self, cameraPosition ):
         self.cameraPosition = cameraPosition
 
+    ## Set draw grid type
+    #
+    def setDrawGridType( self, drawGridType ):
+        self.drawGridType = drawGridType
+
     ## Draws the map
     #
     def draw( self ):
@@ -53,4 +67,47 @@ class MapView:
             # Draw the son of a bitch
             self.currentMap.draw( False )
 
+            # Draw a type of grid
+            if self.drawGridType == self.SIMPLE_DRAW_GRID:
+                self.drawSimpleGrid()
+            elif self.drawGridType == self.HEIGHT_DRAW_GRID:
+                self.drawHeightGrid()
+
             self.videoManager.end()
+
+    ## Draw a very simple grid
+    #
+    def drawSimpleGrid( self ):
+
+        self.videoManager.pushMatrix()
+        self.videoManager.popMatrix()
+
+    ## Draw a height-based grid
+    #
+    def drawHeightGrid( self ):
+
+        self.videoManager.pushMatrix()
+
+        # Get the current layer
+        layer = self.currentMap.getCurrentLayer()
+
+        # Pick a color for the grid
+        self.videoManager.setColor( 255, 255, 255 )
+
+        # Loop through all tiles.
+        for y in range( layer.getHeight() ):
+            for x in range( layer.getWidth() ):
+
+                tile = layer.getTile( x, y )
+
+                # Get all tilepoints, converted to screenpoints
+                tilePoints = map( lambda i: tile.getPointPointer(i).to( annchienta.ScreenPoint ), range(4) )
+
+                # Now draw lines
+                for i in range(4):
+                    p1 = tilePoints[i]
+                    p2 = tilePoints[ (i+1)%4 ]
+                    self.videoManager.drawLine( p1.x, p1.y, p2.x, p2.y )
+
+        self.videoManager.popMatrix()
+

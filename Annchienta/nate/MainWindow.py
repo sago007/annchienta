@@ -4,6 +4,7 @@ import gtk.glade
 import os
 import annchienta
 import MapControl
+import MapView
 import NewMapWindow
 
 class MainWindow:
@@ -31,6 +32,7 @@ class MainWindow:
         dic = { "on_window_delete_event":                              self.close,
                 "on_gameWorkingDirectoryChooser_selection_changed":    self.updateGameWorkingDirectory,
                 "on_tileWidthSpinButton_value_changed":                self.updateTileWidth,
+                "on_drawGridComboBox_changed":                         self.updateDrawGrid,
                 "on_createNewMapButton_clicked":                       self.createNewMap,
                 "on_openMapFileChooser_selection_changed":             self.updateMapFile }
 
@@ -61,6 +63,16 @@ class MainWindow:
         value = widget.get_value_as_int()
         self.mapManager.setTileWidth( value )
         self.mapManager.setTileHeight( int(value/2) )
+
+    ## Updates the way to draw grids
+    #
+    def updateDrawGrid( self, widget=None ):
+
+        # Retrieve the grid type from a dictionary
+        dic = { 0: MapView.MapView.NO_DRAW_GRID,
+                1: MapView.MapView.SIMPLE_DRAW_GRID,
+                2: MapView.MapView.HEIGHT_DRAW_GRID }
+        self.mapControl.getMapView().setDrawGridType( dic[ int(widget.get_active()) ] )
 
     ## Creates a new window that gives options to
     #  create a new map.

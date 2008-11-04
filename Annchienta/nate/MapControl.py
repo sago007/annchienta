@@ -22,7 +22,7 @@ class MapControl:
         self.mapView = MapView.MapView()
 
         # Start a function that updates ourselve.
-        gobject.timeout_add( 100, self.tick )
+        gobject.timeout_add( 200, self.tick )
 
         # The previous mouse position, used for camera calculations
         self.mousePosition = None 
@@ -32,6 +32,11 @@ class MapControl:
     def free( self ):
         self.currentMap = None
         self.mapView.free()
+
+    ## Get a reference to the MapView
+    #
+    def getMapView( self ):
+        return self.mapView
 
     ## Get the map.
     #
