@@ -24,6 +24,9 @@ class MapControl:
         # Start a function that updates ourselve.
         gobject.timeout_add( 100, self.tick )
 
+        # The previous mouse position, used for camera calculations
+        self.mousePosition = None 
+
     ## Free up stuff
     #
     def free( self ):
@@ -74,19 +77,42 @@ class MapControl:
     #  all of it's associated objects.
     def tick( self ):
 
-        # Update the inputmanager
-        self.inputManager.update()
+        # Call the general update function
+        self.update()
+
+        # Draw everything
+        self.draw()
 
         # Quit the main function if we quit the annchienta
         # engine (User closed vide window)
         if not self.inputManager.running() and gtk.main_level():
             gtk.main_quit()
 
-        # Draw the map
-        self.mapView.draw()
-
         # Return true because this gets called though
         # a gobject callback and we want it too keep
         # running.
         return True
+
+    ## A rather general update function
+    #
+    def update( self ):
+
+        # Update the inputmanager
+        self.inputManager.update()
+
+        newMousePosition = annchienta.Vector( self.inputManager.getMouseX(), self.inputManager.getMouseY() )
+        if self.mousePosition:
+            # Translate view with right mouse button
+            if self.inputManager.buttonDown(1):
+                diff = self.mousePosition - newMousePosition
+                diff += self.mapView.getCameraPosition()
+                self.mapView.setCameraPosition( diff )
+        
+        self.mousePosition = newMousePosition
+
+    ## Draw stuff
+    #
+    def draw( self ):
+
+        self.mapView.draw()
 
