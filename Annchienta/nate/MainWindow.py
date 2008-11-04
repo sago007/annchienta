@@ -4,6 +4,7 @@ import gtk.glade
 import os
 import annchienta
 import MapControl
+import NewMapWindow
 
 class MainWindow:
 
@@ -17,6 +18,9 @@ class MainWindow:
         # The instance that controls the map
         self.mapControl = MapControl.MapControl()
 
+        # A window to create new maps
+        self.newMapWindow = NewMapWindow.NewMapWindow( self.mapControl )
+
         # Glade file we'll be using
         self.gladefile = "MainWindow.glade"
 
@@ -27,6 +31,7 @@ class MainWindow:
         dic = { "on_window_delete_event":                              self.close,
                 "on_gameWorkingDirectoryChooser_selection_changed":    self.updateGameWorkingDirectory,
                 "on_tileWidthSpinButton_value_changed":                self.updateTileWidth,
+                "on_createNewMapButton_clicked":                       self.createNewMap,
                 "on_openMapFileChooser_selection_changed":             self.updateMapFile }
 
         # Connect that dictionary
@@ -36,6 +41,7 @@ class MainWindow:
     #
     def close( self, widget=None, event=None ):
         gtk.main_quit()
+        return True
 
     ## Free up some files to avoid segmentation faults
     #
@@ -55,6 +61,11 @@ class MainWindow:
         value = widget.get_value_as_int()
         self.mapManager.setTileWidth( value )
         self.mapManager.setTileHeight( int(value/2) )
+
+    ## Creates a new window that gives options to
+    #  create a new map.
+    def createNewMap( self, widget=None ):
+        self.newMapWindow.show()
 
     ## Updates the map file, creating a new map
     #  if necessary

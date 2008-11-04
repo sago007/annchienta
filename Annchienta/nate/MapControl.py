@@ -50,12 +50,12 @@ class MapControl:
     ## Create a new map.
     #  \param width Width of the Map.
     #  \param height Height of the Map.
-    #  \param tilesetDirectory Where the tileset can be found.
+    #  \param tilesetDirectory Where the tileset can be found. (relative path would be best)
     #
-    def createMap( self, width, height, tilesetDirectory ):
+    def createMap( self, width, height, tileSetDirectory ):
 
         # Create the map
-        createdMap = annchienta.Map( width, height, tilesetDirectory )
+        createdMap = annchienta.Map( width, height, tileSetDirectory )
 
         self.setMap( createdMap )
 
