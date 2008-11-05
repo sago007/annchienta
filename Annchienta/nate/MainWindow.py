@@ -34,7 +34,9 @@ class MainWindow:
                 "on_tileWidthSpinButton_value_changed":                self.updateTileWidth,
                 "on_drawGridComboBox_changed":                         self.updateDrawGrid,
                 "on_createNewMapButton_clicked":                       self.createNewMap,
-                "on_openMapFileChooser_selection_changed":             self.updateMapFile }
+                "on_openMapFileChooser_selection_changed":             self.updateMapFile,
+                "on_nextLayerButton_clicked":                          self.nextLayer,
+                "on_addLayerButton_clicked":                           self.addLayer }
 
         # Connect that dictionary
         self.widgetTree.signal_autoconnect( dic )
@@ -86,3 +88,12 @@ class MainWindow:
         filename = str(widget.get_filename())
         self.mapControl.loadMap( filename )
 
+    ## Cycle to next layer
+    #
+    def nextLayer( self, widget=None ):
+        self.mapControl.nextLayer()
+
+    ## Add a new layer
+    #
+    def addLayer( self, widget=None ):
+        self.mapControl.addLayer()

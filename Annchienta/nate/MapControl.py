@@ -121,3 +121,15 @@ class MapControl:
 
         self.mapView.draw()
 
+    ## Cycle to next layer
+    #
+    def nextLayer( self ):
+        index = self.currentMap.getCurrentLayerIndex()
+        index = (index + 1) % self.currentMap.getNumberOfLayers()
+        self.currentMap.setCurrentLayer( index )
+
+    ## Add a new layer
+    #
+    def addLayer( self ):
+        self.currentMap.addNewLayer()
+

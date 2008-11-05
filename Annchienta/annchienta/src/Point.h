@@ -90,8 +90,13 @@ namespace Annchienta
 
             ~Point();
 
-            #ifndef SWIG /* Gets ignored anyway. */
+            #ifndef SWIG
+                /** \note Not available in Python.
+                 */
                 Point &operator=(const Point &other);
+
+                /** \note Not available in Python.
+                 */
                 void setType( PointType type );
             #endif
 

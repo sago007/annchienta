@@ -80,6 +80,26 @@ class MapView:
     def drawSimpleGrid( self ):
 
         self.videoManager.pushMatrix()
+
+        # Get the current layer and go to position
+        layer = self.currentMap.getCurrentLayer()
+        self.videoManager.translate( 0, -layer.getZ() )
+
+        # Pick a color for the grid
+        self.videoManager.setColor( 255, 255, 255 )
+
+        # Draw x-aligned lines
+        for y in range( 1, layer.getHeight() ):
+            p1 = layer.getTile( 0, y ).getPointPointer( 0 )
+            p2 = layer.getTile( layer.getWidth()-1, y ).getPointPointer( 3 )
+            self.videoManager.drawLine( p1.x, p1.y, p2.x, p2.y )
+
+        # Draw y-aligned lines
+        for x in range( 1, layer.getWidth() ):
+            p1 = layer.getTile( x, 0 ).getPointPointer( 0 )
+            p2 = layer.getTile( x, layer.getHeight()-1 ).getPointPointer( 1 )
+            self.videoManager.drawLine( p1.x, p1.y, p2.x, p2.y )
+            
         self.videoManager.popMatrix()
 
     ## Draw a height-based grid
@@ -88,8 +108,9 @@ class MapView:
 
         self.videoManager.pushMatrix()
 
-        # Get the current layer
+        # Get the current layer and go to position
         layer = self.currentMap.getCurrentLayer()
+        self.videoManager.translate( 0, -layer.getZ() )
 
         # Pick a color for the grid
         self.videoManager.setColor( 255, 255, 255 )

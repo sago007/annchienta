@@ -111,7 +111,8 @@ namespace Annchienta
             /** Gets a reference to a Point of this Tile.
              *  You can use this when you actually want to
              *  change a Tile's properties (like when you're
-             *  creating an editor).
+             *  creating an editor). This function returns
+             *  a MapPoint (\ref PointType).
              */
             Point *getPointPointer( int i );
 
