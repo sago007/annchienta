@@ -17,7 +17,7 @@ class MainWindow:
         self.mapManager = annchienta.getMapManager()
 
         # The instance that controls the map
-        self.mapControl = MapControl.MapControl()
+        self.mapControl = MapControl.MapControl( self )
 
         # A window to create new maps
         self.newMapWindow = NewMapWindow.NewMapWindow( self.mapControl )
@@ -36,7 +36,8 @@ class MainWindow:
                 "on_createNewMapButton_clicked":                       self.createNewMap,
                 "on_openMapFileChooser_selection_changed":             self.updateMapFile,
                 "on_nextLayerButton_clicked":                          self.nextLayer,
-                "on_addLayerButton_clicked":                           self.addLayer }
+                "on_addLayerButton_clicked":                           self.addLayer,
+                "on_changeLayerZSpinButton_value_changed":             self.updateLayerZ }
 
         # Connect that dictionary
         self.widgetTree.signal_autoconnect( dic )
@@ -97,3 +98,15 @@ class MainWindow:
     #
     def addLayer( self, widget=None ):
         self.mapControl.addLayer()
+
+    ## Update the Z of the current layer
+    #
+    def updateLayerZ( self, widget=None ):
+        z = int( widget.get_value_as_int() )
+        self.mapControl.setLayerZ( z )
+
+    ## Change the value in the spin box
+    #
+    def setLayerZValue( self, z ):
+        widget = self.widgetTree.get_widget("changeLayerZSpinButton")
+        widget.set_value( float(z) )

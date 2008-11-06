@@ -9,10 +9,13 @@ class MapControl:
 
     ## Create a new MapControl.
     #
-    def __init__( self ):
+    def __init__( self, mainWindow):
 
         # The current map
         self.currentMap = None 
+
+        # Keep the mainWindow too
+        self.mainWindow = mainWindow
 
         # Get some references
         self.engine       = annchienta.getEngine()
@@ -124,12 +127,22 @@ class MapControl:
     ## Cycle to next layer
     #
     def nextLayer( self ):
-        index = self.currentMap.getCurrentLayerIndex()
-        index = (index + 1) % self.currentMap.getNumberOfLayers()
-        self.currentMap.setCurrentLayer( index )
+
+        if self.currentMap:
+            index = self.currentMap.getCurrentLayerIndex()
+            index = (index + 1) % self.currentMap.getNumberOfLayers()
+            self.currentMap.setCurrentLayer( index )
+            # Update the spinbox
+            self.mainWindow.setLayerZValue( self.currentMap.getCurrentLayer().getZ() )
 
     ## Add a new layer
     #
     def addLayer( self ):
-        self.currentMap.addNewLayer()
+        if self.currentMap:
+            self.currentMap.addNewLayer()
+
+    ## Adjust the Z offset of the current layer
+    #
+    def setLayerZ( self, z ):
+        self.currentMap.getCurrentLayer().setZ( z )
 

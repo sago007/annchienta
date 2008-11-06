@@ -173,7 +173,29 @@ Draw height-aware grid</property>
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <widget class="GtkHButtonBox" id="editLayerBox">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkLabel" id="label1">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Change layer Z:</property>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkSpinButton" id="changeLayerZSpinButton">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="adjustment">0 -300 300 1 10 10</property>
+                        <signal name="value_changed" handler="on_changeLayerZSpinButton_value_changed"/>
+                      </widget>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
                 </child>
               </widget>
               <packing>
