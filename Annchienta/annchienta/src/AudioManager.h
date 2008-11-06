@@ -19,7 +19,7 @@ namespace Annchienta
     {
         private:
             Mix_Music *music;
-            char musicFilename[DEFAULT_STRING_SIZE];
+            char musicFileName[DEFAULT_STRING_SIZE];
 
             /* We can continue happily without audio.
              */

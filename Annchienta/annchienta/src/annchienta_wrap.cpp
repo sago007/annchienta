@@ -12241,6 +12241,50 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_TileSet_getNumberOfSurfaces(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::TileSet *arg1 = (Annchienta::TileSet *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:TileSet_getNumberOfSurfaces",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__TileSet, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TileSet_getNumberOfSurfaces" "', argument " "1"" of type '" "Annchienta::TileSet const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::TileSet * >(argp1);
+  result = (int)((Annchienta::TileSet const *)arg1)->getNumberOfSurfaces();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TileSet_getNumberOfSideSurfaces(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::TileSet *arg1 = (Annchienta::TileSet *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:TileSet_getNumberOfSideSurfaces",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__TileSet, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TileSet_getNumberOfSideSurfaces" "', argument " "1"" of type '" "Annchienta::TileSet const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::TileSet * >(argp1);
+  result = (int)((Annchienta::TileSet const *)arg1)->getNumberOfSideSurfaces();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *TileSet_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
@@ -15186,6 +15230,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"TileSet_getSideSurface", _wrap_TileSet_getSideSurface, METH_VARARGS, NULL},
 	 { (char *)"TileSet_getMask", _wrap_TileSet_getMask, METH_VARARGS, NULL},
 	 { (char *)"TileSet_getDirectory", _wrap_TileSet_getDirectory, METH_VARARGS, NULL},
+	 { (char *)"TileSet_getNumberOfSurfaces", _wrap_TileSet_getNumberOfSurfaces, METH_VARARGS, NULL},
+	 { (char *)"TileSet_getNumberOfSideSurfaces", _wrap_TileSet_getNumberOfSideSurfaces, METH_VARARGS, NULL},
 	 { (char *)"TileSet_swigregister", TileSet_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Mask", _wrap_new_Mask, METH_VARARGS, NULL},
 	 { (char *)"delete_Mask", _wrap_delete_Mask, METH_VARARGS, NULL},

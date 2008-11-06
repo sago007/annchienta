@@ -1,5 +1,6 @@
 import annchienta
 import MapView
+import MapWriter
 import gobject
 import gtk
 
@@ -23,6 +24,10 @@ class MapControl:
 
         # Create a MapView
         self.mapView = MapView.MapView()
+
+        # The MapWrite we'll use, constructed when we load/create
+        # a map.
+        self.mapWriter = None
 
         # Start a function that updates ourselve.
         gobject.timeout_add( 200, self.tick )
@@ -58,6 +63,9 @@ class MapControl:
 
             self.setMap( loadedMap )
 
+            # Create writer
+            self.mapWriter = MapWriter.MapWriter( loadedMap, filename )
+
     ## Create a new map.
     #  \param width Width of the Map.
     #  \param height Height of the Map.
@@ -69,6 +77,9 @@ class MapControl:
         createdMap = annchienta.Map( width, height, tileSetDirectory )
 
         self.setMap( createdMap )
+
+        # Create writer
+        self.mapWriter = MapWriter.MapWriter( createdMap )
 
     ## Sets the map
     #

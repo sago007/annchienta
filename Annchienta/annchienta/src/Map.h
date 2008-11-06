@@ -38,7 +38,7 @@ namespace Annchienta
             Layer **sortedLayers;
             int currentLayer;
 
-            char filename[DEFAULT_STRING_SIZE];
+            char fileName[DEFAULT_STRING_SIZE];
 
             char *onPreRenderScript, *onPreRenderCode;
             char *onPostRenderScript, *onPostRenderCode;
@@ -46,10 +46,10 @@ namespace Annchienta
         public:
 
             /** Load a new map.
-             *  \param filename XML file where the Map should be loaded from.
+             *  \param fileName XML file where the Map should be loaded from.
              *  \param scripts If the onload scripts should be executed. This also means all \<if> tags will evaluate to true.
              */
-            Map( const char *filename, bool scripts=true );
+            Map( const char *fileName, bool scripts=true );
             
             /** Creates a new, empty Map.
              *  \param w The new map width.
@@ -81,7 +81,7 @@ namespace Annchienta
              */
             int getNumberOfLayers() const;
 
-            /** \return The filename from which this Map was loaded.
+            /** \return The fileName from which this Map was loaded.
              */
             const char *getFileName() const;
 

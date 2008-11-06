@@ -518,6 +518,8 @@ class TileSet(_object):
     def getSideSurface(*args): return _annchienta.TileSet_getSideSurface(*args)
     def getMask(*args): return _annchienta.TileSet_getMask(*args)
     def getDirectory(*args): return _annchienta.TileSet_getDirectory(*args)
+    def getNumberOfSurfaces(*args): return _annchienta.TileSet_getNumberOfSurfaces(*args)
+    def getNumberOfSideSurfaces(*args): return _annchienta.TileSet_getNumberOfSideSurfaces(*args)
 TileSet_swigregister = _annchienta.TileSet_swigregister
 TileSet_swigregister(TileSet)
 

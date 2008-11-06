@@ -120,4 +120,14 @@ namespace Annchienta
         return directory;
     }
 
+    int TileSet::getNumberOfSurfaces() const
+    {
+        return numberOfSurfaces;
+    }
+
+    int TileSet::getNumberOfSideSurfaces() const
+    {
+        return numberOfSideSurfaces;
+    }
+
 };

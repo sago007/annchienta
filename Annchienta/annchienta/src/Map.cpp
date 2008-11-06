@@ -29,7 +29,7 @@ using namespace io;
 namespace Annchienta
 {
 
-    Map::Map( const char *_filename, bool scripts ): sortedLayers(0), currentLayer(0), onPreRenderCode(0), onPreRenderScript(0),
+    Map::Map( const char *_fileName, bool scripts ): sortedLayers(0), currentLayer(0), onPreRenderCode(0), onPreRenderScript(0),
                                                      onPostRenderCode(0), onPostRenderScript(0)
     {
         Engine *engine = getEngine();
@@ -39,15 +39,15 @@ namespace Annchienta
 
         Layer *layer = 0;
 
-        if( !engine->isValidFile(_filename) )
-            logManager->error( "'%s' is not a valid file.", _filename );
+        if( !engine->isValidFile(_fileName) )
+            logManager->error( "'%s' is not a valid file.", _fileName );
 
-        IrrXMLReader *xml = createIrrXMLReader( _filename );
+        IrrXMLReader *xml = createIrrXMLReader( _fileName );
 
-        strcpy( filename, _filename );
+        strcpy( fileName, _fileName );
 
         if( !xml )
-            logManager->error( "Could not open given map file '%s' as xml.", _filename );
+            logManager->error( "Could not open given map file '%s' as xml.", _fileName );
 
         /** Read through the entire xml file. */
         while( xml && xml->read() )
@@ -63,7 +63,7 @@ namespace Annchienta
                             height = xml->getAttributeValueAsInt("height");
                         }
                         else
-                            logManager->warning( "'%s' does not provide map width and height.", filename);
+                            logManager->warning( "'%s' does not provide map width and height.", fileName);
 
                         if( xml->getAttributeValue("tilewidth") && xml->getAttributeValue("tileheight") )
                         {
@@ -71,12 +71,12 @@ namespace Annchienta
                             getMapManager()->setTileHeight( xml->getAttributeValueAsInt("tileheight") );
                         }
                         else
-                            logManager->warning("'%s' does not provide tilewidth and tileheight.", filename);
+                            logManager->warning("'%s' does not provide tilewidth and tileheight.", fileName);
 
                         if( xml->getAttributeValue("tileset") )
                             tileSet = new TileSet( xml->getAttributeValue("tileset") );
                         else
-                            logManager->warning("'%s' does not provide a valid tileset.", filename);
+                            logManager->warning("'%s' does not provide a valid tileset.", fileName);
                     }
                     if( !strcmp("layer", xml->getNodeName()) )
                     {
@@ -145,7 +145,7 @@ namespace Annchienta
                         }
                         else
                         {
-                            logManager->warning("Obstruction defined before tile data in '%s'. Ignoring.", filename);
+                            logManager->warning("Obstruction defined before tile data in '%s'. Ignoring.", fileName);
                         }
                         xml->read();
                     }
@@ -167,7 +167,7 @@ namespace Annchienta
                         }
                         else
                         {
-                            logManager->warning("Shadow properties defined before tile data in '%s'. Ignoring.", filename);
+                            logManager->warning("Shadow properties defined before tile data in '%s'. Ignoring.", fileName);
                         }
                         xml->read();
                     }
@@ -214,7 +214,7 @@ namespace Annchienta
                         if( xml->getAttributeValue("name") && xml->getAttributeValue("config") )
                             person = new Person( xml->getAttributeValue("name"), xml->getAttributeValue("config") );
                         else
-                            logManager->error("No name and config specified for person in %s.", filename);
+                            logManager->error("No name and config specified for person in %s.", fileName);
 
                         if( xml->getAttributeValue("isox") && xml->getAttributeValue("isoy") )
                             person->setPosition( Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),
@@ -387,7 +387,7 @@ namespace Annchienta
         layers.push_back( layer );
         sortLayers();
 
-        strcpy( filename, "untitled" );
+        strcpy( fileName, "untitled" );
     }
 
     Map::~Map()
@@ -434,7 +434,7 @@ namespace Annchienta
 
     const char *Map::getFileName() const
     {
-        return filename;
+        return fileName;
     }
 
     int Map::getWidth() const

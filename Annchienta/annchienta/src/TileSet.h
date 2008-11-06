@@ -67,6 +67,13 @@ namespace Annchienta
              */
             const char *getDirectory() const;
 
+            /** \return the number of tile surfaces.
+             */
+            int getNumberOfSurfaces() const;
+
+            /** \return the number of side surfaces
+             */
+            int getNumberOfSideSurfaces() const;
     };
 };
 

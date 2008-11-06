@@ -58,6 +58,7 @@
             <child>
               <widget class="GtkFileChooserButton" id="tileSetFileChooserButton">
                 <property name="visible">True</property>
+                <property name="action">GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER</property>
               </widget>
               <packing>
                 <property name="position">1</property>

@@ -30,9 +30,9 @@ namespace Annchienta
             initted = true;
         }
 
-        /* Initialize musicFilename.
+        /* Initialize musicFileName.
          */
-        sprintf( musicFilename, "none" );
+        sprintf( musicFileName, "none" );
     }
 
     AudioManager::~AudioManager()
@@ -65,13 +65,13 @@ namespace Annchienta
     {
         /* Return if the given music is already playing.
          */
-        if( !strcmp(filename, musicFilename) )
+        if( !strcmp(filename, musicFileName) )
             return;
 
         /* Store the new filename and stop previous music
          * if needed.
          */
-        sprintf( musicFilename, filename );
+        sprintf( musicFileName, filename );
 
         if( !initted )
             return;
@@ -96,7 +96,7 @@ namespace Annchienta
 
     const char *AudioManager::getPlayingMusic() const
     {
-        return musicFilename;
+        return musicFileName;
     }
 
     AudioManager *getAudioManager()
