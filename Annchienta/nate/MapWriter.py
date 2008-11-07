@@ -44,25 +44,24 @@ class MapWriter:
         # the root element in self.mapElement.
         print self.document.toxml()
 
-    def toRelativePath( self, target, base=os.curdir ):
+    def toRelativePath( self, dest, base=os.getcwd() ):
 
-        if not os.path.exists(target):
-            raise OSError, 'Target does not exist: '+target
-        if not os.path.isdir(base):
-            raise OSError, 'Base is not a directory or does not exist: '+base
+        # Normalize
+        p1 = os.path.normpath( os.path.abspath( base ) )
+        p2 = os.path.normpath( os.path.abspath( dest ) )
 
-        base_list = (os.path.abspath(base)).split(os.sep)
-        target_list = (os.path.abspath(target)).split(os.sep)
+        # Split /a/b/c to ['a', 'b', 'c']
+        l1 = p1.split( os.path.sep )
+        l2 = p2.split( os.path.sep )
 
-        if os.name in ['nt','dos','os2'] and base_list[0] <> target_list[0]:
-            raise OSError, 'Target is on a different drive to base. Target: '+target_list[0].upper()+', base: '+base_list[0].upper()
+        # Remove equal start
+        while len(l1) and len(l2) and l1[0]==l2[0]:
+            l1 = l1[1:]
+            l2 = l2[1:]
 
-        for i in range(min(len(base_list), len(target_list))):
-            if base_list[i] != target_list[i]:
-                break
-            else:
-                i+=1
+        # Add ../ and then the remaining part of l2
+        path = '../'*len(l1)
+        for remaining in l2:
+            path += '/' + remaining
 
-        rel_list = [os.pardir] * (len(base_list)-i) + target_list[i:]
-        return os.path.join(rel_list)
-
+        return os.path.normpath( path )
