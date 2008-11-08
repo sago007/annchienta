@@ -78,6 +78,7 @@ class Point(_object):
     def to(*args): return _annchienta.Point_to(*args)
     def isEnclosedBy(*args): return _annchienta.Point_isEnclosedBy(*args)
     def distance(*args): return _annchienta.Point_distance(*args)
+    def noTypeCheckSquaredDistance(*args): return _annchienta.Point_noTypeCheckSquaredDistance(*args)
 Point_swigregister = _annchienta.Point_swigregister
 Point_swigregister(Point)
 

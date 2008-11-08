@@ -1,6 +1,7 @@
 import annchienta
 import MapView
 import MapWriter
+import TileSelection
 import gobject
 import gtk
 
@@ -29,8 +30,11 @@ class MapControl:
         # a map.
         self.mapWriter = None
 
+        # Use this to get a tile selection
+        self.tileSelection = TileSelection.TileSelection( self )
+
         # Start a function that updates ourselve.
-        gobject.timeout_add( 200, self.tick )
+        gobject.timeout_add( 100, self.tick )
 
         # The previous mouse position, used for camera calculations
         self.mousePosition = None 
@@ -126,6 +130,13 @@ class MapControl:
                 diff = self.mousePosition - newMousePosition
                 diff += self.mapView.getCameraPosition()
                 self.mapView.setCameraPosition( diff )
+
+        # THIS IS ONLY A TEST!
+        if self.currentMap and self.inputManager.buttonDown(0):
+            selection = self.tileSelection.getSelection()
+            for affected in selection:
+                for point in affected.getPoints():
+                    affected.getTile().setSurface( point, 1 )
         
         self.mousePosition = newMousePosition
 

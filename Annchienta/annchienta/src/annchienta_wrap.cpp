@@ -3580,6 +3580,37 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Point_noTypeCheckSquaredDistance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Point *arg1 = (Annchienta::Point *) 0 ;
+  Annchienta::Point *arg2 = (Annchienta::Point *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Point_noTypeCheckSquaredDistance",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_noTypeCheckSquaredDistance" "', argument " "1"" of type '" "Annchienta::Point const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Point_noTypeCheckSquaredDistance" "', argument " "2"" of type '" "Annchienta::Point *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Point * >(argp2);
+  result = (int)((Annchienta::Point const *)arg1)->noTypeCheckSquaredDistance(arg2);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *Point_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
@@ -14991,6 +15022,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Point_to", _wrap_Point_to, METH_VARARGS, NULL},
 	 { (char *)"Point_isEnclosedBy", _wrap_Point_isEnclosedBy, METH_VARARGS, NULL},
 	 { (char *)"Point_distance", _wrap_Point_distance, METH_VARARGS, NULL},
+	 { (char *)"Point_noTypeCheckSquaredDistance", _wrap_Point_noTypeCheckSquaredDistance, METH_VARARGS, NULL},
 	 { (char *)"Point_swigregister", Point_swigregister, METH_VARARGS, NULL},
 	 { (char *)"Engine_getWriteDirectory", _wrap_Engine_getWriteDirectory, METH_VARARGS, NULL},
 	 { (char *)"Engine_setWriteDirectory", _wrap_Engine_setWriteDirectory, METH_VARARGS, NULL},

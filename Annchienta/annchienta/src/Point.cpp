@@ -159,4 +159,9 @@ namespace Annchienta
         return (int) sqrt( double( (x-tmp.x)*(x-tmp.x) + (y-tmp.y)*(y-tmp.y) + (z-tmp.z)*(z-tmp.z)) );
     }
 
+    int Point::noTypeCheckSquaredDistance( Point *other ) const
+    {
+        return (x-other->x)*(x-other->x) + (y-other->y)*(y-other->y) + (z-other->z)*(z-other->z);
+    }
+
 };

@@ -124,6 +124,13 @@ namespace Annchienta
              */
             int distance( Point other ) const;
 
+            /** Returns the squared distance to another Point. This
+             *  function does not check the other's point type and
+             *  takes a pointer as argument, making this a very
+             *  fast (but sometimes unreliable) function.
+             */
+            int noTypeCheckSquaredDistance( Point *other ) const;
+
     };
 
 };
