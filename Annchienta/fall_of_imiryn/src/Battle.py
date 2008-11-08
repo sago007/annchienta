@@ -230,12 +230,13 @@ class Battle:
         self.videoManager.drawSurface( self.background, 0, 0 )
 
         # Draw the console and lines
-        self.videoManager.setColor( 0, 0, 0, 100 )
-        self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()*2 )
-        self.sceneManager.inactiveColor()
-        for i in range(len(self.lines))[:2]:
-            self.videoManager.drawString( self.sceneManager.defaultFont, self.lines[i], self.sceneManager.margin, self.sceneManager.margin+self.sceneManager.defaultFont.getLineHeight()*i )
-        self.videoManager.setColor()
+        if len(self.lines):
+            self.videoManager.setColor( 0, 0, 0, 100 )
+            self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()*2 )
+            self.sceneManager.inactiveColor()
+            for i in range(len(self.lines))[:2]:
+                self.videoManager.drawString( self.sceneManager.defaultFont, self.lines[i], self.sceneManager.margin, self.sceneManager.margin+self.sceneManager.defaultFont.getLineHeight()*i )
+            self.videoManager.setColor()
         
         # Draw the combatants
         for c in self.combatants:

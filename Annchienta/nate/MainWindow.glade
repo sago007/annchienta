@@ -260,6 +260,54 @@ Draw height-aware grid</property>
                 <property name="visible">True</property>
                 <property name="spacing">30</property>
                 <child>
+                  <widget class="GtkHPaned" id="editWholeTilesHPaned">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <child>
+                      <widget class="GtkCheckButton" id="editWholeTilesCheckButton">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">Edit Whole Tiles</property>
+                        <property name="response_id">0</property>
+                        <property name="active">True</property>
+                        <property name="draw_indicator">True</property>
+                        <signal name="toggled" handler="on_editWholeTilesCheckButton_toggled"/>
+                      </widget>
+                      <packing>
+                        <property name="resize">False</property>
+                        <property name="shrink">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkHButtonBox" id="hbuttonbox1">
+                        <property name="visible">True</property>
+                        <property name="layout_style">GTK_BUTTONBOX_CENTER</property>
+                        <child>
+                          <widget class="GtkLabel" id="label9">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">Edit radius:</property>
+                          </widget>
+                        </child>
+                        <child>
+                          <widget class="GtkSpinButton" id="editRadiusSpinButton">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="adjustment">0 0 500 1 10 10</property>
+                            <signal name="value_changed" handler="on_editRadiusSpinButton_value_changed"/>
+                          </widget>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="resize">True</property>
+                        <property name="shrink">True</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+                <child>
                   <widget class="GtkHPaned" id="editTilesHPaned">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -295,6 +343,9 @@ Draw height-aware grid</property>
                       </packing>
                     </child>
                   </widget>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
                 <child>
                   <widget class="GtkHPaned" id="editZHPaned">
@@ -341,7 +392,7 @@ Draw height-aware grid</property>
                     </child>
                   </widget>
                   <packing>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
                 <child>
@@ -401,7 +452,7 @@ Draw height-aware grid</property>
                     </child>
                   </widget>
                   <packing>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
               </widget>

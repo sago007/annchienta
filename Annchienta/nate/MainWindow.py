@@ -33,11 +33,15 @@ class MainWindow:
                 "on_gameWorkingDirectoryChooser_selection_changed":    self.updateGameWorkingDirectory,
                 "on_tileWidthSpinButton_value_changed":                self.updateTileWidth,
                 "on_drawGridComboBox_changed":                         self.updateDrawGrid,
+
                 "on_createNewMapButton_clicked":                       self.createNewMap,
                 "on_openMapFileChooser_selection_changed":             self.updateMapFile,
                 "on_nextLayerButton_clicked":                          self.nextLayer,
                 "on_addLayerButton_clicked":                           self.addLayer,
-                "on_changeLayerZSpinButton_value_changed":             self.updateLayerZ }
+                "on_changeLayerZSpinButton_value_changed":             self.updateLayerZ,
+
+                "on_editWholeTilesCheckButton_toggled":                self.updateWholeTiles,
+                "on_editRadiusSpinButton_value_changed":               self.updateEditRadius }
 
         # Connect that dictionary
         self.widgetTree.signal_autoconnect( dic )
@@ -105,8 +109,33 @@ class MainWindow:
         z = int( widget.get_value_as_int() )
         self.mapControl.setLayerZ( z )
 
+    ## Change whether we edit whole tiles or not
+    #
+    def updateWholeTiles( self, widget=None ):
+        tileSelection = self.mapControl.getTileSelection()
+        tileSelection.selectWholeTiles( widget.get_active() )
+
+    ## Set the edit radius
+    #
+    def updateEditRadius( self, widget=None ):
+        tileSelection = self.mapControl.getTileSelection()
+        tileSelection.setRadius( int( widget.get_value_as_int() ) )
+
     ## Change the value in the spin box
     #
     def setLayerZValue( self, z ):
         widget = self.widgetTree.get_widget("changeLayerZSpinButton")
         widget.set_value( float(z) )
+
+    ## Look if we should edit tile Z
+    #
+    def editZChecked( self ):
+        widget = self.widgetTree.get_widget("editZCheckButton")
+        return widget.get_active()
+
+    ## The Z we should set.
+    #
+    def getEditZ( self ):
+        widget = self.widgetTree.get_widget("editZSpinButton")
+        return int( widget.get_value_as_int() )
+

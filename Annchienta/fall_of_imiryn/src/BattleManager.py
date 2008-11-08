@@ -73,15 +73,15 @@ class BattleManager:
         # Play intro sound
         self.audioManager.playSound( self.drum )
 
-        for i in range(10):
+        for i in range(20):
 
             self.videoManager.rotate( self.mathManager.randInt(0, 360 ) )
             self.videoManager.translate( self.mathManager.randInt( -triangleLength/4, triangleLength/4 ), self.mathManager.randInt( -triangleLength/4, triangleLength/4 ) )
-            self.videoManager.drawTriangle( 0, -triangleLength, -self.mathManager.randInt(5,20), triangleLength, self.mathManager.randInt(5,20), triangleLength )
+            self.videoManager.drawTriangle( 0, -triangleLength, -self.mathManager.randInt(2,10), triangleLength, self.mathManager.randInt(2,10), triangleLength )
             start = self.engine.getTicks()
             # Make some noise
 
-            while self.inputManager.running() and self.engine.getTicks()<start+50:
+            while self.inputManager.running() and self.engine.getTicks()<start+20:
                 self.videoManager.end()
 
         self.videoManager.reset()

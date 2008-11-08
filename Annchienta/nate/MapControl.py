@@ -50,6 +50,11 @@ class MapControl:
     def getMapView( self ):
         return self.mapView
 
+    ## Get a reference to the TileSelection
+    #
+    def getTileSelection( self ):
+        return self.tileSelection
+
     ## Get the map.
     #
     def getMap( self ):
@@ -133,10 +138,17 @@ class MapControl:
 
         # THIS IS ONLY A TEST!
         if self.currentMap and self.inputManager.buttonDown(0):
+
             selection = self.tileSelection.getSelection()
+
             for affected in selection:
+
+                tile = affected.getTile()
+
                 for point in affected.getPoints():
-                    affected.getTile().setSurface( point, 1 )
+
+                    if self.mainWindow.editZChecked():
+                        affected.getTile().setZ( point, self.mainWindow.getEditZ() )
         
         self.mousePosition = newMousePosition
 
