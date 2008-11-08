@@ -128,10 +128,10 @@ class Battle:
     
         # Align them and stuff
         for i in range(len(self.allies)):
-            self.allies[i].position = annchienta.Vector( 100, 50+(i+1)*35 )
+            self.allies[i].position = annchienta.Vector( 120-20*i, 75+(i+1)*30 )
             
         for i in range(len(self.enemies)):
-            self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-100, 50+(i+1)*35 )
+            self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-120+20*i, 75+(i+1)*30 )
     
     ## We have to be very careful in this function because it
     #  might very well recurse. That's why we need booleans to
