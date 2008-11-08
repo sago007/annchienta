@@ -18,6 +18,7 @@
             <child>
               <widget class="GtkVBox" id="settingsVBox">
                 <property name="visible">True</property>
+                <property name="spacing">30</property>
                 <child>
                   <widget class="GtkHButtonBox" id="gameWorkingDirectoryBox">
                     <property name="visible">True</property>
@@ -108,9 +109,11 @@ Draw height-aware grid</property>
             <child>
               <widget class="GtkVBox" id="mapVBox">
                 <property name="visible">True</property>
+                <property name="spacing">30</property>
                 <child>
                   <widget class="GtkHButtonBox" id="createOrOpenMapBox">
                     <property name="visible">True</property>
+                    <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
                     <child>
                       <widget class="GtkButton" id="createNewMapButton">
                         <property name="visible">True</property>
@@ -144,6 +147,7 @@ Draw height-aware grid</property>
                 <child>
                   <widget class="GtkHButtonBox" id="saveMapBox">
                     <property name="visible">True</property>
+                    <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
                     <child>
                       <widget class="GtkLabel" id="label2">
                         <property name="visible">True</property>
@@ -180,6 +184,7 @@ Draw height-aware grid</property>
                 <child>
                   <widget class="GtkHButtonBox" id="cycleLayerBox">
                     <property name="visible">True</property>
+                    <property name="layout_style">GTK_BUTTONBOX_CENTER</property>
                     <child>
                       <widget class="GtkButton" id="nextLayerButton">
                         <property name="visible">True</property>
@@ -211,6 +216,7 @@ Draw height-aware grid</property>
                 <child>
                   <widget class="GtkHButtonBox" id="editLayerBox">
                     <property name="visible">True</property>
+                    <property name="layout_style">GTK_BUTTONBOX_CENTER</property>
                     <child>
                       <widget class="GtkLabel" id="label1">
                         <property name="visible">True</property>
