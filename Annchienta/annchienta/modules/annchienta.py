@@ -141,6 +141,7 @@ class VideoManager(_object):
     def setVideoMode(*args): return _annchienta.VideoManager_setVideoMode(*args)
     def getScreenWidth(*args): return _annchienta.VideoManager_getScreenWidth(*args)
     def getScreenHeight(*args): return _annchienta.VideoManager_getScreenHeight(*args)
+    def isFullScreen(*args): return _annchienta.VideoManager_isFullScreen(*args)
     def reset(*args): return _annchienta.VideoManager_reset(*args)
     def identity(*args): return _annchienta.VideoManager_identity(*args)
     def translate(*args): return _annchienta.VideoManager_translate(*args)

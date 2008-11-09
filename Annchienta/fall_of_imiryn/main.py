@@ -70,6 +70,7 @@ while running and inputManager.running():
     menu = Menu.Menu( "Main Menu", "I love my girlfriend." )
     options = [ Menu.MenuItem("new", "Start a new game."),
                 Menu.MenuItem("load", "Continue from the last save point."),
+                Menu.MenuItem("fullscreen", "Enable or disable fullscreen mode."),
                 Menu.MenuItem("quit", "Leave this great game.")
               ]
     menu.setOptions( options )
@@ -81,6 +82,10 @@ while running and inputManager.running():
         if ans.name == "quit":
 
             running = False
+
+        elif ans.name == "fullscreen":
+
+            videoManager.setVideoMode( videoManager.getScreenWidth(), videoManager.getScreenHeight(), "Annchienta", not videoManager.isFullScreen() )
 
         else:
 

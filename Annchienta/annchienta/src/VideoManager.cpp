@@ -15,7 +15,7 @@ namespace Annchienta
 {
     VideoManager *videoManager;
 
-    VideoManager::VideoManager() : screenWidth(0), screenHeight(0)
+    VideoManager::VideoManager() : screenWidth(0), screenHeight(0), fullScreen(false)
     {
         videoManager = this;
 
@@ -40,7 +40,7 @@ namespace Annchienta
         delete[] backBuffers;
     }
 
-    void VideoManager::setVideoMode( int w, int h, const char *title, bool fullscreen )
+    void VideoManager::setVideoMode( int w, int h, const char *title, bool _fullScreen )
     {
         LogManager *logManager = getLogManager();
 
@@ -48,6 +48,7 @@ namespace Annchienta
          */
         screenWidth = w;
         screenHeight = h;
+        fullScreen = _fullScreen;
 
         /* Choose *best* settings for BitsPerPixel
          */
@@ -56,7 +57,7 @@ namespace Annchienta
         /* Preferred video flags.
          */
         Uint32 flags = SDL_HWSURFACE | SDL_OPENGL | SDL_HWACCEL;
-        if( fullscreen )
+        if( fullScreen )
             flags |= SDL_FULLSCREEN;
 
         /* Set the video mode.
@@ -85,10 +86,12 @@ namespace Annchienta
         /* Make sure we're in the right matrix.
          */
         glMatrixMode( GL_PROJECTION );
+        glLoadIdentity();
         glOrtho( 0, screenWidth, screenHeight, 0, -1, 1 );
         glViewport( 0, 0, screenWidth, screenHeight );
 
         glMatrixMode( GL_MODELVIEW );
+        glLoadIdentity();
 
         /* Set some flags.
          */
@@ -127,6 +130,11 @@ namespace Annchienta
     int VideoManager::getScreenHeight() const
     {
         return screenHeight;
+    }
+
+    int VideoManager::isFullScreen() const
+    {
+        return fullScreen;
     }
 
     void VideoManager::reset()

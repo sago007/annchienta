@@ -17,6 +17,7 @@ namespace Annchienta
     {
         private:
             int screenWidth, screenHeight;
+            bool fullScreen;
             static const int numberOfBackBuffers = 8;
             Surface **backBuffers;
 
@@ -41,6 +42,10 @@ namespace Annchienta
             /** \return Height of the screen.
              */
             int getScreenHeight() const;
+
+            /** \return If we are in full screen mode.
+             */
+            int isFullScreen() const;
 
             /** Resets all matrixes, colors...
              */
