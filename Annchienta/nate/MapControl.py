@@ -2,6 +2,7 @@ import annchienta
 import MapView
 import MapWriter
 import TileSelection
+import SelectSurfaceWindow
 import gobject
 import gtk
 
@@ -32,6 +33,10 @@ class MapControl:
 
         # Use this to get a tile selection
         self.tileSelection = TileSelection.TileSelection( self )
+
+        # Two windows to select surfaces.
+        self.selectSurfaceWindow = SelectSurfaceWindow.SelectSurfaceWindow( False )
+        self.selectSideSurfaceWindow = SelectSurfaceWindow.SelectSurfaceWindow( True )
 
         # Start a function that updates ourselve.
         gobject.timeout_add( 100, self.tick )
@@ -100,6 +105,9 @@ class MapControl:
         self.currentMap.depthSort()
         # pass
         self.mapView.setMap( currentMap )
+        # Set surface select windows
+        self.selectSurfaceWindow.create( self.currentMap.getTileSet() )
+        self.selectSideSurfaceWindow.create( self.currentMap.getTileSet() )
 
     ## Ticks this object. This will update this and
     #  all of it's associated objects.
@@ -136,19 +144,29 @@ class MapControl:
                 diff += self.mapView.getCameraPosition()
                 self.mapView.setCameraPosition( diff )
 
-        # THIS IS ONLY A TEST!
+        # Check if we have to make edits.
         if self.currentMap and self.inputManager.buttonDown(0):
 
+            # Get the selection
             selection = self.tileSelection.getSelection()
 
             for affected in selection:
 
                 tile = affected.getTile()
 
+                # Check if we have to edit side surfaces
+                if self.mainWindow.editSidesChecked():
+                    tile.setSideSurface( self.selectSideSurfaceWindow.getSelectedSurface() )
+
                 for point in affected.getPoints():
 
+                    # Check if we have to edit Z coordinates
                     if self.mainWindow.editZChecked():
-                        affected.getTile().setZ( point, self.mainWindow.getEditZ() )
+                        tile.setZ( point, self.mainWindow.getEditZ() )
+
+                    # Check if we have to edit tiles
+                    if self.mainWindow.editTilesChecked():
+                        tile.setSurface( point, self.selectSurfaceWindow.getSelectedSurface() )
         
         self.mousePosition = newMousePosition
 
@@ -180,3 +198,12 @@ class MapControl:
     def setLayerZ( self, z ):
         self.currentMap.getCurrentLayer().setZ( z )
 
+    ## Show surface window
+    #
+    def showSelectSurfaceWindow( self ):
+        self.selectSurfaceWindow.show()
+
+    ## Show side surface window
+    #
+    def showSelectSideSurfaceWindow( self ):
+        self.selectSideSurfaceWindow.show()

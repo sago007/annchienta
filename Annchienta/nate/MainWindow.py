@@ -41,7 +41,10 @@ class MainWindow:
                 "on_changeLayerZSpinButton_value_changed":             self.updateLayerZ,
 
                 "on_editWholeTilesCheckButton_toggled":                self.updateWholeTiles,
-                "on_editRadiusSpinButton_value_changed":               self.updateEditRadius }
+                "on_editRadiusSpinButton_value_changed":               self.updateEditRadius,
+
+                "on_showTilesWindowButton_clicked":                    self.showTilesWindow,
+                "on_showSidesWindowButton_clicked":                    self.showSidesWindow }
 
         # Connect that dictionary
         self.widgetTree.signal_autoconnect( dic )
@@ -121,6 +124,16 @@ class MainWindow:
         tileSelection = self.mapControl.getTileSelection()
         tileSelection.setRadius( int( widget.get_value_as_int() ) )
 
+    ## Show tiles window
+    #
+    def showTilesWindow( self, widget=None ):
+        self.mapControl.showSelectSurfaceWindow()
+
+    ## Show tiles sides window
+    #
+    def showSidesWindow( self, widget=None ):
+        self.mapControl.showSelectSideSurfaceWindow()
+
     ## Change the value in the spin box
     #
     def setLayerZValue( self, z ):
@@ -138,4 +151,16 @@ class MainWindow:
     def getEditZ( self ):
         widget = self.widgetTree.get_widget("editZSpinButton")
         return int( widget.get_value_as_int() )
+
+    ## Look if we should edit tile surfaces
+    #
+    def editTilesChecked( self ):
+        widget = self.widgetTree.get_widget("editTilesCheckButton")
+        return widget.get_active()
+
+    ## Look if we should edit tile side surfaces
+    #
+    def editSidesChecked( self ):
+        widget = self.widgetTree.get_widget("editSidesCheckButton")
+        return widget.get_active()
 

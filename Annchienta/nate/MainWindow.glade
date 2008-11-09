@@ -328,12 +328,13 @@ Draw height-aware grid</property>
                       <widget class="GtkHButtonBox" id="editTilesButtonBox">
                         <property name="visible">True</property>
                         <child>
-                          <widget class="GtkButton" id="showTilesWindow">
+                          <widget class="GtkButton" id="showTilesWindowButton">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="label" translatable="yes">Show Tiles</property>
                             <property name="response_id">0</property>
+                            <signal name="clicked" handler="on_showTilesWindowButton_clicked"/>
                           </widget>
                         </child>
                       </widget>
@@ -417,12 +418,13 @@ Draw height-aware grid</property>
                         <property name="visible">True</property>
                         <property name="layout_style">GTK_BUTTONBOX_CENTER</property>
                         <child>
-                          <widget class="GtkButton" id="showSidesWindow">
+                          <widget class="GtkButton" id="showSidesWindowButton">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="label" translatable="yes">Show Side Surfaces</property>
                             <property name="response_id">0</property>
+                            <signal name="clicked" handler="on_showSidesWindowButton_clicked"/>
                           </widget>
                         </child>
                         <child>
