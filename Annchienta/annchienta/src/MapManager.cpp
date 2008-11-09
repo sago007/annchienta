@@ -32,7 +32,7 @@ namespace Annchienta
         return interval;
     }
 
-    MapManager::MapManager(): tileWidth(32), tileHeight(16), cameraX(0), cameraY(0),
+    MapManager::MapManager(): tileWidth(64), tileHeight(32), cameraX(0), cameraY(0),
                               updatesPerSecond(60), currentMap(0), cameraTarget(0),
                               maxAscentHeight(16), maxDescentHeight(32),
                               onUpdateScript(0), onUpdateCode(0), m_running(false)
