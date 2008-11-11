@@ -76,6 +76,17 @@
         <drop xp="40" item="grenade" rate="0.3" steal="feather"/>
     </enemy>
 
+    <!-- HAWK -->
+    <enemy name="hawk">
+        <level lvl="6"/>
+        <primarystats att="14" mat="40" def="29" mdf="26" spd="23"/>
+        <healthstats hp="150" mhp="150" mp="40" mmp="40"/>
+        <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <actions>attack ice bite thunder</actions>
+        <sprite filename="sprites/hawk.png"/>
+        <drop xp="60" item="potion" rate="0.3" steal="tincture"/>
+    </enemy>
+
     <!-- COEURL -->
     <enemy name="coeurl">
         <level lvl="6"/>
