@@ -28,7 +28,7 @@ import annchienta, PartyManager, BattleManager
 
 partyManager = PartyManager.getPartyManager()
 battleManager = BattleManager.getBattleManager()
-annchienta.getAudioManager().playMusic(&quot;music/fleet.ogg&quot;)
+annchienta.getAudioManager().playMusic(&quot;music/title.ogg&quot;)
 annchienta.getVideoManager().setClearColor(147,201,233)
 battleManager.enemiesInMap = []
 </onload>

@@ -21,6 +21,10 @@ videoManager = annchienta.getVideoManager()
 videoManager.setVideoMode( 400, 300, "Annchienta", False )
 videoManager.setClearColor(0,0,0)
 
+# Init AudioManager.
+audioManager = annchienta.getAudioManager()
+audioManager.playMusic("music/title.ogg")
+
 # Init MapManager.
 mapManager = annchienta.getMapManager()
 mapManager.setTileWidth(64)
@@ -57,6 +61,14 @@ BattleManager.initBattleManager()
 import Menu
 
 # Load a title background.
+splashImage = annchienta.Surface( "images/backgrounds/splash.png" )
+videoManager.begin()
+videoManager.drawSurface( splashImage, 0, 0 )
+videoManager.end()
+videoManager.end()
+engine.delay(2000)
+sceneManager.fade( 255, 255, 255, 2000 )
+
 titleBackground = annchienta.Surface( "images/backgrounds/title.png" )
 
 running = True
