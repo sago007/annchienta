@@ -57,7 +57,7 @@
 
 <!-- Way to cave1. Must first talk to March, though. -->
 <if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="partyManager.hasRecord('inaran_intro_done')">
-    <area tilex1="18" tilex2="20" tiley1="3" tiley2="5">
+    <area tilex1="18" tilex2="20" tiley1="3" tiley2="9">
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point( annchienta.TilePoint, 14, 27 ) )

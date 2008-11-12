@@ -50,7 +50,7 @@ if not partyManager.hasRecord("inaran_intro_march"):
 
     sceneManager.speak( august, "I never really understood these helpful human-like creatures.", True )
     sceneManager.speak( august, "Still, I was grateful to them that they were there, always helping humans out.", True )
-    sceneManager.speak( march, "One final test. Let's go." )
+    sceneManager.speak( march, "One final test. The cave is here. Let's go." )
 
     ap = august.getPosition()
     sceneManager.move( [avril, march], [ap,ap] )
