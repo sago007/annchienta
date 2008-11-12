@@ -11,8 +11,9 @@ currentMap = partyManager.currentMap
 august = partyManager.player
 march = currentMap.getObject( "march" )
 avril = currentMap.getObject( "avril" )
+laustwan = currentMap.getObject( "laustwan" )
 
-sceneManager.initDialog( [august, march, avril] )
+sceneManager.initDialog( [august, march, avril, laustwan] )
 
 if not partyManager.hasRecord( "inaran_intro" ):
 

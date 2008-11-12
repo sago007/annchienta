@@ -1,3 +1,5 @@
+# This script is executd in the intro scene, when
+# our party is outside of the cave.
 import annchienta
 import PartyManager, SceneManager
 
@@ -7,13 +9,13 @@ sceneManager = SceneManager.getSceneManager()
 
 march = annchienta.getPassiveObject()
 august = annchienta.getActiveObject()
-
-sceneManager.initDialog( [march, august] )
+avril = partyManager.currentMap.getObject( "avril" )
+laustwan = partyManager.currentMap.getObject( "laustwan" )
+    
+sceneManager.initDialog( [march, august, avril, laustwan] )
 
 if not partyManager.hasRecord("inaran_intro_march"):
 
-    avril = partyManager.currentMap.getObject( "avril" )
-    laustwan = partyManager.currentMap.getObject( "laustwan" )
 
     sceneManager.speak( march, "Can you see that cave over there? That must be it." )
 
