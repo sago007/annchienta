@@ -15,7 +15,7 @@ namespace Annchienta
 {
     VideoManager *videoManager;
 
-    VideoManager::VideoManager() : screenWidth(0), screenHeight(0), fullScreen(false)
+    VideoManager::VideoManager() : screenWidth(0), screenHeight(0), fullScreen(false), videoScale(1)
     {
         videoManager = this;
 
@@ -40,7 +40,7 @@ namespace Annchienta
         delete[] backBuffers;
     }
 
-    void VideoManager::setVideoMode( int w, int h, const char *title, bool _fullScreen )
+    void VideoManager::setVideoMode( int w, int h, const char *title, bool _fullScreen, int _videoScale )
     {
         LogManager *logManager = getLogManager();
 
@@ -49,6 +49,7 @@ namespace Annchienta
         screenWidth = w;
         screenHeight = h;
         fullScreen = _fullScreen;
+        videoScale = _videoScale;
 
         /* Choose *best* settings for BitsPerPixel
          */
@@ -73,7 +74,7 @@ namespace Annchienta
          * SDL_GL_SetAttribute( SDL_GL_SWAP_CONTROL, 1 );
          */
 
-        SDL_Surface *screen = SDL_SetVideoMode( w, h, bpp, flags );
+        SDL_Surface *screen = SDL_SetVideoMode( w*videoScale, h*videoScale, bpp, flags );
 
         if( !screen )
             logManager->error("Could not set video mode.");
@@ -88,7 +89,7 @@ namespace Annchienta
         glMatrixMode( GL_PROJECTION );
         glLoadIdentity();
         glOrtho( 0, screenWidth, screenHeight, 0, -1, 1 );
-        glViewport( 0, 0, screenWidth, screenHeight );
+        glViewport( 0, 0, screenWidth*videoScale, screenHeight*videoScale );
 
         glMatrixMode( GL_MODELVIEW );
         glLoadIdentity();
@@ -98,7 +99,7 @@ namespace Annchienta
         glEnable( GL_TEXTURE_2D );
         glEnable( GL_BLEND );
         glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-        
+
         /* Only enable culling under certain circumstances. */
         //glEnable( GL_CULL_FACE );
         glCullFace( GL_BACK );
@@ -109,7 +110,7 @@ namespace Annchienta
         {
             if( backBuffers[i] )
                 delete backBuffers[i];
-            backBuffers[i] = new Surface( screenWidth, screenHeight );
+            backBuffers[i] = new Surface( screenWidth*videoScale, screenHeight*videoScale );
         }
 
         /* Give some information to our good friend Log.
@@ -135,6 +136,11 @@ namespace Annchienta
     int VideoManager::isFullScreen() const
     {
         return fullScreen;
+    }
+
+    int VideoManager::getVideoScale() const
+    {
+        return videoScale;
     }
 
     void VideoManager::reset()
@@ -215,7 +221,7 @@ namespace Annchienta
 
     void VideoManager::setClippingRectangle( int x1, int y1, int x2, int y2 ) const
     {
-        glScissor( x1, getScreenHeight()-y2, x2-x1, y2-y1 );
+        glScissor( x1*videoScale, (getScreenHeight()-y2)*videoScale, (x2-x1)*videoScale, (y2-y1)*videoScale );
         glEnable( GL_SCISSOR_TEST );
     }
 
@@ -306,6 +312,25 @@ namespace Annchienta
         glEnd();
     }
 
+    void VideoManager::drawSurface( Surface *surface, int x1, int y1, int x2, int y2 ) const
+    {
+        glBindTexture( GL_TEXTURE_2D, surface->getTexture() );
+        glBegin( GL_QUADS );
+
+            glTexCoord2f( surface->getLeftTexCoord(), surface->getTopTexCoord() );
+            glVertex2f( (GLfloat)x1, (GLfloat)y1 );
+
+            glTexCoord2f( surface->getLeftTexCoord(), surface->getBottomTexCoord() );
+            glVertex2f( (GLfloat)x1, (GLfloat)y2 );
+
+            glTexCoord2f( surface->getRightTexCoord(), surface->getBottomTexCoord() );
+            glVertex2f( (GLfloat)x2, (GLfloat)y2 );
+
+            glTexCoord2f( surface->getRightTexCoord(), surface->getTopTexCoord() );
+            glVertex2f( (GLfloat)x2, (GLfloat)y1 );
+        glEnd();
+    }
+
     void VideoManager::drawPattern( Surface *surface, int x1, int y1, int x2, int y2 ) const
     {
         int x, y;
@@ -347,19 +372,21 @@ namespace Annchienta
     void VideoManager::grabBuffer( Surface *surface ) const
     {
         glBindTexture( GL_TEXTURE_2D, surface->getTexture() );
-
         glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-surface->getHeight(), 0, 0, surface->getWidth(), surface->getHeight() );
     }
 
     void VideoManager::grabBuffer( Surface *surface, int x1, int y1, int x2, int y2 ) const
     {
+        x1 *= videoScale;
+        y1 *= videoScale;
+        x2 *= videoScale;
+        y2 *= videoScale;
+
         int width  = x2 - x1,
             height = y2 - y1;
 
         glBindTexture( GL_TEXTURE_2D, surface->getTexture() );
-
-        //glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-surface->getHeight(), x1, getScreenHeight()-surface->getHeight()-y1, width, height );
-        glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-height, x1, getScreenHeight()-y1-height, width, height );
+        glCopyTexSubImage2D( GL_TEXTURE_2D, 0, 0, surface->getGlHeight()-height, x1, getScreenHeight()*videoScale-y1-height, width, height );
     }
 
     void VideoManager::storeBuffer( int slot )
@@ -371,14 +398,14 @@ namespace Annchienta
     void VideoManager::restoreBuffer( int slot ) const
     {
         if( slot>=0 && slot<numberOfBackBuffers )
-            backBuffers[slot]->draw( 0, 0 );
+            drawSurface( backBuffers[slot], 0, 0, getScreenWidth(), getScreenHeight() );
     }
 
     void VideoManager::boxBlur( int x1, int y1, int x2, int y2, int radius )
     {
-        //this->pushMatrix();
-        //this->identity();
-        this->setClippingRectangle( x1, y1, x2, y2 );
+        pushMatrix();
+        setClippingRectangle( x1, y1, x2, y2 );
+        scale( 1.0f/(GLfloat)videoScale, 1.0f/(GLfloat)videoScale );
 
         int side = radius*2+1;
         int times = side*side;
@@ -392,14 +419,14 @@ namespace Annchienta
             for( int x=-radius; x<=radius; x++ )
             {
                 this->setColor( 255, 255, 255, (int)alpha );
-                this->drawSurface( backBuffers[0], x1+x, y1+y, 0, 0, x2-x1, y2-y1 );
+                this->drawSurface( backBuffers[0], (x1+x)*videoScale, (y1+y)*videoScale, 0, 0, (x2-x1)*videoScale, (y2-y1)*videoScale );
                 alpha += alphaInc;
             }
         }
 
-        this->disableClipping();
-        //this->popMatrix();
-        this->setColor();
+        disableClipping();
+        popMatrix();
+        setColor();
     }
 
     VideoManager *getVideoManager()

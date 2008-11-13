@@ -4,6 +4,7 @@
 
 #include "InputManager.h"
 #include "LogManager.h"
+#include "VideoManager.h"
 
 namespace Annchienta
 {
@@ -84,6 +85,11 @@ namespace Annchienta
         /* Take a little look at the mouse.
          */
         mouseState = SDL_GetMouseState( &mouseX, &mouseY );
+
+        /* Take video scale into account. */
+        int scale = getVideoManager()->getVideoScale();
+        mouseX /= scale;
+        mouseY /= scale;
     }
 
     bool InputManager::running()

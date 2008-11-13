@@ -79,7 +79,6 @@ class BattleManager:
             self.videoManager.translate( self.mathManager.randInt( -triangleLength/4, triangleLength/4 ), self.mathManager.randInt( -triangleLength/4, triangleLength/4 ) )
             self.videoManager.drawTriangle( 0, -triangleLength, -self.mathManager.randInt(2,10), triangleLength, self.mathManager.randInt(2,10), triangleLength )
             start = self.engine.getTicks()
-            # Make some noise
 
             while self.inputManager.running() and self.engine.getTicks()<start+20:
                 self.videoManager.end()

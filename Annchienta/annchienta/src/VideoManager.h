@@ -18,6 +18,7 @@ namespace Annchienta
         private:
             int screenWidth, screenHeight;
             bool fullScreen;
+            int videoScale;
             static const int numberOfBackBuffers = 8;
             Surface **backBuffers;
 
@@ -31,9 +32,10 @@ namespace Annchienta
              *  \param w Width for the screen.
              *  \param h Height for the screen.
              *  \param title Caption to be used for the window.
-             *  \param fullscreen Should the game run in fullscreen mode? (Might not always work with all resolutions.)
+             *  \param fullScreen Should the game run in fullscreen mode? (Might not always work with all resolutions.)
+             *  \param videoScale Defaults to 1, choose a higher number to get a larger screen.
              */
-            void setVideoMode( int w, int h, const char *title="Annchienta RPG Engine", bool fullscreen=false );
+            void setVideoMode( int w, int h, const char *title="Annchienta RPG Engine", bool fullScreen=false, int videoScale=1 );
 
             /** \return Width of the screen.
              */
@@ -46,6 +48,10 @@ namespace Annchienta
             /** \return If we are in full screen mode.
              */
             int isFullScreen() const;
+
+            /** \return The video mode scale.
+             */
+            int getVideoScale() const;
 
             /** Resets all matrixes, colors...
              */
@@ -112,8 +118,19 @@ namespace Annchienta
             void drawTriangle( int x1, int y1, int x2, int y2, int x3, int y3 ) const;
             void drawRectangle( int x1, int y1, int x2, int y2 ) const;
             void drawQuad( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4 ) const;
+
+            /** Draws entire surface.
+             */
             void drawSurface( Surface *surface, int x, int y ) const;
+
+            /** Draws part of surface.
+             */
             void drawSurface( Surface *surface, int dx, int dy, int sx1, int sy1, int sx2, int sy2 ) const;
+
+            /** Draws surface to rectangle.
+             */
+            void drawSurface( Surface *surface, int x1, int y1, int x2, int y2 ) const;
+
             void drawPattern( Surface *surface, int x1, int y1, int x2, int y2 ) const;
             void drawString( Font *font, const char *str, int x, int y ) const;
             void drawStringCentered( Font *font, const char *str, int x, int y ) const;
