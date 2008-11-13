@@ -62,11 +62,11 @@ import Menu
 
 # Display a splash image.
 splashImage = annchienta.Surface( "images/backgrounds/splash.png" )
-videoManager.begin()
-videoManager.drawSurface( splashImage, 0, 0 )
-videoManager.end()
-videoManager.end()
-engine.delay(1000)
+start = engine.getTicks()
+while engine.getTicks() < start + 1000:
+    videoManager.begin()
+    videoManager.drawSurface( splashImage, 0, 0 )
+    videoManager.end()
 sceneManager.fade( 255, 255, 255, 2000 )
 
 # Load a title background.
