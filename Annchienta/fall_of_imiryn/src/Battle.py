@@ -243,12 +243,12 @@ class Battle:
             c.draw()
             
         # Draw the allies info
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         self.videoManager.translate( 0, self.videoManager.getScreenHeight()-20*len(self.allies) )
         for a in self.allies:
             a.drawInfo()
             self.videoManager.translate( 0, 20 )
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
 
     ## This function does nothing more than inspecting
     #  the action given, and then calling to the appropriate

@@ -243,19 +243,19 @@ class Combatant:
     #
     def draw( self ):
     
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         self.videoManager.translate( self.position.x, self.position.y )
 
         # Draw an arrow above our head when we're 'marked'.
         if self.marked:
-            self.videoManager.pushMatrix()
+            self.videoManager.push()
 
             self.videoManager.translate( 0, -self.height )
             self.videoManager.setColor( 255, 255, 0, 150 )
             self.videoManager.drawTriangle( -self.width/2, 0, 0, self.height/2, self.width/2, 0 )
             self.videoManager.setColor()
 
-            self.videoManager.popMatrix()
+            self.videoManager.pop()
 
         # Status effects
         if len(self.statusEffects):    
@@ -290,4 +290,4 @@ class Combatant:
             self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, 0, dy )
 
         self.videoManager.setColor()
-        self.videoManager.popMatrix()
+        self.videoManager.pop()

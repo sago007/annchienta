@@ -29,21 +29,21 @@ class Squirrel:
         
     def draw( self ):
     
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         
         # Go to main body and draw it
         self.videoManager.translate( int(self.x), int(self.y) )
         
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         self.videoManager.scale( 1 if self.xVel>0 else -1, 1 )
         self.videoManager.drawSurface( self.sprite, -self.sprite.getWidth()/2, -self.sprite.getHeight()/2 )
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
         
         # Draw the balloon
         if self.showingBalloon():
             self.videoManager.drawSurface( self.balloon, -self.balloon.getWidth()/2, -self.sprite.getHeight()/2-self.balloon.getHeight() )
         
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
         
     def update( self, ms ):
     

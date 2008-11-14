@@ -12,10 +12,10 @@ class GameObject:
 
     def draw( self ):
 
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         self.videoManager.translate( self.pos.x, self.pos.y )
         self.videoManager.drawSurface( self.sprite, -self.sprite.getWidth()/2, -self.sprite.getHeight()/2 )
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
 
 class Game:
 

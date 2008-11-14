@@ -44,48 +44,35 @@ namespace Annchienta
     {
         LogManager *logManager = getLogManager();
 
-        /* Get some variables.
-         */
+        /* Get some variables. */
         screenWidth = w;
         screenHeight = h;
         fullScreen = _fullScreen;
         videoScale = _videoScale;
 
-        /* Choose *best* settings for BitsPerPixel
-         */
+        /* Make sure we have decent values. */
+        if( screenWidth<=0 || screenHeight<=0 || videoScale<=0 )
+            logManager->error( "Can not set video mode to %dx%d, scale %d.", screenWidth, screenHeight, videoScale );
+
+        /* Choose *best* settings for BitsPerPixel */
         Uint32 bpp = SDL_GetVideoInfo()->vfmt->BitsPerPixel;
 
-        /* Preferred video flags.
-         */
+        /* Preferred video flags. */
         Uint32 flags = SDL_HWSURFACE | SDL_OPENGL | SDL_HWACCEL;
         if( fullScreen )
             flags |= SDL_FULLSCREEN;
 
-        /* Set the video mode.
-         */
-
-        /* SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
-         * SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
-         * SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
-         * SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
-         * SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, 8 );
-         * SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 24 );
-         * SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
-         * SDL_GL_SetAttribute( SDL_GL_SWAP_CONTROL, 1 );
-         */
-
+        /* Set the video mode. */
         SDL_Surface *screen = SDL_SetVideoMode( w*videoScale, h*videoScale, bpp, flags );
 
+        /* Make sure we have a screen now. */
         if( !screen )
-            logManager->error("Could not set video mode.");
+            logManager->error("Could not set video mode. SDL_Error: %s", SDL_GetError() );
 
-
-        /* Set the window title.
-         */
+        /* Set the window title. */
         SDL_WM_SetCaption( title, NULL );
 
-        /* Make sure we're in the right matrix.
-         */
+        /* Make sure we're in the right matrix. */
         glMatrixMode( GL_PROJECTION );
         glLoadIdentity();
         glOrtho( 0, screenWidth, screenHeight, 0, -1, 1 );
@@ -94,8 +81,7 @@ namespace Annchienta
         glMatrixMode( GL_MODELVIEW );
         glLoadIdentity();
 
-        /* Set some flags.
-         */
+        /* Set some flags. */
         glEnable( GL_TEXTURE_2D );
         glEnable( GL_BLEND );
         glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
@@ -113,13 +99,11 @@ namespace Annchienta
             backBuffers[i] = new Surface( screenWidth*videoScale, screenHeight*videoScale );
         }
 
-        /* Give some information to our good friend Log.
-         */
+        /* Give some information to our good friend Log. */
         logManager->message( "Set video mode as %d x %d pixels.", screenWidth, screenHeight );
         logManager->message( "Using OpenGL %s by %s on renderer %s.", glGetString(GL_VERSION), glGetString(GL_VENDOR), glGetString(GL_RENDERER) );
 
-        /* Reset colors and matrices.
-         */
+        /* Reset colors and matrices. */
         this->reset();
     }
 
@@ -143,18 +127,20 @@ namespace Annchienta
         return videoScale;
     }
 
+    int VideoManager::getNumberOfBackBuffers() const
+    {
+        return numberOfBackBuffers;
+    }
+
     void VideoManager::reset()
     {
-        /* Reset the matrix.
-        */
+        /* Reset the matrix. */
         glLoadIdentity();
     
-        /* Reset the color.
-        */
+        /* Reset the color. */
         this->setColor();
 
-        /* Reset some flags.
-         */
+        /* Reset some flags. */
         glEnable( GL_TEXTURE_2D );
         glEnable( GL_BLEND );
         glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
@@ -180,12 +166,12 @@ namespace Annchienta
         glScalef( x, y, 1.0f );
     }
 
-    void VideoManager::pushMatrix() const
+    void VideoManager::push() const
     {
         glPushMatrix();
     }
 
-    void VideoManager::popMatrix() const
+    void VideoManager::pop() const
     {
         glPopMatrix();
     }
@@ -290,45 +276,12 @@ namespace Annchienta
 
     void VideoManager::drawSurface( Surface *surface, int dx, int dy, int sx1, int sy1, int sx2, int sy2 ) const
     {
-        float left = (float)sx1/(float)surface->getGlWidth(),
-              right = (float)sx2/(float)surface->getGlWidth(),
-              top = 1.0f - (float)sy1/(float)surface->getGlHeight(),
-              bottom = 1.0f - (float)sy2/(float)surface->getGlHeight();
-
-        glBindTexture( GL_TEXTURE_2D, surface->getTexture() );
-        glBegin( GL_QUADS );
-
-            glTexCoord2f( left, top );
-            glVertex2f( (GLfloat)dx, (GLfloat)dy );
-
-            glTexCoord2f( left, bottom );
-            glVertex2f( (GLfloat)dx, (GLfloat)(dy+sy2-sy1) );
-
-            glTexCoord2f( right, bottom );
-            glVertex2f( (GLfloat)(dx+sx2-sx1), (GLfloat)(dy+sy2-sy1) );
-
-            glTexCoord2f( right, top );
-            glVertex2f( (GLfloat)(dx+sx2-sx1), (GLfloat)dy );
-        glEnd();
+        surface->draw( dx, dy, sx1, sy1, sx2, sy2 );
     }
 
     void VideoManager::drawSurface( Surface *surface, int x1, int y1, int x2, int y2 ) const
     {
-        glBindTexture( GL_TEXTURE_2D, surface->getTexture() );
-        glBegin( GL_QUADS );
-
-            glTexCoord2f( surface->getLeftTexCoord(), surface->getTopTexCoord() );
-            glVertex2f( (GLfloat)x1, (GLfloat)y1 );
-
-            glTexCoord2f( surface->getLeftTexCoord(), surface->getBottomTexCoord() );
-            glVertex2f( (GLfloat)x1, (GLfloat)y2 );
-
-            glTexCoord2f( surface->getRightTexCoord(), surface->getBottomTexCoord() );
-            glVertex2f( (GLfloat)x2, (GLfloat)y2 );
-
-            glTexCoord2f( surface->getRightTexCoord(), surface->getTopTexCoord() );
-            glVertex2f( (GLfloat)x2, (GLfloat)y1 );
-        glEnd();
+        surface->draw( x1, y1, x2, y2 );
     }
 
     void VideoManager::drawPattern( Surface *surface, int x1, int y1, int x2, int y2 ) const
@@ -403,7 +356,7 @@ namespace Annchienta
 
     void VideoManager::boxBlur( int x1, int y1, int x2, int y2, int radius )
     {
-        pushMatrix();
+        push();
         setClippingRectangle( x1, y1, x2, y2 );
         scale( 1.0f/(GLfloat)videoScale, 1.0f/(GLfloat)videoScale );
 
@@ -425,7 +378,7 @@ namespace Annchienta
         }
 
         disableClipping();
-        popMatrix();
+        pop();
         setColor();
     }
 

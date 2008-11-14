@@ -28,7 +28,7 @@ class Player:
         
     def draw( self ):
     
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         
         # Go to main body and draw it
         self.videoManager.translate( int(self.x), int(self.y) )
@@ -40,7 +40,7 @@ class Player:
         self.videoManager.rotate( self.angle if self.xScale==1 else 180-self.angle )
         self.videoManager.drawSurface( self.gun, -self.gun.getWidth()/2, -self.gun.getHeight()/2 )
         
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
         
     def update( self, ms ):
     

@@ -507,12 +507,12 @@ namespace Annchienta
         if( scripts )
             this->onPreRender();
 
-        videoManager->pushMatrix();
+        videoManager->push();
 
         for( unsigned int i=0; i<layers.size(); i++ )
             sortedLayers[i]->draw();
 
-        videoManager->popMatrix();
+        videoManager->pop();
 
         if( scripts )
             this->onPostRender();
@@ -551,26 +551,26 @@ namespace Annchienta
     {
         Engine *engine = getEngine();
 
-        videoManager->pushMatrix();
+        videoManager->push();
         videoManager->identity();
         if( onPreRenderScript )
             engine->runPythonScript( onPreRenderScript );
         if( onPreRenderCode )
             engine->runPythonCode( onPreRenderCode );
-        videoManager->popMatrix();
+        videoManager->pop();
     }
 
     void Map::onPostRender() const
     {
         Engine *engine = getEngine();
 
-        videoManager->pushMatrix();
+        videoManager->push();
         videoManager->identity();
         if( onPostRenderScript )
             engine->runPythonScript( onPostRenderScript );
         if( onPostRenderCode )
             engine->runPythonCode( onPostRenderCode );
-        videoManager->popMatrix();
+        videoManager->pop();
     }
 
 };

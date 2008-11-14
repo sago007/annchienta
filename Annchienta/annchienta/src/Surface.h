@@ -60,11 +60,26 @@ namespace Annchienta
             void setNearestScaling() const;
 
             #ifndef SWIG
+
                 /** Draws the surface at the given position.
+                 *  This method is slightly faster than the other draw()
+                 *  methods because it makes use of display lists.
                  *  \note Use VideoManager.drawSurface() instead.
                  *  \note Not available in Python.
                  */
                 void draw( int x, int y ) const;
+
+                /** Draws a part of the surface to the given position.
+                 *  \note Use VideoManager.drawSurface() instead.
+                 *  \note Not available in Python.
+                 */
+                void draw( int dx, int dy, int sx1, int sy1, int sx2, int sy2 ) const;
+
+                /** Draws the surface, stretched to rectangle on the screen.
+                 *  \note Use VideoManager.drawSurface() instead.
+                 *  \note Not available in Python.
+                 */
+                void draw( int x1, int y1, int x2, int y2 ) const;
 
                 /** \return The actual OpenGL texture.
                  *  \note Not available in Python.

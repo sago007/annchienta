@@ -11,10 +11,10 @@ class RaftObject:
 
     def draw( self ):
 
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         self.videoManager.translate( int(self.position.x), int(self.position.y) )
         self.videoManager.drawSurface( self.surface, -self.surface.getWidth()/2, -self.surface.getHeight()/2 )
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
 
 class RaftGame:
 

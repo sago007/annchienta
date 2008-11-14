@@ -35,7 +35,7 @@ class Splatter:
         
     def draw( self ):
     
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         
         # Go to main body and draw it
         self.videoManager.translate( int(self.x), int(self.y) )
@@ -44,7 +44,7 @@ class Splatter:
             
         self.videoManager.drawSurface( self.sprite, -self.sprite.getWidth()/2, -self.sprite.getHeight()/2 )
         
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
         
     def update( self, ms ):
     

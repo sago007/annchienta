@@ -121,14 +121,14 @@ class Ally( Combatant.Combatant ):
         
     def drawInfo( self ):
     
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
 
         # Draw a quick black background
         self.videoManager.setColor( 0, 0, 0, 100 )
         self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), 20 )        
         
         # Draw the timer
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         if self.timer>=100.0:
             self.videoManager.setColor( 161, 48, 0 )
         else:
@@ -136,7 +136,7 @@ class Ally( Combatant.Combatant ):
         self.videoManager.translate( self.videoManager.getScreenWidth()*0.4 + 3, 3 )
         width = int(0.01*self.timer*(self.videoManager.getScreenWidth()*0.6-6))
         self.videoManager.drawRectangle( 0, 0, width, 14 )
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
         
         # Draw the combatant's name
         self.videoManager.setColor()
@@ -148,7 +148,7 @@ class Ally( Combatant.Combatant ):
         # Draw the combatant's mp
         self.videoManager.drawStringRight( self.sceneManager.largeItalicsFont, str(self.healthStats["mp"])+"MP", self.videoManager.getScreenWidth()-self.sceneManager.margin, -3 )
         
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
 
     def selectTarget( self, battle ):
 

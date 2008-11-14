@@ -194,7 +194,7 @@ class Menu(MenuItem):
 
         # Draw box for the menu
         self.sceneManager.drawBox( self.x, self.y, self.x+self.width, self.y+self.height )
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
 
         # Draw title
         self.videoManager.translate( self.x, self.y )
@@ -220,14 +220,14 @@ class Menu(MenuItem):
                         self.sceneManager.inactiveColor()
                     self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), x*(self.longest+self.sceneManager.margin), y*self.sceneManager.defaultFont.getLineHeight() )
 
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
 
         self.sceneManager.defaultColor()
 
         # Render tooltip
         if hover is not None:
             if hover.toolTip is not None:
-                self.videoManager.pushMatrix()
+                self.videoManager.push()
 
                 # Count the lines we have to draw
                 lines = hover.toolTip.split('\n')
@@ -246,5 +246,5 @@ class Menu(MenuItem):
                     self.videoManager.drawString( self.sceneManager.defaultFont, str(line), self.sceneManager.margin*2, 0 )
                     self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
 
-                self.videoManager.popMatrix()
+                self.videoManager.pop()
 

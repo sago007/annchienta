@@ -253,6 +253,49 @@ namespace Annchienta
         glPopMatrix();
     }
 
+    void Surface::draw( int dx, int dy, int sx1, int sy1, int sx2, int sy2 ) const
+    {
+        float left = (float)sx1/(float)getGlWidth(),
+              right = (float)sx2/(float)getGlWidth(),
+              top = 1.0f - (float)sy1/(float)getGlHeight(),
+              bottom = 1.0f - (float)sy2/(float)getGlHeight();
+
+        glBindTexture( GL_TEXTURE_2D, getTexture() );
+        glBegin( GL_QUADS );
+
+            glTexCoord2f( left, top );
+            glVertex2f( (GLfloat)dx, (GLfloat)dy );
+
+            glTexCoord2f( left, bottom );
+            glVertex2f( (GLfloat)dx, (GLfloat)(dy+sy2-sy1) );
+
+            glTexCoord2f( right, bottom );
+            glVertex2f( (GLfloat)(dx+sx2-sx1), (GLfloat)(dy+sy2-sy1) );
+
+            glTexCoord2f( right, top );
+            glVertex2f( (GLfloat)(dx+sx2-sx1), (GLfloat)dy );
+        glEnd();
+    }
+
+    void Surface::draw( int x1, int y1, int x2, int y2 ) const
+    {
+        glBindTexture( GL_TEXTURE_2D, getTexture() );
+        glBegin( GL_QUADS );
+
+            glTexCoord2f( getLeftTexCoord(), getTopTexCoord() );
+            glVertex2f( (GLfloat)x1, (GLfloat)y1 );
+
+            glTexCoord2f( getLeftTexCoord(), getBottomTexCoord() );
+            glVertex2f( (GLfloat)x1, (GLfloat)y2 );
+
+            glTexCoord2f( getRightTexCoord(), getBottomTexCoord() );
+            glVertex2f( (GLfloat)x2, (GLfloat)y2 );
+
+            glTexCoord2f( getRightTexCoord(), getTopTexCoord() );
+            glVertex2f( (GLfloat)x2, (GLfloat)y1 );
+        glEnd();
+    }
+
     GLuint Surface::getTexture() const
     {
         return texture;

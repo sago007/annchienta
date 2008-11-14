@@ -108,7 +108,7 @@ class Menu(MenuItem):
         self.videoManager.restoreBuffer(6)
         self.sceneManager.drawBox( self.x, self.y, self.x+self.width, self.y+self.height )
 
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
 
         # Render menu
         self.videoManager.translate( self.x, self.y )
@@ -132,16 +132,16 @@ class Menu(MenuItem):
                         self.sceneManager.inactiveColor()
                     self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), x*(self.longest+self.sceneManager.margin), y*self.sceneManager.defaultFont.getLineHeight() )
 
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
 
         self.sceneManager.defaultColor()
 
         # Render tooltip
         if hover is not None:
-            self.videoManager.pushMatrix()
+            self.videoManager.push()
             h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()
             y = self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin*3-self.sceneManager.defaultFont.getLineHeight()
             self.sceneManager.drawBox( self.sceneManager.margin, y, self.videoManager.getScreenWidth()-self.sceneManager.margin, y+h )
             self.videoManager.translate( 0, y )
             self.videoManager.drawString( self.sceneManager.defaultFont,hover.toolTip, self.sceneManager.margin*2, self.sceneManager.margin )
-            self.videoManager.popMatrix()
+            self.videoManager.pop()

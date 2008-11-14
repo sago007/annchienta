@@ -304,14 +304,14 @@ namespace Annchienta
     void MapManager::renderFrame() const
     {
         VideoManager *videoManager = getVideoManager();
-        videoManager->pushMatrix();
+        videoManager->push();
 
         videoManager->translate( -cameraX, -cameraY );
 
         if( currentMap )
             currentMap->draw();
 
-        videoManager->popMatrix();
+        videoManager->pop();
     }
 
     void MapManager::resync()

@@ -47,10 +47,10 @@ class SceneManager:
     #  by changing bitmaps.
     def drawBox( self, x1, y1, x2, y2 ):
 
-        #self.videoManager.pushMatrix()
+        #self.videoManager.push()
         #self.videoManager.identity()
         self.videoManager.boxBlur( x1, y1, x2, y2 )
-        #self.videoManager.popMatrix()
+        #self.videoManager.pop()
 
         # If there are not enough textures, just draw a stupid simple box.
         if( len(self.boxTextures)<=8 ):

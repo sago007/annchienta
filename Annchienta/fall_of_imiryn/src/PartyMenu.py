@@ -47,7 +47,7 @@ class PartyMenu( Menu.Menu ):
         x2 = self.videoManager.getScreenWidth() - self.sceneManager.margin
         y2 = y1 + 100
 
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         self.sceneManager.drawBox( x1, y1, x2, y2 )
         self.videoManager.translate( x1, y1 )
 
@@ -67,7 +67,7 @@ class PartyMenu( Menu.Menu ):
         self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
         self.videoManager.drawString( self.sceneManager.italicsFont, "Click combatants to select them.", 0, 0 )
 
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
         
     # Overwrite update to allow character cycling.
     def update( self ):

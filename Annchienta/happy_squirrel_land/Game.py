@@ -47,10 +47,10 @@ class Game:
         map( lambda o: o.draw(), [self.player]+self.squirrels+self.splatters )
         
         # Draw the target
-        self.videoManager.pushMatrix()
+        self.videoManager.push()
         self.videoManager.translate( self.inputManager.getMouseX(), self.inputManager.getMouseY() )
         self.videoManager.drawSurface( self.target, -self.target.getWidth()/2, -self.target.getHeight()/2 )
-        self.videoManager.popMatrix()
+        self.videoManager.pop()
         
         # Draw the rage bar
         self.videoManager.setColor( 0, 0, 0, 100 )
