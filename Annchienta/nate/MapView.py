@@ -59,7 +59,7 @@ class MapView:
         # Only draw if there is a map
         if self.currentMap:
 
-            self.videoManager.begin()
+            self.videoManager.clear()
 
             # Get a decent camera position
             self.videoManager.translate( -self.cameraPosition.x, -self.cameraPosition.y )
@@ -73,7 +73,7 @@ class MapView:
             elif self.drawGridType == self.HEIGHT_DRAW_GRID:
                 self.drawHeightGrid()
 
-            self.videoManager.end()
+            self.videoManager.flip()
 
     ## Draw a very simple grid
     #

@@ -51,10 +51,10 @@ sceneManager.text( "August:\nAvril was talking about the future of the Laustwan 
 
 # Animation done... display text with the background of a ruined empirial city.
 imirynBurns = annchienta.Surface( "images/storyline/imiryn_burns.png" )
-videoManager.begin()
+videoManager.clear()
 videoManager.drawSurface( imirynBurns, 0, 0 )
-videoManager.end()
-videoManager.end()
+videoManager.flip()
+videoManager.flip()
 
 sceneManager.text( "August:\nNot quite the scene we expected.", None, True )
 sceneManager.text( "August:\nThe pirates had attacked the city... and won.", None, True )

@@ -24,7 +24,7 @@ if not partyManager.hasRecord("prison_awakening"):
 
     # Quick quote.
     f1, f2 = annchienta.Font( "assets/italics.ttf", 15 ), annchienta.Font( "assets/italics.ttf", 11 )
-    videoManager.begin()
+    videoManager.clear()
     videoManager.drawStringCentered( f1, "Non fueram, non sum, nescio, non ad me pertinet.", videoManager.getScreenWidth()/2, 100 )
     videoManager.drawStringCentered( f2, "I haven't been, I am not, I don't know, nothing touches me at all.", videoManager.getScreenWidth()/2, 120 )
     videoManager.drawStringCentered( f2, "- Found on an epitaph.", videoManager.getScreenWidth()/2, 135 )
@@ -211,12 +211,12 @@ if partyManager.hasRecord("prison_met_esana") and not partyManager.hasRecord("pr
     while start+9000>engine.getTicks() and inputManager.running():
         inputManager.update()
         t = engine.getTicks()-start
-        videoManager.begin()
+        videoManager.clear()
         videoManager.translate( 0, (-engine.getTicks()+start)/10 )
         videoManager.drawPattern( background, 0, 0, 400, 1200 )
         videoManager.drawSurface( s1, 142, 600, 0, 0, 37, 75 )
         videoManager.drawSurface( s2, 142, 680, 0, 0, 31, 71 )
-        videoManager.end()
+        videoManager.flip()
 
     sceneManager.thoughts( "Esana then said we'd have to head back to Tetia. I agreed, there was no time to think." )
     partyManager.changeMap( "locations/world/world.xml", annchienta.Point( annchienta.TilePoint, 14, 6 ) )

@@ -26,9 +26,9 @@ class SceneManager:
         self.inputManager.update()
         while self.inputManager.running() and not self.inputManager.buttonTicked(0):
             self.inputManager.update()
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
-            self.videoManager.end()
+            self.videoManager.flip()
 
         self.mapManager.resync()
 
@@ -127,7 +127,7 @@ class SceneManager:
 
             self.inputManager.update()
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
             self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
             self.videoManager.setClippingRectangle( 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, 110-self.margin )
@@ -135,7 +135,7 @@ class SceneManager:
             height = self.renderTextInArea( text, 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, font )
             height -= 110 - font.getLineHeight()
             self.videoManager.disableClipping()
-            self.videoManager.end()
+            self.videoManager.flip()
 
         self.videoManager.restoreBuffer(7)
         self.mapManager.resync()
@@ -150,12 +150,12 @@ class SceneManager:
 
             self.inputManager.update()
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.setColor(0,0,0)
             self.videoManager.drawRectangle(0,0,self.videoManager.getScreenWidth(),self.videoManager.getScreenHeight())
             self.defaultColor()
             self.renderTextInArea( text, 2*self.margin, 100, self.videoManager.getScreenWidth() - 2*self.margin, self.italicsFont )
-            self.videoManager.end()
+            self.videoManager.flip()
 
         self.videoManager.restoreBuffer(7)
         self.mapManager.resync()
@@ -177,12 +177,12 @@ class SceneManager:
 
             self.inputManager.update()
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
             self.drawBox( self.margin, self.videoManager.getScreenHeight()-self.margin*3-self.defaultFont.getLineHeight(), self.videoManager.getScreenWidth() - self.margin, self.videoManager.getScreenHeight()-self.margin )
             self.defaultColor()
             self.videoManager.drawString( self.defaultFont, text, 2*self.margin, self.videoManager.getScreenHeight()-self.margin*2-self.defaultFont.getLineHeight() )
-            self.videoManager.end()
+            self.videoManager.flip()
 
             if not self.inputManager.running() or self.inputManager.buttonTicked( 0 ):
                 done = True
@@ -200,7 +200,7 @@ class SceneManager:
     def speak(self, object, text):
 
         self.mapManager.cameraPeekAt( object, True )
-        self.videoManager.begin()
+        self.videoManager.clear()
         self.mapManager.renderFrame()
         self.text( object.getName().capitalize() + ":\n" + text, self.defaultFont )
 
@@ -208,7 +208,7 @@ class SceneManager:
 
         if speaker is not None:
             self.mapManager.cameraPeekAt( speaker, True )
-        self.videoManager.begin()
+        self.videoManager.clear()
         self.mapManager.renderFrame()
 
         selected = 0
@@ -225,7 +225,7 @@ class SceneManager:
 
             y = 0
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
             self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
             # Make sure everything goes in the box.
@@ -248,7 +248,7 @@ class SceneManager:
                 y += height
 
             self.videoManager.disableClipping()
-            self.videoManager.end()
+            self.videoManager.flip()
 
         self.videoManager.setColor()
         self.videoManager.restoreBuffer(7)
@@ -266,7 +266,7 @@ class SceneManager:
 
             self.inputManager.update()
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
             self.drawBox( self.margin, self.margin, self.videoManager.getScreenWidth() - self.margin, 110 )
             self.defaultColor()
@@ -285,7 +285,7 @@ class SceneManager:
 
                 self.videoManager.drawString( self.defaultFont, answers[i], self.margin*2, y )
                 y += self.defaultFont.getLineHeight()
-            self.videoManager.end()
+            self.videoManager.flip()
 
         self.videoManager.setColor()
         self.videoManager.restoreBuffer(7)
@@ -316,9 +316,9 @@ class SceneManager:
 
             self.mapManager.cameraPeekAt( objects[0], True )
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.mapManager.renderFrame()
-            self.videoManager.end()
+            self.videoManager.flip()
 
         self.inputManager.setInputMode( annchienta.InteractiveMode )
         self.mapManager.resync()
@@ -347,11 +347,11 @@ class SceneManager:
         while self.engine.getTicks() < start+ms and self.inputManager.running():
             self.inputManager.update()
             alpha = float(self.engine.getTicks() - start)/float(ms)*255.0
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
             self.videoManager.setColor(r,g,b,int(alpha))
             self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
-            self.videoManager.end()
+            self.videoManager.flip()
         self.mapManager.resync()
 
     def rotateEffect( self, duration=1500 ):
@@ -359,13 +359,13 @@ class SceneManager:
         self.videoManager.storeBuffer(7)
         while self.engine.getTicks() < start+duration and self.inputManager.running():
             factor = float(self.engine.getTicks() - start)/float(duration)
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.translate( self.videoManager.getScreenWidth()/2, self.videoManager.getScreenHeight()/2 )
             self.videoManager.rotate( (factor+1.)*(factor+1.)*360. )
             self.videoManager.scale( factor*50., factor*50. )
             self.videoManager.translate( -self.videoManager.getScreenWidth()/2, -self.videoManager.getScreenHeight()/2 )
             self.videoManager.restoreBuffer(7)
-            self.videoManager.end()
+            self.videoManager.flip()
         self.mapManager.resync()
 
     def noise( self, duration=1000 ):
@@ -375,11 +375,11 @@ class SceneManager:
         self.audioManager.playSound( s )
         while self.engine.getTicks() < start+duration and self.inputManager.running():
             self.inputManager.update()
-            self.videoManager.begin()
+            self.videoManager.clear()
             r = self.mathManager.randInt(0,256)
             self.videoManager.setColor( r, r, r )
             self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
-            self.videoManager.end()
+            self.videoManager.flip()
         self.videoManager.setColor()
         self.videoManager.restoreBuffer(7)
         self.mapManager.resync()

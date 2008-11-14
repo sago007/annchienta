@@ -109,7 +109,7 @@ class RaftGame:
 
     def draw( self ):
 
-        self.videoManager.begin()
+        self.videoManager.clear()
 
         # To make the cave tremble
         tremble = 3
@@ -126,7 +126,7 @@ class RaftGame:
         # draw player
         self.raft.draw()
 
-        self.videoManager.end()
+        self.videoManager.flip()
 
 # Run the game
 raftGame = RaftGame()

@@ -163,7 +163,7 @@ class Game:
 
     def draw( self ):
 
-        self.videoManager.begin()
+        self.videoManager.clear()
 
         # Draw background
         self.videoManager.drawSurface( self.background, 0, int(self.backgroundY) )
@@ -180,7 +180,7 @@ class Game:
         if self.captain:
             self.captain.draw()
 
-        self.videoManager.end()
+        self.videoManager.flip()
 
 
 # Main function, kinda
@@ -192,10 +192,10 @@ mapManager = annchienta.getMapManager()
 sceneManager.initDialog( [] )
 
 # Clear entire screen.
-videoManager.begin()
+videoManager.clear()
 videoManager.setColor(0,0,0)
 videoManager.drawRectangle( 0, 0, videoManager.getScreenWidth(), videoManager.getScreenHeight() )
-videoManager.end()
+videoManager.flip()
 
 # Some intro talk.
 sceneManager.text( "August:\nAnd so we took Banver's ship in attempt to reach the Jemor continent.", None )

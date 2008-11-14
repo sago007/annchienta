@@ -73,9 +73,9 @@ class Battle:
         
             self.update()
             
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.draw()
-            self.videoManager.end()
+            self.videoManager.flip()
     
         self.mapManager.resync()
 
@@ -454,9 +454,9 @@ class Battle:
             factor = float(self.engine.getTicks()-start)/duration
             combatant.position = origPosition*(1.0-factor) + position*factor
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.draw()
-            self.videoManager.end()
+            self.videoManager.flip()
 
         # Make sure we're in the right position in the end.
         combatant.position = annchienta.Vector( position )
@@ -499,10 +499,10 @@ class Battle:
             factor = float(self.engine.getTicks()-start)/duration
             position = combatant.position + annchienta.Vector(0,-30)*factor
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.draw()
             self.videoManager.drawSurface( surf, int(position.x)-surf.getWidth()/2, int(position.y)-surf.getHeight()/2 )
-            self.videoManager.end()
+            self.videoManager.flip()
 
     ## Make combatant move away from battle centre
     #  and die.

@@ -236,9 +236,9 @@ namespace Annchienta
 
             if( m_running )
             {
-                videoManager->begin();
+                videoManager->clear();
                 this->draw();
-                videoManager->end();
+                videoManager->flip();
             }
 
             /* frames++;

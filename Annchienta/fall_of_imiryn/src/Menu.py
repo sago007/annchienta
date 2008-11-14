@@ -132,7 +132,7 @@ class Menu(MenuItem):
 
         while not self.done and self.clickedItem is None:
         
-            self.videoManager.begin()
+            self.videoManager.clear()
             
             # Draw appropriate background
             if backgroundProcess:
@@ -143,7 +143,7 @@ class Menu(MenuItem):
             # Draw self
             self.render()
             
-            self.videoManager.end()
+            self.videoManager.flip()
 
             self.update()
 

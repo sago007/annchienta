@@ -18,10 +18,10 @@ sceneManager.initDialog( [august, march, avril, laustwan] )
 if not partyManager.hasRecord( "inaran_intro" ):
 
     imiryn = annchienta.Surface("images/storyline/imiryn.png")
-    videoManager.begin()
+    videoManager.clear()
     videoManager.drawSurface( imiryn, 0, 0 )
-    videoManager.end()
-    videoManager.end()
+    videoManager.flip()
+    videoManager.flip()
 
     sceneManager.text( "Our story unfolds in a place where magic was commonplace and airships plied the skies, crowding out the heavens... the Imiryn Empire.", None )
     sceneManager.text( "The Empire was built on technology and magic. Then, the Laustwan were discovered.", None )

@@ -64,9 +64,9 @@ import Menu
 splashImage = annchienta.Surface( "images/backgrounds/splash.png" )
 start = engine.getTicks()
 while engine.getTicks() < start + 1000:
-    videoManager.begin()
+    videoManager.clear()
     videoManager.drawSurface( splashImage, 0, 0 )
-    videoManager.end()
+    videoManager.flip()
 sceneManager.fade( 255, 255, 255, 2000 )
 
 # Load a title background.
@@ -75,10 +75,10 @@ titleBackground = annchienta.Surface( "images/backgrounds/kimen.png" )
 running = True
 while running and inputManager.running():
 
-    videoManager.begin()
+    videoManager.clear()
     videoManager.drawSurface( titleBackground, 0, 0 )
-    videoManager.end()
-    videoManager.end()
+    videoManager.flip()
+    videoManager.flip()
 
     menu = Menu.Menu( "Main Menu", "I love my girlfriend." )
     options = [ Menu.MenuItem("new", "Start a new game."),

@@ -67,7 +67,7 @@ while inputManager.running():
 
     inputManager.update()
 
-    videoManager.begin()
+    videoManager.clear()
     videoManager.drawSurface( title_background, 0, 0 )
 
     videoManager.setColor(255,255,255)
@@ -99,7 +99,7 @@ while inputManager.running():
         if inputManager.running():
             videoManager.drawStringCentered( title_font, str(options[i]), videoManager.getScreenWidth()/2, 240+i*title_font.getLineHeight() )
 
-    videoManager.end()
+    videoManager.flip()
 
 logManager.message("Finished playing Elegiac Convergence.")
 

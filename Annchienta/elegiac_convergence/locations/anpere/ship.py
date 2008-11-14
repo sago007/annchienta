@@ -142,10 +142,10 @@ else:
 
         sceneManager.fadeOut(0,0,0,1000)
         videoManager.setClearColor(0,0,0)
-        videoManager.begin()
+        videoManager.clear()
         videoManager.drawStringCentered( sceneManager.italicsFont, "The End", videoManager.getScreenWidth()/2, 100 )
         videoManager.drawStringCentered( sceneManager.defaultFont, "By Jasper Van der Jeugt", videoManager.getScreenWidth()/2, 130 )
-        videoManager.end()
+        videoManager.flip()
         sceneManager.waitForClick()
         mapManager.stop()
 

@@ -107,12 +107,12 @@ class Editor(QWidget):
         # self.mapManager.update()
 
         # Draw
-        self.videoManager.begin()
+        self.videoManager.clear()
         if self.hasOpenedMap:
             self.mapManager.renderFrame()
             if bool(self.gridBox.isChecked()):
                 self.drawGrid()
-        self.videoManager.end()
+        self.videoManager.flip()
 
         if self.hasOpenedMap:
             self.currentMap.depthSort()

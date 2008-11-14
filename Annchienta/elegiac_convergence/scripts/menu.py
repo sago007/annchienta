@@ -72,9 +72,9 @@ class Menu(MenuItem):
 
         while not done and self.clickedItem is None:
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.render()
-            self.videoManager.end()
+            self.videoManager.flip()
 
             self.inputManager.update()
 

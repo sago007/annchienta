@@ -81,7 +81,7 @@ class BattleManager:
             start = self.engine.getTicks()
 
             while self.inputManager.running() and self.engine.getTicks()<start+20:
-                self.videoManager.end()
+                self.videoManager.flip()
 
         self.videoManager.reset()
 

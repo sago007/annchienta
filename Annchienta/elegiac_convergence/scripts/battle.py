@@ -106,7 +106,7 @@ class Battle:
 
     def draw( self, flip=True ):
 
-        self.videoManager.begin()
+        self.videoManager.clear()
 
         # Draw the background
         if self.background is not None:
@@ -145,7 +145,7 @@ class Battle:
 
         self.videoManager.reset()
         if flip:
-            self.videoManager.end()
+            self.videoManager.flip()
 
     def onWin( self ):
         self.won = True
@@ -224,7 +224,7 @@ class Battle:
                 x = int( t*float(tx[i]) + (1.0-t)*float(ox[i]) )
                 y = int( t*float(ty[i]) + (1.0-t)*float(oy[i]) )
                 self.videoManager.drawSurface( surface, x, y )
-            self.videoManager.end()
+            self.videoManager.flip()
             self.engine.delay(1)
 
     def dieAnimation( self, actor ):

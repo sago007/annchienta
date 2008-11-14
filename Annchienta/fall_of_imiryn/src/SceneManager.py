@@ -29,9 +29,9 @@ class SceneManager:
         self.inputManager.update()
         while self.inputManager.running() and not self.inputManager.buttonTicked(0):
             self.inputManager.update()
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
-            self.videoManager.end()
+            self.videoManager.flip()
 
         self.mapManager.resync()
 
@@ -159,7 +159,7 @@ class SceneManager:
             if backgroundProcess:
                 backgroundProcess.update(False)
 
-            self.videoManager.begin()
+            self.videoManager.clear()
 
             # Draw the background
             if backgroundProcess:
@@ -173,7 +173,7 @@ class SceneManager:
             height = self.renderTextInArea( text, 2*self.margin, 2*self.margin, self.videoManager.getScreenWidth() - 3*self.margin, font )
             height -= 110 - font.getLineHeight()
             self.videoManager.disableClipping()
-            self.videoManager.end()
+            self.videoManager.flip()
 
         if not backgroundProcess:
             self.videoManager.restoreBuffer(7)
@@ -220,9 +220,9 @@ class SceneManager:
             if followMover:
                 self.mapManager.cameraPeekAt( objects[0], True )
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.mapManager.renderFrame()
-            self.videoManager.end()
+            self.videoManager.flip()
 
         self.mapManager.resync()
 
@@ -257,19 +257,19 @@ class SceneManager:
 
             a = int(255.0*float( self.engine.getTicks()-start ) / float( duration ))
 
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
             self.videoManager.setColor( r, g, b, a )
             self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
-            self.videoManager.end()
+            self.videoManager.flip()
 
             self.inputManager.update()
 
         # Fill it at the end
-        self.videoManager.begin()
+        self.videoManager.clear()
         self.videoManager.setColor( r, g, b, 255 )
         self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
-        self.videoManager.end()
+        self.videoManager.flip()
 
         self.mapManager.resync()
 
@@ -280,7 +280,7 @@ class SceneManager:
         self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
         self.videoManager.setColor( 255, 255, 255 )
         self.videoManager.drawStringCentered( self.largeItalicsFont, "Game Over", self.videoManager.getScreenWidth()/2, 120 )
-        self.videoManager.end()
+        self.videoManager.flip()
         self.waitForClick()
         self.fade()
 

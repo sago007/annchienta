@@ -189,14 +189,14 @@ class Ally( Combatant.Combatant ):
                 done = True
             
             # Draw
-            battle.videoManager.begin()
+            battle.videoManager.clear()
             battle.draw()
             
             # Draw "select target"
             self.sceneManager.activeColor()
             self.videoManager.drawString( self.sceneManager.largeItalicsFont, "Select Target", self.sceneManager.margin, self.videoManager.getScreenHeight()-20*(len(battle.allies)+1) )
             
-            battle.videoManager.end()
+            battle.videoManager.flip()
 
             # Reset marked
             for c in battle.combatants:

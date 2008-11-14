@@ -56,7 +56,7 @@ class Menu:
         
     def text( self, string ):
     
-        self.videoManager.begin()
+        self.videoManager.clear()
         self.videoManager.drawSurface( self.game.background, 0, 0 )
         self.videoManager.setColor( 0, 0, 0, 100 )
         self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), 50 )
@@ -64,17 +64,17 @@ class Menu:
         self.videoManager.drawString( self.game.font, string, 10, 16 )
         self.videoManager.setColor( 255, 255, 255, 100 )
         self.videoManager.drawStringRight( self.game.font, "Graphics and programming by Jasper Van der Jeugt", self.videoManager.getScreenWidth()-10, self.videoManager.getScreenHeight()-20 )
-        self.videoManager.end()
+        self.videoManager.flip()
         self.waitForClick()
         
     def waitForClick( self ):
 
-        self.videoManager.end()
+        self.videoManager.flip()
         self.videoManager.storeBuffer(7)
         self.inputManager.update()
         while self.inputManager.running() and not self.inputManager.buttonTicked(0):
             self.inputManager.update()
-            self.videoManager.begin()
+            self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
-            self.videoManager.end()
+            self.videoManager.flip()
 

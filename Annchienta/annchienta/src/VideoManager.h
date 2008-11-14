@@ -88,11 +88,11 @@ namespace Annchienta
 
             /** Begins the scene. Clears and resets the screen.
              */
-            void begin();
+            void clear();
 
             /** Draw the buffer to the screen.
              */
-            void end();
+            void flip();
 
             /** Sets the color used for clearing the screen with.
              */

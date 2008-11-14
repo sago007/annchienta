@@ -38,7 +38,7 @@ class Game:
             
     def draw( self ):
     
-        self.videoManager.begin()
+        self.videoManager.clear()
         
         # Start with the background
         self.videoManager.drawSurface( self.background, 0, 0 )
@@ -60,7 +60,7 @@ class Game:
         self.videoManager.drawRectangle( 10, 10, 10+int(width), 28 )
         self.videoManager.setColor()
         self.videoManager.drawStringCentered( self.font, "RAGE", self.videoManager.getScreenWidth()/2, 10 )
-        self.videoManager.end()
+        self.videoManager.flip()
         
     def update( self, ms ):
 
