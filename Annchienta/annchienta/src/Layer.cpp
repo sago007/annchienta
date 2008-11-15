@@ -227,7 +227,10 @@ namespace Annchienta
 
     Tile *Layer::getTile( int x, int y )
     {
-        return tiles[ y*width+x ];
+        if( x>=0 && x<getWidth() && x>=0 && y<getHeight() )
+            return tiles[ y*width+x ];
+        else
+            return 0;
     }
 
     StaticObject *Layer::getObject( int num ) const
@@ -274,6 +277,11 @@ namespace Annchienta
         if( (unsigned int)num >= areas.size() )
             return 0;
         return areas[num];
+    }
+
+    int Layer::getNumberOfAreas() const
+    {
+        return (int)areas.size();
     }
 
 };

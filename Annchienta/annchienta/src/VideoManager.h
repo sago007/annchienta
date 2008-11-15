@@ -283,6 +283,7 @@ namespace Annchienta
              *  \param y2 Bottom right y coord of the rectangle.
              *  \param radius Blur radius. A large radius will slow down this function.
              *  \warning Matrix transformations do not apply to this.
+             *  \warning This function will mess up your clipping rectangle if you set one with setClippingRectangle().
              */
             void boxBlur( int x1, int y1, int x2, int y2, int radius=2 );
     };

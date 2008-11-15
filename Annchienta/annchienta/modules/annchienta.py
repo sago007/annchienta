@@ -398,6 +398,9 @@ class Layer(_object):
     def depthSort(*args): return _annchienta.Layer_depthSort(*args)
     def addEntity(*args): return _annchienta.Layer_addEntity(*args)
     def addArea(*args): return _annchienta.Layer_addArea(*args)
+    def makeEmpty(*args): return _annchienta.Layer_makeEmpty(*args)
+    def setTileSet(*args): return _annchienta.Layer_setTileSet(*args)
+    def getTileSet(*args): return _annchienta.Layer_getTileSet(*args)
     def getWidth(*args): return _annchienta.Layer_getWidth(*args)
     def getHeight(*args): return _annchienta.Layer_getHeight(*args)
     def getTile(*args): return _annchienta.Layer_getTile(*args)
@@ -405,6 +408,7 @@ class Layer(_object):
     def getNumberOfObjects(*args): return _annchienta.Layer_getNumberOfObjects(*args)
     def removeObject(*args): return _annchienta.Layer_removeObject(*args)
     def getArea(*args): return _annchienta.Layer_getArea(*args)
+    def getNumberOfAreas(*args): return _annchienta.Layer_getNumberOfAreas(*args)
     __swig_destroy__ = _annchienta.delete_Layer
     __del__ = lambda self : None;
 Layer_swigregister = _annchienta.Layer_swigregister

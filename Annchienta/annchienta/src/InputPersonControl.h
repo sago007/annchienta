@@ -12,6 +12,10 @@ namespace Annchienta
     class InputManager;
     class MathManager;
 
+    /** A subclass of PersonControl. This class
+     *  allows the player to control a player with
+     *  input, like mouse movements.
+     */
     class InputPersonControl: public PersonControl
     {
         protected:
@@ -19,10 +23,23 @@ namespace Annchienta
             MathManager *mathManager;
 
         public:
+            /** Create a new InputPersonControl instance for
+             *  a given person.
+             *  \param person Person to create the control for.
+             */
             InputPersonControl( Person *person );
+
+            /** Delete this PersonControl.
+             */
             virtual ~InputPersonControl();
 
+            /** Update the Person associated with this object.
+             */
             virtual void affect();
+
+            /** Internally used function that tries to have
+             *  the associated Person interact with the world.
+             */
             void tryInteract();
     };
 };
