@@ -208,7 +208,7 @@ namespace Annchienta
         return true;
     }
 
-    bool Person::stepTo( Point target )
+    bool Person::stepTo( Point target, bool force )
     {
         target.convert( IsometricPoint );
         int tx = target.x, ty = target.y;
@@ -222,6 +222,10 @@ namespace Annchienta
             return false;
         }
 
+        /* If we were able to move. */
+        bool result = true;
+
+        /* Move just enough as necessary. */
         for( int i=0; i<getMapManager()->getUpdatesNeeded(); i++ )
         {
 
@@ -229,12 +233,12 @@ namespace Annchienta
                 y = ty-position.y>0?1:(ty-position.y<0?-1:0);
 
             if( x )
-                this->move( x, 0, true );
+                result = move( x, 0, force );
             else
-                this->move( 0, y, true );
+                result = move( 0, y, force );
         }
 
-        return true;
+        return result;
     }
 
     void Person::freeze( bool f )

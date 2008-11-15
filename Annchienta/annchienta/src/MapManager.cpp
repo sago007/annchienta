@@ -224,10 +224,6 @@ namespace Annchienta
         VideoManager *videoManager = getVideoManager();
         inputManager = getInputManager();
 
-        /* unsigned int lastFpsUpdate = SDL_GetTicks();
-         * unsigned int frames = 0;
-         */
-
         SDL_TimerID timer = SDL_AddTimer( 1000/updatesPerSecond, incrementUpdatesNeeded, 0 );
 
         while( inputManager->running() && m_running )
@@ -240,18 +236,6 @@ namespace Annchienta
                 this->draw();
                 videoManager->flip();
             }
-
-            /* frames++;
-             * if( lastFpsUpdate+1000<=SDL_GetTicks() )
-             * {
-             *     char title[256];
-             *     sprintf( title, "Annchienta FPS: %d", frames );
-             *     SDL_WM_SetCaption( title, NULL );
-             *
-             *     lastFpsUpdate = SDL_GetTicks();
-             *     frames = 0;
-             * }
-             */
         }
 
         SDL_RemoveTimer( timer );
@@ -269,7 +253,6 @@ namespace Annchienta
 
     void MapManager::update( bool updateInput )
     {
-        //printf("Updating %d times...\n", updatesNeeded );
         while( updatesNeeded>0 )
         {
             this->updateOnce( updateInput );

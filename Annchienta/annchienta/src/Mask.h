@@ -55,6 +55,11 @@ namespace Annchienta
 
             /** Use this to edit a mask. Fills a rectangle with
              *  a certain value.
+             *  \param x1 Top left x coordinate of the rectangle.
+             *  \param y1 Top left y coordinate of the rectangle.
+             *  \param x2 Bottom right x coordinate of the rectangle.
+             *  \param y2 Bottom right y coordinate of the rectangle.
+             *  \param value Value to fill the rectangle with. True for collision, false for transparency.
              */
             void fillRectangle( int x1, int y1, int x2, int y2, bool value );
     };
