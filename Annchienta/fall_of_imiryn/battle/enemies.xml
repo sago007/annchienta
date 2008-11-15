@@ -140,7 +140,7 @@
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack bite slime fire thunder water ice</actions>
         <sprite filename="sprites/sample_0x4a.png"/>
-        <drop xp="80" item="ticture" rate="0.4" steal="potion"/>
+        <drop xp="80" item="tincture" rate="0.4" steal="potion"/>
     </enemy>
 
     <!-- SOLDIER -->

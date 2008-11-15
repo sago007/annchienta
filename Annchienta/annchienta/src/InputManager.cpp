@@ -66,8 +66,6 @@ namespace Annchienta
 
                 case SDL_KEYDOWN:
                     tickedKeys[ event.key.keysym.sym ] = true;
-                    if( event.key.keysym.sym == SDLK_ESCAPE )
-                        run = false;
                     break;
 
                 case SDL_MOUSEBUTTONDOWN:
