@@ -67,16 +67,47 @@ namespace Annchienta
              */
             virtual bool stepTo( Point point, bool force=true );
 
-            virtual void freeze( bool );
+            /** Freeze or unfreeze this Person. When a Person is
+             *  frozen, he will not be able to move, this can be
+             *  useful in cutscenes.
+             *  \param value True to freeze, false to unfreeze.
+             */
+            virtual void freeze( bool value );
+
+            /** \return If thie Person is frozen, see freeze().
+             */
             virtual bool isFrozen() const;
 
+            /** Create an InputPersonControl instance for this
+             *  Person and let it control this Person.
+             */
             virtual void setInputControl();
+
+            /** Create an SamplePersonControl instance for this
+             *  Person and let it control this Person.
+             */
             virtual void setSampleControl();
+
+            /** Deletes the PersonControl instance associated
+             *  with this Person. The Person will now halt.
+             */
             virtual void setNullControl();
 
+            /** Set the default standing animation for this Person.
+             *  \param forceFromHeading When set to true, the "stand{north,south,east,west}" will always be used.
+             */
             virtual void setStandAnimation( bool forceFromHeading=false );
+
+            /** Set the "stand{north,east,south,west}" animation,
+             *  depending where the other object is.
+             *  \param object Object to look at.
+             */
             virtual void lookAt( StaticObject *object );
 
+            /** Checks if this Person collides with any Area
+             *  in this Layer and executes the associated scipts
+             *  if needed.
+             */
             virtual void collisionWithLayerAreas();
     };
 
