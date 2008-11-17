@@ -80,6 +80,10 @@ namespace Annchienta
             /** Creates a new Point with the given coordinates.
              *  The Z coordinate is not used most of the time.
              *  For more information, see \ref PointType
+             *  \param type Type of the Point, see \ref PointType
+             *  \param x X coordinate of the point.
+             *  \param y Y coordinate of the point.
+             *  \param z Z coordinate of the point, not needed in most concrete cases.
              */
             Point( PointType type=TilePoint, int x=0, int y=0, int z=0 );
 
@@ -91,11 +95,15 @@ namespace Annchienta
             ~Point();
 
             #ifndef SWIG
-                /** \note Not available in Python.
+                /** Assingment operator.
+                 * \note Not available in Python.
                  */
                 Point &operator=(const Point &other);
 
-                /** \note Not available in Python.
+                /** Set the PointType, whithout actually 
+                 *  converting the Point. Use convert().
+                 *  \param type The new type for this Point.
+                 *  \note Not available in Python.
                  */
                 void setType( PointType type );
             #endif
@@ -106,21 +114,29 @@ namespace Annchienta
 
             /** This function converts this Point to a Point
              *  of another type.
+             *  \param newtype The new PointType for this Point.
              */
             void convert( PointType newtype );
 
             /** This function is similar to the convert function,
              *  but this one will make no changes to this Point,
              *  returning a new Point instead.
+             *  \param newtype The new PointType for this Point.
+             *  \return A converted Point.
              */
             Point to( PointType newtype ) const;
 
             /** Returns True if this Point lies in the rectangular
-             *  area defined by leftTop and rightBottom.
+             *  area defined by leftTop and rightBottom. This does
+             *  not take the Z coordinate into account.
+             *  \param leftTop Left top of the rectangle.
+             *  \param leftTop Right bottom of the rectangle.
              */
             bool isEnclosedBy( Point *leftTop, Point *rightBottom );
 
-            /** Returns the distance to another Point.
+            /** Calculate the distance to another Point.
+             *  \param other The other Point.
+             *  \return The distance to the other Point.
              */
             int distance( Point other ) const;
 
@@ -128,6 +144,9 @@ namespace Annchienta
              *  function does not check the other's point type and
              *  takes a pointer as argument, making this a very
              *  fast (but sometimes unreliable) function.
+             *  \param other The other Point.
+             *  \return The distance to the other Point.
+             *  \warning Only use this if you're sure about the Point types.
              */
             int noTypeCheckSquaredDistance( Point *other ) const;
 
