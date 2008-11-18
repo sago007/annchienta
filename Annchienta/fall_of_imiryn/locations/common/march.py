@@ -16,7 +16,6 @@ sceneManager.initDialog( [march, august, avril, laustwan] )
 
 if not partyManager.hasRecord("inaran_intro_march"):
 
-
     sceneManager.speak( march, "Can you see that cave over there? That must be it." )
 
     sceneManager.speak( august, "I guess... finally..." )

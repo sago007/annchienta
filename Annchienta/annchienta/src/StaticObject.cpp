@@ -446,10 +446,10 @@ namespace Annchienta
 
     bool StaticObject::stepTo( Point p )
     {
-        getLogManager()->warning("Attempt to step static object '%s'. Warping.\n", this->getName(), p.x, p.y );
+        getLogManager()->warning("Attempt to step static object '%s'. Warping.", this->getName(), p.x, p.y );
         position = p.to(IsometricPoint);
         needsUpdate = true;
-        return true;
+        return false;
     }
 
     void StaticObject::setStandAnimation( bool )

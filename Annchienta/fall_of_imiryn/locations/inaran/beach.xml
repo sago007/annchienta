@@ -56,13 +56,19 @@
 </if>
 
 <!-- Way to cave1. Must first talk to March, though. -->
-<if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="partyManager.hasRecord('inaran_intro_done')">
-    <area tilex1="18" tilex2="20" tiley1="3" tiley2="9">
-import annchienta, PartyManager
+<area tilex1="18" tilex2="20" tiley1="3" tiley2="14">
+import annchienta, PartyManager, SceneManager
 partyManager = PartyManager.getPartyManager()
-partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point( annchienta.TilePoint, 14, 27 ) )
-    </area>
-</if>
+sceneManager = SceneManager.getSceneManager()
+if partyManager.hasRecord('inaran_intro_done'):
+    partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point( annchienta.TilePoint, 14, 27 ) )
+else:
+    august = partyManager.player
+    sceneManager.initDialog( [august] )
+    sceneManager.speak( august, "I'd better talk to March first." )
+    sceneManager.move(  august, annchienta.Point( annchienta.TilePoint, 19, 15 ) )
+    sceneManager.quitDialog()
+</area>
 
 </layer>
 
