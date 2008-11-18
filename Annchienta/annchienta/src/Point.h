@@ -130,7 +130,7 @@ namespace Annchienta
              *  area defined by leftTop and rightBottom. This does
              *  not take the Z coordinate into account.
              *  \param leftTop Left top of the rectangle.
-             *  \param leftTop Right bottom of the rectangle.
+             *  \param rightBottom Right bottom of the rectangle.
              */
             bool isEnclosedBy( Point *leftTop, Point *rightBottom );
 

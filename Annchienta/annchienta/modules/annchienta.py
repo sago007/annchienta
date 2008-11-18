@@ -437,6 +437,7 @@ class Map(_object):
     def addNewLayer(*args): return _annchienta.Map_addNewLayer(*args)
     def getTileSet(*args): return _annchienta.Map_getTileSet(*args)
     def getObject(*args): return _annchienta.Map_getObject(*args)
+    def getPerson(*args): return _annchienta.Map_getPerson(*args)
     def addObject(*args): return _annchienta.Map_addObject(*args)
     def removeObject(*args): return _annchienta.Map_removeObject(*args)
     def update(*args): return _annchienta.Map_update(*args)

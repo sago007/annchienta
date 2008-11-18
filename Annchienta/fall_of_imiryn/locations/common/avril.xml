@@ -29,4 +29,6 @@
 
     <control type="null" />
 
+    <oninteract script="locations/common/avril.py"/>
+
 </sprite>

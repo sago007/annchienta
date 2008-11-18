@@ -14,6 +14,7 @@ namespace Annchienta
     class TileSet;
     class Layer;
     class StaticObject;
+    class Person;
 
     /** A Map is probably one of the most important
      *  classes in the engine. It holds a game map
@@ -109,6 +110,12 @@ namespace Annchienta
              *  \return The found object.
              */
             StaticObject *getObject( const char *name );
+
+            /** The same as getObject(), but returns a Person.
+             *  \param name Name of the Person to be found.
+             *  \return The found person.
+             */
+            Person *getPerson( const char *name );
 
             /** Adds a StaticObject to this Map. The object is
              *  placed in the current Layer.

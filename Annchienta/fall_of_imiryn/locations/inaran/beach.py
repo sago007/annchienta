@@ -9,9 +9,9 @@ sceneManager = SceneManager.getSceneManager()
 currentMap = partyManager.currentMap
 
 august = partyManager.player
-march = currentMap.getObject( "march" )
-avril = currentMap.getObject( "avril" )
-laustwan = currentMap.getObject( "laustwan" )
+march = currentMap.getPerson( "march" )
+avril = currentMap.getPerson( "avril" )
+laustwan = currentMap.getPerson( "laustwan" )
 
 sceneManager.initDialog( [august, march, avril, laustwan] )
 

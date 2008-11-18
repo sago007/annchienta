@@ -4,8 +4,8 @@ partyManager = party.getPartyManager()
 sceneManager = scene.getSceneManager()
 
 player = partyManager.player
-bardolph = partyManager.currentMap.getObject("bardolph")
-jelobat = partyManager.currentMap.getObject("jelobat")
+bardolph = partyManager.currentMap.getPerson("bardolph")
+jelobat = partyManager.currentMap.getPerson("jelobat")
 
 sceneManager.initDialog( [player, bardolph, jelobat] )
 

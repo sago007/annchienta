@@ -7,7 +7,7 @@ audioManager = annchienta.getAudioManager()
 partyManager = party.getPartyManager()
 sceneManager = scene.getSceneManager()
 
-inyse = partyManager.currentMap.getObject("inyse")
+inyse = partyManager.currentMap.getPerson("inyse")
 player = partyManager.player
 esana = annchienta.Person( "esana", "locations/prison/esana.xml" )
 esana.setPosition( annchienta.Point( annchienta.TilePoint, 7, 2 ) )

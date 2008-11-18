@@ -483,6 +483,12 @@ namespace Annchienta
         return 0;
     }
 
+    Person *Map::getPerson( const char *name )
+    {
+        StaticObject *object = getObject( name );
+        return (Person*) object;
+    }
+
     void Map::addObject( StaticObject *so )
     {
         layers[currentLayer]->addEntity( so );
