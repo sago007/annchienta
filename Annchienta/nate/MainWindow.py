@@ -170,3 +170,11 @@ class MainWindow:
         widget = self.widgetTree.get_widget("editSidesCheckButton")
         return widget.get_active()
 
+    ## Set the status bar text
+    #
+    def setStatusBarText( self, text ):
+
+        widget = self.widgetTree.get_widget("statusBar")
+        widget.pop( 0 )
+        widget.push( 0, str(text) )
+

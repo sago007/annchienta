@@ -56,7 +56,7 @@ class TileSelection:
                 # Select an entire tile
                 if self.wholeTiles:
                     p = tile.getPointPointer( 0 )
-                    if p.noTypeCheckSquaredDistance( mousePosition ) < self.squaredRadius:
+                    if (p.x-mousePosition.x)**2 + (p.y-mousePosition.y)**2 < self.squaredRadius:
                         affectedTiles.append( AffectedTile.AffectedTile( tile, range(4) ) )
 
                 # Select points of a tile
@@ -64,7 +64,7 @@ class TileSelection:
                     points = []
                     for i in range(4):
                         p = tile.getPointPointer(i)
-                        if p.noTypeCheckSquaredDistance( mousePosition ) < self.squaredRadius:
+                        if (p.x-mousePosition.x)**2 + (p.y-mousePosition.y)**2 < self.squaredRadius:
                             points.append(i)
                     if len( points ):
                         affectedTiles.append( AffectedTile.AffectedTile( tile, points ) )

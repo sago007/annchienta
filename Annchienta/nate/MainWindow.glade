@@ -476,7 +476,7 @@ Draw height-aware grid</property>
           </widget>
         </child>
         <child>
-          <widget class="GtkStatusbar" id="statusbar">
+          <widget class="GtkStatusbar" id="statusBar">
             <property name="visible">True</property>
             <property name="spacing">2</property>
           </widget>

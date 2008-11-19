@@ -101,6 +101,82 @@ class MapWriter:
             dataNode = self.document.createTextNode( data )
             tileElement.appendChild( dataNode )
 
+            # Collect obstruction values
+            obstructions = []
+            for y in range(layer.getHeight()):
+                for x in range(layer.getWidth()):
+                    obstructions.append( layer.getTile(x,y).getObstructionType() )
+
+            # write only if there are non-default values.
+            if len( filter( lambda o: o!=annchienta.DefaultObstruction, obstructions ) ):
+
+                # Get the obstruction element, or create one if there
+                # isn't any present.
+                obstructionElements = layerElement.getElementsByTagName("obstruction")
+                if not len(obstructionElements):
+                    obstructionElements = [ self.document.createElement("obstruction") ]
+                    layerElement.appendChild( obstructionElements[0] )
+                obstructionElement = obstructionElements[0]
+
+                # Remove all children, we want to redefine it
+                while obstructionElement.hasChildNodes():
+                    obstructionElement.removeChild( obstructionElement.lastChild )
+
+                # Write all obstruction codes to data
+                data = "\n    "
+                for i in obstructions:
+                    data += str(i) + " "
+                data += "\n"
+
+                # Append that data to the obstruction node
+                dataNode = self.document.createTextNode( data )
+                obstructionElement.appendChild( dataNode )
+
+            # In case there are only default obstruction values,
+            # storing them would be quite a waste. So remove the
+            # entire obstruction node.
+            else:
+                obstructionElements = layerElements[l].getElementsByTagName("obstruction")
+                for o in obstructionElements:
+                    layerElements[l].removeChild(o)
+
+            # Get all shadowed values
+            shadowed = []
+            for y in range(layer.getHeight()):
+                for x in range(layer.getWidth()):
+                    shadowed.append( layer.getTile(x,y).isShadowed() )
+
+            # If there any shadowed tiles, we have to write them
+            if len( filter( lambda s: s, shadowed ) ):
+
+                # Retrieve the shadowed elements
+                shadowedElements = layerElements[l].getElementsByTagName("shadowed")
+                if not len(shadowedElements):
+                    shadowedElements = [ self.document.createElement("shadowed") ]
+                    layerElement.appendChild( shadowedElements[0] )
+                shadowedElement = shadowedElements[0]
+
+                # remove all children
+                while shadowedElement.hasChildNodes():
+                    shadowedElement.removeChild( shadowedElement.lastChild )
+
+                # Write the shadowed values to data
+                data = "\n    "
+                for i in shadowed:
+                    data += str(int(i)) + " "
+                data += "\n"
+
+                # Append the data to the shadowed node
+                dataNode = self.document.createTextNode( data )
+                shadowedElement.appendChild( dataNode )
+
+            # If there are no shadowed tiles at all, just remove
+            # the shadowed element.
+            else:
+                shadowedElements = layerElements[l].getElementsByTagName("shadowed")
+                for s in shadowedElements:
+                    layerElements[l].removeChild(s)
+
 
         # End by writing everything to the file
         file = open( self.fileName, 'w' )

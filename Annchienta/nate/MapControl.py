@@ -151,6 +151,14 @@ class MapControl:
                 diff += self.mapView.getCameraPosition()
                 self.mapView.setCameraPosition( diff )
 
+        # Set statusbar text
+        mousePoint = annchienta.Point( annchienta.MapPoint, self.inputManager.getMouseX(), self.inputManager.getMouseY() )
+        mousePoint.x += int( self.mapView.getCameraPosition().x )
+        mousePoint.y += int( self.mapView.getCameraPosition().y )
+        mousePoint.convert( annchienta.TilePoint )
+
+        self.mainWindow.setStatusBarText( "Mouse position: ( "+str(mousePoint.x)+", "+str(mousePoint.y)+" )" )
+
         # Check if we have to make edits.
         if self.currentMap and self.inputManager.buttonDown(0):
 
