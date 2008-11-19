@@ -109,6 +109,13 @@ class MapControl:
         self.selectSurfaceWindow.create( self.currentMap.getTileSet() )
         self.selectSideSurfaceWindow.create( self.currentMap.getTileSet() )
 
+    ## Saves the map
+    #
+    def saveMap( self ):
+
+        if self.currentMap and self.mapWriter:
+            self.mapWriter.saveMap()
+
     ## Ticks this object. This will update this and
     #  all of it's associated objects.
     def tick( self ):

@@ -486,6 +486,8 @@ namespace Annchienta
     Person *Map::getPerson( const char *name )
     {
         StaticObject *object = getObject( name );
+        if( object->getEntityType() != PersonEntity )
+            getLogManager()->warning( "Requested StaticObject '%s' as Person, but this is a StaticObject.", name );
         return (Person*) object;
     }
 

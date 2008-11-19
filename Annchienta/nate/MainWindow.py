@@ -36,6 +36,7 @@ class MainWindow:
 
                 "on_createNewMapButton_clicked":                       self.createNewMap,
                 "on_openMapFileChooser_selection_changed":             self.updateMapFile,
+                "on_saveMapButton_clicked":                            self.saveMap,
                 "on_nextLayerButton_clicked":                          self.nextLayer,
                 "on_addLayerButton_clicked":                           self.addLayer,
                 "on_changeLayerZSpinButton_value_changed":             self.updateLayerZ,
@@ -95,6 +96,11 @@ class MainWindow:
 
         filename = str(widget.get_filename())
         self.mapControl.loadMap( filename )
+
+    ## Save the map
+    #
+    def saveMap( self, widget=None ):
+        self.mapControl.saveMap()
 
     ## Cycle to next layer
     #

@@ -40,9 +40,72 @@ class MapWriter:
             # Add to document
             self.document.appendChild( self.mapElement )
 
+            # Temporary filename
+            fileName = "untitled.xml"
+
         # Now, we have the document in self.document and
         # the root element in self.mapElement.
-        print self.document.toxml()
+
+    ## Saves the map to the filename that should already be set.
+    #  This basically detects changes in the map and writes those
+    #  to the xml file.
+    def saveMap( self ):
+
+        layerElements = self.document.getElementsByTagName("layer")
+
+        # Update the number of layers in the map file
+        while self.currentMap.getNumberOfLayers() > len(layerElements):
+            newLayerElement = self.document.createElement("layer")
+            self.mapElement.appendChile( newLayerElement )
+
+        # Now get the again
+        layerElements = self.document.getElementsByTagName("layer")
+
+        # Now go through all layers
+        for l in range( len( layerElements ) ):
+
+            layer = self.currentMap.getLayer(l)
+            layerElement = layerElements[l]
+
+            # Update Z
+            layerElement.setAttribute( "z", str(layer.getZ()) )
+
+            # Get the tiles element
+            tileElements = layerElement.getElementsByTagName("tiles")
+            # Add one if there is none
+            if not len(tileElements):
+                tileElements = [ self.document.createElement("tiles") ]
+                layerElement.appendChild( tileElements[0] )
+            tileElement = tileElements[0]
+
+            # Remove all the children of the tile element, we want to
+            # fill it with our own tiles.
+            while tileElement.hasChildNodes():
+                tileElement.removeChild( tileElement.lastChild )
+
+            # Now start filling in the text data
+            data = "\n"
+
+            # Loop through all tiles, appending them to data
+            for y in range(layer.getHeight()):
+                data += "    "
+                for x in range(layer.getWidth()):
+                    tile = layer.getTile(x,y)
+                    for i in range(4):
+                        data += (str(tile.getPointPointer(i).z)+" "+str(tile.getSurface(i))+" ")
+                    data += (str(tile.getSideSurfaceOffset())+" ")
+                    data += (str(tile.getSideSurface())+"    ")
+                data += "\n"
+
+            # Now add the data as a child node.
+            dataNode = self.document.createTextNode( data )
+            tileElement.appendChild( dataNode )
+
+
+        # End by writing everything to the file
+        file = open( self.fileName, 'w' )
+        file.write( self.document.toxml() )
+        file.close()
 
     def toRelativePath( self, dest, base=os.getcwd() ):
 
