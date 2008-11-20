@@ -27,7 +27,25 @@ bool DepthSortPredicate( Annchienta::Tile* tilep1, Annchienta::Tile* tilep2 )
 }
 
 namespace Annchienta
-{
+{   
+    /** A helping structure to hold a frame.
+     */
+    struct Frame
+    {
+        char number;
+        int x1, y1, x2, y2;
+    };
+
+    /** A helping structure to hold an animation.
+     */
+    struct Animation
+    {
+        char name[DEFAULT_STRING_SIZE];
+        char frames[SMALL_STRING_SIZE];
+        int numberOfFrames;
+        int speed;
+    };
+ 
     StaticObject *activeObject=0, *passiveObject=0;
 
     StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), passable(false), needsUpdate(true), onInteractScript(0), onInteractCode(0)
@@ -63,29 +81,29 @@ namespace Annchienta
                     }
                     if( !strcmp("frame", xml->getNodeName()) )
                     {
-                        Frame frame;
+                        Frame *frame = new Frame;
 
                         if( xml->getAttributeValue("number") )
-                            frame.number = (int) (*xml->getAttributeValue("number"));
+                            frame->number = (int) (*xml->getAttributeValue("number"));
                         else
                             logManager->warning("Number not defined for frame in '%s'.", configfile);
 
                         if( xml->getAttributeValue("x1") && xml->getAttributeValue("y1") &&
                             xml->getAttributeValue("x2") && xml->getAttributeValue("y2") )
                         {
-                            frame.x1 = xml->getAttributeValueAsInt("x1");
-                            frame.y1 = xml->getAttributeValueAsInt("y1");
-                            frame.x2 = xml->getAttributeValueAsInt("x2");
-                            frame.y2 = xml->getAttributeValueAsInt("y2");
+                            frame->x1 = xml->getAttributeValueAsInt("x1");
+                            frame->y1 = xml->getAttributeValueAsInt("y1");
+                            frame->x2 = xml->getAttributeValueAsInt("x2");
+                            frame->y2 = xml->getAttributeValueAsInt("y2");
                         }
                         else
                         {
                             /* Default to complete sprite, if available. */
                             if( sprite )
                             {
-                                frame.x1 = frame.y1 = 0;
-                                frame.x2 = sprite->getWidth();
-                                frame.y2 = sprite->getHeight();
+                                frame->x1 = frame->y1 = 0;
+                                frame->x2 = sprite->getWidth();
+                                frame->y2 = sprite->getHeight();
                             }
                         }
 
@@ -93,16 +111,16 @@ namespace Annchienta
                     }
                     if( !strcmp("animation", xml->getNodeName()) )
                     {
-                        Animation animation;
-                        strcpy( animation.name, xml->getAttributeValue("name") );
+                        Animation *animation = new Animation;
+                        strcpy( animation->name, xml->getAttributeValue("name") );
 
-                        strcpy( animation.frames, xml->getAttributeValue("frames") );
-                        animation.numberOfFrames = strlen( animation.frames );
+                        strcpy( animation->frames, xml->getAttributeValue("frames") );
+                        animation->numberOfFrames = strlen( animation->frames );
 
                         if( xml->getAttributeValue("speed") )
-                            animation.speed = xml->getAttributeValueAsInt("speed");
+                            animation->speed = xml->getAttributeValueAsInt("speed");
                         else
-                            animation.speed = 20;
+                            animation->speed = 20;
 
                         animations.push_back( animation );
                     }
@@ -142,19 +160,19 @@ namespace Annchienta
     StaticObject::StaticObject( const char *_name, Surface *_surf, Mask *_mask ): Entity(_name), sprite(_surf), mask(_mask), tileStandingOn(0), currentFrame(0), passable(false), needsUpdate(true), onInteractScript(0), onInteractCode(0)
     {
         /* Create a default frame. */
-        Frame frame;
-        frame.number = '1';
-        frame.x1 = frame.y1 = 0;
-        frame.x2 = sprite->getWidth();
-        frame.y2 = sprite->getHeight();
+        Frame *frame = new Frame;
+        frame->number = '1';
+        frame->x1 = frame->y1 = 0;
+        frame->x2 = sprite->getWidth();
+        frame->y2 = sprite->getHeight();
         frames.push_back( frame );
 
         /* Create a default animation. */
-        Animation animation;
-        strcpy( animation.name, "stand" );
-        strcpy( animation.frames, "1" );
-        animation.numberOfFrames = strlen( animation.frames );
-        animation.speed = 20;
+        Animation *animation = new Animation;
+        strcpy( animation->name, "stand" );
+        strcpy( animation->frames, "1" );
+        animation->numberOfFrames = strlen( animation->frames );
+        animation->speed = 20;
         animations.push_back( animation );
 
         /* Set the default animation. */
@@ -164,6 +182,12 @@ namespace Annchienta
 
     StaticObject::~StaticObject()
     {
+        for( unsigned int i=0; i<frames.size(); i++ )
+            delete frames[i];
+
+        for( unsigned int i=0; i<animations.size(); i++ )
+            delete animations[i];
+
         if( onInteractCode )
             delete[] onInteractCode;
         if( onInteractScript )
@@ -235,13 +259,13 @@ namespace Annchienta
 
     void StaticObject::update()
     {
-        if( /*animationRunning &&*/ currentAnimation>=0 )
+        if( currentAnimation>=0 )
         {
             speedTimer++;
-            if( speedTimer >= animations[currentAnimation].speed )
+            if( speedTimer >= animations[currentAnimation]->speed )
             {
                 currentFrame++;
-                if( currentFrame >= animations[currentAnimation].numberOfFrames )
+                if( currentFrame >= animations[currentAnimation]->numberOfFrames )
                     currentFrame = 0;
                 speedTimer = 0;
             }
@@ -284,12 +308,12 @@ namespace Annchienta
         /* Select the right frame.
          */
         Frame *frame;
-        char frameNumber = animations[currentAnimation].frames[currentFrame];
+        char frameNumber = animations[currentAnimation]->frames[currentFrame];
         for( unsigned int i=0; i<frames.size(); i++ )
         {
-            if( frames[i].number == frameNumber )
+            if( frames[i]->number == frameNumber )
             {
-                frame = &frames[i];
+                frame = frames[i];
                 i = frames.size();
             }
         }
@@ -359,11 +383,10 @@ namespace Annchienta
 
         for( unsigned int i=0; i<animations.size(); i++ )
         {
-            if( !strcmp( aname, animations[i].name ) )
+            if( !strcmp( aname, animations[i]->name ) )
             {
                 currentAnimation = i;
-                currentFrame %= animations[i].numberOfFrames;
-                animationRunning = true;
+                currentFrame %= animations[i]->numberOfFrames;
                 return true;
             }
         }
@@ -376,7 +399,7 @@ namespace Annchienta
     {
         if( currentAnimation >= 0 )
         {
-            return animations[currentAnimation].name;
+            return animations[currentAnimation]->name;
         }
         else
         {
@@ -384,16 +407,6 @@ namespace Annchienta
             return "none";
         }
     }
-
-    /*void StaticObject::stopAnimation()
-    {
-        animationRunning = false;
-    }
-
-    void StaticObject::startAnimation()
-    {
-        animationRunning = true;
-    }*/
 
     void StaticObject::setPassable( bool value )
     {

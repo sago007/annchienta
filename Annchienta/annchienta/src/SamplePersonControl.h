@@ -10,6 +10,11 @@
 
 namespace Annchienta
 {
+    /** A subclass of PersonControl. This class
+     *  moves the controlled Person around a bit
+     *  quite randomly. The Person walks around
+     *  the field and evades other objects.
+     */
     class SamplePersonControl: public PersonControl
     {
         protected:
@@ -18,9 +23,19 @@ namespace Annchienta
             int mx, my;
 
         public:
+
+            /** Create a new SamplePersonControl instance
+             *  for a given person.
+             *  \param person Person to create the control for.
+             */
             SamplePersonControl( Person *person );
+
+            /** Delete this PersonControl.
+             */
             virtual ~SamplePersonControl();
 
+            /** Update the Person associated with this object.
+             */
             virtual void affect();
     };
 };

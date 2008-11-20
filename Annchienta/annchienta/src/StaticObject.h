@@ -17,22 +17,8 @@ namespace Annchienta
     class Surface;
     class Tile;
     class Mask;
-
-    #ifndef SWIG
-        struct Frame
-        {
-            char number;
-            int x1, y1, x2, y2;
-        };
-
-        struct Animation
-        {
-            char name[DEFAULT_STRING_SIZE];
-            char frames[SMALL_STRING_SIZE];
-            int numberOfFrames;
-            int speed;
-        };
-    #endif
+    class Frame;
+    class Animation;
 
     class StaticObject: public Entity
     {
@@ -51,13 +37,12 @@ namespace Annchienta
             Surface *sprite;
             Mask *mask;
 
-            std::vector<Frame> frames;
-            std::vector<Animation> animations;
+            std::vector<Frame*> frames;
+            std::vector<Animation*> animations;
             std::list<Tile*> collidingTiles;
             Tile *tileStandingOn;
 
             int currentAnimation, currentFrame, speedTimer;
-            bool animationRunning;
 
             bool passable;
 
@@ -100,8 +85,6 @@ namespace Annchienta
 
             virtual bool setAnimation( const char *animationName );
             virtual const char *getAnimation() const;
-            //virtual void stopAnimation();
-            //virtual void startAnimation();
 
             virtual void setPassable( bool value );
             virtual bool isPassable() const;
