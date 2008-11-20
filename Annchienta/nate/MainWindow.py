@@ -172,7 +172,7 @@ class MainWindow:
 
     ## Look if we should edit obstructions
     #
-    def editObstructions( self ):
+    def editObstructionsChecked( self ):
         widget = self.widgetTree.get_widget("editObstructionsCheckButton")
         return widget.get_active()
 

@@ -193,7 +193,7 @@ class MapControl:
     #
     def draw( self ):
 
-        self.mapView.draw()
+        self.mapView.draw( self.mainWindow.editObstructionsChecked() )
 
     ## Cycle to next layer
     #
