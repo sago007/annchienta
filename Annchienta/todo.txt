@@ -1,0 +1,12 @@
+####################
+# Fall of Imiryn
+####################
+
+Cave 1 and the cave before the endboss allow
+walking on water.
+
+####################
+# NATE
+####################
+
+Add obstruction and shadow editing.
