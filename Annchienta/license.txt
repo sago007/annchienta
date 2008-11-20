@@ -1,3 +1,5 @@
+LICENSE
+=======
 Copyright (c) 2007, 2008 by Jasper Van der Jeugt <jaspervdj@gmail.com>
 
 This software is provided 'as-is', without any express or implied
@@ -19,6 +21,8 @@ Permission is granted to anyone to use this software for any purpose,
 3. This notice may not be removed or altered from any source
    distribution.
 
+ELEGIAC CONVERGENCE
+===================
 The music for Elegiac Convergence, however, is not released under the above
 license, but under the Creative Commons Attribution-Noncommercial-Share
 Alike 3.0 license instead. You can find that license here:
@@ -26,4 +30,11 @@ http://creativecommons.org/licenses/by-nc-sa/3.0/us/
 The tracks were taken from the Nine Inch Nails Ghosts I-IV album, so all
 credits for the music go to Nine Inch Nails, and cheers to Trent Reznor for
 being so generous.
+
+FALL OF IMIRYN
+==============
+The music for Fall of Imiryn was created by a generous person who carries
+the nickname VyseLegend and gave permission to use it. All graphics and
+programming were done by Jasper Van der Jeugt. The fonts from the game
+are taken from the DejaVu font project, so they are not my property.
 
