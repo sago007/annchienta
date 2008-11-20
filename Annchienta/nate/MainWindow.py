@@ -170,6 +170,24 @@ class MainWindow:
         widget = self.widgetTree.get_widget("editSidesCheckButton")
         return widget.get_active()
 
+    ## Look if we should edit obstructions
+    #
+    def editObstructions( self ):
+        widget = self.widgetTree.get_widget("editObstructionsCheckButton")
+        return widget.get_active()
+
+    ## Get the obstruction type we should place
+    #
+    def getObstructionType( self ):
+        widget = self.widgetTree.get_widget("editObstructionsComboBox")
+        
+        # Create a dic to get it from
+        dic = { 0: annchienta.DefaultObstruction,
+                1: annchienta.NoObstruction,
+                2: annchienta.FullObstruction }
+
+        return dic[ int( widget.get_active() ) ]
+
     ## Set the status bar text
     #
     def setStatusBarText( self, text ):

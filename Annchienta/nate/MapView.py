@@ -54,7 +54,7 @@ class MapView:
 
     ## Draws the map
     #
-    def draw( self ):
+    def draw( self, drawObstructionGrid=False ):
 
         # Only draw if there is a map
         if self.currentMap:
@@ -72,6 +72,10 @@ class MapView:
                 self.drawSimpleGrid()
             elif self.drawGridType == self.HEIGHT_DRAW_GRID:
                 self.drawHeightGrid()
+
+            # Draw obstruction grid
+            if drawObstructionGrid:
+                self.drawObstructionGrid()
 
             self.videoManager.flip()
 
@@ -123,7 +127,6 @@ class MapView:
 
                 # Get all tilepoints, converted to screenpoints
                 tilePoints = map( lambda i: tile.getPointPointer(i).to( annchienta.ScreenPoint ), range(4) )
-
                 # Now draw lines
                 for i in range(4):
                     p1 = tilePoints[i]
@@ -131,4 +134,42 @@ class MapView:
                     self.videoManager.drawLine( p1.x, p1.y, p2.x, p2.y )
 
         self.videoManager.pop()
+
+    ## Draw an obstruction grid
+    #
+    def drawObstructionGrid( self ):
+
+        self.videoManager.push()
+
+        # Get the current layer and go to position
+        layer = self.currentMap.getCurrentLayer()
+        self.videoManager.translate( 0, -layer.getZ() )
+
+        # Loop through all tiles.
+        for y in range( layer.getHeight() ):
+            for x in range( layer.getWidth() ):
+
+                tile = layer.getTile( x, y )
+
+                # Only draw if not default 
+                if tile.getObstructionType() != annchienta.DefaultObstruction:
+
+                    # Get all tilepoints, converted to mappoints
+                    tilePoints = map( lambda i: tile.getPointPointer(i).to( annchienta.MapPoint ), range(4) )
+
+                    # Selected color based on ObstructionType
+                    if tile.getObstructionType() == annchienta.NoObstruction:
+                        self.videoManager.setColor( 0, 255, 0, 100 )
+                    else:
+                        self.videoManager.setColor( 255, 0, 0, 100 )
+
+                    # Draw a quad
+                    self.videoManager.drawQuad( tilePoints[0].x, tilePoints[0].y,
+                                                tilePoints[1].x, tilePoints[1].y,
+                                                tilePoints[2].x, tilePoints[2].y,
+                                                tilePoints[3].x, tilePoints[3].y,
+                                              )
+
+        self.videoManager.pop()
+
 

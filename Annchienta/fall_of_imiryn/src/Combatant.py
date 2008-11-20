@@ -216,7 +216,7 @@ class Combatant:
         elif "paralysed" in self.statusEffects:
             factor = 0.1
 
-        self.timer += factor * 0.015*ms* float(255+self.derivedStats["spd"])/512.0
+        self.timer += factor * 0.020 *ms* float(255+self.derivedStats["spd"])/512.0
         if self.timer >= 100.0:
             self.timer = 100.0
 

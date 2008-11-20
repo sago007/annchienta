@@ -173,6 +173,10 @@ class MapControl:
                 if self.mainWindow.editSidesChecked():
                     tile.setSideSurface( self.selectSideSurfaceWindow.getSelectedSurface() )
 
+                # Check if we have to edit obstruction types
+                if self.mainWindow.editObstructionsChecked():
+                    tile.setObstructionType( self.mainWindow.getObstructionType() )
+
                 for point in affected.getPoints():
 
                     # Check if we have to edit Z coordinates
