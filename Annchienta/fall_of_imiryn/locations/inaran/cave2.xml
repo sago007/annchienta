@@ -54,6 +54,7 @@ partyManager.changeMap( &quot;locations/inaran/cave3.xml&quot;, annchienta.Point
 </layer>
 
 <onload script="locations/inaran/onload.py"/>
+<onpostrender script="locations/inaran/onpostrender.py"/>
 
 </map>
 
