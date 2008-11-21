@@ -177,6 +177,9 @@ class MapControl:
                 if self.mainWindow.editObstructionsChecked():
                     tile.setObstructionType( self.mainWindow.getObstructionType() )
 
+                # Make tile shadowed if needed
+                tile.setShadowed( self.mainWindow.editShadowsChecked() )
+
                 for point in affected.getPoints():
 
                     # Check if we have to edit Z coordinates

@@ -176,6 +176,12 @@ class MainWindow:
         widget = self.widgetTree.get_widget("editObstructionsCheckButton")
         return widget.get_active()
 
+    ## Look if we should edit shadows
+    #
+    def editShadowsChecked( self ):
+        widget = self.widgetTree.get_widget("editShadowsCheckButton")
+        return widget.get_active()
+
     ## Get the obstruction type we should place
     #
     def getObstructionType( self ):
