@@ -170,6 +170,10 @@
         <description>Switch back/front row.</description>
         <cost mp="0"/>
     </action>
+    <action name="wait" category="top" target="0">
+        <description>Wait half a turn.</description>
+        <cost mp="0"/>
+    </action>
     <action name="flee" category="top" target="0">
         <description>Run away from battle.</description>
         <cost mp="0"/>

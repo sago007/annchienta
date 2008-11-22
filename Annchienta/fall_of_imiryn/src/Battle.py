@@ -196,7 +196,8 @@ class Battle:
                 # Put this ready ally in the back
                 self.readyAllies += [actor]
             else:
-                self.actionQueue += [ (action, actor, target) ]
+                # Last in first out
+                self.actionQueue = self.actionQueue + [ (action, actor, target) ]
                 # Make sure to reset time
                 actor.timer = 0.0
             self.menuOpen = False
@@ -207,7 +208,8 @@ class Battle:
             action, target = actor.selectAction( self )
             # An enemy can't queue twice, so check if the enemy isn't there already.
             if not len( filter( lambda a: a[1]==actor, self.actionQueue ) ):
-                self.actionQueue += [ (action, actor, target) ]
+                # Last in last out
+                self.actionQueue = [ (action, actor, target) ] + self.actionQueue
                 # Make sure to reset timer
                 actor.timer = 0.0
 
@@ -265,6 +267,8 @@ class Battle:
             self.takeFleeAction( combatant )
         elif action.name == "esuna":
             self.takeEsunaAction( combatant, target )
+        elif action.name == "wait":
+            self.takeWaitAction( combatant )
         else:
             # If we reach this point, we're dealing with a generic action.
             self.takeGenericAction( action, combatant, target )
@@ -413,8 +417,8 @@ class Battle:
             self.lines += ["You cannot flee from this battle!"]
             return
 
-        # 0.6% chance to run away
-        if self.mathManager.randFloat() < 0.6:
+        # 75% chance to run away
+        if self.mathManager.randFloat() < 0.75:
             self.running = False
 
         else:
@@ -431,6 +435,13 @@ class Battle:
         effect = target.statusEffects[ self.mathManager.randInt( 0, len(target.statusEffects) ) ]
         self.lines += [combatant.name.capitalize()+" cures "+target.name.capitalize()+" from "+effect+"!"]
         target.statusEffects.remove( effect )
+
+    ## Does nothing, really
+    #
+    def takeWaitAction( self, combatant ):
+
+        # Speed up a little
+        combatant.timer = 50.0
 
     ## Plays the animation for the given parameters
     #  This calls to playXAnimation, where X depends on the action

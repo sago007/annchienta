@@ -31,6 +31,8 @@ if not partyManager.hasRecord( "inaran_intro" ):
     sceneManager.text( "This Empire was protected by a very fine and well-trained army. The elite section of this army was called the Fifth Guard.", None )
     sceneManager.text( "Our story handles about three aspiring young warriors, hoping to join this Fifth Guard.", None )
 
+    sceneManager.fade( 255, 255, 255 )
+
     sceneManager.speak( march, "It must be here." )
     sceneManager.speak( august, "March is a strange guy... wandering the world with only one arm. He doesn't want to tell us when he lost the other one.", True )
     sceneManager.speak( august, "In fact... he doesn't say a lot at all. But when he says something... it's usually correct.", True )

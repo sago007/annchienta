@@ -86,9 +86,12 @@ class Inventory:
             
     def removeItem( self, itemName ):
 
-        self.dictionary[ itemName ] -= 1
-        if self.dictionary[ itemName ] <= 0:
-            del self.dictionary[ itemName ]
+        if not self.hasItem( itemName ):
+            self.logManager.warning( "Inventory.removeItem called with item that is not inventory: %s", itemName )
+        else:
+            self.dictionary[ itemName ] -= 1
+            if self.dictionary[ itemName ] <= 0:
+                del self.dictionary[ itemName ]
 
     def useItemOn( self, itemName, target ):
 
