@@ -187,7 +187,18 @@ class Battle:
             self.running = False
             return
 
-        # Let allies take actions
+        # Update actionqueue
+        while self.running and len(self.actionQueue) and not self.actionInProgress and not self.menuOpen:
+            self.actionInProgress = True
+            action, actor, target = self.actionQueue.pop()
+            # Check if the target and actor still exist
+            if actor in self.combatants:
+                # If this attack doesn't need a target or the target is alive.
+                if (not target or target in self.combatants) and (actor in self.combatants):
+                    self.takeAction( action, actor, target )
+            self.actionInProgress = False
+
+        # Let allies choose actions
         if (not self.menuOpen) and len(self.readyAllies) and not self.actionInProgress:
             self.menuOpen = True
             actor = self.readyAllies.pop(0)
@@ -196,33 +207,22 @@ class Battle:
                 # Put this ready ally in the back
                 self.readyAllies += [actor]
             else:
-                # Last in first out
-                self.actionQueue = self.actionQueue + [ (action, actor, target) ]
+                # First in first out
+                self.actionQueue = self.actionQueue + [ (action, actor, target ) ]
                 # Make sure to reset time
                 actor.timer = 0.0
             self.menuOpen = False
         
-        # Let enemies take actions
-        if len(self.readyEnemies):
+        # Let enemies choose actions
+        if len(self.readyEnemies) and not self.actionInProgress:
             actor = self.readyEnemies.pop(0)
             action, target = actor.selectAction( self )
             # An enemy can't queue twice, so check if the enemy isn't there already.
             if not len( filter( lambda a: a[1]==actor, self.actionQueue ) ):
-                # Last in last out
+                # First in first out
                 self.actionQueue = [ (action, actor, target) ] + self.actionQueue
                 # Make sure to reset timer
                 actor.timer = 0.0
-
-        # Update actionqueue
-        if len(self.actionQueue) and not self.actionInProgress and not self.menuOpen:
-            self.actionInProgress = True
-            action, actor, target = self.actionQueue.pop()
-            # Check if the target and actor still exist
-            if actor in self.combatants:
-                # If this attack doesn't need a target or the target is alive.
-                if not target or target in self.combatants:
-                    self.takeAction( action, actor, target )
-            self.actionInProgress = False
 
     ## Draws the battle to the screen.
     #
