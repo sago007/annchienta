@@ -48,6 +48,9 @@ partyManager.changeMap( &quot;locations/inaran/cave2.xml&quot;, annchienta.Point
 <!-- Treasure chest. -->
 <chest item="scepter" tilex="19" tiley="4"/>
 
+<!-- Save crystal. -->
+<staticobject name="crystal" config="locations/common/crystal.xml" tilex="6" tiley="23"/>
+
 <!-- Way to cave4. -->
 <area tilex1="2" tilex2="5" tiley1="0" tiley2="2">
 import annchienta, PartyManager
