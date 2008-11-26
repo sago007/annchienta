@@ -375,7 +375,8 @@ namespace Annchienta
         /* Restrict box blur to given rectangle. */
         setClippingRectangle( x1, y1, x2, y2 );
 
-        /* Revert the scaling we set. */
+        /* Revert the scaling we set... Too bad grabBuffer won't take
+         * it into account by default. */
         scale( 1.0f/(GLfloat)videoScale, 1.0f/(GLfloat)videoScale );
 
         /* Caluculate various parameters. */
@@ -396,6 +397,8 @@ namespace Annchienta
 
                 /* Draw the buffer stretched to position. */
                 drawSurface( backBuffers[0], (x1+x)*videoScale, (y1+y)*videoScale, 0, 0, (x2-x1)*videoScale, (y2-y1)*videoScale );
+
+                /* Every time, we increase our alpha value. */
                 alpha += alphaInc;
             }
         }

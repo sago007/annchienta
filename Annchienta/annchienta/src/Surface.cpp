@@ -204,13 +204,18 @@ namespace Annchienta
         {
             for( unsigned int x=0; x<png_width; x++ )
             {
+                /* Get the correct row. */
                 png_byte *row = row_pointers[y];
+
+                /* The first byte offset */
                 unsigned int firstByte = x * pixelSize;
+
+                /* Kind of 'mirror' around the x-axis now. */
                 int my = glHeight - y - 1;
+
+                /* Set all the bytes. */
                 for( int b=0; b<pixelSize; b++ )
-                {
                     pixels[ glWidth*pixelSize*my + x*pixelSize + b ] = row[ firstByte + b ];
-                }
             }
         }
     

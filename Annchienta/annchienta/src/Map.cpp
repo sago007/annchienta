@@ -100,9 +100,11 @@ namespace Annchienta
                     }
                     if( !strcmp("tiles", xml->getNodeName()) )
                     {
+                        /* Read to the node and get the (text) data from it. */
                         xml->read();
                         std::stringstream data( xml->getNodeData() );
 
+                        /* Allocate some room for the tiles. */
                         Tile **tiles = new Tile*[width*height];
 
                         for( int y=0; y<height; y++ )
@@ -114,6 +116,7 @@ namespace Annchienta
                                 int sideSurfaceOffset;
                                 int sideSurface;
 
+                                /* Simply use tile coordinates. */
                                 points[0].y = points[3].y = y;
                                 points[1].y = points[2].y = y+1;
                                 points[0].x = points[1].x = x;
@@ -552,6 +555,7 @@ namespace Annchienta
 
         sortedLayers = new Layer*[layers.size()+1];
 
+        /* A kind of count sort algorithm. */
         unsigned int i=0;
         for( int z=0; i<layers.size(); z++ )
         {
