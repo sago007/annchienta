@@ -51,6 +51,13 @@ partyManager.changeMap( &quot;locations/unknown/beach_start.xml&quot;, annchient
     <staticobject name="flints" config="locations/unknown/flints.xml" tilex="8" tiley="25"/>
 </if>
 
+<!-- Some bushes. -->
+<staticobject name="bush" config="locations/unknown/bush1.xml" tilex="28" tiley="22" />
+<staticobject name="bush" config="locations/unknown/bush1.xml" tilex="27" tiley="29" />
+<staticobject name="bush" config="locations/unknown/bush1.xml" tilex="17" tiley="28" />
+<staticobject name="bush" config="locations/unknown/bush1.xml" tilex="5" tiley="26" />
+<staticobject name="bush" config="locations/unknown/bush1.xml" tilex="2" tiley="14" />
+
 <!-- A lot of palm trees. -->
 <staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="5" tiley="16"/>
 <staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="13" tiley="23"/>
