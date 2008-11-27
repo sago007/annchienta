@@ -51,6 +51,13 @@ partyManager.changeMap( &quot;locations/inaran/cave2.xml&quot;, annchienta.Point
 <!-- Save crystal. -->
 <staticobject name="crystal" config="locations/common/crystal.xml" tilex="6" tiley="23"/>
 
+<!-- A stalagmite. -->
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="17" tiley="16"/>
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="14" tiley="14"/>
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="10" tiley="12"/>
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="6" tiley="9"/>
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="5" tiley="7"/>
+
 <!-- Way to cave4. -->
 <area tilex1="2" tilex2="5" tiley1="0" tiley2="2">
 import annchienta, PartyManager

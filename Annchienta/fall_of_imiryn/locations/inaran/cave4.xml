@@ -41,6 +41,12 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/inaran/cave3.xml&quot;, annchienta.Point( annchienta.TilePoint, 4, 3 ) )
 </area>
 
+<!-- A stalagmite. -->
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="6" tiley="25"/>
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="9" tiley="21"/>
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="17" tiley="12"/>
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="12" tiley="8"/>
+
 <!-- A crystal to save our game. -->
 <staticobject config="locations/common/crystal.xml" name="crystal" tilex="7" tiley="3"/>
 
