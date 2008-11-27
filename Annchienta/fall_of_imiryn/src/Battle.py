@@ -133,6 +133,29 @@ class Battle:
         for i in range(len(self.enemies)):
             self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-120+20*i, 75+(i+1)*30 )
     
+    ## Check if we won or if the battle is over
+    #
+    def checkBattleFinished( self ):
+        # Are all enemies dead? 'cause we win if they are
+        # Then again, are we dead?
+        if not len(self.enemies) or not len(self.allies):
+            if len(self.allies):
+                # We won!
+                self.won = True
+                self.sceneManager.text("Victorious! Gained "+str(self.xp)+" xp!", None)
+                for ally in self.allies:
+                    ally.addXp( self.xp )
+                # Revive dead combatants
+                for ally in self.partyManager.team:
+                    if ally.healthStats["hp"] <= 1:
+                        ally.addHp( ally.healthStats["mhp"]/7 )
+            else:
+                self.won = False
+                self.sceneManager.gameOver()
+                self.mapManager.stop()
+            self.running = False
+            return
+
     ## We have to be very careful in this function because it
     #  might very well recurse. That's why we need booleans to
     #  ensure some things are not executed in the same time,
@@ -142,7 +165,7 @@ class Battle:
         if updateInputManagerToo:
             self.inputManager.update()
         
-        if not self.inputManager.running():
+        if not self.inputManager.running() or not self.running:
             self.running = False
             return
         
@@ -166,29 +189,13 @@ class Battle:
 
         # Update lists
         self.updateCombatantLists()
-        
-        # Are all enemies dead? 'cause we win if they are
-        # Then again, are we dead?
-        if not len(self.enemies) or not len(self.allies):
-            if len(self.allies):
-                # We won!
-                self.won = True
-                self.sceneManager.text("Victorious! Gained "+str(self.xp)+" xp!", None)
-                for ally in self.allies:
-                    ally.addXp( self.xp )
-                # Revive dead combatants
-                for ally in self.partyManager.team:
-                    if ally.healthStats["hp"] <= 1:
-                        ally.addHp( ally.healthStats["mhp"]/7 )
-            else:
-                self.won = False
-                self.sceneManager.gameOver()
-                self.mapManager.stop()
-            self.running = False
-            return
 
+        # Check if battle is finished
+        self.checkBattleFinished()
+        
         # Update actionqueue
         while self.running and len(self.actionQueue) and not self.actionInProgress and not self.menuOpen:
+
             self.actionInProgress = True
             action, actor, target = self.actionQueue.pop()
             # Check if the target and actor still exist
@@ -198,8 +205,12 @@ class Battle:
                     self.takeAction( action, actor, target )
             self.actionInProgress = False
 
+            self.removeDeadCombatants()
+            self.updateCombatantLists()
+            self.checkBattleFinished()
+
         # Let allies choose actions
-        if (not self.menuOpen) and len(self.readyAllies) and not self.actionInProgress:
+        if self.running and (not self.menuOpen) and len(self.readyAllies) and not self.actionInProgress:
             self.menuOpen = True
             actor = self.readyAllies.pop(0)
             action, target = actor.selectAction( self )
@@ -214,7 +225,7 @@ class Battle:
             self.menuOpen = False
         
         # Let enemies choose actions
-        if len(self.readyEnemies) and not self.actionInProgress:
+        if self.running and len(self.readyEnemies) and not self.actionInProgress:
             actor = self.readyEnemies.pop(0)
             action, target = actor.selectAction( self )
             # An enemy can't queue twice, so check if the enemy isn't there already.
