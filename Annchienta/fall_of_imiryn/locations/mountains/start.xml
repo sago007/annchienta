@@ -58,8 +58,8 @@ partyManager = PartyManager.getPartyManager()
 battleManager = BattleManager.getBattleManager()
 annchienta.getAudioManager().playMusic( &quot;music/mountains.ogg&quot;)
 annchienta.getVideoManager().setClearColor(147,201,233)
-BattleManager.enemiesInMap = []
-BattleManager.background = None
+battleManager.enemiesInMap = []
+battleManager.background = None
 </onload>
 
 </map>
