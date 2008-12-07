@@ -332,9 +332,9 @@ class PartyManager:
         self.changeMap( self.currentMap.getFileName(), pos, 0, False )
 
     def heal( self ):
-        for c in self.team:
-            c.healthStats["hp"] = c.healthStats["mhp"]
-            c.healthStats["mp"] = c.healthStats["mmp"]
+        for combatant in self.team:
+            combatant.setHp( combatant.getMaxHp() )
+            combatant.setMp( combatant.getMaxMp() )
 
 def initPartyManager():
     global globalPartyManagerInstance

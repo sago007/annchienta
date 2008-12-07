@@ -96,14 +96,14 @@ class Inventory:
     def useItemOn( self, itemName, target ):
 
         if itemName=="potion":
-            target.addHp( 100 )
+            target.setHp( target.getHp() + 100 )
 
         elif itemName=="eyedrops":
             if "blinded" in target.statusEffects:
                 target.statusEffects.remove( "blinded" )
 
         elif itemName=="tincture":
-            target.addMp( 30 )
+            target.setMp( target.getMp() + 30 )
 
         elif itemName=="feather":
             if "slowed" in target.statusEffects:
@@ -112,14 +112,14 @@ class Inventory:
                 target.statusEffects += ["hasted"]
 
         elif itemName=="grenade":
-            target.addHp( -120 )
+            target.setHp( target.getHp() - 120 )
         
         elif itemName=="oil":
             if "paralysed" in target.statusEffects:
                 target.statusEffects.remove( "paralysed" )
 
         elif itemName=="hi-potion":
-            target.addHp( 350 )
+            target.setHp( target.getHp() + 350 )
 
         self.removeItem( itemName )
 

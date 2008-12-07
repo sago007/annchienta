@@ -58,7 +58,7 @@ class PartyMenu( Menu.Menu ):
         self.videoManager.drawString( self.sceneManager.defaultFont, "Current weapon: "+self.combatant.weapon.name.capitalize(), 0, 0 )
 
         self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
-        self.videoManager.drawString( self.sceneManager.defaultFont, "HP: "+str(self.combatant.healthStats["hp"])+"/"+str(self.combatant.healthStats["mhp"])+" MP: "+str(self.combatant.healthStats["mp"])+"/"+str(self.combatant.healthStats["mmp"]), 0, 0 )
+        self.videoManager.drawString( self.sceneManager.defaultFont, "HP: "+str(self.combatant.getHp())+"/"+str(self.combatant.getMaxHp*())+" MP: "+str(self.combatant.getMp())+"/"+str(self.combatant.getMaxMp()), 0, 0 )
 
         self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
         text = reduce( lambda a,b:a+' '+b, map( lambda a: a.upper()+": "+str( self.combatant.derivedStats[a]), self.combatant.derivedStats.keys() ) )

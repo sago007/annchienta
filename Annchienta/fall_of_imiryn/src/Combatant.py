@@ -184,23 +184,45 @@ class Combatant:
         lvl = self.level["lvl"]
         return 5 * (mat + lvl)
 
-    ## Adds health points to this combatant.
-    #  \param health Health to be added. Can be negative.
-    def addHp( self, health ):
-        self.healthStats["hp"] += health
+    ## Set health points for this combatant.
+    #  \param health New health for this combatant.
+    def setHp( self, hp ):
+        self.healthStats["hp"] = hp
+        # Cap the value
         if self.healthStats["hp"]<0:
             self.healthStats["hp"] = 0
         if self.healthStats["hp"]>self.healthStats["mhp"]:
             self.healthStats["hp"] = self.healthStats["mhp"]
 
-    ## Adds magic points to this combatant.
-    #  \param mp Magic points to be added. Can be negative.
-    def addMp( self, mp ):
-        self.healthStats["mp"] += mp
+    ## Get the hp for this combatant.
+    #  \return This comabatant's hp.
+    def getHp( self ):
+        return self.healthStats["hp"]
+
+    ## Get the amount of maximum hp.
+    #  \return This combatant's max hp.
+    def getMaxHp( self ):
+        return self.healthStats["mhp"]
+
+    ## Sets magic points for this combatant.
+    #  \param mp New Magic points for this combatant
+    def setMp( self, mp ):
+        self.healthStats["mp"] = mp
+        # Cap it.
         if self.healthStats["mp"]<0:
             self.healthStats["mp"] = 0
         if self.healthStats["mp"]>self.healthStats["mmp"]:
             self.healthStats["mp"] = self.healthStats["mmp"]
+
+    ## Get the mp for this combatant
+    #  \return This combatant's mp.
+    def getMp( self ):
+        return self.healthStats["mp"]
+
+    ## Get the amount of maximum mp.
+    #  \return This combatant's max mp.
+    def getMaxMp( self ):
+        return self.healthStats["mmp"]
 
     ## Updates this combatant this includes updating his
     #  ATB gauge, his appearance...

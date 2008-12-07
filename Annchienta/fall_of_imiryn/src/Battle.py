@@ -88,7 +88,7 @@ class Battle:
         for combatant in self.combatants:
 
             # Check if the target died
-            if combatant.healthStats["hp"] <= 0 and not self.actionInProgress:
+            if combatant.getHp() <= 0 and not self.actionInProgress:
 
                 # Add experience if we killed an enemy
                 if not combatant.ally:
@@ -147,8 +147,8 @@ class Battle:
                     ally.addXp( self.xp )
                 # Revive dead combatants
                 for ally in self.partyManager.team:
-                    if ally.healthStats["hp"] <= 1:
-                        ally.addHp( ally.healthStats["mhp"]/7 )
+                    if ally.getHp() <= 1:
+                        ally.setHp( ally.getMaxHp()/7 )
             else:
                 self.won = False
                 self.sceneManager.gameOver()
@@ -354,13 +354,13 @@ class Battle:
                     self.lines += [ target.name.capitalize()+" is now "+action.statusEffect+"!" ]
 
             # Finally, do damage to damaged ones
-            target.addHp( -damage )
+            target.setHp( target.getHp() - damage )
 
         else:
             self.lines += [ combatant.name.capitalize()+" misses!" ]
 
         # That took some effort, rest and get mp
-        combatant.healthStats["mp"] -= action.cost
+        combatant.setMp( combatant.getMp() - action.cost )
 
         # Damage animation only if hit
         if hit:

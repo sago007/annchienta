@@ -95,7 +95,7 @@ class Ally( Combatant.Combatant ):
             action = found[0]
 
             # Check if there is enough mp
-            if self.healthStats["mp"] < action.cost:
+            if self.getMp() < action.cost:
                 battle.lines += [self.name.capitalize()+" doesn't have enough MP!"]
                 return None, None
         
@@ -143,10 +143,10 @@ class Ally( Combatant.Combatant ):
         self.videoManager.drawString( self.sceneManager.largeItalicsFont, self.name.capitalize(), self.sceneManager.margin, -3 )
         
         # Draw the combatant's hp
-        self.videoManager.drawString( self.sceneManager.largeItalicsFont, str(self.healthStats["hp"])+"/"+str(self.healthStats["mhp"])+"HP", int(self.videoManager.getScreenWidth()*0.4)+self.sceneManager.margin, -3 )
+        self.videoManager.drawString( self.sceneManager.largeItalicsFont, str(self.getHp())+"/"+str(self.getMaxHp())+"HP", int(self.videoManager.getScreenWidth()*0.4)+self.sceneManager.margin, -3 )
         
         # Draw the combatant's mp
-        self.videoManager.drawStringRight( self.sceneManager.largeItalicsFont, str(self.healthStats["mp"])+"MP", self.videoManager.getScreenWidth()-self.sceneManager.margin, -3 )
+        self.videoManager.drawStringRight( self.sceneManager.largeItalicsFont, str(self.getMp())+"MP", self.videoManager.getScreenWidth()-self.sceneManager.margin, -3 )
         
         self.videoManager.pop()
 

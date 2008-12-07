@@ -28,7 +28,7 @@ class Enemy( Combatant.Combatant ):
     def selectAction( self, battle ):
     
         # Select an action
-        actions = filter( lambda a: a.cost <= self.healthStats["mp"], self.actions )
+        actions = filter( lambda a: a.cost <= self.getMp(), self.actions )
         action = self.actions[ self.mathManager.randInt( 0, len(self.actions) ) ]
 
         # Select a target
