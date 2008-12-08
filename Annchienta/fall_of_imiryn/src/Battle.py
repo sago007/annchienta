@@ -91,7 +91,7 @@ class Battle:
             if combatant.getHp() <= 0 and not self.actionInProgress:
 
                 # Add experience if we killed an enemy
-                if not combatant.ally:
+                if not combatant.isAlly():
                     self.xp += combatant.dropXp
                     if combatant.dropItem:
                         if self.mathManager.randFloat() < combatant.dropRate:
@@ -117,8 +117,8 @@ class Battle:
         # Sort combatant based on y (virtual z)
         self.combatants.sort( lambda c1, c2: int(c1.position.y - c2.position.y) )
 
-        self.allies = filter( lambda q: q.ally, self.combatants )
-        self.enemies = filter( lambda q: not q.ally, self.combatants )
+        self.allies = filter( lambda q: q.isAlly(), self.combatants )
+        self.enemies = filter( lambda q: not q.isAlly(), self.combatants )
         self.readyEnemies = filter( lambda q: q.timer >= 100.0, self.enemies )
         self.readyAllies = filter( lambda q: q.timer >= 100.0, self.allies )
     
@@ -306,8 +306,8 @@ class Battle:
         damage *= action.factor
         
         # Take the target's defense into account
-        defense = target.derivedStats[ "def" if action.type == "physical" else "mdf" ]
-        damage *= ( (512.0 - target.derivedStats["def"])/512.0 )
+        defense = target.getDefense() if action.type == "physical" else target.getMagicDefense()
+        damage *= ( (512.0 - target.derivedStats[ defense ])/512.0 )
     
         # Elemental properties now
         for element in action.elemental:
@@ -316,7 +316,7 @@ class Battle:
                 if action.elemental[element]:
                     # Multiply damage by the factor the
                     # target has set for it
-                    damage *= target.derivedElemental[element]
+                    damage *= target.getElementalFactor( element )
     
         # Round it
         damage = int(damage)
@@ -375,7 +375,7 @@ class Battle:
         self.playAttackAnimation( combatant, target )
 
         # Allies have no item to be stolen
-        if not target.ally:
+        if not target.isAlly():
 
             # Only if enemy is carrying an item
             if target.steal:
@@ -413,10 +413,10 @@ class Battle:
         position = annchienta.Vector( combatant.position )
         if combatant.row == "front":
             combatant.row = "back"
-            position.x += -rowDeltaX if combatant.ally else rowDeltaX
+            position.x += -rowDeltaX if combatant.isAlly() else rowDeltaX
         else:
             combatant.row = "front"
-            position.x += rowDeltaX if combatant.ally else -rowDeltaX
+            position.x += rowDeltaX if combatant.isAlly() else -rowDeltaX
         self.lines += [combatant.name.capitalize()+" moves to the "+combatant.row+" row!"]
         self.playMoveAnimation( combatant, position )
 
@@ -490,7 +490,7 @@ class Battle:
         origPosition = annchienta.Vector( combatant.position )
         position = annchienta.Vector( target.position )
         dx = ( target.width/2 + combatant.width/2 )
-        dx = dx if target.ally else -dx
+        dx = dx if target.isAlly() else -dx
         position.x += dx
         self.playMoveAnimation( combatant, position )
 
@@ -531,6 +531,6 @@ class Battle:
     def playDieAnimation( self, combatant ):
 
         position = annchienta.Vector( combatant.position )
-        position.x -= 30 if combatant.ally else -30
+        position.x -= 30 if combatant.isAlly() else -30
         self.playMoveAnimation( combatant, position )
 

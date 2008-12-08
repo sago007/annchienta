@@ -11,6 +11,16 @@ class Ally( Combatant.Combatant ):
         
         # References
         self.partyManager = PartyManager.getPartyManager()
+        self.logManager   = annchienta.getLogManager()
+    
+        # Get our weapon
+        weaponElements = xmlElement.getElementsByTagName("weapon")
+        if len(weaponElements):
+            # Get the weapon name and search for the corresponding element
+            weaponName = str(weaponElements[0].getAttribute("name"))
+            self.setWeapon( weaponName )
+        else:
+            self.logManager.warning( "No Weapon defined for Ally!" )
     
         # Create a dictionary describing the level grades
         self.grades = {}
@@ -26,10 +36,34 @@ class Ally( Combatant.Combatant ):
         for i in range( len(words)/2 ):
             self.learn[ int( words[i*2] ) ] = words[i*2+1]
 
-        # Variables
-        self.ally = True
-
         self.buildMenu()
+
+    def isAlly( self ):
+        return True
+    
+    def getAttack( self ):
+        return Combatant.Combatant.getAttack(self) + weapon.getAttack()
+
+    def getDefense( self ):
+        return Combatant.Combatant.getDefense(self) + weapon.getDefense()
+
+    def getMagicAttack( self ):
+        return Combatant.Combatant.getMagicAttack(self) + weapon.getMagicAttack()
+
+    def getMagicDefense( self ):
+        return Combatant.Combatant.getMagicDefense(self) + weapon.getMagicDefense()
+
+    def getSpeed( self ):
+        return Combatant.Combatant.getSpeed(self) + weapon.getSpeed()
+
+    def getElementalFactor( self, element ):
+        return weapon.getElementalFactor( element )
+
+    def setWeapon( self, weaponName ):
+
+        partyManager = PartyManager.getPartyManager()
+        inventory = partyManager.inventory
+        self.weapon = inventory.getWeapon( weaponName )
 
     ## Create a menu with all options this Ally
     #  can use in battle.

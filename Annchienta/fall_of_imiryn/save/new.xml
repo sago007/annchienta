@@ -13,7 +13,7 @@
                  -->
             <grades att="3" mat="3" def="2" mdf="2" spd="1" mhp="35" mmp="8"/>
             <!-- Stats without the weapon. Capped at 100. -->
-            <primarystats att="1" mat="1" def="2" mdf="2" spd="3"/>
+            <stats att="1" mat="1" def="2" mdf="2" spd="3"/>
             <healthstats hp="74" mmp="8" mp="8" mhp="74"/>
             <weapon name="shortsword"/>
             <actions>attack steal row wait flee</actions>
@@ -23,7 +23,7 @@
         <combatant name="avril">
             <level lvl="1" xp="0"/>
             <grades att="5" mat="1" def="4" mdf="1" spd="3" mhp="30" mmp="10"/>
-            <primarystats att="1" mat="3" def="1" mdf="3" spd="2"/>
+            <stats att="1" mat="3" def="1" mdf="3" spd="2"/>
             <healthstats hp="68" mmp="25" mp="25" mhp="68"/>
             <weapon name="stave"/>
             <actions>attack cure row wait flee</actions>
@@ -33,7 +33,7 @@
         <combatant name="march">
             <level lvl="1" xp="0"/>
             <grades att="1" mat="5" def="1" mdf="3" spd="4" mhp="40" mmp="7"/>
-            <primarystats att="3" mat="1" def="3" mdf="1" spd="1"/>
+            <stats att="3" mat="1" def="3" mdf="1" spd="1"/>
             <healthstats hp="80" mmp="10" mp="10" mhp="80"/>
             <weapon name="broadsword"/>
             <actions>attack row wait flee</actions>

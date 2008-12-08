@@ -1,12 +1,13 @@
 import annchienta
 import xml.dom.minidom
+import BattleEntity
 import Weapon, Action
 import SceneManager, PartyManager
 
 ## Defines a combatant who takes part in a battle. BaseCombatant only
 #  describes the mechanics part, Combatant also handles the drawing etc.
 #
-class Combatant:
+class Combatant( BattleEntity.BattleEntity ):
 
     # Where we should get the weapons from
     # weaponsLocation = "battle/weapons.xml"
@@ -18,6 +19,9 @@ class Combatant:
     actionsXmlFile = xml.dom.minidom.parse( actionsLocation )
 
     def __init__( self, xmlElement ):
+
+        # Call super constructor
+        BattleEntity.BattleEntity.__init__( self, xmlElement )
     
         # We need to log stuff
         self.logManager = annchienta.getLogManager()
@@ -37,26 +41,11 @@ class Combatant:
         for k in levelElement.attributes.keys():
             self.level[k] = int(levelElement.attributes[k].value)
 
-        # Create a dictionary describing the primary stats
-        self.primaryStats = {}
-        primaryStatsElement = xmlElement.getElementsByTagName("primarystats")[0]
-        for k in primaryStatsElement.attributes.keys():
-            self.primaryStats[k] = int(primaryStatsElement.attributes[k].value)
-    
         # Create a dictionary describing the health stats
         self.healthStats = {}
         healthStatsElement = xmlElement.getElementsByTagName("healthstats")[0]
         for k in healthStatsElement.attributes.keys():
             self.healthStats[k] = int(healthStatsElement.attributes[k].value)
-    
-        # Get our weapon (if there is one! enemies usually have no weapons)
-        weaponElements = xmlElement.getElementsByTagName("weapon")
-        if len(weaponElements):
-            # Get the weapon name and search for the corresponding element
-            weaponName = str(weaponElements[0].getAttribute("name"))
-            self.setWeapon( weaponName )
-        else:
-            self.weapon = 0
     
         # Get all possible actions. The actual actions are in the first child
         # of the element, hence the code. <actions> action1 action2 </actions>
@@ -110,6 +99,10 @@ class Combatant:
         self.statusEffectTimer = 0.0
 
         self.reset()
+
+    # Prototype, must be overwritten
+    def isAlly( self ):
+        return True
     
     # Must be called before every battle
     def reset( self ):
@@ -148,14 +141,6 @@ class Combatant:
         else:
             self.derivedElemental = dict(self.primaryElemental)
     
-    def setWeapon( self, weaponName ):
-
-        partyManager = PartyManager.getPartyManager()
-        inventory = partyManager.inventory
-
-        self.weapon = inventory.getWeapon( weaponName )
-        self.generateDerivedStats()
-
     ## Adds an action to this combatant so he can
     #  use it in battle.
     #  \param actionName The name of the action to be added.
@@ -173,14 +158,14 @@ class Combatant:
     ## Calculates base damage for physical attacks
     #  \return Basedamage.
     def physicalBaseDamage( self ):
-        att = self.derivedStats["att"]
+        att = self.getAttack()
         lvl = self.level["lvl"]
         return att + int( float(att + lvl) / 32.0 ) * int( float(att * lvl) / 32.0 )
         
     ## Calculates base damage for magical attacks
     #  \return Basedamage.
     def magicalBaseDamage( self ):
-        mat = self.derivedStats["mat"]
+        mat = self.getMagicAttack()
         lvl = self.level["lvl"]
         return 5 * (mat + lvl)
 
@@ -309,7 +294,7 @@ class Combatant:
         # Status effects
         if len(self.statusEffects):    
             effect = self.statusEffects[ int(self.statusEffectTimer) % len(self.statusEffects) ]
-            if self.ally:
+            if self.isAlly():
                 self.videoManager.drawStringRight( self.sceneManager.defaultFont, effect, -self.width/2, -self.height/2 )
             else:
                 self.videoManager.drawString( self.sceneManager.defaultFont, effect, self.width/2, -self.height/2 )

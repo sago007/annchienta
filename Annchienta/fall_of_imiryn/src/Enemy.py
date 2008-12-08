@@ -8,9 +8,6 @@ class Enemy( Combatant.Combatant ):
         # Base constructor
         Combatant.Combatant.__init__( self, xmlElement )
         
-        # Variables
-        self.ally = False
-
         # We need a drop element for enemies
         dropElement = xmlElement.getElementsByTagName("drop")[0]
         self.dropXp = int( dropElement.getAttribute("xp") )
@@ -23,6 +20,9 @@ class Enemy( Combatant.Combatant ):
             self.steal = str( dropElement.getAttribute("steal") )
         else:
             self.steal = None
+
+    def isAlly( self ):
+        return False
 
     # Enemies perform a random action for now
     def selectAction( self, battle ):
