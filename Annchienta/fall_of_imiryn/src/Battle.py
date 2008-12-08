@@ -334,11 +334,11 @@ class Battle:
         rate = action.hit
         # ... is influenced by blindness (but only on physical attacks)
         if action.type == "physical":
-            if "blinded" in combatant.statusEffects:
+            if combatant.hasStatusEffect( "blinded" ):
                 rate /= 2.0
 
             # We also have double damage on injured units.
-            if "injured" in combatant.statusEffects:
+            if combatant.hasStatusEffect( "injured" ):
                 damage *= 2
 
         hit = self.mathManager.randFloat() <= rate
@@ -348,9 +348,9 @@ class Battle:
 
         if hit:
             # Check for status effects
-            if action.statusEffect!="none" and action.statusEffect not in target.statusEffects:
+            if action.statusEffect!="none" and not target.hasStatusEffect( action.statusEffect ):
                 if self.mathManager.randFloat() <= action.statusHit:
-                    target.statusEffects += [action.statusEffect]
+                    target.addStatusEffect( action.statusEffect )
                     self.lines += [ target.name.capitalize()+" is now "+action.statusEffect+"!" ]
 
             # Finally, do damage to damaged ones
@@ -439,13 +439,13 @@ class Battle:
     #
     def takeEsunaAction( self, combatant, target ):
         
-        if not len(target.statusEffects):
-            self.lines += [target.name.capitalize()+" is not suffering from status effects!"]
-            return
+        removedStatusEffect = target.removeStatusEffect()
 
-        effect = target.statusEffects[ self.mathManager.randInt( 0, len(target.statusEffects) ) ]
-        self.lines += [combatant.name.capitalize()+" cures "+target.name.capitalize()+" from "+effect+"!"]
-        target.statusEffects.remove( effect )
+        if not removedStatusEffect:
+            self.lines += [target.name.capitalize()+" is not suffering from status effects!"]
+
+        else:
+            self.lines += [combatant.name.capitalize()+" cures "+target.name.capitalize()+" from "+removedStatusEffect+"!"]
 
     ## Does nothing, really
     #

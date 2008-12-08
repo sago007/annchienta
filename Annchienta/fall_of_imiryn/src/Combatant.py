@@ -224,6 +224,33 @@ class Combatant:
     def getMaxMp( self ):
         return self.healthStats["mmp"]
 
+    ## Add a certain status effect to this combatant.
+    #  \param statusEffect Status effect to be added.
+    def addStatusEffect( self, statusEffect ):
+        if statusEffect not in self.statusEffects:
+            self.statusEffects.append( statusEffect )
+
+    ## Remove a certain status effect from this combatant.
+    #  \param statusEffect Status effect to be removed. When not specified, the first status effect will be removed.
+    #  \return The name of the removed status effect.
+    def removeStatusEffect( self, statusEffect=None ):
+        if statusEffect is None:
+            if len(self.statusEffects)>0:
+                toRemove = self.statusEffects[0]
+                self.statusEffects.remove( toRemove )
+                return toRemove
+
+        elif hasStatusEffect( statusEffect ):
+            self.statusEffects.remove( statusEffect )
+            return statusEffect
+
+        return None
+
+    ## See if this combatant has a certain status.
+    #  \return If the combatant has this status.
+    def hasStatusEffect( self, statusEffect ):
+        return statusEffect in self.statusEffects
+
     ## Updates this combatant this includes updating his
     #  ATB gauge, his appearance...
     #  \param ms Milliseconds past since last update.
@@ -231,11 +258,11 @@ class Combatant:
         
         factor = 1.0
         # Slow/haste
-        if "slowed" in self.statusEffects:
+        if self.hasStatusEffect( "slowed" ):
             factor = 0.5
-        elif "hasted" in self.statusEffects:
+        elif self.hasStatusEffect( "hasted" ):
             factor = 1.7
-        elif "paralysed" in self.statusEffects:
+        elif self.hasStatusEffect( "paralysed" ):
             factor = 0.1
 
         self.timer += factor * 0.020 *ms* float(255+self.derivedStats["spd"])/512.0

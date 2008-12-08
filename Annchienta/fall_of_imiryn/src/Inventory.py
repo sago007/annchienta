@@ -100,23 +100,23 @@ class Inventory:
 
         elif itemName=="eyedrops":
             if "blinded" in target.statusEffects:
-                target.statusEffects.remove( "blinded" )
+                target.removeStatusEffect( "blinded" )
 
         elif itemName=="tincture":
             target.setMp( target.getMp() + 30 )
 
         elif itemName=="feather":
             if "slowed" in target.statusEffects:
-                target.statusEffects.remove( "slowed" )
+                target.removeStatusEffect( "slowed" )
             if not "hasted" in target.statusEffects:
-                target.statusEffects += ["hasted"]
+                target.addStatusEffect( "hasted" )
 
         elif itemName=="grenade":
             target.setHp( target.getHp() - 120 )
         
         elif itemName=="oil":
             if "paralysed" in target.statusEffects:
-                target.statusEffects.remove( "paralysed" )
+                target.removeStatusEffect( "paralysed" )
 
         elif itemName=="hi-potion":
             target.setHp( target.getHp() + 350 )
