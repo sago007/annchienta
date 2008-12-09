@@ -112,4 +112,3 @@ while running and inputManager.running():
             partyManager.free()
 
 annchienta.quit()
-

@@ -105,22 +105,22 @@ class Ally( Combatant.Combatant ):
         for action in self.actions:
 
             # Create a decription first
-            description = action.description
-            if action.cost>0:
-                description += " ("+str(action.cost)+"MP)"
+            description = action.getDescription()
+            if action.getCost()>0:
+                description += " ("+str(action.getCost())+"MP)"
 
-            menuItem = Menu.MenuItem( action.name, description )
+            menuItem = Menu.MenuItem( action.getName(), description )
             added = False
 
             for sub in subs:
-                if sub.name == action.category:
+                if sub.name == action.getCategory():
                     sub.options += [menuItem]
                     added = True
             if not added:
                 if action.category=="top":
                     subs += [menuItem]
                 else:
-                    newsub = Menu.Menu( action.category )
+                    newsub = Menu.Menu( action.getCategory() )
                     newsub.options += [menuItem]
                     subs += [newsub]
                 
@@ -160,8 +160,8 @@ class Ally( Combatant.Combatant ):
             action = found[0]
 
             # Check if there is enough mp
-            if self.getMp() < action.cost:
-                battle.lines += [self.name.capitalize()+" doesn't have enough MP!"]
+            if self.getMp() < action.getCost():
+                battle.lines += [self.getName().capitalize()+" doesn't have enough MP!"]
                 return None, None
         
             if not action.hasTarget():

@@ -17,18 +17,24 @@ class Enemy( Combatant.Combatant ):
         else:
             self.dropItem = None
         if dropElement.hasAttribute("steal"):
-            self.steal = str( dropElement.getAttribute("steal") )
+            self.stealableItem = str( dropElement.getAttribute("steal") )
         else:
-            self.steal = None
+            self.stealableItem = None
 
     def isAlly( self ):
         return False
+
+    def getStealableItem( self ):
+        return self.stealableItem
+
+    def stealItem( self ):
+        self.stealableItem = None
 
     # Enemies perform a random action for now
     def selectAction( self, battle ):
     
         # Select an action
-        actions = filter( lambda a: a.cost <= self.getMp(), self.actions )
+        actions = filter( lambda a: a.getCost() <= self.getMp(), self.actions )
         action = self.actions[ self.mathManager.randInt( 0, len(self.actions) ) ]
 
         # Select a target

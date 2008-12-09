@@ -97,6 +97,17 @@ class Combatant( BattleEntity.BattleEntity ):
     # Prototype, must be overwritten
     def isAlly( self ):
         return True
+
+    def getRow( self ):
+        return self.row
+
+    def changeRow( self ):
+        rowDeltaX = 30
+        if self.getRow() == "front":
+            self.position.x += -rowDeltaX if self.isAlly() else rowDeltaX
+        else:
+            self.position.x += rowDeltaX if self.isAlly() else -rowDeltaX
+        self.row = ( "front" if self.row=="back" else "back" )
     
     # Must be called before every battle
     def reset( self ):
@@ -107,8 +118,10 @@ class Combatant( BattleEntity.BattleEntity ):
         # Reset time bar
         self.timer = 100.0 * self.mathManager.randFloat()
     
-        # Start in the front row
+        # Start in a random row
         self.row = "front"
+        if self.mathManager.randFloat() <= 0.5:
+            self.changeRow()
 
         # Reset damage signs.
         self.damage = 0
@@ -208,6 +221,12 @@ class Combatant( BattleEntity.BattleEntity ):
     #  \return If the combatant has this status.
     def hasStatusEffect( self, statusEffect ):
         return statusEffect in self.statusEffects
+
+    ## Set a damage sign to be drawn
+    #  \param damage Amount of damage
+    def setDamage( self, damage ):
+        self.damage = damage
+        self.damageTimer = 0.0
 
     ## Stores all information about this combatant in the given
     #  xml element, so it can be loaded again later

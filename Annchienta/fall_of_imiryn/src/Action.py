@@ -38,7 +38,7 @@ class Action:
                 powerElement = found[0]
                 self.factor = float( powerElement.getAttribute("factor") )
                 self.hit = float( powerElement.getAttribute("hit") )
-                self.type = powerElement.getAttribute("type")
+                self.type = str( powerElement.getAttribute("type") )
                 
             # Set statusEffect and statusHit
             found = xmlElement.getElementsByTagName("status")
@@ -70,3 +70,46 @@ class Action:
 
     def hasTarget( self ):
         return self.target
+
+    def getDescription( self ):
+        return self.description
+
+    def getCost( self ):
+        return self.cost
+
+    def hasElement( self, element ):
+        if element in self.elemental:
+            return self.elemental[ element ]
+        else:
+            return False
+
+    def getElementList( self ):
+        elementalList = []
+        for element in self.elemental:
+            if self.elemental[ element ]:
+                elementalList.append( element )
+        return elementalList
+
+    def getFactor( self ):
+        return self.factor
+
+    def getHit( self ):
+        return self.hit
+
+    def getType( self ):
+        return self.type
+
+    def getStatusEffect( self ):
+        return self.statusEffect
+
+    def getStatusHit( self ):
+        return self.statusHit
+
+    def getAnimation( self ):
+        return self.animation
+
+    def getAnimationData( self ):
+        return self.animationData
+
+    def getAnimationSound( self ):
+        return self.animationSound

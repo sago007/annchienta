@@ -38,13 +38,13 @@ class Battle:
     #
     def run( self ):
     
-        # Reset combatants
-        for c in self.combatants:
-            c.reset()
-    
         # Update the lists
         self.updateCombatantLists()
         self.positionCombatants()
+    
+        # Reset combatants
+        for c in self.combatants:
+            c.reset()
     
         self.lastUpdate = None
         
@@ -293,36 +293,34 @@ class Battle:
         
         # Let's assume we are dealing with a regular action for now
         damage = 0.0
-        if action.type == "physical":
+        if action.getType() == "physical":
             damage = combatant.physicalBaseDamage()
         else:
             damage = combatant.magicalBaseDamage()
             
         # Invert damage if we are dealing with restorative magic
-        if action.elemental["restorative"]:
+        if action.hasElement("restorative"):
             damage = -float(damage)
             
         # Take the power of the attack into account
-        damage *= action.factor
+        damage *= action.getFactor()
         
         # Take the target's defense into account
-        defense = target.getDefense() if action.type == "physical" else target.getMagicDefense()
+        defense = target.getDefense() if action.getType() == "physical" else target.getMagicDefense()
         damage *= ( (512.0 - defense )/512.0 )
     
         # Elemental properties now
-        for element in action.elemental:
+        for element in action.getElementList():
             if element != "restorative":
-                # For example, if the action has "ice":1
-                if action.elemental[element]:
-                    # Multiply damage by the factor the
-                    # target has set for it
-                    damage *= target.getElementalFactor( element )
+                # Multiply damage by the factor the
+                # target has set for it
+                damage *= target.getElementalFactor( element )
     
         # Round it
         damage = int(damage)
 
         # Rows only matter when it's physical damage
-        if action.type == "physical":
+        if action.getType() == "physical":
             # If attacker is in back row, half damage...
             if combatant.row == "back":
                 damage /= 2
@@ -331,9 +329,9 @@ class Battle:
                 damage /= 2
 
         # Our hit rate
-        rate = action.hit
+        rate = action.getHit()
         # ... is influenced by blindness (but only on physical attacks)
-        if action.type == "physical":
+        if action.getType() == "physical":
             if combatant.hasStatusEffect( "blinded" ):
                 rate /= 2.0
 
@@ -341,17 +339,17 @@ class Battle:
             if combatant.hasStatusEffect( "injured" ):
                 damage *= 2
 
-        hit = self.mathManager.randFloat() <= rate
+        hit = ( self.mathManager.randFloat() <= rate )
 
         # Play animation
         self.playAnimation( action, combatant, target )
 
         if hit:
             # Check for status effects
-            if action.statusEffect!="none" and not target.hasStatusEffect( action.statusEffect ):
-                if self.mathManager.randFloat() <= action.statusHit:
-                    target.addStatusEffect( action.statusEffect )
-                    self.lines += [ target.getName().capitalize()+" is now "+action.statusEffect+"!" ]
+            if action.getStatusEffect()!="none" and not target.hasStatusEffect( action.getStatusEffect() ):
+                if self.mathManager.randFloat() <= action.getStatusHit():
+                    target.addStatusEffect( action.getStatusEffect() )
+                    self.lines += [ target.getName().capitalize()+" is now "+action.getStatusEffect()+"!" ]
 
             # Finally, do damage to damaged ones
             target.setHp( target.getHp() - damage )
@@ -360,12 +358,11 @@ class Battle:
             self.lines += [ combatant.getName().capitalize()+" misses!" ]
 
         # That took some effort, rest and get mp
-        combatant.setMp( combatant.getMp() - action.cost )
+        combatant.setMp( combatant.getMp() - action.getCost() )
 
         # Damage animation only if hit
         if hit:
-            target.damage = damage
-            target.damageTimer = 0.0
+            target.setDamage( damage )
 
     ## Might steal an item
     #
@@ -378,12 +375,12 @@ class Battle:
         if not target.isAlly():
 
             # Only if enemy is carrying an item
-            if target.steal:
+            if target.getStealableItem():
                 if self.mathManager.randFloat()<=0.7:
-                    self.lines += [ combatant.getName().capitalize()+" stole "+target.steal+" from "+target.getName().capitalize()+"!" ]
-                    self.partyManager.inventory.addItem( target.steal )
+                    self.lines += [ combatant.getName().capitalize()+" stole "+target.getStealableItem()+" from "+target.getName().capitalize()+"!" ]
+                    self.partyManager.inventory.addItem( target.getStealableItem() )
                     # Remove item from target when stolen
-                    target.steal = None
+                    target.stealItem()
 
                     # Rebuild item menus
                     for ally in self.allies:
@@ -409,16 +406,13 @@ class Battle:
     #
     def takeRowAction( self, combatant ):
 
-        rowDeltaX = 30
-        position = annchienta.Vector( combatant.position )
-        if combatant.row == "front":
-            combatant.row = "back"
-            position.x += -rowDeltaX if combatant.isAlly() else rowDeltaX
-        else:
-            combatant.row = "front"
-            position.x += rowDeltaX if combatant.isAlly() else -rowDeltaX
+        oldPosition = annchienta.Vector( combatant.position )
+        combatant.changeRow()
+        newPosition = annchienta.Vector( combatant.position )
+
+        combatant.position = oldPosition
         self.lines += [combatant.getName().capitalize()+" moves to the "+combatant.row+" row!"]
-        self.playMoveAnimation( combatant, position )
+        self.playMoveAnimation( combatant, newPosition )
 
     ## Tries to flee from battle
     #
