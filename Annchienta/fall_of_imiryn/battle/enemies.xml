@@ -4,7 +4,7 @@
     <!-- GOBLIN -->
     <enemy name="goblin">
         <level lvl="1"/>
-        <primarystats att="14" mat="14" def="20" mdf="20" spd="20"/>
+        <stats att="14" mat="14" def="20" mdf="20" spd="20"/>
         <healthstats hp="40" mhp="40" mp="10" mmp="10"/>
         <elemental fire="2" ice="1" water="1" thunder="1"/>
         <actions>attack</actions>
@@ -14,7 +14,7 @@
     <!-- STAULD -->
     <enemy name="stauld">
         <level lvl="1"/>
-        <primarystats att="5" mat="14" def="40" mdf="20" spd="10"/>
+        <stats att="5" mat="14" def="40" mdf="20" spd="10"/>
         <healthstats hp="30" mhp="30" mp="15" mmp="15"/>
         <elemental fire="2" ice="2" water="2" thunder="2"/>
         <actions>attack fire</actions>
@@ -24,7 +24,7 @@
     <!-- SQUID -->
     <enemy name="squid">
         <level lvl="1"/>
-        <primarystats att="5" mat="12" def="20" mdf="20" spd="12"/>
+        <stats att="5" mat="12" def="20" mdf="20" spd="12"/>
         <healthstats hp="45" mhp="45" mp="20" mmp="20"/>
         <elemental fire="1" ice="1" water="-1" thunder="2"/>
         <actions>attack fog water</actions>
@@ -35,7 +35,7 @@
     <!-- ULTROS -->
     <enemy name="ultros">
         <level lvl="5"/>
-        <primarystats att="20" mat="20" def="20" mdf="20" spd="150"/>
+        <stats att="20" mat="20" def="20" mdf="20" spd="150"/>
         <healthstats hp="400" mhp="400" mp="60" mmp="60"/>
         <elemental fire="1" ice="1" water="-1" thunder="2"/>
         <actions>attack fog water ice</actions>
@@ -46,7 +46,7 @@
     <!-- WORM -->
     <enemy name="worm">
         <level lvl="4"/>
-        <primarystats att="14" mat="18" def="25" mdf="25" spd="10"/>
+        <stats att="14" mat="18" def="25" mdf="25" spd="10"/>
         <healthstats hp="100" mhp="100" mp="20" mmp="20"/>
         <elemental fire="1" ice="1" water="0" thunder="0"/>
         <actions>attack slime</actions>
@@ -57,7 +57,7 @@
     <!-- SPIDER -->
     <enemy name="spider">
         <level lvl="4"/>
-        <primarystats att="18" mat="12" def="15" mdf="15" spd="40"/>
+        <stats att="18" mat="12" def="15" mdf="15" spd="40"/>
         <healthstats hp="120" mhp="120" mp="30" mmp="30"/>
         <elemental fire="1" ice="1" water="1" thunder="2"/>
         <actions>attack bite</actions>
@@ -68,7 +68,7 @@
     <!-- GHOST -->
     <enemy name="ghost">
         <level lvl="4"/>
-        <primarystats att="8" mat="25" def="20" mdf="20" spd="20"/>
+        <stats att="8" mat="25" def="20" mdf="20" spd="20"/>
         <healthstats hp="80" mhp="80" mp="50" mmp="50"/>
         <elemental fire="2" ice="1" water="1" thunder="2"/>
         <actions>attack fog thunder fire water</actions>
@@ -79,7 +79,7 @@
     <!-- HAWK -->
     <enemy name="hawk">
         <level lvl="6"/>
-        <primarystats att="14" mat="40" def="29" mdf="26" spd="23"/>
+        <stats att="14" mat="40" def="29" mdf="26" spd="23"/>
         <healthstats hp="150" mhp="150" mp="40" mmp="40"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack ice bite thunder</actions>
@@ -90,7 +90,7 @@
     <!-- COEURL -->
     <enemy name="coeurl">
         <level lvl="6"/>
-        <primarystats att="16" mat="35" def="30" mdf="30" spd="23"/>
+        <stats att="16" mat="35" def="30" mdf="30" spd="23"/>
         <healthstats hp="160" mhp="160" mp="60" mmp="60"/>
         <elemental fire="1.4" ice="0.5" water="1" thunder="1"/>
         <actions>attack ice bite water</actions>
@@ -102,7 +102,7 @@
     <!-- ICE WARRIOR -->
     <enemy name="ice warrior">
         <level lvl="6"/>
-        <primarystats att="35" mat="26" def="45" mdf="30" spd="23"/>
+        <stats att="35" mat="26" def="45" mdf="30" spd="23"/>
         <healthstats hp="200" mhp="200" mp="60" mmp="60"/>
         <elemental fire="2" ice="0.5" water="1" thunder="1"/>
         <actions>attack ice fist</actions>
@@ -113,7 +113,7 @@
     <!-- ENTHAVOS -->
     <enemy name="enthavos">
         <level lvl="10"/>
-        <primarystats att="56" mat="37" def="60" mdf="60" spd="200"/>
+        <stats att="56" mat="37" def="60" mdf="60" spd="200"/>
         <healthstats hp="1300" mhp="1300" mp="200" mmp="200"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack ice water thunder fire thunderstab</actions>
@@ -124,7 +124,7 @@
     <!-- BRAINFUCK MUTANT -->
     <enemy name="brainfuck mutant">
         <level lvl="8"/>
-        <primarystats att="45" mat="35" def="55" mdf="42" spd="45"/>
+        <stats att="45" mat="35" def="55" mdf="42" spd="45"/>
         <healthstats hp="350" mhp="350" mp="80" mmp="80"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack bite slime water</actions>
@@ -135,7 +135,7 @@
     <!-- SAMPLE 0x4a  -->
     <enemy name="sample 0x4a">
         <level lvl="8"/>
-        <primarystats att="50" mat="40" def="40" mdf="35" spd="50"/>
+        <stats att="50" mat="40" def="40" mdf="35" spd="50"/>
         <healthstats hp="400" mhp="400" mp="100" mmp="80"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack bite slime fire thunder water ice</actions>
@@ -146,7 +146,7 @@
     <!-- SOLDIER -->
     <enemy name="soldier">
         <level lvl="8"/>
-        <primarystats att="55" mat="30" def="40" mdf="60" spd="45"/>
+        <stats att="55" mat="30" def="40" mdf="60" spd="45"/>
         <healthstats hp="400" mhp="400" mp="80" mmp="80"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack swing</actions>
@@ -157,7 +157,7 @@
     <!-- BANVER -->
     <enemy name="banver">
         <level lvl="8"/>
-        <primarystats att="100" mat="40" def="80" mdf="80" spd="100"/>
+        <stats att="100" mat="40" def="80" mdf="80" spd="100"/>
         <healthstats hp="1400" mhp="1400" mp="120" mmp="120"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack swing flametongue thunderstab thundara fira</actions>
@@ -168,7 +168,7 @@
     <!-- CAPTAIN -->
     <enemy name="captain">
         <level lvl="8"/>
-        <primarystats att="65" mat="25" def="50" mdf="80" spd="45"/>
+        <stats att="65" mat="25" def="50" mdf="80" spd="45"/>
         <healthstats hp="500" mhp="500" mp="120" mmp="120"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack swing strike thundara</actions>
@@ -179,7 +179,7 @@
     <!-- DRAGON -->
     <enemy name="dragon">
         <level lvl="8"/>
-        <primarystats att="45" mat="30" def="40" mdf="80" spd="45"/>
+        <stats att="45" mat="30" def="40" mdf="80" spd="45"/>
         <healthstats hp="450" mhp="450" mp="120" mmp="120"/>
         <elemental fire="0" ice="2" water="2" thunder="1"/>
         <actions>attack bite fire fira</actions>
@@ -190,7 +190,7 @@
     <!-- WAR MAGE -->
     <enemy name="war mage">
         <level lvl="8"/>
-        <primarystats att="45" mat="32" def="40" mdf="80" spd="45"/>
+        <stats att="45" mat="32" def="40" mdf="80" spd="45"/>
         <healthstats hp="450" mhp="450" mp="120" mmp="120"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>fira thundara watera blizzara</actions>
@@ -201,7 +201,7 @@
     <!-- DRAGON TANK -->
     <enemy name="dragon tank">
         <level lvl="15"/>
-        <primarystats att="80" mat="50" def="60" mdf="80" spd="120"/>
+        <stats att="80" mat="50" def="60" mdf="80" spd="120"/>
         <healthstats hp="2100" mhp="2100" mp="300" mmp="300"/>
         <elemental fire="1" ice="1" water="1" thunder="2"/>
         <actions>attack bite fire fira flametongue fog</actions>

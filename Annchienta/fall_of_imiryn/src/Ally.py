@@ -42,28 +42,59 @@ class Ally( Combatant.Combatant ):
         return True
     
     def getAttack( self ):
-        return Combatant.Combatant.getAttack(self) + weapon.getAttack()
+        return Combatant.Combatant.getAttack(self) + self.weapon.getAttack()
 
     def getDefense( self ):
-        return Combatant.Combatant.getDefense(self) + weapon.getDefense()
+        return Combatant.Combatant.getDefense(self) + self.weapon.getDefense()
 
     def getMagicAttack( self ):
-        return Combatant.Combatant.getMagicAttack(self) + weapon.getMagicAttack()
+        return Combatant.Combatant.getMagicAttack(self) + self.weapon.getMagicAttack()
 
     def getMagicDefense( self ):
-        return Combatant.Combatant.getMagicDefense(self) + weapon.getMagicDefense()
+        return Combatant.Combatant.getMagicDefense(self) + self.weapon.getMagicDefense()
 
     def getSpeed( self ):
-        return Combatant.Combatant.getSpeed(self) + weapon.getSpeed()
+        return Combatant.Combatant.getSpeed(self) + self.weapon.getSpeed()
 
     def getElementalFactor( self, element ):
-        return weapon.getElementalFactor( element )
+        return self.weapon.getElementalFactor( element )
 
     def setWeapon( self, weaponName ):
 
         partyManager = PartyManager.getPartyManager()
         inventory = partyManager.inventory
         self.weapon = inventory.getWeapon( weaponName )
+
+    ## Stores all information about this ally in the given
+    #  xml element, so it can be loaded again later.
+    def writeToXML( self, xmlElement, document ):
+
+        # Call superclass first
+        Combatant.Combatant.writeToXML( self, xmlElement, document )
+
+        # Set grades info
+        gradesElement = document.createElement("grades")
+        for key in self.grades:
+            gradesElement.setAttribute( str(key), str(self.grades[key]) )
+        xmlElement.appendChild( gradesElement )
+
+        # Set weapon name
+        weaponElement = document.createElement("weapon")
+        weaponElement.setAttribute("name", str( self.weapon.getName() ) )
+        xmlElement.appendChild( weaponElement )
+
+        # Set learn info
+        learnElement = document.createElement("learn")
+
+        # Create a text with the actions
+        text = ' '
+        if len( self.learn ):
+            for key in self.learn:
+                text += str(key) + " " + str(self.learn[key]) + " "
+
+        textNode = document.createTextNode( text )
+        learnElement.appendChild( textNode )
+        xmlElement.appendChild( learnElement )
 
     ## Create a menu with all options this Ally
     #  can use in battle.
@@ -133,10 +164,11 @@ class Ally( Combatant.Combatant ):
                 battle.lines += [self.name.capitalize()+" doesn't have enough MP!"]
                 return None, None
         
-            if not action.target:
+            if not action.hasTarget():
                 needsTarget = False
 
         # No real action, check if it's an item
+        # ... create an action on the fly
         elif self.partyManager.inventory.hasItem( menuItem.name ):
 
             action = Action.Action()

@@ -61,3 +61,12 @@ class Action:
                     self.animationSound = str(animationElement.getAttribute("sound"))
                 else:
                     self.animationSound = None
+
+    def getName( self ):
+        return self.name
+
+    def getCategory( self ):
+        return self.category
+
+    def hasTarget( self ):
+        return self.target

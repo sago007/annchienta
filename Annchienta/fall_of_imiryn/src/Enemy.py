@@ -38,4 +38,3 @@ class Enemy( Combatant.Combatant ):
 
     def selectTarget( self, battle ):
         return battle.allies[ self.mathManager.randInt( 0, len(battle.allies) ) ]
-

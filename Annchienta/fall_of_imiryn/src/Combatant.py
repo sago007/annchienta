@@ -209,6 +209,44 @@ class Combatant( BattleEntity.BattleEntity ):
     def hasStatusEffect( self, statusEffect ):
         return statusEffect in self.statusEffects
 
+    ## Stores all information about this combatant in the given
+    #  xml element, so it can be loaded again later
+    def writeToXML( self, xmlElement, document ):
+
+        # Call superclass first
+        BattleEntity.BattleEntity.writeToXML( self, xmlElement, document )
+
+        # Set level info
+        levelElement = document.createElement("level")
+        for key in self.level:
+            levelElement.setAttribute( str(key), str(self.level[key]) )
+        xmlElement.appendChild( levelElement )
+
+        # Set healthStats info
+        healthStatsElement = document.createElement("healthstats")
+        for key in self.healthStats:
+            healthStatsElement.setAttribute( str(key), str(self.healthStats[key]) )
+        xmlElement.appendChild( healthStatsElement )
+
+        # Set possible actions      
+        actionsElement = document.createElement("actions")
+        # Create a text with the actions
+        text = ""
+        for action in self.actions:
+            text += action.getName() + " "
+        textNode = document.createTextNode( text )
+        actionsElement.appendChild( textNode )
+        xmlElement.appendChild( actionsElement )
+
+        # Set sprite info
+        spriteElement = document.createElement("sprite")
+        spriteElement.setAttribute( "filename", self.spriteFilename )
+        spriteElement.setAttribute( "x1", str(self.sx1) )
+        spriteElement.setAttribute( "y1", str(self.sy1) )
+        spriteElement.setAttribute( "x2", str(self.sx2) )
+        spriteElement.setAttribute( "y2", str(self.sy2) )
+        xmlElement.appendChild( spriteElement )
+
     ## Updates this combatant this includes updating his
     #  ATB gauge, his appearance...
     #  \param ms Milliseconds past since last update.

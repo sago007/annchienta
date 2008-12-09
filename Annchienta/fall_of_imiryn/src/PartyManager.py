@@ -154,66 +154,7 @@ class PartyManager:
         teamElement = self.document.createElement("team")
         for combatant in self.team:
             combatantElement = self.document.createElement("combatant")
-            
-            # Set name
-            combatantElement.setAttribute("name", combatant.name)
-
-            # Set level info
-            levelElement = self.document.createElement("level")
-            for key in combatant.level:
-                levelElement.setAttribute( str(key), str(combatant.level[key]) )
-            combatantElement.appendChild( levelElement )
-
-            # Set grades info
-            gradesElement = self.document.createElement("grades")
-            for key in combatant.grades:
-                gradesElement.setAttribute( str(key), str(combatant.grades[key]) )
-            combatantElement.appendChild( gradesElement )
-
-            # Set primaryStats info
-            primaryStatsElement = self.document.createElement("primarystats")
-            for key in combatant.primaryStats:
-                primaryStatsElement.setAttribute( str(key), str(combatant.primaryStats[key]) )
-            combatantElement.appendChild( primaryStatsElement )
-            
-            # Set healthStats info
-            healthStatsElement = self.document.createElement("healthstats")
-            for key in combatant.healthStats:
-                healthStatsElement.setAttribute( str(key), str(combatant.healthStats[key]) )
-            combatantElement.appendChild( healthStatsElement )
-
-            # Set weapon name
-            weaponElement = self.document.createElement("weapon")
-            weaponElement.setAttribute("name", str(combatant.weapon.name) )
-            combatantElement.appendChild( weaponElement )
-
-            # Set possible actions      
-            actionsElement = self.document.createElement("actions")
-            # Create a text with the actions
-            text = reduce( lambda a, b: a+' '+b, map( lambda a: str(a.name), combatant.actions ) )
-            textNode = self.document.createTextNode( text )
-            actionsElement.appendChild( textNode )
-            combatantElement.appendChild( actionsElement )
-
-            # Set sprite info
-            spriteElement = self.document.createElement("sprite")
-            spriteElement.setAttribute( "filename", combatant.spriteFilename )
-            spriteElement.setAttribute( "x1", str(combatant.sx1) )
-            spriteElement.setAttribute( "y1", str(combatant.sy1) )
-            spriteElement.setAttribute( "x2", str(combatant.sx2) )
-            spriteElement.setAttribute( "y2", str(combatant.sy2) )
-            combatantElement.appendChild( spriteElement )
-
-            # Set learn info
-            learnElement = self.document.createElement("learn")
-            # Create a text with the actions
-            text = ' '
-            if len( combatant.learn ):
-                text = reduce( lambda a,b: a+' '+b, map( lambda key: str(key)+' '+str(combatant.learn[key]), combatant.learn.keys() ) )
-            textNode = self.document.createTextNode( text )
-            learnElement.appendChild( textNode )
-            combatantElement.appendChild( learnElement )
-
+            combatant.writeToXML( combatantElement, self.document )
             teamElement.appendChild( combatantElement )
 
         partyElement.appendChild( teamElement )
