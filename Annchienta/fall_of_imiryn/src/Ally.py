@@ -294,7 +294,3 @@ class Ally( Combatant.Combatant ):
             if showDialog:
                 self.sceneManager.text( text, None )
 
-
-            # Update derived stats
-            self.generateDerivedStats()
-

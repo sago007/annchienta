@@ -95,7 +95,7 @@ class Battle:
                     self.xp += combatant.dropXp
                     if combatant.dropItem:
                         if self.mathManager.randFloat() < combatant.dropRate:
-                            self.lines += [ combatant.name.capitalize()+" drops "+combatant.dropItem+"!" ]
+                            self.lines += [ combatant.getName().capitalize()+" drops "+combatant.dropItem+"!" ]
                             self.partyManager.inventory.addItem( combatant.dropItem )
 
                             # Rebuild menus
@@ -269,16 +269,16 @@ class Battle:
     def takeAction( self, action, combatant, target ):
 
         if action.category == "item":
-            self.takeItemAction( action.name, combatant, target )
-        elif action.name == "steal":
+            self.takeItemAction( action.getName(), combatant, target )
+        elif action.getName() == "steal":
             self.takeStealAction( combatant, target )
-        elif action.name == "row":
+        elif action.getName() == "row":
             self.takeRowAction( combatant )
-        elif action.name == "flee":
+        elif action.getName() == "flee":
             self.takeFleeAction( combatant )
-        elif action.name == "esuna":
+        elif action.getName() == "esuna":
             self.takeEsunaAction( combatant, target )
-        elif action.name == "wait":
+        elif action.getName() == "wait":
             self.takeWaitAction( combatant )
         else:
             # If we reach this point, we're dealing with a generic action.
@@ -289,7 +289,7 @@ class Battle:
     def takeGenericAction( self, action, combatant, target ):
             
         # Info
-        self.lines += [combatant.name.capitalize()+" uses "+action.name+" on "+target.name.capitalize()+"!"]
+        self.lines += [combatant.getName().capitalize()+" uses "+action.getName()+" on "+target.getName().capitalize()+"!"]
         
         # Let's assume we are dealing with a regular action for now
         damage = 0.0
@@ -307,7 +307,7 @@ class Battle:
         
         # Take the target's defense into account
         defense = target.getDefense() if action.type == "physical" else target.getMagicDefense()
-        damage *= ( (512.0 - target.derivedStats[ defense ])/512.0 )
+        damage *= ( (512.0 - defense )/512.0 )
     
         # Elemental properties now
         for element in action.elemental:
@@ -351,13 +351,13 @@ class Battle:
             if action.statusEffect!="none" and not target.hasStatusEffect( action.statusEffect ):
                 if self.mathManager.randFloat() <= action.statusHit:
                     target.addStatusEffect( action.statusEffect )
-                    self.lines += [ target.name.capitalize()+" is now "+action.statusEffect+"!" ]
+                    self.lines += [ target.getName().capitalize()+" is now "+action.statusEffect+"!" ]
 
             # Finally, do damage to damaged ones
             target.setHp( target.getHp() - damage )
 
         else:
-            self.lines += [ combatant.name.capitalize()+" misses!" ]
+            self.lines += [ combatant.getName().capitalize()+" misses!" ]
 
         # That took some effort, rest and get mp
         combatant.setMp( combatant.getMp() - action.cost )
@@ -380,7 +380,7 @@ class Battle:
             # Only if enemy is carrying an item
             if target.steal:
                 if self.mathManager.randFloat()<=0.7:
-                    self.lines += [ combatant.name.capitalize()+" stole "+target.steal+" from "+target.name.capitalize()+"!" ]
+                    self.lines += [ combatant.getName().capitalize()+" stole "+target.steal+" from "+target.getName().capitalize()+"!" ]
                     self.partyManager.inventory.addItem( target.steal )
                     # Remove item from target when stolen
                     target.steal = None
@@ -390,15 +390,15 @@ class Battle:
                         ally.buildItemMenu()
 
                 else:
-                    self.lines += [ combatant.name.capitalize()+" could not steal from "+target.name.capitalize()+"!" ]
+                    self.lines += [ combatant.getName().capitalize()+" could not steal from "+target.getName().capitalize()+"!" ]
             else:
-                self.lines += [ target.name.capitalize()+" has nothing to steal!" ]
+                self.lines += [ target.getName().capitalize()+" has nothing to steal!" ]
 
     ## Uses an item
     #
     def takeItemAction( self, item, combatant, target ):
         
-        self.lines += [ combatant.name.capitalize()+" uses "+item+" on "+target.name.capitalize()+"!" ]
+        self.lines += [ combatant.getName().capitalize()+" uses "+item+" on "+target.getName().capitalize()+"!" ]
         self.partyManager.inventory.useItemOn( item, target )
 
         # Rebuild item menus
@@ -417,7 +417,7 @@ class Battle:
         else:
             combatant.row = "front"
             position.x += rowDeltaX if combatant.isAlly() else -rowDeltaX
-        self.lines += [combatant.name.capitalize()+" moves to the "+combatant.row+" row!"]
+        self.lines += [combatant.getName().capitalize()+" moves to the "+combatant.row+" row!"]
         self.playMoveAnimation( combatant, position )
 
     ## Tries to flee from battle
@@ -442,10 +442,10 @@ class Battle:
         removedStatusEffect = target.removeStatusEffect()
 
         if not removedStatusEffect:
-            self.lines += [target.name.capitalize()+" is not suffering from status effects!"]
+            self.lines += [target.getName().capitalize()+" is not suffering from status effects!"]
 
         else:
-            self.lines += [combatant.name.capitalize()+" cures "+target.name.capitalize()+" from "+removedStatusEffect+"!"]
+            self.lines += [combatant.getName().capitalize()+" cures "+target.getName().capitalize()+" from "+removedStatusEffect+"!"]
 
     ## Does nothing, really
     #

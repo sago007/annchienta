@@ -12,6 +12,9 @@ class BattleEntity:
         # Get a logmanager
         self.logManager = annchienta.getLogManager()
 
+        # Every battleentity should have a name
+        self.name = str( xmlElement.getAttribute("name") )
+
         # Create a dictionary describing the weapon stats
         self.stats = {}
 
@@ -33,6 +36,9 @@ class BattleEntity:
                 elementalElement = elementalElements[0]
                 for k in elementalElement.attributes.keys():
                     self.elemental[k] = int(elementalElement.attributes[k].value)
+
+    def getName( self ):
+        return self.name
             
     def getAttack( self ):
         return self.stats["att"]

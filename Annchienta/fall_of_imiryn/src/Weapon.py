@@ -10,11 +10,7 @@ class Weapon( BattleEntity.BattleEntity ):
         BattleEntity.BattleEntity.__init__( self, xmlElement )
     
         # Set our name
-        self.name = str(xmlElement.getAttribute("name"))
         self.description = str(xmlElement.getAttribute("description"))
     
-    def getName( self ):
-        return self.name
-
     def getDescription( self ):
         return self.description

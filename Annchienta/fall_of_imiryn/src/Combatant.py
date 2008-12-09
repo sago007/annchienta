@@ -32,9 +32,6 @@ class Combatant( BattleEntity.BattleEntity ):
         self.mathManager  = annchienta.getMathManager()
         self.sceneManager = SceneManager.getSceneManager()
 
-        # Set our name
-        self.name = str(xmlElement.getAttribute("name"))
-    
         # Create a dictionary describing the level stuff
         self.level = {}
         levelElement = xmlElement.getElementsByTagName("level")[0]
@@ -64,9 +61,6 @@ class Combatant( BattleEntity.BattleEntity ):
         if len(elementalElements):
             for k in elementalElements[0].attributes.keys():
                 self.primaryElemental[k] = float(elementalElements[0].attributes[k].value)
-    
-        # Generate derived stats
-        self.generateDerivedStats()
 
         # Load sprite
         spriteElement = xmlElement.getElementsByTagName("sprite")[0]
@@ -120,27 +114,6 @@ class Combatant( BattleEntity.BattleEntity ):
         self.damage = 0
         self.damageTimer = 0.0
 
-    # Will generate derived stats based on equipped weapon.
-    def generateDerivedStats( self ):
-        
-        # Base them on the primaries
-        self.derivedStats = dict(self.primaryStats)
-        
-        # Then add weapon stats
-        if self.weapon:
-            for key in self.primaryStats:
-                self.derivedStats[key] += self.weapon.stats[key]
-    
-        # Cap everything at 255
-        for key in self.derivedStats:
-            self.derivedStats[key] = self.derivedStats[key] if self.derivedStats[key]<255 else 255
-    
-        # Base elemental properties on weapon
-        if self.weapon:
-            self.derivedElemental = dict(self.weapon.elemental)
-        else:
-            self.derivedElemental = dict(self.primaryElemental)
-    
     ## Adds an action to this combatant so he can
     #  use it in battle.
     #  \param actionName The name of the action to be added.
@@ -153,7 +126,7 @@ class Combatant( BattleEntity.BattleEntity ):
         if len(found):
             self.actions += [ Action.Action( found[0] ) ]
         else:
-            self.logManager.error("No action called "+actionName+" was found for "+self.name+" in "+self.actionsLocation+".")
+            self.logManager.error("No action called "+actionName+" was found for "+self.getName()+" in "+self.actionsLocation+".")
 
     ## Calculates base damage for physical attacks
     #  \return Basedamage.
@@ -250,7 +223,7 @@ class Combatant( BattleEntity.BattleEntity ):
         elif self.hasStatusEffect( "paralysed" ):
             factor = 0.1
 
-        self.timer += factor * 0.020 *ms* float(255+self.derivedStats["spd"])/512.0
+        self.timer += factor * 0.020 *ms* float(255+self.getSpeed())/512.0
         if self.timer >= 100.0:
             self.timer = 100.0
 
