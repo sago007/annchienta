@@ -1,4 +1,9 @@
+import annchienta
 import xml.dom.minidom
+import AttackAnimation
+import SpriteAnimation
+
+
 ## Holds an action
 #
 class Action:
@@ -8,6 +13,8 @@ class Action:
     #  have to set things like a name and such by
     #  yourself.
     def __init__( self, xmlElement=None ):
+
+        self.cacheManager = annchienta.getCacheManager()
    
         if xmlElement:
 
@@ -50,17 +57,25 @@ class Action:
             # Set animation and animationData
             found = xmlElement.getElementsByTagName("animation")
             if len(found):
+
                 animationElement = found[0]
-                self.animation = str(animationElement.getAttribute("type"))
-                if animationElement.hasAttribute("data"):
-                    self.animationData = str(animationElement.getAttribute("data"))
-                else:
-                    self.animationData = None
+
+                sprite, sound = None, None
+
+                if animationElement.hasAttribute("sprite"):
+                    sprite = self.cacheManager.getSurface( str(animationElement.getAttribute("sprite")) )
 
                 if animationElement.hasAttribute("sound"):
-                    self.animationSound = str(animationElement.getAttribute("sound"))
+                    sound = self.cacheManager.getSound( str(animationElement.getAttribute("sound")) )
+
+                type = str(animationElement.getAttribute("type"))
+
+                if type=="attack":
+                    self.animation = AttackAnimation.AttackAnimation( sprite, sound )
+                elif type=="sprite":
+                    self.animation = SpriteAnimation.SpriteAnimation( sprite, sound )
                 else:
-                    self.animationSound = None
+                    self.animation = None
 
     def getName( self ):
         return self.name
@@ -107,9 +122,3 @@ class Action:
 
     def getAnimation( self ):
         return self.animation
-
-    def getAnimationData( self ):
-        return self.animationData
-
-    def getAnimationSound( self ):
-        return self.animationSound

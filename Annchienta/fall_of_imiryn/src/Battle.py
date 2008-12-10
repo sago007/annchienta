@@ -2,6 +2,9 @@ import annchienta
 import xml.dom.minidom
 import SceneManager, PartyManager
 import Enemy
+import Animation
+import DieAnimation
+import AttackAnimation
 
 ## Holds a battle...
 #
@@ -113,7 +116,11 @@ class Battle:
 
                 # Die die die!!!!11!!!!1
                 self.actionInProgress = True
-                self.playDieAnimation( combatant )
+
+                animation = DieAnimation.DieAnimation( None, None )
+                animation.setBattle( self )
+                animation.setCombatant( combatant )
+                animation.play()
 
                 self.combatants.remove( combatant )
 
@@ -348,7 +355,11 @@ class Battle:
         hit = ( self.mathManager.randFloat() <= rate )
 
         # Play animation
-        self.playAnimation( action, combatant, target )
+        animation = action.getAnimation()
+        animation.setBattle( self )
+        animation.setCombatant( combatant )
+        animation.setTarget( target )
+        animation.play()
 
         if hit:
             # Check for status effects
@@ -375,7 +386,11 @@ class Battle:
     def takeStealAction( self, combatant, target ):
 
         # Play a quick animation
-        self.playAttackAnimation( combatant, target )
+        animation = AttackAnimation.AttackAnimation( None, None )
+        animation.setBattle( self )
+        animation.setCombatant( combatant )
+        animation.setTarget( target )
+        animation.play()
 
         # Allies have no item to be stolen
         if not target.isAlly():
@@ -418,7 +433,11 @@ class Battle:
 
         combatant.position = oldPosition
         self.addLine( combatant.getName().capitalize()+" moves to the "+combatant.row+" row!" )
-        self.playMoveAnimation( combatant, newPosition )
+
+        animation = Animation.Animation( None, None )
+        animation.setBattle( self )
+        animation.setCombatant( combatant )
+        animation.move( combatant, newPosition )
 
     ## Tries to flee from battle
     #
@@ -443,7 +462,6 @@ class Battle:
 
         if not removedStatusEffect:
             self.addLine( target.getName().capitalize()+" is not suffering from status effects!" )
-
         else:
             self.addLine( combatant.getName().capitalize()+" cures "+target.getName().capitalize()+" from "+removedStatusEffect+"!" )
 
@@ -453,84 +471,3 @@ class Battle:
 
         # Speed up a little
         combatant.timer = 50.0
-
-    ## Plays the animation for the given parameters
-    #  This calls to playXAnimation, where X depends on the action
-    def playAnimation( self, action, combatant, target ):
-
-        if action.animation == "attack":
-            self.playAttackAnimation( combatant, target, action.animationData, action.animationSound )
-        elif action.animation == "sprite":
-            self.playSpriteAnimation( target, action.animationData, action.animationSound )
-
-    ## Animation that moves the given combatant to
-    #  the given position
-    def playMoveAnimation( self, combatant, position, duration=400.0 ):
-
-        start = self.engine.getTicks()
-        origPosition = annchienta.Vector(combatant.position)
-        while self.inputManager.running() and self.engine.getTicks()<start+duration:
-            
-            self.update()
-
-            factor = float(self.engine.getTicks()-start)/duration
-            combatant.position = origPosition*(1.0-factor) + position*factor
-
-            self.videoManager.clear()
-            self.draw()
-            self.videoManager.flip()
-
-        # Make sure we're in the right position in the end.
-        combatant.position = annchienta.Vector( position )
-
-    ## Moves the combatant to the target and back again
-    #
-    def playAttackAnimation( self, combatant, target, optionalSprite=None, animationSound=None ):
-
-        origPosition = annchienta.Vector( combatant.position )
-        position = annchienta.Vector( target.position )
-        dx = ( target.width/2 + combatant.width/2 )
-        dx = dx if target.isAlly() else -dx
-        position.x += dx
-        self.playMoveAnimation( combatant, position )
-
-        if animationSound:
-            sound = self.cacheManager.getSound( animationSound )
-            self.audioManager.playSound( sound )
-
-        if optionalSprite:
-            self.playSpriteAnimation( target, optionalSprite )
-
-        self.playMoveAnimation( combatant, origPosition )
-
-    ## Scrolls a sprite over the combatant. Very useful
-    #  for magic-kinda attacks.
-    def playSpriteAnimation( self, combatant, sprite, animationSound=None, duration=800.0 ):
-
-        if animationSound:
-            sound = self.cacheManager.getSound( animationSound )
-            self.audioManager.playSound( sound )
-
-        start = self.engine.getTicks()
-        surf = self.cacheManager.getSurface( sprite )
-
-        while self.inputManager.running() and self.engine.getTicks()<start+duration:
-            
-            self.update()
-
-            factor = float(self.engine.getTicks()-start)/duration
-            position = combatant.position + annchienta.Vector(0,-30)*factor
-
-            self.videoManager.clear()
-            self.draw()
-            self.videoManager.drawSurface( surf, int(position.x)-surf.getWidth()/2, int(position.y)-surf.getHeight()/2 )
-            self.videoManager.flip()
-
-    ## Make combatant move away from battle centre
-    #  and die.
-    def playDieAnimation( self, combatant ):
-
-        position = annchienta.Vector( combatant.position )
-        position.x -= 30 if combatant.isAlly() else -30
-        self.playMoveAnimation( combatant, position )
-
