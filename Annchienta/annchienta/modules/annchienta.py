@@ -312,6 +312,7 @@ class MathManager(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, MathManager, name)
     __repr__ = _swig_repr
     def nearestPowerOfTwo(*args): return _annchienta.MathManager_nearestPowerOfTwo(*args)
+    def newRandomSeed(*args): return _annchienta.MathManager_newRandomSeed(*args)
     def randInt(*args): return _annchienta.MathManager_randInt(*args)
     def randFloat(*args): return _annchienta.MathManager_randFloat(*args)
     def min(*args): return _annchienta.MathManager_min(*args)

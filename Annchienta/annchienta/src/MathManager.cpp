@@ -32,7 +32,7 @@ namespace Annchienta
         mathManager = this;
 
         /* Start random numbers. */
-        srand( time( 0 ) );
+        newRandomSeed();
 
         getLogManager()->message("Succesfully started MathManager.");
     }
@@ -53,6 +53,11 @@ namespace Annchienta
         while( value<input )
             value <<= 1;
         return value;
+    }
+
+    void MathManager::newRandomSeed() const
+    {
+        srand( time( 0 ) );
     }
 
     int MathManager::randInt( const int &maximum ) const

@@ -42,6 +42,10 @@ namespace Annchienta
              */
             int nearestPowerOfTwo( const int &input ) const;
 
+            /** Creates a new random seed.
+             */
+            void newRandomSeed() const;
+
             /** Get a random integer.
              *  \param maximum The maximum, exclusive.
              *  \return The random integer.

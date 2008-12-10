@@ -30,6 +30,8 @@ class BattleManager:
     #
     def runBattle( self, enemyNames, background, canFlee=True ):
 
+        self.mathManager.newRandomSeed()
+
         combatants = list(self.partyManager.team)
 
         enemyElements = self.enemiesFile.getElementsByTagName("enemy")
