@@ -34,6 +34,14 @@ class Battle:
         # Lines for the 'console' window
         self.lines = []
         
+    def addLine( self, line ):
+
+        # Remove previous line
+        if len(self.lines) > 2:
+            self.lines = self.lines[ len(self.lines)-2 : ]
+
+        self.lines.append( line )
+        
     ## Starts and runs the battle.
     #
     def run( self ):
@@ -60,13 +68,13 @@ class Battle:
 
         # Preemptive strike / ambush
         if self.mathManager.randFloat() <= 0.1:
-            for a in self.allies:
-                a.timer = 100.0
-            self.lines += ["Preemptive strike!"]
+            for ally in self.allies:
+                ally.setTimer( 100.0 )
+            self.addLine( "Preemptive strike!"  )
         elif self.mathManager.randFloat() <= 0.1:
-            for a in self.allies:
-                a.timer = 0.0
-            self.lines += ["Ambushed!"]
+            for ally in self.allies:
+                ally.setTimer( 0.0 )
+            self.addLine( "Ambushed!" )
             
 
         while self.running:
@@ -92,15 +100,16 @@ class Battle:
 
                 # Add experience if we killed an enemy
                 if not combatant.isAlly():
-                    self.xp += combatant.dropXp
+                    self.xp += combatant.getDropXp()
                     if combatant.dropItem:
-                        if self.mathManager.randFloat() < combatant.dropRate:
-                            self.lines += [ combatant.getName().capitalize()+" drops "+combatant.dropItem+"!" ]
-                            self.partyManager.inventory.addItem( combatant.dropItem )
+                        if self.mathManager.randFloat() < combatant.getDropRate():
+                            self.addLine( combatant.getName().capitalize()+" drops "+combatant.getDropItem()+"!" )
+                            self.partyManager.inventory.addItem( combatant.getDromItem() )
 
-                            # Rebuild menus
-                            for a in self.allies:
-                                a.buildMenu()
+                            # Rebuild menus, because we might have gotten
+                            # a new item we want to use.
+                            for ally in self.allies:
+                                ally.buildMenu()
 
                 # Die die die!!!!11!!!!1
                 self.actionInProgress = True
@@ -115,12 +124,12 @@ class Battle:
     def updateCombatantLists( self ):
     
         # Sort combatant based on y (virtual z)
-        self.combatants.sort( lambda c1, c2: int(c1.position.y - c2.position.y) )
+        self.combatants.sort( lambda c1, c2: int( c1.getPosition().y - c2.getPosition().y ) )
 
         self.allies = filter( lambda q: q.isAlly(), self.combatants )
         self.enemies = filter( lambda q: not q.isAlly(), self.combatants )
-        self.readyEnemies = filter( lambda q: q.timer >= 100.0, self.enemies )
-        self.readyAllies = filter( lambda q: q.timer >= 100.0, self.allies )
+        self.readyEnemies = filter( lambda q: q.getTimer() >= 100.0, self.enemies )
+        self.readyAllies = filter( lambda q: q.getTimer() >= 100.0, self.allies )
     
     ## Set all combatants to a good position
     #  on the screen.
@@ -128,14 +137,15 @@ class Battle:
     
         # Align them and stuff
         for i in range(len(self.allies)):
-            self.allies[i].position = annchienta.Vector( 120-20*i, 75+(i+1)*30 )
+            self.allies[i].setPosition( annchienta.Vector( 120-20*i, 75+(i+1)*30 ) )
             
         for i in range(len(self.enemies)):
-            self.enemies[i].position = annchienta.Vector( self.videoManager.getScreenWidth()-120+20*i, 75+(i+1)*30 )
+            self.enemies[i].setPosition( annchienta.Vector( self.videoManager.getScreenWidth()-120+20*i, 75+(i+1)*30 ) )
     
     ## Check if we won or if the battle is over
     #
     def checkBattleFinished( self ):
+
         # Are all enemies dead? 'cause we win if they are
         # Then again, are we dead?
         if not len(self.enemies) or not len(self.allies):
@@ -168,10 +178,6 @@ class Battle:
         if not self.inputManager.running() or not self.running:
             self.running = False
             return
-        
-        # Remove unnecessary lines
-        while len(self.lines)>2:
-            self.lines.pop(0)
         
         # Calculate number of ms passed
         ms = 0.0
@@ -221,7 +227,7 @@ class Battle:
                 # First in first out
                 self.actionQueue = self.actionQueue + [ (action, actor, target ) ]
                 # Make sure to reset time
-                actor.timer = 0.0
+                actor.setTimer( 0.0 )
             self.menuOpen = False
         
         # Let enemies choose actions
@@ -233,7 +239,7 @@ class Battle:
                 # First in first out
                 self.actionQueue = [ (action, actor, target) ] + self.actionQueue
                 # Make sure to reset timer
-                actor.timer = 0.0
+                actor.setTimer( 0.0 )
 
     ## Draws the battle to the screen.
     #
@@ -252,8 +258,8 @@ class Battle:
             self.videoManager.setColor()
         
         # Draw the combatants
-        for c in self.combatants:
-            c.draw()
+        for combatant in self.combatants:
+            combatant.draw()
             
         # Draw the allies info
         self.videoManager.push()
@@ -268,7 +274,7 @@ class Battle:
     #  takeXAction function in this class.
     def takeAction( self, action, combatant, target ):
 
-        if action.category == "item":
+        if action.getCategory() == "item":
             self.takeItemAction( action.getName(), combatant, target )
         elif action.getName() == "steal":
             self.takeStealAction( combatant, target )
@@ -289,7 +295,7 @@ class Battle:
     def takeGenericAction( self, action, combatant, target ):
             
         # Info
-        self.lines += [combatant.getName().capitalize()+" uses "+action.getName()+" on "+target.getName().capitalize()+"!"]
+        self.addLine( combatant.getName().capitalize()+" uses "+action.getName()+" on "+target.getName().capitalize()+"!" )
         
         # Let's assume we are dealing with a regular action for now
         damage = 0.0
@@ -322,10 +328,10 @@ class Battle:
         # Rows only matter when it's physical damage
         if action.getType() == "physical":
             # If attacker is in back row, half damage...
-            if combatant.row == "back":
+            if combatant.getRow() == "back":
                 damage /= 2
             # If target is in back row, half damage...
-            if target.row == "back":
+            if target.getRow() == "back":
                 damage /= 2
 
         # Our hit rate
@@ -349,13 +355,13 @@ class Battle:
             if action.getStatusEffect()!="none" and not target.hasStatusEffect( action.getStatusEffect() ):
                 if self.mathManager.randFloat() <= action.getStatusHit():
                     target.addStatusEffect( action.getStatusEffect() )
-                    self.lines += [ target.getName().capitalize()+" is now "+action.getStatusEffect()+"!" ]
+                    self.addLine( target.getName().capitalize()+" is now "+action.getStatusEffect()+"!" )
 
             # Finally, do damage to damaged ones
             target.setHp( target.getHp() - damage )
 
         else:
-            self.lines += [ combatant.getName().capitalize()+" misses!" ]
+            self.addLine( combatant.getName().capitalize()+" misses!" )
 
         # That took some effort, rest and get mp
         combatant.setMp( combatant.getMp() - action.getCost() )
@@ -377,7 +383,7 @@ class Battle:
             # Only if enemy is carrying an item
             if target.getStealableItem():
                 if self.mathManager.randFloat()<=0.7:
-                    self.lines += [ combatant.getName().capitalize()+" stole "+target.getStealableItem()+" from "+target.getName().capitalize()+"!" ]
+                    self.addLine( combatant.getName().capitalize()+" stole "+target.getStealableItem()+" from "+target.getName().capitalize()+"!" )
                     self.partyManager.inventory.addItem( target.getStealableItem() )
                     # Remove item from target when stolen
                     target.stealItem()
@@ -387,15 +393,15 @@ class Battle:
                         ally.buildItemMenu()
 
                 else:
-                    self.lines += [ combatant.getName().capitalize()+" could not steal from "+target.getName().capitalize()+"!" ]
+                    self.addLine( combatant.getName().capitalize()+" could not steal from "+target.getName().capitalize()+"!" )
             else:
-                self.lines += [ target.getName().capitalize()+" has nothing to steal!" ]
+                self.addLine( target.getName().capitalize()+" has nothing to steal!" )
 
     ## Uses an item
     #
     def takeItemAction( self, item, combatant, target ):
         
-        self.lines += [ combatant.getName().capitalize()+" uses "+item+" on "+target.getName().capitalize()+"!" ]
+        self.addLine( combatant.getName().capitalize()+" uses "+item+" on "+target.getName().capitalize()+"!" )
         self.partyManager.inventory.useItemOn( item, target )
 
         # Rebuild item menus
@@ -411,7 +417,7 @@ class Battle:
         newPosition = annchienta.Vector( combatant.position )
 
         combatant.position = oldPosition
-        self.lines += [combatant.getName().capitalize()+" moves to the "+combatant.row+" row!"]
+        self.addLine( combatant.getName().capitalize()+" moves to the "+combatant.row+" row!" )
         self.playMoveAnimation( combatant, newPosition )
 
     ## Tries to flee from battle
@@ -419,7 +425,7 @@ class Battle:
     def takeFleeAction( self, combatant ):
 
         if not self.canFlee:
-            self.lines += ["You cannot flee from this battle!"]
+            self.addLine( "You cannot flee from this battle!" )
             return
 
         # 75% chance to run away
@@ -427,7 +433,7 @@ class Battle:
             self.running = False
 
         else:
-            self.lines += ["Couldn't run away!"]
+            self.addLine( "Couldn't run away!" )
 
     ## Removes a status effect from a target.
     #
@@ -436,10 +442,10 @@ class Battle:
         removedStatusEffect = target.removeStatusEffect()
 
         if not removedStatusEffect:
-            self.lines += [target.getName().capitalize()+" is not suffering from status effects!"]
+            self.addLine( target.getName().capitalize()+" is not suffering from status effects!" )
 
         else:
-            self.lines += [combatant.getName().capitalize()+" cures "+target.getName().capitalize()+" from "+removedStatusEffect+"!"]
+            self.addLine( combatant.getName().capitalize()+" cures "+target.getName().capitalize()+" from "+removedStatusEffect+"!" )
 
     ## Does nothing, really
     #

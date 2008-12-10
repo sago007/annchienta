@@ -108,6 +108,18 @@ class Combatant( BattleEntity.BattleEntity ):
         else:
             self.position.x += rowDeltaX if self.isAlly() else -rowDeltaX
         self.row = ( "front" if self.row=="back" else "back" )
+
+    def setTimer( self, timer ):
+        self.timer = timer
+
+    def getTimer( self ):
+        return self.timer
+
+    def setPosition( self, position ):
+        self.position = position
+
+    def getPosition( self ):
+        return self.position
     
     # Must be called before every battle
     def reset( self ):

@@ -24,6 +24,15 @@ class Enemy( Combatant.Combatant ):
     def isAlly( self ):
         return False
 
+    def getDropXp( self ):
+        return self.dropXp
+
+    def getDropItem( self ):
+        return self.dropItem
+
+    def getDropRate( self ):
+        return self.dropRate
+
     def getStealableItem( self ):
         return self.stealableItem
 

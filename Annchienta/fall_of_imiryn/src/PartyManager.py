@@ -44,8 +44,8 @@ class PartyManager:
 
     def clearMapCache( self ):
 
-        for m in self.lastMaps:
-            self.freeMap( m )
+        for map in self.lastMaps:
+            self.freeMap( map )
 
         self.lastMaps = []
 
@@ -120,7 +120,9 @@ class PartyManager:
         # Append the records to the party node.
         recordsElement = self.document.createElement("records")
         # Create a text with the records
-        text = reduce( lambda a, b: a+' '+b, self.records ) if len(self.records) else " "
+        text = " "
+        for record in self.records:
+            text += record + " "
         textNode = self.document.createTextNode( text )
         recordsElement.appendChild( textNode )
         partyElement.appendChild( recordsElement )

@@ -161,7 +161,7 @@ class Ally( Combatant.Combatant ):
 
             # Check if there is enough mp
             if self.getMp() < action.getCost():
-                battle.lines += [self.getName().capitalize()+" doesn't have enough MP!"]
+                battle.addLine( self.getName().capitalize()+" doesn't have enough MP!" )
                 return None, None
         
             if not action.hasTarget():
