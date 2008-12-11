@@ -1,5 +1,5 @@
 import annchienta
-import Menu, PartyMenu
+import MenuItem, Menu, PartyMenu
 import PartyManager
 
 class InGameMenu:
@@ -17,13 +17,13 @@ class InGameMenu:
         options = []
 
         # An option that does nothing.
-        options += [ Menu.MenuItem("continue", "Close menu and continue playing.") ]
+        options += [ MenuItem.MenuItem("continue", "Close menu and continue playing.") ]
 
         # A submenu for party management.
-        options += [ Menu.MenuItem( "party", "Change equipment, heal...") ]
+        options += [ MenuItem.MenuItem( "party", "Change equipment, heal...") ]
 
         # An option to quit.
-        options += [ Menu.MenuItem("quit", "Stop playing.") ]
+        options += [ MenuItem.MenuItem("quit", "Stop playing.") ]
 
         self.menu.setOptions( options )
         self.menu.top()
@@ -31,17 +31,17 @@ class InGameMenu:
     # Runs this in game menu
     def run( self ):
 
-        ans = self.menu.pop()
+        menuItem = self.menu.pop()
 
-        if ans is not None:
+        if menuItem is not None:
 
-            if ans.name == "continue":
+            if menuItem.getName() == "continue":
                 pass
 
-            elif ans.name == "party":
+            elif menuItem.getName() == "party":
                 self.partyManagement()
 
-            elif ans.name == "quit":
+            elif menuItem.getName() == "quit":
                 self.mapManager.stop()
 
     # Generate the weapon menu.
@@ -59,10 +59,10 @@ class InGameMenu:
             toolTip = self.partyManager.inventory.getItemDescription(weaponName) + '\n'
             toolTip += reduce( lambda a,b: a+' '+b, map( lambda k: k.upper()+': '+str(weapon.stats[k]), weapon.stats.keys() ) )
 
-            weaponOptions += [ Menu.MenuItem( weaponName, toolTip ) ]
+            weaponOptions += [ MenuItem.MenuItem( weaponName, toolTip ) ]
 
         # Add a confirm option
-        weaponOptions += [ Menu.MenuItem( "confirm", "Go back to the party management menu." ) ]
+        weaponOptions += [ MenuItem.MenuItem( "confirm", "Go back to the party management menu." ) ]
 
         weaponMenu.setOptions( weaponOptions )
         weaponMenu.topRight()
@@ -80,10 +80,10 @@ class InGameMenu:
         loot = inv.getAvailableLoot()
         items = []
         for l in loot:
-            items += [ Menu.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
+            items += [ MenuItem.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
 
         # Add a confirm option
-        items += [ Menu.MenuItem( "confirm", "Go back to the party management menu." ) ]
+        items += [ MenuItem.MenuItem( "confirm", "Go back to the party management menu." ) ]
 
         # Set options
         itemMenu.setOptions( items )
@@ -99,9 +99,9 @@ class InGameMenu:
 
         # Set options...
         partyOptions = []
-        partyOptions += [ Menu.MenuItem("weapon", "Change party member weapon.") ]
-        partyOptions += [ Menu.MenuItem("item", "Use an item on this party member.") ]
-        partyOptions += [ Menu.MenuItem("confirm", "Quit this menu.") ]
+        partyOptions += [ MenuItem.MenuItem("weapon", "Change party member weapon.") ]
+        partyOptions += [ MenuItem.MenuItem("item", "Use an item on this party member.") ]
+        partyOptions += [ MenuItem.MenuItem("confirm", "Quit this menu.") ]
         partyManagementMenu.setOptions( partyOptions )
 
         # Top right corner
@@ -110,15 +110,15 @@ class InGameMenu:
         popping = True
         while popping and self.inputManager.running():
 
-            ans = partyManagementMenu.pop()
+            menuItem = partyManagementMenu.pop()
 
             # The user canceled
-            if ans is None:
+            if menuItem is None:
                 popping = False
                 
             else:
 
-                if ans.name == "weapon":
+                if menuItem.getName() == "weapon":
 
                     # Construct a weapon menu
                     weaponMenu = self.createWeaponMenu( partyManagementMenu.combatantIndex )
@@ -145,7 +145,7 @@ class InGameMenu:
                     # Update combatant
                     partyManagementMenu.combatantIndex = weaponMenu.combatantIndex
 
-                elif ans.name == "item":
+                elif menuItem.getName() == "item":
 
                     # Create an item menu to choose from.
                     itemMenu = self.createItemMenu( partyManagementMenu.combatantIndex )
@@ -171,6 +171,6 @@ class InGameMenu:
                     # Update combatant
                     partyManagementMenu.combatantIndex = itemMenu.combatantIndex
 
-                elif ans.name == "confirm":
+                elif menuItem.getName() == "confirm":
                     popping = False
 

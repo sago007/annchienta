@@ -1,5 +1,5 @@
 import annchienta
-import Combatant, Menu, Action
+import Combatant, MenuItem, Menu, Action
 import PartyManager
 
 class Ally( Combatant.Combatant ):
@@ -109,7 +109,7 @@ class Ally( Combatant.Combatant ):
             if action.getCost()>0:
                 description += " ("+str(action.getCost())+"MP)"
 
-            menuItem = Menu.MenuItem( action.getName(), description )
+            menuItem = MenuItem.MenuItem( action.getName(), description )
             added = False
 
             for sub in subs:
@@ -139,7 +139,7 @@ class Ally( Combatant.Combatant ):
         loot = inv.getAvailableLoot()
         items = []
         for l in loot:
-            items += [ Menu.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
+            items += [ MenuItem.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
         self.itemMenu.setOptions( items )
         self.itemMenu.leftBottom()
 
@@ -150,7 +150,7 @@ class Ally( Combatant.Combatant ):
         if menuItem is None:
             return None, None
 
-        found = filter( lambda a: a.name == menuItem.name, self.actions )
+        found = filter( lambda action: action.getName() == menuItem.getName(), self.actions )
 
         needsTarget = True
 

@@ -59,6 +59,7 @@ BattleManager.initBattleManager()
 
 # Start Main menu.
 import Menu
+import MenuItem
 
 # Display a splash image.
 splashImage = annchienta.Surface( "images/backgrounds/splash.png" )
@@ -81,22 +82,22 @@ while running and inputManager.running():
     videoManager.flip()
 
     menu = Menu.Menu( "Main Menu", "I love my girlfriend." )
-    options = [ Menu.MenuItem("new", "Start a new game."),
-                Menu.MenuItem("load", "Continue from the last save point."),
-                Menu.MenuItem("video size", "Change the video size."),
-                Menu.MenuItem("quit", "Leave this great game.")
+    options = [ MenuItem.MenuItem("new", "Start a new game."),
+                MenuItem.MenuItem("load", "Continue from the last save point."),
+                MenuItem.MenuItem("video size", "Change the video size."),
+                MenuItem.MenuItem("quit", "Leave this great game.")
               ]
     menu.setOptions( options )
     menu.top()
-    ans = menu.pop( None )
+    menuItem = menu.pop( None )
 
-    if ans is not None:
+    if menuItem is not None:
 
-        if ans.name == "quit":
+        if menuItem.getName() == "quit":
 
             running = False
 
-        elif ans.name == "video size":
+        elif menuItem.getName() == "video size":
 
             scale = 2 if videoManager.getVideoScale()==1 else 1
             videoManager.setVideoMode( videoManager.getScreenWidth(), videoManager.getScreenHeight(), "Annchienta", videoManager.isFullScreen(), scale )
@@ -104,7 +105,7 @@ while running and inputManager.running():
         else:
 
             loadFile = "save/new.xml"
-            if ans.name == "load" and engine.isValidFile("save/save.xml"):
+            if menuItem.getName() == "load" and engine.isValidFile("save/save.xml"):
                 loadFile = "save/save.xml"
 
             partyManager.load( loadFile )

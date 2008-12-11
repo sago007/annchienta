@@ -1,5 +1,5 @@
 import annchienta
-import Menu, PartyManager
+import MenuItem, Menu, PartyManager
 
 # An extended menu that shows information
 # about the party.

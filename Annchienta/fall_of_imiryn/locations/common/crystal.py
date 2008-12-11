@@ -1,5 +1,5 @@
 import annchienta
-import Menu
+import MenuItem, Menu
 import PartyManager
 import SceneManager
 
@@ -18,7 +18,7 @@ sceneManager.initDialog( [annchienta.getActiveObject(), annchienta.getPassiveObj
 sceneManager.text("Your health was restored!")
 
 menu = Menu.Menu("Save menu.", "Save your game.")
-options = [ Menu.MenuItem("save", "Save your progress."), Menu.MenuItem("cancel", "Return to the game.") ]
+options = [ MenuItem.MenuItem("save", "Save your progress."), MenuItem.MenuItem("cancel", "Return to the game.") ]
 menu.setOptions( options )
 menu.top()
 

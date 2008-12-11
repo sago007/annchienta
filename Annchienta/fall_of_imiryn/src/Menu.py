@@ -1,24 +1,15 @@
+import MenuItem
 import annchienta, SceneManager
-
-class MenuItem:
-
-    # Constructs and sets stuff like name and tooltip
-    def __init__( self, name, toolTip=None ):
-    
-        self.name, self.toolTip = name, toolTip
-        
-        # It's not a menu, it's purely a menu item
-        self.isMenu = False
 
 ## \brief A simple Menu.
 #
 #  Uses video buffer 6.
-class Menu(MenuItem):
+class Menu( MenuItem.MenuItem ):
 
     def __init__( self, name, toolTip=None ):
     
         # Base constructor
-        MenuItem.__init__( self, name, toolTip )
+        MenuItem.MenuItem.__init__( self, name, toolTip )
         
         # Get references
         self.inputManager = annchienta.getInputManager()
@@ -26,9 +17,6 @@ class Menu(MenuItem):
         self.mapManager = annchienta.getMapManager()
         self.sceneManager = SceneManager.getSceneManager()
         
-        # This is a menu, not just a menu item.
-        self.isMenu = True
-
         # Size of the menu
         self.width, self.height = 0, 0
 
@@ -43,6 +31,9 @@ class Menu(MenuItem):
 
         # The options in the menu. Use setOptions() to set them!
         self.options = []
+
+    def isMenu( self ):
+        return True
 
     def setOptions( self, options=None ):
 
@@ -69,7 +60,7 @@ class Menu(MenuItem):
 
         # Work recursive for submenus
         for m in self.options:
-            if m.isMenu:
+            if m.isMenu():
                 m.setOptions()
 
     # Sets the menu on top of the screen
@@ -79,7 +70,7 @@ class Menu(MenuItem):
         self.x = (self.videoManager.getScreenWidth()-self.width)/2
         # Work recursive for submenus
         for m in self.options:
-            if m.isMenu:
+            if m.isMenu():
                 m.top()
 
     # Sets the menu on top of the screen, on the right side...
@@ -89,7 +80,7 @@ class Menu(MenuItem):
         self.x = self.videoManager.getScreenWidth()-self.width-self.sceneManager.margin
         # Work recursive for submenus
         for m in self.options:
-            if m.isMenu:
+            if m.isMenu():
                 m.topRight()
 
     # Sets the menu in the left bottom of the screen
@@ -99,7 +90,7 @@ class Menu(MenuItem):
         self.x = self.sceneManager.margin
         # Work recursive for submenus
         for m in self.options:
-            if m.isMenu:
+            if m.isMenu():
                 m.leftBottom()
 
     ## Pops the menu
@@ -162,7 +153,7 @@ class Menu(MenuItem):
             return None
         else:
             # If the chosen item is a submenu, recursively call that submenu.
-            if self.clickedItem.isMenu:
+            if self.clickedItem.isMenu():
                 sub = self.clickedItem.pop( backgroundProcess )
                 # If the submenu was canceled, we return to this menu
                 if sub is None:
