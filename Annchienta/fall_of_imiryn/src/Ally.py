@@ -288,7 +288,7 @@ class Ally( Combatant.Combatant ):
 
             text = self.name.capitalize()+" gains a level!"
 
-            for key in self.primaryStats:
+            for key in self.stats:
 
                 grade = self.grades[key]
 
@@ -296,17 +296,17 @@ class Ally( Combatant.Combatant ):
                 baseline = int( float(self.level["lvl"] * 2.5)/float(grade) )
 
                 # Difference baseline - current value
-                difference = baseline - self.primaryStats[key]
+                difference = baseline - self.stats[key]
                 
                 # Add a certain random factor
                 gain = difference + self.mathManager.randInt(0,4)
 
                 # Now gain
-                self.primaryStats[key] += gain
+                self.stats[key] += gain
 
                 # Cap at 100
-                if self.primaryStats[key] > 100:
-                    self.primaryStats[key] = 100
+                if self.stats[key] > 100:
+                    self.stats[key] = 100
 
             # Seperate formulas for hp, mp
             for string in ["hp", "mp"]:

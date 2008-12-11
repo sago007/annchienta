@@ -15,7 +15,7 @@ class BattleEntity:
         # Every battleentity should have a name
         self.name = str( xmlElement.getAttribute("name") )
 
-        # Create a dictionary describing the weapon stats
+        # Create a dictionary describing the simple stats
         self.stats = {}
 
         if xmlElement:

@@ -107,7 +107,7 @@ class Battle:
                     if combatant.dropItem:
                         if self.mathManager.randFloat() < combatant.getDropRate():
                             self.addLine( combatant.getName().capitalize()+" drops "+combatant.getDropItem()+"!" )
-                            self.partyManager.inventory.addItem( combatant.getDromItem() )
+                            self.partyManager.inventory.addItem( combatant.getDropItem() )
 
                             # Rebuild menus, because we might have gotten
                             # a new item we want to use.
