@@ -87,7 +87,7 @@ class BattleManager:
 
         self.videoManager.reset()
 
-def initBattleManager():
+def init():
     global globalBattleManagerInstance
     globalBattleManagerInstance = BattleManager()
 

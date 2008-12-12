@@ -197,7 +197,7 @@ class PartyManager:
                 chest = chests[c]
 
                 # Create object and set position
-                chestObject = annchienta.StaticObject( "chest", self.cacheManager.getSurface("sprites/chest.png"), self.cacheManager.getMask("masks/chest.png") )
+                chestObject = annchienta.StaticObject( "chest", "locations/common/chest.xml" )
 
                 chestObject.setPosition( annchienta.Point( annchienta.TilePoint, int(chest.getAttribute("tilex")), int(chest.getAttribute("tiley")) ) )
 
@@ -210,8 +210,10 @@ class PartyManager:
                 code =  "import annchienta, PartyManager, SceneManager\n"
                 code += "audioManager, cacheManager = annchienta.getAudioManager(), annchienta.getCacheManager()\n"
                 code += "partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()\n"
+                code += "chest = annchienta.getPassiveObject()\n"
                 code += "if not partyManager.hasRecord('"+chestUniqueName+"'):\n"
                 code += " audioManager.playSound( cacheManager.getSound('sounds/chest.ogg') )\n"
+                code += " chest.setAnimation( 'opened' )\n"
                 code += " partyManager.inventory.addItem('"+item+"')\n"
                 code += " partyManager.addRecord('"+chestUniqueName+"')\n"
                 code += " sceneManager.text('Found "+item+".')\n"
@@ -219,6 +221,10 @@ class PartyManager:
                 code += " sceneManager.text('This chest is empty!')\n"
 
                 chestObject.setOnInteractCode( code )
+
+                # Open chest if already opened
+                if self.hasRecord( chestUniqueName ):
+                    chestObject.setAnimation( "opened" )
 
                 #print code
 
@@ -279,7 +285,7 @@ class PartyManager:
             combatant.setHp( combatant.getMaxHp() )
             combatant.setMp( combatant.getMaxMp() )
 
-def initPartyManager():
+def init():
     global globalPartyManagerInstance
     globalPartyManagerInstance = PartyManager()
 

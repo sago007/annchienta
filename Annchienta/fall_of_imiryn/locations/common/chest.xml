@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<sprite image="sprites/chest.png" mask="masks/chest.png">
+
+    <frame number="1" x1="0" y1="0" x2="28" y2="30"/>
+    <frame number="2" x1="28" y1="0" x2="65" y2="30"/>
+
+    <animation name="stand" frames="1" />
+    <animation name="opened" frames="2" />
+
+</sprite>
+

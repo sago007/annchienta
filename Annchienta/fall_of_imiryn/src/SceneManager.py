@@ -289,7 +289,7 @@ class SceneManager:
 #  You should call this function only once, usually at the
 #  start of your game.
 #
-def initSceneManager():
+def init():
     global globalSceneManagerInstance
     globalSceneManagerInstance = SceneManager()
 
