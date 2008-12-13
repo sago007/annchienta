@@ -68,24 +68,15 @@ class BattleManager:
     # Displays a battle intro.
     def battleIntro( self ):
 
-        self.videoManager.setColor( 255, 255, 255, 200 )
-        triangleLength = self.mathManager.max( self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
-        self.videoManager.translate( self.videoManager.getScreenWidth()/2, self.videoManager.getScreenHeight()/2 )
-
         # Play intro sound
         self.audioManager.playSound( self.drum )
 
-        for i in range(20):
+        start = self.engine.getTicks()
 
-            self.videoManager.rotate( self.mathManager.randInt(0, 360 ) )
-            self.videoManager.translate( self.mathManager.randInt( -triangleLength/4, triangleLength/4 ), self.mathManager.randInt( -triangleLength/4, triangleLength/4 ) )
-            self.videoManager.drawTriangle( 0, -triangleLength, -self.mathManager.randInt(2,10), triangleLength, self.mathManager.randInt(2,10), triangleLength )
-            start = self.engine.getTicks()
+        while self.engine.getTicks() < start + 800:
 
-            while self.inputManager.running() and self.engine.getTicks()<start+20:
-                self.videoManager.flip()
-
-        self.videoManager.reset()
+            self.videoManager.boxBlur( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
+            self.videoManager.flip()
 
 def init():
     global globalBattleManagerInstance
