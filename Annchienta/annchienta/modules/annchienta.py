@@ -118,6 +118,8 @@ class LogManager(_object):
     __repr__ = _swig_repr
     def enable(*args): return _annchienta.LogManager_enable(*args)
     def isEnabled(*args): return _annchienta.LogManager_isEnabled(*args)
+    def logToFile(*args): return _annchienta.LogManager_logToFile(*args)
+    def isLogToFile(*args): return _annchienta.LogManager_isLogToFile(*args)
     def message(*args): return _annchienta.LogManager_message(*args)
     def warning(*args): return _annchienta.LogManager_warning(*args)
     def error(*args): return _annchienta.LogManager_error(*args)

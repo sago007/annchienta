@@ -32,12 +32,13 @@ namespace Annchienta
 
         logFile = fopen( filename, "w" );
 
+        enabled = true;
+        m_logToFile = false;
+
         if( !logFile )
-            printf( "Could not open log file %s for writing.\n", filename );
+            fprintf( stderr, "Could not open log file %s for writing.\n", filename );
         else
             message( "Succesfully started LogManager." );
-
-        enabled = true;
     }
 
     LogManager::~LogManager()
@@ -56,18 +57,37 @@ namespace Annchienta
         return enabled;
     }
 
+    bool LogManager::logToFile( bool value )
+    {
+        m_logToFile = value;
+    }
+
+    bool LogManager::isLogToFile() const
+    {
+        return m_logToFile;
+    }
+
     void LogManager::message( const char *fmt, ... )
     {
         va_list arg;
 
         va_start( arg, fmt );
 
-        if( logFile )
+        if( enabled && logFile )
         {
-            fprintf( logFile, "Message - " );
-            vfprintf( logFile, fmt, arg );
-            fprintf( logFile, "\n" );
-            fflush( logFile );
+            if( isLogToFile() )
+            {
+                fprintf( logFile, "Message - " );
+                vfprintf( logFile, fmt, arg );
+                fprintf( logFile, "\n" );
+                fflush( logFile );
+            }
+            else
+            {
+                fprintf( stdout, "Message - " );
+                vfprintf( stdout, fmt, arg );
+                fprintf( stdout, "\n" );
+            }
         }
 
         va_end( arg );
@@ -79,12 +99,21 @@ namespace Annchienta
 
         va_start( arg, fmt );
 
-        if( logFile )
+        if( enabled && logFile )
         {
-            fprintf( logFile, "Warning - " );
-            vfprintf( logFile, fmt, arg );
-            fprintf( logFile, "\n" );
-            fflush( logFile );
+            if( isLogToFile() )
+            {
+                fprintf( logFile, "Warning - " );
+                vfprintf( logFile, fmt, arg );
+                fprintf( logFile, "\n" );
+                fflush( logFile );
+            }
+            else
+            {
+                fprintf( stderr, "Warning - " );
+                vfprintf( stderr, fmt, arg );
+                fprintf( stderr, "\n" );
+            }
         }
 
         va_end( arg );
@@ -96,13 +125,22 @@ namespace Annchienta
 
         va_start( arg, fmt );
 
-        if( logFile )
+        if( enabled && logFile )
         {
-            fprintf( logFile, "Error - " );
-            vfprintf( logFile, fmt, arg );
-            fprintf( logFile, "\n" );
-            fflush( logFile );
-            fclose( logFile );
+            if( isLogToFile() )
+            {
+                fprintf( logFile, "Error - " );
+                vfprintf( logFile, fmt, arg );
+                fprintf( logFile, "\n" );
+                fflush( logFile );
+                fclose( logFile );
+            }
+            else
+            {   
+                fprintf( stderr, "Error - " );
+                vfprintf( stderr, fmt, arg );
+                fprintf( stderr, "\n" );
+            }
         }
 
         va_end( arg );

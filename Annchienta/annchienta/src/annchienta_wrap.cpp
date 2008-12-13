@@ -4040,6 +4040,59 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_LogManager_logToFile(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:LogManager_logToFile",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LogManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "LogManager_logToFile" "', argument " "1"" of type '" "Annchienta::LogManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::LogManager * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "LogManager_logToFile" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  result = (bool)(arg1)->logToFile(arg2);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_LogManager_isLogToFile(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:LogManager_isLogToFile",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LogManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "LogManager_isLogToFile" "', argument " "1"" of type '" "Annchienta::LogManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::LogManager * >(argp1);
+  result = (bool)((Annchienta::LogManager const *)arg1)->isLogToFile();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_LogManager_message__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs) {
   PyObject *resultobj = 0;
   Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
@@ -15568,6 +15621,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"getEngine", _wrap_getEngine, METH_VARARGS, NULL},
 	 { (char *)"LogManager_enable", _wrap_LogManager_enable, METH_VARARGS, NULL},
 	 { (char *)"LogManager_isEnabled", _wrap_LogManager_isEnabled, METH_VARARGS, NULL},
+	 { (char *)"LogManager_logToFile", _wrap_LogManager_logToFile, METH_VARARGS, NULL},
+	 { (char *)"LogManager_isLogToFile", _wrap_LogManager_isLogToFile, METH_VARARGS, NULL},
 	 { (char *)"LogManager_message", _wrap_LogManager_message, METH_VARARGS, NULL},
 	 { (char *)"LogManager_warning", _wrap_LogManager_warning, METH_VARARGS, NULL},
 	 { (char *)"LogManager_error", _wrap_LogManager_error, METH_VARARGS, NULL},

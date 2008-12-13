@@ -116,6 +116,7 @@ class Ally( Combatant.Combatant ):
                 if sub.name == action.getCategory():
                     sub.options += [menuItem]
                     added = True
+
             if not added:
                 if action.category=="top":
                     subs += [menuItem]
@@ -138,8 +139,8 @@ class Ally( Combatant.Combatant ):
         inv = self.partyManager.inventory
         loot = inv.getAvailableLoot()
         items = []
-        for l in loot:
-            items += [ MenuItem.MenuItem( l, inv.getItemDescription(l)+" ("+str(inv.getItemCount(l))+" left)" ) ]
+        for lootItem in loot:
+            items += [ MenuItem.MenuItem( lootItem, inv.getItemDescription(lootItem)+" ("+str(inv.getItemCount(lootItem))+" left)" ) ]
         self.itemMenu.setOptions( items )
         self.itemMenu.leftBottom()
 

@@ -36,6 +36,11 @@ namespace Annchienta
              */
             bool enabled;
 
+            /** Whether the logManager should log to a file
+             *  or to stdout.
+             */
+            bool m_logToFile;
+
         public:
             #ifndef SWIG
                 LogManager( const char *fileName = "log.txt" );
@@ -52,6 +57,17 @@ namespace Annchienta
              *  \return If the LogManager is enabled.
              */
             bool isEnabled() const;
+
+            /** Makes the Logger log to a file instead of to
+             *  stdout. Disabled by default.
+             *  \param value If the LogManager should log to a file.
+             */
+            bool logToFile( bool value );
+
+            /** Checks if the Logger should log to a file.
+             *  \return If the Logger logs to a file.
+             */
+            bool isLogToFile() const;
 
             /** Prints a message to the log file.
              *  \param fmt Text, like passed to prinf in C.
