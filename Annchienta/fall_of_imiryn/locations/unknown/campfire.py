@@ -25,6 +25,8 @@ elif not (partyManager.hasRecord("unknown_found_flints") and partyManager.hasRec
         sceneManager.speak( august, "Some dry wood or something similar is nessecary here." )
     if not partyManager.hasRecord("unknown_found_food"):
         sceneManager.speak( august, "I wonder if we could find something edible." )
+        if partyManager.hasRecord("unknown_found_wood"):
+            sceneManager.speak( august, "Perhaps if I can find a good fishing spot..." )
 
     sceneManager.quitDialog()
 

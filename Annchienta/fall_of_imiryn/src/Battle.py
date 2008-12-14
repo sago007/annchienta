@@ -40,8 +40,8 @@ class Battle:
     def addLine( self, line ):
 
         # Remove previous line
-        if len(self.lines) > 2:
-            self.lines = self.lines[ len(self.lines)-2 : ]
+        if len(self.lines) >= 2:
+            self.lines = [ self.lines[len(self.lines)-1] ]
 
         self.lines.append( line )
         

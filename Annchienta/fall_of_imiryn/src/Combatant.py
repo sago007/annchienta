@@ -223,7 +223,7 @@ class Combatant( BattleEntity.BattleEntity ):
                 self.statusEffects.remove( toRemove )
                 return toRemove
 
-        elif hasStatusEffect( statusEffect ):
+        elif self.hasStatusEffect( statusEffect ):
             self.statusEffects.remove( statusEffect )
             return statusEffect
 

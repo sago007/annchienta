@@ -65,6 +65,15 @@ class BattleEntity:
     def setElementalFactor( self, element, value ):
         self.elemental[element] = value
 
+    def getStatsAsString( self ):
+        text = ""
+        text += "ATT: " + str( self.getAttack() )
+        text += " DEF: " + str( self.getDefense() )
+        text += " MAT: " + str( self.getMagicAttack() )
+        text += " MDF: " + str( self.getMagicDefense() )
+        text += " SPD: " + str( self.getSpeed() )
+        return text
+
     ## Stores all information about this entity in the given
     #  xml element so it can be loaded again later.
     def writeToXML( self, xmlElement, document ):

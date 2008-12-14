@@ -15,6 +15,7 @@ august = partyManager.player
 
 sceneManager.initDialog( [august] )
 
+sceneManager.text("March:\nLook out!")
 sceneManager.text("Ultros:\nYaaaouch! Seafood soup!")
 won = battleManager.runBattle( ["ultros"], annchienta.Surface("images/backgrounds/cave.png"), False )
 #won = True
@@ -28,6 +29,7 @@ if won:
     sceneManager.text( "Use the mouse cursor to steer the raft. You will reach the cave exit in approximately one minute." )
     execfile("locations/inaran/raft.py")
     if mapManager.running():
+
         # Make everything black
         sceneManager.fade()
         sceneManager.text("August:\nBy the time we regained some control over the raft, it had long left the cave.", None, True )
@@ -42,7 +44,9 @@ if won:
         sceneManager.text("August:\nI have no idea how long we had been drifting. It felt like days. Perhaps it even were days.", None, True )  
         sceneManager.text("August:\nWe all thought about a lot of things. We thought we were going to die.", None, True )
         sceneManager.text("August:\nMy brother had been killed by Enthavos in the Fifth Guard, and my mother had recently passed away. And my father... I had never known him.", None, True )
-        sceneManager.text("August:\nI don't think I was really afraid of dying. Yet we just kept holding on. After all, we were in the Fifth Guard now.", None, True )
+        sceneManager.text("August:\nI don't think I was really afraid of dying. Yet we just kept holding on.", None, True )
+        sceneManager.text("August:\nAt some point Avril said it being in the Fifth Guard had really lost his meaning somehow.", None, True )
+        sceneManager.text("August:\nWe were all getting very pessimistic.", None, True )
         sceneManager.text("August:\nThat must've been the point when we hit land.", None, True )
         sceneManager.text("August:\nWhere were we?", None, True )
 

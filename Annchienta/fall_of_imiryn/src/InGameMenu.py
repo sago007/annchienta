@@ -57,7 +57,7 @@ class InGameMenu:
 
             # Create a tooltip with the stats
             toolTip = self.partyManager.inventory.getItemDescription(weaponName) + '\n'
-            toolTip += reduce( lambda a,b: a+' '+b, map( lambda k: k.upper()+': '+str(weapon.stats[k]), weapon.stats.keys() ) )
+            toolTip += weapon.getStatsAsString() 
 
             weaponOptions += [ MenuItem.MenuItem( weaponName, toolTip ) ]
 

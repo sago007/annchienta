@@ -58,11 +58,11 @@ class PartyMenu( Menu.Menu ):
         self.videoManager.drawString( self.sceneManager.defaultFont, "Current weapon: "+self.combatant.weapon.name.capitalize(), 0, 0 )
 
         self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
-        self.videoManager.drawString( self.sceneManager.defaultFont, "HP: "+str(self.combatant.getHp())+"/"+str(self.combatant.getMaxHp*())+" MP: "+str(self.combatant.getMp())+"/"+str(self.combatant.getMaxMp()), 0, 0 )
+        self.videoManager.drawString( self.sceneManager.defaultFont, "HP: "+str(self.combatant.getHp())+"/"+str(self.combatant.getMaxHp())+" MP: "+str(self.combatant.getMp())+"/"+str(self.combatant.getMaxMp()), 0, 0 )
 
         self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
-        text = reduce( lambda a,b:a+' '+b, map( lambda a: a.upper()+": "+str( self.combatant.derivedStats[a]), self.combatant.derivedStats.keys() ) )
-        self.videoManager.drawString( self.sceneManager.defaultFont, str(text), 0, 0 )
+
+        self.videoManager.drawString( self.sceneManager.defaultFont, self.combatant.getStatsAsString(), 0, 0 )
         
         self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
         self.videoManager.drawString( self.sceneManager.italicsFont, "Click combatants to select them.", 0, 0 )

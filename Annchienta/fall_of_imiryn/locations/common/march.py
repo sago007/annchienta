@@ -21,15 +21,15 @@ if not partyManager.hasRecord("inaran_intro_march"):
     sceneManager.speak( august, "I guess... finally..." )
 
     sceneManager.speak( august, "We had been searching these Inaran areas, the very south of the Jemor continent, for a week.", True )
-    sceneManager.speak( august, "It was supposed to be our last test before we could join the Fifth Guard.", True )
+    sceneManager.speak( august, "This was supposed to be our last test before we could join the Fifth Guard.", True )
     sceneManager.speak( august, "We were young and full of hope. We would join the Fifth Guard, the elite section of our army.", True )
     sceneManager.speak( august, "Being in that section had been my dream since my older brother died protecting it.", True )
-    sceneManager.speak( august, "We could not know how this mission would change our lives... foregood.", True )
     sceneManager.speak( august, "March, Avril and me were the only candidates remaining.", True )
     sceneManager.speak( august, "The others had failed during their missions... or even died.", True )
     sceneManager.speak( august, "This were the Fifth Guard tests after all... not exactly a picknick.", True )
-    sceneManager.speak( august, "Nearby fishermen had been attacked by some sea creature. Our job was to exterminate it.", True )
-    sceneManager.speak( august, "We tracked it down to this beach quite easily.", True )
+    sceneManager.speak( august, "We had been given very specific instructions.", True )
+    sceneManager.speak( august, "Nearby fishermen had been attacked by some dangerous sea creature. Our job was to seek and exterminate it.", True )
+    sceneManager.speak( august, "Now, we had finally been able to track it down.", True )
 
     lp = laustwan.getPosition().to( annchienta.IsometricPoint )
     lp.x += 60
@@ -49,6 +49,7 @@ if not partyManager.hasRecord("inaran_intro_march"):
 
     sceneManager.speak( august, "I never really understood these helpful human-like creatures.", True )
     sceneManager.speak( august, "Still, I was grateful to them that they were there, always helping humans out.", True )
+    sceneManager.speak( august, "Getting here would have been a lot harder without him carrying most of our equipment.", True )
     sceneManager.speak( march, "One final test. The cave is here. Let's go." )
 
     ap = august.getPosition()
