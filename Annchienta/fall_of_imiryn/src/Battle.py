@@ -22,6 +22,7 @@ class Battle:
         self.background = background
         self.canFlee = canFlee
         self.won = False
+        self.actionLock = False
     
         # Get references
         self.engine = annchienta.getEngine()
@@ -64,7 +65,7 @@ class Battle:
     
         # Reset action que [ (action, combatant, target) ]
         self.actionQueue = []
-        self.actionInProgress = False
+        self.actionLock = False
 
         # Total experience earned in this battle
         self.xp = 0
@@ -99,7 +100,7 @@ class Battle:
         for combatant in self.combatants:
 
             # Check if the target died
-            if combatant.getHp() <= 0 and not self.actionInProgress:
+            if combatant.getHp() <= 0 and not self.actionLock:
 
                 # Add experience if we killed an enemy
                 if not combatant.isAlly():
@@ -115,7 +116,7 @@ class Battle:
                                 ally.buildMenu()
 
                 # Die die die!!!!11!!!!1
-                self.actionInProgress = True
+                self.actionLock = True
 
                 animation = DieAnimation.DieAnimation( None, None )
                 animation.setBattle( self )
@@ -124,19 +125,16 @@ class Battle:
 
                 self.combatants.remove( combatant )
 
-                self.actionInProgress = False
+                self.actionLock = False
 
-    ## Calculate the combatants who are ready
+    ## Put the combatants in their appropriate list.
     #
     def updateCombatantLists( self ):
     
         # Sort combatant based on y (virtual z)
         self.combatants.sort( lambda c1, c2: int( c1.getPosition().y - c2.getPosition().y ) )
-
         self.allies = filter( lambda q: q.isAlly(), self.combatants )
         self.enemies = filter( lambda q: not q.isAlly(), self.combatants )
-        self.readyEnemies = filter( lambda q: q.getTimer() >= 100.0, self.enemies )
-        self.readyAllies = filter( lambda q: q.getTimer() >= 100.0, self.allies )
     
     ## Set all combatants to a good position
     #  on the screen.
@@ -174,7 +172,7 @@ class Battle:
             return
 
     ## We have to be very careful in this function because it
-    #  might very well recurse. That's why we need booleans to
+    #  might very well recurse. That's why we need a lock to
     #  ensure some things are not executed in the same time,
     #  for example two animations or two open menu's.
     def update( self, updateInputManagerToo=True ):
@@ -194,8 +192,10 @@ class Battle:
         self.lastUpdate = self.engine.getTicks()
         
         # Update combatants
-        for c in self.combatants:
-            c.update( ms )
+        for combatant in self.combatants:
+            combatant.update( ms )
+            if combatant.getTimer() >= 100 and combatant not in self.actionQueue:
+                self.actionQueue.append( combatant )
         
         # Check for dead combatants
         self.removeDeadCombatants()
@@ -205,49 +205,33 @@ class Battle:
 
         # Check if battle is finished
         self.checkBattleFinished()
-        
-        # Update actionqueue
-        while self.running and len(self.actionQueue) and not self.actionInProgress and not self.menuOpen:
 
-            self.actionInProgress = True
-            action, actor, target = self.actionQueue.pop()
-            # Check if the target and actor still exist
-            if actor in self.combatants:
-                # If this attack doesn't need a target or the target is alive.
-                if (not target or target in self.combatants) and (actor in self.combatants):
-                    self.takeAction( action, actor, target )
-            self.actionInProgress = False
+        if self.running and len(self.actionQueue) and not self.actionLock:
 
-            self.removeDeadCombatants()
-            self.updateCombatantLists()
-            self.checkBattleFinished()
+            self.actionLock = True
 
-        # Let allies choose actions
-        if self.running and (not self.menuOpen) and len(self.readyAllies) and not self.actionInProgress:
-            self.menuOpen = True
-            actor = self.readyAllies.pop(0)
+            # Let combatant choose action and attack
+            actor = self.actionQueue[ 0 ]
             action, target = actor.selectAction( self )
+
+            # If the user cancelled, but the ally back of the queue
             if action is None:
-                # Put this ready ally in the back
-                self.readyAllies += [actor]
-            else:
-                # First in first out
-                self.actionQueue = self.actionQueue + [ (action, actor, target ) ]
-                # Make sure to reset time
-                actor.setTimer( 0.0 )
-            self.menuOpen = False
-        
-        # Let enemies choose actions
-        if self.running and len(self.readyEnemies) and not self.actionInProgress:
-            actor = self.readyEnemies.pop(0)
-            action, target = actor.selectAction( self )
-            # An enemy can't queue twice, so check if the enemy isn't there already.
-            if not len( filter( lambda a: a[1]==actor, self.actionQueue ) ):
-                # First in first out
-                self.actionQueue = [ (action, actor, target) ] + self.actionQueue
-                # Make sure to reset timer
-                actor.setTimer( 0.0 )
+                self.actionQueue.append( actor )
 
+            else:
+                # Validate a few things: actor should still be present, so does
+                # target.
+                if actor in self.combatants:
+                    # If this attack doesn't need a target or the target is alive.
+                    if (not target or target in self.combatants) and (actor in self.combatants):
+                        # Dependencies satisfied, take action
+                        self.takeAction( action, actor, target )
+
+            # Remove combatant from queue
+            self.actionQueue.pop( 0 )
+
+            self.actionLock = False
+            
     ## Draws the battle to the screen.
     #
     def draw( self ):
@@ -280,6 +264,8 @@ class Battle:
     #  the action given, and then calling to the appropriate
     #  takeXAction function in this class.
     def takeAction( self, action, combatant, target ):
+
+        combatant.setTimer( 0.0 )
 
         if action.getCategory() == "item":
             self.takeItemAction( action.getName(), combatant, target )
