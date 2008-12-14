@@ -89,9 +89,6 @@ class Combatant( BattleEntity.BattleEntity ):
         self.damage = 0
         self.damageTimer = 0.0
 
-        # Status effect currently displayed
-        self.statusEffectTimer = 0.0
-
         self.reset()
 
     # Prototype, must be overwritten
@@ -303,13 +300,6 @@ class Combatant( BattleEntity.BattleEntity ):
                 self.damage = 0
                 self.damageTimer = 0.0
 
-        # Update status effect displayed.
-        if len(self.statusEffects):
-            self.statusEffectTimer += 0.001*ms
-            while self.statusEffectTimer>=len(self.statusEffects):
-                self.statusEffectTimer -= len( self.statusEffects )
-
-
     ## Function prototype, not correct, as
     #  derived classes should overwrite this.
     def selectAction( self, battle ):
@@ -334,13 +324,20 @@ class Combatant( BattleEntity.BattleEntity ):
             self.videoManager.pop()
 
         # Status effects
-        if len(self.statusEffects):    
-            effect = self.statusEffects[ int(self.statusEffectTimer) % len(self.statusEffects) ]
+        for i in range(len(self.statusEffects)):
+
+            statusEffect = self.statusEffects[i]
+            sprite = self.cacheManager.getSurface( "images/statuseffects/" + statusEffect + ".png" )
+
+            x = 0
             if self.isAlly():
-                self.videoManager.drawStringRight( self.sceneManager.defaultFont, effect, -self.width/2, -self.height/2 )
+                x = -self.width/2 - int(1+i/2) * sprite.getWidth()
             else:
-                self.videoManager.drawString( self.sceneManager.defaultFont, effect, self.width/2, -self.height/2 )
-        
+                x = self.width/2 + int(i/2) * sprite.getWidth()
+            y = -self.height/2 + (i%2) * sprite.getWidth()
+
+            self.videoManager.drawSurface( sprite, x, y )
+            
         # Actual sprite
         self.videoManager.drawSurface( self.sprite, -self.width/2, -self.height/2, self.sx1, self.sy1, self.sx2, self.sy2 )
 

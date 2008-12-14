@@ -38,7 +38,7 @@
             <weapon name="broadsword"/>
             <actions>attack row wait flee</actions>
             <sprite filename="sprites/march.png" x1="150" x2="180" y1="40" y2="80"/>
-            <learn>2 swing 4 fire 7 strike 8 ice 9 water 10 thunder</learn>
+            <learn>2 swing 4 fire 5 fog 7 strike 8 ice 9 water 10 thunder</learn>
         </combatant>
     </team>
 </party>
