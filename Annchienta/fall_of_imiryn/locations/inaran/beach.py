@@ -61,6 +61,7 @@ if not partyManager.hasRecord( "inaran_intro" ):
     sceneManager.speak( march, "... Yes. Come over here, August." )
     sceneManager.text( "Hold down the left mouse button to move. Then click March when you are close enough." )
     sceneManager.text( "During the game, press the right mouse button to bring up the menu." )
+    sceneManager.text( "In all menu's, use the left mouse button to click your choice. Click using the right mouse button to back to a higher-level menu." )
     partyManager.addRecord( "inaran_intro" )
 
 sceneManager.quitDialog()

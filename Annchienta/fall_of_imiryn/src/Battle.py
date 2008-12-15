@@ -212,16 +212,17 @@ class Battle:
 
             # Let combatant choose action and attack
             actor = self.actionQueue[ 0 ]
-            action, target = actor.selectAction( self )
 
-            # If the user cancelled, but the ally back of the queue
-            if action is None:
-                self.actionQueue.append( actor )
+            if actor in self.combatants:
+                action, target = actor.selectAction( self )
 
-            else:
-                # Validate a few things: actor should still be present, so does
-                # target.
-                if actor in self.combatants:
+                # If the user cancelled, but the ally back of the queue
+                if action is None:
+                    self.actionQueue.append( actor )
+
+                else:
+                    # Validate a few things: actor should still be present, so does
+                    # target.
                     # If this attack doesn't need a target or the target is alive.
                     if (not target or target in self.combatants) and (actor in self.combatants):
                         # Dependencies satisfied, take action

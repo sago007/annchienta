@@ -162,7 +162,7 @@ class Combatant( BattleEntity.BattleEntity ):
     def magicalBaseDamage( self ):
         mat = self.getMagicAttack()
         lvl = self.level["lvl"]
-        return 5 * (mat + lvl)
+        return 4 * (mat + lvl)
 
     ## Set health points for this combatant.
     #  \param health New health for this combatant.
