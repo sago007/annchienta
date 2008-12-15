@@ -4050,7 +4050,6 @@ SWIGINTERN PyObject *_wrap_LogManager_logToFile(PyObject *SWIGUNUSEDPARM(self), 
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  bool result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:LogManager_logToFile",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__LogManager, 0 |  0 );
@@ -4063,8 +4062,8 @@ SWIGINTERN PyObject *_wrap_LogManager_logToFile(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "LogManager_logToFile" "', argument " "2"" of type '" "bool""'");
   } 
   arg2 = static_cast< bool >(val2);
-  result = (bool)(arg1)->logToFile(arg2);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  (arg1)->logToFile(arg2);
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;

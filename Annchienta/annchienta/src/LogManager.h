@@ -62,7 +62,7 @@ namespace Annchienta
              *  stdout. Disabled by default.
              *  \param value If the LogManager should log to a file.
              */
-            bool logToFile( bool value );
+            void logToFile( bool value );
 
             /** Checks if the Logger should log to a file.
              *  \return If the Logger logs to a file.

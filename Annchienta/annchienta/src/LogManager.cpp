@@ -57,7 +57,7 @@ namespace Annchienta
         return enabled;
     }
 
-    bool LogManager::logToFile( bool value )
+    void LogManager::logToFile( bool value )
     {
         m_logToFile = value;
     }
