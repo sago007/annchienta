@@ -75,11 +75,22 @@ else:
     sceneManager.speak( captain, "And that's why we will guard these plantation, no matter what! Now die!" )
 
     battleManager = BattleManager.getBattleManager()
-    battleManager.runBattle( ["captain", "war mage"]*2, annchienta.Surface( "images/backgrounds/kimen.png" ), False )
-
+    won = battleManager.runBattle( ["captain", "war mage"]*2, annchienta.Surface( "images/backgrounds/kimen.png" ), False )
+    
+    
+    currentMap.removeObject( captain )
     sceneManager.quitDialog()
+    
+    if won:
+        sceneManager.initDialog( [august, avril, march ] )
+        
+        sceneManager.speak( avril, "Did you hear that? We have to destroy this plantation, quick!" )
+        sceneManager.speak( august, "Then Empire will not be able to make the drugs for some time..." )
+        sceneManager.speak( march, "And then the people will find out the truth!" )
+        
+        sceneManager.quitDialog()
+        
     currentMap.removeObject( march )
     currentMap.removeObject( avril )
-    currentMap.removeObject( captain )
 
 partyManager.refreshMap()
