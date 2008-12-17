@@ -121,7 +121,7 @@ namespace Annchienta
             /* Draw the top surface.
              */
             glBindTexture( GL_TEXTURE_2D, orderedSurfaces[i]->getTexture() );
-            glBegin( GL_QUADS );
+            glBegin( GL_TRIANGLE_STRIP );
     
                 glColor4f( r, g, b, orderedSurfaces[i]==surfaces[0] || i==0?1.0f:0.0f );
                 glTexCoord2f( xCenter, s->getTopTexCoord() );
@@ -131,13 +131,13 @@ namespace Annchienta
                 glTexCoord2f( s->getLeftTexCoord(), yCenter );
                 glVertex2f( (GLfloat)points[1].x, (GLfloat)(points[1].y-points[1].z) );
     
-                glColor4f( r, g, b, orderedSurfaces[i]==surfaces[2] || i==0?1.0f:0.0f );
-                glTexCoord2f( xCenter, s->getBottomTexCoord() );
-                glVertex2f( (GLfloat)points[2].x, (GLfloat)(points[2].y-points[2].z) );
-    
                 glColor4f( r, g, b, orderedSurfaces[i]==surfaces[3] || i==0?1.0f:0.0f );
                 glTexCoord2f( s->getRightTexCoord(), yCenter );
                 glVertex2f( (GLfloat)points[3].x, (GLfloat)(points[3].y-points[3].z) );
+    
+                glColor4f( r, g, b, orderedSurfaces[i]==surfaces[2] || i==0?1.0f:0.0f );
+                glTexCoord2f( xCenter, s->getBottomTexCoord() );
+                glVertex2f( (GLfloat)points[2].x, (GLfloat)(points[2].y-points[2].z) );
 
             glEnd();
         }
