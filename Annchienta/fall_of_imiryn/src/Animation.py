@@ -73,7 +73,7 @@ class Animation:
             self.battle.update()
 
             factor = float( self.engine.getTicks() - start ) / duration
-            position = combatant.position + annchienta.Vector( 0, -30 ) * factor
+            position = combatant.getPosition() + annchienta.Vector( 0, -30 ) * factor
 
             self.videoManager.clear()
             self.battle.draw()

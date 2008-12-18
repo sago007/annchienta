@@ -9,9 +9,9 @@ class AttackAnimation( Animation.Animation ):
 
     def play( self ):
 
-        origPosition = annchienta.Vector( self.getCombatant().position )
-        position = annchienta.Vector( self.getTarget().position )
-        dx = ( self.target.width/2 + self.getCombatant().width/2 )
+        origPosition = annchienta.Vector( self.getCombatant().getPosition() )
+        position = annchienta.Vector( self.getTarget().getPosition() )
+        dx = ( self.target.getWidth()/2 + self.getCombatant().getWidth()/2 )
         dx = dx if self.target.isAlly() else -dx
         position.x += dx
         self.move( self.getCombatant(), position )
@@ -23,4 +23,3 @@ class AttackAnimation( Animation.Animation ):
             self.spriteOver( self.getTarget(), self.getSprite() )
 
         self.move( self.getCombatant(), origPosition )
-

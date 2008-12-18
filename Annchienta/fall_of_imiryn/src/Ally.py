@@ -238,7 +238,7 @@ class Ally( Combatant.Combatant ):
                 
                 # Use Vectors to calculate distance between mouse and combatant c.
                 mouse = annchienta.Vector( battle.inputManager.getMouseX(), battle.inputManager.getMouseY() )
-                pos = annchienta.Vector( c.position.x, c.position.y )
+                pos = annchienta.Vector( c.getPosition().x, c.getPosition().y )
 
                 d = mouse.distance( pos )
 

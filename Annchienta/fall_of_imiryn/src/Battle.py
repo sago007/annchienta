@@ -418,7 +418,8 @@ class Battle:
         combatant.changeRow()
         newPosition = annchienta.Vector( combatant.position )
 
-        combatant.position = oldPosition
+        # Rever and do a small animation
+        combatant.setPosition( oldPosition )
         self.addLine( combatant.getName().capitalize()+" moves to the "+combatant.row+" row!" )
 
         animation = Animation.Animation( None, None )

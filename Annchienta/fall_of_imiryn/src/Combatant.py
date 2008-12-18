@@ -77,6 +77,7 @@ class Combatant( BattleEntity.BattleEntity ):
             self.sx2 = self.sprite.getWidth()
             self.sy2 = self.sprite.getHeight()
 
+        # Get width and height from those facts.
         self.width = self.sx2-self.sx1
         self.height = self.sy2-self.sy1
 
@@ -117,6 +118,12 @@ class Combatant( BattleEntity.BattleEntity ):
 
     def getPosition( self ):
         return self.position
+
+    def getWidth( self ):
+        return self.width
+
+    def getHeight( self ):
+        return self.height
     
     # Must be called before every battle
     def reset( self ):
