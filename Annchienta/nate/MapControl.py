@@ -172,6 +172,7 @@ class MapControl:
                 # Check if we have to edit side surfaces
                 if self.mainWindow.editSidesChecked():
                     tile.setSideSurface( self.selectSideSurfaceWindow.getSelectedSurface() )
+                    tile.setSideSurfaceOffset( self.mainWindow.getSideSurfaceOffset() )
 
                 # Check if we have to edit obstruction types
                 if self.mainWindow.editObstructionsChecked():

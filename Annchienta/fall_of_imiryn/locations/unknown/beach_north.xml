@@ -52,7 +52,7 @@
 </if>
 
 <!-- Katana. -->
-<chest item="katana" tilex="20" tiley="25"/>
+<chest item="katana" tilex="21" tiley="25"/>
 
 <!-- Way to beach_start -->
 <area tilex1="28" tilex2="30" tiley1="18" tiley2="21">

@@ -194,6 +194,12 @@ class MainWindow:
 
         return dic[ int( widget.get_active() ) ]
 
+    ## Get the side surface Z offset we should place
+    #
+    def getSideSurfaceOffset( self ):
+        widget = self.widgetTree.get_widget("editSidesOffsetSpinButton")
+        return int(widget.get_value_as_int())
+
     ## Set the status bar text
     #
     def setStatusBarText( self, text ):

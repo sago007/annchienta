@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <glade-interface>
-  <requires-version lib="gtk+" version="2.12"/>
+  <!-- interface-requires gtk+ 2.16 -->
+  <!-- interface-naming-policy toplevel-contextual -->
   <widget class="GtkWindow" id="window">
     <property name="visible">True</property>
     <property name="title" translatable="yes">New Annchienta Terrain Editor</property>
@@ -12,7 +13,7 @@
           <widget class="GtkNotebook" id="notebook">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="tab_pos">GTK_POS_LEFT</property>
+            <property name="tab_pos">left</property>
             <property name="scrollable">True</property>
             <property name="homogeneous">True</property>
             <child>
@@ -27,11 +28,14 @@
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Choose game working directory:</property>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkFileChooserButton" id="gameWorkingDirectoryChooser">
                         <property name="visible">True</property>
-                        <property name="action">GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER</property>
+                        <property name="action">select-folder</property>
                         <property name="title" translatable="yes">Select game working directory</property>
                         <signal name="selection_changed" handler="on_gameWorkingDirectoryChooser_selection_changed"/>
                       </widget>
@@ -40,6 +44,9 @@
                       </packing>
                     </child>
                   </widget>
+                  <packing>
+                    <property name="position">0</property>
+                  </packing>
                 </child>
                 <child>
                   <widget class="GtkHButtonBox" id="tileWidthBox">
@@ -50,6 +57,9 @@
                         <property name="label" translatable="yes">Select tile width:
 Tile height will be half of tile width.</property>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkSpinButton" id="tileWidthSpinButton">
@@ -75,6 +85,9 @@ Tile height will be half of tile width.</property>
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Draw a grid on the map to ease editing:</property>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkComboBox" id="drawGridComboBox">
@@ -113,16 +126,18 @@ Draw height-aware grid</property>
                 <child>
                   <widget class="GtkHButtonBox" id="createOrOpenMapBox">
                     <property name="visible">True</property>
-                    <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
+                    <property name="layout_style">spread</property>
                     <child>
                       <widget class="GtkButton" id="createNewMapButton">
+                        <property name="label" translatable="yes">Create new map</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="label" translatable="yes">Create new map</property>
-                        <property name="response_id">0</property>
                         <signal name="clicked" handler="on_createNewMapButton_clicked"/>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkLabel" id="label6">
@@ -143,21 +158,27 @@ Draw height-aware grid</property>
                       </packing>
                     </child>
                   </widget>
+                  <packing>
+                    <property name="position">0</property>
+                  </packing>
                 </child>
                 <child>
                   <widget class="GtkHButtonBox" id="saveMapBox">
                     <property name="visible">True</property>
-                    <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
+                    <property name="layout_style">spread</property>
                     <child>
                       <widget class="GtkLabel" id="label2">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Save map to:</property>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkFileChooserButton" id="saveMapFileChooser">
                         <property name="visible">True</property>
-                        <property name="action">GTK_FILE_CHOOSER_ACTION_SAVE</property>
+                        <property name="action">save</property>
                       </widget>
                       <packing>
                         <property name="position">1</property>
@@ -165,11 +186,10 @@ Draw height-aware grid</property>
                     </child>
                     <child>
                       <widget class="GtkButton" id="saveMapButton">
+                        <property name="label" translatable="yes">Save</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="label" translatable="yes">Save</property>
-                        <property name="response_id">0</property>
                         <signal name="clicked" handler="on_saveMapButton_clicked"/>
                       </widget>
                       <packing>
@@ -184,24 +204,25 @@ Draw height-aware grid</property>
                 <child>
                   <widget class="GtkHButtonBox" id="cycleLayerBox">
                     <property name="visible">True</property>
-                    <property name="layout_style">GTK_BUTTONBOX_CENTER</property>
+                    <property name="layout_style">center</property>
                     <child>
                       <widget class="GtkButton" id="nextLayerButton">
+                        <property name="label" translatable="yes">Next layer</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="label" translatable="yes">Next layer</property>
-                        <property name="response_id">0</property>
                         <signal name="clicked" handler="on_nextLayerButton_clicked"/>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkButton" id="addLayerButton">
+                        <property name="label" translatable="yes">Add layer</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="label" translatable="yes">Add layer</property>
-                        <property name="response_id">0</property>
                         <signal name="clicked" handler="on_addLayerButton_clicked"/>
                       </widget>
                       <packing>
@@ -216,12 +237,15 @@ Draw height-aware grid</property>
                 <child>
                   <widget class="GtkHButtonBox" id="editLayerBox">
                     <property name="visible">True</property>
-                    <property name="layout_style">GTK_BUTTONBOX_CENTER</property>
+                    <property name="layout_style">center</property>
                     <child>
                       <widget class="GtkLabel" id="label1">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Change layer Z:</property>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkSpinButton" id="changeLayerZSpinButton">
@@ -265,10 +289,10 @@ Draw height-aware grid</property>
                     <property name="can_focus">True</property>
                     <child>
                       <widget class="GtkCheckButton" id="editWholeTilesCheckButton">
+                        <property name="label" translatable="yes">Edit Whole Tiles</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Edit Whole Tiles</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="active">True</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_editWholeTilesCheckButton_toggled"/>
@@ -281,12 +305,15 @@ Draw height-aware grid</property>
                     <child>
                       <widget class="GtkHButtonBox" id="hbuttonbox1">
                         <property name="visible">True</property>
-                        <property name="layout_style">GTK_BUTTONBOX_CENTER</property>
+                        <property name="layout_style">center</property>
                         <child>
                           <widget class="GtkLabel" id="label9">
                             <property name="visible">True</property>
                             <property name="label" translatable="yes">Edit radius:</property>
                           </widget>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
                         </child>
                         <child>
                           <widget class="GtkSpinButton" id="editRadiusSpinButton">
@@ -306,6 +333,9 @@ Draw height-aware grid</property>
                       </packing>
                     </child>
                   </widget>
+                  <packing>
+                    <property name="position">0</property>
+                  </packing>
                 </child>
                 <child>
                   <widget class="GtkHPaned" id="editTilesHPaned">
@@ -313,10 +343,10 @@ Draw height-aware grid</property>
                     <property name="can_focus">True</property>
                     <child>
                       <widget class="GtkCheckButton" id="editTilesCheckButton">
+                        <property name="label" translatable="yes">Edit Tiles</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Edit Tiles</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                       </widget>
                       <packing>
@@ -329,13 +359,15 @@ Draw height-aware grid</property>
                         <property name="visible">True</property>
                         <child>
                           <widget class="GtkButton" id="showTilesWindowButton">
+                            <property name="label" translatable="yes">Show Tiles</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
-                            <property name="label" translatable="yes">Show Tiles</property>
-                            <property name="response_id">0</property>
                             <signal name="clicked" handler="on_showTilesWindowButton_clicked"/>
                           </widget>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
                         </child>
                       </widget>
                       <packing>
@@ -354,10 +386,10 @@ Draw height-aware grid</property>
                     <property name="can_focus">True</property>
                     <child>
                       <widget class="GtkCheckButton" id="editZCheckButton">
+                        <property name="label" translatable="yes">Edit Tile Z</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Edit Tile Z</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                       </widget>
                       <packing>
@@ -368,12 +400,15 @@ Draw height-aware grid</property>
                     <child>
                       <widget class="GtkHButtonBox" id="editZButtonBox">
                         <property name="visible">True</property>
-                        <property name="layout_style">GTK_BUTTONBOX_CENTER</property>
+                        <property name="layout_style">center</property>
                         <child>
                           <widget class="GtkLabel" id="label3">
                             <property name="visible">True</property>
                             <property name="label" translatable="yes">Tile Z:</property>
                           </widget>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
                         </child>
                         <child>
                           <widget class="GtkSpinButton" id="editZSpinButton">
@@ -402,10 +437,10 @@ Draw height-aware grid</property>
                     <property name="can_focus">True</property>
                     <child>
                       <widget class="GtkCheckButton" id="editSidesCheckButton">
+                        <property name="label" translatable="yes">Edit Side Surfaces</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Edit Side Surfaces</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                       </widget>
                       <packing>
@@ -416,16 +451,18 @@ Draw height-aware grid</property>
                     <child>
                       <widget class="GtkHButtonBox" id="editSidesButtonBox">
                         <property name="visible">True</property>
-                        <property name="layout_style">GTK_BUTTONBOX_CENTER</property>
+                        <property name="layout_style">center</property>
                         <child>
                           <widget class="GtkButton" id="showSidesWindowButton">
+                            <property name="label" translatable="yes">Show Side Surfaces</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
-                            <property name="label" translatable="yes">Show Side Surfaces</property>
-                            <property name="response_id">0</property>
                             <signal name="clicked" handler="on_showSidesWindowButton_clicked"/>
                           </widget>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
                         </child>
                         <child>
                           <widget class="GtkLabel" id="label8">
@@ -437,7 +474,7 @@ Draw height-aware grid</property>
                           </packing>
                         </child>
                         <child>
-                          <widget class="GtkSpinButton" id="editSidesZOffsetSpinButton">
+                          <widget class="GtkSpinButton" id="editSidesOffsetSpinButton">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="adjustment">0 0 100 1 10 10</property>
@@ -463,10 +500,10 @@ Draw height-aware grid</property>
                     <property name="can_focus">True</property>
                     <child>
                       <widget class="GtkCheckButton" id="editObstructionsCheckButton">
+                        <property name="label" translatable="yes">Edit Obstructions</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Edit Obstructions</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                       </widget>
                       <packing>
@@ -485,6 +522,9 @@ Draw height-aware grid</property>
 NoObstruction
 FullObstruction</property>
                           </widget>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
                         </child>
                       </widget>
                       <packing>
@@ -503,10 +543,10 @@ FullObstruction</property>
                     <property name="can_focus">True</property>
                     <child>
                       <widget class="GtkCheckButton" id="editShadowsCheckButton">
+                        <property name="label" translatable="yes">Edit Shadow</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Edit Shadow</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                       </widget>
                       <packing>
@@ -545,6 +585,9 @@ FullObstruction</property>
               </packing>
             </child>
           </widget>
+          <packing>
+            <property name="position">0</property>
+          </packing>
         </child>
         <child>
           <widget class="GtkStatusbar" id="statusBar">
