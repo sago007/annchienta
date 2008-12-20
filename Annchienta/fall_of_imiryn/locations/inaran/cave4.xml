@@ -47,6 +47,9 @@ partyManager.changeMap( &quot;locations/inaran/cave3.xml&quot;, annchienta.Point
 <staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="17" tiley="12"/>
 <staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="12" tiley="8"/>
 
+<!-- Some bones. -->
+<staticobject name="bones1" config="locations/inaran/bones1.xml" tilex="7" tiley="24"/>
+
 <!-- A crystal to save our game. -->
 <staticobject config="locations/common/crystal.xml" name="crystal" tilex="7" tiley="3"/>
 
