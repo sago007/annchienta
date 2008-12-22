@@ -38,8 +38,8 @@ partyManager = PartyManager.getPartyManager()
 battleManager = BattleManager.getBattleManager()
 annchienta.getAudioManager().playMusic( 'music/mountains.ogg')
 annchienta.getVideoManager().setClearColor(147,201,233)
-battleManager.enemiesInMap = []
-battleManager.background = "images/backgrounds/ice.png"
+battleManager.setRandomBattleEnemies( [] )
+battleManager.setRandomBattleBackground( "images/backgrounds/ice.png" )
 
 cacheManager = annchienta.getCacheManager()
 cacheManager.getSurface('images/storyline/facilities.png')

@@ -24,7 +24,13 @@ class BattleManager:
         # Drum on battle start
         self.drum = annchienta.Sound( "sounds/battle.ogg" )
 
-        self.enemiesInMap = []
+        self.randomBattleEnemies = []
+
+    def setRandomBattleBackground( self, background ):
+        self.randomBattleBackground = background
+
+    def setRandomBattleEnemies( self, enemies ):
+        self.randomBattleEnemies = enemies
 
     ## A more simple function to run a battle.
     #
@@ -57,13 +63,13 @@ class BattleManager:
         else:
             self.randomBattleDelay = self.mathManager.randInt( 400, 900 )
 
-            # Return if there are no enemies in this level.
-            if not len(self.enemiesInMap):
+            # Return if there are no enemies in this area.
+            if not len(self.randomBattleEnemies):
                 return
 
-            enames = map( lambda a: self.enemiesInMap[self.mathManager.randInt(0,len(self.enemiesInMap))], range(self.mathManager.randInt(2,5)))
+            enames = map( lambda a: self.randomBattleEnemies[self.mathManager.randInt(0,len(self.randomBattleEnemies))], range(self.mathManager.randInt(2,5)))
 
-            self.runBattle( enames, annchienta.Surface( self.background ), True )
+            self.runBattle( enames, annchienta.Surface( self.randomBattleBackground ), True )
 
     # Displays a battle intro.
     def battleIntro( self ):

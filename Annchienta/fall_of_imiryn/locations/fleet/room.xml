@@ -30,7 +30,7 @@ partyManager = PartyManager.getPartyManager()
 battleManager = BattleManager.getBattleManager()
 annchienta.getAudioManager().playMusic(&quot;music/title.ogg&quot;)
 annchienta.getVideoManager().setClearColor(147,201,233)
-battleManager.enemiesInMap = []
+battleManager.setRandomBattleEnemies( [] )
 </onload>
 
 </map>

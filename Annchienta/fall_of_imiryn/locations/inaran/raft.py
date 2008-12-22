@@ -30,7 +30,7 @@ class RaftGame:
         self.sceneManager = SceneManager.getSceneManager()
 
         # Load images
-        self.background = annchienta.Surface("images/backgrounds/water.png")
+        self.setRandomBattleBackground( annchienta.Surface("images/backgrounds/water.png") )
         self.cacheManager.getSurface("sprites/rock1.png")
         self.cacheManager.getSurface("sprites/rock2.png")
 
