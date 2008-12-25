@@ -26,6 +26,6 @@ ans = menu.pop()
 if ans is not None:
     if ans.name == "save":
         partyManager.save( "save/save.xml" )
-        sceneManager.text("Game saved!")
+        sceneManager.text("The progress in your travels has been recorded.")
 
 sceneManager.quitDialog()
