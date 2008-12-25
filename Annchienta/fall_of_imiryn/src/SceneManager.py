@@ -45,14 +45,15 @@ class SceneManager:
         self.videoManager.setColor(170,170,170)
 
     ## \brief Draw a box.
-    #
+    #  \param skipBlur Skip the background blur. This can speed up box drawing a lot.
     #  A box is the main GUI element. You can customize the box layout
     #  by changing bitmaps.
-    def drawBox( self, x1, y1, x2, y2 ):
+    def drawBox( self, x1, y1, x2, y2, skipBlur=False ):
 
         #self.videoManager.push()
         #self.videoManager.identity()
-        self.videoManager.boxBlur( x1, y1, x2, y2 )
+        if not skipBlur:
+            self.videoManager.boxBlur( x1, y1, x2, y2 )
         #self.videoManager.pop()
 
         # If there are not enough textures, just draw a stupid simple box.
@@ -69,7 +70,7 @@ class SceneManager:
 
             # Draw the side textures as patterns.
             self.videoManager.drawPattern( self.boxTextures[1], x1+self.boxTextures[0].getWidth(), y1, x2-self.boxTextures[2].getWidth(), y1+self.boxTextures[1].getHeight() )
-            self.videoManager.drawPattern( self.boxTextures[7], x1+self.boxTextures[7].getWidth(), y2-self.boxTextures[7].getHeight(), x2-self.boxTextures[8].getWidth(), y2 )
+            self.videoManager.drawPattern( self.boxTextures[7], x1+self.boxTextures[8].getWidth(), y2-self.boxTextures[7].getHeight(), x2-self.boxTextures[8].getWidth(), y2 )
             self.videoManager.drawPattern( self.boxTextures[3], x1, y1+self.boxTextures[0].getHeight(), x1+self.boxTextures[3].getWidth(), y2-self.boxTextures[6].getHeight() )
             self.videoManager.drawPattern( self.boxTextures[5], x2-self.boxTextures[5].getWidth(), y1+self.boxTextures[2].getHeight(), x2, y2-self.boxTextures[8].getHeight() )
 
