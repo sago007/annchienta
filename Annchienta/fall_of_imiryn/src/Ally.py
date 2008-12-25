@@ -186,34 +186,40 @@ class Ally( Combatant.Combatant ):
 
         return action, target
         
-    def drawInfo( self ):
-    
+    def drawInfo( self, boxWidth, boxHeight ):
+
+        fontOffset = 0
+
         self.videoManager.push()
 
-        # Draw a quick black background
-        self.videoManager.setColor( 0, 0, 0, 100 )
-        self.videoManager.drawRectangle( 0, 0, self.videoManager.getScreenWidth(), 20 )        
+        if self.getHp() > self.getMaxHp()*0.15:
+            self.videoManager.setColor()
+        else:
+            self.videoManager.setColor( 255, 0, 0 )
+
+        # Draw the combanant's name
+        self.videoManager.drawString( self.sceneManager.getDefaultFont(), self.name.capitalize(), 0, fontOffset )
+
+        self.videoManager.translate( boxWidth/4, 0 )
+
+        # Draw the combatant's hp
+        self.videoManager.drawString( self.sceneManager.getDefaultFont(), str(self.getHp())+"/"+str(self.getMaxHp())+"HP", 0, fontOffset )
+        
+        self.videoManager.translate( boxWidth/4, 0 )
+
+        # Draw the combatant's mp
+        self.videoManager.drawString( self.sceneManager.getDefaultFont(), str(self.getMp())+"MP", 0, fontOffset )
+
+        self.videoManager.translate( boxWidth/4, 0 )
         
         # Draw the timer
-        self.videoManager.push()
         if self.timer>=100.0:
             self.videoManager.setColor( 161, 48, 0 )
         else:
             self.videoManager.setColor( 161, 120, 0 )
-        self.videoManager.translate( self.videoManager.getScreenWidth()*0.4 + 3, 3 )
-        width = int(0.01*self.timer*(self.videoManager.getScreenWidth()*0.6-6))
-        self.videoManager.drawRectangle( 0, 0, width, 14 )
-        self.videoManager.pop()
-        
-        # Draw the combatant's name
-        self.videoManager.setColor()
-        self.videoManager.drawString( self.sceneManager.largeItalicsFont, self.name.capitalize(), self.sceneManager.margin, -3 )
-        
-        # Draw the combatant's hp
-        self.videoManager.drawString( self.sceneManager.largeItalicsFont, str(self.getHp())+"/"+str(self.getMaxHp())+"HP", int(self.videoManager.getScreenWidth()*0.4)+self.sceneManager.margin, -3 )
-        
-        # Draw the combatant's mp
-        self.videoManager.drawStringRight( self.sceneManager.largeItalicsFont, str(self.getMp())+"MP", self.videoManager.getScreenWidth()-self.sceneManager.margin, -3 )
+
+        width = int( 0.01 * self.timer * (boxWidth/4.0) )
+        self.videoManager.drawRectangle( 0, 2, width, boxHeight-2 )
         
         self.videoManager.pop()
 
@@ -261,7 +267,7 @@ class Ally( Combatant.Combatant ):
             
             # Draw "select target"
             self.sceneManager.activeColor()
-            self.videoManager.drawString( self.sceneManager.largeItalicsFont, "Select Target", self.sceneManager.margin, self.videoManager.getScreenHeight()-20*(len(battle.allies)+1) )
+            self.videoManager.drawString( self.sceneManager.largeItalicsFont, "Select Target", self.sceneManager.margin, 40 )
             
             battle.videoManager.flip()
 

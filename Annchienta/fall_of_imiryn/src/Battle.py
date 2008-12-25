@@ -255,9 +255,17 @@ class Battle:
             
         # Draw the allies info
         self.videoManager.push()
-        self.videoManager.translate( 0, self.videoManager.getScreenHeight()-20*len(self.allies) )
-        for a in self.allies:
-            a.drawInfo()
+
+        infoBoxWidth = 280
+        infoBoxHeight = 20*len(self.allies)
+        infoBoxX = self.videoManager.getScreenWidth() - infoBoxWidth - 3*self.sceneManager.getMargin()
+        infoBoxY = self.videoManager.getScreenHeight() - infoBoxHeight - 3*self.sceneManager.getMargin()
+
+        self.sceneManager.drawBox( infoBoxX, infoBoxY, infoBoxX + infoBoxWidth + 2*self.sceneManager.getMargin(), infoBoxY + infoBoxHeight + 2 * self.sceneManager.getMargin(), True )
+        self.videoManager.translate( infoBoxX + self.sceneManager.getMargin(), infoBoxY + self.sceneManager.getMargin() )
+
+        for ally in self.allies:
+            ally.drawInfo( infoBoxWidth, 20 )
             self.videoManager.translate( 0, 20 )
         self.videoManager.pop()
 

@@ -44,6 +44,12 @@ class SceneManager:
     def inactiveColor( self ):
         self.videoManager.setColor(170,170,170)
 
+    def getMargin( self ):
+        return self.margin
+
+    def getDefaultFont( self ):
+        return self.defaultFont
+
     ## \brief Draw a box.
     #  \param skipBlur Skip the background blur. This can speed up box drawing a lot.
     #  A box is the main GUI element. You can customize the box layout

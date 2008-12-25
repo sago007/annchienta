@@ -83,6 +83,16 @@ class Menu( MenuItem.MenuItem ):
             if m.isMenu():
                 m.topRight()
 
+    # Sets the menu on top of the screen, on the left side...
+    def topLeft( self ):
+        self.toolTipOnTop = False
+        self.y = self.sceneManager.margin
+        self.x = self.sceneManager.margin
+        # Work recursive for submenus
+        for m in self.options:
+            if m.isMenu():
+                m.topLeft()
+                
     # Sets the menu in the left bottom of the screen
     def leftBottom( self ):
         self.toolTipOnTop = True
