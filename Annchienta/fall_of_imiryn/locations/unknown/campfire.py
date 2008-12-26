@@ -72,7 +72,7 @@ else:
     sceneManager.speak( march, "Don't say that... we saved lives defeating that sea creature." )
     sceneManager.speak( avril, "But is that worth our own lives?" )
     sceneManager.speak( august, "Avril... we won't die. I won't die in the Fifth Guard. My brother did, but I won't." )
-    sceneManager.speak( march, "Your brother died in the Fifth Guard?" )
+    sceneManager.speak( march, "Your brother died in the Fifth Guard as well?" )
     sceneManager.speak( august, "He fought Enthavos." )
     sceneManager.speak( march, "Enthavos... once a legend in the Fifth Guard." )
     sceneManager.speak( august, "Enthavos was one of the best fighters in the Fifth Guard. He was a legend.", True )

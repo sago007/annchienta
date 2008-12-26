@@ -70,7 +70,7 @@ sceneManager.quitDialog()
 import annchienta, PartyManager, SceneManager
 partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
-if partyManager.hasRecord('inaran_intro_done'):
+if partyManager.hasRecord('inaran_talked_to_march'):
     partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point( annchienta.TilePoint, 14, 27 ) )
 else:
     august = partyManager.player
