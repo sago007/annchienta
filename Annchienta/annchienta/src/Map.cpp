@@ -562,11 +562,11 @@ namespace Annchienta
         {
             for( unsigned int j=i+1; j<layers.size(); j++ )
             {
-                if( layers[j]->getZ() < layers[i]->getZ() )
+                if( sortedLayers[j]->getZ() < sortedLayers[i]->getZ() )
                 {
-                    Layer *temp = layers[j];
-                    layers[j] = layers[i];
-                    layers[i] = layers[j];
+                    Layer *temp = sortedLayers[j];
+                    sortedLayers[j] = sortedLayers[i];
+                    sortedLayers[i] = temp;
                 }
             }
         }

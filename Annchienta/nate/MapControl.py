@@ -210,8 +210,12 @@ class MapControl:
     def nextLayer( self ):
 
         if self.currentMap:
+
             index = self.currentMap.getCurrentLayerIndex()
             index = (index + 1) % self.currentMap.getNumberOfLayers()
+            #print "New index: " + str(index)
+            #print "Number of layers: " + str(self.currentMap.getNumberOfLayers())
+
             self.currentMap.setCurrentLayer( index )
             # Update the spinbox
             self.mainWindow.setLayerZValue( self.currentMap.getCurrentLayer().getZ() )
