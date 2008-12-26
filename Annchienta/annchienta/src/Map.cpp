@@ -554,17 +554,19 @@ namespace Annchienta
             delete[] sortedLayers;
 
         sortedLayers = new Layer*[layers.size()+1];
+        for( unsigned int i=0; i<layers.size(); i++ )
+            sortedLayers[i] = layers[i];
 
-        /* A kind of count sort algorithm. */
-        unsigned int i=0;
-        for( int z=0; i<layers.size(); z++ )
+        /* A insertion-sort. */
+        for( unsigned int i=0; i+1<layers.size(); i++ )
         {
-            for( unsigned int l=0; l<layers.size(); l++ )
+            for( unsigned int j=i+1; j<layers.size(); j++ )
             {
-                if( layers[l]->getZ()==z )
+                if( layers[j]->getZ() < layers[i]->getZ() )
                 {
-                    sortedLayers[i] = layers[l];
-                    i++;
+                    Layer *temp = layers[j];
+                    layers[j] = layers[i];
+                    layers[i] = layers[j];
                 }
             }
         }

@@ -35,7 +35,8 @@ class MainWindow:
                 "on_drawGridComboBox_changed":                         self.updateDrawGrid,
 
                 "on_createNewMapButton_clicked":                       self.createNewMap,
-                "on_openMapFileChooser_selection_changed":             self.updateMapFile,
+                "on_openMapFileChooser_selection_changed":             self.updateOpenMapFile,
+                "on_saveMapFileChooser_selection_changed":             self.updateSaveMapFile,
                 "on_saveMapButton_clicked":                            self.saveMap,
                 "on_nextLayerButton_clicked":                          self.nextLayer,
                 "on_addLayerButton_clicked":                           self.addLayer,
@@ -92,10 +93,17 @@ class MainWindow:
 
     ## Updates the map file, creating a new map
     #  if necessary
-    def updateMapFile( self, widget=None ):
+    def updateOpenMapFile( self, widget=None ):
 
-        filename = str(widget.get_filename())
-        self.mapControl.loadMap( filename )
+        fileName = str(widget.get_filename())
+        self.mapControl.loadMap( fileName )
+
+    ## Updates the file name to be saved to.
+    #
+    def updateSaveMapFile( self, widget=None ):
+
+        fileName = str(widget.get_filename())
+        self.mapControl.setFileName( fileName )
 
     ## Save the map
     #

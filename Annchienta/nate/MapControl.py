@@ -60,6 +60,12 @@ class MapControl:
     def getTileSelection( self ):
         return self.tileSelection
 
+    ## Set the map filename
+    #
+    def setFileName( self, fileName ):
+        if self.mapWriter:
+            self.mapWriter.setFileName( fileName )
+
     ## Get the map.
     #
     def getMap( self ):

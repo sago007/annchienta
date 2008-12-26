@@ -41,10 +41,15 @@ class MapWriter:
             self.document.appendChild( self.mapElement )
 
             # Temporary filename
-            fileName = "untitled.xml"
+            self.fileName = "untitled.xml"
 
         # Now, we have the document in self.document and
         # the root element in self.mapElement.
+
+    ## Set the filename to save to.
+    #
+    def setFileName( self, fileName ):
+        self.fileName = fileName
 
     ## Saves the map to the filename that should already be set.
     #  This basically detects changes in the map and writes those
@@ -56,7 +61,8 @@ class MapWriter:
         # Update the number of layers in the map file
         while self.currentMap.getNumberOfLayers() > len(layerElements):
             newLayerElement = self.document.createElement("layer")
-            self.mapElement.appendChile( newLayerElement )
+            layerElements += [newLayerElement]
+            self.mapElement.appendChild( newLayerElement )
 
         # Now get the again
         layerElements = self.document.getElementsByTagName("layer")
