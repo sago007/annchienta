@@ -14,22 +14,16 @@ laustwan = partyManager.currentMap.getPerson( "laustwan" )
     
 sceneManager.initDialog( [march, august, avril, laustwan] )
 
-if not partyManager.hasRecord("inaran_intro_march"):
+if not partyManager.hasRecord("inaran_talked_to_march"):
 
+    august.lookAt( march )
     sceneManager.speak( march, "Can you see that cave over there? That must be it." )
 
     sceneManager.speak( august, "I guess... finally..." )
 
-    sceneManager.speak( august, "We had been searching these Inaran areas, the very south of the Jemor continent, for a week.", True )
-    sceneManager.speak( august, "This was supposed to be our last test before we could join the Fifth Guard.", True )
+    sceneManager.speak( august, "We had been searching these Inaran areas for three weeks.", True )
     sceneManager.speak( august, "We were young and full of hope. We would join the Fifth Guard, the elite section of our army.", True )
     sceneManager.speak( august, "Being in that section had been my dream since my older brother died protecting it.", True )
-    sceneManager.speak( august, "March, Avril and me were the only candidates remaining.", True )
-    sceneManager.speak( august, "The others had failed during their missions... or even died.", True )
-    sceneManager.speak( august, "This were the Fifth Guard tests after all... not exactly a picknick.", True )
-    sceneManager.speak( august, "We had been given very specific instructions.", True )
-    sceneManager.speak( august, "Nearby fishermen had been attacked by some dangerous sea creature. Our job was to seek and exterminate it.", True )
-    sceneManager.speak( august, "Now, we had finally been able to track it down.", True )
 
     lp = laustwan.getPosition().to( annchienta.IsometricPoint )
     lp.x += 60
@@ -55,7 +49,7 @@ if not partyManager.hasRecord("inaran_intro_march"):
     ap = august.getPosition()
     sceneManager.move( [avril, march], [ap,ap] )
 
-    partyManager.addRecord("inaran_intro_done")
+    partyManager.addRecord("inaran_talked_to_march")
     partyManager.refreshMap()
 
 sceneManager.quitDialog()

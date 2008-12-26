@@ -2,8 +2,8 @@
 <party>
     <playtime seconds="0"/>
     <records> </records>
-    <map filename="locations/inaran/beach.xml" layer="0"/>
-    <player name="august" config="locations/common/august.xml" isox="100" isoy="200"/>
+    <map filename="locations/prequel/tower.xml" layer="0"/>
+    <player name="august" config="locations/common/august.xml" isox="30" isoy="30"/>
     <inventory>potion 3</inventory>
     <team>
         <combatant name="august">

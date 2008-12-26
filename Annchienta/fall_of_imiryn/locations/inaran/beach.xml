@@ -46,13 +46,8 @@
 <!-- A crystal to save our game. -->
 <staticobject config="locations/common/crystal.xml" name="crystal" tilex="15" tiley="20"/>
 
-<!-- The very first event of the game. -->
-<if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('inaran_intro')">
-    <area script="locations/inaran/beach.py" tilex1="0" tilex2="30" tiley1="0" tiley2="30"/>
-</if>
-
 <!-- Some characters. -->
-<if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('inaran_intro_done')">
+<if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('inaran_talked_to_march')">
     <person animation="standsouth" config="locations/common/march.xml" isox="160" isoy="230" name="march"/>
     <person animation="standsouth" config="locations/common/avril.xml" isox="100" isoy="230" name="avril"/>
     <person config="locations/common/laustwan.xml" isox="130" isoy="260" name="laustwan"/>

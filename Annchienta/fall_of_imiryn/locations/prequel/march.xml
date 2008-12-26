@@ -34,6 +34,7 @@ import annchienta, SceneManager
 august = annchienta.getActiveObject()
 march = annchienta.getPassiveObject()
 sceneManager = SceneManager.getSceneManager()
+partyManager = PartyManager.getPartyManager()
 sceneManager.initDialog([march, august])
 
 sceneManager.speak( august, &quot;Excuse me, I don't know your name?&quot; )
@@ -42,4 +43,7 @@ sceneManager.speak( august, &quot;My name is August. Do you know how much longer
 sceneManager.speak( march, &quot;They'll be here soon.&quot; )
 
 sceneManager.quitDialog()
+partyManager.addRecord( &quot;prequel_talked_to_march&quot; )
+partyManager.refreshMap()
+</oninteract>
 </sprite>

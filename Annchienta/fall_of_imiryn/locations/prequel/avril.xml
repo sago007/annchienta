@@ -29,6 +29,22 @@
 
     <control type="null" />
 
-    <oninteract script="locations/common/avril.py"/>
+    <oninteract>
+import annchienta, SceneManager
+august = annchienta.getActiveObject()
+avril = annchienta.getPassiveObject()
+sceneManager = SceneManager.getSceneManager()
+partyManager = PartyManager.getPartyManager()
+sceneManager.initDialog([avril, august])
+
+sceneManager.speak( avril, &quot;Hey, August, right? We talked during the previous briefing.&quot; )
+sceneManager.speak( august, &quot;Yeah, that's correct. You were here with your sister, right? Were is she?&quot; )
+sceneManager.speak( avril, &quot;Well, I haven't heard her since she left to complete the task she was given. I guess she'll be arriving soon.&quot; )
+sceneManager.speak( august, &quot;Looks like we arrived early, there's still only three us.&quot; )
+
+sceneManager.quitDialog()
+partyManager.addRecord(&quot;prequel_talked_to_avril&quot;)
+partyManager.refreshMap()
+</oninteract>
 
 </sprite>

@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<map height="10" tileheight="32" tileset="../fall_of_imiryn/tiles/prequel" tilewidth="64" width="10">
+<map height="10" tileheight="32" tileset="tiles/prequel" tilewidth="64" width="10">
 <layer z="0">
 <tiles>
     117 2 117 2 117 2 117 2 0 1    117 2 117 2 117 2 117 2 0 1    117 2 117 2 117 2 117 2 0 1    117 2 117 2 117 2 117 2 0 1    117 2 117 2 117 2 117 2 0 1    117 2 117 2 117 2 117 2 0 1    117 2 117 2 117 2 117 2 0 1    117 2 117 2 117 2 117 2 0 1    117 2 117 2 117 2 117 2 0 1    117 2 117 2 117 2 117 2 0 1    
@@ -16,6 +16,10 @@
 
 <person name="march" config="locations/prequel/march.xml" tilex="5" tiley="3"/>
 <person name="avril" config="locations/prequel/avril.xml" tilex="5" tiley="7"/>
+
+<if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="partyManager.hasRecord('prequel_talked_to_march') and partyManager.hasRecord('prequel_talked_to_avril')">
+    <area script="locations/prequel/briefing.py"/>
+</if>
 
 </layer>
 </map>
