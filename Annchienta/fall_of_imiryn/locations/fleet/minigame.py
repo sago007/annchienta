@@ -30,7 +30,7 @@ class Game:
         self.sceneManager = SceneManager.getSceneManager()
 
         # Background spriteace
-        self.setRandomBattleBackground( annchienta.Surface( "images/backgrounds/sky.png" ) )
+        self.background = annchienta.Surface( "images/backgrounds/sky.png" )
         self.backgroundY = 0.0
 
         # Create a ship for the player

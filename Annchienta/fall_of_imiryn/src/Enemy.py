@@ -1,12 +1,13 @@
 import annchienta
-import Combatant
+from Combatant import Combatant
+from Action import Action
 
-class Enemy( Combatant.Combatant ):
+class Enemy( Combatant ):
 
     def __init__( self, xmlElement ):
         
         # Base constructor
-        Combatant.Combatant.__init__( self, xmlElement )
+        Combatant.__init__( self, xmlElement )
         
         # We need a drop element for enemies
         dropElement = xmlElement.getElementsByTagName("drop")[0]
@@ -44,10 +45,21 @@ class Enemy( Combatant.Combatant ):
     
         # Select an action
         actions = filter( lambda a: a.getCost() <= self.getMp(), self.actions )
-        action = self.actions[ self.mathManager.randInt( 0, len(self.actions) ) ]
+
+        # Might move to front row when in the back
+        if self.getRow() is "back":
+            rowAction = Action()
+            rowAction.name = "row"
+            rowAction.category = "top"
+            rowAction.target = 0
+            actions += [rowAction]
+
+        action = actions[ self.mathManager.randInt( 0, len(actions) ) ]
 
         # Select a target
-        target = self.selectTarget( battle )
+        target = None
+        if action.hasTarget():
+            target = self.selectTarget( battle )
 
         return action, target
 
