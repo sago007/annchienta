@@ -44,7 +44,7 @@ sceneManager.speak( march, "Maybe you did... memories are a funny thing." )
 sceneManager.speak( march, "Let's follow him for now, he sounded pretty friendly." )
 sceneManager.speak( avril, "Of course he sounded friendly! He's mad! Who knows what he'll do next!" )
 sceneManager.speak( august, "I... I feel like we should follow him." )
-sceneManager.speak( avril, "Well yah, me too, but it's just... I'm quite scared right now." )
+sceneManager.speak( avril, "Well yeah, me too, but it's just... I'm quite scared right now." )
 
 partyManager.addRecord("mountains_first_enthavos_encounter")
 
