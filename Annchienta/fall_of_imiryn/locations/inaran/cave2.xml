@@ -42,12 +42,12 @@ partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point
 </area>
 
 <!-- A stalagmite. -->
-<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="18" tiley="20"/>
-<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="6" tiley="19"/>
-<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="4" tiley="2"/>
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="18" tiley="20" />
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="6" tiley="19" />
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="4" tiley="2" />
 
 <!-- Treasure chest. -->
-<chest item="potion" tilex="3" tiley="4"/>
+<chest item="potion" tilex="3" tiley="4" />
 
 <!-- Way to cave3. -->
 <area tilex1="28" tilex2="30" tiley1="3" tiley2="6">
@@ -58,8 +58,8 @@ partyManager.changeMap( &quot;locations/inaran/cave3.xml&quot;, annchienta.Point
 
 </layer>
 
-<onload script="locations/inaran/onload.py"/>
-<onpostrender script="locations/inaran/onpostrender.py"/>
+<onload script="locations/inaran/onload.py" />
+<onpostrender script="locations/inaran/onpostrender.py" />
 
 </map>
 

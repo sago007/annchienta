@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <sprite image="sprites/ship.png" mask="masks/ship.png">
 
-    <frame number="1"/>
-    <animation name="stand" frames="1" speed="250506"/>
-    <oninteract script="locations/kimen/ship.py"/>
+    <frame number="1" />
+    <animation name="stand" frames="1" speed="250506" />
+    <oninteract script="locations/kimen/ship.py" />
 
 </sprite>

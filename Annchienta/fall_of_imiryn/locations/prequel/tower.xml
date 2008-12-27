@@ -25,7 +25,7 @@
 </tiles>
 
 <!-- A bored soldier. -->
-<person config="locations/prequel/soldier.xml" name="soldier" tilex="18" tiley="18"/>
+<person config="locations/prequel/soldier.xml" name="soldier" tilex="18" tiley="18" />
 
 <!-- Link to the hall. -->
 <area tilex1="14" tilex2="15" tiley1="16" tiley2="17">

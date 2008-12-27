@@ -35,24 +35,24 @@
 </tiles>
 
 <!-- Some palm trees. -->
-<staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="7" tiley="16"/>
-<staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="14" tiley="10"/>
-<staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="22" tiley="9"/>
-<staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="27" tiley="8"/>
+<staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="7" tiley="16" />
+<staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="14" tiley="10" />
+<staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="22" tiley="9" />
+<staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="27" tiley="8" />
 
 <!-- Some bushes. -->
-<staticobject config="locations/unknown/bush1.xml" name="bush" tilex="21" tiley="11"/>
-<staticobject config="locations/unknown/bush1.xml" name="bush" tilex="26" tiley="25"/>
-<staticobject config="locations/unknown/bush1.xml" name="bush" tilex="9" tiley="27"/>
-<staticobject config="locations/unknown/bush1.xml" name="bush" tilex="17" tiley="20"/>
+<staticobject config="locations/unknown/bush1.xml" name="bush" tilex="21" tiley="11" />
+<staticobject config="locations/unknown/bush1.xml" name="bush" tilex="26" tiley="25" />
+<staticobject config="locations/unknown/bush1.xml" name="bush" tilex="9" tiley="27" />
+<staticobject config="locations/unknown/bush1.xml" name="bush" tilex="17" tiley="20" />
 
 <!-- Axe. (If not taken already) -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('unknown_found_axe')">
-    <staticobject config="locations/unknown/axe.xml" name="axe" tilex="13" tiley="26"/>
+    <staticobject config="locations/unknown/axe.xml" name="axe" tilex="13" tiley="26" />
 </if>
 
 <!-- Katana. -->
-<chest item="katana" tilex="21" tiley="25"/>
+<chest item="katana" tilex="21" tiley="25" />
 
 <!-- Way to beach_start -->
 <area tilex1="28" tilex2="30" tiley1="18" tiley2="21">
@@ -82,6 +82,6 @@ if partyManager.hasRecord( &quot;unknown_found_wood&quot; ) and not partyManager
 </layer>
 
 <!-- Area onload script. -->
-<onload script="locations/unknown/onload.py"/>
+<onload script="locations/unknown/onload.py" />
 
 </map>

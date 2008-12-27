@@ -50,13 +50,13 @@ partyManager.changeMap( &quot;locations/mountains/path4.xml&quot;, annchienta.Po
 
 <!-- Area that triggers encouter with enthavos (1) -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('mountains_first_enthavos_encounter')">
-    <area script="locations/mountains/enthavos1.py"/>
+    <area script="locations/mountains/enthavos1.py" />
 </if>
 
 </layer>
 
-<onprerender script="locations/mountains/onprerender.py"/>
-<onpostrender script="locations/mountains/onpostrender.py"/>
-<onload script="locations/mountains/onload.py"/>
+<onprerender script="locations/mountains/onprerender.py" />
+<onpostrender script="locations/mountains/onpostrender.py" />
+<onload script="locations/mountains/onload.py" />
 
 </map>

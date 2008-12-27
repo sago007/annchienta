@@ -134,9 +134,9 @@ class Combatant( BattleEntity.BattleEntity ):
         # Reset time bar
         self.timer = 100.0 * self.mathManager.randFloat()
     
-        # Start in a random row
+        # Start in a random row, but usually it's the front.
         self.row = "front"
-        if self.mathManager.randFloat() <= 0.5:
+        if self.mathManager.randFloat() <= 0.3:
             self.changeRow()
 
         # Reset damage signs.

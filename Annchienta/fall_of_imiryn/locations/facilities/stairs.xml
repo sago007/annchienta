@@ -42,10 +42,10 @@ partyManager.changeMap( &quot;locations/facilities/prison.xml&quot;, annchienta.
 </area>
 
 <!-- The masamune. -->
-<chest item="masamune" tilex="26" tiley="25"/>
+<chest item="masamune" tilex="26" tiley="25" />
 
 <!-- Save crystal. -->
-<staticobject name="crystal" tilex="5" tiley="25" config="locations/common/crystal.xml"/>
+<staticobject name="crystal" tilex="5" tiley="25" config="locations/common/crystal.xml" />
 
 <!-- Way to the end. -->
 <area tilex1="0" tilex2="2" tiley1="21" tiley2="27">
@@ -56,6 +56,6 @@ partyManager.changeMap( &quot;locations/facilities/end.xml&quot;, annchienta.Poi
 
 </layer>
 
-<onload script="locations/facilities/onload.py"/>
+<onload script="locations/facilities/onload.py" />
 
 </map>

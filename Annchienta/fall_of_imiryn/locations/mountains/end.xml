@@ -26,7 +26,7 @@
 
 <!-- Read the letter. -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('mountains_read_letter')">
-    <area script="locations/mountains/end.py"/>
+    <area script="locations/mountains/end.py" />
 </if>
 
 </layer>
@@ -44,7 +44,7 @@ battleManager.setRandomBattleBackground( "images/backgrounds/ice.png" )
 cacheManager = annchienta.getCacheManager()
 cacheManager.getSurface('images/storyline/facilities.png')
 </onload>
-<onupdate script="locations/mountains/onupdate.py"/>
+<onupdate script="locations/mountains/onupdate.py" />
 <onprerender>
 import annchienta
 videoManager = annchienta.getVideoManager()

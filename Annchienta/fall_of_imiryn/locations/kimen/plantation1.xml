@@ -35,24 +35,24 @@
 </tiles>
 
 <!-- Our ship. -->
-<staticobject config="locations/kimen/ship.xml" name="ship" tilex="27" tiley="13"/>
+<staticobject config="locations/kimen/ship.xml" name="ship" tilex="27" tiley="13" />
 
 <!-- A crystal. -->
-<staticobject config="locations/common/crystal.xml" name="crystal" tilex="23" tiley="15"/>
+<staticobject config="locations/common/crystal.xml" name="crystal" tilex="23" tiley="15" />
 
 <!-- Some plants. -->
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="10" tiley="5"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="6" tiley="4"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="22" tiley="4"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="17" tiley="16"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="27" tiley="21"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="12" tiley="21"/>
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="10" tiley="5" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="6" tiley="4" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="22" tiley="4" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="17" tiley="16" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="27" tiley="21" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="12" tiley="21" />
 
 <!-- An irrigation system. -->
-<staticobject config="locations/kimen/irrigation.xml" name="irrigation" tilex="11" tiley="17"/>
+<staticobject config="locations/kimen/irrigation.xml" name="irrigation" tilex="11" tiley="17" />
 
 <!-- a powerful weapon. -->
-<chest item="spellcaster" tilex="18" tiley="15"/>
+<chest item="spellcaster" tilex="18" tiley="15" />
 
 <!-- Way to plantation2 -->
 <area tilex1="0" tilex2="2" tiley1="10" tiley2="15">
@@ -63,6 +63,6 @@ partyManager.changeMap( &quot;locations/kimen/plantation2.xml&quot;, annchienta.
 
 </layer>
 
-<onload script="locations/kimen/onload.py"/>
+<onload script="locations/kimen/onload.py" />
 
 </map>

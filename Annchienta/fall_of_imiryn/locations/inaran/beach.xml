@@ -41,16 +41,16 @@
 </shadowed>
 
 <!-- A tree. -->
-<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="3" tiley="12"/>
+<staticobject mask="masks/tree.png" name="tree" sprite="sprites/tree.png" tilex="3" tiley="12" />
 
 <!-- A crystal to save our game. -->
-<staticobject config="locations/common/crystal.xml" name="crystal" tilex="15" tiley="20"/>
+<staticobject config="locations/common/crystal.xml" name="crystal" tilex="15" tiley="20" />
 
 <!-- Some characters. -->
 <if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('inaran_talked_to_march')">
-    <person animation="standsouth" config="locations/common/march.xml" isox="160" isoy="230" name="march"/>
-    <person animation="standsouth" config="locations/common/avril.xml" isox="100" isoy="230" name="avril"/>
-    <person config="locations/common/laustwan.xml" isox="130" isoy="260" name="laustwan"/>
+    <person animation="standsouth" config="locations/common/march.xml" isox="160" isoy="230" name="march" />
+    <person animation="standsouth" config="locations/common/avril.xml" isox="100" isoy="230" name="avril" />
+    <person config="locations/common/laustwan.xml" isox="130" isoy="260" name="laustwan" />
 </if>
 
 <!-- Way 'back'. -->

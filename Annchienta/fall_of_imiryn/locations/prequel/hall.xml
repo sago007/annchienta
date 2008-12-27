@@ -14,11 +14,11 @@
     117 2 117 2 117 2 117 2 0 1    0 3 0 3 0 3 0 3 0 0    0 3 0 3 0 3 0 3 0 0    0 3 0 3 0 3 0 3 0 0    0 3 0 3 0 3 0 3 0 0    0 3 0 3 0 3 0 3 0 0    0 3 0 3 0 3 0 3 0 0    0 3 0 3 0 3 0 3 0 0    0 3 0 3 0 3 0 3 0 0    0 3 0 3 0 3 0 3 0 0    
 </tiles>
 
-<person name="march" config="locations/prequel/march.xml" tilex="5" tiley="3"/>
-<person name="avril" config="locations/prequel/avril.xml" tilex="5" tiley="7"/>
+<person name="march" config="locations/prequel/march.xml" tilex="5" tiley="3" />
+<person name="avril" config="locations/prequel/avril.xml" tilex="5" tiley="7" />
 
 <if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="partyManager.hasRecord('prequel_talked_to_march') and partyManager.hasRecord('prequel_talked_to_avril')">
-    <area script="locations/prequel/briefing.py"/>
+    <area script="locations/prequel/briefing.py" />
 </if>
 
 </layer>

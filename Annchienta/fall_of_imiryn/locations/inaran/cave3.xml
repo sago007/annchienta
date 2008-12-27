@@ -45,21 +45,26 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/inaran/cave2.xml&quot;, annchienta.Point( annchienta.TilePoint, 27, 5 ) )
 </area>
 
+<!-- A simple scene. -->
+<if code="import PartyManager; partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('inaran_cave3_scene')">
+    <area script="locations/inaran/cave3.py" />
+</if>
+
 <!-- Treasure chest. -->
-<chest item="scepter" tilex="19" tiley="4"/>
+<chest item="scepter" tilex="19" tiley="4" />
 
 <!-- Save crystal. -->
-<staticobject name="crystal" config="locations/common/crystal.xml" tilex="6" tiley="23"/>
+<staticobject name="crystal" config="locations/common/crystal.xml" tilex="6" tiley="23" />
 
 <!-- A stalagmite. -->
-<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="17" tiley="16"/>
-<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="14" tiley="14"/>
-<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="10" tiley="12"/>
-<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="6" tiley="9"/>
-<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="5" tiley="7"/>
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="17" tiley="16" />
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="14" tiley="14" />
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="10" tiley="12" />
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="6" tiley="9" />
+<staticobject name="stalagmite" config="locations/inaran/stalagmite.xml" tilex="5" tiley="7" />
 
 <!-- Some bones. -->
-<staticobject name="bones1" config="locations/inaran/bones1.xml" tilex="18" tiley="13"/>
+<staticobject name="bones1" config="locations/inaran/bones1.xml" tilex="18" tiley="13" />
 
 <!-- Way to cave4. -->
 <area tilex1="2" tilex2="5" tiley1="0" tiley2="2">
@@ -70,8 +75,8 @@ partyManager.changeMap( &quot;locations/inaran/cave4.xml&quot;, annchienta.Point
 
 </layer>
 
-<onload script="locations/inaran/onload.py"/>
-<onpostrender script="locations/inaran/onpostrender.py"/>
+<onload script="locations/inaran/onload.py" />
+<onpostrender script="locations/inaran/onpostrender.py" />
 
 </map>
 

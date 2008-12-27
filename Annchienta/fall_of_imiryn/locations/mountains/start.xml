@@ -48,7 +48,7 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/mountains/path1.xml&quot;, annchienta.Point( annchienta.TilePoint, 27, 17 ) )
 </area>
 
-<chest tilex="18" tiley="23" item="hi-potion"/>
+<chest tilex="18" tiley="23" item="hi-potion" />
 
 </layer>
 

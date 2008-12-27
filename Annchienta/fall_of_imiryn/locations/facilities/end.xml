@@ -21,11 +21,11 @@
 
 <!-- Events when entering this area. -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('facilities_met_banver')">
-    <area script="locations/facilities/end.py"/>
+    <area script="locations/facilities/end.py" />
 </if>
 
 </layer>
 
-<onload script="locations/facilities/onload.py"/>
+<onload script="locations/facilities/onload.py" />
 
 </map>

@@ -49,15 +49,15 @@ partyManager.changeMap( &quot;locations/mountains/path3.xml&quot;, annchienta.Po
 </area>
 
 <!-- A chest. -->
-<chest item="dragonspear" tilex="6" tiley="6"/>
+<chest item="dragonspear" tilex="6" tiley="6" />
 
 <!-- A save crystal. -->
-<staticobject config="locations/common/crystal.xml" name="crystal" tilex="20" tiley="25"/>
+<staticobject config="locations/common/crystal.xml" name="crystal" tilex="20" tiley="25" />
 
 </layer>
 
-<onprerender script="locations/mountains/onprerender.py"/>
-<onpostrender script="locations/mountains/onpostrender.py"/>
-<onload script="locations/mountains/onload.py"/>
+<onprerender script="locations/mountains/onprerender.py" />
+<onpostrender script="locations/mountains/onpostrender.py" />
+<onload script="locations/mountains/onload.py" />
 
 </map>

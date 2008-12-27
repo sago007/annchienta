@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <sprite image="sprites/crystal.png" mask="masks/crystal.png">
 
-    <frame number="1" x1="0" y1="0" x2="32" y2="71"/>
-    <frame number="2" x1="32" y1="0" x2="64" y2="71"/>
-    <frame number="3" x1="64" y1="0" x2="96" y2="71"/>
-    <frame number="4" x1="96" y1="0" x2="128" y2="71"/>
+    <frame number="1" x1="0" y1="0" x2="32" y2="71" />
+    <frame number="2" x1="32" y1="0" x2="64" y2="71" />
+    <frame number="3" x1="64" y1="0" x2="96" y2="71" />
+    <frame number="4" x1="96" y1="0" x2="128" y2="71" />
 
     <animation name="stand" frames="1234" speed="10" />
 
-    <oninteract script="locations/common/crystal.py"/>
+    <oninteract script="locations/common/crystal.py" />
 
 </sprite>
 

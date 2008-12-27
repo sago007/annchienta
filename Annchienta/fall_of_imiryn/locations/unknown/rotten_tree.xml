@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <sprite image="sprites/rotten_tree.png" mask="masks/palm.png">
 
-    <frame number="1"/>
+    <frame number="1" />
 
     <animation name="stand" frames="1" speed="20" />
 

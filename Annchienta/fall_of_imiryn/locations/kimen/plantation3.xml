@@ -25,18 +25,18 @@
 </tiles>
 
 <!-- Some plants. -->
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="7" tiley="5"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="3" tiley="2"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="5" tiley="11"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="10" tiley="4"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="16" tiley="18"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="18" tiley="15"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="12" tiley="14"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="17" tiley="5"/>
-<staticobject config="locations/kimen/plant.xml" name="plant" tilex="6" tiley="18"/>
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="7" tiley="5" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="3" tiley="2" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="5" tiley="11" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="10" tiley="4" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="16" tiley="18" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="18" tiley="15" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="12" tiley="14" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="17" tiley="5" />
+<staticobject config="locations/kimen/plant.xml" name="plant" tilex="6" tiley="18" />
 
 <!-- An irrigation system. -->
-<staticobject config="locations/kimen/irrigation.xml" name="irrigation" tilex="8" tiley="13"/>
+<staticobject config="locations/kimen/irrigation.xml" name="irrigation" tilex="8" tiley="13" />
 
 <!-- Way to plantation2 -->
 <area tilex1="18" tilex2="20" tiley1="10" tiley2="13">
@@ -46,10 +46,10 @@ partyManager.changeMap( &quot;locations/kimen/plantation2.xml&quot;, annchienta.
 </area>
 
 <!-- a powerful weapon. -->
-<chest item="excalibur" tilex="4" tiley="15"/>
+<chest item="excalibur" tilex="4" tiley="15" />
 
 </layer>
 
-<onload script="locations/kimen/onload.py"/>
+<onload script="locations/kimen/onload.py" />
 
 </map>

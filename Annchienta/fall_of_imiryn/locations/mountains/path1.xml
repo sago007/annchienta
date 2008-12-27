@@ -49,8 +49,8 @@ partyManager.changeMap( &quot;locations/mountains/path2.xml&quot;, annchienta.Po
 
 </layer>
 
-<onprerender script="locations/mountains/onprerender.py"/>
-<onpostrender script="locations/mountains/onpostrender.py"/>
-<onload script="locations/mountains/onload.py"/>
+<onprerender script="locations/mountains/onprerender.py" />
+<onpostrender script="locations/mountains/onpostrender.py" />
+<onload script="locations/mountains/onload.py" />
 
 </map>

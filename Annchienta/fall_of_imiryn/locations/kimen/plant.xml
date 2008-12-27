@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <sprite image="sprites/plant.png" mask="masks/plant.png">
-    <frame number="1"/>
-    <animation name="stand" frames="1"/>
-    <oninteract script="locations/kimen/plant.py"/>
+    <frame number="1" />
+    <animation name="stand" frames="1" />
+    <oninteract script="locations/kimen/plant.py" />
 </sprite>

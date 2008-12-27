@@ -17,48 +17,48 @@
 </tiles>
 
 <!-- Our gates. -->
-<staticobject isox="93" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-<staticobject isox="109" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-<staticobject isox="125" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-<staticobject isox="139" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
+<staticobject isox="93" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+<staticobject isox="109" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+<staticobject isox="125" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+<staticobject isox="139" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
 
-<staticobject isox="221" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-<staticobject isox="237" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-<staticobject isox="253" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-<staticobject isox="267" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
+<staticobject isox="221" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+<staticobject isox="237" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+<staticobject isox="253" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+<staticobject isox="267" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
 
-<staticobject isox="349" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-<staticobject isox="365" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-<staticobject isox="381" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-<staticobject isox="395" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>:u
+<staticobject isox="349" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+<staticobject isox="365" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+<staticobject isox="381" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+<staticobject isox="395" isoy="107" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />:u
 
 <!-- A lot of laustwan. -->
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="3" tiley="3"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="6" tiley="3"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="9" tiley="3"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="12" tiley="3"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="15" tiley="3"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="18" tiley="3"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="21" tiley="3"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="24" tiley="3"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="27" tiley="3"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="3" tiley="5"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="6" tiley="5"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="9" tiley="5"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="12" tiley="5"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="15" tiley="5"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="18" tiley="5"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="21" tiley="5"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="24" tiley="5"/>
-<person name="laustwan" config="locations/common/laustwan.xml" tilex="27" tiley="5"/>
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="3" tiley="3" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="6" tiley="3" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="9" tiley="3" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="12" tiley="3" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="15" tiley="3" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="18" tiley="3" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="21" tiley="3" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="24" tiley="3" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="27" tiley="3" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="3" tiley="5" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="6" tiley="5" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="9" tiley="5" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="12" tiley="5" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="15" tiley="5" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="18" tiley="5" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="21" tiley="5" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="24" tiley="5" />
+<person name="laustwan" config="locations/common/laustwan.xml" tilex="27" tiley="5" />
 
 
 <!-- A control that doesn't work anyway. -->
-<staticobject name="control" config="locations/facilities/restricted_control.xml" tilex="25" tiley="8"/>
+<staticobject name="control" config="locations/facilities/restricted_control.xml" tilex="25" tiley="8" />
 
 <!-- Scene where we see the laustwan. -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('facilities_saw_laustwan')">
-    <area script="locations/facilities/prison.py"/>
+    <area script="locations/facilities/prison.py" />
 </if>
 
 <!-- Way back to entrance -->
@@ -78,6 +78,6 @@ partyManager.changeMap( &quot;locations/facilities/stairs.xml&quot;, annchienta.
 
 </layer>
 
-<onload script="locations/facilities/onload.py"/>
+<onload script="locations/facilities/onload.py" />
 
 </map>

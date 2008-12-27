@@ -35,7 +35,7 @@
 </tiles>
 
 <!-- A save crystal. -->
-<staticobject config="locations/common/crystal.xml" name="crystal" tilex="7" tiley="8"/>
+<staticobject config="locations/common/crystal.xml" name="crystal" tilex="7" tiley="8" />
 
 <!-- Way back to path3 -->
 <area tilex1="20" tilex2="25" tiley1="28" tiley2="30">
@@ -53,13 +53,13 @@ partyManager.changeMap( &quot;locations/mountains/end.xml&quot;, annchienta.Poin
 
 <!-- Area that triggers encouter with enthavos (2) -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('mountains_second_enthavos_encounter')">
-    <area script="locations/mountains/enthavos2.py"/>
+    <area script="locations/mountains/enthavos2.py" />
 </if>
 
 </layer>
 
-<onprerender script="locations/mountains/onprerender.py"/>
-<onpostrender script="locations/mountains/onpostrender.py"/>
-<onload script="locations/mountains/onload.py"/>
+<onprerender script="locations/mountains/onprerender.py" />
+<onpostrender script="locations/mountains/onpostrender.py" />
+<onload script="locations/mountains/onload.py" />
 
 </map>

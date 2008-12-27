@@ -22,16 +22,16 @@
 </tiles>
 
 <!-- Some plants. -->
-<staticobject name="plant" config="locations/kimen/plant.xml" tilex="10" tiley="5"/>
-<staticobject name="plant" config="locations/kimen/plant.xml" tilex="3" tiley="2"/>
-<staticobject name="plant" config="locations/kimen/plant.xml" tilex="5" tiley="11"/>
-<staticobject name="plant" config="locations/kimen/plant.xml" tilex="22" tiley="4"/>
-<staticobject name="plant" config="locations/kimen/plant.xml" tilex="16" tiley="14"/>
-<staticobject name="plant" config="locations/kimen/plant.xml" tilex="27" tiley="13"/>
-<staticobject name="plant" config="locations/kimen/plant.xml" tilex="12" tiley="12"/>
+<staticobject name="plant" config="locations/kimen/plant.xml" tilex="10" tiley="5" />
+<staticobject name="plant" config="locations/kimen/plant.xml" tilex="3" tiley="2" />
+<staticobject name="plant" config="locations/kimen/plant.xml" tilex="5" tiley="11" />
+<staticobject name="plant" config="locations/kimen/plant.xml" tilex="22" tiley="4" />
+<staticobject name="plant" config="locations/kimen/plant.xml" tilex="16" tiley="14" />
+<staticobject name="plant" config="locations/kimen/plant.xml" tilex="27" tiley="13" />
+<staticobject name="plant" config="locations/kimen/plant.xml" tilex="12" tiley="12" />
 
 <!-- An irrigation system. -->
-<staticobject name="irrigation" config="locations/kimen/irrigation.xml" tilex="14" tiley="4"/>
+<staticobject name="irrigation" config="locations/kimen/irrigation.xml" tilex="14" tiley="4" />
 
 <!-- Way to plantation1 -->
 <area tilex1="28" tilex2="30" tiley1="6" tiley2="10">
@@ -49,6 +49,6 @@ partyManager.changeMap( &quot;locations/kimen/plantation3.xml&quot;, annchienta.
 
 </layer>
 
-<onload script="locations/kimen/onload.py"/>
+<onload script="locations/kimen/onload.py" />
 
 </map>

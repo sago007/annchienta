@@ -40,23 +40,23 @@
 
 <!-- If we don't have acces, place a gate. -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('facilities_outer_access')">
-    <staticobject isox="253" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-    <staticobject isox="269" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-    <staticobject isox="285" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-    <staticobject isox="301" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-    <staticobject isox="317" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
-    <staticobject isox="331" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png"/>
+    <staticobject isox="253" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+    <staticobject isox="269" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+    <staticobject isox="285" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+    <staticobject isox="301" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+    <staticobject isox="317" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
+    <staticobject isox="331" isoy="396" mask="masks/gate.png" name="gate" sprite="sprites/gate.png" />
 </if>
 
 <!-- Save crystal. -->
-<staticobject name="crystal" tilex="14" tiley="21" config="locations/common/crystal.xml"/>
+<staticobject name="crystal" tilex="14" tiley="21" config="locations/common/crystal.xml" />
 
 <!-- Machine that controls the gate. -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('facilities_outer_access')">
-    <staticobject config="locations/facilities/control.xml" name="control" tilex="14" tiley="26"/>
+    <staticobject config="locations/facilities/control.xml" name="control" tilex="14" tiley="26" />
 </if>
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="partyManager.hasRecord('facilities_outer_access')">
-    <staticobject animation="green" config="locations/facilities/control.xml" name="control" tilex="14" tiley="26"/>
+    <staticobject animation="green" config="locations/facilities/control.xml" name="control" tilex="14" tiley="26" />
 </if>
 
 <!-- Area that resets the gate. -->
@@ -70,14 +70,14 @@ partyManager.refreshMap()
 </if>
 
 <!-- Some trees. -->
-<staticobject config="locations/facilities/tree.xml" name="tree" tilex="12" tiley="27"/>
-<staticobject config="locations/facilities/tree.xml" name="tree" tilex="15" tiley="30"/>
-<staticobject config="locations/facilities/tree.xml" name="tree" tilex="22" tiley="28"/>
+<staticobject config="locations/facilities/tree.xml" name="tree" tilex="12" tiley="27" />
+<staticobject config="locations/facilities/tree.xml" name="tree" tilex="15" tiley="30" />
+<staticobject config="locations/facilities/tree.xml" name="tree" tilex="22" tiley="28" />
 
 <!-- Some barrels. -->
-<staticobject config="locations/facilities/barrel.xml" name="tree" tilex="5" tiley="4"/>
-<staticobject config="locations/facilities/barrel.xml" name="tree" tilex="20" tiley="10"/>
-<staticobject config="locations/facilities/barrel.xml" name="tree" tilex="15" tiley="3"/>
+<staticobject config="locations/facilities/barrel.xml" name="tree" tilex="5" tiley="4" />
+<staticobject config="locations/facilities/barrel.xml" name="tree" tilex="20" tiley="10" />
+<staticobject config="locations/facilities/barrel.xml" name="tree" tilex="15" tiley="3" />
 
 <!-- Way to the prison part. -->
 <area tilex1="11" tilex2="13" tiley1="0" tiley2="2">
@@ -125,6 +125,6 @@ partyManager.changeMap( &quot;locations/facilities/prison.xml&quot;, annchienta.
 
 </layer>
 
-<onload script="locations/facilities/onload.py"/>
+<onload script="locations/facilities/onload.py" />
 
 </map>
