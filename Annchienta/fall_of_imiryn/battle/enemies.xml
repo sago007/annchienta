@@ -65,14 +65,14 @@
         <drop xp="35" item="tincture" rate="0.3" steal="eyedrops"/>
     </enemy>
 
-    <!-- GHOST -->
-    <enemy name="ghost">
+    <!-- SAND CRAWLER -->
+    <enemy name="sand crawler">
         <level lvl="4"/>
         <stats att="8" mat="25" def="20" mdf="20" spd="20"/>
         <healthstats hp="80" mhp="80" mp="50" mmp="50"/>
         <elemental fire="2" ice="1" water="1" thunder="2"/>
-        <actions>attack fog thunder fire water</actions>
-        <sprite filename="sprites/ghost.png"/>
+        <actions>attack bite fire</actions>
+        <sprite filename="sprites/sand_crawler.png"/>
         <drop xp="40" item="grenade" rate="0.3" steal="feather"/>
     </enemy>
 
