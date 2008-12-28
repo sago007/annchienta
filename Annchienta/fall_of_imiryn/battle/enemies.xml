@@ -43,14 +43,14 @@
         <drop xp="93" item="shuriken" rate="1.0" steal="eyedrops"/>
     </enemy>
 
-    <!-- WORM -->
-    <enemy name="worm">
+    <!-- WOSE -->
+    <enemy name="wose">
         <level lvl="4"/>
         <stats att="14" mat="18" def="25" mdf="25" spd="10"/>
         <healthstats hp="100" mhp="100" mp="20" mmp="20"/>
-        <elemental fire="1" ice="1" water="0" thunder="0"/>
-        <actions>attack slime</actions>
-        <sprite filename="sprites/worm.png"/>
+        <elemental fire="2" ice="1" water="1" thunder="1"/>
+        <actions>attack slime water</actions>
+        <sprite filename="sprites/wose.png"/>
         <drop xp="35" item="potion" rate="0.3" steal="feather"/>
     </enemy>
 
@@ -70,7 +70,7 @@
         <level lvl="4"/>
         <stats att="8" mat="25" def="20" mdf="20" spd="20"/>
         <healthstats hp="80" mhp="80" mp="50" mmp="50"/>
-        <elemental fire="2" ice="1" water="1" thunder="2"/>
+        <elemental fire="1" ice="1" water="2" thunder="1"/>
         <actions>attack bite fire</actions>
         <sprite filename="sprites/sand_crawler.png"/>
         <drop xp="40" item="grenade" rate="0.3" steal="feather"/>
