@@ -46,7 +46,7 @@ if won:
         sceneManager.text("August:\nMy brother had been killed by Enthavos in the Fifth Guard, and my mother had recently passed away. And my father... I had never known him.", None, True )
         sceneManager.text("August:\nI don't think I was really afraid of dying. Avril started talking about her sister.", None, True )
         sceneManager.text("August:\nHow she missed her... How cruel it is she hadn't been able to say goodbye.", None, True )
-        sceneManager.text("August:\nAt some point Avril said it being in the Fifth Guard had really lost his meaning somehow.", None, True )
+        sceneManager.text("August:\nAt some point Avril said being in the Fifth Guard had really lost his meaning somehow.", None, True )
         sceneManager.text("August:\nWe were all getting very pessimistic.", None, True )
         sceneManager.text("August:\nThat must've been the point when we hit land.", None, True )
         sceneManager.text("August:\nWhere were we?", None, True )

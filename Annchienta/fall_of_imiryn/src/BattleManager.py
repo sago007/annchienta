@@ -48,9 +48,16 @@ class BattleManager:
             else:
                 self.logManager.error( "No enemy called "+name+" found in "+self.enemiesLocation+"." )
 
+        # Choose a nice battle music.
+        playingMusic = self.audioManager.getPlayingMusic()
+        self.audioManager.playMusic( "music/battle" + str(self.mathManager.randInt(0,4)) + ".ogg" )
+
         battle = Battle.Battle( combatants, background, canFlee )
+
         self.battleIntro()
         battle.run()
+
+        self.audioManager.playMusic( playingMusic )
 
         return battle.won
 

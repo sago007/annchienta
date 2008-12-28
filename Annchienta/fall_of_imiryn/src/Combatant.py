@@ -162,7 +162,7 @@ class Combatant( BattleEntity.BattleEntity ):
     def physicalBaseDamage( self ):
         att = self.getAttack()
         lvl = self.level["lvl"]
-        return att + int( float(att + lvl) / 32.0 ) * int( float(att * lvl) / 32.0 )
+        return att + int( float(att + lvl) / 32.0 ) * int( float(att * lvl) / 26.0 )
         
     ## Calculates base damage for magical attacks
     #  \return Basedamage.
