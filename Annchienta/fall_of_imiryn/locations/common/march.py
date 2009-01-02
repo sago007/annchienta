@@ -49,6 +49,9 @@ if not partyManager.hasRecord("inaran_talked_to_march"):
     ap = august.getPosition()
     sceneManager.move( [avril, march], [ap,ap] )
 
+    sceneManager.text( "Use the right mouse button to bring up the party menu. Use the left mouse button to navigate in any menu." )
+    sceneManager.text( "When you are in a menu, you can also use the right mouse button to cancel the menu." )
+
     partyManager.addRecord("inaran_talked_to_march")
     partyManager.refreshMap()
 
