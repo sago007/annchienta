@@ -50,7 +50,7 @@ class BattleManager:
 
         # Choose a nice battle music.
         playingMusic = self.audioManager.getPlayingMusic()
-        self.audioManager.playMusic( "music/battle" + str(self.mathManager.randInt(0,4)) + ".ogg" )
+        self.audioManager.playMusic( "music/battle" + str(self.mathManager.randInt(1,4)) + ".ogg" )
 
         battle = Battle.Battle( combatants, background, canFlee )
 
