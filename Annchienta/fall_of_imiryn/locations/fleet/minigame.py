@@ -68,6 +68,9 @@ class Game:
         # Update input
         self.inputManager.update()
 
+        if not self.inputManager.running():
+            return
+
         # Number of ms passed
         ms = 0.0
         if self.lastUpdate:

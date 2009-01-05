@@ -89,7 +89,7 @@ class RaftGame:
             position = annchienta.Vector( self.mathManager.randInt( 0, self.videoManager.getScreenWidth() ) , -surface.getHeight() )
             rock = RaftObject( surface, position )
             self.rocks.insert( 0, rock )
-            self.nextSpawn += self.mathManager.randInt( 300, 1000 )
+            self.nextSpawn += self.mathManager.randInt( 600, 1500 )
         
         # Remove rocks out of vision
         self.rocks = filter( lambda r: r.position.y < self.videoManager.getScreenHeight()+r.surface.getHeight(), self.rocks )

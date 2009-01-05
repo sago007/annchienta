@@ -14,7 +14,7 @@ class FlyAnimation:
         self.engine = annchienta.getEngine()
         self.videoManager = annchienta.getVideoManager()
        
-        self.setRandomBattleBackground( annchienta.Surface( "images/backgrounds/land.png" ) )
+        self.background = annchienta.Surface( "images/backgrounds/land.png" )
         self.ship = annchienta.Surface( "sprites/ship_small.png" )
 
         self.backgroundY = 0.0

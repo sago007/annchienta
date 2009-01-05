@@ -35,7 +35,7 @@
     <!-- ULTROS -->
     <enemy name="ultros">
         <level lvl="5"/>
-        <stats att="20" mat="20" def="20" mdf="20" spd="150"/>
+        <stats att="30" mat="25" def="20" mdf="20" spd="150"/>
         <healthstats hp="400" mhp="400" mp="60" mmp="60"/>
         <elemental fire="1" ice="1" water="-1" thunder="2"/>
         <actions>attack fog water ice</actions>
@@ -68,7 +68,7 @@
     <!-- SAND CRAWLER -->
     <enemy name="sand crawler">
         <level lvl="4"/>
-        <stats att="8" mat="25" def="20" mdf="20" spd="20"/>
+        <stats att="18" mat="25" def="20" mdf="20" spd="20"/>
         <healthstats hp="80" mhp="80" mp="50" mmp="50"/>
         <elemental fire="1" ice="1" water="2" thunder="1"/>
         <actions>attack bite fire</actions>
@@ -179,7 +179,7 @@
     <!-- DRAGON -->
     <enemy name="dragon">
         <level lvl="8"/>
-        <stats att="45" mat="30" def="40" mdf="80" spd="45"/>
+        <stats att="45" mat="27" def="40" mdf="80" spd="45"/>
         <healthstats hp="450" mhp="450" mp="120" mmp="120"/>
         <elemental fire="0" ice="2" water="2" thunder="1"/>
         <actions>attack bite fire fira</actions>
@@ -190,7 +190,7 @@
     <!-- WAR MAGE -->
     <enemy name="war mage">
         <level lvl="8"/>
-        <stats att="45" mat="32" def="40" mdf="80" spd="45"/>
+        <stats att="45" mat="28" def="40" mdf="80" spd="45"/>
         <healthstats hp="450" mhp="450" mp="120" mmp="120"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>fira thundara watera blizzara</actions>

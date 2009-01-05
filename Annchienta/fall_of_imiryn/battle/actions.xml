@@ -12,7 +12,7 @@
     <action name="swing" category="melee" target="1">
         <description>A more powerful attack.</description>
         <elemental fire="0" ice="0" water="0" thunder="0" restorative="0"/>
-        <power factor="1.5" hit="0.6" type="physical"/>
+        <power factor="1.5" hit="0.8" type="physical"/>
         <status effect="none" hit="0"/>
         <cost mp="4"/>
         <animation type="attack" sound="sounds/sword.ogg"/>
@@ -44,7 +44,7 @@
     <action name="strike" category="melee" target="1">
         <description>Strong attack that might injure enemies.</description>
         <elemental fire="0" ice="0" water="0" thunder="0" restorative="0"/>
-        <power factor="1.5" hit="0.5" type="physical"/>
+        <power factor="1.5" hit="0.7" type="physical"/>
         <status effect="injured" hit="0.4"/>
         <cost mp="6"/>
         <animation type="attack" sound="sounds/impact.ogg"/>
@@ -52,7 +52,7 @@
     <action name="flametongue" category="melee" target="1">
         <description>Strong fire-based melee attack.</description>
         <elemental fire="1" ice="0" water="0" thunder="0" restorative="0"/>
-        <power factor="2.5" hit="0.5" type="physical"/>
+        <power factor="2.5" hit="0.7" type="physical"/>
         <status effect="none" hit="0"/>
         <cost mp="8"/>
         <animation type="attack" sprite="images/animations/fire.png" sound="sounds/sword.ogg"/>

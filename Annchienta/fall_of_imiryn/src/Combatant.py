@@ -292,7 +292,7 @@ class Combatant( BattleEntity.BattleEntity ):
         if self.hasStatusEffect( "slowed" ):
             factor = 0.5
         elif self.hasStatusEffect( "hasted" ):
-            factor = 1.7
+            factor = 1.8
         elif self.hasStatusEffect( "paralysed" ):
             factor = 0.1
 

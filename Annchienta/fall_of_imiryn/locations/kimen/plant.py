@@ -75,7 +75,7 @@ else:
     sceneManager.speak( captain, "And that's why we will guard these plantation, no matter what! Now die!" )
 
     battleManager = BattleManager.getBattleManager()
-    won = battleManager.runBattle( ["captain", "war mage"]*2, annchienta.Surface( "images/backgrounds/kimen.png" ), False )
+    won = battleManager.runBattle( ["captain", "war mage", "captain"], annchienta.Surface( "images/backgrounds/kimen.png" ), False )
     
     
     currentMap.removeObject( captain )

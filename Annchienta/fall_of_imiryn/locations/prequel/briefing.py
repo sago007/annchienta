@@ -8,8 +8,6 @@ sceneManager = SceneManager.getSceneManager()
 
 currentMap = partyManager.currentMap
 
-partyManager.addRecord("facilities_met_banver")
-
 # Create a whole bunch of objects/persons and set them to
 august = partyManager.player
 march = currentMap.getPerson("march")

@@ -343,9 +343,12 @@ class Battle:
             if combatant.hasStatusEffect( "blinded" ):
                 rate /= 2.0
 
-            # We also have double damage on injured units.
-            if combatant.hasStatusEffect( "injured" ):
+            # We also have double damage on injured units,
+            # and injured units do half damage
+            if target.hasStatusEffect( "injured" ):
                 damage *= 2
+            if combatant.hasStatusEffect( "injured" ):
+                damage /= 2
 
         hit = ( self.mathManager.randFloat() <= rate )
 

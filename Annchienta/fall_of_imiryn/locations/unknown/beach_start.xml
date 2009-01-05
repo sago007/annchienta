@@ -64,7 +64,7 @@
 <staticobject mask="masks/palm.png" name="palm" sprite="sprites/palm.png" tilex="6" tiley="22" />
 
 <!-- Way to beach_north -->
-<area tilex1="0" tilex2="2" tiley1="15" tiley2="17">
+<area tilex1="0" tilex2="2" tiley1="15" tiley2="18">
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/unknown/beach_north.xml&quot;, annchienta.Point( annchienta.TilePoint, 27, 19 ) )

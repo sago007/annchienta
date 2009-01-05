@@ -25,6 +25,7 @@ class PartyManager:
         self.lastMaps = []
         self.currentMap = 0
         self.chestObjects = []
+        self.startTime = 0
 
         # Battle variables
         self.randomBattleDelay = self.mathManager.randInt(300,400)
@@ -61,6 +62,7 @@ class PartyManager:
         # Load the playtime for profiling reasons
         playTimeElement = self.document.getElementsByTagName("playtime")[0]
         self.seconds = int(playTimeElement.getAttribute("seconds"))
+        self.startTime = self.engine.getTicks()
  
         # Start by loading the records, because they are needed by the map
         recordsElement = self.document.getElementsByTagName("records")[0]
@@ -114,7 +116,7 @@ class PartyManager:
 
         # Add the playtime to the party node
         playTimeElement = self.document.createElement("playtime")
-        playTimeElement.setAttribute( "seconds", str(self.seconds + self.engine.getTicks()/1000) )
+        playTimeElement.setAttribute( "seconds", str(self.seconds + (self.engine.getTicks() - self.startTime)/1000) )
         partyElement.appendChild( playTimeElement )
 
         # Append the records to the party node.
