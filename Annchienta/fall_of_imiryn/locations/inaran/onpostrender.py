@@ -15,4 +15,3 @@ videoManager.translate( -(mapManager.getCameraX()%videoManager.getScreenWidth())
 videoManager.drawPattern( surf, 0, 0, videoManager.getScreenWidth()*2, videoManager.getScreenHeight()*2 )
 
 videoManager.pop()
-

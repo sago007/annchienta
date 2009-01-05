@@ -579,7 +579,7 @@ namespace Annchienta
         Engine *engine = getEngine();
 
         videoManager->push();
-        videoManager->identity();
+        videoManager->reset();
         if( onPreRenderScript )
             engine->runPythonScript( onPreRenderScript );
         if( onPreRenderCode )
@@ -592,7 +592,7 @@ namespace Annchienta
         Engine *engine = getEngine();
 
         videoManager->push();
-        videoManager->identity();
+        videoManager->reset();
         if( onPostRenderScript )
             engine->runPythonScript( onPostRenderScript );
         if( onPostRenderCode )
