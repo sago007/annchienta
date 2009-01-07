@@ -287,12 +287,34 @@ AudioManager_swigregister = _annchienta.AudioManager_swigregister
 AudioManager_swigregister(AudioManager)
 
 getAudioManager = _annchienta.getAudioManager
+UnknownCacheable = _annchienta.UnknownCacheable
+SurfaceCacheable = _annchienta.SurfaceCacheable
+MaskCacheable = _annchienta.MaskCacheable
+SoundCacheable = _annchienta.SoundCacheable
+class Cacheable(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Cacheable, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Cacheable, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_Cacheable(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_Cacheable
+    __del__ = lambda self : None;
+    def getCacheableType(*args): return _annchienta.Cacheable_getCacheableType(*args)
+    def getFileName(*args): return _annchienta.Cacheable_getFileName(*args)
+Cacheable_swigregister = _annchienta.Cacheable_swigregister
+Cacheable_swigregister(Cacheable)
+
 class CacheManager(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, CacheManager, name, value)
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, CacheManager, name)
     __repr__ = _swig_repr
+    def getCacheable(*args): return _annchienta.CacheManager_getCacheable(*args)
     def getSurface(*args): return _annchienta.CacheManager_getSurface(*args)
     def getMask(*args): return _annchienta.CacheManager_getMask(*args)
     def getSound(*args): return _annchienta.CacheManager_getSound(*args)
@@ -330,10 +352,12 @@ MathManager_swigregister = _annchienta.MathManager_swigregister
 MathManager_swigregister(MathManager)
 
 getMathManager = _annchienta.getMathManager
-class Surface(_object):
+class Surface(Cacheable):
     __swig_setmethods__ = {}
+    for _s in [Cacheable]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
     __setattr__ = lambda self, name, value: _swig_setattr(self, Surface, name, value)
     __swig_getmethods__ = {}
+    for _s in [Cacheable]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
     __getattr__ = lambda self, name: _swig_getattr(self, Surface, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
@@ -342,6 +366,7 @@ class Surface(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Surface
     __del__ = lambda self : None;
+    def getCacheableType(*args): return _annchienta.Surface_getCacheableType(*args)
     def getWidth(*args): return _annchienta.Surface_getWidth(*args)
     def getHeight(*args): return _annchienta.Surface_getHeight(*args)
     def setLinearScaling(*args): return _annchienta.Surface_setLinearScaling(*args)
@@ -367,10 +392,12 @@ class Font(_object):
 Font_swigregister = _annchienta.Font_swigregister
 Font_swigregister(Font)
 
-class Sound(_object):
+class Sound(Cacheable):
     __swig_setmethods__ = {}
+    for _s in [Cacheable]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
     __setattr__ = lambda self, name, value: _swig_setattr(self, Sound, name, value)
     __swig_getmethods__ = {}
+    for _s in [Cacheable]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
     __getattr__ = lambda self, name: _swig_getattr(self, Sound, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
@@ -379,6 +406,7 @@ class Sound(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Sound
     __del__ = lambda self : None;
+    def getCacheableType(*args): return _annchienta.Sound_getCacheableType(*args)
 Sound_swigregister = _annchienta.Sound_swigregister
 Sound_swigregister(Sound)
 
@@ -535,10 +563,12 @@ class TileSet(_object):
 TileSet_swigregister = _annchienta.TileSet_swigregister
 TileSet_swigregister(TileSet)
 
-class Mask(_object):
+class Mask(Cacheable):
     __swig_setmethods__ = {}
+    for _s in [Cacheable]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
     __setattr__ = lambda self, name, value: _swig_setattr(self, Mask, name, value)
     __swig_getmethods__ = {}
+    for _s in [Cacheable]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
     __getattr__ = lambda self, name: _swig_getattr(self, Mask, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
@@ -547,6 +577,7 @@ class Mask(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Mask
     __del__ = lambda self : None;
+    def getCacheableType(*args): return _annchienta.Mask_getCacheableType(*args)
     def getWidth(*args): return _annchienta.Mask_getWidth(*args)
     def getHeight(*args): return _annchienta.Mask_getHeight(*args)
     def collision(*args): return _annchienta.Mask_collision(*args)

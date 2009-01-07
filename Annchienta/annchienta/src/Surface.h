@@ -19,12 +19,13 @@
 #define ANNCHIENTA_SURFACE_H
 
 #include <SDL_opengl.h>
+#include "Cacheable.h"
 
 namespace Annchienta
 {
     /** Holds Surfaces, so mostly images.
      */
-    class Surface
+    class Surface: public Cacheable
     {
         private:
             int width, height;
@@ -54,7 +55,11 @@ namespace Annchienta
              */
             Surface( const char *filename );
 
-            ~Surface();
+            virtual ~Surface();
+
+            /** \return SurfaceCacheable
+             */
+            virtual CacheableType getCacheableType() const;
 
             /** \return The Surface width.
              */

@@ -15,43 +15,35 @@
  *  along with Annchienta.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ANNCHIENTA_SOUND_H
-#define ANNCHIENTA_SOUND_H
+#ifndef ANNCHIENTA_CACHEABLE_H
+#define ANNCHIENTA_CACHEABLE_H
 
-#include <SDL_mixer.h>
-#include "Cacheable.h"
+#include "Engine.h"
 
 namespace Annchienta
 {
-    class AudioManager;
+    enum CacheableType
+    {
+        UnknownCacheable = 0,
+        SurfaceCacheable,
+        MaskCacheable,
+        SoundCacheable
+    };
 
-    /** Used to hold a chunk of audio, obviously.
+    /** Class used for objects that can be
+     *  cached by the CacheManager.
      */
-    class Sound: public Cacheable
+    class Cacheable
     {
         private:
-            Mix_Chunk *chunk;
-            AudioManager *audioManager;
+            char fileName[DEFAULT_STRING_SIZE];
 
         public:
+            Cacheable( const char *fileName );
+            virtual ~Cacheable();
 
-            /** Load audio from a file.
-             *  \param filename Some audio file. Format need to be supported by SDL_mixer.
-             */
-            Sound( const char *filename );
-            ~Sound();
-
-            /** \return SoundCacheable
-             */
             virtual CacheableType getCacheableType() const;
-
-            #ifndef SWIG
-                /** Plays back the sound.
-                 *  \note Not available in Python.
-                 *  \note Use AudioManager::playSound().
-                 */
-                void play() const;
-            #endif
+            const char *getFileName() const;
     };
 };
 

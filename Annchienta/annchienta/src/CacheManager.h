@@ -22,6 +22,7 @@
 #include <cstdio>
 #include <cstring>
 #include "Engine.h"
+#include "Cacheable.h"
 
 namespace Annchienta
 {
@@ -30,10 +31,6 @@ namespace Annchienta
     class Mask;
     class Sound;
 
-    /** A class used internally by the CacheManager
-     *  to store objects in it's cache.
-     */
-    template <class T> class CacheObject;
     /** This describes a class which is used to create
 	 *  an engine cache, so certain data objects can be
 	 *  loaded quicker.
@@ -41,9 +38,7 @@ namespace Annchienta
     class CacheManager
     {
         private:
-            std::list< CacheObject<Surface> > surfaces;
-            std::list< CacheObject<Mask> > masks;
-            std::list< CacheObject<Sound> > sounds;
+            std::list< Cacheable* > cacheables;
 
         public:
             #ifndef SWIG
@@ -51,26 +46,35 @@ namespace Annchienta
                 ~CacheManager();
             #endif
 
+            /** Fetches a Cacheable from the cache. It is better to use the
+             *  getSurface(), getSound(), getMask()... functions when
+             *  possible.
+             *  \param fileName Filename of the sought cacheable.
+             *  \param cacheableType CacheableType of the sought cacheable.
+             *  \return The sought Cacheable.
+             */
+            Cacheable *getCacheable( const char *fileName, CacheableType cacheableType );
+
             /** Fetches a Surface from the cache. The Surface
              *  is loaded if it isn't found in the cache.
              *  \param filename File to be loaded.
              *  \return The desired Surface.
              */
-            Surface *getSurface( const char *filename );
+            Surface *getSurface( const char *fileName );
 
             /** Fetches a Mask from the cache. The Mask
              *  is loaded if it isn't found in the cache.
              *  \param filename File to be loaded.
              *  \return The desired Mask.
              */
-            Mask *getMask( const char *filename );
+            Mask *getMask( const char *fileName );
 
             /** Fetches a Sound from the cache. The Sound
              *  is loaded if it isn't found in the cache.
              *  \param filename File to be loaded.
              *  \return The desired Sound.
              */
-            Sound *getSound( const char *filename );
+            Sound *getSound( const char *fileName );
 
             /** Clears the cache. All objects are removed
              *  from the cache.

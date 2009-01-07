@@ -102,7 +102,7 @@ namespace Annchienta
         glEndList();
     }
 
-    Surface::Surface( int w, int h, int ps ): width(w), height(h), pixelSize(ps), texture(0), list(0)
+    Surface::Surface( int w, int h, int ps ): Cacheable(0), width(w), height(h), pixelSize(ps), texture(0), list(0)
     {
         /* Calculate the actual memory size. */
         MathManager *mathManager = getMathManager();
@@ -115,7 +115,7 @@ namespace Annchienta
         compileList();
     }
 
-    Surface::Surface( const char *filename ): texture(0), list(0)
+    Surface::Surface( const char *filename ): Cacheable(filename), texture(0), list(0)
     {
         /* We might need some logging and some math here. */
         LogManager *logManager = getLogManager();
@@ -235,6 +235,11 @@ namespace Annchienta
         glDeleteLists( list, 1 );
         if( pixels )
             delete[] pixels;
+    }
+
+    CacheableType Surface::getCacheableType() const
+    {
+        return SurfaceCacheable;
     }
 
     int Surface::getWidth() const

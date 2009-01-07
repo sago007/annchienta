@@ -18,12 +18,14 @@
 #ifndef ANNCHIENTA_MASK_H
 #define ANNCHIENTA_MASK_H
 
+#include "Cacheable.h"
+
 namespace Annchienta
 {
     /** Masks are basically 2d arrays of boolean values used for
      *  pixel-perfect collision detection.
      */
-    class Mask
+    class Mask: public Cacheable
     {
         private:
             int width, height;
@@ -46,6 +48,8 @@ namespace Annchienta
              */
             Mask( int w, int h );
             ~Mask();
+
+            virtual CacheableType getCacheableType() const;
 
             /** \return The width of this mask.
              */

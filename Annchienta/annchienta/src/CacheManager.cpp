@@ -17,6 +17,7 @@
 
 #include "CacheManager.h"
 
+#include "Cacheable.h"
 #include "Surface.h"
 #include "Mask.h"
 #include "Sound.h"
@@ -24,23 +25,6 @@
 
 namespace Annchienta
 {
-    /* A class used internall by the cachemanager
-     * to store objects. */
-    template <class T>
-    class CacheObject
-    {
-        public:
-            char name[DEFAULT_STRING_SIZE];
-            T *data;
-            int references;
-
-            CacheObject( const char *_name, T *_data ): data(_data), references(1)
-            {
-                if( _name )
-                    strcpy( name, _name );
-            };
-    };
-
     CacheManager *cacheManager;
 
     CacheManager::CacheManager()
@@ -58,104 +42,62 @@ namespace Annchienta
         this->clear();
     }
 
-    Surface *CacheManager::getSurface( const char *filename )
+    Cacheable *CacheManager::getCacheable( const char *fileName, CacheableType cacheableType )
     {
-        for( std::list< CacheObject<Surface> >::iterator i = surfaces.begin(); i!=surfaces.end(); i++ )
+        /* Check to see if it is in the list. */
+        for( std::list< Cacheable* >:: iterator i = cacheables.begin(); i!=cacheables.end(); i++ )
         {
-            if( !strcmp( filename, (*i).name ) )
+            if( (*i)->getCacheableType() == cacheableType )
             {
-                (*i).references++;
-                return (*i).data;
+                if( !strcmp( (*i)->getFileName(), fileName ) )
+                {
+                    return (*i);
+                }
             }
         }
 
-        Surface *surface = new Surface( filename );
-        surfaces.push_back( CacheObject<Surface>( filename, surface ) );
-        return surface;
+        /* Load it. */
+        Cacheable *cacheable;
+        switch( cacheableType )
+        {
+            case SurfaceCacheable:
+                cacheable = new Surface( fileName );
+                break;
+            case MaskCacheable:
+                cacheable = new Mask( fileName );
+                break;
+            case SoundCacheable:
+                cacheable = new Sound( fileName );
+                break;
+            case UnknownCacheable: default:
+                cacheable = new Cacheable( fileName );
+                break;
+        }
+        cacheables.push_back( cacheable );
+        return cacheable;
     }
 
-    /*void CacheManager::deleteSurface( Surface *surface )
+    Surface *CacheManager::getSurface( const char *fileName )
     {
-        for( std::list< CacheObject<Surface> >::iterator i = surfaces.begin(); i!=surfaces.end(); i++ )
-        {
-            if( surface == (*i).data )
-            {
-                (*i).references--;
-                if( (*i).references <= 0 )
-                {
-                    delete (*i).data;
-                    surfaces.erase( i );
-                }
-                return;
-            }
-        }
-    }*/
-
-    Mask *CacheManager::getMask( const char *filename )
-    {
-        for( std::list< CacheObject<Mask> >::iterator i = masks.begin(); i!=masks.end(); i++ )
-        {
-            if( !strcmp( filename, (*i).name ) )
-            {
-                (*i).references++;
-                return (*i).data;
-            }
-        }
-
-        Mask *mask = new Mask( filename );
-        masks.push_back( CacheObject<Mask>( filename, mask ) );
-        return mask;
+        return (Surface*) getCacheable( fileName, SurfaceCacheable );
     }
 
-    /*void CacheManager::deleteMask( Mask *mask )
+    Mask *CacheManager::getMask( const char *fileName )
     {
-        for( std::list< CacheObject<Mask> >::iterator i = masks.begin(); i!=masks.end(); i++ )
-        {
-            if( mask == (*i).data )
-            {
-                (*i).references--;
-                if( (*i).references <= 0 )
-                {
-                    delete (*i).data;
-                    masks.erase( i );
-                }
-                return;
-            }
-        }
-    }*/
+        return (Mask*) getCacheable( fileName, MaskCacheable );
+    }
 
-    Sound *CacheManager::getSound( const char *filename )
+    Sound *CacheManager::getSound( const char *fileName )
     {
-        for( std::list< CacheObject<Sound> >::iterator i = sounds.begin(); i!=sounds.end(); i++ )
-        {
-            if( !strcmp( filename, (*i).name ) )
-            {
-                (*i).references++;
-                return (*i).data;
-            }
-        }
-
-        Sound *sound = new Sound( filename );
-        sounds.push_back( CacheObject<Sound>( filename, sound ) );
-        return sound;
+        return (Sound*) getCacheable( fileName, SoundCacheable );
     }
 
     void CacheManager::clear()
     {
-        for( std::list< CacheObject<Surface> >::iterator i = surfaces.begin(); i!=surfaces.end(); i++ )
-            delete (*i).data;
+        for( std::list< Cacheable* >::iterator i = cacheables.begin(); i!=cacheables.end(); i++ )
+            delete (*i);
 
-        surfaces.clear();
-
-        for( std::list< CacheObject<Mask> >::iterator i = masks.begin(); i!=masks.end(); i++ )
-            delete (*i).data;
-
-        masks.clear();
-
-        for( std::list< CacheObject<Sound> >::iterator i = sounds.begin(); i!=sounds.end(); i++ )
-            delete (*i).data;
-
-        sounds.clear();
+        cacheables.clear();
     }
 
     CacheManager *getCacheManager()

@@ -170,15 +170,15 @@ namespace Annchienta
 
         /* Reject if there are now colliding tiles.
          * (This means the player is probably outside the level.) */
-        if( possible && collidingTiles.size() <= 0 )
+        if( collidingTiles.size() <= 0 )
             possible = false;
 
         /* Reject if the person ascents too high. */
-        if( possible && oldPosition.z + getMapManager()->getMaxAscentHeight() < position.z )
+        else if( possible && oldPosition.z + getMapManager()->getMaxAscentHeight() < position.z )
             possible = false;
 
         /* Reject if the person descents too deep. */
-        if( possible && (oldPosition.z - getMapManager()->getMaxDescentHeight() > position.z ) )
+        else if( possible && (oldPosition.z - getMapManager()->getMaxDescentHeight() > position.z ) )
             possible = false;
 
         /* Reject if the person steps on a nulltile, or if that
@@ -215,10 +215,9 @@ namespace Annchienta
             mapPosition = position.to( MapPoint );
             collidingTiles = oldCollidingTiles;
             this->setStandAnimation();
-            return false;
         }
 
-        return true;
+        return possible;
     }
 
     bool Person::stepTo( Point target, bool force )

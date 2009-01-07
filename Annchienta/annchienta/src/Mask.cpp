@@ -27,7 +27,7 @@
 namespace Annchienta
 {
 
-    Mask::Mask( const char *filename ): pixels(0)
+    Mask::Mask( const char *filename ): Cacheable( filename ), pixels(0)
     {
         LogManager *logManager = getLogManager();
 
@@ -126,7 +126,7 @@ namespace Annchienta
         fclose(fp);
     }
 
-    Mask::Mask( int w, int h ): width(w), height(h), pixels(0)
+    Mask::Mask( int w, int h ): Cacheable(0), width(w), height(h), pixels(0)
     {
         /* allocate memory for the pixel data */
         pixels = new bool[width * height];
@@ -147,6 +147,11 @@ namespace Annchienta
     Mask::~Mask()
     {
         delete[] pixels;
+    }
+
+    CacheableType Mask::getCacheableType() const
+    {
+        return MaskCacheable;
     }
 
     int Mask::getWidth() const

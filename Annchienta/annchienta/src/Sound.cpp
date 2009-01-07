@@ -22,7 +22,7 @@
 namespace Annchienta
 {
 
-    Sound::Sound( const char *filename )
+    Sound::Sound( const char *filename ): Cacheable( filename )
     {
         audioManager = getAudioManager();
 
@@ -39,6 +39,11 @@ namespace Annchienta
     {
         if( audioManager->inittedSuccesfully() )
             Mix_FreeChunk( chunk );
+    }
+
+    CacheableType Sound::getCacheableType() const
+    {
+        return SoundCacheable;
     }
 
     void Sound::play() const

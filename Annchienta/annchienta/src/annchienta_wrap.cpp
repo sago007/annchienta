@@ -2504,30 +2504,31 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__Area swig_types[0]
 #define SWIGTYPE_p_Annchienta__AudioManager swig_types[1]
 #define SWIGTYPE_p_Annchienta__CacheManager swig_types[2]
-#define SWIGTYPE_p_Annchienta__Engine swig_types[3]
-#define SWIGTYPE_p_Annchienta__Entity swig_types[4]
-#define SWIGTYPE_p_Annchienta__Font swig_types[5]
-#define SWIGTYPE_p_Annchienta__InputManager swig_types[6]
-#define SWIGTYPE_p_Annchienta__Layer swig_types[7]
-#define SWIGTYPE_p_Annchienta__LogManager swig_types[8]
-#define SWIGTYPE_p_Annchienta__Map swig_types[9]
-#define SWIGTYPE_p_Annchienta__MapManager swig_types[10]
-#define SWIGTYPE_p_Annchienta__Mask swig_types[11]
-#define SWIGTYPE_p_Annchienta__MathManager swig_types[12]
-#define SWIGTYPE_p_Annchienta__Person swig_types[13]
-#define SWIGTYPE_p_Annchienta__Point swig_types[14]
-#define SWIGTYPE_p_Annchienta__Sound swig_types[15]
-#define SWIGTYPE_p_Annchienta__StaticObject swig_types[16]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[17]
-#define SWIGTYPE_p_Annchienta__Tile swig_types[18]
-#define SWIGTYPE_p_Annchienta__TileSet swig_types[19]
-#define SWIGTYPE_p_Annchienta__Vector swig_types[20]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[21]
-#define SWIGTYPE_p_SDLKey swig_types[22]
-#define SWIGTYPE_p_SDLMod swig_types[23]
-#define SWIGTYPE_p_char swig_types[24]
-static swig_type_info *swig_types[26];
-static swig_module_info swig_module = {swig_types, 25, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__Cacheable swig_types[3]
+#define SWIGTYPE_p_Annchienta__Engine swig_types[4]
+#define SWIGTYPE_p_Annchienta__Entity swig_types[5]
+#define SWIGTYPE_p_Annchienta__Font swig_types[6]
+#define SWIGTYPE_p_Annchienta__InputManager swig_types[7]
+#define SWIGTYPE_p_Annchienta__Layer swig_types[8]
+#define SWIGTYPE_p_Annchienta__LogManager swig_types[9]
+#define SWIGTYPE_p_Annchienta__Map swig_types[10]
+#define SWIGTYPE_p_Annchienta__MapManager swig_types[11]
+#define SWIGTYPE_p_Annchienta__Mask swig_types[12]
+#define SWIGTYPE_p_Annchienta__MathManager swig_types[13]
+#define SWIGTYPE_p_Annchienta__Person swig_types[14]
+#define SWIGTYPE_p_Annchienta__Point swig_types[15]
+#define SWIGTYPE_p_Annchienta__Sound swig_types[16]
+#define SWIGTYPE_p_Annchienta__StaticObject swig_types[17]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[18]
+#define SWIGTYPE_p_Annchienta__Tile swig_types[19]
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[20]
+#define SWIGTYPE_p_Annchienta__Vector swig_types[21]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[22]
+#define SWIGTYPE_p_SDLKey swig_types[23]
+#define SWIGTYPE_p_SDLMod swig_types[24]
+#define SWIGTYPE_p_char swig_types[25]
+static swig_type_info *swig_types[27];
+static swig_module_info swig_module = {swig_types, 26, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2626,6 +2627,7 @@ namespace swig {
 #include "InputManager.h"
 #include "MapManager.h"
 #include "AudioManager.h"
+#include "Cacheable.h"
 #include "CacheManager.h"
 #include "MathManager.h"
 #include "Surface.h"
@@ -9020,6 +9022,146 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_new_Cacheable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Annchienta::Cacheable *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_Cacheable",&obj0)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Cacheable" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  result = (Annchienta::Cacheable *)new Annchienta::Cacheable((char const *)arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Cacheable, SWIG_POINTER_NEW |  0 );
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Cacheable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Cacheable *arg1 = (Annchienta::Cacheable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_Cacheable",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Cacheable, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Cacheable" "', argument " "1"" of type '" "Annchienta::Cacheable *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Cacheable * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Cacheable_getCacheableType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Cacheable *arg1 = (Annchienta::Cacheable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Annchienta::CacheableType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Cacheable_getCacheableType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Cacheable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Cacheable_getCacheableType" "', argument " "1"" of type '" "Annchienta::Cacheable const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Cacheable * >(argp1);
+  result = (Annchienta::CacheableType)((Annchienta::Cacheable const *)arg1)->getCacheableType();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Cacheable_getFileName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Cacheable *arg1 = (Annchienta::Cacheable *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  char *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Cacheable_getFileName",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Cacheable, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Cacheable_getFileName" "', argument " "1"" of type '" "Annchienta::Cacheable const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Cacheable * >(argp1);
+  result = (char *)((Annchienta::Cacheable const *)arg1)->getFileName();
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Cacheable_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__Cacheable, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_CacheManager_getCacheable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
+  char *arg2 = (char *) 0 ;
+  Annchienta::CacheableType arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  Annchienta::Cacheable *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:CacheManager_getCacheable",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__CacheManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CacheManager_getCacheable" "', argument " "1"" of type '" "Annchienta::CacheManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::CacheManager * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "CacheManager_getCacheable" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "CacheManager_getCacheable" "', argument " "3"" of type '" "Annchienta::CacheableType""'");
+  } 
+  arg3 = static_cast< Annchienta::CacheableType >(val3);
+  result = (Annchienta::Cacheable *)(arg1)->getCacheable((char const *)arg2,arg3);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Cacheable, 0 |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_CacheManager_getSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::CacheManager *arg1 = (Annchienta::CacheManager *) 0 ;
@@ -9859,6 +10001,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Surface_getCacheableType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Surface *arg1 = (Annchienta::Surface *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Annchienta::CacheableType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Surface_getCacheableType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Surface, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Surface_getCacheableType" "', argument " "1"" of type '" "Annchienta::Surface const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Surface * >(argp1);
+  result = (Annchienta::CacheableType)((Annchienta::Surface const *)arg1)->getCacheableType();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Surface_getWidth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Surface *arg1 = (Annchienta::Surface *) 0 ;
@@ -10199,6 +10363,28 @@ SWIGINTERN PyObject *_wrap_delete_Sound(PyObject *SWIGUNUSEDPARM(self), PyObject
   arg1 = reinterpret_cast< Annchienta::Sound * >(argp1);
   delete arg1;
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Sound_getCacheableType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Sound *arg1 = (Annchienta::Sound *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Annchienta::CacheableType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Sound_getCacheableType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Sound, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Sound_getCacheableType" "', argument " "1"" of type '" "Annchienta::Sound const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Sound * >(argp1);
+  result = (Annchienta::CacheableType)((Annchienta::Sound const *)arg1)->getCacheableType();
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -12918,6 +13104,28 @@ SWIGINTERN PyObject *_wrap_delete_Mask(PyObject *SWIGUNUSEDPARM(self), PyObject 
   arg1 = reinterpret_cast< Annchienta::Mask * >(argp1);
   delete arg1;
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Mask_getCacheableType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Mask *arg1 = (Annchienta::Mask *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Annchienta::CacheableType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Mask_getCacheableType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Mask_getCacheableType" "', argument " "1"" of type '" "Annchienta::Mask const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Mask * >(argp1);
+  result = (Annchienta::CacheableType)((Annchienta::Mask const *)arg1)->getCacheableType();
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -15732,6 +15940,12 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_AudioManager", _wrap_delete_AudioManager, METH_VARARGS, NULL},
 	 { (char *)"AudioManager_swigregister", AudioManager_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getAudioManager", _wrap_getAudioManager, METH_VARARGS, NULL},
+	 { (char *)"new_Cacheable", _wrap_new_Cacheable, METH_VARARGS, NULL},
+	 { (char *)"delete_Cacheable", _wrap_delete_Cacheable, METH_VARARGS, NULL},
+	 { (char *)"Cacheable_getCacheableType", _wrap_Cacheable_getCacheableType, METH_VARARGS, NULL},
+	 { (char *)"Cacheable_getFileName", _wrap_Cacheable_getFileName, METH_VARARGS, NULL},
+	 { (char *)"Cacheable_swigregister", Cacheable_swigregister, METH_VARARGS, NULL},
+	 { (char *)"CacheManager_getCacheable", _wrap_CacheManager_getCacheable, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_getSurface", _wrap_CacheManager_getSurface, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_getMask", _wrap_CacheManager_getMask, METH_VARARGS, NULL},
 	 { (char *)"CacheManager_getSound", _wrap_CacheManager_getSound, METH_VARARGS, NULL},
@@ -15753,6 +15967,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"getMathManager", _wrap_getMathManager, METH_VARARGS, NULL},
 	 { (char *)"new_Surface", _wrap_new_Surface, METH_VARARGS, NULL},
 	 { (char *)"delete_Surface", _wrap_delete_Surface, METH_VARARGS, NULL},
+	 { (char *)"Surface_getCacheableType", _wrap_Surface_getCacheableType, METH_VARARGS, NULL},
 	 { (char *)"Surface_getWidth", _wrap_Surface_getWidth, METH_VARARGS, NULL},
 	 { (char *)"Surface_getHeight", _wrap_Surface_getHeight, METH_VARARGS, NULL},
 	 { (char *)"Surface_setLinearScaling", _wrap_Surface_setLinearScaling, METH_VARARGS, NULL},
@@ -15766,6 +15981,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Font_swigregister", Font_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Sound", _wrap_new_Sound, METH_VARARGS, NULL},
 	 { (char *)"delete_Sound", _wrap_delete_Sound, METH_VARARGS, NULL},
+	 { (char *)"Sound_getCacheableType", _wrap_Sound_getCacheableType, METH_VARARGS, NULL},
 	 { (char *)"Sound_swigregister", Sound_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Layer", _wrap_new_Layer, METH_VARARGS, NULL},
 	 { (char *)"Layer_setOpacity", _wrap_Layer_setOpacity, METH_VARARGS, NULL},
@@ -15858,6 +16074,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"TileSet_swigregister", TileSet_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Mask", _wrap_new_Mask, METH_VARARGS, NULL},
 	 { (char *)"delete_Mask", _wrap_delete_Mask, METH_VARARGS, NULL},
+	 { (char *)"Mask_getCacheableType", _wrap_Mask_getCacheableType, METH_VARARGS, NULL},
 	 { (char *)"Mask_getWidth", _wrap_Mask_getWidth, METH_VARARGS, NULL},
 	 { (char *)"Mask_getHeight", _wrap_Mask_getHeight, METH_VARARGS, NULL},
 	 { (char *)"Mask_collision", _wrap_Mask_collision, METH_VARARGS, NULL},
@@ -15934,6 +16151,15 @@ static PyMethodDef SwigMethods[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_Annchienta__MaskTo_p_Annchienta__Cacheable(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Annchienta::Cacheable *)  ((Annchienta::Mask *) x));
+}
+static void *_p_Annchienta__SurfaceTo_p_Annchienta__Cacheable(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Annchienta::Cacheable *)  ((Annchienta::Surface *) x));
+}
+static void *_p_Annchienta__SoundTo_p_Annchienta__Cacheable(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Annchienta::Cacheable *)  ((Annchienta::Sound *) x));
+}
 static void *_p_Annchienta__StaticObjectTo_p_Annchienta__Entity(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Annchienta::Entity *)  ((Annchienta::StaticObject *) x));
 }
@@ -15949,6 +16175,7 @@ static void *_p_Annchienta__PersonTo_p_Annchienta__StaticObject(void *x, int *SW
 static swig_type_info _swigt__p_Annchienta__Area = {"_p_Annchienta__Area", "Annchienta::Area *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__AudioManager = {"_p_Annchienta__AudioManager", "Annchienta::AudioManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__CacheManager = {"_p_Annchienta__CacheManager", "Annchienta::CacheManager *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__Cacheable = {"_p_Annchienta__Cacheable", "Annchienta::Cacheable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Engine = {"_p_Annchienta__Engine", "Annchienta::Engine *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Entity = {"_p_Annchienta__Entity", "Annchienta::Entity *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Font = {"_p_Annchienta__Font", "Annchienta::Font *", 0, 0, (void*)0, 0};
@@ -15976,6 +16203,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Area,
   &_swigt__p_Annchienta__AudioManager,
   &_swigt__p_Annchienta__CacheManager,
+  &_swigt__p_Annchienta__Cacheable,
   &_swigt__p_Annchienta__Engine,
   &_swigt__p_Annchienta__Entity,
   &_swigt__p_Annchienta__Font,
@@ -16003,6 +16231,7 @@ static swig_type_info *swig_type_initial[] = {
 static swig_cast_info _swigc__p_Annchienta__Area[] = {  {&_swigt__p_Annchienta__Area, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__AudioManager[] = {  {&_swigt__p_Annchienta__AudioManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__CacheManager[] = {  {&_swigt__p_Annchienta__CacheManager, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__Cacheable[] = {  {&_swigt__p_Annchienta__Cacheable, 0, 0, 0},  {&_swigt__p_Annchienta__Surface, _p_Annchienta__SurfaceTo_p_Annchienta__Cacheable, 0, 0},  {&_swigt__p_Annchienta__Sound, _p_Annchienta__SoundTo_p_Annchienta__Cacheable, 0, 0},  {&_swigt__p_Annchienta__Mask, _p_Annchienta__MaskTo_p_Annchienta__Cacheable, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Engine[] = {  {&_swigt__p_Annchienta__Engine, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Entity[] = {  {&_swigt__p_Annchienta__Tile, _p_Annchienta__TileTo_p_Annchienta__Entity, 0, 0},  {&_swigt__p_Annchienta__Entity, 0, 0, 0},  {&_swigt__p_Annchienta__StaticObject, _p_Annchienta__StaticObjectTo_p_Annchienta__Entity, 0, 0},  {&_swigt__p_Annchienta__Person, _p_Annchienta__PersonTo_p_Annchienta__Entity, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__Font, 0, 0, 0},{0, 0, 0, 0}};
@@ -16030,6 +16259,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Area,
   _swigc__p_Annchienta__AudioManager,
   _swigc__p_Annchienta__CacheManager,
+  _swigc__p_Annchienta__Cacheable,
   _swigc__p_Annchienta__Engine,
   _swigc__p_Annchienta__Entity,
   _swigc__p_Annchienta__Font,
@@ -16590,6 +16820,10 @@ SWIGEXPORT void SWIG_init(void) {
   SWIG_Python_SetConstant(d, "LARGE_STRING_SIZE",SWIG_From_int(static_cast< int >(1024)));
   SWIG_Python_SetConstant(d, "CinematicMode",SWIG_From_int(static_cast< int >(Annchienta::CinematicMode)));
   SWIG_Python_SetConstant(d, "InteractiveMode",SWIG_From_int(static_cast< int >(Annchienta::InteractiveMode)));
+  SWIG_Python_SetConstant(d, "UnknownCacheable",SWIG_From_int(static_cast< int >(Annchienta::UnknownCacheable)));
+  SWIG_Python_SetConstant(d, "SurfaceCacheable",SWIG_From_int(static_cast< int >(Annchienta::SurfaceCacheable)));
+  SWIG_Python_SetConstant(d, "MaskCacheable",SWIG_From_int(static_cast< int >(Annchienta::MaskCacheable)));
+  SWIG_Python_SetConstant(d, "SoundCacheable",SWIG_From_int(static_cast< int >(Annchienta::SoundCacheable)));
   SWIG_Python_SetConstant(d, "TileEntity",SWIG_From_int(static_cast< int >(Annchienta::TileEntity)));
   SWIG_Python_SetConstant(d, "StaticObjectEntity",SWIG_From_int(static_cast< int >(Annchienta::StaticObjectEntity)));
   SWIG_Python_SetConstant(d, "PersonEntity",SWIG_From_int(static_cast< int >(Annchienta::PersonEntity)));
