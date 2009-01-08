@@ -2507,28 +2507,32 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags)
 #define SWIGTYPE_p_Annchienta__Cacheable swig_types[3]
 #define SWIGTYPE_p_Annchienta__Engine swig_types[4]
 #define SWIGTYPE_p_Annchienta__Entity swig_types[5]
-#define SWIGTYPE_p_Annchienta__Font swig_types[6]
-#define SWIGTYPE_p_Annchienta__InputManager swig_types[7]
-#define SWIGTYPE_p_Annchienta__Layer swig_types[8]
-#define SWIGTYPE_p_Annchienta__LogManager swig_types[9]
-#define SWIGTYPE_p_Annchienta__Map swig_types[10]
-#define SWIGTYPE_p_Annchienta__MapManager swig_types[11]
-#define SWIGTYPE_p_Annchienta__Mask swig_types[12]
-#define SWIGTYPE_p_Annchienta__MathManager swig_types[13]
-#define SWIGTYPE_p_Annchienta__Person swig_types[14]
-#define SWIGTYPE_p_Annchienta__Point swig_types[15]
-#define SWIGTYPE_p_Annchienta__Sound swig_types[16]
-#define SWIGTYPE_p_Annchienta__StaticObject swig_types[17]
-#define SWIGTYPE_p_Annchienta__Surface swig_types[18]
-#define SWIGTYPE_p_Annchienta__Tile swig_types[19]
-#define SWIGTYPE_p_Annchienta__TileSet swig_types[20]
-#define SWIGTYPE_p_Annchienta__Vector swig_types[21]
-#define SWIGTYPE_p_Annchienta__VideoManager swig_types[22]
-#define SWIGTYPE_p_SDLKey swig_types[23]
-#define SWIGTYPE_p_SDLMod swig_types[24]
-#define SWIGTYPE_p_char swig_types[25]
-static swig_type_info *swig_types[27];
-static swig_module_info swig_module = {swig_types, 26, 0, 0, 0, 0};
+#define SWIGTYPE_p_Annchienta__FollowPathPersonControl swig_types[6]
+#define SWIGTYPE_p_Annchienta__Font swig_types[7]
+#define SWIGTYPE_p_Annchienta__InputManager swig_types[8]
+#define SWIGTYPE_p_Annchienta__InputPersonControl swig_types[9]
+#define SWIGTYPE_p_Annchienta__Layer swig_types[10]
+#define SWIGTYPE_p_Annchienta__LogManager swig_types[11]
+#define SWIGTYPE_p_Annchienta__Map swig_types[12]
+#define SWIGTYPE_p_Annchienta__MapManager swig_types[13]
+#define SWIGTYPE_p_Annchienta__Mask swig_types[14]
+#define SWIGTYPE_p_Annchienta__MathManager swig_types[15]
+#define SWIGTYPE_p_Annchienta__Person swig_types[16]
+#define SWIGTYPE_p_Annchienta__PersonControl swig_types[17]
+#define SWIGTYPE_p_Annchienta__Point swig_types[18]
+#define SWIGTYPE_p_Annchienta__SamplePersonControl swig_types[19]
+#define SWIGTYPE_p_Annchienta__Sound swig_types[20]
+#define SWIGTYPE_p_Annchienta__StaticObject swig_types[21]
+#define SWIGTYPE_p_Annchienta__Surface swig_types[22]
+#define SWIGTYPE_p_Annchienta__Tile swig_types[23]
+#define SWIGTYPE_p_Annchienta__TileSet swig_types[24]
+#define SWIGTYPE_p_Annchienta__Vector swig_types[25]
+#define SWIGTYPE_p_Annchienta__VideoManager swig_types[26]
+#define SWIGTYPE_p_SDLKey swig_types[27]
+#define SWIGTYPE_p_SDLMod swig_types[28]
+#define SWIGTYPE_p_char swig_types[29]
+static swig_type_info *swig_types[31];
+static swig_module_info swig_module = {swig_types, 30, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2642,6 +2646,10 @@ namespace swig {
 #include "StaticObject.h"
 #include "Person.h"
 #include "Vector.h"
+#include "PersonControl.h"
+#include "SamplePersonControl.h"
+#include "InputPersonControl.h"
+#include "FollowPathPersonControl.h"
 
 
   #define SWIG_From_long   PyInt_FromLong 
@@ -14847,6 +14855,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Person_setControl(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Person *arg1 = (Annchienta::Person *) 0 ;
+  Annchienta::PersonControl *arg2 = (Annchienta::PersonControl *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Person_setControl",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Person, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Person_setControl" "', argument " "1"" of type '" "Annchienta::Person *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Person * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__PersonControl, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Person_setControl" "', argument " "2"" of type '" "Annchienta::PersonControl *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::PersonControl * >(argp2);
+  (arg1)->setControl(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Person_setInputControl(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Person *arg1 = (Annchienta::Person *) 0 ;
@@ -15796,6 +15834,327 @@ SWIGINTERN PyObject *Vector_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_delete_PersonControl(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::PersonControl *arg1 = (Annchienta::PersonControl *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_PersonControl",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__PersonControl, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PersonControl" "', argument " "1"" of type '" "Annchienta::PersonControl *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::PersonControl * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PersonControl_affect(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::PersonControl *arg1 = (Annchienta::PersonControl *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PersonControl_affect",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__PersonControl, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PersonControl_affect" "', argument " "1"" of type '" "Annchienta::PersonControl *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::PersonControl * >(argp1);
+  (arg1)->affect();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *PersonControl_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__PersonControl, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_SamplePersonControl(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Person *arg1 = (Annchienta::Person *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Annchienta::SamplePersonControl *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_SamplePersonControl",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Person, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_SamplePersonControl" "', argument " "1"" of type '" "Annchienta::Person *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Person * >(argp1);
+  result = (Annchienta::SamplePersonControl *)new Annchienta::SamplePersonControl(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__SamplePersonControl, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_SamplePersonControl(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::SamplePersonControl *arg1 = (Annchienta::SamplePersonControl *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_SamplePersonControl",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__SamplePersonControl, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_SamplePersonControl" "', argument " "1"" of type '" "Annchienta::SamplePersonControl *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::SamplePersonControl * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SamplePersonControl_affect(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::SamplePersonControl *arg1 = (Annchienta::SamplePersonControl *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:SamplePersonControl_affect",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__SamplePersonControl, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SamplePersonControl_affect" "', argument " "1"" of type '" "Annchienta::SamplePersonControl *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::SamplePersonControl * >(argp1);
+  (arg1)->affect();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *SamplePersonControl_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__SamplePersonControl, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_InputPersonControl(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Person *arg1 = (Annchienta::Person *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Annchienta::InputPersonControl *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_InputPersonControl",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Person, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_InputPersonControl" "', argument " "1"" of type '" "Annchienta::Person *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Person * >(argp1);
+  result = (Annchienta::InputPersonControl *)new Annchienta::InputPersonControl(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__InputPersonControl, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_InputPersonControl(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputPersonControl *arg1 = (Annchienta::InputPersonControl *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_InputPersonControl",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputPersonControl, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_InputPersonControl" "', argument " "1"" of type '" "Annchienta::InputPersonControl *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputPersonControl * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputPersonControl_affect(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputPersonControl *arg1 = (Annchienta::InputPersonControl *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputPersonControl_affect",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputPersonControl, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputPersonControl_affect" "', argument " "1"" of type '" "Annchienta::InputPersonControl *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputPersonControl * >(argp1);
+  (arg1)->affect();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputPersonControl_tryInteract(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputPersonControl *arg1 = (Annchienta::InputPersonControl *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputPersonControl_tryInteract",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputPersonControl, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputPersonControl_tryInteract" "', argument " "1"" of type '" "Annchienta::InputPersonControl *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputPersonControl * >(argp1);
+  (arg1)->tryInteract();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *InputPersonControl_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__InputPersonControl, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_FollowPathPersonControl(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Person *arg1 = (Annchienta::Person *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Annchienta::FollowPathPersonControl *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_FollowPathPersonControl",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Person, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_FollowPathPersonControl" "', argument " "1"" of type '" "Annchienta::Person *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Person * >(argp1);
+  result = (Annchienta::FollowPathPersonControl *)new Annchienta::FollowPathPersonControl(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__FollowPathPersonControl, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_FollowPathPersonControl(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::FollowPathPersonControl *arg1 = (Annchienta::FollowPathPersonControl *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_FollowPathPersonControl",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__FollowPathPersonControl, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_FollowPathPersonControl" "', argument " "1"" of type '" "Annchienta::FollowPathPersonControl *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::FollowPathPersonControl * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_FollowPathPersonControl_affect(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::FollowPathPersonControl *arg1 = (Annchienta::FollowPathPersonControl *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:FollowPathPersonControl_affect",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__FollowPathPersonControl, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FollowPathPersonControl_affect" "', argument " "1"" of type '" "Annchienta::FollowPathPersonControl *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::FollowPathPersonControl * >(argp1);
+  (arg1)->affect();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_FollowPathPersonControl_addPoint(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::FollowPathPersonControl *arg1 = (Annchienta::FollowPathPersonControl *) 0 ;
+  Annchienta::Point arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:FollowPathPersonControl_addPoint",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__FollowPathPersonControl, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "FollowPathPersonControl_addPoint" "', argument " "1"" of type '" "Annchienta::FollowPathPersonControl *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::FollowPathPersonControl * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Annchienta__Point,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "FollowPathPersonControl_addPoint" "', argument " "2"" of type '" "Annchienta::Point""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "FollowPathPersonControl_addPoint" "', argument " "2"" of type '" "Annchienta::Point""'");
+    } else {
+      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  (arg1)->addPoint(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *FollowPathPersonControl_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Annchienta__FollowPathPersonControl, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"Point_x_set", _wrap_Point_x_set, METH_VARARGS, NULL},
 	 { (char *)"Point_x_get", _wrap_Point_x_get, METH_VARARGS, NULL},
@@ -16118,6 +16477,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Person_stepTo", _wrap_Person_stepTo, METH_VARARGS, NULL},
 	 { (char *)"Person_freeze", _wrap_Person_freeze, METH_VARARGS, NULL},
 	 { (char *)"Person_isFrozen", _wrap_Person_isFrozen, METH_VARARGS, NULL},
+	 { (char *)"Person_setControl", _wrap_Person_setControl, METH_VARARGS, NULL},
 	 { (char *)"Person_setInputControl", _wrap_Person_setInputControl, METH_VARARGS, NULL},
 	 { (char *)"Person_setSampleControl", _wrap_Person_setSampleControl, METH_VARARGS, NULL},
 	 { (char *)"Person_setNullControl", _wrap_Person_setNullControl, METH_VARARGS, NULL},
@@ -16145,6 +16505,23 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Vector_normalize", _wrap_Vector_normalize, METH_VARARGS, NULL},
 	 { (char *)"Vector_cap", _wrap_Vector_cap, METH_VARARGS, NULL},
 	 { (char *)"Vector_swigregister", Vector_swigregister, METH_VARARGS, NULL},
+	 { (char *)"delete_PersonControl", _wrap_delete_PersonControl, METH_VARARGS, NULL},
+	 { (char *)"PersonControl_affect", _wrap_PersonControl_affect, METH_VARARGS, NULL},
+	 { (char *)"PersonControl_swigregister", PersonControl_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_SamplePersonControl", _wrap_new_SamplePersonControl, METH_VARARGS, NULL},
+	 { (char *)"delete_SamplePersonControl", _wrap_delete_SamplePersonControl, METH_VARARGS, NULL},
+	 { (char *)"SamplePersonControl_affect", _wrap_SamplePersonControl_affect, METH_VARARGS, NULL},
+	 { (char *)"SamplePersonControl_swigregister", SamplePersonControl_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_InputPersonControl", _wrap_new_InputPersonControl, METH_VARARGS, NULL},
+	 { (char *)"delete_InputPersonControl", _wrap_delete_InputPersonControl, METH_VARARGS, NULL},
+	 { (char *)"InputPersonControl_affect", _wrap_InputPersonControl_affect, METH_VARARGS, NULL},
+	 { (char *)"InputPersonControl_tryInteract", _wrap_InputPersonControl_tryInteract, METH_VARARGS, NULL},
+	 { (char *)"InputPersonControl_swigregister", InputPersonControl_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_FollowPathPersonControl", _wrap_new_FollowPathPersonControl, METH_VARARGS, NULL},
+	 { (char *)"delete_FollowPathPersonControl", _wrap_delete_FollowPathPersonControl, METH_VARARGS, NULL},
+	 { (char *)"FollowPathPersonControl_affect", _wrap_FollowPathPersonControl_affect, METH_VARARGS, NULL},
+	 { (char *)"FollowPathPersonControl_addPoint", _wrap_FollowPathPersonControl_addPoint, METH_VARARGS, NULL},
+	 { (char *)"FollowPathPersonControl_swigregister", FollowPathPersonControl_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -16172,14 +16549,25 @@ static void *_p_Annchienta__TileTo_p_Annchienta__Entity(void *x, int *SWIGUNUSED
 static void *_p_Annchienta__PersonTo_p_Annchienta__StaticObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Annchienta::StaticObject *)  ((Annchienta::Person *) x));
 }
+static void *_p_Annchienta__SamplePersonControlTo_p_Annchienta__PersonControl(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Annchienta::PersonControl *)  ((Annchienta::SamplePersonControl *) x));
+}
+static void *_p_Annchienta__InputPersonControlTo_p_Annchienta__PersonControl(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Annchienta::PersonControl *)  ((Annchienta::InputPersonControl *) x));
+}
+static void *_p_Annchienta__FollowPathPersonControlTo_p_Annchienta__PersonControl(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Annchienta::PersonControl *)  ((Annchienta::FollowPathPersonControl *) x));
+}
 static swig_type_info _swigt__p_Annchienta__Area = {"_p_Annchienta__Area", "Annchienta::Area *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__AudioManager = {"_p_Annchienta__AudioManager", "Annchienta::AudioManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__CacheManager = {"_p_Annchienta__CacheManager", "Annchienta::CacheManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Cacheable = {"_p_Annchienta__Cacheable", "Annchienta::Cacheable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Engine = {"_p_Annchienta__Engine", "Annchienta::Engine *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Entity = {"_p_Annchienta__Entity", "Annchienta::Entity *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__FollowPathPersonControl = {"_p_Annchienta__FollowPathPersonControl", "Annchienta::FollowPathPersonControl *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Font = {"_p_Annchienta__Font", "Annchienta::Font *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__InputManager = {"_p_Annchienta__InputManager", "Annchienta::InputManager *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__InputPersonControl = {"_p_Annchienta__InputPersonControl", "Annchienta::InputPersonControl *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Layer = {"_p_Annchienta__Layer", "Annchienta::Layer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__LogManager = {"_p_Annchienta__LogManager", "Annchienta::LogManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Map = {"_p_Annchienta__Map", "Annchienta::Map *", 0, 0, (void*)0, 0};
@@ -16187,7 +16575,9 @@ static swig_type_info _swigt__p_Annchienta__MapManager = {"_p_Annchienta__MapMan
 static swig_type_info _swigt__p_Annchienta__Mask = {"_p_Annchienta__Mask", "Annchienta::Mask *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__MathManager = {"_p_Annchienta__MathManager", "Annchienta::MathManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Person = {"_p_Annchienta__Person", "Annchienta::Person *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__PersonControl = {"_p_Annchienta__PersonControl", "Annchienta::PersonControl *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Point = {"_p_Annchienta__Point", "Annchienta::Point *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Annchienta__SamplePersonControl = {"_p_Annchienta__SamplePersonControl", "Annchienta::SamplePersonControl *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Sound = {"_p_Annchienta__Sound", "Annchienta::Sound *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__StaticObject = {"_p_Annchienta__StaticObject", "Annchienta::StaticObject *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Annchienta__Surface = {"_p_Annchienta__Surface", "Annchienta::Surface *", 0, 0, (void*)0, 0};
@@ -16206,8 +16596,10 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Cacheable,
   &_swigt__p_Annchienta__Engine,
   &_swigt__p_Annchienta__Entity,
+  &_swigt__p_Annchienta__FollowPathPersonControl,
   &_swigt__p_Annchienta__Font,
   &_swigt__p_Annchienta__InputManager,
+  &_swigt__p_Annchienta__InputPersonControl,
   &_swigt__p_Annchienta__Layer,
   &_swigt__p_Annchienta__LogManager,
   &_swigt__p_Annchienta__Map,
@@ -16215,7 +16607,9 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Annchienta__Mask,
   &_swigt__p_Annchienta__MathManager,
   &_swigt__p_Annchienta__Person,
+  &_swigt__p_Annchienta__PersonControl,
   &_swigt__p_Annchienta__Point,
+  &_swigt__p_Annchienta__SamplePersonControl,
   &_swigt__p_Annchienta__Sound,
   &_swigt__p_Annchienta__StaticObject,
   &_swigt__p_Annchienta__Surface,
@@ -16234,8 +16628,10 @@ static swig_cast_info _swigc__p_Annchienta__CacheManager[] = {  {&_swigt__p_Annc
 static swig_cast_info _swigc__p_Annchienta__Cacheable[] = {  {&_swigt__p_Annchienta__Cacheable, 0, 0, 0},  {&_swigt__p_Annchienta__Surface, _p_Annchienta__SurfaceTo_p_Annchienta__Cacheable, 0, 0},  {&_swigt__p_Annchienta__Sound, _p_Annchienta__SoundTo_p_Annchienta__Cacheable, 0, 0},  {&_swigt__p_Annchienta__Mask, _p_Annchienta__MaskTo_p_Annchienta__Cacheable, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Engine[] = {  {&_swigt__p_Annchienta__Engine, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Entity[] = {  {&_swigt__p_Annchienta__Tile, _p_Annchienta__TileTo_p_Annchienta__Entity, 0, 0},  {&_swigt__p_Annchienta__Entity, 0, 0, 0},  {&_swigt__p_Annchienta__StaticObject, _p_Annchienta__StaticObjectTo_p_Annchienta__Entity, 0, 0},  {&_swigt__p_Annchienta__Person, _p_Annchienta__PersonTo_p_Annchienta__Entity, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__FollowPathPersonControl[] = {  {&_swigt__p_Annchienta__FollowPathPersonControl, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Font[] = {  {&_swigt__p_Annchienta__Font, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__InputManager[] = {  {&_swigt__p_Annchienta__InputManager, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__InputPersonControl[] = {  {&_swigt__p_Annchienta__InputPersonControl, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Layer[] = {  {&_swigt__p_Annchienta__Layer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__LogManager[] = {  {&_swigt__p_Annchienta__LogManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Map[] = {  {&_swigt__p_Annchienta__Map, 0, 0, 0},{0, 0, 0, 0}};
@@ -16243,7 +16639,9 @@ static swig_cast_info _swigc__p_Annchienta__MapManager[] = {  {&_swigt__p_Annchi
 static swig_cast_info _swigc__p_Annchienta__Mask[] = {  {&_swigt__p_Annchienta__Mask, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__MathManager[] = {  {&_swigt__p_Annchienta__MathManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Person[] = {  {&_swigt__p_Annchienta__Person, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__PersonControl[] = {  {&_swigt__p_Annchienta__PersonControl, 0, 0, 0},  {&_swigt__p_Annchienta__SamplePersonControl, _p_Annchienta__SamplePersonControlTo_p_Annchienta__PersonControl, 0, 0},  {&_swigt__p_Annchienta__InputPersonControl, _p_Annchienta__InputPersonControlTo_p_Annchienta__PersonControl, 0, 0},  {&_swigt__p_Annchienta__FollowPathPersonControl, _p_Annchienta__FollowPathPersonControlTo_p_Annchienta__PersonControl, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Point[] = {  {&_swigt__p_Annchienta__Point, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Annchienta__SamplePersonControl[] = {  {&_swigt__p_Annchienta__SamplePersonControl, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Sound[] = {  {&_swigt__p_Annchienta__Sound, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__StaticObject[] = {  {&_swigt__p_Annchienta__StaticObject, 0, 0, 0},  {&_swigt__p_Annchienta__Person, _p_Annchienta__PersonTo_p_Annchienta__StaticObject, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Annchienta__Surface[] = {  {&_swigt__p_Annchienta__Surface, 0, 0, 0},{0, 0, 0, 0}};
@@ -16262,8 +16660,10 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Cacheable,
   _swigc__p_Annchienta__Engine,
   _swigc__p_Annchienta__Entity,
+  _swigc__p_Annchienta__FollowPathPersonControl,
   _swigc__p_Annchienta__Font,
   _swigc__p_Annchienta__InputManager,
+  _swigc__p_Annchienta__InputPersonControl,
   _swigc__p_Annchienta__Layer,
   _swigc__p_Annchienta__LogManager,
   _swigc__p_Annchienta__Map,
@@ -16271,7 +16671,9 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Annchienta__Mask,
   _swigc__p_Annchienta__MathManager,
   _swigc__p_Annchienta__Person,
+  _swigc__p_Annchienta__PersonControl,
   _swigc__p_Annchienta__Point,
+  _swigc__p_Annchienta__SamplePersonControl,
   _swigc__p_Annchienta__Sound,
   _swigc__p_Annchienta__StaticObject,
   _swigc__p_Annchienta__Surface,

@@ -47,14 +47,12 @@ namespace Annchienta
                 int r = rand()%4;
                 if( r==0 )
                     mx = -1;
+                else if( r==1 )
+                    my = -1;
+                else if( r==2 )
+                    mx = 1;
                 else
-                    if( r==1 )
-                        my = -1;
-                    else
-                        if( r==2 )
-                            mx = 1;
-                        else
-                            my = 1;
+                    my = 1;
             }
 
             walkTimeGiven = 10 + rand()%100;

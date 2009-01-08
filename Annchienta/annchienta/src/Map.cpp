@@ -262,26 +262,20 @@ namespace Annchienta
                             p1 = Point( IsometricPoint, xml->getAttributeValueAsInt("isox1"), xml->getAttributeValueAsInt("isoy1"), 0 );
                             p2 = Point( IsometricPoint, xml->getAttributeValueAsInt("isox2"), xml->getAttributeValueAsInt("isoy2"), 0 );
                         }
+                        else if( xml->getAttributeValue("mapx1") )
+                        {
+                            p1 = Point( MapPoint, xml->getAttributeValueAsInt("mapx1"), xml->getAttributeValueAsInt("mapy1"), 0 );
+                            p2 = Point( MapPoint, xml->getAttributeValueAsInt("mapx2"), xml->getAttributeValueAsInt("mapy2"), 0 );
+                        }
+                        else if( xml->getAttributeValue("tilex1") )
+                        {
+                            p1 = Point( TilePoint, xml->getAttributeValueAsInt("tilex1"), xml->getAttributeValueAsInt("tiley1"), 0 );
+                            p2 = Point( TilePoint, xml->getAttributeValueAsInt("tilex2"), xml->getAttributeValueAsInt("tiley2"), 0 );
+                        }
                         else
                         {
-                           if( xml->getAttributeValue("mapx1") )
-                           {
-                              p1 = Point( MapPoint, xml->getAttributeValueAsInt("mapx1"), xml->getAttributeValueAsInt("mapy1"), 0 );
-                              p2 = Point( MapPoint, xml->getAttributeValueAsInt("mapx2"), xml->getAttributeValueAsInt("mapy2"), 0 );
-                            }
-                            else
-                            {
-                                if( xml->getAttributeValue("tilex1") )
-                                {
-                                    p1 = Point( TilePoint, xml->getAttributeValueAsInt("tilex1"), xml->getAttributeValueAsInt("tiley1"), 0 );
-                                    p2 = Point( TilePoint, xml->getAttributeValueAsInt("tilex2"), xml->getAttributeValueAsInt("tiley2"), 0 );
-                                }
-                                else
-                                {
-                                    p1 = Point( TilePoint, 0, 0 );
-                                    p2 = Point( TilePoint,this->getWidth(), this->getHeight() );
-                                }
-                            }
+                            p1 = Point( TilePoint, 0, 0 );
+                            p2 = Point( TilePoint,this->getWidth(), this->getHeight() );
                         }
 
                         Area *area = new Area( p1, p2 );
@@ -481,12 +475,15 @@ namespace Annchienta
 
     StaticObject *Map::getObject( const char *name )
     {
+        /* Look in the current layer first. */
         if( layers.size() )
         {
             StaticObject *so = layers[currentLayer]->getObject( name );
             if( so )
                 return so;
         }
+
+        /* Go through all other layers. */
         for( unsigned int i=0; i<layers.size(); i++ )
         {
             if( i!=currentLayer )
@@ -496,6 +493,7 @@ namespace Annchienta
                     return so;
             }
         }
+
         return 0;
     }
 

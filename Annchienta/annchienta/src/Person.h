@@ -91,6 +91,11 @@ namespace Annchienta
              */
             virtual bool isFrozen() const;
 
+            /** Sets a custom PersonControl inctance for this
+             *  Person.
+             */
+            virtual void setControl( PersonControl *personControl );
+
             /** Create an InputPersonControl instance for this
              *  Person and let it control this Person.
              */

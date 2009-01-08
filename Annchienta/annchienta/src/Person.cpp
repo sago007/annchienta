@@ -265,6 +265,13 @@ namespace Annchienta
         return frozen;
     }
 
+    void Person::setControl( PersonControl *personControl )
+    {
+        if( control )
+            delete control;
+        control = personControl;
+    }
+
     void Person::setInputControl()
     {
         if( control )

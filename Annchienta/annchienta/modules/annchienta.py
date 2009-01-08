@@ -649,6 +649,7 @@ class Person(StaticObject):
     def stepTo(*args): return _annchienta.Person_stepTo(*args)
     def freeze(*args): return _annchienta.Person_freeze(*args)
     def isFrozen(*args): return _annchienta.Person_isFrozen(*args)
+    def setControl(*args): return _annchienta.Person_setControl(*args)
     def setInputControl(*args): return _annchienta.Person_setInputControl(*args)
     def setSampleControl(*args): return _annchienta.Person_setSampleControl(*args)
     def setNullControl(*args): return _annchienta.Person_setNullControl(*args)
@@ -691,6 +692,75 @@ class Vector(_object):
     def cap(*args): return _annchienta.Vector_cap(*args)
 Vector_swigregister = _annchienta.Vector_swigregister
 Vector_swigregister(Vector)
+
+class PersonControl(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, PersonControl, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, PersonControl, name)
+    def __init__(self, *args, **kwargs): raise AttributeError, "No constructor defined"
+    __repr__ = _swig_repr
+    __swig_destroy__ = _annchienta.delete_PersonControl
+    __del__ = lambda self : None;
+    def affect(*args): return _annchienta.PersonControl_affect(*args)
+PersonControl_swigregister = _annchienta.PersonControl_swigregister
+PersonControl_swigregister(PersonControl)
+
+class SamplePersonControl(PersonControl):
+    __swig_setmethods__ = {}
+    for _s in [PersonControl]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SamplePersonControl, name, value)
+    __swig_getmethods__ = {}
+    for _s in [PersonControl]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, SamplePersonControl, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_SamplePersonControl(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_SamplePersonControl
+    __del__ = lambda self : None;
+    def affect(*args): return _annchienta.SamplePersonControl_affect(*args)
+SamplePersonControl_swigregister = _annchienta.SamplePersonControl_swigregister
+SamplePersonControl_swigregister(SamplePersonControl)
+
+class InputPersonControl(PersonControl):
+    __swig_setmethods__ = {}
+    for _s in [PersonControl]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, InputPersonControl, name, value)
+    __swig_getmethods__ = {}
+    for _s in [PersonControl]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, InputPersonControl, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_InputPersonControl(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_InputPersonControl
+    __del__ = lambda self : None;
+    def affect(*args): return _annchienta.InputPersonControl_affect(*args)
+    def tryInteract(*args): return _annchienta.InputPersonControl_tryInteract(*args)
+InputPersonControl_swigregister = _annchienta.InputPersonControl_swigregister
+InputPersonControl_swigregister(InputPersonControl)
+
+class FollowPathPersonControl(PersonControl):
+    __swig_setmethods__ = {}
+    for _s in [PersonControl]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, FollowPathPersonControl, name, value)
+    __swig_getmethods__ = {}
+    for _s in [PersonControl]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, FollowPathPersonControl, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _annchienta.new_FollowPathPersonControl(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _annchienta.delete_FollowPathPersonControl
+    __del__ = lambda self : None;
+    def affect(*args): return _annchienta.FollowPathPersonControl_affect(*args)
+    def addPoint(*args): return _annchienta.FollowPathPersonControl_addPoint(*args)
+FollowPathPersonControl_swigregister = _annchienta.FollowPathPersonControl_swigregister
+FollowPathPersonControl_swigregister(FollowPathPersonControl)
 
 SDLK_UNKNOWN = _annchienta.SDLK_UNKNOWN
 SDLK_FIRST = _annchienta.SDLK_FIRST

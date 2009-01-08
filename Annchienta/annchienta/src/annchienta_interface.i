@@ -23,6 +23,10 @@
 #include "StaticObject.h"
 #include "Person.h"
 #include "Vector.h"
+#include "PersonControl.h"
+#include "SamplePersonControl.h"
+#include "InputPersonControl.h"
+#include "FollowPathPersonControl.h"
 %}
 
 %include "Point.h"
@@ -47,5 +51,9 @@
 %include "StaticObject.h"
 %include "Person.h"
 %include "Vector.h"
+%include "PersonControl.h"
+%include "SamplePersonControl.h"
+%include "InputPersonControl.h"
+%include "FollowPathPersonControl.h"
 %include "/usr/include/SDL/SDL_keysym.h"
 
