@@ -35,7 +35,7 @@ namespace Annchienta
     {
         if( points.size() > 0 )
         {
-            bool moved = person->stepTo( points[targetPoint] );
+            bool moved = person->stepTo( points[targetPoint], false );
 
             if( !moved )
             {

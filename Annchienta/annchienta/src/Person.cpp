@@ -24,6 +24,7 @@ using namespace io;
 #include "InputPersonControl.h"
 #include "InputManager.h"
 #include "SamplePersonControl.h"
+#include "FollowPathPersonControl.h"
 #include "MapManager.h"
 #include "MathManager.h"
 #include "Layer.h"
@@ -61,9 +62,41 @@ namespace Annchienta
                         }
                         if( !strcmp( "sample", typestr ) )
                             control = new SamplePersonControl( this );
+                        if( !strcmp( "followpath", typestr ) )
+                        {
+                            FollowPathPersonControl *followPathPersonControl = new FollowPathPersonControl( this );
+
+                            /* Read in all path points. */
+                            while( xml->read() && strcmp("control", xml->getNodeName()) )
+                            {
+                                if( xml->getNodeType()==EXN_ELEMENT && !strcmp( xml->getNodeName(), "point" ) )
+                                {
+                                    Point point;
+
+                                    if( xml->getAttributeValue("isox") )
+                                    {
+                                        point = Point( IsometricPoint, xml->getAttributeValueAsInt("isox"), xml->getAttributeValueAsInt("isoy"), 0 );
+                                    }
+                                    else if( xml->getAttributeValue("mapx") )
+                                    {
+                                        point = Point( MapPoint, xml->getAttributeValueAsInt("mapx"), xml->getAttributeValueAsInt("mapy"), 0 );
+                                    }
+                                    else if( xml->getAttributeValue("tilex") )
+                                    {
+                                        point = Point( TilePoint, xml->getAttributeValueAsInt("tilex"), xml->getAttributeValueAsInt("tiley"), 0 );
+                                    }
+                                    
+                                    followPathPersonControl->addPoint( point );
+                                }
+                            }
+
+                            control = followPathPersonControl;
+                        }
                         if( !strcmp( "null", typestr ) )
                             control = 0;
                     }
+                    break;
+                default:
                     break;
             }
         }
@@ -89,13 +122,15 @@ namespace Annchienta
     {
         /* Let the control update this.
          */
-        if( control )
+        if( control && !frozen )
+        {
             control->affect();
 
-        /* Because persons are moving, we need to update
-         * every turn.
-         */
-        needsUpdate = true;
+            /* Because persons are moving, we need to update
+             * every turn.
+             */
+            needsUpdate = true;
+        }
 
         /* Check for collisions with areas. Only not check in InteractiveMode.
          */

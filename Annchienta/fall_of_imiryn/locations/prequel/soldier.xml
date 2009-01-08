@@ -27,7 +27,12 @@
     <animation name="standwest" frames="7" speed="8" />
     <animation name="standsouth" frames="c" speed="8" />
 
-    <control type="sample" />
+    <control type="followpath" >
+        <point tilex="18" tiley="18" />
+        <point tilex="18" tiley="8" />
+        <point tilex="16" tiley="8" />
+        <point tilex="16" tiley="18" />
+    </control>
 
     <oninteract>
 import annchienta, SceneManager, PartyManager
