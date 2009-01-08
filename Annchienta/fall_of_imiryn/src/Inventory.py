@@ -26,7 +26,11 @@ class Inventory:
 
     def toXml( self ):
 
-        return reduce( lambda a,b: a+' '+b, map( lambda key: key+' '+str(self.dictionary[key]), self.dictionary.keys() ) )
+        text = ""
+        for key in self.dictionary:
+            text += key + ' ' + str(self.dictionary[key])
+
+        return text
 
     # Returns the type of an item
     def getItemType( self, itemName ):

@@ -132,7 +132,7 @@ class Battle:
     def updateCombatantLists( self ):
     
         # Sort combatant based on y (virtual z)
-        self.combatants.sort( lambda c1, c2: int( c1.getPosition().y - c2.getPosition().y ) )
+        self.combatants.sort( key = lambda combatant: combatant.getPosition().y )
         self.allies = filter( lambda q: q.isAlly(), self.combatants )
         self.enemies = filter( lambda q: not q.isAlly(), self.combatants )
     
