@@ -47,7 +47,7 @@ namespace Annchienta
              *  \param h Height for the new Mask.
              */
             Mask( int w, int h );
-            ~Mask();
+            virtual ~Mask();
 
             virtual CacheableType getCacheableType() const;
 

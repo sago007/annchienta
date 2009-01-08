@@ -48,6 +48,13 @@ except AttributeError:
 del types
 
 
+try:
+    import weakref
+    weakref_proxy = weakref.proxy
+except:
+    weakref_proxy = lambda x: x
+
+
 TilePoint = _annchienta.TilePoint
 IsometricPoint = _annchienta.IsometricPoint
 MapPoint = _annchienta.MapPoint
@@ -488,8 +495,15 @@ class Entity(_object):
     __setattr__ = lambda self, name, value: _swig_setattr(self, Entity, name, value)
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, Entity, name)
-    def __init__(self, *args, **kwargs): raise AttributeError, "No constructor defined"
     __repr__ = _swig_repr
+    def __init__(self, *args): 
+        if self.__class__ == Entity:
+            args = (None,) + args
+        else:
+            args = (self,) + args
+        this = _annchienta.new_Entity(*args)
+        try: self.this.append(this)
+        except: self.this = this
     __swig_destroy__ = _annchienta.delete_Entity
     __del__ = lambda self : None;
     def getEntityType(*args): return _annchienta.Entity_getEntityType(*args)
@@ -503,6 +517,10 @@ class Entity(_object):
     def getName(*args): return _annchienta.Entity_getName(*args)
     def setLayer(*args): return _annchienta.Entity_setLayer(*args)
     def getLayer(*args): return _annchienta.Entity_getLayer(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_Entity(self)
+        return weakref_proxy(self)
 Entity_swigregister = _annchienta.Entity_swigregister
 Entity_swigregister(Entity)
 

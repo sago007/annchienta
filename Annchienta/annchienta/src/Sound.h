@@ -39,7 +39,7 @@ namespace Annchienta
              *  \param filename Some audio file. Format need to be supported by SDL_mixer.
              */
             Sound( const char *filename );
-            ~Sound();
+            virtual ~Sound();
 
             /** \return SoundCacheable
              */

@@ -82,7 +82,7 @@ namespace Annchienta
             virtual void setPosition( Point );
             virtual Point getPosition() const;
             virtual Point getMaskPosition() const;
-            virtual Mask *getMask() const;
+            Mask *getMask() const;
 
             const char *getXmlFile() const;
 
@@ -94,10 +94,10 @@ namespace Annchienta
 
             /** \return return the current sprite used.
              */
-            virtual Surface *getSprite() const;
+            Surface *getSprite() const;
 
-            virtual bool setAnimation( const char *animationName );
-            virtual const char *getAnimation() const;
+            bool setAnimation( const char *animationName );
+            const char *getAnimation() const;
 
             virtual void setPassable( bool value );
             virtual bool isPassable() const;

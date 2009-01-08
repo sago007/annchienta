@@ -1,4 +1,5 @@
-%module annchienta
+%module(directors="1") annchienta
+%feature("director") Entity;
 
 %{
 #include "Point.h"
@@ -29,6 +30,7 @@
 #include "FollowPathPersonControl.h"
 %}
 
+
 %include "Point.h"
 %include "Engine.h"
 %include "LogManager.h"
@@ -56,4 +58,3 @@
 %include "InputPersonControl.h"
 %include "FollowPathPersonControl.h"
 %include "/usr/include/SDL/SDL_keysym.h"
-
