@@ -1,5 +1,5 @@
 %module(directors="1") annchienta
-%feature("director") Entity;
+%feature("director");
 
 %{
 #include "Point.h"

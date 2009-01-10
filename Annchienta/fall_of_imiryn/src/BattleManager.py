@@ -3,7 +3,7 @@ import xml.dom.minidom
 
 ## Spawns random battles, provides easy interface
 #  to run battles.
-class BattleManager:
+class BattleManager(object):
 
     def __init__( self ):
 

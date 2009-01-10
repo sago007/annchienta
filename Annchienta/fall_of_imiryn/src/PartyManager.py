@@ -3,10 +3,11 @@ import xml.dom.minidom
 import Ally
 import Inventory
 import SceneManager
+from MapLoader import MapLoader
 
 ## Manages the player, party, etc.
 #
-class PartyManager:
+class PartyManager(object):
 
     def __init__( self ):
     
@@ -26,6 +27,9 @@ class PartyManager:
         self.currentMap = 0
         self.chestObjects = []
         self.startTime = 0
+
+        # Create a map loader
+        self.mapLoader = MapLoader()
 
         # Battle variables
         self.randomBattleDelay = self.mathManager.randInt(300,400)
@@ -70,7 +74,7 @@ class PartyManager:
 
         # Now we can safely load the map
         mapElement = self.document.getElementsByTagName("map")[0]
-        self.currentMap = self.loadMap( str(mapElement.getAttribute("filename")) )
+        self.currentMap = self.mapLoader.loadMap( str(mapElement.getAttribute("filename")) )
         self.currentMap.setCurrentLayer( int(mapElement.getAttribute("layer")) )
         self.mapManager.setCurrentMap( self.currentMap )
 
@@ -174,70 +178,6 @@ class PartyManager:
         if self.hasRecord( record ):
             self.records.remove( record )
 
-    # Loads a map an extra stuff defined in the map, 
-    # but not in the core engine.
-    def loadMap( self, filename ):
-
-        newMap = annchienta.Map( filename )
-
-        # Get the pure xml
-        document = xml.dom.minidom.parse( filename )
-
-        # Go through layers
-        layers = document.getElementsByTagName( "layer" )
-        for i in range(len(layers)):
-
-            # Set correct layer
-            newMap.setCurrentLayer( i )            
-
-            # Add chests
-            chests = layers[i].getElementsByTagName( "chest" )
-
-            for c in range(len(chests)):
-
-                # Use c to get chest id
-                chest = chests[c]
-
-                # Create object and set position
-                chestObject = annchienta.StaticObject( "chest", "locations/common/chest.xml" )
-
-                chestObject.setPosition( annchienta.Point( annchienta.TilePoint, int(chest.getAttribute("tilex")), int(chest.getAttribute("tiley")) ) )
-
-                # Create a unique id in the form of filename_layer_chestnr
-                chestUniqueName = filename+"_"+str(i)+"_"+str(c)
-
-                item = str( chest.getAttribute("item") )
-
-                # Generate interact code
-                code =  "import annchienta, PartyManager, SceneManager\n"
-                code += "audioManager, cacheManager = annchienta.getAudioManager(), annchienta.getCacheManager()\n"
-                code += "partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()\n"
-                code += "chest = annchienta.getPassiveObject()\n"
-                code += "if not partyManager.hasRecord('"+chestUniqueName+"'):\n"
-                code += " audioManager.playSound( cacheManager.getSound('sounds/chest.ogg') )\n"
-                code += " chest.setAnimation( 'opened' )\n"
-                code += " partyManager.inventory.addItem('"+item+"')\n"
-                code += " partyManager.addRecord('"+chestUniqueName+"')\n"
-                code += " sceneManager.text('Found "+item+".')\n"
-                code += "else:\n"
-                code += " sceneManager.text('This chest is empty!')\n"
-
-                chestObject.setOnInteractCode( code )
-
-                # Open chest if already opened
-                if self.hasRecord( chestUniqueName ):
-                    chestObject.setAnimation( "opened" )
-
-                #print code
-
-                # Add object to layer
-                newMap.addObject( chestObject )
-
-                # Make sure to keep a reference to avoid segmentation shit
-                self.chestObjects += [chestObject]
-
-        return newMap
-
     # Removes extra stuff from map.
     def freeMap( self, fMap ):
 
@@ -256,7 +196,7 @@ class PartyManager:
         self.currentMap.removeObject( self.player )
 
         self.lastMaps += [self.currentMap]
-        self.currentMap = self.loadMap( newMapFileName )
+        self.currentMap = self.mapLoader.loadMap( newMapFileName )
         self.currentMap.setCurrentLayer( newLayer )
         self.currentMap.addObject( self.player )
         self.mapManager.setCurrentMap( self.currentMap )

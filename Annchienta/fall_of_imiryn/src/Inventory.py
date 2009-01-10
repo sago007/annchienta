@@ -3,7 +3,7 @@ import xml.dom.minidom
 import Weapon
 
 ## Holds all items
-class Inventory:
+class Inventory(object):
 
     itemsLocation = "battle/items.xml"
     itemsFile = xml.dom.minidom.parse( itemsLocation )

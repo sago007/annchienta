@@ -7,7 +7,7 @@ import annchienta
 #  out, and that you can easily customize it.
 #
 #  Uses video buffer 7.
-class SceneManager:
+class SceneManager(object):
 
     margin = 6
     defaultFont, italicsFont = None, None

@@ -1,5 +1,5 @@
 
-class MenuItem:
+class MenuItem(object):
 
     # Constructs and sets stuff like name and tooltip
     def __init__( self, name, toolTip=None ):

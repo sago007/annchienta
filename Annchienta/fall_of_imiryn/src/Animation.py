@@ -1,6 +1,6 @@
 import annchienta
 
-class Animation:
+class Animation(object):
 
     ## You need to call setBattle, setTarget and setCombatant
     #  before you can use it.

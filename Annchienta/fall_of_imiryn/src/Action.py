@@ -6,7 +6,7 @@ import SpriteAnimation
 
 ## Holds an action
 #
-class Action:
+class Action(object):
 
     ## Create an Action based on an xml element.
     #  if you do not specify this element, you'll

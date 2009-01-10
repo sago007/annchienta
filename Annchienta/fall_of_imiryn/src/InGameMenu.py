@@ -2,7 +2,7 @@ import annchienta
 import MenuItem, Menu, PartyMenu
 import PartyManager
 
-class InGameMenu:
+class InGameMenu(object):
 
     # Main Constructor
     def __init__( self ):

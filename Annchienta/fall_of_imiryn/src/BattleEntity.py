@@ -2,7 +2,7 @@ import annchienta
 
 # Class with very basic properties like
 # attack, magic.. stats
-class BattleEntity:
+class BattleEntity(object):
 
     ## Construct a BattleEntity from an xml element.
     #  this xml element should have the stats and

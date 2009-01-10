@@ -8,7 +8,7 @@ import AttackAnimation
 
 ## Holds a battle...
 #
-class Battle:
+class Battle(object):
 
     ## Constructor for a battle class.
     #  \param combatants Combatants to participate in the battle.

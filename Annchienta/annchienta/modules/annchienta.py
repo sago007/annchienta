@@ -305,6 +305,10 @@ class Cacheable(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, Cacheable, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
+        if self.__class__ == Cacheable:
+            args = (None,) + args
+        else:
+            args = (self,) + args
         this = _annchienta.new_Cacheable(*args)
         try: self.this.append(this)
         except: self.this = this
@@ -312,6 +316,10 @@ class Cacheable(_object):
     __del__ = lambda self : None;
     def getCacheableType(*args): return _annchienta.Cacheable_getCacheableType(*args)
     def getFileName(*args): return _annchienta.Cacheable_getFileName(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_Cacheable(self)
+        return weakref_proxy(self)
 Cacheable_swigregister = _annchienta.Cacheable_swigregister
 Cacheable_swigregister(Cacheable)
 
@@ -368,6 +376,10 @@ class Surface(Cacheable):
     __getattr__ = lambda self, name: _swig_getattr(self, Surface, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
+        if self.__class__ == Surface:
+            args = (None,) + args
+        else:
+            args = (self,) + args
         this = _annchienta.new_Surface(*args)
         try: self.this.append(this)
         except: self.this = this
@@ -378,6 +390,10 @@ class Surface(Cacheable):
     def getHeight(*args): return _annchienta.Surface_getHeight(*args)
     def setLinearScaling(*args): return _annchienta.Surface_setLinearScaling(*args)
     def setNearestScaling(*args): return _annchienta.Surface_setNearestScaling(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_Surface(self)
+        return weakref_proxy(self)
 Surface_swigregister = _annchienta.Surface_swigregister
 Surface_swigregister(Surface)
 
@@ -408,12 +424,20 @@ class Sound(Cacheable):
     __getattr__ = lambda self, name: _swig_getattr(self, Sound, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
+        if self.__class__ == Sound:
+            args = (None,) + args
+        else:
+            args = (self,) + args
         this = _annchienta.new_Sound(*args)
         try: self.this.append(this)
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Sound
     __del__ = lambda self : None;
     def getCacheableType(*args): return _annchienta.Sound_getCacheableType(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_Sound(self)
+        return weakref_proxy(self)
 Sound_swigregister = _annchienta.Sound_swigregister
 Sound_swigregister(Sound)
 
@@ -534,8 +558,15 @@ class Tile(Entity):
     __swig_getmethods__ = {}
     for _s in [Entity]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
     __getattr__ = lambda self, name: _swig_getattr(self, Tile, name)
-    def __init__(self, *args, **kwargs): raise AttributeError, "No constructor defined"
     __repr__ = _swig_repr
+    def __init__(self, *args): 
+        if self.__class__ == Tile:
+            args = (None,) + args
+        else:
+            args = (self,) + args
+        this = _annchienta.new_Tile(*args)
+        try: self.this.append(this)
+        except: self.this = this
     __swig_destroy__ = _annchienta.delete_Tile
     __del__ = lambda self : None;
     def getEntityType(*args): return _annchienta.Tile_getEntityType(*args)
@@ -557,6 +588,10 @@ class Tile(Entity):
     def isShadowed(*args): return _annchienta.Tile_isShadowed(*args)
     def setObstructionType(*args): return _annchienta.Tile_setObstructionType(*args)
     def getObstructionType(*args): return _annchienta.Tile_getObstructionType(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_Tile(self)
+        return weakref_proxy(self)
 Tile_swigregister = _annchienta.Tile_swigregister
 Tile_swigregister(Tile)
 
@@ -590,6 +625,10 @@ class Mask(Cacheable):
     __getattr__ = lambda self, name: _swig_getattr(self, Mask, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
+        if self.__class__ == Mask:
+            args = (None,) + args
+        else:
+            args = (self,) + args
         this = _annchienta.new_Mask(*args)
         try: self.this.append(this)
         except: self.this = this
@@ -600,6 +639,10 @@ class Mask(Cacheable):
     def getHeight(*args): return _annchienta.Mask_getHeight(*args)
     def collision(*args): return _annchienta.Mask_collision(*args)
     def fillRectangle(*args): return _annchienta.Mask_fillRectangle(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_Mask(self)
+        return weakref_proxy(self)
 Mask_swigregister = _annchienta.Mask_swigregister
 Mask_swigregister(Mask)
 
@@ -612,6 +655,10 @@ class StaticObject(Entity):
     __getattr__ = lambda self, name: _swig_getattr(self, StaticObject, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
+        if self.__class__ == StaticObject:
+            args = (None,) + args
+        else:
+            args = (self,) + args
         this = _annchienta.new_StaticObject(*args)
         try: self.this.append(this)
         except: self.this = this
@@ -642,6 +689,10 @@ class StaticObject(Entity):
     def stepTo(*args): return _annchienta.StaticObject_stepTo(*args)
     def setStandAnimation(*args): return _annchienta.StaticObject_setStandAnimation(*args)
     def lookAt(*args): return _annchienta.StaticObject_lookAt(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_StaticObject(self)
+        return weakref_proxy(self)
 StaticObject_swigregister = _annchienta.StaticObject_swigregister
 StaticObject_swigregister(StaticObject)
 
@@ -656,6 +707,10 @@ class Person(StaticObject):
     __getattr__ = lambda self, name: _swig_getattr(self, Person, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
+        if self.__class__ == Person:
+            args = (None,) + args
+        else:
+            args = (self,) + args
         this = _annchienta.new_Person(*args)
         try: self.this.append(this)
         except: self.this = this
@@ -674,6 +729,10 @@ class Person(StaticObject):
     def setStandAnimation(*args): return _annchienta.Person_setStandAnimation(*args)
     def lookAt(*args): return _annchienta.Person_lookAt(*args)
     def collisionWithLayerAreas(*args): return _annchienta.Person_collisionWithLayerAreas(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_Person(self)
+        return weakref_proxy(self)
 Person_swigregister = _annchienta.Person_swigregister
 Person_swigregister(Person)
 
@@ -716,11 +775,22 @@ class PersonControl(_object):
     __setattr__ = lambda self, name, value: _swig_setattr(self, PersonControl, name, value)
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, PersonControl, name)
-    def __init__(self, *args, **kwargs): raise AttributeError, "No constructor defined"
     __repr__ = _swig_repr
+    def __init__(self, *args): 
+        if self.__class__ == PersonControl:
+            args = (None,) + args
+        else:
+            args = (self,) + args
+        this = _annchienta.new_PersonControl(*args)
+        try: self.this.append(this)
+        except: self.this = this
     __swig_destroy__ = _annchienta.delete_PersonControl
     __del__ = lambda self : None;
     def affect(*args): return _annchienta.PersonControl_affect(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_PersonControl(self)
+        return weakref_proxy(self)
 PersonControl_swigregister = _annchienta.PersonControl_swigregister
 PersonControl_swigregister(PersonControl)
 
@@ -733,12 +803,20 @@ class SamplePersonControl(PersonControl):
     __getattr__ = lambda self, name: _swig_getattr(self, SamplePersonControl, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
+        if self.__class__ == SamplePersonControl:
+            args = (None,) + args
+        else:
+            args = (self,) + args
         this = _annchienta.new_SamplePersonControl(*args)
         try: self.this.append(this)
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_SamplePersonControl
     __del__ = lambda self : None;
     def affect(*args): return _annchienta.SamplePersonControl_affect(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_SamplePersonControl(self)
+        return weakref_proxy(self)
 SamplePersonControl_swigregister = _annchienta.SamplePersonControl_swigregister
 SamplePersonControl_swigregister(SamplePersonControl)
 
@@ -751,6 +829,10 @@ class InputPersonControl(PersonControl):
     __getattr__ = lambda self, name: _swig_getattr(self, InputPersonControl, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
+        if self.__class__ == InputPersonControl:
+            args = (None,) + args
+        else:
+            args = (self,) + args
         this = _annchienta.new_InputPersonControl(*args)
         try: self.this.append(this)
         except: self.this = this
@@ -758,6 +840,10 @@ class InputPersonControl(PersonControl):
     __del__ = lambda self : None;
     def affect(*args): return _annchienta.InputPersonControl_affect(*args)
     def tryInteract(*args): return _annchienta.InputPersonControl_tryInteract(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_InputPersonControl(self)
+        return weakref_proxy(self)
 InputPersonControl_swigregister = _annchienta.InputPersonControl_swigregister
 InputPersonControl_swigregister(InputPersonControl)
 
@@ -770,6 +856,10 @@ class FollowPathPersonControl(PersonControl):
     __getattr__ = lambda self, name: _swig_getattr(self, FollowPathPersonControl, name)
     __repr__ = _swig_repr
     def __init__(self, *args): 
+        if self.__class__ == FollowPathPersonControl:
+            args = (None,) + args
+        else:
+            args = (self,) + args
         this = _annchienta.new_FollowPathPersonControl(*args)
         try: self.this.append(this)
         except: self.this = this
@@ -777,6 +867,10 @@ class FollowPathPersonControl(PersonControl):
     __del__ = lambda self : None;
     def affect(*args): return _annchienta.FollowPathPersonControl_affect(*args)
     def addPoint(*args): return _annchienta.FollowPathPersonControl_addPoint(*args)
+    def __disown__(self):
+        self.this.disown()
+        _annchienta.disown_FollowPathPersonControl(self)
+        return weakref_proxy(self)
 FollowPathPersonControl_swigregister = _annchienta.FollowPathPersonControl_swigregister
 FollowPathPersonControl_swigregister(FollowPathPersonControl)
 
