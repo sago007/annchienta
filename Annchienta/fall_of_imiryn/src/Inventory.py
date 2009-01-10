@@ -28,7 +28,7 @@ class Inventory:
 
         text = ""
         for key in self.dictionary:
-            text += key + ' ' + str(self.dictionary[key])
+            text += key + ' ' + str(self.dictionary[key]) + ' '
 
         return text
 

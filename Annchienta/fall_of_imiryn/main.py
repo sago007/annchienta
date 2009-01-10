@@ -71,7 +71,7 @@ while engine.getTicks() < start + 1000:
 sceneManager.fade( 255, 255, 255, 2000 )
 
 # Load a title background.
-titleBackground = annchienta.Surface( "images/backgrounds/kimen.png" )
+titleBackground = annchienta.Surface( "images/storyline/title.png" )
 
 running = True
 while running and inputManager.running():
@@ -84,11 +84,11 @@ while running and inputManager.running():
     menu = Menu.Menu( "Main Menu", "I love my girlfriend." )
     options = [ MenuItem.MenuItem("new", "Start a new game."),
                 MenuItem.MenuItem("load", "Continue from the last save point."),
-                MenuItem.MenuItem("video size", "Change the video size."),
+                MenuItem.MenuItem("video size", "Change the video size.\n(A larger size might slow down the game.)"),
                 MenuItem.MenuItem("quit", "Leave this great game.")
               ]
     menu.setOptions( options )
-    menu.top()
+    menu.leftBottom()
     menuItem = menu.pop( None )
 
     if menuItem is not None:
