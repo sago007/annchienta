@@ -6,7 +6,7 @@ videoManager = annchienta.getVideoManager()
 partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
 
-currentMap = partyManager.currentMap
+currentMap = partyManager.getCurrentMap()
 
 partyManager.addRecord("fleet_met_pirates")
 

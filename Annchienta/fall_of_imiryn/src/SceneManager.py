@@ -9,11 +9,6 @@ import annchienta
 #  Uses video buffer 7.
 class SceneManager(object):
 
-    margin = 6
-    defaultFont, italicsFont = None, None
-    largeRegularFont, largeItalicsFont = None, None
-    boxTextures = []
-
     def __init__( self ):
 
         # Get references
@@ -23,6 +18,15 @@ class SceneManager(object):
         self.audioManager = annchienta.getAudioManager()
         self.cacheManager = annchienta.getCacheManager()
         self.mapManager = annchienta.getMapManager()
+
+        # Load our assets
+        self.defaultFont = annchienta.Font( "assets/regular.ttf", 14 )
+        self.italicsFont = annchienta.Font( "assets/italics.ttf", 14 )
+        self.largeDefaultFont = annchienta.Font( "assets/regular.ttf", 20 )
+        self.largeItalicsFont = annchienta.Font( "assets/italics.ttf", 20 )
+        self.boxTextures = map( lambda i: annchienta.Surface("assets/box"+str(i)+".png"), range(9) )
+
+        self.margin = 6
 
     def waitForClick( self ):
         self.videoManager.storeBuffer(7)
@@ -49,6 +53,15 @@ class SceneManager(object):
 
     def getDefaultFont( self ):
         return self.defaultFont
+
+    def getItalicsFont( self ):
+        return self.italicsFont
+
+    def getLargeDefaultFont( self ):
+        return self.largeDefaultFont
+
+    def getLargeItalicsFont( self ):
+        return self.largeItalicsFont
 
     ## \brief Draw a box.
     #  \param skipBlur Skip the background blur. This can speed up box drawing a lot.

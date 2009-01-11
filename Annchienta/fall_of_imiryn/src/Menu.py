@@ -52,11 +52,11 @@ class Menu( MenuItem.MenuItem ):
 
         # Find the longest name in pixels to base the width on
         names = map( lambda o: o.name, self.options ) + [self.name]
-        self.longest = max( map( lambda n: self.sceneManager.defaultFont.getStringWidth(n.capitalize()), names ) )
+        self.longest = max( map( lambda n: self.sceneManager.getDefaultFont().getStringWidth(n.capitalize()), names ) )
         
         # Use this to calculate the menu width, then calculate menu height
-        self.width = self.sceneManager.margin + (self.longest + self.sceneManager.margin)*self.columns
-        self.height = self.rows*self.sceneManager.defaultFont.getLineHeight() + self.sceneManager.italicsFont.getLineHeight() + 2*self.sceneManager.margin
+        self.width = self.sceneManager.getMargin() + (self.longest + self.sceneManager.getMargin())*self.columns
+        self.height = self.rows*self.sceneManager.getDefaultFont().getLineHeight() + self.sceneManager.getItalicsFont().getLineHeight() + 2*self.sceneManager.getMargin()
 
         # Work recursive for submenus
         for m in self.options:
@@ -66,7 +66,7 @@ class Menu( MenuItem.MenuItem ):
     # Sets the menu on top of the screen
     def top( self ):
         self.toolTipOnTop = False
-        self.y = self.sceneManager.margin
+        self.y = self.sceneManager.getMargin()
         self.x = (self.videoManager.getScreenWidth()-self.width)/2
         # Work recursive for submenus
         for m in self.options:
@@ -76,8 +76,8 @@ class Menu( MenuItem.MenuItem ):
     # Sets the menu on top of the screen, on the right side...
     def topRight( self ):
         self.toolTipOnTop = False
-        self.y = self.sceneManager.margin
-        self.x = self.videoManager.getScreenWidth()-self.width-self.sceneManager.margin
+        self.y = self.sceneManager.getMargin()
+        self.x = self.videoManager.getScreenWidth()-self.width-self.sceneManager.getMargin()
         # Work recursive for submenus
         for m in self.options:
             if m.isMenu():
@@ -86,8 +86,8 @@ class Menu( MenuItem.MenuItem ):
     # Sets the menu on top of the screen, on the left side...
     def topLeft( self ):
         self.toolTipOnTop = False
-        self.y = self.sceneManager.margin
-        self.x = self.sceneManager.margin
+        self.y = self.sceneManager.getMargin()
+        self.x = self.sceneManager.getMargin()
         # Work recursive for submenus
         for m in self.options:
             if m.isMenu():
@@ -96,8 +96,8 @@ class Menu( MenuItem.MenuItem ):
     # Sets the menu in the left bottom of the screen
     def leftBottom( self ):
         self.toolTipOnTop = True
-        self.y = self.videoManager.getScreenHeight()-self.height-self.sceneManager.margin#*4-self.sceneManager.defaultFont.getLineHeight()
-        self.x = self.sceneManager.margin
+        self.y = self.videoManager.getScreenHeight()-self.height-self.sceneManager.getMargin()#*4-self.sceneManager.getDefaultFont().getLineHeight()
+        self.x = self.sceneManager.getMargin()
         # Work recursive for submenus
         for m in self.options:
             if m.isMenu():
@@ -199,12 +199,12 @@ class Menu( MenuItem.MenuItem ):
 
         # Draw title
         self.videoManager.translate( self.x, self.y )
-        self.videoManager.drawStringCentered( self.sceneManager.italicsFont, self.name.capitalize(), self.width/2, self.sceneManager.margin )
+        self.videoManager.drawStringCentered( self.sceneManager.getItalicsFont(), self.name.capitalize(), self.width/2, self.sceneManager.getMargin() )
 
         # Move to the start of the items
-        self.videoManager.translate( self.sceneManager.margin, self.sceneManager.margin+ self.sceneManager.italicsFont.getLineHeight() )
+        self.videoManager.translate( self.sceneManager.getMargin(), self.sceneManager.getMargin()+ self.sceneManager.getItalicsFont().getLineHeight() )
 
-        sx, sy = self.x+self.sceneManager.margin, self.y+self.sceneManager.margin+ self.sceneManager.italicsFont.getLineHeight()
+        sx, sy = self.x+self.sceneManager.getMargin(), self.y+self.sceneManager.getMargin()+ self.sceneManager.getItalicsFont().getLineHeight()
 
         # Render all items
         for x in range(self.columns):
@@ -212,14 +212,14 @@ class Menu( MenuItem.MenuItem ):
                 idx = x*self.rows+y
                 if idx<len(self.options):
                     o = self.options[ idx ]
-                    if self.inputManager.hover( sx+x*(self.longest+self.sceneManager.margin), sy+y*self.sceneManager.defaultFont.getLineHeight(), sx+(x+1)*(self.longest+self.sceneManager.margin), sy+(y+1)*self.sceneManager.defaultFont.getLineHeight() ):
+                    if self.inputManager.hover( sx+x*(self.longest+self.sceneManager.getMargin()), sy+y*self.sceneManager.getDefaultFont().getLineHeight(), sx+(x+1)*(self.longest+self.sceneManager.getMargin()), sy+(y+1)*self.sceneManager.getDefaultFont().getLineHeight() ):
                         self.sceneManager.activeColor()
                         hover = o
                         if self.inputManager.buttonTicked(0):
                             self.clickedItem = o
                     else:
                         self.sceneManager.inactiveColor()
-                    self.videoManager.drawString( self.sceneManager.defaultFont, o.name.capitalize(), x*(self.longest+self.sceneManager.margin), y*self.sceneManager.defaultFont.getLineHeight() )
+                    self.videoManager.drawString( self.sceneManager.getDefaultFont(), o.name.capitalize(), x*(self.longest+self.sceneManager.getMargin()), y*self.sceneManager.getDefaultFont().getLineHeight() )
 
         self.videoManager.pop()
 
@@ -234,18 +234,18 @@ class Menu( MenuItem.MenuItem ):
                 lines = hover.toolTip.split('\n')
 
                 # Calculate tooltip height
-                h = self.sceneManager.margin*2+self.sceneManager.defaultFont.getLineHeight()*len(lines)
+                h = self.sceneManager.getMargin()*2+self.sceneManager.getDefaultFont().getLineHeight()*len(lines)
 
                 # Calculate tooltip y
-                y = self.sceneManager.margin if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.margin-h
+                y = self.sceneManager.getMargin() if self.toolTipOnTop else self.videoManager.getScreenHeight()-self.sceneManager.getMargin()-h
 
                 # Draw the tooltip
-                self.sceneManager.drawBox( self.sceneManager.margin, y, self.videoManager.getScreenWidth()-self.sceneManager.margin, y+h )
-                self.videoManager.translate( 0, y+self.sceneManager.margin )
+                self.sceneManager.drawBox( self.sceneManager.getMargin(), y, self.videoManager.getScreenWidth()-self.sceneManager.getMargin(), y+h )
+                self.videoManager.translate( 0, y+self.sceneManager.getMargin() )
 
                 for line in lines:
-                    self.videoManager.drawString( self.sceneManager.defaultFont, str(line), self.sceneManager.margin*2, 0 )
-                    self.videoManager.translate( 0, self.sceneManager.defaultFont.getLineHeight() )
+                    self.videoManager.drawString( self.sceneManager.getDefaultFont(), str(line), self.sceneManager.getMargin()*2, 0 )
+                    self.videoManager.translate( 0, self.sceneManager.getDefaultFont().getLineHeight() )
 
                 self.videoManager.pop()
 

@@ -8,9 +8,9 @@ partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
 
 august = annchienta.getActiveObject()
-march = partyManager.currentMap.getPerson( "march" )
-avril = partyManager.currentMap.getPerson( "avril" )
-laustwan = partyManager.currentMap.getPerson( "laustwan" )
+march = partyManager.getCurrentMap().getPerson( "march" )
+avril = partyManager.getCurrentMap().getPerson( "avril" )
+laustwan = partyManager.getCurrentMap().getPerson( "laustwan" )
     
 sceneManager.initDialog( [march, august, avril, laustwan] )
 

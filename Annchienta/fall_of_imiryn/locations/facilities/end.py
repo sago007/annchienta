@@ -6,7 +6,7 @@ videoManager = annchienta.getVideoManager()
 partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
 
-currentMap = partyManager.currentMap
+currentMap = partyManager.getCurrentMap()
 
 partyManager.addRecord("facilities_met_banver")
 

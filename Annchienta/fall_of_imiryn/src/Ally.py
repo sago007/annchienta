@@ -263,7 +263,7 @@ class Ally( Combatant.Combatant ):
             
             # Draw "select target"
             self.sceneManager.activeColor()
-            self.videoManager.drawString( self.sceneManager.largeItalicsFont, "Select Target", self.sceneManager.margin, 40 )
+            self.videoManager.drawString( self.sceneManager.getLargeItalicsFont(), "Select Target", self.sceneManager.getMargin(), 40 )
             
             battle.videoManager.flip()
 

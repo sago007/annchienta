@@ -42,11 +42,6 @@ inputManager.setInteractKey( annchienta.SDLK_SPACE )
 import SceneManager
 SceneManager.init()
 sceneManager = SceneManager.getSceneManager()
-sceneManager.defaultFont = annchienta.Font("assets/regular.ttf", 14)
-sceneManager.italicsFont = annchienta.Font("assets/italics.ttf", 14)
-sceneManager.largeRegularFont = annchienta.Font("assets/regular.ttf", 20)
-sceneManager.largeItalicsFont = annchienta.Font("assets/italics.ttf", 20)
-sceneManager.boxTextures = map( lambda i: annchienta.Surface("assets/box"+str(i)+".png"), range(9) )
 
 # Init PartyManager.
 import PartyManager

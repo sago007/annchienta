@@ -356,10 +356,10 @@ class Combatant( BattleEntity.BattleEntity ):
             self.videoManager.setColor( 0, 0, 0 )
 
             # Draw a black border first
-            self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, -1, dy )
-            self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, 1, dy )
-            self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, 0, dy-1 )
-            self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, 0, dy+1 )
+            self.videoManager.drawStringCentered( self.sceneManager.getLargeDefaultFont(), string, -1, dy )
+            self.videoManager.drawStringCentered( self.sceneManager.getLargeDefaultFont(), string, 1, dy )
+            self.videoManager.drawStringCentered( self.sceneManager.getLargeDefaultFont(), string, 0, dy-1 )
+            self.videoManager.drawStringCentered( self.sceneManager.getLargeDefaultFont(), string, 0, dy+1 )
 
             if self.damage > 0:
                 self.videoManager.setColor( 255, 0, 0 )
@@ -367,7 +367,7 @@ class Combatant( BattleEntity.BattleEntity ):
                 self.videoManager.setColor( 0, 255, 0 )
             
             # Now go for the real thing
-            self.videoManager.drawStringCentered( self.sceneManager.largeRegularFont, string, 0, dy )
+            self.videoManager.drawStringCentered( self.sceneManager.getLargeDefaultFont(), string, 0, dy )
 
         self.videoManager.setColor()
         self.videoManager.pop()

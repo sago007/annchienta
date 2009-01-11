@@ -9,7 +9,7 @@ partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
 battleManager = BattleManager.getBattleManager()
 
-currentMap = partyManager.currentMap
+currentMap = partyManager.getCurrentMap()
 
 august = partyManager.getPlayer()
 

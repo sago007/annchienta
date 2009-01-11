@@ -6,7 +6,7 @@ videoManager = annchienta.getVideoManager()
 partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
 
-currentMap = partyManager.currentMap
+currentMap = partyManager.getCurrentMap()
 
 # Create a whole bunch of objects/persons and set them to
 august = partyManager.getPlayer()
@@ -88,8 +88,8 @@ sceneManager.text( "After receiving their orders, they travelled to the Inaran r
 
 sceneManager.fade( 255, 255, 255, 2000 )
 videoManager.setColor( 0, 0, 0 )
-videoManager.drawStringCentered( sceneManager.largeItalicsFont, "Fall of Imiryn", videoManager.getScreenWidth()/2, 100 )
-videoManager.drawStringCentered( sceneManager.italicsFont, "The Downfall of an Empire", videoManager.getScreenWidth()/2, 150 )
+videoManager.drawStringCentered( sceneManager.getLargeItalicsFont(), "Fall of Imiryn", videoManager.getScreenWidth()/2, 100 )
+videoManager.drawStringCentered( sceneManager.getItalicsFont(), "The Downfall of an Empire", videoManager.getScreenWidth()/2, 150 )
 videoManager.flip()
 videoManager.flip()
 sceneManager.waitForClick()

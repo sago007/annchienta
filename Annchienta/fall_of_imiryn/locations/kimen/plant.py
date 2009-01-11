@@ -6,7 +6,7 @@ videoManager = annchienta.getVideoManager()
 partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
 
-currentMap = partyManager.currentMap
+currentMap = partyManager.getCurrentMap()
 
 # Get the player and plant
 august = partyManager.getPlayer()

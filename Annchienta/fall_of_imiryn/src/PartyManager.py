@@ -36,11 +36,11 @@ class PartyManager(object):
     def getInventory( self ):
         return self.inventory
 
-    def getCurrentMap( self ):
-        return self.currentMap
-
     def getPlayer( self ):
         return self.player
+
+    def getCurrentMap( self ):
+        return self.currentMap
 
     def free( self ):
 
