@@ -9,7 +9,7 @@ sceneManager = SceneManager.getSceneManager()
 currentMap = partyManager.currentMap
 
 # Get the player and plant
-august = partyManager.player
+august = partyManager.getPlayer()
 plant = annchienta.getPassiveObject()
 sceneManager.initDialog( [august, plant] )
 

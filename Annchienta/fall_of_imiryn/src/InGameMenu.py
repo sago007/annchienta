@@ -51,12 +51,12 @@ class InGameMenu(object):
             
         # Create options
         weaponOptions = []
-        for weaponName in self.partyManager.inventory.getAvailableWeapons():
+        for weaponName in self.partyManager.getInventory().getAvailableWeapons():
 
-            weapon = self.partyManager.inventory.getWeapon( weaponName )
+            weapon = self.partyManager.getInventory().getWeapon( weaponName )
 
             # Create a tooltip with the stats
-            toolTip = self.partyManager.inventory.getItemDescription(weaponName) + '\n'
+            toolTip = self.partyManager.getInventory().getItemDescription(weaponName) + '\n'
             toolTip += weapon.getStatsAsString() 
 
             weaponOptions += [ MenuItem.MenuItem( weaponName, toolTip ) ]
@@ -74,7 +74,7 @@ class InGameMenu(object):
 
         # Construct the menu
         itemMenu = PartyMenu.PartyMenu( "Item", "Use an item.", combatantIndex )
-        inv = self.partyManager.inventory
+        inv = self.partyManager.getInventory()
 
         # Add all items
         loot = inv.getAvailableLoot()
@@ -130,11 +130,11 @@ class InGameMenu(object):
                         if w is not None:
                             if w.name != "confirm":
                                 # Remove old weapon from combatant and add it back to inventory
-                                self.partyManager.inventory.addItem( self.partyManager.team[ weaponMenu.combatantIndex ].weapon.name )
+                                self.partyManager.getInventory().addItem( self.partyManager.team[ weaponMenu.combatantIndex ].weapon.name )
                                 # Set new weapon
                                 self.partyManager.team[ weaponMenu.combatantIndex ].setWeapon( w.name )
                                 # Remove new weapon from inventory
-                                self.partyManager.inventory.removeItem( w.name )
+                                self.partyManager.getInventory().removeItem( w.name )
                                 # Create a new weaponmenu
                                 weaponMenu = self.createWeaponMenu( weaponMenu.combatantIndex )
                             else:
@@ -151,7 +151,7 @@ class InGameMenu(object):
                     itemMenu = self.createItemMenu( partyManagementMenu.combatantIndex )
 
                     # Get a shortcut to the inventory
-                    inv = self.partyManager.inventory
+                    inv = self.partyManager.getInventory()
 
                     itemPopping = True
 

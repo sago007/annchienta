@@ -67,10 +67,10 @@ import annchienta, PartyManager, SceneManager
 partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
 if partyManager.hasRecord( &quot;unknown_found_wood&quot; ) and not partyManager.hasRecord( &quot;unknown_found_food&quot; ):
 
-    sceneManager.initDialog( [partyManager.player] )
+    sceneManager.initDialog( [partyManager.getPlayer()] )
     partyManager.addRecord( &quot;unknown_found_food&quot; )
-    sceneManager.move( partyManager.player, annchienta.Point( annchienta.TilePoint, 4, 2 ) )
-    sceneManager.speak( partyManager.player, &quot;This looks like a good fishing spot.&quot; )
+    sceneManager.move( partyManager.getPlayer(), annchienta.Point( annchienta.TilePoint, 4, 2 ) )
+    sceneManager.speak( partyManager.getPlayer(), &quot;This looks like a good fishing spot.&quot; )
     sceneManager.fade()
     sceneManager.text( &quot;You caught some fish!&quot; )
     sceneManager.quitDialog()

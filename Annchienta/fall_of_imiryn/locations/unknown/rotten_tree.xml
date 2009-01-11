@@ -9,7 +9,7 @@
 import PartyManager, SceneManager
 partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
 
-august = partyManager.player
+august = partyManager.getPlayer()
 sceneManager.initDialog( [august] )
 
 if partyManager.hasRecord( &quot;unknown_found_axe&quot; ):

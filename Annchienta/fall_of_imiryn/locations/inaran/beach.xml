@@ -58,7 +58,7 @@
 import annchienta, PartyManager, SceneManager
 partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
-august = partyManager.player
+august = partyManager.getPlayer()
 sceneManager.initDialog( [august] )
 sceneManager.speak( august, &quot;This is the way we came from...&quot; )
 sceneManager.move(  august, annchienta.Point( annchienta.TilePoint, 4, 8 ) )
@@ -73,7 +73,7 @@ sceneManager = SceneManager.getSceneManager()
 if partyManager.hasRecord('inaran_talked_to_march'):
     partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point( annchienta.TilePoint, 14, 27 ) )
 else:
-    august = partyManager.player
+    august = partyManager.getPlayer()
     sceneManager.initDialog( [august] )
     sceneManager.speak( august, &quot;I'd better talk to March first.&quot; )
     sceneManager.move(  august, annchienta.Point( annchienta.TilePoint, 19, 15 ) )

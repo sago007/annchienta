@@ -84,9 +84,9 @@ partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSce
 if partyManager.hasRecord( &quot;unknown_can_leave&quot; ):
     partyManager.changeMap( &quot;locations/mountains/start.xml&quot;, annchienta.Point( annchienta.TilePoint, 26, 3 ) )
 else:
-    sceneManager.initDialog( [partyManager.player] )
-    sceneManager.move( partyManager.player, annchienta.Point( annchienta.TilePoint, 10, 27 ) )
-    sceneManager.speak( partyManager.player, &quot;It's probably not a good idea to head inland now. We need to get some food and rest first.&quot; )
+    sceneManager.initDialog( [partyManager.getPlayer()] )
+    sceneManager.move( partyManager.getPlayer(), annchienta.Point( annchienta.TilePoint, 10, 27 ) )
+    sceneManager.speak( partyManager.getPlayer(), &quot;It's probably not a good idea to head inland now. We need to get some food and rest first.&quot; )
     sceneManager.quitDialog()
 </area>
 

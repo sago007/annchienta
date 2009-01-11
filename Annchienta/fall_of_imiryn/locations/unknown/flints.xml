@@ -10,7 +10,7 @@ import PartyManager, SceneManager
 partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
 partyManager.addRecord('unknown_found_flints')
 
-august = partyManager.player
+august = partyManager.getPlayer()
 sceneManager.initDialog( [august] )
 
 sceneManager.speak( august, &quot;A flint! We can use this to start a fire!&quot; )

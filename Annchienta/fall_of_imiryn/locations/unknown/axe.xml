@@ -10,7 +10,7 @@ import PartyManager, SceneManager
 partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
 partyManager.addRecord('unknown_found_axe')
 
-august = partyManager.player
+august = partyManager.getPlayer()
 sceneManager.initDialog( [august] )
 
 sceneManager.speak( august, &quot;This looks like a primitive axe... could it be that we're not alone here?&quot; )

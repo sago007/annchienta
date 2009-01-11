@@ -24,7 +24,7 @@ chest = annchienta.getPassiveObject()
 if not partyManager.hasRecord( '""" + self.getUniqueId() + """' ):
     audioManager.playSound( cacheManager.getSound( "sounds/chest.ogg" ) )
     chest.setAnimation( "opened" )
-    partyManager.inventory.addItem( '""" + self.getItem() + """' )
+    partyManager.getInventory().addItem( '""" + self.getItem() + """' )
     partyManager.addRecord( '""" + self.getUniqueId() + """' )
     sceneManager.text( "Found """ + self.getItem() + """!" )
 

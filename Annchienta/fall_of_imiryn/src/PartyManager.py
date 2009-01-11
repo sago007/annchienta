@@ -25,7 +25,6 @@ class PartyManager(object):
         self.inventory = 0
         self.lastMaps = []
         self.currentMap = 0
-        self.chestObjects = []
         self.startTime = 0
 
         # Create a map loader
@@ -33,6 +32,15 @@ class PartyManager(object):
 
         # Battle variables
         self.randomBattleDelay = self.mathManager.randInt(300,400)
+
+    def getInventory( self ):
+        return self.inventory
+
+    def getCurrentMap( self ):
+        return self.currentMap
+
+    def getPlayer( self ):
+        return self.player
 
     def free( self ):
 
@@ -44,13 +52,9 @@ class PartyManager(object):
         self.records = []
         self.inventory = 0
         self.mapManager.setNullMap()
-        self.chestObjects = []
         self.player = 0
 
     def clearMapCache( self ):
-
-        for map in self.lastMaps:
-            self.freeMap( map )
 
         self.lastMaps = []
 
@@ -100,17 +104,10 @@ class PartyManager(object):
     # Saves the game to filename.
     def save( self, filename=None ):
 
+        # Find out our filename
         self.filename = self.filename if filename is None else filename
-        self.generateDocument()
-        file = open( self.filename, "wb" )
-        file.write( self.document.toprettyxml() )
-        file.close()
 
-    # Creates new xml document with all save information
-    # in it.
-    def generateDocument( self ):
-
-        # Clear our map cache.
+        # Clear our map cache. (This is a good moment to do it, generally)
         self.clearMapCache()
 
         # Create the document and main document node.
@@ -167,6 +164,11 @@ class PartyManager(object):
 
         partyElement.appendChild( teamElement )
 
+        # Now open the file and throw it all in.
+        file = open( self.filename, "wb" )
+        file.write( self.document.toprettyxml() )
+        file.close()
+
     def addRecord( self, record ):
         if not self.hasRecord(record):
             self.records.append( record.lower() )
@@ -177,13 +179,6 @@ class PartyManager(object):
     def removeRecord( self, record ):
         if self.hasRecord( record ):
             self.records.remove( record )
-
-    # Removes extra stuff from map.
-    def freeMap( self, fMap ):
-
-        # Remove chests from map
-        while fMap.getObject( "chest" ):
-            fMap.removeObject( fMap.getObject( "chest" ) )
 
     def changeMap( self, newMapFileName, newPosition = annchienta.Point(annchienta.TilePoint, 2, 2 ), newLayer = 0, fade=True ):
 

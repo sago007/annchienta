@@ -62,7 +62,7 @@ class Ally( Combatant.Combatant ):
     def setWeapon( self, weaponName ):
 
         partyManager = PartyManager.getPartyManager()
-        inventory = partyManager.inventory
+        inventory = partyManager.getInventory()
         self.weapon = inventory.getWeapon( weaponName )
 
     ## Stores all information about this ally in the given
@@ -136,7 +136,7 @@ class Ally( Combatant.Combatant ):
     # create the item menu
     def buildItemMenu( self ):
         
-        inv = self.partyManager.inventory
+        inv = self.partyManager.getInventory()
         loot = inv.getAvailableLoot()
         items = []
         for lootItem in loot:
@@ -170,7 +170,7 @@ class Ally( Combatant.Combatant ):
 
         # No real action, check if it's an item
         # ... create an action on the fly
-        elif self.partyManager.inventory.hasItem( menuItem.name ):
+        elif self.partyManager.getInventory().hasItem( menuItem.name ):
 
             action = Action.Action()
             action.name = menuItem.name

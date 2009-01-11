@@ -8,7 +8,7 @@ sceneManager = SceneManager.getSceneManager()
 
 currentMap = partyManager.currentMap
 
-august = partyManager.player
+august = partyManager.getPlayer()
 ship   = annchienta.getPassiveObject()
 
 numberOfSystemsDestroyed = len( filter( lambda i: partyManager.hasRecord( "kimen_destroyed_irrigation_"+str(i) ), range(1,4) ) )

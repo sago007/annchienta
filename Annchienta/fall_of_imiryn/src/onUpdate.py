@@ -5,7 +5,7 @@ inputManager = annchienta.getInputManager()
 mapManager = annchienta.getMapManager()
 
 # Check for random battles
-if not "stand" in partyManager.player.getAnimation() and not inputManager.keyDown(annchienta.SDLK_q):
+if not "stand" in partyManager.getPlayer().getAnimation() and not inputManager.keyDown(annchienta.SDLK_q):
     if inputManager.getInputMode() is annchienta.InteractiveMode:
         import BattleManager
         battleManager = BattleManager.getBattleManager()

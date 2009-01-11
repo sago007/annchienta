@@ -12,7 +12,7 @@
 import annchienta, PartyManager, SceneManager
 
 sceneManager = SceneManager.getSceneManager()
-sceneManager.speak( partyManager.player, 'I can use Kyzano\'s access pass here...' )
+sceneManager.speak( partyManager.getPlayer(), 'I can use Kyzano\'s access pass here...' )
 
 partyManager = PartyManager.getPartyManager()
 partyManager.addRecord('facilities_outer_access')

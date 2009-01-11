@@ -12,7 +12,7 @@ partyManager.addRecord("inaran_cave3_scene")
 
 # Create a whole bunch of objects/persons and set them to
 # their positions.
-august = partyManager.player
+august = partyManager.getPlayer()
 augustPosition = august.getPosition().to( annchienta.TilePoint )
 
 march = annchienta.Person( "march", "locations/common/march.xml" )

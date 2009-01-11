@@ -8,7 +8,7 @@ sceneManager = SceneManager.getSceneManager()
 
 currentMap = partyManager.currentMap
 
-august = partyManager.player
+august = partyManager.getPlayer()
 
 # Addobject and stuff...
 march = annchienta.Person( "march", "locations/common/march.xml" )

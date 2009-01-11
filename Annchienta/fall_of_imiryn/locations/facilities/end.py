@@ -12,7 +12,7 @@ partyManager.addRecord("facilities_met_banver")
 
 # Create a whole bunch of objects/persons and set them to
 # their positions.
-august = partyManager.player
+august = partyManager.getPlayer()
 august.setPosition( annchienta.Point( annchienta.TilePoint, 8, 12 ) )
 
 march = annchienta.Person( "march", "locations/common/march.xml" )

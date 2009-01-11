@@ -108,7 +108,7 @@ class Battle(object):
                     if combatant.dropItem:
                         if self.mathManager.randFloat() < combatant.getDropRate():
                             self.addLine( combatant.getName().capitalize()+" drops "+combatant.getDropItem()+"!" )
-                            self.partyManager.inventory.addItem( combatant.getDropItem() )
+                            self.partyManager.getInventory().addItem( combatant.getDropItem() )
 
                             # Rebuild menus, because we might have gotten
                             # a new item we want to use.
@@ -397,7 +397,7 @@ class Battle(object):
             if target.getStealableItem():
                 if self.mathManager.randFloat()<=0.7:
                     self.addLine( combatant.getName().capitalize()+" stole "+target.getStealableItem()+" from "+target.getName().capitalize()+"!" )
-                    self.partyManager.inventory.addItem( target.getStealableItem() )
+                    self.partyManager.getInventory().addItem( target.getStealableItem() )
                     # Remove item from target when stolen
                     target.stealItem()
 
@@ -415,7 +415,7 @@ class Battle(object):
     def takeItemAction( self, item, combatant, target ):
         
         self.addLine( combatant.getName().capitalize()+" uses "+item+" on "+target.getName().capitalize()+"!" )
-        self.partyManager.inventory.useItemOn( item, target )
+        self.partyManager.getInventory().useItemOn( item, target )
 
         # Rebuild item menus
         for ally in self.allies:

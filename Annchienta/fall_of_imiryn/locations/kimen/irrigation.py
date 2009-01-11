@@ -8,7 +8,7 @@ sceneManager = SceneManager.getSceneManager()
 
 currentMap = partyManager.currentMap
 
-august = partyManager.player
+august = partyManager.getPlayer()
 
 sceneManager.initDialog( [august] )
 

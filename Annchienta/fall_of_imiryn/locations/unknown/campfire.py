@@ -8,7 +8,7 @@ sceneManager = SceneManager.getSceneManager()
 
 currentMap = partyManager.currentMap
 
-august = partyManager.player
+august = partyManager.getPlayer()
 
 if partyManager.hasRecord("unknown_can_leave"):
     pass

@@ -11,7 +11,7 @@
 import annchienta, PartyManager, SceneManager
 
 sceneManager = SceneManager.getSceneManager()
-sceneManager.speak( partyManager.player, 'This gate control is locked by a password. We need to find the password.' )
+sceneManager.speak( partyManager.getPlayer(), 'This gate control is locked by a password. We need to find the password.' )
 </oninteract>
 
 </sprite>

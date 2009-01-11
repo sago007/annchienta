@@ -9,7 +9,7 @@ sceneManager = SceneManager.getSceneManager()
 currentMap = partyManager.currentMap
 
 # Create a whole bunch of objects/persons and set them to
-august = partyManager.player
+august = partyManager.getPlayer()
 march = currentMap.getPerson("march")
 avril = currentMap.getPerson("avril")
 
