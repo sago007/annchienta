@@ -117,7 +117,7 @@ class PartyManager(object):
 
         # Add the playtime to the party node
         playTimeElement = self.document.createElement("playtime")
-        playTimeElement.setAttribute( "seconds", str(self.seconds + (self.engine.getTicks() - self.startTime)/1000) )
+        playTimeElement.setAttribute( "seconds", str(int(self.seconds + (self.engine.getTicks() - self.startTime)/1000)) )
         partyElement.appendChild( playTimeElement )
 
         # Append the records to the party node.

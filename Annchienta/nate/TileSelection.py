@@ -42,7 +42,7 @@ class TileSelection:
 
         # Little adjust
         if self.wholeTiles:
-            mousePosition.y -= self.mapManager.getTileHeight()/2
+            mousePosition.y -= int( self.mapManager.getTileHeight()/2 )
 
         # Initialize list
         affectedTiles = []

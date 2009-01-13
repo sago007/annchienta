@@ -325,7 +325,7 @@ class Combatant( BattleEntity.BattleEntity ):
 
             self.videoManager.translate( 0, -self.height )
             self.videoManager.setColor( 255, 255, 0, 150 )
-            self.videoManager.drawTriangle( -self.width/2, 0, 0, self.height/2, self.width/2, 0 )
+            self.videoManager.drawTriangle( int(-self.width/2), 0, 0, int(self.height/2), int(self.width/2), 0 )
             self.videoManager.setColor()
 
             self.videoManager.pop()
@@ -338,15 +338,15 @@ class Combatant( BattleEntity.BattleEntity ):
 
             x = 0
             if self.isAlly():
-                x = -self.width/2 - int(1+i/2) * sprite.getWidth()
+                x = int( -self.width/2 - int(1+i/2) * sprite.getWidth() )
             else:
-                x = self.width/2 + int(i/2) * sprite.getWidth()
-            y = -self.height/2 + (i%2) * sprite.getWidth()
+                x = int( self.width/2 + int(i/2) * sprite.getWidth() )
+            y = int( -self.height/2 + (i%2) * sprite.getWidth() )
 
             self.videoManager.drawSurface( sprite, x, y )
             
         # Actual sprite
-        self.videoManager.drawSurface( self.sprite, -self.width/2, -self.height/2, self.sx1, self.sy1, self.sx2, self.sy2 )
+        self.videoManager.drawSurface( self.sprite, int( -self.width/2 ), int( -self.height/2 ), self.sx1, self.sy1, self.sx2, self.sy2 )
 
         # Draw damage stuff
         if self.damage != 0:

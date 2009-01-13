@@ -78,7 +78,7 @@ class Animation(object):
             self.videoManager.clear()
             self.battle.draw()
 
-            self.videoManager.drawSurface( sprite, int(position.x)-sprite.getWidth()/2, int(position.y)-sprite.getHeight()/2 )
+            self.videoManager.drawSurface( sprite, int(position.x-sprite.getWidth()/2), int(position.y-sprite.getHeight()/2) )
 
             self.videoManager.flip()
 

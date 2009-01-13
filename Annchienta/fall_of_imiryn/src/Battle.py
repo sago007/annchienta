@@ -163,7 +163,7 @@ class Battle(object):
                 # Revive dead combatants
                 for ally in self.partyManager.team:
                     if ally.getHp() <= 1:
-                        ally.setHp( ally.getMaxHp()/7 )
+                        ally.setHp( int(ally.getMaxHp()/7) )
             else:
                 self.won = False
                 self.sceneManager.gameOver()
@@ -324,10 +324,6 @@ class Battle(object):
                 # target has set for it
                 damage *= target.getElementalFactor( element )
     
-        # Round it
-        damage = int(damage)
-
-        # Rows only matter when it's physical damage
         if action.getType() == "physical":
             # If attacker is in back row, half damage...
             if combatant.getRow() == "back":
@@ -352,6 +348,10 @@ class Battle(object):
 
         hit = ( self.mathManager.randFloat() <= rate )
 
+        # Round the damage
+        damage = int(damage)
+
+        # Rows only matter when it's physical damage
         # Play animation
         animation = action.getAnimation()
         animation.setBattle( self )

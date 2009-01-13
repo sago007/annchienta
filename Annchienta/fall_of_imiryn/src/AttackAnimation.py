@@ -11,7 +11,7 @@ class AttackAnimation( Animation.Animation ):
 
         origPosition = annchienta.Vector( self.getCombatant().getPosition() )
         position = annchienta.Vector( self.getTarget().getPosition() )
-        dx = ( self.target.getWidth()/2 + self.getCombatant().getWidth()/2 )
+        dx = int( self.target.getWidth()/2 + self.getCombatant().getWidth()/2 )
         dx = dx if self.target.isAlly() else -dx
         position.x += dx
         self.move( self.getCombatant(), position )

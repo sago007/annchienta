@@ -20,7 +20,7 @@ class Inventory(object):
         self.dictionary = {}
 
         # Get all the items
-        for i in range( len(words)/2 ):
+        for i in range( int(len(words)/2) ):
 
             self.dictionary[ words[ i*2 ] ] = int( words[ i*2+1 ] )
 

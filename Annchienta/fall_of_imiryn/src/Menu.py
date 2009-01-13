@@ -67,7 +67,7 @@ class Menu( MenuItem.MenuItem ):
     def top( self ):
         self.toolTipOnTop = False
         self.y = self.sceneManager.getMargin()
-        self.x = (self.videoManager.getScreenWidth()-self.width)/2
+        self.x = int( (self.videoManager.getScreenWidth()-self.width)/2 )
         # Work recursive for submenus
         for m in self.options:
             if m.isMenu():

@@ -33,7 +33,7 @@ class Ally( Combatant.Combatant ):
         learnElement = xmlElement.getElementsByTagName("learn")[0]
         text = str(learnElement.firstChild.data)
         words = text.split()
-        for i in range( len(words)/2 ):
+        for i in range( int(len(words)/2) ):
             self.learn[ int( words[i*2] ) ] = words[i*2+1]
 
         self.buildMenu()
@@ -198,12 +198,12 @@ class Ally( Combatant.Combatant ):
         # Draw the combanant's name
         self.videoManager.drawString( self.sceneManager.getDefaultFont(), self.name.capitalize(), 0, 0 )
 
-        self.videoManager.translate( boxWidth/4, 0 )
+        self.videoManager.translate( int(boxWidth/4), 0 )
 
         # Draw the combatant's hp and mp
         self.videoManager.drawString( self.sceneManager.getDefaultFont(), str(self.getHp()) + "/" + str(self.getMaxHp()) + "HP", 0, 0 )
 
-        self.videoManager.translate( boxWidth/2, 0 )
+        self.videoManager.translate( int(boxWidth/2), 0 )
 
         self.videoManager.drawStringRight( self.sceneManager.getDefaultFont(), str(self.getMp()) + "MP ", 0, 0 )
         
