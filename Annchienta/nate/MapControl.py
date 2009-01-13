@@ -134,7 +134,7 @@ class MapControl:
 
         # Quit the main function if we quit the annchienta
         # engine (User closed vide window)
-        if not self.inputManager.running() and gtk.main_level():
+        if not self.inputManager.isRunning() and gtk.main_level():
             gtk.main_quit()
 
         # Return true because this gets called though

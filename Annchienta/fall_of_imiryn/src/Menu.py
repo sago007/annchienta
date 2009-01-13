@@ -186,7 +186,7 @@ class Menu( MenuItem.MenuItem ):
         if self.inputManager.buttonTicked( 1 ):
             self.done = True
 
-        if not self.inputManager.running():
+        if not self.inputManager.isRunning():
             self.done = True
 
     def render( self ):

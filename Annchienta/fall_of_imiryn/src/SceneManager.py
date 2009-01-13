@@ -31,7 +31,7 @@ class SceneManager(object):
     def waitForClick( self ):
         self.videoManager.storeBuffer(7)
         self.inputManager.update()
-        while self.inputManager.running() and not self.inputManager.buttonTicked(0):
+        while self.inputManager.isRunning() and not self.inputManager.buttonTicked(0):
             self.inputManager.update()
             self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
@@ -171,7 +171,7 @@ class SceneManager(object):
         if not backgroundProcess:
             self.videoManager.storeBuffer(7)
 
-        while self.inputManager.running() and not self.inputManager.buttonTicked(0):
+        while self.inputManager.isRunning() and not self.inputManager.buttonTicked(0):
 
             self.inputManager.update()
 
@@ -230,7 +230,7 @@ class SceneManager(object):
 
         self.mapManager.resync()
 
-        while self.inputManager.running() and going:
+        while self.inputManager.isRunning() and going:
 
             going = sum( map( lambda i: int(objects[i].stepTo(points[i])), range(len(objects)) ) )
 
@@ -273,7 +273,7 @@ class SceneManager(object):
         # Backup buffer
         self.videoManager.storeBuffer(7)
 
-        while self.inputManager.running() and self.engine.getTicks() < end:
+        while self.inputManager.isRunning() and self.engine.getTicks() < end:
 
             a = int(255.0*float( self.engine.getTicks()-start ) / float( duration ))
 

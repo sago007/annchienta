@@ -69,7 +69,7 @@ sceneManager.fade( 255, 255, 255, 2000 )
 titleBackground = annchienta.Surface( "images/storyline/title.png" )
 
 running = True
-while running and inputManager.running():
+while running and inputManager.isRunning():
 
     videoManager.clear()
     videoManager.drawSurface( titleBackground, 0, 0 )

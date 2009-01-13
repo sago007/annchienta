@@ -29,9 +29,9 @@ namespace Annchienta
          */
         inputManager = this;
 
-        /* The game is now running...
+        /* The engine is now uunning...
          */
-        run = true;
+        running = true;
 
         /* No keys are ticked by default.
          */
@@ -74,7 +74,7 @@ namespace Annchienta
             switch ( event.type )
             {
                 case SDL_QUIT:
-                    run = false;
+                    running = false;
                     break;
 
                 case SDL_KEYDOWN:
@@ -103,14 +103,14 @@ namespace Annchienta
         mouseY /= scale;
     }
 
-    bool InputManager::running()
+    bool InputManager::isRunning()
     {
-        return run;
+        return running;
     }
 
     void InputManager::stop()
     {
-        run = false;
+        running = false;
     }
 
     bool InputManager::keyDown( int keyCode ) const

@@ -21,7 +21,7 @@ class Menu:
 
         self.audioManager.playMusic("data/happy_music.ogg")
         self.intro()
-        while self.inputManager.running():
+        while self.inputManager.isRunning():
             self.audioManager.playMusic("data/hard_music.ogg")
             self.game.run()
             self.audioManager.playMusic("data/happy_music.ogg")
@@ -72,7 +72,7 @@ class Menu:
         self.videoManager.flip()
         self.videoManager.storeBuffer(7)
         self.inputManager.update()
-        while self.inputManager.running() and not self.inputManager.buttonTicked(0):
+        while self.inputManager.isRunning() and not self.inputManager.buttonTicked(0):
             self.inputManager.update()
             self.videoManager.clear()
             self.videoManager.restoreBuffer(7)

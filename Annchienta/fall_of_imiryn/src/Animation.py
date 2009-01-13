@@ -48,7 +48,7 @@ class Animation(object):
         start = self.engine.getTicks()
         origPosition = annchienta.Vector( combatant.getPosition() )
 
-        while self.inputManager.running() and self.engine.getTicks()<start+duration:
+        while self.inputManager.isRunning() and self.engine.getTicks()<start+duration:
             
             self.battle.update()
 
@@ -68,7 +68,7 @@ class Animation(object):
 
         start = self.engine.getTicks()
 
-        while self.inputManager.running() and self.engine.getTicks()<start+duration:
+        while self.inputManager.isRunning() and self.engine.getTicks()<start+duration:
             
             self.battle.update()
 

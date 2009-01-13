@@ -199,7 +199,7 @@ class InputManager(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, InputManager, name)
     __repr__ = _swig_repr
     def update(*args): return _annchienta.InputManager_update(*args)
-    def running(*args): return _annchienta.InputManager_running(*args)
+    def isRunning(*args): return _annchienta.InputManager_isRunning(*args)
     def stop(*args): return _annchienta.InputManager_stop(*args)
     def keyDown(*args): return _annchienta.InputManager_keyDown(*args)
     def keyTicked(*args): return _annchienta.InputManager_keyTicked(*args)
@@ -257,7 +257,7 @@ class MapManager(_object):
     def setOnUpdateScript(*args): return _annchienta.MapManager_setOnUpdateScript(*args)
     def setOnUpdateCode(*args): return _annchienta.MapManager_setOnUpdateCode(*args)
     def run(*args): return _annchienta.MapManager_run(*args)
-    def running(*args): return _annchienta.MapManager_running(*args)
+    def isRunning(*args): return _annchienta.MapManager_isRunning(*args)
     def stop(*args): return _annchienta.MapManager_stop(*args)
     def update(*args): return _annchienta.MapManager_update(*args)
     def updateOnce(*args): return _annchienta.MapManager_updateOnce(*args)

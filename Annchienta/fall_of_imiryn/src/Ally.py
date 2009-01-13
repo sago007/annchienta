@@ -251,7 +251,7 @@ class Ally( Combatant.Combatant ):
             target.marked = True
             
             # Check for input
-            if not battle.inputManager.running() or battle.inputManager.buttonTicked(1):
+            if not battle.inputManager.isRunning() or battle.inputManager.buttonTicked(1):
                 target = None
                 done = True
             if battle.inputManager.buttonTicked(0):

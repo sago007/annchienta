@@ -51,7 +51,7 @@ class RaftGame:
         self.start = self.engine.getTicks()
         self.end = self.engine.getTicks()+60000
         
-        while self.running and self.inputManager.running():
+        while self.running and self.inputManager.isRunning():
 
             self.update()
             self.draw()

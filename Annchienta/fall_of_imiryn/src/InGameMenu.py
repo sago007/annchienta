@@ -108,7 +108,7 @@ class InGameMenu(object):
         partyManagementMenu.topRight()
 
         popping = True
-        while popping and self.inputManager.running():
+        while popping and self.inputManager.isRunning():
 
             menuItem = partyManagementMenu.pop()
 
@@ -124,7 +124,7 @@ class InGameMenu(object):
                     weaponMenu = self.createWeaponMenu( partyManagementMenu.combatantIndex )
                     weaponPopping = True
 
-                    while weaponPopping and self.inputManager.running():
+                    while weaponPopping and self.inputManager.isRunning():
 
                         w = weaponMenu.pop()
                         if w is not None:
@@ -155,7 +155,7 @@ class InGameMenu(object):
 
                     itemPopping = True
 
-                    while itemPopping and self.inputManager.running():
+                    while itemPopping and self.inputManager.isRunning():
 
                         # Choose item
                         item = itemMenu.pop()

@@ -28,7 +28,7 @@ if won:
     sceneManager.text( "March:\nGet on this raft. Now." )
     sceneManager.text( "Use the mouse cursor to steer the raft. You will reach the cave exit in approximately one minute." )
     execfile("locations/inaran/raft.py")
-    if mapManager.running():
+    if mapManager.isRunning():
 
         # Make everything black
         sceneManager.fade()

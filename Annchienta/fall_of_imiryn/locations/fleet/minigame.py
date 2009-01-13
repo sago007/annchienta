@@ -58,7 +58,7 @@ class Game:
         # Set start time
         self.victoryTime += self.engine.getTicks()
 
-        while( self.inputManager.running() and self.running ):
+        while( self.inputManager.isRunning() and self.running ):
 
             self.update()
             self.draw()
@@ -68,7 +68,7 @@ class Game:
         # Update input
         self.inputManager.update()
 
-        if not self.inputManager.running():
+        if not self.inputManager.isRunning():
             return
 
         # Number of ms passed
@@ -216,6 +216,6 @@ game.run()
 sceneManager.quitDialog()
 
 # If we made it...
-if mapManager.running():
+if mapManager.isRunning():
     partyManager.addRecord("fleet_caught_by_captain")
     partyManager.refreshMap()

@@ -2,9 +2,6 @@ import random, math, annchienta, Level
 
 class Splatter:
 
-    velStart = 0.2
-    yAccel = 0.0005
-
     def __init__( self, x, y, angle, squirrel=False ):
     
         self.squirrel = squirrel
@@ -22,6 +19,9 @@ class Splatter:
         # Set X and Y
         self.x = x
         self.y = y
+
+        self.velStart = random.uniform( 0.1, 0.3 )
+        self.yAccel = random.uniform( 0.0002, 0.0008 )
         
         # Choose start direction
         angle += random.uniform(-math.pi/8, math.pi/8)

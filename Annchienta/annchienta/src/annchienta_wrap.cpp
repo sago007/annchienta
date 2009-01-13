@@ -9382,7 +9382,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_InputManager_running(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_InputManager_isRunning(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
   void *argp1 = 0 ;
@@ -9390,13 +9390,13 @@ SWIGINTERN PyObject *_wrap_InputManager_running(PyObject *SWIGUNUSEDPARM(self), 
   PyObject * obj0 = 0 ;
   bool result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_running",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_isRunning",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_running" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_isRunning" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
-  result = (bool)(arg1)->running();
+  result = (bool)(arg1)->isRunning();
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -10704,7 +10704,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_MapManager_running(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_MapManager_isRunning(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::MapManager *arg1 = (Annchienta::MapManager *) 0 ;
   void *argp1 = 0 ;
@@ -10712,13 +10712,13 @@ SWIGINTERN PyObject *_wrap_MapManager_running(PyObject *SWIGUNUSEDPARM(self), Py
   PyObject * obj0 = 0 ;
   bool result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_running",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:MapManager_isRunning",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__MapManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_running" "', argument " "1"" of type '" "Annchienta::MapManager const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MapManager_isRunning" "', argument " "1"" of type '" "Annchienta::MapManager const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::MapManager * >(argp1);
-  result = (bool)((Annchienta::MapManager const *)arg1)->running();
+  result = (bool)((Annchienta::MapManager const *)arg1)->isRunning();
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -20274,7 +20274,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"VideoManager_swigregister", VideoManager_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getVideoManager", _wrap_getVideoManager, METH_VARARGS, NULL},
 	 { (char *)"InputManager_update", _wrap_InputManager_update, METH_VARARGS, NULL},
-	 { (char *)"InputManager_running", _wrap_InputManager_running, METH_VARARGS, NULL},
+	 { (char *)"InputManager_isRunning", _wrap_InputManager_isRunning, METH_VARARGS, NULL},
 	 { (char *)"InputManager_stop", _wrap_InputManager_stop, METH_VARARGS, NULL},
 	 { (char *)"InputManager_keyDown", _wrap_InputManager_keyDown, METH_VARARGS, NULL},
 	 { (char *)"InputManager_keyTicked", _wrap_InputManager_keyTicked, METH_VARARGS, NULL},
@@ -20320,7 +20320,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"MapManager_setOnUpdateScript", _wrap_MapManager_setOnUpdateScript, METH_VARARGS, NULL},
 	 { (char *)"MapManager_setOnUpdateCode", _wrap_MapManager_setOnUpdateCode, METH_VARARGS, NULL},
 	 { (char *)"MapManager_run", _wrap_MapManager_run, METH_VARARGS, NULL},
-	 { (char *)"MapManager_running", _wrap_MapManager_running, METH_VARARGS, NULL},
+	 { (char *)"MapManager_isRunning", _wrap_MapManager_isRunning, METH_VARARGS, NULL},
 	 { (char *)"MapManager_stop", _wrap_MapManager_stop, METH_VARARGS, NULL},
 	 { (char *)"MapManager_update", _wrap_MapManager_update, METH_VARARGS, NULL},
 	 { (char *)"MapManager_updateOnce", _wrap_MapManager_updateOnce, METH_VARARGS, NULL},

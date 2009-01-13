@@ -2,7 +2,8 @@ import annchienta
 import MenuItem, Menu, PartyManager
 
 # An extended menu that shows information
-# about the party.
+# about the party in the corners, but basically
+# has the same functionality as a Menu.
 class PartyMenu( Menu.Menu ):
 
     def __init__( self, name="Equipment", description="Manage and view equipment.", combatantIndex = 0 ):

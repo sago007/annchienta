@@ -180,7 +180,7 @@ class Battle(object):
         if updateInputManagerToo:
             self.inputManager.update()
         
-        if not self.inputManager.running() or not self.running:
+        if not self.inputManager.isRunning() or not self.running:
             self.running = False
             return
         

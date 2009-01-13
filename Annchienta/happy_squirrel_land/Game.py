@@ -68,7 +68,7 @@ class Game:
 
         # Check if the user quit the game
         self.inputManager.update()
-        if not self.inputManager.running():
+        if not self.inputManager.isRunning():
             self.running = False
             return
             

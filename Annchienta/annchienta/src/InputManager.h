@@ -43,7 +43,7 @@ namespace Annchienta
     class InputManager
     {
         private:
-            bool run;
+            bool running;
             bool tickedKeys[ SDLK_LAST ];
             bool tickedButtons[ 2 ];
             Uint8 *keyState;
@@ -69,7 +69,7 @@ namespace Annchienta
              *  return false if the user closed the window.
              *  \return Whether the engine is still running or not.
              */
-            bool running();
+            bool isRunning();
 
             /** Stops the game. running() will return false from now
              *  on.
