@@ -6,7 +6,7 @@ ADD_SUBDIRECTORY( xml )
 # Generate python swig file through:
 ADD_CUSTOM_TARGET(
      swig
-     swig -python -c++ -o ${ANNCHIENTA_BINARY_DIR}/src/annchienta_wrap.cpp -outdir ${ANNCHIENTA_BINARY_DIR}/modules ${ANNCHIENTA_BINARY_DIR}/src/annchienta_interface.i
+     /home/jasper/Desktop/swig-1.3.37/swig -python -c++ -o ${ANNCHIENTA_BINARY_DIR}/src/annchienta_wrap.cpp -outdir ${ANNCHIENTA_BINARY_DIR}/modules ${ANNCHIENTA_BINARY_DIR}/src/annchienta_interface.i
 )
 
 # Set up include directories.

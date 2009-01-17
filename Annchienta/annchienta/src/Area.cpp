@@ -45,16 +45,21 @@ namespace Annchienta
 
     void Area::setOnCollisionCode( const char *code )
     {
+        /* Remove any previous code. */
         if( onCollisionCode )
             delete[] onCollisionCode;
+
+        /* Store the new code. */
         onCollisionCode = new char[strlen(code)+1];
         strcpy( onCollisionCode, code );
 
+        /* Connvert it to python code. */
         getEngine()->toPythonCode( &onCollisionCode );
     }
 
     bool Area::hasPoint( Point point )
     {
+        /* Make sure we have the right kind of point. */
         point.convert( IsometricPoint );
         return point.isEnclosedBy( &p1, &p2 );
     }

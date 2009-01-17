@@ -20,7 +20,7 @@ class Splatter:
         self.x = x
         self.y = y
 
-        self.velStart = random.uniform( 0.1, 0.3 )
+        self.velStart = random.uniform( 0.15, 0.25 )
         self.yAccel = random.uniform( 0.0002, 0.0008 )
         
         # Choose start direction

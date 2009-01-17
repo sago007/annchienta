@@ -41,7 +41,8 @@ namespace Annchienta
         if( walkTimeGiven <= 0 )
         {
             mx = my = 0;
-            /* 50% chance to walk walk on standing still. */
+
+            /* 50% chance to walk when we're just standing still. */
             if( rand()%2 )
             {
                 int r = rand()%4;
