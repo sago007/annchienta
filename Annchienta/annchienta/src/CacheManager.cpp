@@ -44,37 +44,44 @@ namespace Annchienta
 
     Cacheable *CacheManager::getCacheable( const char *fileName, CacheableType cacheableType )
     {
+        Cacheable *result = 0;
+        std::list< Cacheable* >:: iterator i = cacheables.begin();
+
         /* Check to see if it is in the list. */
-        for( std::list< Cacheable* >:: iterator i = cacheables.begin(); i!=cacheables.end(); i++ )
+        while( i!=cacheables.end() && !result )
         {
             if( (*i)->getCacheableType() == cacheableType )
             {
                 if( !strcmp( (*i)->getFileName(), fileName ) )
                 {
-                    return (*i);
+                    result = (*i);
                 }
             }
+
+            i++;
         }
 
+        if( result )
+            return result;
+
         /* Load it. */
-        Cacheable *cacheable;
         switch( cacheableType )
         {
             case SurfaceCacheable:
-                cacheable = new Surface( fileName );
+                result = new Surface( fileName );
                 break;
             case MaskCacheable:
-                cacheable = new Mask( fileName );
+                result = new Mask( fileName );
                 break;
             case SoundCacheable:
-                cacheable = new Sound( fileName );
+                result = new Sound( fileName );
                 break;
             case UnknownCacheable: default:
-                cacheable = new Cacheable( fileName );
+                result = new Cacheable( fileName );
                 break;
         }
-        cacheables.push_back( cacheable );
-        return cacheable;
+        cacheables.push_back( result );
+        return result;
     }
 
     Surface *CacheManager::getSurface( const char *fileName )

@@ -123,7 +123,7 @@ namespace Annchienta
 
             /** \return The \ref PointType for this Point.
              */
-            PointType getType() const;
+            PointType getPointType() const;
 
             /** This function converts this Point to a Point
              *  of another type.

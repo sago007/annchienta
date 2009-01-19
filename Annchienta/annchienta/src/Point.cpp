@@ -49,7 +49,7 @@ namespace Annchienta
         type = _type;
     }
 
-    PointType Point::getType() const
+    PointType Point::getPointType() const
     {
         return type;
     }

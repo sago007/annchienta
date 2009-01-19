@@ -26,15 +26,6 @@
 namespace Annchienta
 {
 
-    /*void Tile::getTexCoords( Surface *surf, float *xCenter, float *topYCenter, float *topYDown, float *wallYDown ) const
-    {
-        MapManager *mapMgr = getMapManager();
-        *xCenter = 0.5f*( surf->getLeftTexCoord() + surf->getRightTexCoord() );
-        *topYCenter = 1.0f - (float)(mapMgr->getTileHeight()>>1)/(float)surf->getGlHeight();
-        *topYDown = 1.0f - (float)(mapMgr->getTileHeight())/(float)surf->getGlHeight();
-        *wallYDown = 1.0f - (float)( (mapMgr->getTileHeight()>>1) + surf->getHeight() - mapMgr->getTileHeight() )/(float)surf->getGlHeight();
-    }*/
-
     void Tile::makeList()
     {
         /* Should not happen, but might avoid segfaults.

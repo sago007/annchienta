@@ -33,6 +33,10 @@ namespace Annchienta
     class Frame;
     class Animation;
 
+    /** A StaticObject is an Entity in the Map that
+     *  has a sprite, animations, a position...
+     *  but it cannot move. Use a Person for that.
+     */
     class StaticObject: public Entity
     {
         protected:
@@ -66,45 +70,127 @@ namespace Annchienta
             char xmlFile[DEFAULT_STRING_SIZE];
 
         public:
+
+            /** Create a new StaticObject.
+             *  \param name Name for this StaticObject.
+             *  \param configfile XML File where animations, sprite etc. should be loaded from.
+             */
             StaticObject( const char *name, const char *configfile );
+
+            /** Create a new StaticObject without a config file.
+             *  This is used to create simple objects which do not
+             *  have animations.
+             *  \param name Name for this StaticObject.
+             *  \param surf Sprite for this StaticObject.
+             *  \param mask Collision mask for this StaticObject.
+             */
             StaticObject( const char *name, Surface *surf, Mask *mask );
             virtual ~StaticObject();
 
+            /** This function calculates which tiles the StaticObject
+             *  is colliding with and stores them internally.
+             *  \warning This function should only be used internally.
+             */
             void calculateCollidingTiles();
+
+            /** This function calculates the current Z coordinate
+             *  of this StaticObject and updates it's position.
+             *  \warning This function should only be used internally.
+             */
             void calculateZFromCollidingTiles();
 
+            /** \return The EntityType of this StaticObject.
+             */
             virtual EntityType getEntityType() const;
 
+            /** Updates this Entity. This is called when updating the Map
+             *  this Entity is in.
+             */
             virtual void update();
+
+            /** Draws this StaticObject to the screen.
+             */
             virtual void draw();
+
+            /** The depth this StaticObject should be sorted on.
+             */
             virtual int getDepth();
 
-            virtual void setPosition( Point );
+            /** Sets the position for this StaticObject.
+             *  \param position The new position.
+             */
+            virtual void setPosition( Point position );
+
+            /** \return The position of this StaticObject.
+             */
             virtual Point getPosition() const;
+
+            /** \return The position where the Mask of this StaticObject should be placed to calculate collisions.
+             */
             virtual Point getMaskPosition() const;
+
+            /** \return The Mask used for collision detection.
+             */
             Mask *getMask() const;
 
+            /** \return The XML file this StaticObject was loaded from, otherwise 0.
+             */
             const char *getXmlFile() const;
 
             /** Should be used with care, because the frame settings
-             *  stay the same.
+             *  stay the same. 
+             *  \warning Make sure the new sprite has the same dimensions and frames.
              *  \param filename Filename of the new sprite.
              */
             virtual void setSprite( const char *filename );
 
-            /** \return return the current sprite used.
+            /** \return The current sprite used.
              */
             Surface *getSprite() const;
 
+            /** Set the animation for this StaticObject. Animations
+             *  should be declared in it's XML file.
+             *  \param animationName Name of the to be set animation.
+             *  \return If the animation set was succesful.
+             */
             bool setAnimation( const char *animationName );
+
+            /** Get the name of the currently playing animation.
+             *  \return The name of the currently playing animation.
+             */
             const char *getAnimation() const;
 
-            virtual void setPassable( bool value );
+            /** If this object is passable, other objects can
+             *  "walk through" it.
+             *  \param passable If this object should be passable.
+             */
+            virtual void setPassable( bool passable );
+
+            /** If this object is passable, other objects can
+             *  "walk through" it.
+             *  \return If this object is passable.
+             */
             virtual bool isPassable() const;
 
-            virtual void setOnInteractScript( const char * );
-            virtual void setOnInteractCode( const char * );
+            /** Sets this object's interact script. This script
+             *  will be executed when the object is interacted with.
+             *  \param script Filename of the script.
+             */
+            virtual void setOnInteractScript( const char *script );
+
+            /** Sets this object's interact code. This code
+             *  will be executed when the object is interacted with.
+             *  \param code Code to be executed.
+             */
+            virtual void setOnInteractCode( const char *code );
+
+            /** \return If this object has an interact script or interact code.
+             */
             virtual bool canInteract() const;
+
+            /** When you call this function, this object's interact
+             *  script and/or code will be executed if they exist.
+             */
             virtual void onInteract();
 
             /* Should only be used for Persons, but this is needed because of
@@ -121,10 +207,18 @@ namespace Annchienta
         void setPassiveObject( StaticObject *object );
     #endif
 
-    /* Used in scenes: active->interactor
-     *                 passive->interacted with
+    /** A function for use in scenes. When you call this
+     *  function, it will return the object that most recently
+     *  started interacting with another object.
+     *  \return The object that started interacting.
      */
     StaticObject *getActiveObject();
+
+    /** A function for use in scenes. When you call this
+     *  function, it will return the object that most recently
+     *  started being interacting with.
+     *  \return The object that started being interacting with.
+     */
     StaticObject *getPassiveObject();
 };
 

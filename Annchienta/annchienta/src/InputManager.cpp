@@ -140,7 +140,7 @@ namespace Annchienta
         else
             buttonCode = SDL_BUTTON_RIGHT;
 
-        return bool( mouseState & SDL_BUTTON( buttonCode ) );
+        return (bool)( mouseState & SDL_BUTTON( buttonCode ) );
     }
 
     bool InputManager::buttonTicked( int buttonCode ) const

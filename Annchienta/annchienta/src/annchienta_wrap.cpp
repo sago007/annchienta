@@ -4051,9 +4051,9 @@ Annchienta::Point SwigDirector_StaticObject::getMaskPosition() const {
 }
 
 
-void SwigDirector_StaticObject::setPosition(Annchienta::Point arg0) {
+void SwigDirector_StaticObject::setPosition(Annchienta::Point position) {
   swig::PyObject_var obj0;
-  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&arg0), SWIGTYPE_p_Annchienta__Point,  0 );
+  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&position), SWIGTYPE_p_Annchienta__Point,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
@@ -4129,9 +4129,9 @@ void SwigDirector_StaticObject::setSprite(char const *filename) {
 }
 
 
-void SwigDirector_StaticObject::setPassable(bool value) {
+void SwigDirector_StaticObject::setPassable(bool passable) {
   swig::PyObject_var obj0;
-  obj0 = SWIG_From_bool(static_cast< bool >(value));
+  obj0 = SWIG_From_bool(static_cast< bool >(passable));
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
@@ -4181,9 +4181,9 @@ bool SwigDirector_StaticObject::isPassable() const {
 }
 
 
-void SwigDirector_StaticObject::setOnInteractScript(char const *arg0) {
+void SwigDirector_StaticObject::setOnInteractScript(char const *script) {
   swig::PyObject_var obj0;
-  obj0 = SWIG_FromCharPtr((const char *)arg0);
+  obj0 = SWIG_FromCharPtr((const char *)script);
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
@@ -4204,9 +4204,9 @@ void SwigDirector_StaticObject::setOnInteractScript(char const *arg0) {
 }
 
 
-void SwigDirector_StaticObject::setOnInteractCode(char const *arg0) {
+void SwigDirector_StaticObject::setOnInteractCode(char const *code) {
   swig::PyObject_var obj0;
-  obj0 = SWIG_FromCharPtr((const char *)arg0);
+  obj0 = SWIG_FromCharPtr((const char *)code);
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
@@ -4519,9 +4519,9 @@ Annchienta::Point SwigDirector_Person::getMaskPosition() const {
 }
 
 
-void SwigDirector_Person::setPosition(Annchienta::Point arg0) {
+void SwigDirector_Person::setPosition(Annchienta::Point position) {
   swig::PyObject_var obj0;
-  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&arg0), SWIGTYPE_p_Annchienta__Point,  0 );
+  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&position), SWIGTYPE_p_Annchienta__Point,  0 );
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
@@ -4597,9 +4597,9 @@ void SwigDirector_Person::setSprite(char const *filename) {
 }
 
 
-void SwigDirector_Person::setPassable(bool value) {
+void SwigDirector_Person::setPassable(bool passable) {
   swig::PyObject_var obj0;
-  obj0 = SWIG_From_bool(static_cast< bool >(value));
+  obj0 = SWIG_From_bool(static_cast< bool >(passable));
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
@@ -4649,9 +4649,9 @@ bool SwigDirector_Person::isPassable() const {
 }
 
 
-void SwigDirector_Person::setOnInteractScript(char const *arg0) {
+void SwigDirector_Person::setOnInteractScript(char const *script) {
   swig::PyObject_var obj0;
-  obj0 = SWIG_FromCharPtr((const char *)arg0);
+  obj0 = SWIG_FromCharPtr((const char *)script);
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
@@ -4672,9 +4672,9 @@ void SwigDirector_Person::setOnInteractScript(char const *arg0) {
 }
 
 
-void SwigDirector_Person::setOnInteractCode(char const *arg0) {
+void SwigDirector_Person::setOnInteractCode(char const *code) {
   swig::PyObject_var obj0;
-  obj0 = SWIG_FromCharPtr((const char *)arg0);
+  obj0 = SWIG_FromCharPtr((const char *)code);
   if (!swig_get_self()) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
@@ -5613,7 +5613,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Point_getType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Point_getPointType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Point *arg1 = (Annchienta::Point *) 0 ;
   void *argp1 = 0 ;
@@ -5621,13 +5621,13 @@ SWIGINTERN PyObject *_wrap_Point_getType(PyObject *SWIGUNUSEDPARM(self), PyObjec
   PyObject * obj0 = 0 ;
   Annchienta::PointType result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Point_getType",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:Point_getPointType",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_getType" "', argument " "1"" of type '" "Annchienta::Point const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_getPointType" "', argument " "1"" of type '" "Annchienta::Point const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
-  result = (Annchienta::PointType)((Annchienta::Point const *)arg1)->getType();
+  result = (Annchienta::PointType)((Annchienta::Point const *)arg1)->getPointType();
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -20204,7 +20204,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Point_z_get", _wrap_Point_z_get, METH_VARARGS, NULL},
 	 { (char *)"new_Point", _wrap_new_Point, METH_VARARGS, NULL},
 	 { (char *)"delete_Point", _wrap_delete_Point, METH_VARARGS, NULL},
-	 { (char *)"Point_getType", _wrap_Point_getType, METH_VARARGS, NULL},
+	 { (char *)"Point_getPointType", _wrap_Point_getPointType, METH_VARARGS, NULL},
 	 { (char *)"Point_convert", _wrap_Point_convert, METH_VARARGS, NULL},
 	 { (char *)"Point_to", _wrap_Point_to, METH_VARARGS, NULL},
 	 { (char *)"Point_isEnclosedBy", _wrap_Point_isEnclosedBy, METH_VARARGS, NULL},

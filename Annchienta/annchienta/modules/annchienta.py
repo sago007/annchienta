@@ -80,7 +80,7 @@ class Point(_object):
         except: self.this = this
     __swig_destroy__ = _annchienta.delete_Point
     __del__ = lambda self : None;
-    def getType(*args): return _annchienta.Point_getType(*args)
+    def getPointType(*args): return _annchienta.Point_getPointType(*args)
     def convert(*args): return _annchienta.Point_convert(*args)
     def to(*args): return _annchienta.Point_to(*args)
     def isEnclosedBy(*args): return _annchienta.Point_isEnclosedBy(*args)
