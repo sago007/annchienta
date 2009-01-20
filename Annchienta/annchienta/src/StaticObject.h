@@ -115,7 +115,7 @@ namespace Annchienta
              */
             virtual int getDepth();
 
-            /** \retun The Mask for this StaticObject.
+            /** \return The Mask for this StaticObject.
              */
             virtual Mask *getMask() const;
 

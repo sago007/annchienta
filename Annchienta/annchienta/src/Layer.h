@@ -116,6 +116,7 @@ namespace Annchienta
 
             /** Adds an StaticObject to this Layer.
              *  \param staticObject StaticObject to be added.
+             *  \param position Where this StaticObject should be placed.
              */
             void addObject( StaticObject *staticObject, Point position );
 

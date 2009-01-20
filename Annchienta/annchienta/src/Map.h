@@ -134,6 +134,7 @@ namespace Annchienta
             /** Adds a StaticObject to this Map. The object is
              *  placed in the current Layer.
              *  \param so StaticObject to be added.
+             *  \param position Where this StaticObject should be placed.
              */
             void addObject( StaticObject *so, Point position );
 
