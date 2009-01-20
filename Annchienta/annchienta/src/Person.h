@@ -34,6 +34,7 @@ namespace Annchienta
             PersonControl *control;
             bool frozen;
             int heading;
+            float speed;
 
             #ifndef SWIG
                 /* Gives an error when parsed through swig? */
@@ -56,6 +57,15 @@ namespace Annchienta
              */
             virtual EntityType getEntityType() const;
 
+            /** The speed of a Person defaults to 1.0
+             *  \param speed The new move speed for this Person.
+             */
+            virtual void setSpeed( float speed );
+
+            /** \return The move speed for this Person.
+             */
+            virtual float getSpeed() const;
+
             /** Update this Person.
              */
             virtual void update();
@@ -64,8 +74,11 @@ namespace Annchienta
              *  not move the Person, for example when there's
              *  something in the way. To make sure the Person moves,
              *  set the force flag to true.
-             *  \param x Distance to move over X axis.
-             *  \param y Distance to move over Y axis.
+             *  When you set the parameter x to 1, this Person will
+             *  move a distance over the x axis that is equal to
+             *  getSpeed().
+             *  \param x Number of steps to move over X axis.
+             *  \param y Number of steps to move over Y axis.
              *  \param force Ignore all obstructions and move.
              *  \return If the Person was able to move.
              */

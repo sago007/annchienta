@@ -38,7 +38,7 @@ using namespace io;
 namespace Annchienta
 {
 
-    Person::Person( const char *_name, const char *_configfile ): StaticObject(_name, _configfile), control(0), frozen(false)
+    Person::Person( const char *_name, const char *_configfile ): StaticObject(_name, _configfile), control(0)
     {
         LogManager *logManager = getLogManager();
 
@@ -104,7 +104,9 @@ namespace Annchienta
         delete xml;
 
         setAnimation( "stand" );
+        frozen = false;
         heading = 0;
+        speed = 1.0;
     }
 
     Person::~Person()
@@ -118,6 +120,16 @@ namespace Annchienta
         return PersonEntity;
     }
 
+    void Person::setSpeed( float speed )
+    {
+        this->speed = speed;
+    }
+
+    float Person::getSpeed() const
+    {
+        return speed;
+    }
+
     void Person::update()
     {
         /* Let the control update this.
@@ -125,11 +137,6 @@ namespace Annchienta
         if( control && !frozen )
         {
             control->affect();
-
-            /* Because persons are moving, we need to update
-             * every turn.
-             */
-            needsUpdate = true;
         }
 
         /* Check for collisions with areas. Only not check in InteractiveMode.
@@ -155,8 +162,8 @@ namespace Annchienta
         Point oldPosition = position;
 
         /* Calculate the new position. */
-        position.x += x;
-        position.y += y;
+        position.x += x*speed;
+        position.y += y*speed;
         mapPosition = position.to( MapPoint );
 
         /* Adjust animation based on the direction our
@@ -197,7 +204,7 @@ namespace Annchienta
         /* Calculate the tiles we're colliding with and
          * our new Z. */
         calculateCollidingTiles();
-        calculateZFromCollidingTiles();
+        position.z = getZFromCollidingTiles();
 
         /* It is possible to move by default. Then, check
          * for some rejections... */

@@ -3145,14 +3145,7 @@ SWIG_From_int  (int value)
 }
 
 
-#include <limits.h>
-#if !defined(SWIG_NO_LLONG_MAX)
-# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
-#   define LLONG_MAX __LONG_LONG_MAX__
-#   define LLONG_MIN (-LLONG_MAX - 1LL)
-#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
-# endif
-#endif
+#include <float.h>
 
 
 SWIGINTERN int
@@ -3199,7 +3192,40 @@ SWIG_AsVal_double (PyObject *obj, double *val)
 }
 
 
-#include <float.h>
+SWIGINTERN int
+SWIG_AsVal_float (PyObject * obj, float *val)
+{
+  double v;
+  int res = SWIG_AsVal_double (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v < -FLT_MAX || v > FLT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< float >(v);
+    }
+  }  
+  return res;
+}
+
+
+  #define SWIG_From_double   PyFloat_FromDouble 
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_float  (float value)
+{    
+  return SWIG_From_double  (value);
+}
+
+
+#include <limits.h>
+#if !defined(SWIG_NO_LLONG_MAX)
+# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
+#   define LLONG_MAX __LONG_LONG_MAX__
+#   define LLONG_MIN (-LLONG_MAX - 1LL)
+#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
+# endif
+#endif
 
 
 #include <math.h>
@@ -3412,32 +3438,6 @@ SWIG_AsVal_bool (PyObject *obj, bool *val)
     return SWIG_ERROR;
   if (val) *val = r ? true : false;
   return SWIG_OK;
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_float (PyObject * obj, float *val)
-{
-  double v;
-  int res = SWIG_AsVal_double (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v < -FLT_MAX || v > FLT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< float >(v);
-    }
-  }  
-  return res;
-}
-
-
-  #define SWIG_From_double   PyFloat_FromDouble 
-
-
-SWIGINTERNINLINE PyObject *
-SWIG_From_float  (float value)
-{    
-  return SWIG_From_double  (value);
 }
 
 
@@ -3682,6 +3682,39 @@ int SwigDirector_Entity::getDepth() {
 }
 
 
+Annchienta::Mask *SwigDirector_Entity::getMask() const {
+  void *swig_argp ;
+  int swig_res ;
+  swig_owntype own ;
+  
+  Annchienta::Mask *c_result;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Entity.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 4;
+  const char * const swig_method_name = "getMask";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
+#else
+  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *) "getMask", NULL);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'Entity.getMask'");
+    }
+  }
+  swig_res = SWIG_ConvertPtrAndOwn(result, &swig_argp, SWIGTYPE_p_Annchienta__Mask,  0  | SWIG_POINTER_DISOWN, &own);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""Annchienta::Mask *""'");
+  }
+  c_result = reinterpret_cast< Annchienta::Mask * >(swig_argp);
+  swig_acquire_ownership_obj(SWIG_as_voidptr(c_result), own /* & TODO: SWIG_POINTER_OWN */);
+  return (Annchienta::Mask *) c_result;
+}
+
+
 Annchienta::Point SwigDirector_Entity::getMaskPosition() const {
   void *swig_argp ;
   int swig_res = 0 ;
@@ -3691,7 +3724,7 @@ Annchienta::Point SwigDirector_Entity::getMaskPosition() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Entity.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 4;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "getMaskPosition";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -3711,6 +3744,37 @@ Annchienta::Point SwigDirector_Entity::getMaskPosition() const {
   c_result = *(reinterpret_cast< Annchienta::Point * >(swig_argp));
   if (SWIG_IsNewObj(swig_res)) delete reinterpret_cast< Annchienta::Point * >(swig_argp);
   return (Annchienta::Point) c_result;
+}
+
+
+bool SwigDirector_Entity::collidesWith(Annchienta::Entity *other) const {
+  bool c_result;
+  swig::PyObject_var obj0;
+  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(other), SWIGTYPE_p_Annchienta__Entity,  0 );
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Entity.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 6;
+  const char * const swig_method_name = "collidesWith";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
+#else
+  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *)"collidesWith", (char *)"(O)" ,(PyObject *)obj0);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'Entity.collidesWith'");
+    }
+  }
+  bool swig_val;
+  int swig_res = SWIG_AsVal_bool(result, &swig_val);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""bool""'");
+  }
+  c_result = static_cast< bool >(swig_val);
+  return (bool) c_result;
 }
 
 
@@ -3824,6 +3888,39 @@ int SwigDirector_Tile::getDepth() {
 }
 
 
+Annchienta::Mask *SwigDirector_Tile::getMask() const {
+  void *swig_argp ;
+  int swig_res ;
+  swig_owntype own ;
+  
+  Annchienta::Mask *c_result;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 4;
+  const char * const swig_method_name = "getMask";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
+#else
+  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *) "getMask", NULL);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'Tile.getMask'");
+    }
+  }
+  swig_res = SWIG_ConvertPtrAndOwn(result, &swig_argp, SWIGTYPE_p_Annchienta__Mask,  0  | SWIG_POINTER_DISOWN, &own);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""Annchienta::Mask *""'");
+  }
+  c_result = reinterpret_cast< Annchienta::Mask * >(swig_argp);
+  swig_acquire_ownership_obj(SWIG_as_voidptr(c_result), own /* & TODO: SWIG_POINTER_OWN */);
+  return (Annchienta::Mask *) c_result;
+}
+
+
 Annchienta::Point SwigDirector_Tile::getMaskPosition() const {
   void *swig_argp ;
   int swig_res = 0 ;
@@ -3833,7 +3930,7 @@ Annchienta::Point SwigDirector_Tile::getMaskPosition() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 4;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "getMaskPosition";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -3853,6 +3950,37 @@ Annchienta::Point SwigDirector_Tile::getMaskPosition() const {
   c_result = *(reinterpret_cast< Annchienta::Point * >(swig_argp));
   if (SWIG_IsNewObj(swig_res)) delete reinterpret_cast< Annchienta::Point * >(swig_argp);
   return (Annchienta::Point) c_result;
+}
+
+
+bool SwigDirector_Tile::collidesWith(Annchienta::Entity *other) const {
+  bool c_result;
+  swig::PyObject_var obj0;
+  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(other), SWIGTYPE_p_Annchienta__Entity,  0 );
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Tile.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 6;
+  const char * const swig_method_name = "collidesWith";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
+#else
+  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *)"collidesWith", (char *)"(O)" ,(PyObject *)obj0);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'Tile.collidesWith'");
+    }
+  }
+  bool swig_val;
+  int swig_res = SWIG_AsVal_bool(result, &swig_val);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""bool""'");
+  }
+  c_result = static_cast< bool >(swig_val);
+  return (bool) c_result;
 }
 
 
@@ -4019,6 +4147,39 @@ int SwigDirector_StaticObject::getDepth() {
 }
 
 
+Annchienta::Mask *SwigDirector_StaticObject::getMask() const {
+  void *swig_argp ;
+  int swig_res ;
+  swig_owntype own ;
+  
+  Annchienta::Mask *c_result;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 4;
+  const char * const swig_method_name = "getMask";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
+#else
+  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *) "getMask", NULL);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'StaticObject.getMask'");
+    }
+  }
+  swig_res = SWIG_ConvertPtrAndOwn(result, &swig_argp, SWIGTYPE_p_Annchienta__Mask,  0  | SWIG_POINTER_DISOWN, &own);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""Annchienta::Mask *""'");
+  }
+  c_result = reinterpret_cast< Annchienta::Mask * >(swig_argp);
+  swig_acquire_ownership_obj(SWIG_as_voidptr(c_result), own /* & TODO: SWIG_POINTER_OWN */);
+  return (Annchienta::Mask *) c_result;
+}
+
+
 Annchienta::Point SwigDirector_StaticObject::getMaskPosition() const {
   void *swig_argp ;
   int swig_res = 0 ;
@@ -4028,7 +4189,7 @@ Annchienta::Point SwigDirector_StaticObject::getMaskPosition() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 4;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "getMaskPosition";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4051,6 +4212,37 @@ Annchienta::Point SwigDirector_StaticObject::getMaskPosition() const {
 }
 
 
+bool SwigDirector_StaticObject::collidesWith(Annchienta::Entity *other) const {
+  bool c_result;
+  swig::PyObject_var obj0;
+  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(other), SWIGTYPE_p_Annchienta__Entity,  0 );
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 6;
+  const char * const swig_method_name = "collidesWith";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
+#else
+  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *)"collidesWith", (char *)"(O)" ,(PyObject *)obj0);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'StaticObject.collidesWith'");
+    }
+  }
+  bool swig_val;
+  int swig_res = SWIG_AsVal_bool(result, &swig_val);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""bool""'");
+  }
+  c_result = static_cast< bool >(swig_val);
+  return (bool) c_result;
+}
+
+
 void SwigDirector_StaticObject::setPosition(Annchienta::Point position) {
   swig::PyObject_var obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&position), SWIGTYPE_p_Annchienta__Point,  0 );
@@ -4058,7 +4250,7 @@ void SwigDirector_StaticObject::setPosition(Annchienta::Point position) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 5;
+  const size_t swig_method_index = 7;
   const char * const swig_method_name = "setPosition";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4083,7 +4275,7 @@ Annchienta::Point SwigDirector_StaticObject::getPosition() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 6;
+  const size_t swig_method_index = 8;
   const char * const swig_method_name = "getPosition";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4113,7 +4305,7 @@ void SwigDirector_StaticObject::setSprite(char const *filename) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 7;
+  const size_t swig_method_index = 9;
   const char * const swig_method_name = "setSprite";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4136,7 +4328,7 @@ void SwigDirector_StaticObject::setPassable(bool passable) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 8;
+  const size_t swig_method_index = 10;
   const char * const swig_method_name = "setPassable";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4158,7 +4350,7 @@ bool SwigDirector_StaticObject::isPassable() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 9;
+  const size_t swig_method_index = 11;
   const char * const swig_method_name = "isPassable";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4188,7 +4380,7 @@ void SwigDirector_StaticObject::setOnInteractScript(char const *script) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 10;
+  const size_t swig_method_index = 12;
   const char * const swig_method_name = "setOnInteractScript";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4211,7 +4403,7 @@ void SwigDirector_StaticObject::setOnInteractCode(char const *code) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 11;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "setOnInteractCode";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4233,7 +4425,7 @@ bool SwigDirector_StaticObject::canInteract() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 12;
+  const size_t swig_method_index = 14;
   const char * const swig_method_name = "canInteract";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4261,7 +4453,7 @@ void SwigDirector_StaticObject::onInteract() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 13;
+  const size_t swig_method_index = 15;
   const char * const swig_method_name = "onInteract";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4284,7 +4476,7 @@ void SwigDirector_StaticObject::freeze(bool arg0) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 16;
   const char * const swig_method_name = "freeze";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4308,7 +4500,7 @@ bool SwigDirector_StaticObject::stepTo(Annchienta::Point arg0) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 15;
+  const size_t swig_method_index = 17;
   const char * const swig_method_name = "stepTo";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4338,7 +4530,7 @@ void SwigDirector_StaticObject::setStandAnimation(bool b) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 16;
+  const size_t swig_method_index = 18;
   const char * const swig_method_name = "setStandAnimation";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4361,7 +4553,7 @@ void SwigDirector_StaticObject::lookAt(Annchienta::StaticObject *other) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call StaticObject.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 18;
+  const size_t swig_method_index = 20;
   const char * const swig_method_name = "lookAt";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4487,6 +4679,39 @@ int SwigDirector_Person::getDepth() {
 }
 
 
+Annchienta::Mask *SwigDirector_Person::getMask() const {
+  void *swig_argp ;
+  int swig_res ;
+  swig_owntype own ;
+  
+  Annchienta::Mask *c_result;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 4;
+  const char * const swig_method_name = "getMask";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
+#else
+  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *) "getMask", NULL);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'Person.getMask'");
+    }
+  }
+  swig_res = SWIG_ConvertPtrAndOwn(result, &swig_argp, SWIGTYPE_p_Annchienta__Mask,  0  | SWIG_POINTER_DISOWN, &own);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""Annchienta::Mask *""'");
+  }
+  c_result = reinterpret_cast< Annchienta::Mask * >(swig_argp);
+  swig_acquire_ownership_obj(SWIG_as_voidptr(c_result), own /* & TODO: SWIG_POINTER_OWN */);
+  return (Annchienta::Mask *) c_result;
+}
+
+
 Annchienta::Point SwigDirector_Person::getMaskPosition() const {
   void *swig_argp ;
   int swig_res = 0 ;
@@ -4496,7 +4721,7 @@ Annchienta::Point SwigDirector_Person::getMaskPosition() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 4;
+  const size_t swig_method_index = 5;
   const char * const swig_method_name = "getMaskPosition";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4519,6 +4744,37 @@ Annchienta::Point SwigDirector_Person::getMaskPosition() const {
 }
 
 
+bool SwigDirector_Person::collidesWith(Annchienta::Entity *other) const {
+  bool c_result;
+  swig::PyObject_var obj0;
+  obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(other), SWIGTYPE_p_Annchienta__Entity,  0 );
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 6;
+  const char * const swig_method_name = "collidesWith";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
+#else
+  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *)"collidesWith", (char *)"(O)" ,(PyObject *)obj0);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'Person.collidesWith'");
+    }
+  }
+  bool swig_val;
+  int swig_res = SWIG_AsVal_bool(result, &swig_val);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""bool""'");
+  }
+  c_result = static_cast< bool >(swig_val);
+  return (bool) c_result;
+}
+
+
 void SwigDirector_Person::setPosition(Annchienta::Point position) {
   swig::PyObject_var obj0;
   obj0 = SWIG_NewPointerObj(SWIG_as_voidptr(&position), SWIGTYPE_p_Annchienta__Point,  0 );
@@ -4526,7 +4782,7 @@ void SwigDirector_Person::setPosition(Annchienta::Point position) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 5;
+  const size_t swig_method_index = 7;
   const char * const swig_method_name = "setPosition";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4551,7 +4807,7 @@ Annchienta::Point SwigDirector_Person::getPosition() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 6;
+  const size_t swig_method_index = 8;
   const char * const swig_method_name = "getPosition";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4581,7 +4837,7 @@ void SwigDirector_Person::setSprite(char const *filename) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 7;
+  const size_t swig_method_index = 9;
   const char * const swig_method_name = "setSprite";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4604,7 +4860,7 @@ void SwigDirector_Person::setPassable(bool passable) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 8;
+  const size_t swig_method_index = 10;
   const char * const swig_method_name = "setPassable";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4626,7 +4882,7 @@ bool SwigDirector_Person::isPassable() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 9;
+  const size_t swig_method_index = 11;
   const char * const swig_method_name = "isPassable";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4656,7 +4912,7 @@ void SwigDirector_Person::setOnInteractScript(char const *script) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 10;
+  const size_t swig_method_index = 12;
   const char * const swig_method_name = "setOnInteractScript";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4679,7 +4935,7 @@ void SwigDirector_Person::setOnInteractCode(char const *code) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 11;
+  const size_t swig_method_index = 13;
   const char * const swig_method_name = "setOnInteractCode";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4701,7 +4957,7 @@ bool SwigDirector_Person::canInteract() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 12;
+  const size_t swig_method_index = 14;
   const char * const swig_method_name = "canInteract";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4729,7 +4985,7 @@ void SwigDirector_Person::onInteract() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 13;
+  const size_t swig_method_index = 15;
   const char * const swig_method_name = "onInteract";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4752,7 +5008,7 @@ void SwigDirector_Person::freeze(bool value) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 14;
+  const size_t swig_method_index = 16;
   const char * const swig_method_name = "freeze";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4775,7 +5031,7 @@ void SwigDirector_Person::setStandAnimation(bool forceFromHeading) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 16;
+  const size_t swig_method_index = 18;
   const char * const swig_method_name = "setStandAnimation";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4798,7 +5054,7 @@ void SwigDirector_Person::lookAt(Annchienta::StaticObject *object) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 18;
+  const size_t swig_method_index = 20;
   const char * const swig_method_name = "lookAt";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4814,6 +5070,58 @@ void SwigDirector_Person::lookAt(Annchienta::StaticObject *object) {
 }
 
 
+void SwigDirector_Person::setSpeed(float speed) {
+  swig::PyObject_var obj0;
+  obj0 = SWIG_From_float(static_cast< float >(speed));
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 21;
+  const char * const swig_method_name = "setSpeed";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
+#else
+  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *)"setSpeed", (char *)"(O)" ,(PyObject *)obj0);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'Person.setSpeed'");
+    }
+  }
+}
+
+
+float SwigDirector_Person::getSpeed() const {
+  float c_result;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 22;
+  const char * const swig_method_name = "getSpeed";
+  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
+  swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
+#else
+  swig::PyObject_var result = PyObject_CallMethod(swig_get_self(), (char *) "getSpeed", NULL);
+#endif
+  if (result == NULL) {
+    PyObject *error = PyErr_Occurred();
+    if (error != NULL) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'Person.getSpeed'");
+    }
+  }
+  float swig_val;
+  int swig_res = SWIG_AsVal_float(result, &swig_val);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""float""'");
+  }
+  c_result = static_cast< float >(swig_val);
+  return (float) c_result;
+}
+
+
 bool SwigDirector_Person::move(int x, int y, bool force) {
   bool c_result;
   swig::PyObject_var obj0;
@@ -4826,7 +5134,7 @@ bool SwigDirector_Person::move(int x, int y, bool force) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 19;
+  const size_t swig_method_index = 23;
   const char * const swig_method_name = "move";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(OOO)" ,(PyObject *)obj0,(PyObject *)obj1,(PyObject *)obj2);
@@ -4859,7 +5167,7 @@ bool SwigDirector_Person::stepTo(Annchienta::Point point, bool force) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 21;
+  const size_t swig_method_index = 25;
   const char * const swig_method_name = "stepTo";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
@@ -4888,7 +5196,7 @@ bool SwigDirector_Person::isFrozen() const {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 22;
+  const size_t swig_method_index = 26;
   const char * const swig_method_name = "isFrozen";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4918,7 +5226,7 @@ void SwigDirector_Person::setControl(Annchienta::PersonControl *personControl) {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 23;
+  const size_t swig_method_index = 27;
   const char * const swig_method_name = "setControl";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, (char *)"(O)" ,(PyObject *)obj0);
@@ -4939,7 +5247,7 @@ void SwigDirector_Person::setInputControl() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 24;
+  const size_t swig_method_index = 28;
   const char * const swig_method_name = "setInputControl";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4960,7 +5268,7 @@ void SwigDirector_Person::setSampleControl() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 25;
+  const size_t swig_method_index = 29;
   const char * const swig_method_name = "setSampleControl";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -4981,7 +5289,7 @@ void SwigDirector_Person::setNullControl() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 26;
+  const size_t swig_method_index = 30;
   const char * const swig_method_name = "setNullControl";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -5002,7 +5310,7 @@ void SwigDirector_Person::collisionWithLayerAreas() {
     Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call Person.__init__.");
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 27;
+  const size_t swig_method_index = 31;
   const char * const swig_method_name = "collisionWithLayerAreas";
   PyObject* method = swig_get_method(swig_method_index, swig_method_name);
   swig::PyObject_var result = PyObject_CallFunction(method, NULL, NULL);
@@ -5148,10 +5456,10 @@ extern "C" {
 SWIGINTERN PyObject *_wrap_Point_x_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Point *arg1 = (Annchienta::Point *) 0 ;
-  int arg2 ;
+  float arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  float val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -5162,11 +5470,11 @@ SWIGINTERN PyObject *_wrap_Point_x_set(PyObject *SWIGUNUSEDPARM(self), PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_x_set" "', argument " "1"" of type '" "Annchienta::Point *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Point_x_set" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Point_x_set" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< float >(val2);
   if (arg1) (arg1)->x = arg2;
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -5181,7 +5489,7 @@ SWIGINTERN PyObject *_wrap_Point_x_get(PyObject *SWIGUNUSEDPARM(self), PyObject 
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  int result;
+  float result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:Point_x_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
@@ -5189,8 +5497,8 @@ SWIGINTERN PyObject *_wrap_Point_x_get(PyObject *SWIGUNUSEDPARM(self), PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_x_get" "', argument " "1"" of type '" "Annchienta::Point *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
-  result = (int) ((arg1)->x);
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  result = (float) ((arg1)->x);
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -5200,10 +5508,10 @@ fail:
 SWIGINTERN PyObject *_wrap_Point_y_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Point *arg1 = (Annchienta::Point *) 0 ;
-  int arg2 ;
+  float arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  float val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -5214,11 +5522,11 @@ SWIGINTERN PyObject *_wrap_Point_y_set(PyObject *SWIGUNUSEDPARM(self), PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_y_set" "', argument " "1"" of type '" "Annchienta::Point *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Point_y_set" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Point_y_set" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< float >(val2);
   if (arg1) (arg1)->y = arg2;
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -5233,7 +5541,7 @@ SWIGINTERN PyObject *_wrap_Point_y_get(PyObject *SWIGUNUSEDPARM(self), PyObject 
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  int result;
+  float result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:Point_y_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
@@ -5241,8 +5549,8 @@ SWIGINTERN PyObject *_wrap_Point_y_get(PyObject *SWIGUNUSEDPARM(self), PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_y_get" "', argument " "1"" of type '" "Annchienta::Point *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
-  result = (int) ((arg1)->y);
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  result = (float) ((arg1)->y);
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -5252,10 +5560,10 @@ fail:
 SWIGINTERN PyObject *_wrap_Point_z_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Point *arg1 = (Annchienta::Point *) 0 ;
-  int arg2 ;
+  float arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  float val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -5266,11 +5574,11 @@ SWIGINTERN PyObject *_wrap_Point_z_set(PyObject *SWIGUNUSEDPARM(self), PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_z_set" "', argument " "1"" of type '" "Annchienta::Point *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Point_z_set" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Point_z_set" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< float >(val2);
   if (arg1) (arg1)->z = arg2;
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -5285,7 +5593,7 @@ SWIGINTERN PyObject *_wrap_Point_z_get(PyObject *SWIGUNUSEDPARM(self), PyObject 
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  int result;
+  float result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:Point_z_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
@@ -5293,8 +5601,8 @@ SWIGINTERN PyObject *_wrap_Point_z_get(PyObject *SWIGUNUSEDPARM(self), PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Point_z_get" "', argument " "1"" of type '" "Annchienta::Point *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Point * >(argp1);
-  result = (int) ((arg1)->z);
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  result = (float) ((arg1)->z);
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -5304,16 +5612,16 @@ fail:
 SWIGINTERN PyObject *_wrap_new_Point__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::PointType arg1 ;
-  int arg2 ;
-  int arg3 ;
-  int arg4 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
   int val1 ;
   int ecode1 = 0 ;
-  int val2 ;
+  float val2 ;
   int ecode2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -5327,21 +5635,21 @@ SWIGINTERN PyObject *_wrap_new_Point__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Point" "', argument " "1"" of type '" "Annchienta::PointType""'");
   } 
   arg1 = static_cast< Annchienta::PointType >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Point" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Point" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  arg2 = static_cast< float >(val2);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Point" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Point" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  arg3 = static_cast< float >(val3);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_Point" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_Point" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
+  arg4 = static_cast< float >(val4);
   result = (Annchienta::Point *)new Annchienta::Point(arg1,arg2,arg3,arg4);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Point, SWIG_POINTER_NEW |  0 );
   return resultobj;
@@ -5353,13 +5661,13 @@ fail:
 SWIGINTERN PyObject *_wrap_new_Point__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::PointType arg1 ;
-  int arg2 ;
-  int arg3 ;
+  float arg2 ;
+  float arg3 ;
   int val1 ;
   int ecode1 = 0 ;
-  int val2 ;
+  float val2 ;
   int ecode2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -5372,16 +5680,16 @@ SWIGINTERN PyObject *_wrap_new_Point__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Point" "', argument " "1"" of type '" "Annchienta::PointType""'");
   } 
   arg1 = static_cast< Annchienta::PointType >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Point" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Point" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  arg2 = static_cast< float >(val2);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Point" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Point" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
+  arg3 = static_cast< float >(val3);
   result = (Annchienta::Point *)new Annchienta::Point(arg1,arg2,arg3);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Point, SWIG_POINTER_NEW |  0 );
   return resultobj;
@@ -5393,10 +5701,10 @@ fail:
 SWIGINTERN PyObject *_wrap_new_Point__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::PointType arg1 ;
-  int arg2 ;
+  float arg2 ;
   int val1 ;
   int ecode1 = 0 ;
-  int val2 ;
+  float val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -5408,11 +5716,11 @@ SWIGINTERN PyObject *_wrap_new_Point__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Point" "', argument " "1"" of type '" "Annchienta::PointType""'");
   } 
   arg1 = static_cast< Annchienta::PointType >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Point" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Point" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< int >(val2);
+  arg2 = static_cast< float >(val2);
   result = (Annchienta::Point *)new Annchienta::Point(arg1,arg2);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Point, SWIG_POINTER_NEW |  0 );
   return resultobj;
@@ -5520,7 +5828,7 @@ SWIGINTERN PyObject *_wrap_new_Point(PyObject *self, PyObject *args) {
     }
     if (_v) {
       {
-        int res = SWIG_AsVal_int(argv[1], NULL);
+        int res = SWIG_AsVal_float(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -5536,12 +5844,12 @@ SWIGINTERN PyObject *_wrap_new_Point(PyObject *self, PyObject *args) {
     }
     if (_v) {
       {
-        int res = SWIG_AsVal_int(argv[1], NULL);
+        int res = SWIG_AsVal_float(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
         {
-          int res = SWIG_AsVal_int(argv[2], NULL);
+          int res = SWIG_AsVal_float(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
@@ -5558,17 +5866,17 @@ SWIGINTERN PyObject *_wrap_new_Point(PyObject *self, PyObject *args) {
     }
     if (_v) {
       {
-        int res = SWIG_AsVal_int(argv[1], NULL);
+        int res = SWIG_AsVal_float(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
         {
-          int res = SWIG_AsVal_int(argv[2], NULL);
+          int res = SWIG_AsVal_float(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
           {
-            int res = SWIG_AsVal_int(argv[3], NULL);
+            int res = SWIG_AsVal_float(argv[3], NULL);
             _v = SWIG_CheckState(res);
           }
           if (_v) {
@@ -5582,9 +5890,9 @@ SWIGINTERN PyObject *_wrap_new_Point(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Point'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Annchienta::Point(Annchienta::PointType,int,int,int)\n"
-    "    Annchienta::Point(Annchienta::PointType,int,int)\n"
-    "    Annchienta::Point(Annchienta::PointType,int)\n"
+    "    Annchienta::Point(Annchienta::PointType,float,float,float)\n"
+    "    Annchienta::Point(Annchienta::PointType,float,float)\n"
+    "    Annchienta::Point(Annchienta::PointType,float)\n"
     "    Annchienta::Point(Annchienta::PointType)\n"
     "    Annchienta::Point()\n"
     "    Annchienta::Point(Annchienta::Point const &)\n");
@@ -5746,7 +6054,7 @@ SWIGINTERN PyObject *_wrap_Point_distance(PyObject *SWIGUNUSEDPARM(self), PyObje
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  int result;
+  float result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Point_distance",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
@@ -5767,8 +6075,8 @@ SWIGINTERN PyObject *_wrap_Point_distance(PyObject *SWIGUNUSEDPARM(self), PyObje
       if (SWIG_IsNewObj(res2)) delete temp;
     }
   }
-  result = (int)((Annchienta::Point const *)arg1)->distance(arg2);
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  result = (float)((Annchienta::Point const *)arg1)->distance(arg2);
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -5785,7 +6093,7 @@ SWIGINTERN PyObject *_wrap_Point_noTypeCheckSquaredDistance(PyObject *SWIGUNUSED
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  int result;
+  float result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Point_noTypeCheckSquaredDistance",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Point, 0 |  0 );
@@ -5798,8 +6106,8 @@ SWIGINTERN PyObject *_wrap_Point_noTypeCheckSquaredDistance(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Point_noTypeCheckSquaredDistance" "', argument " "2"" of type '" "Annchienta::Point *""'"); 
   }
   arg2 = reinterpret_cast< Annchienta::Point * >(argp2);
-  result = (int)((Annchienta::Point const *)arg1)->noTypeCheckSquaredDistance(arg2);
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  result = (float)((Annchienta::Point const *)arg1)->noTypeCheckSquaredDistance(arg2);
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -13008,29 +13316,46 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Layer_addEntity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Layer_addObject(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Layer *arg1 = (Annchienta::Layer *) 0 ;
-  Annchienta::Entity *arg2 = (Annchienta::Entity *) 0 ;
+  Annchienta::StaticObject *arg2 = (Annchienta::StaticObject *) 0 ;
+  Annchienta::Point arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Layer_addEntity",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Layer_addObject",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Layer, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_addEntity" "', argument " "1"" of type '" "Annchienta::Layer *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Layer_addObject" "', argument " "1"" of type '" "Annchienta::Layer *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::Layer * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Layer_addEntity" "', argument " "2"" of type '" "Annchienta::Entity *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Layer_addObject" "', argument " "2"" of type '" "Annchienta::StaticObject *""'"); 
   }
-  arg2 = reinterpret_cast< Annchienta::Entity * >(argp2);
-  (arg1)->addEntity(arg2);
+  arg2 = reinterpret_cast< Annchienta::StaticObject * >(argp2);
+  {
+    res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_Annchienta__Point,  0  | 0);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Layer_addObject" "', argument " "3"" of type '" "Annchienta::Point""'"); 
+    }  
+    if (!argp3) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Layer_addObject" "', argument " "3"" of type '" "Annchienta::Point""'");
+    } else {
+      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp3);
+      arg3 = *temp;
+      if (SWIG_IsNewObj(res3)) delete temp;
+    }
+  }
+  (arg1)->addObject(arg2,arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -14039,14 +14364,18 @@ SWIGINTERN PyObject *_wrap_Map_addObject(PyObject *SWIGUNUSEDPARM(self), PyObjec
   PyObject *resultobj = 0;
   Annchienta::Map *arg1 = (Annchienta::Map *) 0 ;
   Annchienta::StaticObject *arg2 = (Annchienta::StaticObject *) 0 ;
+  Annchienta::Point arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Map_addObject",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Map_addObject",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Map, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Map_addObject" "', argument " "1"" of type '" "Annchienta::Map *""'"); 
@@ -14057,7 +14386,20 @@ SWIGINTERN PyObject *_wrap_Map_addObject(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Map_addObject" "', argument " "2"" of type '" "Annchienta::StaticObject *""'"); 
   }
   arg2 = reinterpret_cast< Annchienta::StaticObject * >(argp2);
-  (arg1)->addObject(arg2);
+  {
+    res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_Annchienta__Point,  0  | 0);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Map_addObject" "', argument " "3"" of type '" "Annchienta::Point""'"); 
+    }  
+    if (!argp3) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Map_addObject" "', argument " "3"" of type '" "Annchienta::Point""'");
+    } else {
+      Annchienta::Point * temp = reinterpret_cast< Annchienta::Point * >(argp3);
+      arg3 = *temp;
+      if (SWIG_IsNewObj(res3)) delete temp;
+    }
+  }
+  (arg1)->addObject(arg2,arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -14553,6 +14895,43 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Entity_getMask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  Annchienta::Mask *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Entity_getMask",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_getMask" "', argument " "1"" of type '" "Annchienta::Entity const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==obj0));
+  try {
+    if (upcall) {
+      Swig::DirectorPureVirtualException::raise("Annchienta::Entity::getMask");
+    } else {
+      result = (Annchienta::Mask *)((Annchienta::Entity const *)arg1)->getMask();
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  if (director) {
+    SWIG_AcquirePtr(resultobj, director->swig_release_ownership(SWIG_as_voidptr(result)));
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Entity_getMaskPosition(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
@@ -14581,6 +14960,49 @@ SWIGINTERN PyObject *_wrap_Entity_getMaskPosition(PyObject *SWIGUNUSEDPARM(self)
     SWIG_fail;
   }
   resultobj = SWIG_NewPointerObj((new Annchienta::Point(static_cast< const Annchienta::Point& >(result))), SWIGTYPE_p_Annchienta__Point, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Entity_collidesWith(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Entity *arg1 = (Annchienta::Entity *) 0 ;
+  Annchienta::Entity *arg2 = (Annchienta::Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Entity_collidesWith",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Entity_collidesWith" "', argument " "1"" of type '" "Annchienta::Entity const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Entity * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Annchienta__Entity, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Entity_collidesWith" "', argument " "2"" of type '" "Annchienta::Entity *""'"); 
+  }
+  arg2 = reinterpret_cast< Annchienta::Entity * >(argp2);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==obj0));
+  try {
+    if (upcall) {
+      result = (bool)((Annchienta::Entity const *)arg1)->Annchienta::Entity::collidesWith(arg2);
+    } else {
+      result = (bool)((Annchienta::Entity const *)arg1)->collidesWith(arg2);
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
   return NULL;
@@ -15557,6 +15979,43 @@ SWIGINTERN PyObject *_wrap_Tile_getDepth(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_fail;
   }
   resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tile_getMask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  Annchienta::Mask *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_getMask",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_getMask" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==obj0));
+  try {
+    if (upcall) {
+      result = (Annchienta::Mask *)((Annchienta::Tile const *)arg1)->Annchienta::Tile::getMask();
+    } else {
+      result = (Annchienta::Mask *)((Annchienta::Tile const *)arg1)->getMask();
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  if (director) {
+    SWIG_AcquirePtr(resultobj, director->swig_release_ownership(SWIG_as_voidptr(result)));
+  }
   return resultobj;
 fail:
   return NULL;
@@ -17014,21 +17473,22 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_StaticObject_calculateZFromCollidingTiles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_StaticObject_getZFromCollidingTiles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
+  float result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_calculateZFromCollidingTiles",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_getZFromCollidingTiles",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_calculateZFromCollidingTiles" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_getZFromCollidingTiles" "', argument " "1"" of type '" "Annchienta::StaticObject *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
-  (arg1)->calculateZFromCollidingTiles();
-  resultobj = SWIG_Py_Void();
+  result = (float)(arg1)->getZFromCollidingTiles();
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -17169,6 +17629,49 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_StaticObject_getMask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  Annchienta::Mask *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_getMask",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_getMask" "', argument " "1"" of type '" "Annchienta::StaticObject const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==obj0));
+  try {
+    if (upcall) {
+      result = (Annchienta::Mask *)((Annchienta::StaticObject const *)arg1)->Annchienta::StaticObject::getMask();
+    } else {
+      result = (Annchienta::Mask *)((Annchienta::StaticObject const *)arg1)->getMask();
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  director = SWIG_DIRECTOR_CAST(result);
+  if (director) {
+    resultobj = director->swig_get_self();
+    Py_INCREF(resultobj);
+  } else {
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
+  }
+  if (director) {
+    SWIG_AcquirePtr(resultobj, director->swig_release_ownership(SWIG_as_voidptr(result)));
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_StaticObject_setPosition(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
@@ -17281,35 +17784,6 @@ SWIGINTERN PyObject *_wrap_StaticObject_getMaskPosition(PyObject *SWIGUNUSEDPARM
     SWIG_fail;
   }
   resultobj = SWIG_NewPointerObj((new Annchienta::Point(static_cast< const Annchienta::Point& >(result))), SWIGTYPE_p_Annchienta__Point, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_StaticObject_getMask(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Swig::Director *director = 0;
-  Annchienta::Mask *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_getMask",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_getMask" "', argument " "1"" of type '" "Annchienta::StaticObject const *""'"); 
-  }
-  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
-  result = (Annchienta::Mask *)((Annchienta::StaticObject const *)arg1)->getMask();
-  director = SWIG_DIRECTOR_CAST(result);
-  if (director) {
-    resultobj = director->swig_get_self();
-    Py_INCREF(resultobj);
-  } else {
-    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Mask, 0 |  0 );
-  }
   return resultobj;
 fail:
   return NULL;
@@ -18108,6 +18582,82 @@ SWIGINTERN PyObject *_wrap_Person_getEntityType(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_fail;
   }
   resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Person_setSpeed(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Person *arg1 = (Annchienta::Person *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Person_setSpeed",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Person, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Person_setSpeed" "', argument " "1"" of type '" "Annchienta::Person *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Person * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Person_setSpeed" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==obj0));
+  try {
+    if (upcall) {
+      (arg1)->Annchienta::Person::setSpeed(arg2);
+    } else {
+      (arg1)->setSpeed(arg2);
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Person_getSpeed(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Person *arg1 = (Annchienta::Person *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Person_getSpeed",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Person, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Person_getSpeed" "', argument " "1"" of type '" "Annchienta::Person const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Person * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==obj0));
+  try {
+    if (upcall) {
+      result = (float)((Annchienta::Person const *)arg1)->Annchienta::Person::getSpeed();
+    } else {
+      result = (float)((Annchienta::Person const *)arg1)->getSpeed();
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -20393,7 +20943,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Layer_update", _wrap_Layer_update, METH_VARARGS, NULL},
 	 { (char *)"Layer_draw", _wrap_Layer_draw, METH_VARARGS, NULL},
 	 { (char *)"Layer_depthSort", _wrap_Layer_depthSort, METH_VARARGS, NULL},
-	 { (char *)"Layer_addEntity", _wrap_Layer_addEntity, METH_VARARGS, NULL},
+	 { (char *)"Layer_addObject", _wrap_Layer_addObject, METH_VARARGS, NULL},
 	 { (char *)"Layer_addArea", _wrap_Layer_addArea, METH_VARARGS, NULL},
 	 { (char *)"Layer_makeEmpty", _wrap_Layer_makeEmpty, METH_VARARGS, NULL},
 	 { (char *)"Layer_setTileSet", _wrap_Layer_setTileSet, METH_VARARGS, NULL},
@@ -20437,7 +20987,9 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Entity_draw", _wrap_Entity_draw, METH_VARARGS, NULL},
 	 { (char *)"Entity_update", _wrap_Entity_update, METH_VARARGS, NULL},
 	 { (char *)"Entity_getDepth", _wrap_Entity_getDepth, METH_VARARGS, NULL},
+	 { (char *)"Entity_getMask", _wrap_Entity_getMask, METH_VARARGS, NULL},
 	 { (char *)"Entity_getMaskPosition", _wrap_Entity_getMaskPosition, METH_VARARGS, NULL},
+	 { (char *)"Entity_collidesWith", _wrap_Entity_collidesWith, METH_VARARGS, NULL},
 	 { (char *)"Entity_setDrawn", _wrap_Entity_setDrawn, METH_VARARGS, NULL},
 	 { (char *)"Entity_isDrawn", _wrap_Entity_isDrawn, METH_VARARGS, NULL},
 	 { (char *)"Entity_setName", _wrap_Entity_setName, METH_VARARGS, NULL},
@@ -20452,6 +21004,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tile_update", _wrap_Tile_update, METH_VARARGS, NULL},
 	 { (char *)"Tile_draw", _wrap_Tile_draw, METH_VARARGS, NULL},
 	 { (char *)"Tile_getDepth", _wrap_Tile_getDepth, METH_VARARGS, NULL},
+	 { (char *)"Tile_getMask", _wrap_Tile_getMask, METH_VARARGS, NULL},
 	 { (char *)"Tile_hasPoint", _wrap_Tile_hasPoint, METH_VARARGS, NULL},
 	 { (char *)"Tile_isNullTile", _wrap_Tile_isNullTile, METH_VARARGS, NULL},
 	 { (char *)"Tile_setZ", _wrap_Tile_setZ, METH_VARARGS, NULL},
@@ -20490,15 +21043,15 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_StaticObject", _wrap_new_StaticObject, METH_VARARGS, NULL},
 	 { (char *)"delete_StaticObject", _wrap_delete_StaticObject, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_calculateCollidingTiles", _wrap_StaticObject_calculateCollidingTiles, METH_VARARGS, NULL},
-	 { (char *)"StaticObject_calculateZFromCollidingTiles", _wrap_StaticObject_calculateZFromCollidingTiles, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_getZFromCollidingTiles", _wrap_StaticObject_getZFromCollidingTiles, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getEntityType", _wrap_StaticObject_getEntityType, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_update", _wrap_StaticObject_update, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_draw", _wrap_StaticObject_draw, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getDepth", _wrap_StaticObject_getDepth, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_getMask", _wrap_StaticObject_getMask, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_setPosition", _wrap_StaticObject_setPosition, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getPosition", _wrap_StaticObject_getPosition, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getMaskPosition", _wrap_StaticObject_getMaskPosition, METH_VARARGS, NULL},
-	 { (char *)"StaticObject_getMask", _wrap_StaticObject_getMask, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getXmlFile", _wrap_StaticObject_getXmlFile, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_setSprite", _wrap_StaticObject_setSprite, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getSprite", _wrap_StaticObject_getSprite, METH_VARARGS, NULL},
@@ -20521,6 +21074,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_Person", _wrap_new_Person, METH_VARARGS, NULL},
 	 { (char *)"delete_Person", _wrap_delete_Person, METH_VARARGS, NULL},
 	 { (char *)"Person_getEntityType", _wrap_Person_getEntityType, METH_VARARGS, NULL},
+	 { (char *)"Person_setSpeed", _wrap_Person_setSpeed, METH_VARARGS, NULL},
+	 { (char *)"Person_getSpeed", _wrap_Person_getSpeed, METH_VARARGS, NULL},
 	 { (char *)"Person_update", _wrap_Person_update, METH_VARARGS, NULL},
 	 { (char *)"Person_move", _wrap_Person_move, METH_VARARGS, NULL},
 	 { (char *)"Person_stepTo", _wrap_Person_stepTo, METH_VARARGS, NULL},

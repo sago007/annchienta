@@ -88,7 +88,7 @@ namespace Annchienta
             PointType type;
 
         public:
-            int x, y, z;
+            float x, y, z;
 
             /** Creates a new Point with the given coordinates.
              *  The Z coordinate is not used most of the time.
@@ -98,7 +98,7 @@ namespace Annchienta
              *  \param y Y coordinate of the point.
              *  \param z Z coordinate of the point, not needed in most concrete cases.
              */
-            Point( PointType type=TilePoint, int x=0, int y=0, int z=0 );
+            Point( PointType type=TilePoint, float x=0, float y=0, float z=0 );
 
             /** A copy constructor that creates a new Point
              *  based on a Point that already exists.
@@ -151,7 +151,7 @@ namespace Annchienta
              *  \param other The other Point.
              *  \return The distance to the other Point.
              */
-            int distance( Point other ) const;
+            float distance( Point other ) const;
 
             /** Returns the squared distance to another Point. This
              *  function does not check the other's point type and
@@ -161,7 +161,7 @@ namespace Annchienta
              *  \return The distance to the other Point.
              *  \warning Only use this if you're sure about the Point types.
              */
-            int noTypeCheckSquaredDistance( Point *other ) const;
+            float noTypeCheckSquaredDistance( Point *other ) const;
 
     };
 

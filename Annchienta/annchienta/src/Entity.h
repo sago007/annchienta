@@ -24,6 +24,7 @@
 namespace Annchienta
 {
     class Layer;
+    class Mask;
 
     enum EntityType
     {
@@ -68,12 +69,21 @@ namespace Annchienta
              */
             virtual int getDepth() = 0;
 
+            /** \return The collision mask for this entity.
+             */
+            virtual Mask *getMask() const = 0;
+
             /** Use this when you want to know where you should
              *  place the Mask for this Entity if you want to
              *  check collision with other Entities.
              *  \return A Point describing where the Mask should be placed.
              */
             virtual Point getMaskPosition() const = 0;
+
+            /** Check if this Entity collides with another Entity.
+             *  \return If they collide.
+             */
+            virtual bool collidesWith( Entity *other ) const;
 
             /** This is used to keep track of which Entities have
              *  been drawn already this frame and which aren't.

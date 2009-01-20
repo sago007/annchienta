@@ -63,8 +63,6 @@ namespace Annchienta
 
             bool passable;
 
-            bool needsUpdate;
-
             char *onInteractScript, *onInteractCode;
 
             char xmlFile[DEFAULT_STRING_SIZE];
@@ -94,10 +92,11 @@ namespace Annchienta
             void calculateCollidingTiles();
 
             /** This function calculates the current Z coordinate
-             *  of this StaticObject and updates it's position.
+             *  of this StaticObject and returns it.
              *  \warning This function should only be used internally.
+             *  \return The new Z coordinate.
              */
-            void calculateZFromCollidingTiles();
+            float getZFromCollidingTiles();
 
             /** \return The EntityType of this StaticObject.
              */
@@ -112,9 +111,13 @@ namespace Annchienta
              */
             virtual void draw();
 
-            /** The depth this StaticObject should be sorted on.
+            /** \return The depth this StaticObject should be sorted on.
              */
             virtual int getDepth();
+
+            /** \retun The Mask for this StaticObject.
+             */
+            virtual Mask *getMask() const;
 
             /** Sets the position for this StaticObject.
              *  \param position The new position.
@@ -128,10 +131,6 @@ namespace Annchienta
             /** \return The position where the Mask of this StaticObject should be placed to calculate collisions.
              */
             virtual Point getMaskPosition() const;
-
-            /** \return The Mask used for collision detection.
-             */
-            Mask *getMask() const;
 
             /** \return The XML file this StaticObject was loaded from, otherwise 0.
              */

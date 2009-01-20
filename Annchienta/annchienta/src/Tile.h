@@ -33,6 +33,7 @@ namespace Annchienta
     };
 
     class Surface;
+    class Mask;
     class TileSet;
 
     /** \brief Holds a Tile.
@@ -84,6 +85,7 @@ namespace Annchienta
             virtual void update();
             virtual void draw();
             virtual int getDepth();
+            virtual Mask *getMask() const;
 
             /** Checks if the given point lies within this Tile.
              */

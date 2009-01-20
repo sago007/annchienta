@@ -202,17 +202,19 @@ namespace Annchienta
                             staticObject = new StaticObject( xml->getAttributeValue("name"), s, m );
                         }
 
+                        Point position;
+
                         if( xml->getAttributeValue("isox") && xml->getAttributeValue("isoy") )
-                            staticObject->setPosition( Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),
-                                                       xml->getAttributeValueAsInt("isoy"), 0 ) );
+                            position = Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),
+                                              xml->getAttributeValueAsInt("isoy"), 0 );
 
                         if( xml->getAttributeValue("mapx") && xml->getAttributeValue("mapy") )
-                            staticObject->setPosition( Point( MapPoint, xml->getAttributeValueAsInt("mapx"),
-                                                       xml->getAttributeValueAsInt("mapy"), 0 ) );
+                            position = Point( MapPoint, xml->getAttributeValueAsInt("mapx"),
+                                              xml->getAttributeValueAsInt("mapy"), 0 );
 
                         if( xml->getAttributeValue("tilex") && xml->getAttributeValue("tiley") )
-                            staticObject->setPosition( Point( TilePoint, xml->getAttributeValueAsInt("tilex"),
-                                                       xml->getAttributeValueAsInt("tiley"), 0 ) );
+                            position = Point( TilePoint, xml->getAttributeValueAsInt("tilex"),
+                                              xml->getAttributeValueAsInt("tiley"), 0 );
 
                         if( xml->getAttributeValueAsInt("camera") )
                             getMapManager()->cameraFollow( staticObject );
@@ -220,12 +222,13 @@ namespace Annchienta
                         if( xml->getAttributeValue("animation") )
                             staticObject->setAnimation( xml->getAttributeValue("animation") );
 
-                        layer->addEntity( staticObject );
+                        layer->addObject( staticObject, position );
 
                     }
                     if( !strcmp("person", xml->getNodeName() ) )
                     {
                         Person *person;
+                        Point position;
 
                         if( xml->getAttributeValue("name") && xml->getAttributeValue("config") )
                             person = new Person( xml->getAttributeValue("name"), xml->getAttributeValue("config") );
@@ -233,16 +236,16 @@ namespace Annchienta
                             logManager->error("No name and config specified for person in %s.", fileName);
 
                         if( xml->getAttributeValue("isox") && xml->getAttributeValue("isoy") )
-                            person->setPosition( Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),
-                                                 xml->getAttributeValueAsInt("isoy"), 0 ) );
+                            position = Point( IsometricPoint, xml->getAttributeValueAsInt("isox"),
+                                              xml->getAttributeValueAsInt("isoy"), 0 );
 
                         if( xml->getAttributeValue("mapx") && xml->getAttributeValue("mapy") )
-                            person->setPosition( Point( MapPoint, xml->getAttributeValueAsInt("mapx"),
-                                                 xml->getAttributeValueAsInt("mapy"), 0 ) );
+                            position = Point( MapPoint, xml->getAttributeValueAsInt("mapx"),
+                                              xml->getAttributeValueAsInt("mapy"), 0 );
 
                         if( xml->getAttributeValue("tilex") && xml->getAttributeValue("tiley") )
-                            person->setPosition( Point( TilePoint, xml->getAttributeValueAsInt("tilex"),
-                                                 xml->getAttributeValueAsInt("tiley"), 0 ) );
+                            position = Point( TilePoint, xml->getAttributeValueAsInt("tilex"),
+                                              xml->getAttributeValueAsInt("tiley"), 0 );
 
                         if( xml->getAttributeValueAsInt("camera") )
                             getMapManager()->cameraFollow( person);
@@ -250,7 +253,7 @@ namespace Annchienta
                         if( xml->getAttributeValue("animation") )
                             person->setAnimation( xml->getAttributeValue("animation") );
 
-                        layer->addEntity( person );
+                        layer->addObject( person, position );
 
                     }
                     if( !strcmp("area", xml->getNodeName() ) )
@@ -505,9 +508,9 @@ namespace Annchienta
         return (Person*) object;
     }
 
-    void Map::addObject( StaticObject *so )
+    void Map::addObject( StaticObject *so, Point position )
     {
-        layers[currentLayer]->addEntity( so );
+        layers[currentLayer]->addObject( so, position );
     }
 
     void Map::removeObject( StaticObject *so )

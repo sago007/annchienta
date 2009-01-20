@@ -19,6 +19,7 @@
 #define ANNCHIENTA_LAYER_H
 
 #include <vector>
+#include "Point.h"
 
 namespace Annchienta
 {
@@ -113,10 +114,10 @@ namespace Annchienta
              */
             void depthSort();
 
-            /** Adds an Entity to this Layer.
-             *  \param entity Entity to be added.
+            /** Adds an StaticObject to this Layer.
+             *  \param staticObject StaticObject to be added.
              */
-            void addEntity( Entity *entity );
+            void addObject( StaticObject *staticObject, Point position );
 
             /** Adds an Area to this Layer.
              *  \param area Area to be added.

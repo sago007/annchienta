@@ -16,32 +16,25 @@ august = partyManager.getPlayer()
 august.setPosition( annchienta.Point( annchienta.TilePoint, 8, 12 ) )
 
 march = annchienta.Person( "march", "locations/common/march.xml" )
-march.setPosition( annchienta.Point( annchienta.TilePoint, 9, 12 ) )
-currentMap.addObject( march )
+currentMap.addObject( march, annchienta.Point( annchienta.TilePoint, 9, 12 ) )
 
 avril = annchienta.Person( "avril", "locations/common/avril.xml" )
-avril.setPosition( annchienta.Point( annchienta.TilePoint, 7, 12 ) )
-currentMap.addObject( avril )
+currentMap.addObject( avril, annchienta.Point( annchienta.TilePoint, 7, 12 ) )
 
 ship = annchienta.StaticObject( "ship", "locations/facilities/ship.xml" )
-ship.setPosition( annchienta.Point( annchienta.TilePoint, 5, 6 ) )
-currentMap.addObject( ship )
+currentMap.addObject( ship, annchienta.Point( annchienta.TilePoint, 5, 6 ) )
 
 kyzano = annchienta.Person( "kyzano", "locations/unknown/enthavos.xml" )
-kyzano.setPosition( annchienta.Point( annchienta.TilePoint, 7, 7 ) )
-currentMap.addObject( kyzano )
+currentMap.addObject( kyzano, annchienta.Point( annchienta.TilePoint, 7, 7 ) )
 
 banver = annchienta.Person( "banver", "locations/facilities/banver.xml" )
-banver.setPosition( annchienta.Point( annchienta.TilePoint, 7, 8 ) )
-currentMap.addObject( banver )
+currentMap.addObject( banver, annchienta.Point( annchienta.TilePoint, 7, 8 ) )
 
 soldier1 = annchienta.Person( "soldier", "locations/facilities/soldier.xml" )
-soldier1.setPosition( annchienta.Point( annchienta.TilePoint, 6, 9 ) )
-currentMap.addObject( soldier1 )
+currentMap.addObject( soldier1, annchienta.Point( annchienta.TilePoint, 6, 9 ) )
 
 soldier2 = annchienta.Person( "soldier", "locations/facilities/soldier.xml" )
-soldier2.setPosition( annchienta.Point( annchienta.TilePoint, 8, 9 ) )
-currentMap.addObject( soldier2 )
+currentMap.addObject( soldier2, annchienta.Point( annchienta.TilePoint, 8, 9 ) )
 
 # Init our dialog.
 sceneManager.initDialog( [august, march, avril, kyzano, banver, soldier1, soldier2] )

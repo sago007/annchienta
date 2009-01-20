@@ -16,20 +16,16 @@ august = partyManager.getPlayer()
 august.setPosition( annchienta.Point( annchienta.TilePoint, 4, 4 ) )
 
 march = annchienta.Person( "march", "locations/common/march.xml" )
-march.setPosition( annchienta.Point( annchienta.TilePoint, 4, 5 ) )
-currentMap.addObject( march )
+currentMap.addObject( march, annchienta.Point( annchienta.TilePoint, 4, 5 ) )
 
 avril = annchienta.Person( "avril", "locations/common/avril.xml" )
-avril.setPosition( annchienta.Point( annchienta.TilePoint, 4, 6 ) )
-currentMap.addObject( avril )
+currentMap.addObject( avril, annchienta.Point( annchienta.TilePoint, 4, 6 ) )
 
 pirate1 = annchienta.Person( "emenver", "locations/fleet/pirate1.xml" )
-pirate1.setPosition( annchienta.Point( annchienta.TilePoint, 7, 5 ) )
-currentMap.addObject( pirate1 )
+currentMap.addObject( pirate1, annchienta.Point( annchienta.TilePoint, 7, 5 ) )
 
 pirate2 = annchienta.Person( "hoche", "locations/fleet/pirate2.xml" )
-pirate2.setPosition( annchienta.Point( annchienta.TilePoint, 7, 6 ) )
-currentMap.addObject( pirate2 )
+currentMap.addObject( pirate2, annchienta.Point( annchienta.TilePoint, 7, 6 ) )
 
 # Init our dialog.
 sceneManager.initDialog( [august, march, avril, pirate1, pirate2] )

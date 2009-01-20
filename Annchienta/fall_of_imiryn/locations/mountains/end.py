@@ -15,10 +15,8 @@ march = annchienta.Person( "march", "locations/common/march.xml" )
 avril = annchienta.Person( "avril", "locations/common/avril.xml" )
 
 position = august.getPosition().to( annchienta.TilePoint )
-march.setPosition( annchienta.Point( annchienta.TilePoint, position.x+1, position.y-1) )
-avril.setPosition( annchienta.Point( annchienta.TilePoint, position.x+1, position.y+1) )
-currentMap.addObject( march )
-currentMap.addObject( avril )
+currentMap.addObject( march, annchienta.Point( annchienta.TilePoint, position.x+1, position.y-1) )
+currentMap.addObject( avril, annchienta.Point( annchienta.TilePoint, position.x+1, position.y+1) )
 sceneManager.initDialog( [august, march, avril] )
 
 sceneManager.speak( august, "It wasn't long before we reached the end of the mountains, like Kyzano had told us. But when we arrived...", True )

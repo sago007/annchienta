@@ -23,7 +23,7 @@
 namespace Annchienta
 {
 
-    Point::Point( PointType _type, int _x, int _y, int _z ): type(_type), x(_x), y(_y), z(_z)
+    Point::Point( PointType _type, float _x, float _y, float _z ): type(_type), x(_x), y(_y), z(_z)
     {
     }
 
@@ -166,13 +166,13 @@ namespace Annchienta
         return ( leftTop.x<=x && leftTop.y<=y && rightBottom.x>=x && rightBottom.y>=y );
     }
 
-    int Point::distance( Point other ) const
+    float Point::distance( Point other ) const
     {
         Point tmp = other.to( type );
         return (int) sqrt( double( (x-tmp.x)*(x-tmp.x) + (y-tmp.y)*(y-tmp.y) + (z-tmp.z)*(z-tmp.z)) );
     }
 
-    int Point::noTypeCheckSquaredDistance( Point *other ) const
+    float Point::noTypeCheckSquaredDistance( Point *other ) const
     {
         return (x-other->x)*(x-other->x) + (y-other->y)*(y-other->y) + (z-other->z)*(z-other->z);
     }

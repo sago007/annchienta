@@ -14,10 +14,8 @@ august = partyManager.getPlayer()
 march = annchienta.Person( "march", "locations/common/march.xml" )
 avril = annchienta.Person( "avril", "locations/common/avril.xml" )
 
-march.setPosition( annchienta.Point( annchienta.TilePoint, 22, 7 ) )
-avril.setPosition( annchienta.Point( annchienta.TilePoint, 24, 7 ) )
-currentMap.addObject( march )
-currentMap.addObject( avril )
+currentMap.addObject( march, annchienta.Point( annchienta.TilePoint, 22, 7 ) )
+currentMap.addObject( avril, annchienta.Point( annchienta.TilePoint, 24, 7 ) )
 sceneManager.initDialog( [august, march, avril] )
 
 sceneManager.move( august, annchienta.Point( annchienta.TilePoint, 23, 7 ) )

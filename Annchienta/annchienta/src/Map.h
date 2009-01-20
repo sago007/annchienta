@@ -20,6 +20,7 @@
 
 #include <vector>
 #include "Engine.h"
+#include "Point.h"
 
 namespace Annchienta
 {
@@ -134,7 +135,7 @@ namespace Annchienta
              *  placed in the current Layer.
              *  \param so StaticObject to be added.
              */
-            void addObject( StaticObject *so );
+            void addObject( StaticObject *so, Point position );
 
             /** Removes an object from this Map. If you don't have
              *  a pointer to it, only the name, use getObject() first.

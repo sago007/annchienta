@@ -14,8 +14,7 @@ march = currentMap.getPerson("march")
 avril = currentMap.getPerson("avril")
 
 banver = annchienta.Person( "banver", "locations/facilities/banver.xml" )
-banver.setPosition( annchienta.Point( annchienta.TilePoint, 2, 5 ) )
-currentMap.addObject( banver )
+currentMap.addObject( banver, annchienta.Point( annchienta.TilePoint, 2, 5 ) )
 
 # Init our dialog.
 sceneManager.initDialog( [august, march, avril, banver] )

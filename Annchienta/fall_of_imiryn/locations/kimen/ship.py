@@ -27,16 +27,13 @@ else:
     august.setPosition( annchienta.Point( annchienta.TilePoint, shipPosition.x+1, shipPosition.y+1 ) )
 
     march = annchienta.Person( "march", "locations/common/march.xml" )
-    march.setPosition( annchienta.Point( annchienta.TilePoint, shipPosition.x+2, shipPosition.y+1 ) )
-    currentMap.addObject( march )
+    currentMap.addObject( march, annchienta.Point( annchienta.TilePoint, shipPosition.x+2, shipPosition.y+1 ) )
 
     avril = annchienta.Person( "avril", "locations/common/avril.xml" )
-    avril.setPosition( annchienta.Point( annchienta.TilePoint, shipPosition.x+1, shipPosition.y+2 ) )
-    currentMap.addObject( avril )
+    currentMap.addObject( avril, annchienta.Point( annchienta.TilePoint, shipPosition.x+1, shipPosition.y+2 ) )
 
     captain = annchienta.Person( "captain", "locations/kimen/captain.xml" )
-    captain.setPosition( annchienta.Point( annchienta.TilePoint, shipPosition.x+1, shipPosition.y+7 ) )
-    currentMap.addObject( captain )
+    currentMap.addObject( captain, annchienta.Point( annchienta.TilePoint, shipPosition.x+1, shipPosition.y+7 ) )
     
     sceneManager.initDialog( [august, march, avril, captain] )
 

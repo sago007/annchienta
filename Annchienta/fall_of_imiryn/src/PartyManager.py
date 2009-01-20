@@ -85,10 +85,10 @@ class PartyManager(object):
         # Now that we have a map we can place the player in it
         playerElement = self.document.getElementsByTagName("player")[0]
         self.player = annchienta.Person( str(playerElement.getAttribute("name")), str(playerElement.getAttribute("config")) )
-        self.player.setPosition( annchienta.Point( annchienta.IsometricPoint, int(playerElement.getAttribute("isox")), int(playerElement.getAttribute("isoy")) ) )
+        playerPosition = annchienta.Point( annchienta.IsometricPoint, int(playerElement.getAttribute("isox")), int(playerElement.getAttribute("isoy")) )
 
         # Add the player to the map and give him control
-        self.currentMap.addObject( self.player )
+        self.currentMap.addObject( self.player, playerPosition )
         self.player.setInputControl()
         self.mapManager.cameraFollow( self.player )
         self.mapManager.cameraPeekAt( self.player, True )
@@ -143,8 +143,8 @@ class PartyManager(object):
         playerElement.setAttribute( "config", self.player.getXmlFile() )
         point = self.player.getPosition()
         point.convert( annchienta.IsometricPoint )
-        playerElement.setAttribute( "isox", str(point.x) )
-        playerElement.setAttribute( "isoy", str(point.y) )
+        playerElement.setAttribute( "isox", str(int(point.x)) )
+        playerElement.setAttribute( "isoy", str(int(point.y)) )
         partyElement.appendChild( playerElement )
 
         # Append the inventory to the party node.
@@ -185,15 +185,13 @@ class PartyManager(object):
         if fade:
             self.sceneManager.fade()
 
-        self.player.setPosition( newPosition )
-
         # Remove player from map
         self.currentMap.removeObject( self.player )
 
         self.lastMaps += [self.currentMap]
         self.currentMap = self.mapLoader.loadMap( newMapFileName )
         self.currentMap.setCurrentLayer( newLayer )
-        self.currentMap.addObject( self.player )
+        self.currentMap.addObject( self.player, newPosition )
         self.mapManager.setCurrentMap( self.currentMap )
         self.mapManager.cameraPeekAt( self.player, True )
 
@@ -208,7 +206,7 @@ class PartyManager(object):
         self.player.setPosition( newPosition )
         self.currentMap.removeObject( self.player )
         self.currentMap.setCurrentLayer( index )
-        self.currentMap.addObject( self.player )
+        self.currentMap.addObject( self.player, newPosition )
 
         # Because changing a layer can take some time:
         self.mapManager.resync()

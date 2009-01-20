@@ -18,12 +18,9 @@ enthavos = annchienta.Person( "enthavos", "locations/unknown/enthavos.xml" )
 
 position = annchienta.Point( annchienta.TilePoint, 17, 20 )
 august.setPosition( position )
-march.setPosition( annchienta.Point( annchienta.TilePoint, position.x+1, position.y ) )
-avril.setPosition( annchienta.Point( annchienta.TilePoint, position.x+2, position.y ) )
-enthavos.setPosition( annchienta.Point( annchienta.TilePoint, position.x+1, position.y-3 ) )
-currentMap.addObject( march )
-currentMap.addObject( avril )
-currentMap.addObject( enthavos )
+currentMap.addObject( march, annchienta.Point( annchienta.TilePoint, position.x+1, position.y ) )
+currentMap.addObject( avril, annchienta.Point( annchienta.TilePoint, position.x+2, position.y ) )
+currentMap.addObject( enthavos, annchienta.Point( annchienta.TilePoint, position.x+1, position.y-3 ) )
 sceneManager.initDialog( [august, march, avril, enthavos] )
 
 sceneManager.move( [august, march, avril, enthavos ], [ annchienta.Point( annchienta.TilePoint, 17, 6 ), 

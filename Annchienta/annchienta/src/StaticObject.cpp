@@ -61,7 +61,7 @@ namespace Annchienta
  
     StaticObject *activeObject=0, *passiveObject=0;
 
-    StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), passable(false), needsUpdate(true), onInteractScript(0), onInteractCode(0)
+    StaticObject::StaticObject( const char *_name, const char *configfile ): Entity(_name), sprite(0), mask(0), tileStandingOn(0), currentFrame(0), passable(false), onInteractScript(0), onInteractCode(0)
     {
         /* We might need to log stuff here. */
         LogManager *logManager = getLogManager();
@@ -170,7 +170,7 @@ namespace Annchienta
         speedTimer = 0;
     }
 
-    StaticObject::StaticObject( const char *_name, Surface *_surf, Mask *_mask ): Entity(_name), sprite(_surf), mask(_mask), tileStandingOn(0), currentFrame(0), passable(false), needsUpdate(true), onInteractScript(0), onInteractCode(0)
+    StaticObject::StaticObject( const char *_name, Surface *_surf, Mask *_mask ): Entity(_name), sprite(_surf), mask(_mask), tileStandingOn(0), currentFrame(0), passable(false), onInteractScript(0), onInteractCode(0)
     {
         /* Create a default frame. */
         Frame *frame = new Frame;
@@ -237,32 +237,35 @@ namespace Annchienta
             }
 
         }
+
         /* Do a depthsort on them. */
         collidingTiles.sort( DepthSortPredicate );
     }
 
-    void StaticObject::calculateZFromCollidingTiles()
+    float StaticObject::getZFromCollidingTiles()
     {
-        /* Now, we set out Z to the highest one of the colliding tiles.
-            */
+        /* We need the MapManager. */
+        MapManager *mapManager = getMapManager();
+
+        /* Now, we set out Z to the highest one of the colliding tiles. */
         bool first = true;
-        position.z = 0;
+        int newZ = 0;
         for( std::list<Tile*>::iterator i = collidingTiles.begin(); i!=collidingTiles.end(); i++ )
         {
             if( (*i)->getObstructionType() != NoObstruction )
             {
                 for( int p=0; p<4; p++ )
                 {
-                    if( ((*i)->getZ(p) > position.z) || first )
+                    if( ((*i)->getZ(p) > newZ) || first )
                     {
-                        position.z = (*i)->getZ(p);
+                        newZ = (*i)->getZ(p);
                         first = false;
                     }
                 }
             }
         }
 
-        mapPosition = position.to( MapPoint );
+        return newZ;
     }
 
     EntityType StaticObject::getEntityType() const
@@ -282,14 +285,6 @@ namespace Annchienta
                     currentFrame = 0;
                 speedTimer = 0;
             }
-        }
-
-        if( needsUpdate && layer )
-        {
-            calculateCollidingTiles();
-            calculateZFromCollidingTiles();
-
-            needsUpdate = false;
         }
 
         mapPosition = position.to( MapPoint );
@@ -352,11 +347,18 @@ namespace Annchienta
         return dsy-1;
     }
 
+    Mask *StaticObject::getMask() const
+    {
+        return mask;
+    }
+
     void StaticObject::setPosition( Point _position )
     {
         position = _position.to( IsometricPoint );
-        mapPosition = _position.to( MapPoint );
-        needsUpdate = true;
+        mapPosition = position.to( MapPoint );
+
+        calculateCollidingTiles();
+        mapPosition.z = position.z = getZFromCollidingTiles();
     }
 
     Point StaticObject::getPosition() const
@@ -367,11 +369,6 @@ namespace Annchienta
     Point StaticObject::getMaskPosition() const
     {
         return Point( MapPoint, mapPosition.x - (mask->getWidth()>>1), mapPosition.y - mask->getHeight(), mapPosition.z );
-    }
-
-    Mask *StaticObject::getMask() const
-    {
-        return mask;
     }
 
     const char *StaticObject::getXmlFile() const
@@ -473,8 +470,7 @@ namespace Annchienta
     bool StaticObject::stepTo( Point p )
     {
         getLogManager()->warning("Attempt to step static object '%s'. Warping.", this->getName(), p.x, p.y );
-        position = p.to(IsometricPoint);
-        needsUpdate = true;
+        setPosition( p );
         return false;
     }
 

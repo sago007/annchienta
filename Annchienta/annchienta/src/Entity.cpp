@@ -16,6 +16,7 @@
  */
 
 #include "Entity.h"
+#include "Mask.h"
 
 #include <cstdio>
 #include <cstring>
@@ -31,6 +32,17 @@ namespace Annchienta
 
     Entity::~Entity()
     {
+    }
+
+    bool Entity::collidesWith( Entity *other ) const
+    {
+        Point myPosition = getMaskPosition();
+        Point otherPosition = other->getMaskPosition();
+        Mask *myMask = getMask();
+        Mask *otherMask = other->getMask();
+
+        return myMask->collision( myPosition.x, myPosition.y, otherMask,
+                                  otherPosition.x, otherPosition.y );
     }
 
     void Entity::setDrawn( bool d )

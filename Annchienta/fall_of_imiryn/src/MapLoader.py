@@ -30,12 +30,10 @@ class MapLoader(object):
                 item = str( chestElements[c].getAttribute("item") )
                 chest = Chest( item, uniqueId )
 
-                chest.setPosition( annchienta.Point( annchienta.TilePoint, int(chestElements[c].getAttribute("tilex")), int(chestElements[c].getAttribute("tiley")) ) )
-
                 if partyManager.hasRecord( uniqueId ):
                     chest.setAnimation( "opened" )
 
-                loadedMap.addObject( chest )
+                loadedMap.addObject( chest, annchienta.Point( annchienta.TilePoint, int(chestElements[c].getAttribute("tilex")), int(chestElements[c].getAttribute("tiley")) ) )
                 # Do not keep this reference
                 chest = chest.__disown__()
 

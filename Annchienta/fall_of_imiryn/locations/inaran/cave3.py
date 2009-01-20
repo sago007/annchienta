@@ -16,12 +16,10 @@ august = partyManager.getPlayer()
 augustPosition = august.getPosition().to( annchienta.TilePoint )
 
 march = annchienta.Person( "march", "locations/common/march.xml" )
-march.setPosition( annchienta.Point( annchienta.TilePoint, augustPosition.x + 1, augustPosition.y ) )
-currentMap.addObject( march )
+currentMap.addObject( march, annchienta.Point( annchienta.TilePoint, augustPosition.x + 1, augustPosition.y ) )
 
 avril = annchienta.Person( "avril", "locations/common/avril.xml" )
-avril.setPosition( annchienta.Point( annchienta.TilePoint, augustPosition.x, augustPosition.y+1 ) )
-currentMap.addObject( avril )
+currentMap.addObject( avril, annchienta.Point( annchienta.TilePoint, augustPosition.x, augustPosition.y+1 ) )
 
 # Init our dialog.
 sceneManager.initDialog( [august, march, avril] )

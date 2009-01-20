@@ -20,6 +20,7 @@
 #include <GL/gl.h>
 #include <cstdio>
 #include "Surface.h"
+#include "Mask.h"
 #include "MapManager.h"
 #include "TileSet.h"
 
@@ -255,6 +256,11 @@ namespace Annchienta
     int Tile::getDepth()
     {
         return points[2].y;
+    }
+
+    Mask *Tile::getMask() const
+    {
+        return tileSet->getMask();
     }
 
     bool Tile::hasPoint( Point point )
