@@ -95,5 +95,10 @@ namespace Annchienta
         return value>0?value:-value;
     }
 
+    float MathManager::abs( const float &value ) const
+    {
+        return value>0?value:-value;
+    }
+
 };
 

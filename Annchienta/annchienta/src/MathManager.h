@@ -92,6 +92,11 @@ namespace Annchienta
              */
             int abs( const int &value ) const;
 
+            /** Returns the absolute value.
+             *  \param value A floating point number.
+             *  \return The absolute value of the input.
+             */
+            float abs( const float &value ) const;
     };
 
     /** \return An instance of the global MathManager.

@@ -258,6 +258,20 @@ namespace Annchienta
             collidingTiles = oldCollidingTiles;
             this->setStandAnimation();
         }
+        else
+        {
+            MathManager *mathManager = getMathManager();
+
+            /* Now, we update the Z coordinate seperately to
+             * "smooth out" going up and down. */
+            if( mathManager->abs( position.z - oldPosition.z ) > 2*speed )
+            {
+                if( position.z > oldPosition.z )
+                    position.z = oldPosition.z + 2*speed;
+                else
+                    position.z = oldPosition.z - 2*speed;
+            }
+        }
 
         return possible;
     }
