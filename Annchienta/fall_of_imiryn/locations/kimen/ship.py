@@ -59,7 +59,7 @@ else:
         sceneManager.speak( august, "I revenged my brother." )
         sceneManager.speak( march, "We freed the Laustwan." )
         sceneManager.speak( august, "We can now return to Imiryn. The upper class will hate us, but..." )
-        sceneManager.speak( august, "That won't matter. We did what we have to do... When we tell the truth, we will be accepted." )
+        sceneManager.speak( august, "That won't matter. We did what we had to do... When we tell the truth, we will be accepted." )
         sceneManager.fade()
         execfile("locations/kimen/epilogue.py")
 

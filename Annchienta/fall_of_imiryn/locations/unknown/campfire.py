@@ -81,7 +81,7 @@ else:
     sceneManager.speak( avril, "No, I am serious." )
     sceneManager.speak( march, "Whatever. I'm going to get some sleep. We'd better all do that. Tomorrow, we head inland." )
     sceneManager.speak( avril, "But we're not alone here! I mean, the axe we found, the... We take guards." )
-    sceneManager.speak( march, "Alright, allright. You take the first guard, then." )
+    sceneManager.speak( march, "Alright, alright. You take the first guard, then." )
     sceneManager.speak( august, "I'll take the second guard." )
     sceneManager.speak( march, "Then I'll take the last guard. See you all tomorrow." )
 

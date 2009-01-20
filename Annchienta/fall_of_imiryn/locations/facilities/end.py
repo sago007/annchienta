@@ -74,7 +74,7 @@ sceneManager.speak( avril, "Yeah, but I treat him right! I don't lock him up." )
 sceneManager.speak( banver, "Idiots. Did you never wonder what Laustwan are?" )
 sceneManager.speak( soldier1, "General... We are receiving new reports. A massive fleet of sky pirates is gathering near our capital." )
 sceneManager.speak( soldier2, "Why can't those arrogant thieves leave us alone?" )
-sceneManager.speak( banver, "Allright then. Let's finish these fools off and fly back." )
+sceneManager.speak( banver, "Alright then. Let's finish these fools off and fly back." )
 
 battleManager = BattleManager.getBattleManager()
 won = battleManager.runBattle( ["soldier", "banver", "soldier"], annchienta.Surface("images/backgrounds/facilities.png"), False )
@@ -90,11 +90,11 @@ if won:
     sceneManager.move( [august, march, avril], [ annchienta.Point( annchienta.TilePoint, 8, 8 ), 
                                                  annchienta.Point( annchienta.TilePoint, 9, 9 ), 
                                                  annchienta.Point( annchienta.TilePoint, 7, 9 ) ] )
-    sceneManager.speak( august, "Brother! Are you allright?" )
+    sceneManager.speak( august, "Brother! Are you alright?" )
     sceneManager.speak( kyzano, "Have been better..." )
     sceneManager.speak( august, "It's over now. We stopped him." )
     sceneManager.speak( kyzano, "I know... that's good... but it's not all over yet. You have his airship now..." )
-    sceneManager.speak( kyzano, "Fly to Kimen, a place north of the Imiryn Empirial City." )
+    sceneManager.speak( kyzano, "Fly to Kimen, a place north of the Imiryn Imperial City." )
     sceneManager.speak( august, "To do what? How long do we have to keep on fighting? We don't even know what we're fighting for! I want answers... please." )
     sceneManager.speak( kyzano, "Near Kimen, you will find a plantation... there, you will find the truth..." )
     sceneManager.speak( kyzano, "I don't know everything myself, but..." )

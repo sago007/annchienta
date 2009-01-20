@@ -82,7 +82,7 @@ else:
         sceneManager.initDialog( [august, avril, march ] )
         
         sceneManager.speak( avril, "Did you hear that? We have to destroy this plantation, quick!" )
-        sceneManager.speak( august, "Then Empire will not be able to make the drugs for some time..." )
+        sceneManager.speak( august, "Then Empire will not be able to make the drugs for a long time..." )
         sceneManager.speak( march, "And then the people will find out the truth!" )
         
         sceneManager.quitDialog()

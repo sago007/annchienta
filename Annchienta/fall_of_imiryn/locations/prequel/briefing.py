@@ -68,7 +68,7 @@ videoManager.flip()
 
 sceneManager.waitForClick()
 
-sceneManager.text( "The Nupol continent was more dangerous then the Empire had expected. It took time before the first colonists settled on the northern side of it.", None )
+sceneManager.text( "The Nupol continent was more dangerous than the Empire had expected. It took time before the first colonists settled on the northern side of it.", None )
 sceneManager.text( "At that time, the Laustwan were discovered in the Nupol continent.", None )
 sceneManager.text( "The Laustwan were a tribe of apparently human-like creatures, who offered their services to men.", None )
 sceneManager.text( "Communication with them turned out to be hard, as they were only capable of making strange cries, and they didn't seem to understand any language.", None )
@@ -80,7 +80,7 @@ videoManager.flip()
 videoManager.flip()
 
 sceneManager.text( "With their help, the Empire was able to expand their territories, and people and Laustwan were able to live very comfortable lives.", None )
-sceneManager.text( "But as they Empire grew more prosperous, pirate attacks became more and more frequent. To protect itself, the Empire created an army.", None )
+sceneManager.text( "But as the Empire grew more prosperous, pirate attacks became more and more frequent. To protect itself, the Empire created an army.", None )
 sceneManager.text( "The elite section of this army was called the Fifth Guard.", None )
 sceneManager.text( "Our story handles about three aspiring young warriors, hoping to join this Fifth Guard.", None )
 sceneManager.text( "After receiving their orders, they travelled to the Inaran regions, where their task was to be accomplished...", None )

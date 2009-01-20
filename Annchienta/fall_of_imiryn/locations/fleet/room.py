@@ -57,17 +57,17 @@ sceneManager.speak( pirate1, "What side are you on, if you're not with the Empir
 sceneManager.speak( march, "We have no side anymore. We are driven by our heart, not by orders." )
 sceneManager.speak( pirate1, "You almost sound like a pirate." )
 
-sceneManager.speak( march, "Then release us! We're not headed to the Empirial City, but to a place north of it." )
+sceneManager.speak( march, "Then release us! We're not headed to the Imperial City, but to a place north of it." )
 sceneManager.speak( march, "We promise we won't stand in your way." )
 
 sceneManager.speak( pirate2, "We will release you. Aren't we friendly pirates? We only demand one little thing." )
-sceneManager.speak( pirate1, "We want the flight access code of your aircraft to the outer Imiryn Empirial City regions." )
+sceneManager.speak( pirate1, "We want the flight access code of your aircraft to the outer Imiryn Imperial City regions." )
 
 sceneManager.speak( march, "We can't do that... That would be betrayal." )
 sceneManager.speak( pirate2, "Didn't you just say you weren't allied to Imiryn anymore?" )
 sceneManager.speak( march, "Yeah, but..." )
 sceneManager.speak( pirate1, "Would you rather die?" )
-sceneManager.speak( august, "I would've gladly died. But no more. I just saw an Empirial general kill my brother." )
+sceneManager.speak( august, "I would've gladly died. But no more. I just saw an Imperial general kill my brother." )
 sceneManager.speak( august, "Besides... Kyzano said what we're fighting for is more important than our Empire." )
 sceneManager.speak( avril, "I agree." )
 
