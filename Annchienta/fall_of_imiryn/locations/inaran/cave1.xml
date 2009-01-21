@@ -35,7 +35,7 @@
 </tiles>
 
 <!-- Way to beach. -->
-<area tilex1="13" tilex2="14" tiley1="28" tiley2="30">
+<area tilex1="13" tilex2="16" tiley1="28" tiley2="30">
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/inaran/beach.xml&quot;, annchienta.Point( annchienta.TilePoint, 19, 15 ) )

@@ -248,7 +248,7 @@ class Ally( Combatant.Combatant ):
                     target = c
                     distance = d
 
-            target.marked = True
+            target.setSelected( True )
             
             # Check for input
             if not battle.inputManager.isRunning() or battle.inputManager.buttonTicked(1):
@@ -267,9 +267,9 @@ class Ally( Combatant.Combatant ):
             
             battle.videoManager.flip()
 
-            # Reset marked
+            # Reset selected mark
             for c in battle.combatants:
-                c.marked = False
+                c.setSelected( False )
 
         return target
 

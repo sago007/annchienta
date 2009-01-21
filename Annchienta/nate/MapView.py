@@ -164,10 +164,10 @@ class MapView:
                         self.videoManager.setColor( 255, 0, 0, 100 )
 
                     # Draw a quad
-                    self.videoManager.drawQuad( tilePoints[0].x, tilePoints[0].y,
-                                                tilePoints[1].x, tilePoints[1].y,
-                                                tilePoints[2].x, tilePoints[2].y,
-                                                tilePoints[3].x, tilePoints[3].y,
+                    self.videoManager.drawQuad( int(tilePoints[0].x), int(tilePoints[0].y),
+                                                int(tilePoints[1].x), int(tilePoints[1].y),
+                                                int(tilePoints[2].x), int(tilePoints[2].y),
+                                                int(tilePoints[3].x), int(tilePoints[3].y),
                                               )
 
         self.videoManager.pop()

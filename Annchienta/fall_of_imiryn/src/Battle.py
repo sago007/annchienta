@@ -214,7 +214,15 @@ class Battle(object):
             actor = self.actionQueue[ 0 ]
 
             if actor in self.combatants:
+
+                # Note that we set him to 'selected', which will
+                # cause it do draw an arrow above his head, so
+                # the player can clearly see what's going on.
+                if actor.isAlly():
+                    actor.setActive(True)
                 action, target = actor.selectAction( self )
+                if actor.isAlly():
+                    actor.setActive(False)
 
                 # If the user cancelled, but the ally back of the queue
                 if action is None:

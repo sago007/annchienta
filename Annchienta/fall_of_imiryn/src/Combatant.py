@@ -84,7 +84,8 @@ class Combatant( BattleEntity.BattleEntity ):
         self.position = annchienta.Vector( 0, 0 )
         
         # We will draw a mark upon ourselves sometimes
-        self.marked = False
+        self.active = False
+        self.selected = False
         
         # Damage done by an attack
         self.damage = 0
@@ -124,6 +125,18 @@ class Combatant( BattleEntity.BattleEntity ):
 
     def getHeight( self ):
         return self.height
+
+    def setActive( self, active ):
+        self.active = active
+
+    def isActive( self ):
+        return self.active
+
+    def setSelected( self, selected ):
+        self.selected = selected
+
+    def isSelected( self ):
+        return self.selected
     
     # Must be called before every battle
     def reset( self ):
@@ -320,11 +333,17 @@ class Combatant( BattleEntity.BattleEntity ):
         self.videoManager.translate( self.position.x, self.position.y )
 
         # Draw an arrow above our head when we're 'marked'.
-        if self.marked:
+        if self.isSelected() or self.isActive():
             self.videoManager.push()
 
             self.videoManager.translate( 0, -self.height )
-            self.videoManager.setColor( 255, 255, 0, 150 )
+
+            # Select a different color when we're selected and marked.
+            if self.isSelected() and self.isActive():
+                self.videoManager.setColor( 255, 0, 0, 150 )
+            else:
+                self.videoManager.setColor( 255, 255, 0, 150 )
+
             self.videoManager.drawTriangle( int(-self.width/2), 0, 0, int(self.height/2), int(self.width/2), 0 )
             self.videoManager.setColor()
 
