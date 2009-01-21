@@ -259,6 +259,7 @@ namespace Annchienta
                     if( !strcmp("area", xml->getNodeName() ) )
                     {
                         Point p1, p2;
+                        bool visible = false;
 
                         if( xml->getAttributeValue("isox1") )
                         {
@@ -281,7 +282,10 @@ namespace Annchienta
                             p2 = Point( TilePoint,this->getWidth(), this->getHeight() );
                         }
 
-                        Area *area = new Area( p1, p2 );
+                        if( xml->getAttributeValue("visible") )
+                            visible = (bool) xml->getAttributeValueAsInt("visible");
+
+                        Area *area = new Area( p1, p2, visible );
 
                         if( xml->getAttributeValue("script") )
                             area->setOnCollisionScript( xml->getAttributeValue("script") );

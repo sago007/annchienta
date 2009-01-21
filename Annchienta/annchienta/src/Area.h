@@ -22,6 +22,7 @@
 
 namespace Annchienta
 {
+    class Tile;
 
     /** An area is a rectangular field on a map.
      *  It is used to trigger code when the player
@@ -32,17 +33,34 @@ namespace Annchienta
     {
         private:
             Point p1, p2;
-
+            /* Also keep map points to speed stuff up. */
+            /* 1-----------4
+             * |           |
+             * 2-----------3
+             */
+            Point mp1, mp2, mp3, mp4;
             char *onCollisionScript, *onCollisionCode;
+            bool visible;
 
         public:
 
             /** Create a new area.
              *  \param p1 The upper left corner of the area.
              *  \param p2 The bottom right corner of the area.
+             *  \param visible If the Area should be visible.
              */
-            Area( Point p1, Point p2 );
+            Area( Point p1, Point p2, bool visible=false );
             ~Area();
+
+            /** If the Area is visible, a visual indication will
+             *  be drawn over it.
+             *  \param visible If the Area should be visible.
+             */
+            void setVisible( bool visible );
+
+            /** \return If the Area is visible.
+             */
+            bool isVisible() const;
 
             /** Sets the script to be executed on collision
              *  with the player.
@@ -59,6 +77,10 @@ namespace Annchienta
             /** Checks if the given Point lies in this area.
              */
             bool hasPoint( Point point );
+
+            /** Checks if the given Tile lies in this area. (Entirely)
+             */
+            bool hasTile( Tile *tile );
 
             /** Trigger collision. This is done by the MapManager,
              *  but can also be emulated manually.

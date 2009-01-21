@@ -180,6 +180,19 @@ namespace Annchienta
     void Layer::addArea( Area *area )
     {
         areas.push_back( area );
+
+        /* Mark tiles in this area. */
+        if( area->isVisible() && tiles )
+        {
+            for( int y=0; y<getHeight(); y++ )
+            {
+                for( int x=0; x<getWidth(); x++ )
+                {
+                    if( area->hasTile( getTile(x,y) ) )
+                        getTile(x,y)->setVisualIndication( true );
+                }
+            }
+        }
     }
 
     void Layer::makeEmpty()

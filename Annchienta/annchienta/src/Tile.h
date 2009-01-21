@@ -69,6 +69,11 @@ namespace Annchienta
              */
             bool shadowed;
 
+            /* If the tile is a specially marked tile.
+             * (this is usually when an area lies on it.)
+             */
+            bool visualIndication;
+
             bool nullTile;
             bool needsRecompiling;
 
@@ -148,6 +153,9 @@ namespace Annchienta
 
             void setShadowed( bool shadowed );
             bool isShadowed() const;
+
+            void setVisualIndication( bool visualIndication );
+            bool hasVisualIndication() const;
 
             /** \brief Sets the ObstructionType.
              *

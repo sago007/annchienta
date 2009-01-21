@@ -589,6 +589,8 @@ class Tile(Entity):
     def getSideSurfaceOffset(*args): return _annchienta.Tile_getSideSurfaceOffset(*args)
     def setShadowed(*args): return _annchienta.Tile_setShadowed(*args)
     def isShadowed(*args): return _annchienta.Tile_isShadowed(*args)
+    def setVisualIndication(*args): return _annchienta.Tile_setVisualIndication(*args)
+    def hasVisualIndication(*args): return _annchienta.Tile_hasVisualIndication(*args)
     def setObstructionType(*args): return _annchienta.Tile_setObstructionType(*args)
     def getObstructionType(*args): return _annchienta.Tile_getObstructionType(*args)
     def __disown__(self):

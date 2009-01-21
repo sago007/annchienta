@@ -23,6 +23,7 @@
 #include "Mask.h"
 #include "MapManager.h"
 #include "TileSet.h"
+#include "VideoManager.h"
 
 namespace Annchienta
 {
@@ -35,9 +36,11 @@ namespace Annchienta
             return;
 
         /* Obtain a reference to the map manager, because we
-         * we need to know tile width and height.
+         * we need to know tile width and height. We also use
+         * the VideoManager to draw some generic things.
          */
-        MapManager *mapMgr = getMapManager();
+        MapManager *mapManager = getMapManager();
+        VideoManager *videoManager = getVideoManager();
 
         /* Set some more values.
          */
@@ -142,8 +145,8 @@ namespace Annchienta
             /* Get come specific texture coords.
              */
             float centerX = 0.5f*( sideSurface->getLeftTexCoord() + sideSurface->getRightTexCoord() );
-            float topY = 1.0f -  ((float)(mapMgr->getTileHeight()/2))/(float)sideSurface->getGlHeight();
-            float downY = 1.0f -  ((float)(sideSurface->getHeight()-mapMgr->getTileHeight()/2))/(float)sideSurface->getGlHeight();
+            float topY = 1.0f -  ((float)(mapManager->getTileHeight()/2))/(float)sideSurface->getGlHeight();
+            float downY = 1.0f -  ((float)(sideSurface->getHeight()-mapManager->getTileHeight()/2))/(float)sideSurface->getGlHeight();
 
             /* Use a triangle strip to draw a
              *     -       -
@@ -178,6 +181,18 @@ namespace Annchienta
             glEnd();
         }
 
+        /* If the tile has been marked, draw a border around it. */
+        if( hasVisualIndication() )
+        {
+            videoManager->setColor( 0, 255, 0, 150 );
+            for( int i=0; i<4; i++ )
+            {
+                /* j represents the next point. */
+                int j = (i+1)%4;
+                videoManager->drawLine( points[i].x, points[i].y-points[i].z, points[j].x, points[j].y-points[j].z );
+            }
+        }
+
         glPopMatrix();
         
         /* Reset face culling. */
@@ -191,8 +206,7 @@ namespace Annchienta
 
     Tile::Tile( TileSet *ts, Point p0, int s0, Point p1, int s1, Point p2, int s2,
                 Point p3, int s3, int sso, int side ): Entity("tile"), list(0), tileSet(ts),
-                sideSurfaceOffset(sso), shadowed(false), nullTile(false), needsRecompiling(true),
-                obstruction(DefaultObstruction)
+                sideSurfaceOffset(sso), obstruction(DefaultObstruction)
     {
         points[0] = p0;
         surfaceNumbers[0] = s0;
@@ -204,6 +218,11 @@ namespace Annchienta
         surfaceNumbers[3] = s3;
         sideSurface = tileSet->getSideSurface(side);
         sideSurfaceNumber = side;
+
+        shadowed = false;
+        visualIndication = false;
+        nullTile = false;
+        needsRecompiling = true;
 
         for( int i=0; i<4; i++ )
         {
@@ -353,6 +372,17 @@ namespace Annchienta
     bool Tile::isShadowed() const
     {
         return shadowed;
+    }
+
+    void Tile::setVisualIndication( bool visualIndication )
+    {
+        this->visualIndication = visualIndication;
+        needsRecompiling = true;
+    }
+
+    bool Tile::hasVisualIndication() const
+    {
+        return visualIndication;
     }
 
     void Tile::setObstructionType( ObstructionType o )

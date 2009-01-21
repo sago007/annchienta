@@ -16493,6 +16493,58 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tile_setVisualIndication(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tile_setVisualIndication",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_setVisualIndication" "', argument " "1"" of type '" "Annchienta::Tile *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tile_setVisualIndication" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  (arg1)->setVisualIndication(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tile_hasVisualIndication(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tile_hasVisualIndication",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Tile, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tile_hasVisualIndication" "', argument " "1"" of type '" "Annchienta::Tile const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Tile * >(argp1);
+  result = (bool)((Annchienta::Tile const *)arg1)->hasVisualIndication();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Tile_setObstructionType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::Tile *arg1 = (Annchienta::Tile *) 0 ;
@@ -21101,6 +21153,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tile_getSideSurfaceOffset", _wrap_Tile_getSideSurfaceOffset, METH_VARARGS, NULL},
 	 { (char *)"Tile_setShadowed", _wrap_Tile_setShadowed, METH_VARARGS, NULL},
 	 { (char *)"Tile_isShadowed", _wrap_Tile_isShadowed, METH_VARARGS, NULL},
+	 { (char *)"Tile_setVisualIndication", _wrap_Tile_setVisualIndication, METH_VARARGS, NULL},
+	 { (char *)"Tile_hasVisualIndication", _wrap_Tile_hasVisualIndication, METH_VARARGS, NULL},
 	 { (char *)"Tile_setObstructionType", _wrap_Tile_setObstructionType, METH_VARARGS, NULL},
 	 { (char *)"Tile_getObstructionType", _wrap_Tile_getObstructionType, METH_VARARGS, NULL},
 	 { (char *)"disown_Tile", _wrap_disown_Tile, METH_VARARGS, NULL},

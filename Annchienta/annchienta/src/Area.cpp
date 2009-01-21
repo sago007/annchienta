@@ -20,19 +20,41 @@
 #include <cstring>
 #include <Python.h>
 #include "Engine.h"
+#include "VideoManager.h"
+#include "Tile.h"
 
 namespace Annchienta
 {
-    Area::Area( Point _p1, Point _p2 )
+    Area::Area( Point _p1, Point _p2, bool visible )
     {
         p1 = _p1.to( IsometricPoint );
         p2 = _p2.to( IsometricPoint );
+        this->visible = visible;
+
+        mp1 = Point( IsometricPoint, p1.x, p1.y );
+        mp2 = Point( IsometricPoint, p1.x, p2.y );
+        mp3 = Point( IsometricPoint, p2.x, p2.y );
+        mp4 = Point( IsometricPoint, p2.x, p1.y );
+        mp1.convert( MapPoint );
+        mp2.convert( MapPoint );
+        mp3.convert( MapPoint );
+        mp4.convert( MapPoint );
 
         onCollisionCode = onCollisionScript = 0;
     }
 
     Area::~Area()
     {
+    }
+
+    void Area::setVisible( bool visible )
+    {
+        this->visible = visible;
+    }
+
+    bool Area::isVisible() const
+    {
+        return visible;
     }
 
     void Area::setOnCollisionScript( const char *script )
@@ -64,6 +86,14 @@ namespace Annchienta
         return point.isEnclosedBy( &p1, &p2 );
     }
 
+    bool Area::hasTile( Tile *tile )
+    {
+        for( int i=0; i<4; i++ )
+            if( !hasPoint( tile->getPoint(i) ) )
+                return false;
+        return true;
+    }
+
     void Area::onCollision()
     {
         Engine *engine = getEngine();
@@ -73,5 +103,4 @@ namespace Annchienta
         if( onCollisionScript )
             engine->runPythonScript( onCollisionScript );
     }
-
 };
