@@ -55,7 +55,7 @@
 <chest item="spellcaster" tilex="18" tiley="15" />
 
 <!-- Way to plantation2 -->
-<area tilex1="0" tilex2="2" tiley1="10" tiley2="15">
+<area tilex1="0" tilex2="2" tiley1="10" tiley2="15" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/kimen/plantation2.xml&quot;, annchienta.Point( annchienta.TilePoint, 27, 7 ) )

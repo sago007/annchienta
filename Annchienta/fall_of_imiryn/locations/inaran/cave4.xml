@@ -35,7 +35,7 @@
 </tiles>
 
 <!-- Way to cave3. -->
-<area tilex1="8" tilex2="12" tiley1="28" tiley2="30">
+<area tilex1="8" tilex2="12" tiley1="28" tiley2="30" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/inaran/cave3.xml&quot;, annchienta.Point( annchienta.TilePoint, 4, 3 ) )

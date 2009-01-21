@@ -34,14 +34,14 @@
 <staticobject name="irrigation" config="locations/kimen/irrigation.xml" tilex="14" tiley="4" />
 
 <!-- Way to plantation1 -->
-<area tilex1="28" tilex2="30" tiley1="6" tiley2="10">
+<area tilex1="28" tilex2="30" tiley1="6" tiley2="10" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/kimen/plantation1.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 13 ) )
 </area>
 
 <!-- Way to plantation3 -->
-<area tilex1="0" tilex2="2" tiley1="3" tiley2="7">
+<area tilex1="0" tilex2="2" tiley1="3" tiley2="7" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/kimen/plantation3.xml&quot;, annchienta.Point( annchienta.TilePoint, 17, 12 ) )

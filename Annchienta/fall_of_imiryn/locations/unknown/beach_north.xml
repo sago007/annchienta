@@ -55,7 +55,7 @@
 <chest item="katana" tilex="21" tiley="25" />
 
 <!-- Way to beach_start -->
-<area tilex1="28" tilex2="30" tiley1="18" tiley2="21">
+<area tilex1="28" tilex2="30" tiley1="18" tiley2="21" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/unknown/beach_start.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 16 ) )

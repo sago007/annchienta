@@ -35,7 +35,7 @@
 </tiles>
 
 <!-- Way to beach_start -->
-<area tilex1="0" tilex2="2" tiley1="16" tiley2="19">
+<area tilex1="0" tilex2="2" tiley1="16" tiley2="19" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/unknown/beach_start.xml&quot;, annchienta.Point( annchienta.TilePoint, 27, 22 ) )

@@ -54,7 +54,7 @@
 </if>
 
 <!-- Way 'back'. -->
-<area tilex1="0" tilex2="2" tiley1="4" tiley2="9">
+<area tilex1="0" tilex2="2" tiley1="4" tiley2="9" visible="1" >
 import annchienta, PartyManager, SceneManager
 partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
@@ -66,7 +66,7 @@ sceneManager.quitDialog()
 </area>
 
 <!-- Way to cave1. Must first talk to March, though. -->
-<area tilex1="18" tilex2="20" tiley1="3" tiley2="14">
+<area tilex1="18" tilex2="20" tiley1="3" tiley2="14" visible="1" >
 import annchienta, PartyManager, SceneManager
 partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()

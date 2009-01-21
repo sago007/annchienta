@@ -39,7 +39,7 @@
 <staticobject config="locations/kimen/irrigation.xml" name="irrigation" tilex="8" tiley="13" />
 
 <!-- Way to plantation2 -->
-<area tilex1="18" tilex2="20" tiley1="10" tiley2="13">
+<area tilex1="18" tilex2="20" tiley1="10" tiley2="13" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/kimen/plantation2.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 6 ) )

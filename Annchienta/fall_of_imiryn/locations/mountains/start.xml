@@ -35,14 +35,14 @@
 </tiles>
 
 <!-- Way to beach_start-->
-<area tilex1="24" tilex2="28" tiley1="0" tiley2="2">
+<area tilex1="24" tilex2="28" tiley1="0" tiley2="2" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/unknown/beach_start.xml&quot;, annchienta.Point( annchienta.TilePoint, 10, 27 ) )
 </area>
 
 <!-- Way to path1 -->
-<area tilex1="0" tilex2="2" tiley1="8" tiley2="12">
+<area tilex1="0" tilex2="2" tiley1="8" tiley2="12" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/mountains/path1.xml&quot;, annchienta.Point( annchienta.TilePoint, 27, 17 ) )

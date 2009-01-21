@@ -35,7 +35,7 @@
 </tiles>
 
 <!-- Way to cave1. -->
-<area tilex1="28" tilex2="30" tiley1="24" tiley2="27">
+<area tilex1="28" tilex2="30" tiley1="24" tiley2="27" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 10 ) )
@@ -50,7 +50,7 @@ partyManager.changeMap( &quot;locations/inaran/cave1.xml&quot;, annchienta.Point
 <chest item="potion" tilex="3" tiley="4" />
 
 <!-- Way to cave3. -->
-<area tilex1="28" tilex2="30" tiley1="3" tiley2="6">
+<area tilex1="28" tilex2="30" tiley1="3" tiley2="6" visible="1" >
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/inaran/cave3.xml&quot;, annchienta.Point( annchienta.TilePoint, 3, 21 ) )
