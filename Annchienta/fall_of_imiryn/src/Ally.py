@@ -190,17 +190,21 @@ class Ally( Combatant.Combatant ):
 
         self.videoManager.push()
 
-        if self.getHp() > self.getMaxHp()*0.15:
-            self.videoManager.setColor()
-        else:
+        # Draw a hp bar
+        self.videoManager.setColor( 0, 160, 0, 150 )
+        width = int(boxWidth/2*float(self.getHp())/self.getMaxHp())
+        self.videoManager.drawRectangle( 0, 2, width, boxHeight-2 )
+
+        if self.isCritical():
             self.videoManager.setColor( 255, 0, 0 )
+        else:
+            self.videoManager.setColor()
 
         # Draw the combanant's name
         self.videoManager.drawString( self.sceneManager.getDefaultFont(), self.name.capitalize(), 0, 0 )
 
         self.videoManager.translate( int(boxWidth/4), 0 )
 
-        # Draw the combatant's hp and mp
         self.videoManager.drawString( self.sceneManager.getDefaultFont(), str(self.getHp()) + "/" + str(self.getMaxHp()) + "HP", 0, 0 )
 
         self.videoManager.translate( int(boxWidth/2), 0 )
@@ -209,9 +213,9 @@ class Ally( Combatant.Combatant ):
         
         # Draw the timer
         if self.timer>=100.0:
-            self.videoManager.setColor( 161, 48, 0 )
+            self.videoManager.setColor( 161, 48, 0, 150 )
         else:
-            self.videoManager.setColor( 161, 120, 0 )
+            self.videoManager.setColor( 161, 120, 0, 150 )
 
         width = int( 0.01 * self.timer * (boxWidth/4.0) )
         self.videoManager.drawRectangle( 0, 2, width, boxHeight-2 )

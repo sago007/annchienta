@@ -204,6 +204,11 @@ class Combatant( BattleEntity.BattleEntity ):
     def getMaxHp( self ):
         return self.healthStats["mhp"]
 
+    ## See if the player is wounded.
+    #  \return If the player has critical health.
+    def isCritical( self ):
+        return self.getHp() < self.getMaxHp() * 0.15
+
     ## Sets magic points for this combatant.
     #  \param mp New Magic points for this combatant
     def setMp( self, mp ):

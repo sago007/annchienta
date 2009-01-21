@@ -331,6 +331,10 @@ class Battle(object):
                 # Multiply damage by the factor the
                 # target has set for it
                 damage *= target.getElementalFactor( element )
+
+        # When the attacker is critical, double damage
+        if combatant.isCritical():
+            damage *= 2
     
         if action.getType() == "physical":
             # If attacker is in back row, half damage...
@@ -340,19 +344,19 @@ class Battle(object):
             if target.getRow() == "back":
                 damage /= 2
 
-        # Our hit rate
-        rate = action.getHit()
-        # ... is influenced by blindness (but only on physical attacks)
-        if action.getType() == "physical":
-            if combatant.hasStatusEffect( "blinded" ):
-                rate /= 2.0
-
             # We also have double damage on injured units,
             # and injured units do half damage
             if target.hasStatusEffect( "injured" ):
                 damage *= 2
             if combatant.hasStatusEffect( "injured" ):
                 damage /= 2
+
+        # Our hit rate
+        rate = action.getHit()
+        # ... is influenced by blindness (but only on physical attacks)
+        if action.getType() == "physical":
+            if combatant.hasStatusEffect( "blinded" ):
+                rate /= 2.0
 
         hit = ( self.mathManager.randFloat() <= rate )
 
