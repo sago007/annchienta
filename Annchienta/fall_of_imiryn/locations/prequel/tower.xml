@@ -28,7 +28,7 @@
 <person config="locations/prequel/soldier.xml" name="soldier" tilex="18" tiley="18" />
 
 <!-- Link to the hall. -->
-<area tilex1="14" tilex2="15" tiley1="16" tiley2="17">
+<area tilex1="14" tilex2="15" tiley1="16" tiley2="17" visible="1">
 import annchienta, PartyManager
 partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/prequel/hall.xml&quot;, annchienta.Point( annchienta.TilePoint, 8, 8 ) )

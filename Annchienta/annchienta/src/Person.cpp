@@ -193,10 +193,6 @@ namespace Annchienta
             this->setStandAnimation();
         }
 
-        /* Always execute move under certain conditions. */
-        if( force || !layer || (!x && !y) )
-            return true;
-
         /* Keep a copy of our old tiles. As I said, we might
          * need to return to our old position. */
         std::list<Tile*> oldCollidingTiles = collidingTiles;
@@ -205,6 +201,10 @@ namespace Annchienta
          * our new Z. */
         calculateCollidingTiles();
         position.z = getZFromCollidingTiles();
+
+        /* Always execute move under certain conditions. */
+        if( force || !layer || (!x && !y) )
+            return true;
 
         /* It is possible to move by default. Then, check
          * for some rejections... */

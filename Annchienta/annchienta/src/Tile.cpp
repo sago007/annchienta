@@ -181,7 +181,8 @@ namespace Annchienta
             glEnd();
         }
 
-        /* If the tile has been marked, draw a border around it. */
+        /* If the tile has been marked, draw a border around it,
+         * and a transparent quad over it. */
         if( hasVisualIndication() )
         {
             videoManager->setColor( 0, 255, 0, 150 );
@@ -191,6 +192,12 @@ namespace Annchienta
                 int j = (i+1)%4;
                 videoManager->drawLine( points[i].x, points[i].y-points[i].z, points[j].x, points[j].y-points[j].z );
             }
+            
+            videoManager->setColor( 0, 255, 0, 50 );
+            videoManager->drawQuad( points[0].x, points[0].y - points[0].z,
+                                    points[1].x, points[1].y - points[1].z,
+                                    points[2].x, points[2].y - points[2].z,
+                                    points[3].x, points[3].y - points[3].z );
         }
 
         glPopMatrix();

@@ -46,6 +46,13 @@ if not partyManager.hasRecord("inaran_talked_to_march"):
     sceneManager.speak( august, "Getting here would have been a lot harder without him carrying most of our equipment.", True )
     sceneManager.speak( march, "One final test. The cave is here. Let's go." )
 
+    avril.lookAt( august )
+    sceneManager.speak( avril, "Wait, you know I prefer fighting from the back row, right? That way, I only receive half of the damage done." )
+    march.lookAt( avril )
+    sceneManager.speak( march, "Yeah, but you can only deal half damage, too!" )
+    avril.lookAt( march )
+    sceneManager.speak( avril, "Not if you use magic." )
+
     ap = august.getPosition()
     sceneManager.move( [avril, march], [ap,ap] )
 
