@@ -268,6 +268,27 @@ namespace Annchienta
         return newZ;
     }
 
+    bool StaticObject::collidesWithOtherObjects() const
+    {
+        if( !layer )
+            return false;
+
+        for( int i=0; i<layer->getNumberOfObjects(); i++ )
+        {
+            StaticObject *other = layer->getObject(i);
+            if( other != this )
+            {
+                if( !( other->isPassable() || isPassable() ) )
+                {
+                    if( collidesWith( other ) )
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     EntityType StaticObject::getEntityType() const
     {
         return StaticObjectEntity;

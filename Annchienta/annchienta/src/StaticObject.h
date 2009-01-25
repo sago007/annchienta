@@ -98,6 +98,12 @@ namespace Annchienta
              */
             float getZFromCollidingTiles();
 
+            /** This function check if this StaticObject collides with
+             *  other Objects in the same layer.
+             *  \return If there is a collision between this and any other StaticObject.
+             */
+            bool collidesWithOtherObjects() const;
+
             /** \return The EntityType of this StaticObject.
              */
             virtual EntityType getEntityType() const;

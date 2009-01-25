@@ -17630,6 +17630,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_StaticObject_collidesWithOtherObjects(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:StaticObject_collidesWithOtherObjects",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__StaticObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StaticObject_collidesWithOtherObjects" "', argument " "1"" of type '" "Annchienta::StaticObject const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::StaticObject * >(argp1);
+  result = (bool)((Annchienta::StaticObject const *)arg1)->collidesWithOtherObjects();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_StaticObject_getEntityType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::StaticObject *arg1 = (Annchienta::StaticObject *) 0 ;
@@ -21181,6 +21203,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_StaticObject", _wrap_delete_StaticObject, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_calculateCollidingTiles", _wrap_StaticObject_calculateCollidingTiles, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getZFromCollidingTiles", _wrap_StaticObject_getZFromCollidingTiles, METH_VARARGS, NULL},
+	 { (char *)"StaticObject_collidesWithOtherObjects", _wrap_StaticObject_collidesWithOtherObjects, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_getEntityType", _wrap_StaticObject_getEntityType, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_update", _wrap_StaticObject_update, METH_VARARGS, NULL},
 	 { (char *)"StaticObject_draw", _wrap_StaticObject_draw, METH_VARARGS, NULL},

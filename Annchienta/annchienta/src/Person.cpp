@@ -210,7 +210,7 @@ namespace Annchienta
          * for some rejections... */
         bool possible = true;
 
-        /* Reject if there are now colliding tiles.
+        /* Reject if there are no colliding tiles.
          * (This means the player is probably outside the level.) */
         if( collidingTiles.size() <= 0 )
             possible = false;
@@ -232,21 +232,8 @@ namespace Annchienta
         }
 
         /* Reject if the person collides with something else. */
-        Point maskPosition = this->getMaskPosition();
-        for( int i=0; possible && layer->getObject(i); i++ )
-        {
-            StaticObject *so = layer->getObject(i);
-            if( (StaticObject*) this != so )
-            {
-                /* Check this only if they're both unpassable. */
-                if( !so->isPassable() && !this->isPassable())
-                {
-                    Point otherMaskPosition( so->getMaskPosition() );
-                    if( mask->collision( maskPosition.x, maskPosition.y, so->getMask(), otherMaskPosition.x, otherMaskPosition.y ) )
-                        possible = false;
-                }
-            }
-        }
+        if( possible && collidesWithOtherObjects() )
+            possible = false;
 
         /* If the whole thing ended up not being possible,
          * revert everything to the original state before

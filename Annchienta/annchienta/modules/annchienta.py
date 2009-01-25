@@ -671,6 +671,7 @@ class StaticObject(Entity):
     __del__ = lambda self : None;
     def calculateCollidingTiles(*args): return _annchienta.StaticObject_calculateCollidingTiles(*args)
     def getZFromCollidingTiles(*args): return _annchienta.StaticObject_getZFromCollidingTiles(*args)
+    def collidesWithOtherObjects(*args): return _annchienta.StaticObject_collidesWithOtherObjects(*args)
     def getEntityType(*args): return _annchienta.StaticObject_getEntityType(*args)
     def update(*args): return _annchienta.StaticObject_update(*args)
     def draw(*args): return _annchienta.StaticObject_draw(*args)
