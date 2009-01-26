@@ -58,6 +58,7 @@ if not partyManager.hasRecord("inaran_talked_to_march"):
 
     sceneManager.text( "Use the right mouse button to bring up the party menu. Use the left mouse button to navigate in any menu." )
     sceneManager.text( "When you are in a menu, you can also use the right mouse button to cancel the menu." )
+    sceneManager.text( "Alternatively, use the escape key to bring up the party menu or to cancel the current menu, and the spacebar to confirm your choice." )
 
     partyManager.addRecord("inaran_talked_to_march")
     partyManager.refreshMap()

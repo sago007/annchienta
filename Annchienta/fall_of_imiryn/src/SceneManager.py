@@ -31,7 +31,7 @@ class SceneManager(object):
     def waitForClick( self ):
         self.videoManager.storeBuffer(7)
         self.inputManager.update()
-        while self.inputManager.isRunning() and not self.inputManager.buttonTicked(0):
+        while self.inputManager.isRunning() and not self.inputManager.buttonTicked(0) and not self.inputManager.interactKeyTicked():
             self.inputManager.update()
             self.videoManager.clear()
             self.videoManager.restoreBuffer(7)
@@ -171,7 +171,7 @@ class SceneManager(object):
         if not backgroundProcess:
             self.videoManager.storeBuffer(7)
 
-        while self.inputManager.isRunning() and not self.inputManager.buttonTicked(0):
+        while self.inputManager.isRunning() and not self.inputManager.buttonTicked(0) and not self.inputManager.interactKeyTicked():
 
             self.inputManager.update()
 

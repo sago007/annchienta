@@ -26,7 +26,7 @@ if inputManager.keyTicked( annchienta.SDLK_s ):
     partyManager = PartyManager.getPartyManager()
     partyManager.save( "save/save.xml" )
 
-if inputManager.buttonTicked(1) and inputManager.getInputMode() is annchienta.InteractiveMode:
+if ( inputManager.buttonTicked(1) or inputManager.cancelKeyTicked() ) and inputManager.getInputMode() is annchienta.InteractiveMode:
 
     import InGameMenu
     inGameMenu = InGameMenu.InGameMenu()
