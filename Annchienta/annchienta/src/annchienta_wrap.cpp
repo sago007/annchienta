@@ -9839,6 +9839,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_InputManager_isMouseMoved(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_isMouseMoved",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_isMouseMoved" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  result = (bool)((Annchienta::InputManager const *)arg1)->isMouseMoved();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_InputManager_buttonDown(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
@@ -10195,6 +10217,58 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_InputManager_setCancelKey(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:InputManager_setCancelKey",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_setCancelKey" "', argument " "1"" of type '" "Annchienta::InputManager *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "InputManager_setCancelKey" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setCancelKey(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_getCancelKey(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_getCancelKey",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_getCancelKey" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  result = (int)((Annchienta::InputManager const *)arg1)->getCancelKey();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_InputManager_interactKeyTicked(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
@@ -10210,6 +10284,28 @@ SWIGINTERN PyObject *_wrap_InputManager_interactKeyTicked(PyObject *SWIGUNUSEDPA
   }
   arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
   result = (bool)((Annchienta::InputManager const *)arg1)->interactKeyTicked();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_InputManager_cancelKeyTicked(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::InputManager *arg1 = (Annchienta::InputManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:InputManager_cancelKeyTicked",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__InputManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InputManager_cancelKeyTicked" "', argument " "1"" of type '" "Annchienta::InputManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::InputManager * >(argp1);
+  result = (bool)((Annchienta::InputManager const *)arg1)->cancelKeyTicked();
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -20987,6 +21083,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"InputManager_keyTicked", _wrap_InputManager_keyTicked, METH_VARARGS, NULL},
 	 { (char *)"InputManager_getMouseX", _wrap_InputManager_getMouseX, METH_VARARGS, NULL},
 	 { (char *)"InputManager_getMouseY", _wrap_InputManager_getMouseY, METH_VARARGS, NULL},
+	 { (char *)"InputManager_isMouseMoved", _wrap_InputManager_isMouseMoved, METH_VARARGS, NULL},
 	 { (char *)"InputManager_buttonDown", _wrap_InputManager_buttonDown, METH_VARARGS, NULL},
 	 { (char *)"InputManager_buttonTicked", _wrap_InputManager_buttonTicked, METH_VARARGS, NULL},
 	 { (char *)"InputManager_getMousePoint", _wrap_InputManager_getMousePoint, METH_VARARGS, NULL},
@@ -20998,7 +21095,10 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"InputManager_getInputMode", _wrap_InputManager_getInputMode, METH_VARARGS, NULL},
 	 { (char *)"InputManager_setInteractKey", _wrap_InputManager_setInteractKey, METH_VARARGS, NULL},
 	 { (char *)"InputManager_getInteractKey", _wrap_InputManager_getInteractKey, METH_VARARGS, NULL},
+	 { (char *)"InputManager_setCancelKey", _wrap_InputManager_setCancelKey, METH_VARARGS, NULL},
+	 { (char *)"InputManager_getCancelKey", _wrap_InputManager_getCancelKey, METH_VARARGS, NULL},
 	 { (char *)"InputManager_interactKeyTicked", _wrap_InputManager_interactKeyTicked, METH_VARARGS, NULL},
+	 { (char *)"InputManager_cancelKeyTicked", _wrap_InputManager_cancelKeyTicked, METH_VARARGS, NULL},
 	 { (char *)"InputManager_setMouseVisibility", _wrap_InputManager_setMouseVisibility, METH_VARARGS, NULL},
 	 { (char *)"new_InputManager", _wrap_new_InputManager, METH_VARARGS, NULL},
 	 { (char *)"delete_InputManager", _wrap_delete_InputManager, METH_VARARGS, NULL},

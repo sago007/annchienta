@@ -50,9 +50,10 @@ namespace Annchienta
             int mouseX, mouseY;
             Uint8 mouseState;
             bool supportMouse;
+            bool mouseMoved;
             Person *inputControlledPerson;
             InputMode inputMode;
-            int interactKey;
+            int interactKey, cancelKey;
 
         public:
             #ifndef SWIG
@@ -99,6 +100,10 @@ namespace Annchienta
             /** \return Mouse Y.
              */
             int getMouseY() const;
+
+            /** \return Is the mouse moved since the last update?
+             */
+            bool isMouseMoved() const;
 
             /** \param code 0 for left mouse button, 1 for right mouse button.
              *  \return Is the given button currently down?
@@ -155,9 +160,22 @@ namespace Annchienta
              */
             int getInteractKey() const;
 
+            /** Set the default cancel key.
+             *  \param code See \ref keycodes
+             */
+            void setCancelKey( int code );
+
+            /** \return The cancel key. See \ref keycodes
+             */
+            int getCancelKey() const;
+
             /** \return Quick check for interact key.
              */
             bool interactKeyTicked() const;
+            
+            /** \return Quick check for cancel key.
+             */
+            bool cancelKeyTicked() const;
             
             /** \param value Whether the mouse should be visible or not.
              */

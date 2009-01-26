@@ -16,12 +16,18 @@ class Menu( MenuItem.MenuItem ):
         self.videoManager = annchienta.getVideoManager()
         self.mapManager = annchienta.getMapManager()
         self.sceneManager = SceneManager.getSceneManager()
+
+        # Flags
+        self.done = False
+        self.canceled = False
         
         # Size of the menu
         self.width, self.height = 0, 0
 
         # Position on the screen
         self.x, self.y = 0, 0
+        self.columns = 1
+        self.rows = 1
 
         # If the tooltip should be drawn on top of the screen
         self.toolTipOnTop = True
@@ -32,8 +38,18 @@ class Menu( MenuItem.MenuItem ):
         # The options in the menu. Use setOptions() to set them!
         self.options = []
 
+        # The currently selected item index
+        self.selectedOptionIndex = 0
+        self.selectedOption = None
+
     def isMenu( self ):
         return True
+
+    def getOptionIndex( self, item ):
+        for i in range( len(self.options) ):
+            if self.options[i] is item:
+                return i
+        return 0
 
     def setOptions( self, options=None ):
 
@@ -51,8 +67,8 @@ class Menu( MenuItem.MenuItem ):
             self.columns = 1
 
         # Find the longest name in pixels to base the width on
-        names = map( lambda o: o.name, self.options ) + [self.name]
-        self.longest = max( map( lambda n: self.sceneManager.getDefaultFont().getStringWidth(n.capitalize()), names ) )
+        names = [ o.getName() for o in self.options ] + [self.name]
+        self.longest = max( [ self.sceneManager.getDefaultFont().getStringWidth(n.capitalize()) for n in names ] )
         
         # Use this to calculate the menu width, then calculate menu height
         self.width = self.sceneManager.getMargin() + (self.longest + self.sceneManager.getMargin())*self.columns
@@ -129,9 +145,10 @@ class Menu( MenuItem.MenuItem ):
         
         # Initialize some stuff
         self.done = False
-        self.clickedItem = None
+        self.selectedOption = None
+        self.selectedOptionIndex = 0
 
-        while not self.done and self.clickedItem is None:
+        while not self.done:
         
             self.videoManager.clear()
             
@@ -159,12 +176,12 @@ class Menu( MenuItem.MenuItem ):
         self.inputManager.setInputMode( originalInputMode )
 
         # If canceled, return None
-        if self.clickedItem is None:
+        if self.canceled:
             return None
         else:
             # If the chosen item is a submenu, recursively call that submenu.
-            if self.clickedItem.isMenu():
-                sub = self.clickedItem.pop( backgroundProcess )
+            if self.selectedOption.isMenu():
+                sub = self.selectedOption.pop( backgroundProcess )
                 # If the submenu was canceled, we return to this menu
                 if sub is None:
                     return self.pop( backgroundProcess )
@@ -173,7 +190,7 @@ class Menu( MenuItem.MenuItem ):
                     return sub
             # Simply return the item.
             else:
-                return self.clickedItem
+                return self.selectedOption
 
     def update( self ):
 
@@ -183,11 +200,41 @@ class Menu( MenuItem.MenuItem ):
             self.backgroundProcess.update(False)
 
         # Check for actions
-        if self.inputManager.buttonTicked( 1 ):
+        if self.inputManager.buttonTicked( 1 ) or self.inputManager.cancelKeyTicked():
+            self.done = True
+            self.canceled = True
+
+        if self.inputManager.buttonTicked( 0 ) or self.inputManager.interactKeyTicked():
             self.done = True
 
         if not self.inputManager.isRunning():
             self.done = True
+
+        # Keyboard actions
+        if self.inputManager.keyTicked( annchienta.SDLK_DOWN ):
+            self.selectedOptionIndex += 1
+        elif self.inputManager.keyTicked( annchienta.SDLK_UP ):
+            self.selectedOptionIndex -= 1
+        elif self.inputManager.keyTicked( annchienta.SDLK_LEFT ):
+            self.selectedOptionIndex -= self.rows
+        elif self.inputManager.keyTicked( annchienta.SDLK_RIGHT ):
+            self.selectedOptionIndex += self.rows
+
+        if self.inputManager.isMouseMoved():
+
+            sx, sy = self.x+self.sceneManager.getMargin(), self.y+self.sceneManager.getMargin()+ self.sceneManager.getItalicsFont().getLineHeight()
+            for x in range(self.columns):
+                for y in range(self.rows):
+                    idx = x*self.rows+y
+                    if idx<len(self.options):
+                        o = self.options[ idx ]
+                        if self.inputManager.hover( sx+x*(self.longest+self.sceneManager.getMargin()), sy+y*self.sceneManager.getDefaultFont().getLineHeight(), sx+(x+1)*(self.longest+self.sceneManager.getMargin()), sy+(y+1)*self.sceneManager.getDefaultFont().getLineHeight() ):
+                            self.selectedOption = o
+                            self.selectedOptionIndex = self.getOptionIndex( o )
+ 
+        self.selectedOptionIndex = self.selectedOptionIndex % len(self.options)
+        self.selectedOption = self.options[self.selectedOptionIndex]
+
 
     def render( self ):
 
@@ -204,19 +251,14 @@ class Menu( MenuItem.MenuItem ):
         # Move to the start of the items
         self.videoManager.translate( self.sceneManager.getMargin(), self.sceneManager.getMargin()+ self.sceneManager.getItalicsFont().getLineHeight() )
 
-        sx, sy = self.x+self.sceneManager.getMargin(), self.y+self.sceneManager.getMargin()+ self.sceneManager.getItalicsFont().getLineHeight()
-
         # Render all items
         for x in range(self.columns):
             for y in range(self.rows):
                 idx = x*self.rows+y
                 if idx<len(self.options):
                     o = self.options[ idx ]
-                    if self.inputManager.hover( sx+x*(self.longest+self.sceneManager.getMargin()), sy+y*self.sceneManager.getDefaultFont().getLineHeight(), sx+(x+1)*(self.longest+self.sceneManager.getMargin()), sy+(y+1)*self.sceneManager.getDefaultFont().getLineHeight() ):
+                    if o is self.selectedOption:
                         self.sceneManager.activeColor()
-                        hover = o
-                        if self.inputManager.buttonTicked(0):
-                            self.clickedItem = o
                     else:
                         self.sceneManager.inactiveColor()
                     self.videoManager.drawString( self.sceneManager.getDefaultFont(), o.name.capitalize(), x*(self.longest+self.sceneManager.getMargin()), y*self.sceneManager.getDefaultFont().getLineHeight() )

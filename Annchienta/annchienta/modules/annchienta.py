@@ -205,6 +205,7 @@ class InputManager(_object):
     def keyTicked(*args): return _annchienta.InputManager_keyTicked(*args)
     def getMouseX(*args): return _annchienta.InputManager_getMouseX(*args)
     def getMouseY(*args): return _annchienta.InputManager_getMouseY(*args)
+    def isMouseMoved(*args): return _annchienta.InputManager_isMouseMoved(*args)
     def buttonDown(*args): return _annchienta.InputManager_buttonDown(*args)
     def buttonTicked(*args): return _annchienta.InputManager_buttonTicked(*args)
     def getMousePoint(*args): return _annchienta.InputManager_getMousePoint(*args)
@@ -216,7 +217,10 @@ class InputManager(_object):
     def getInputMode(*args): return _annchienta.InputManager_getInputMode(*args)
     def setInteractKey(*args): return _annchienta.InputManager_setInteractKey(*args)
     def getInteractKey(*args): return _annchienta.InputManager_getInteractKey(*args)
+    def setCancelKey(*args): return _annchienta.InputManager_setCancelKey(*args)
+    def getCancelKey(*args): return _annchienta.InputManager_getCancelKey(*args)
     def interactKeyTicked(*args): return _annchienta.InputManager_interactKeyTicked(*args)
+    def cancelKeyTicked(*args): return _annchienta.InputManager_cancelKeyTicked(*args)
     def setMouseVisibility(*args): return _annchienta.InputManager_setMouseVisibility(*args)
     def __init__(self, *args): 
         this = _annchienta.new_InputManager(*args)

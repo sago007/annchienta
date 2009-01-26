@@ -23,7 +23,7 @@ namespace Annchienta
 {
     InputManager *inputManager;
 
-    InputManager::InputManager(): inputControlledPerson(0), inputMode(InteractiveMode), interactKey(SDLK_SPACE)
+    InputManager::InputManager(): inputControlledPerson(0), inputMode(InteractiveMode)
     {
         /* Set reference to single-instance class.
          */
@@ -48,6 +48,11 @@ namespace Annchienta
          */
         SDL_EnableKeyRepeat( SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL );
 
+        /* Set mouse */
+        bool mouseMoved = true;
+        interactKey = SDLK_SPACE;
+        cancelKey = SDLK_ESCAPE;
+
         getLogManager()->message("Succesfully started InputManager.");
     }
 
@@ -64,6 +69,7 @@ namespace Annchienta
             tickedKeys[i] = false;
 
         tickedButtons[0] = tickedButtons[1] = 0;
+        mouseMoved = false;
 
         SDL_Event event;
 
@@ -95,12 +101,19 @@ namespace Annchienta
 
         /* Take a little look at the mouse.
          */
-        mouseState = SDL_GetMouseState( &mouseX, &mouseY );
+        int newMouseX, newMouseY;
+        mouseState = SDL_GetMouseState( &newMouseX, &newMouseY );
 
         /* Take video scale into account. */
         int scale = getVideoManager()->getVideoScale();
         mouseX /= scale;
         mouseY /= scale;
+
+        if( newMouseX != mouseX || newMouseY != mouseY )
+            mouseMoved = true;
+        mouseX = newMouseX;
+        mouseY = newMouseY;
+
     }
 
     bool InputManager::isRunning()
@@ -131,6 +144,11 @@ namespace Annchienta
     int InputManager::getMouseY() const
     {
         return mouseY;
+    }
+
+    bool InputManager::isMouseMoved() const
+    {
+        return mouseMoved;
     }
 
     bool InputManager::buttonDown( int buttonCode ) const
@@ -193,9 +211,24 @@ namespace Annchienta
         return interactKey;
     }
 
+    void InputManager::setCancelKey( int k )
+    {
+        cancelKey = k;
+    }
+
+    int InputManager::getCancelKey() const
+    {
+        return cancelKey;
+    }
+
     bool InputManager::interactKeyTicked() const
     {
-        return this->keyTicked( interactKey );
+        return keyTicked( interactKey );
+    }
+
+    bool InputManager::cancelKeyTicked() const
+    {
+        return keyTicked( cancelKey );
     }
 
     void InputManager::setMouseVisibility( bool value ) const
