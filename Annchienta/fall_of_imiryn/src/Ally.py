@@ -12,6 +12,7 @@ class Ally( Combatant.Combatant ):
         # References
         self.partyManager = PartyManager.getPartyManager()
         self.logManager   = annchienta.getLogManager()
+        self.inputManager   = annchienta.getInputManager()
     
         # Get our weapon
         weaponElements = xmlElement.getElementsByTagName("weapon")
@@ -226,39 +227,68 @@ class Ally( Combatant.Combatant ):
     def selectTarget( self, battle ):
 
         done = False
-        target = None
+
+        selectEnemies = True
+        mouseSelected = False
+
+        # select a first enemy (there should always be one,
+        # because it's not victory or game over)
+        targetIndex = 0
+        target = battle.enemies[0]
+
         while not done:
             
             # Update
             battle.update( False )
             
             # Update input
-            battle.inputManager.update()
+            self.inputManager.update()
             
-            target = None
-            
-            # Find out hover target
-            # Just have it point to the closest combatant.
-            distance = 0
-            for c in battle.combatants:
-                
-                # Use Vectors to calculate distance between mouse and combatant c.
-                mouse = annchienta.Vector( battle.inputManager.getMouseX(), battle.inputManager.getMouseY() )
-                pos = annchienta.Vector( c.getPosition().x, c.getPosition().y )
+            if self.inputManager.keyTicked( annchienta.SDLK_DOWN ):
+                targetIndex += 1
+                mouseSelected = False
+            elif self.inputManager.keyTicked( annchienta.SDLK_UP ):
+                targetIndex -= 1
+                mouseSelected = False
+            elif self.inputManager.keyTicked( annchienta.SDLK_LEFT ) or self.inputManager.keyTicked( annchienta.SDLK_RIGHT ):
+                selectEnemies = not selectEnemies
+                mouseSelected = False
+            elif self.inputManager.isMouseMoved():
+                # Find out hover target
+                # Just have it point to the closest combatant.
+                distance = 0
+                target = None
+                for i in range(len(battle.combatants)):
+                    
+                    combatant = battle.combatants[i]
 
-                d = mouse.distance( pos )
+                    # Use Vectors to calculate distance between mouse and combatant c.
+                    mouse = annchienta.Vector( self.inputManager.getMouseX(), self.inputManager.getMouseY() )
+                    pos = annchienta.Vector( combatant.getPosition().x, combatant.getPosition().y )
+                    d = mouse.distance( pos )
 
-                if d<distance or target is None:
-                    target = c
-                    distance = d
+                    if d<distance or target is None:
+                        target = combatant
+                        targetIndex = i
+                        distance = d
+                mouseSelected = True
 
+            if not mouseSelected:
+                if selectEnemies:
+                    targetIndex = targetIndex % len(battle.enemies)
+                    target = battle.enemies[targetIndex]
+                else:
+                    targetIndex = targetIndex % len(battle.allies)
+                    target = battle.allies[targetIndex]
+
+            # Set selected mark
             target.setSelected( True )
             
             # Check for input
-            if not battle.inputManager.isRunning() or battle.inputManager.buttonTicked(1):
+            if not self.inputManager.isRunning() or self.inputManager.buttonTicked(1) or self.inputManager.cancelKeyTicked():
                 target = None
                 done = True
-            if battle.inputManager.buttonTicked(0):
+            if self.inputManager.buttonTicked(0) or self.inputManager.interactKeyTicked():
                 done = True
             
             # Draw
