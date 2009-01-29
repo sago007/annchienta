@@ -11,10 +11,12 @@
     <item name="stave" type="weapon" description="An enchanted wooden pole.">
         <stats att="5" mat="20" def="5" mdf="15" spd="10"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <sprite filename="images/weapons/stave.png" gripx="6" gripy="26" />
     </item>
     <item name="broadsword" type="weapon" description="A long blade.">
         <stats att="20" mat="5" def="15" mdf="5" spd="10"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <sprite filename="images/weapons/broadsword.png" gripx="2" gripy="2" />
     </item>
     <item name="scepter" type="weapon" description="A water-absorbing stave.">
         <stats att="6" mat="35" def="6" mdf="20" spd="12"/>
