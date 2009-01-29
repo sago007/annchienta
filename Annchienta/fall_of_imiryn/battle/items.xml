@@ -21,10 +21,12 @@
     <item name="scepter" type="weapon" description="A water-absorbing stave.">
         <stats att="6" mat="35" def="6" mdf="20" spd="12"/>
         <elemental fire="1" ice="1" water="-1" thunder="1"/>
+        <sprite filename="images/weapons/scepter.png" gripx="4" gripy="3" />
     </item>
     <item name="shuriken" type="weapon" description="A fast ninja weapon. Protects against fire.">
         <stats att="30" mat="10" def="20" mdf="10" spd="25"/>
         <elemental fire="0" ice="1" water="1" thunder="1"/>
+        <sprite filename="images/weapons/shuriken.png" gripx="1" gripy="4" />
     </item>
     <item name="katana" type="weapon" description="A long thunder-protecting ninja blade.">
         <stats att="45" mat="5" def="10" mdf="5" spd="10"/>
