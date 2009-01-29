@@ -31,10 +31,12 @@
     <item name="katana" type="weapon" description="A long thunder-protecting ninja blade.">
         <stats att="45" mat="5" def="10" mdf="5" spd="10"/>
         <elemental fire="1" ice="1" water="1" thunder="0"/>
+        <sprite filename="images/weapons/katana.png" gripx="8" gripy="2" />
     </item>
     <item name="dragonspear" type="weapon" description="A fire and ice protecting, slow weapon.">
         <stats att="55" mat="7" def="10" mdf="10" spd="5"/>
         <elemental fire="0" ice="0" water="1" thunder="1"/>
+        <sprite filename="images/weapons/dragonspear.png" gripx="9" gripy="30" />
     </item>
     <item name="masamune" type="weapon" description="Better than a vegetable knife.">
         <stats att="85" mat="10" def="35" mdf="15" spd="50" />
