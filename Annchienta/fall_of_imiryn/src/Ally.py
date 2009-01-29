@@ -12,7 +12,8 @@ class Ally( Combatant.Combatant ):
         # References
         self.partyManager = PartyManager.getPartyManager()
         self.logManager   = annchienta.getLogManager()
-        self.inputManager   = annchienta.getInputManager()
+        self.inputManager = annchienta.getInputManager()
+        self.videoManager = annchienta.getVideoManager()
     
         # Get our weapon
         weaponElements = xmlElement.getElementsByTagName("weapon")
@@ -22,6 +23,13 @@ class Ally( Combatant.Combatant ):
             self.setWeapon( weaponName )
         else:
             self.logManager.warning( "No Weapon defined for Ally!" )
+
+        # Get the position of our hand
+        handElements = xmlElement.getElementsByTagName("hand")
+        if len(handElements):
+            self.hand = annchienta.Vector( float(handElements[0].getAttribute("x")), float(handElements[0].getAttribute("y")) )
+        else:
+            self.hand = None
     
         # Create a dictionary describing the level grades
         self.grades = {}
@@ -66,6 +74,9 @@ class Ally( Combatant.Combatant ):
         inventory = partyManager.getInventory()
         self.weapon = inventory.getWeapon( weaponName )
 
+    def getWeapon( self ):
+        return self.weapon
+
     ## Stores all information about this ally in the given
     #  xml element, so it can be loaded again later.
     def writeToXML( self, xmlElement, document ):
@@ -83,6 +94,13 @@ class Ally( Combatant.Combatant ):
         weaponElement = document.createElement("weapon")
         weaponElement.setAttribute("name", str( self.weapon.getName() ) )
         xmlElement.appendChild( weaponElement )
+
+        # Set our hand
+        if self.hand:
+            handElement = document.createElement("hand")
+            handElement.setAttribute("x", str(int(self.hand.x)))
+            handElement.setAttribute("y", str(int(self.hand.y)))
+            xmlElement.appendChild( handElement )
 
         # Set learn info
         learnElement = document.createElement("learn")
@@ -186,6 +204,21 @@ class Ally( Combatant.Combatant ):
                 return None, None
 
         return action, target
+
+    def draw( self ):
+
+        # Draw ourself
+        Combatant.Combatant.draw( self )
+
+        # draw the weapon
+        if self.hand and self.getWeapon().getSprite():
+            self.videoManager.push()
+
+            weaponPosition = self.getPosition() - annchienta.Vector( self.getWidth()/2, self.getHeight()/2 ) + self.hand - self.getWeapon().getGrip()
+            self.videoManager.translate( weaponPosition.x, weaponPosition.y )
+            self.videoManager.drawSurface( self.weapon.getSprite(), 0, 0 )
+
+            self.videoManager.pop()
         
     def drawInfo( self, boxWidth, boxHeight ):
 

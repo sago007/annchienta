@@ -16,6 +16,7 @@
             <stats att="1" mat="1" def="2" mdf="2" spd="3"/>
             <healthstats hp="74" mmp="8" mp="8" mhp="74"/>
             <weapon name="shortsword"/>
+            <hand x="9" y="28"/>
             <actions>attack steal row wait flee</actions>
             <sprite filename="sprites/august.png" x1="150" x2="180" y1="40" y2="80"/>
             <learn>2 thunderstab 3 cure 5 fire 6 ice 7 water 9 thunder 10 flametongue</learn>
@@ -26,6 +27,7 @@
             <stats att="1" mat="3" def="1" mdf="3" spd="2"/>
             <healthstats hp="68" mmp="25" mp="25" mhp="68"/>
             <weapon name="stave"/>
+            <hand x="9" y="28"/>
             <actions>attack cure row wait flee</actions>
             <sprite filename="sprites/avril.png" x1="150" x2="180" y1="40" y2="80"/>
             <learn>2 fire 3 ice 4 esuna 5 water 6 thunder 7 cura 9 fira 10 blizzara 11 watera 12 thundara</learn>
@@ -36,6 +38,7 @@
             <stats att="3" mat="1" def="3" mdf="1" spd="1"/>
             <healthstats hp="80" mmp="10" mp="10" mhp="80"/>
             <weapon name="broadsword"/>
+            <hand x="9" y="28"/>
             <actions>attack row wait flee</actions>
             <sprite filename="sprites/march.png" x1="150" x2="180" y1="40" y2="80"/>
             <learn>2 swing 4 fire 5 fog 7 strike 8 ice 9 water 10 thunder</learn>

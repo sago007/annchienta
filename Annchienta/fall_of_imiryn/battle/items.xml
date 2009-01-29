@@ -6,6 +6,7 @@
     <item name="shortsword" type="weapon" description="A short blade.">
         <stats att="15" mat="10" def="20" mdf="5" spd="20"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
+        <sprite filename="images/weapons/shortsword.png" gripx="3" gripy="2" />
     </item>
     <item name="stave" type="weapon" description="An enchanted wooden pole.">
         <stats att="5" mat="20" def="5" mdf="15" spd="10"/>
