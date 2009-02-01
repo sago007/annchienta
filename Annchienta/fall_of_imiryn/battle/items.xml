@@ -41,6 +41,7 @@
     <item name="masamune" type="weapon" description="Better than a vegetable knife.">
         <stats att="85" mat="10" def="35" mdf="15" spd="50" />
         <elemental fire="1" ice="1" water="1" thunder="0"/>
+        <sprite filename="images/weapons/masamune.png" gripx="3" gripy="3" />
     </item>
     <item name="spellcaster" type="weapon" description="An ancient spellbinding stave.">
         <stats att="20" mat="85" def="50" mdf="120" spd="70"/>

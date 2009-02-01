@@ -66,7 +66,7 @@ class PartyMenu( Menu.Menu ):
         self.videoManager.drawString( self.sceneManager.getDefaultFont(), self.combatant.getStatsAsString(), 0, 0 )
         
         self.videoManager.translate( 0, self.sceneManager.getDefaultFont().getLineHeight() )
-        self.videoManager.drawString( self.sceneManager.getItalicsFont(), "Click combatants to select them.", 0, 0 )
+        self.videoManager.drawString( self.sceneManager.getItalicsFont(), "Press Tab to cycle through party members.", 0, 0 )
 
         self.videoManager.pop()
         
@@ -76,11 +76,8 @@ class PartyMenu( Menu.Menu ):
         Menu.Menu.update( self )
 
         # Check if one of the party members on top is clicked.
+        if self.inputManager.keyTicked( annchienta.SDLK_TAB ):
+            self.combatantIndex += 1
+
+        self.combatantIndex = self.combatantIndex % len( self.partyManager.team )
         self.combatant = self.partyManager.team[ self.combatantIndex ]
-        for i in range(len(self.partyManager.team)):
-            x1 = self.sceneManager.getMargin()*2 + i*self.combatant.width
-            y1 = self.sceneManager.getMargin()*2
-            x2 = x1 + self.combatant.width
-            y2 = y1 + self.combatant.height
-            if self.inputManager.clicked( x1, y1, x2, y2 ):
-                self.combatantIndex = i
