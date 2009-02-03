@@ -106,8 +106,8 @@ namespace Annchienta
 
         /* Take video scale into account. */
         int scale = getVideoManager()->getVideoScale();
-        mouseX /= scale;
-        mouseY /= scale;
+        newMouseX /= scale;
+        newMouseY /= scale;
 
         if( newMouseX != mouseX || newMouseY != mouseY )
             mouseMoved = true;

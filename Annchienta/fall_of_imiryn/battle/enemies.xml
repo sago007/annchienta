@@ -117,7 +117,7 @@
         <healthstats hp="1300" mhp="1300" mp="200" mmp="200"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack ice water thunder fire thunderstab</actions>
-        <sprite filename="sprites/enthavos.png" x1="0" x2="30" y1="40" y2="80"/>
+        <sprite filename="sprites/enthavos.png" x1="60" x2="110" y1="80" y2="120"/>
         <drop xp="230" item="hi-potion" rate="1.0" steal="grenade"/>
     </enemy>
 
@@ -150,7 +150,7 @@
         <healthstats hp="400" mhp="400" mp="80" mmp="80"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack swing</actions>
-        <sprite filename="sprites/soldier.png" x1="0" x2="30" y1="40" y2="80"/>
+        <sprite filename="sprites/soldier.png" x1="0" x2="30" y1="80" y2="120"/>
         <drop xp="80" item="tincture" rate="0.4" steal="feather"/>
     </enemy>
 
@@ -161,7 +161,7 @@
         <healthstats hp="1400" mhp="1400" mp="120" mmp="120"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack swing flametongue thunderstab thundara fira</actions>
-        <sprite filename="sprites/banver.png" x1="0" x2="30" y1="40" y2="80"/>
+        <sprite filename="sprites/banver.png" x1="0" x2="40" y1="80" y2="120"/>
         <drop xp="120" item="tincture" rate="0.4" steal="feather"/>
     </enemy>
 
@@ -172,7 +172,7 @@
         <healthstats hp="500" mhp="500" mp="120" mmp="120"/>
         <elemental fire="1" ice="1" water="1" thunder="1"/>
         <actions>attack swing strike thundara</actions>
-        <sprite filename="sprites/captain.png" x1="0" x2="30" y1="40" y2="80"/>
+        <sprite filename="sprites/captain.png" x1="0" x2="30" y1="80" y2="120"/>
         <drop xp="130" item="tincture" rate="0.4" steal="feather"/>
     </enemy>
 
