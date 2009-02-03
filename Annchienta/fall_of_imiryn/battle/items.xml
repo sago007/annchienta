@@ -46,10 +46,12 @@
     <item name="spellcaster" type="weapon" description="An ancient spellbinding stave.">
         <stats att="20" mat="85" def="50" mdf="120" spd="70"/>
         <elemental fire="1" ice="1" water="1" thunder="0"/>
+        <sprite filename="images/weapons/spellcaster.png" gripx="8" gripy="38" />
     </item>
     <item name="excalibur" type="weapon" description="Quite a legendary weapon.">
         <stats att="105" mat="20" def="120" mdf="100" spd="90" />
         <elemental fire="1" ice="1" water="1" thunder="0"/>
+        <sprite filename="images/weapons/excalibur.png" gripx="3" gripy="7" />
     </item>
 
 
