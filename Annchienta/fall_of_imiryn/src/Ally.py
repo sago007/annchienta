@@ -173,6 +173,7 @@ class Ally( Combatant.Combatant ):
         found = filter( lambda action: action.getName() == menuItem.getName(), self.actions )
 
         needsTarget = True
+        action = None
 
         # We found an action
         if len(found):
@@ -199,7 +200,8 @@ class Ally( Combatant.Combatant ):
         # Select a target when needed
         target = None
         if needsTarget:
-            target = self.selectTarget( battle )
+            # Start with allies when it's restorative magic.
+            target = self.selectTarget( battle, not action.hasElement("restorative") )
             if target is None:
                 return None, None
 
@@ -257,17 +259,19 @@ class Ally( Combatant.Combatant ):
         self.videoManager.setColor()
         self.videoManager.pop()
 
-    def selectTarget( self, battle ):
+    def selectTarget( self, battle, selectEnemies = True ):
 
         done = False
 
-        selectEnemies = True
         mouseSelected = False
 
         # select a first enemy (there should always be one,
         # because it's not victory or game over)
         targetIndex = 0
-        target = battle.enemies[0]
+        if selectEnemies:
+            target = battle.enemies[0]
+        else:
+            target = battle.allies[0]
 
         while not done:
             

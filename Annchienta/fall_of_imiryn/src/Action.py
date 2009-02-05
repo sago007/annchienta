@@ -15,6 +15,7 @@ class Action(object):
     def __init__( self, xmlElement=None ):
 
         self.cacheManager = annchienta.getCacheManager()
+        self.elemental = {}
    
         if xmlElement:
 
@@ -32,7 +33,6 @@ class Action(object):
             self.cost = int(costElement.getAttribute("mp"))
 
             # Create a dictionary describing the elemental properties
-            self.elemental = {}
             found = xmlElement.getElementsByTagName("elemental")
             if len(found):
                 elementalElement = found[0]
