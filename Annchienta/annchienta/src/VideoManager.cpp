@@ -229,7 +229,7 @@ namespace Annchienta
         glDisable( GL_SCISSOR_TEST );
     }
 
-    void VideoManager::drawLine( int x1, int y1, int x2, int y2 ) const
+    void VideoManager::drawLine( float x1, float y1, float x2, float y2 ) const
     {
         glDisable( GL_TEXTURE_2D );
 
@@ -241,7 +241,7 @@ namespace Annchienta
         glEnable( GL_TEXTURE_2D );
     }
 
-    void VideoManager::drawTriangle( int x1, int y1, int x2, int y2, int x3, int y3 ) const
+    void VideoManager::drawTriangle( float x1, float y1, float x2, float y2, float x3, float y3 ) const
     {
         glDisable( GL_TEXTURE_2D );
 
@@ -254,7 +254,7 @@ namespace Annchienta
         glEnable( GL_TEXTURE_2D );
     }
 
-    void VideoManager::drawRectangle( int x1, int y1, int x2, int y2 ) const
+    void VideoManager::drawRectangle( float x1, float y1, float x2, float y2 ) const
     {
         glDisable( GL_TEXTURE_2D );
 
@@ -268,7 +268,7 @@ namespace Annchienta
         glEnable( GL_TEXTURE_2D );
     }
 
-    void VideoManager::drawQuad( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4 ) const
+    void VideoManager::drawQuad( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 ) const
     {
         glDisable( GL_TEXTURE_2D );
 
@@ -282,24 +282,24 @@ namespace Annchienta
         glEnable( GL_TEXTURE_2D );
     }
 
-    void VideoManager::drawSurface( Surface *surface, int x, int y ) const
+    void VideoManager::drawSurface( Surface *surface, float x, float y ) const
     {
         surface->draw( x, y );
     }
 
-    void VideoManager::drawSurface( Surface *surface, int dx, int dy, int sx1, int sy1, int sx2, int sy2 ) const
+    void VideoManager::drawSurface( Surface *surface, float dx, float dy, float sx1, float sy1, float sx2, float sy2 ) const
     {
         surface->draw( dx, dy, sx1, sy1, sx2, sy2 );
     }
 
-    void VideoManager::drawSurface( Surface *surface, int x1, int y1, int x2, int y2 ) const
+    void VideoManager::drawSurface( Surface *surface, float x1, float y1, float x2, float y2 ) const
     {
         surface->draw( x1, y1, x2, y2 );
     }
 
-    void VideoManager::drawPattern( Surface *surface, int x1, int y1, int x2, int y2 ) const
+    void VideoManager::drawPattern( Surface *surface, float x1, float y1, float x2, float y2 ) const
     {
-        int x, y;
+        float x, y;
 
         for( y = y1; y+surface->getHeight()<=y2; y+=surface->getHeight() )
         {
@@ -320,17 +320,17 @@ namespace Annchienta
         }
     }
 
-    void VideoManager::drawString( Font *font, const char *str, int x, int y ) const
+    void VideoManager::drawString( Font *font, const char *str, float x, float y ) const
     {
         font->draw( str, x, y );
     }
 
-    void VideoManager::drawStringCentered( Font *font, const char *str, int x, int y ) const
+    void VideoManager::drawStringCentered( Font *font, const char *str, float x, float y ) const
     {
         font->draw( str, x - font->getStringWidth( str )/2, y );
     }
 
-    void VideoManager::drawStringRight( Font *font, const char *str, int x, int y ) const
+    void VideoManager::drawStringRight( Font *font, const char *str, float x, float y ) const
     {
         font->draw( str, x - font->getStringWidth( str ), y );
     }

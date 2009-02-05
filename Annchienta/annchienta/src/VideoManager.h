@@ -156,7 +156,7 @@ namespace Annchienta
              *  \param x2 X coord of the 2nd point.
              *  \param y2 Y coord of the 2nd point.
              */
-            void drawLine( int x1, int y1, int x2, int y2 ) const;
+            void drawLine( float x1, float y1, float x2, float y2 ) const;
 
             /** Draw a triangle between three points.
              *  \param x1 X coord of the 1st point.
@@ -166,7 +166,7 @@ namespace Annchienta
              *  \param x3 X coord of the 3rd point.
              *  \param y3 Y coord of the 3rd point.
              */
-            void drawTriangle( int x1, int y1, int x2, int y2, int x3, int y3 ) const;
+            void drawTriangle( float x1, float y1, float x2, float y2, float x3, float y3 ) const;
 
             /** Draw an axis-aligned rectangle.
              *  \param x1 Top left x coord of the rectangle.
@@ -174,7 +174,7 @@ namespace Annchienta
              *  \param x2 Bottom right x coord of the rectangle.
              *  \param y2 Bottom right y coord of the rectangle.
              */
-            void drawRectangle( int x1, int y1, int x2, int y2 ) const;
+            void drawRectangle( float x1, float y1, float x2, float y2 ) const;
 
             /** Draw a quad between four points.
              *  \param x1 X coord of the 1st point.
@@ -186,7 +186,7 @@ namespace Annchienta
              *  \param x4 X coord of the 4rd point.
              *  \param y4 Y coord of the 4rd point.
              */
-            void drawQuad( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4 ) const;
+            void drawQuad( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 ) const;
 
             /** Draws an entire surface to the screen.
              *  This should be slightly faster than the other drawSurface()
@@ -195,7 +195,7 @@ namespace Annchienta
              *  \param x X coord of destination on screen.
              *  \param y Y coord of destination on screen.
              */
-            void drawSurface( Surface *surface, int x, int y ) const;
+            void drawSurface( Surface *surface, float x, float y ) const;
 
             /** Draws a rectangular part of a surface to the screen.
              *  \param surface Surface to be drawn.
@@ -206,7 +206,7 @@ namespace Annchienta
              *  \param sx2 Bottom right x coord of the rectangle.
              *  \param sy2 Bottom right y coord of the rectangle.
              */
-            void drawSurface( Surface *surface, int dx, int dy, int sx1, int sy1, int sx2, int sy2 ) const;
+            void drawSurface( Surface *surface, float dx, float dy, float sx1, float sy1, float sx2, float sy2 ) const;
 
             /** Draws a surface, stretched to a rectangle on the screen.
              *  \param surface Surface to be drawn.
@@ -215,7 +215,7 @@ namespace Annchienta
              *  \param x2 Bottom right x coord of the rectangle.
              *  \param y2 Bottom right y coord of the rectangle.
              */
-            void drawSurface( Surface *surface, int x1, int y1, int x2, int y2 ) const;
+            void drawSurface( Surface *surface, float x1, float y1, float x2, float y2 ) const;
 
             /** Draws a surface, tiled like a pattern to rectangle
              *  on the screen.
@@ -225,7 +225,7 @@ namespace Annchienta
              *  \param x2 Bottom right x coord of the rectangle.
              *  \param y2 Bottom right y coord of the rectangle.
              */
-            void drawPattern( Surface *surface, int x1, int y1, int x2, int y2 ) const;
+            void drawPattern( Surface *surface, float x1, float y1, float x2, float y2 ) const;
 
             /** Draws a string to the screen.
              *  \param font Font to be used.
@@ -233,7 +233,7 @@ namespace Annchienta
              *  \param x X destination coord on the screen.
              *  \param y Y destination coord on the screen.
              */
-            void drawString( Font *font, const char *str, int x, int y ) const;
+            void drawString( Font *font, const char *str, float x, float y ) const;
 
             /** Draws a string to the screen, horizontally centered.
              *  \param font Font to be used.
@@ -241,7 +241,7 @@ namespace Annchienta
              *  \param x X destination coord on the screen.
              *  \param y Y destination coord on the screen.
              */
-            void drawStringCentered( Font *font, const char *str, int x, int y ) const;
+            void drawStringCentered( Font *font, const char *str, float x, float y ) const;
 
             /** Draws a string to the screen, horizontally right-aligned.
              *  \param font Font to be used.
@@ -249,7 +249,7 @@ namespace Annchienta
              *  \param x X destination coord on the screen.
              *  \param y Y destination coord on the screen.
              */
-            void drawStringRight( Font *font, const char *str, int x, int y ) const;
+            void drawStringRight( Font *font, const char *str, float x, float y ) const;
 
             /** Copy the entire buffer to a Surface. Make sure your
              *  Surface is large enough, especially when the videoScale

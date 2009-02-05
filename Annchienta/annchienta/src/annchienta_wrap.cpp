@@ -8314,19 +8314,19 @@ fail:
 SWIGINTERN PyObject *_wrap_VideoManager_drawLine(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  int arg4 ;
-  int arg5 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  float val2 ;
   int ecode2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
-  int val5 ;
+  float val5 ;
   int ecode5 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -8340,26 +8340,26 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawLine(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_drawLine" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawLine" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawLine" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  arg2 = static_cast< float >(val2);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawLine" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawLine" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  arg3 = static_cast< float >(val3);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawLine" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawLine" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawLine" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawLine" "', argument " "5"" of type '" "float""'");
   } 
-  arg5 = static_cast< int >(val5);
+  arg5 = static_cast< float >(val5);
   ((Annchienta::VideoManager const *)arg1)->drawLine(arg2,arg3,arg4,arg5);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -8371,25 +8371,25 @@ fail:
 SWIGINTERN PyObject *_wrap_VideoManager_drawTriangle(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  int arg4 ;
-  int arg5 ;
-  int arg6 ;
-  int arg7 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  float val2 ;
   int ecode2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
-  int val5 ;
+  float val5 ;
   int ecode5 = 0 ;
-  int val6 ;
+  float val6 ;
   int ecode6 = 0 ;
-  int val7 ;
+  float val7 ;
   int ecode7 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -8405,36 +8405,36 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawTriangle(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_drawTriangle" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawTriangle" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawTriangle" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  arg2 = static_cast< float >(val2);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawTriangle" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawTriangle" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  arg3 = static_cast< float >(val3);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawTriangle" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawTriangle" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawTriangle" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawTriangle" "', argument " "5"" of type '" "float""'");
   } 
-  arg5 = static_cast< int >(val5);
-  ecode6 = SWIG_AsVal_int(obj5, &val6);
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_float(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawTriangle" "', argument " "6"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawTriangle" "', argument " "6"" of type '" "float""'");
   } 
-  arg6 = static_cast< int >(val6);
-  ecode7 = SWIG_AsVal_int(obj6, &val7);
+  arg6 = static_cast< float >(val6);
+  ecode7 = SWIG_AsVal_float(obj6, &val7);
   if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "VideoManager_drawTriangle" "', argument " "7"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "VideoManager_drawTriangle" "', argument " "7"" of type '" "float""'");
   } 
-  arg7 = static_cast< int >(val7);
+  arg7 = static_cast< float >(val7);
   ((Annchienta::VideoManager const *)arg1)->drawTriangle(arg2,arg3,arg4,arg5,arg6,arg7);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -8446,19 +8446,19 @@ fail:
 SWIGINTERN PyObject *_wrap_VideoManager_drawRectangle(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  int arg4 ;
-  int arg5 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  float val2 ;
   int ecode2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
-  int val5 ;
+  float val5 ;
   int ecode5 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -8472,26 +8472,26 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawRectangle(PyObject *SWIGUNUSEDPARM(s
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_drawRectangle" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawRectangle" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawRectangle" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  arg2 = static_cast< float >(val2);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawRectangle" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawRectangle" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  arg3 = static_cast< float >(val3);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawRectangle" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawRectangle" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawRectangle" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawRectangle" "', argument " "5"" of type '" "float""'");
   } 
-  arg5 = static_cast< int >(val5);
+  arg5 = static_cast< float >(val5);
   ((Annchienta::VideoManager const *)arg1)->drawRectangle(arg2,arg3,arg4,arg5);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -8503,31 +8503,31 @@ fail:
 SWIGINTERN PyObject *_wrap_VideoManager_drawQuad(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  int arg4 ;
-  int arg5 ;
-  int arg6 ;
-  int arg7 ;
-  int arg8 ;
-  int arg9 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  float arg8 ;
+  float arg9 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
+  float val2 ;
   int ecode2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
-  int val5 ;
+  float val5 ;
   int ecode5 = 0 ;
-  int val6 ;
+  float val6 ;
   int ecode6 = 0 ;
-  int val7 ;
+  float val7 ;
   int ecode7 = 0 ;
-  int val8 ;
+  float val8 ;
   int ecode8 = 0 ;
-  int val9 ;
+  float val9 ;
   int ecode9 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -8545,46 +8545,46 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawQuad(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_drawQuad" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
   }
   arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawQuad" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "VideoManager_drawQuad" "', argument " "2"" of type '" "float""'");
   } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  arg2 = static_cast< float >(val2);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawQuad" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawQuad" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  arg3 = static_cast< float >(val3);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawQuad" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawQuad" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawQuad" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawQuad" "', argument " "5"" of type '" "float""'");
   } 
-  arg5 = static_cast< int >(val5);
-  ecode6 = SWIG_AsVal_int(obj5, &val6);
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_float(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawQuad" "', argument " "6"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawQuad" "', argument " "6"" of type '" "float""'");
   } 
-  arg6 = static_cast< int >(val6);
-  ecode7 = SWIG_AsVal_int(obj6, &val7);
+  arg6 = static_cast< float >(val6);
+  ecode7 = SWIG_AsVal_float(obj6, &val7);
   if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "VideoManager_drawQuad" "', argument " "7"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "VideoManager_drawQuad" "', argument " "7"" of type '" "float""'");
   } 
-  arg7 = static_cast< int >(val7);
-  ecode8 = SWIG_AsVal_int(obj7, &val8);
+  arg7 = static_cast< float >(val7);
+  ecode8 = SWIG_AsVal_float(obj7, &val8);
   if (!SWIG_IsOK(ecode8)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "VideoManager_drawQuad" "', argument " "8"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "VideoManager_drawQuad" "', argument " "8"" of type '" "float""'");
   } 
-  arg8 = static_cast< int >(val8);
-  ecode9 = SWIG_AsVal_int(obj8, &val9);
+  arg8 = static_cast< float >(val8);
+  ecode9 = SWIG_AsVal_float(obj8, &val9);
   if (!SWIG_IsOK(ecode9)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "VideoManager_drawQuad" "', argument " "9"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "VideoManager_drawQuad" "', argument " "9"" of type '" "float""'");
   } 
-  arg9 = static_cast< int >(val9);
+  arg9 = static_cast< float >(val9);
   ((Annchienta::VideoManager const *)arg1)->drawQuad(arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -8597,15 +8597,15 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawSurface__SWIG_0(PyObject *SWIGUNUSED
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   Annchienta::Surface *arg2 = (Annchienta::Surface *) 0 ;
-  int arg3 ;
-  int arg4 ;
+  float arg3 ;
+  float arg4 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -8623,16 +8623,16 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawSurface__SWIG_0(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "VideoManager_drawSurface" "', argument " "2"" of type '" "Annchienta::Surface *""'"); 
   }
   arg2 = reinterpret_cast< Annchienta::Surface * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawSurface" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawSurface" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  arg3 = static_cast< float >(val3);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawSurface" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawSurface" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
+  arg4 = static_cast< float >(val4);
   ((Annchienta::VideoManager const *)arg1)->drawSurface(arg2,arg3,arg4);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -8645,27 +8645,27 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawSurface__SWIG_1(PyObject *SWIGUNUSED
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   Annchienta::Surface *arg2 = (Annchienta::Surface *) 0 ;
-  int arg3 ;
-  int arg4 ;
-  int arg5 ;
-  int arg6 ;
-  int arg7 ;
-  int arg8 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  float arg8 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
-  int val5 ;
+  float val5 ;
   int ecode5 = 0 ;
-  int val6 ;
+  float val6 ;
   int ecode6 = 0 ;
-  int val7 ;
+  float val7 ;
   int ecode7 = 0 ;
-  int val8 ;
+  float val8 ;
   int ecode8 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -8687,36 +8687,36 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawSurface__SWIG_1(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "VideoManager_drawSurface" "', argument " "2"" of type '" "Annchienta::Surface *""'"); 
   }
   arg2 = reinterpret_cast< Annchienta::Surface * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawSurface" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawSurface" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  arg3 = static_cast< float >(val3);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawSurface" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawSurface" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawSurface" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawSurface" "', argument " "5"" of type '" "float""'");
   } 
-  arg5 = static_cast< int >(val5);
-  ecode6 = SWIG_AsVal_int(obj5, &val6);
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_float(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawSurface" "', argument " "6"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawSurface" "', argument " "6"" of type '" "float""'");
   } 
-  arg6 = static_cast< int >(val6);
-  ecode7 = SWIG_AsVal_int(obj6, &val7);
+  arg6 = static_cast< float >(val6);
+  ecode7 = SWIG_AsVal_float(obj6, &val7);
   if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "VideoManager_drawSurface" "', argument " "7"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "VideoManager_drawSurface" "', argument " "7"" of type '" "float""'");
   } 
-  arg7 = static_cast< int >(val7);
-  ecode8 = SWIG_AsVal_int(obj7, &val8);
+  arg7 = static_cast< float >(val7);
+  ecode8 = SWIG_AsVal_float(obj7, &val8);
   if (!SWIG_IsOK(ecode8)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "VideoManager_drawSurface" "', argument " "8"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "VideoManager_drawSurface" "', argument " "8"" of type '" "float""'");
   } 
-  arg8 = static_cast< int >(val8);
+  arg8 = static_cast< float >(val8);
   ((Annchienta::VideoManager const *)arg1)->drawSurface(arg2,arg3,arg4,arg5,arg6,arg7,arg8);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -8729,21 +8729,21 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawSurface__SWIG_2(PyObject *SWIGUNUSED
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   Annchienta::Surface *arg2 = (Annchienta::Surface *) 0 ;
-  int arg3 ;
-  int arg4 ;
-  int arg5 ;
-  int arg6 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
-  int val5 ;
+  float val5 ;
   int ecode5 = 0 ;
-  int val6 ;
+  float val6 ;
   int ecode6 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -8763,26 +8763,26 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawSurface__SWIG_2(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "VideoManager_drawSurface" "', argument " "2"" of type '" "Annchienta::Surface *""'"); 
   }
   arg2 = reinterpret_cast< Annchienta::Surface * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawSurface" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawSurface" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  arg3 = static_cast< float >(val3);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawSurface" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawSurface" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawSurface" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawSurface" "', argument " "5"" of type '" "float""'");
   } 
-  arg5 = static_cast< int >(val5);
-  ecode6 = SWIG_AsVal_int(obj5, &val6);
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_float(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawSurface" "', argument " "6"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawSurface" "', argument " "6"" of type '" "float""'");
   } 
-  arg6 = static_cast< int >(val6);
+  arg6 = static_cast< float >(val6);
   ((Annchienta::VideoManager const *)arg1)->drawSurface(arg2,arg3,arg4,arg5,arg6);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -8812,12 +8812,12 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawSurface(PyObject *self, PyObject *ar
       _v = SWIG_CheckState(res);
       if (_v) {
         {
-          int res = SWIG_AsVal_int(argv[2], NULL);
+          int res = SWIG_AsVal_float(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
           {
-            int res = SWIG_AsVal_int(argv[3], NULL);
+            int res = SWIG_AsVal_float(argv[3], NULL);
             _v = SWIG_CheckState(res);
           }
           if (_v) {
@@ -8838,22 +8838,22 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawSurface(PyObject *self, PyObject *ar
       _v = SWIG_CheckState(res);
       if (_v) {
         {
-          int res = SWIG_AsVal_int(argv[2], NULL);
+          int res = SWIG_AsVal_float(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
           {
-            int res = SWIG_AsVal_int(argv[3], NULL);
+            int res = SWIG_AsVal_float(argv[3], NULL);
             _v = SWIG_CheckState(res);
           }
           if (_v) {
             {
-              int res = SWIG_AsVal_int(argv[4], NULL);
+              int res = SWIG_AsVal_float(argv[4], NULL);
               _v = SWIG_CheckState(res);
             }
             if (_v) {
               {
-                int res = SWIG_AsVal_int(argv[5], NULL);
+                int res = SWIG_AsVal_float(argv[5], NULL);
                 _v = SWIG_CheckState(res);
               }
               if (_v) {
@@ -8876,32 +8876,32 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawSurface(PyObject *self, PyObject *ar
       _v = SWIG_CheckState(res);
       if (_v) {
         {
-          int res = SWIG_AsVal_int(argv[2], NULL);
+          int res = SWIG_AsVal_float(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
           {
-            int res = SWIG_AsVal_int(argv[3], NULL);
+            int res = SWIG_AsVal_float(argv[3], NULL);
             _v = SWIG_CheckState(res);
           }
           if (_v) {
             {
-              int res = SWIG_AsVal_int(argv[4], NULL);
+              int res = SWIG_AsVal_float(argv[4], NULL);
               _v = SWIG_CheckState(res);
             }
             if (_v) {
               {
-                int res = SWIG_AsVal_int(argv[5], NULL);
+                int res = SWIG_AsVal_float(argv[5], NULL);
                 _v = SWIG_CheckState(res);
               }
               if (_v) {
                 {
-                  int res = SWIG_AsVal_int(argv[6], NULL);
+                  int res = SWIG_AsVal_float(argv[6], NULL);
                   _v = SWIG_CheckState(res);
                 }
                 if (_v) {
                   {
-                    int res = SWIG_AsVal_int(argv[7], NULL);
+                    int res = SWIG_AsVal_float(argv[7], NULL);
                     _v = SWIG_CheckState(res);
                   }
                   if (_v) {
@@ -8919,9 +8919,9 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawSurface(PyObject *self, PyObject *ar
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'VideoManager_drawSurface'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    drawSurface(Annchienta::VideoManager const *,Annchienta::Surface *,int,int)\n"
-    "    drawSurface(Annchienta::VideoManager const *,Annchienta::Surface *,int,int,int,int,int,int)\n"
-    "    drawSurface(Annchienta::VideoManager const *,Annchienta::Surface *,int,int,int,int)\n");
+    "    drawSurface(Annchienta::VideoManager const *,Annchienta::Surface *,float,float)\n"
+    "    drawSurface(Annchienta::VideoManager const *,Annchienta::Surface *,float,float,float,float,float,float)\n"
+    "    drawSurface(Annchienta::VideoManager const *,Annchienta::Surface *,float,float,float,float)\n");
   return NULL;
 }
 
@@ -8930,21 +8930,21 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawPattern(PyObject *SWIGUNUSEDPARM(sel
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   Annchienta::Surface *arg2 = (Annchienta::Surface *) 0 ;
-  int arg3 ;
-  int arg4 ;
-  int arg5 ;
-  int arg6 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
-  int val3 ;
+  float val3 ;
   int ecode3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
-  int val5 ;
+  float val5 ;
   int ecode5 = 0 ;
-  int val6 ;
+  float val6 ;
   int ecode6 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -8964,26 +8964,26 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawPattern(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "VideoManager_drawPattern" "', argument " "2"" of type '" "Annchienta::Surface *""'"); 
   }
   arg2 = reinterpret_cast< Annchienta::Surface * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawPattern" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "VideoManager_drawPattern" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  arg3 = static_cast< float >(val3);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawPattern" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawPattern" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawPattern" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawPattern" "', argument " "5"" of type '" "float""'");
   } 
-  arg5 = static_cast< int >(val5);
-  ecode6 = SWIG_AsVal_int(obj5, &val6);
+  arg5 = static_cast< float >(val5);
+  ecode6 = SWIG_AsVal_float(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawPattern" "', argument " "6"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "VideoManager_drawPattern" "', argument " "6"" of type '" "float""'");
   } 
-  arg6 = static_cast< int >(val6);
+  arg6 = static_cast< float >(val6);
   ((Annchienta::VideoManager const *)arg1)->drawPattern(arg2,arg3,arg4,arg5,arg6);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -8997,8 +8997,8 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawString(PyObject *SWIGUNUSEDPARM(self
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   Annchienta::Font *arg2 = (Annchienta::Font *) 0 ;
   char *arg3 = (char *) 0 ;
-  int arg4 ;
-  int arg5 ;
+  float arg4 ;
+  float arg5 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -9006,9 +9006,9 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawString(PyObject *SWIGUNUSEDPARM(self
   int res3 ;
   char *buf3 = 0 ;
   int alloc3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
-  int val5 ;
+  float val5 ;
   int ecode5 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -9032,16 +9032,16 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawString(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "VideoManager_drawString" "', argument " "3"" of type '" "char const *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawString" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawString" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawString" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawString" "', argument " "5"" of type '" "float""'");
   } 
-  arg5 = static_cast< int >(val5);
+  arg5 = static_cast< float >(val5);
   ((Annchienta::VideoManager const *)arg1)->drawString(arg2,(char const *)arg3,arg4,arg5);
   resultobj = SWIG_Py_Void();
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
@@ -9057,8 +9057,8 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawStringCentered(PyObject *SWIGUNUSEDP
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   Annchienta::Font *arg2 = (Annchienta::Font *) 0 ;
   char *arg3 = (char *) 0 ;
-  int arg4 ;
-  int arg5 ;
+  float arg4 ;
+  float arg5 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -9066,9 +9066,9 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawStringCentered(PyObject *SWIGUNUSEDP
   int res3 ;
   char *buf3 = 0 ;
   int alloc3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
-  int val5 ;
+  float val5 ;
   int ecode5 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -9092,16 +9092,16 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawStringCentered(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "VideoManager_drawStringCentered" "', argument " "3"" of type '" "char const *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawStringCentered" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawStringCentered" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawStringCentered" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawStringCentered" "', argument " "5"" of type '" "float""'");
   } 
-  arg5 = static_cast< int >(val5);
+  arg5 = static_cast< float >(val5);
   ((Annchienta::VideoManager const *)arg1)->drawStringCentered(arg2,(char const *)arg3,arg4,arg5);
   resultobj = SWIG_Py_Void();
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
@@ -9117,8 +9117,8 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawStringRight(PyObject *SWIGUNUSEDPARM
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
   Annchienta::Font *arg2 = (Annchienta::Font *) 0 ;
   char *arg3 = (char *) 0 ;
-  int arg4 ;
-  int arg5 ;
+  float arg4 ;
+  float arg5 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -9126,9 +9126,9 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawStringRight(PyObject *SWIGUNUSEDPARM
   int res3 ;
   char *buf3 = 0 ;
   int alloc3 = 0 ;
-  int val4 ;
+  float val4 ;
   int ecode4 = 0 ;
-  int val5 ;
+  float val5 ;
   int ecode5 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -9152,16 +9152,16 @@ SWIGINTERN PyObject *_wrap_VideoManager_drawStringRight(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "VideoManager_drawStringRight" "', argument " "3"" of type '" "char const *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
+  ecode4 = SWIG_AsVal_float(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawStringRight" "', argument " "4"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "VideoManager_drawStringRight" "', argument " "4"" of type '" "float""'");
   } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  arg4 = static_cast< float >(val4);
+  ecode5 = SWIG_AsVal_float(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawStringRight" "', argument " "5"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "VideoManager_drawStringRight" "', argument " "5"" of type '" "float""'");
   } 
-  arg5 = static_cast< int >(val5);
+  arg5 = static_cast< float >(val5);
   ((Annchienta::VideoManager const *)arg1)->drawStringRight(arg2,(char const *)arg3,arg4,arg5);
   resultobj = SWIG_Py_Void();
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
