@@ -8,6 +8,12 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 PROJECT(ANNCHIENTA)
 
 ##########################
+# CPack options
+##########################
+#SET( CPACK_PACKAGE_CONTACT "jaspervdj@gmail.com" )
+#INCLUDE(CPack)
+
+##########################
 # SDL
 ##########################
 FIND_PACKAGE(SDL)

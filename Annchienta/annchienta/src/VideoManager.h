@@ -31,6 +31,7 @@ namespace Annchienta
     {
         private:
             int screenWidth, screenHeight;
+            bool videoModeSet;
             bool fullScreen;
             int videoScale;
             static const int numberOfBackBuffers = 8;
@@ -50,6 +51,11 @@ namespace Annchienta
              *  \param videoScale Defaults to 1, choose a higher number to get a larger screen.
              */
             void setVideoMode( int w, int h, const char *title="Annchienta RPG Engine", bool fullScreen=false, int videoScale=1 );
+
+            /** Checks if the video mode was set.
+             *  \return If the video mode was set.
+             */
+            bool isVideoModeSet() const;
 
             /** \return Width of the screen.
              */

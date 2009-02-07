@@ -148,6 +148,7 @@ class VideoManager(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, VideoManager, name)
     __repr__ = _swig_repr
     def setVideoMode(*args): return _annchienta.VideoManager_setVideoMode(*args)
+    def isVideoModeSet(*args): return _annchienta.VideoManager_isVideoModeSet(*args)
     def getScreenWidth(*args): return _annchienta.VideoManager_getScreenWidth(*args)
     def getScreenHeight(*args): return _annchienta.VideoManager_getScreenHeight(*args)
     def isFullScreen(*args): return _annchienta.VideoManager_isFullScreen(*args)

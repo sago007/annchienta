@@ -22,6 +22,7 @@
 
 #include "LogManager.h"
 #include "MathManager.h"
+#include "VideoManager.h"
 
 #define PNG_BYTES_TO_CHECK 4
 
@@ -104,6 +105,11 @@ namespace Annchienta
 
     Surface::Surface( int w, int h, int ps ): Cacheable(0), width(w), height(h), pixelSize(ps), texture(0), list(0)
     {
+        VideoManager *videoManager = getVideoManager();
+        LogManager *logManager = getLogManager();
+        if( !videoManager->isVideoModeSet() )
+            logManager->error( "Attempting to create a Surface before the video mode was set." );
+
         /* Calculate the actual memory size. */
         MathManager *mathManager = getMathManager();
         glWidth = mathManager->nearestPowerOfTwo( width );
@@ -118,8 +124,11 @@ namespace Annchienta
     Surface::Surface( const char *filename ): Cacheable(filename), texture(0), list(0)
     {
         /* We might need some logging and some math here. */
-        LogManager *logManager = getLogManager();
         MathManager *mathManager = getMathManager();
+        VideoManager *videoManager = getVideoManager();
+        LogManager *logManager = getLogManager();
+        if( !videoManager->isVideoModeSet() )
+            logManager->error( "Attempting to create a Surface before the video mode was set." );
 
         png_byte buffer[PNG_BYTES_TO_CHECK];
         

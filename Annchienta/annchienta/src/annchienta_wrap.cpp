@@ -7148,6 +7148,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_VideoManager_isVideoModeSet(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:VideoManager_isVideoModeSet",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__VideoManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "VideoManager_isVideoModeSet" "', argument " "1"" of type '" "Annchienta::VideoManager const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::VideoManager * >(argp1);
+  result = (bool)((Annchienta::VideoManager const *)arg1)->isVideoModeSet();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_VideoManager_getScreenWidth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Annchienta::VideoManager *arg1 = (Annchienta::VideoManager *) 0 ;
@@ -21040,6 +21062,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"LogManager_swigregister", LogManager_swigregister, METH_VARARGS, NULL},
 	 { (char *)"getLogManager", _wrap_getLogManager, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_setVideoMode", _wrap_VideoManager_setVideoMode, METH_VARARGS, NULL},
+	 { (char *)"VideoManager_isVideoModeSet", _wrap_VideoManager_isVideoModeSet, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_getScreenWidth", _wrap_VideoManager_getScreenWidth, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_getScreenHeight", _wrap_VideoManager_getScreenHeight, METH_VARARGS, NULL},
 	 { (char *)"VideoManager_isFullScreen", _wrap_VideoManager_isFullScreen, METH_VARARGS, NULL},

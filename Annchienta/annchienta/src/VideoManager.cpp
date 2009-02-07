@@ -28,9 +28,15 @@ namespace Annchienta
 {
     VideoManager *videoManager;
 
-    VideoManager::VideoManager() : screenWidth(0), screenHeight(0), fullScreen(false), videoScale(1)
+    VideoManager::VideoManager()
     {
         videoManager = this;
+
+        videoModeSet = false;
+        screenWidth = 0;
+        screenHeight = 0;
+        fullScreen = false;
+        videoScale = 1;
 
         /* Create room for pointers to backbuffers but don't
          * actually create them, we can only do that when we
@@ -81,7 +87,6 @@ namespace Annchienta
         /* Make sure we have a screen now. */
         if( !screen )
             logManager->error("Could not set video mode. SDL_Error: %s", SDL_GetError() );
-
         /* Set the window title. */
         SDL_WM_SetCaption( title, NULL );
 
@@ -116,8 +121,16 @@ namespace Annchienta
         logManager->message( "Set video mode as %dx%d pixels.", screenWidth, screenHeight );
         logManager->message( "Using OpenGL %s by %s on renderer %s.", glGetString(GL_VERSION), glGetString(GL_VENDOR), glGetString(GL_RENDERER) );
 
+        /* Register that we set it. */
+        videoModeSet = true;
+
         /* Reset colors and matrices. */
         this->reset();
+    }
+
+    bool VideoManager::isVideoModeSet() const
+    {
+        return videoModeSet;
     }
 
     int VideoManager::getScreenWidth() const
