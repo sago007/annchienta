@@ -63,6 +63,9 @@ namespace Annchienta
     {
         LogManager *logManager = getLogManager();
 
+        /* Register that we (will) set it. */
+        videoModeSet = true;
+
         /* Get some variables. */
         screenWidth = w;
         screenHeight = h;
@@ -120,9 +123,6 @@ namespace Annchienta
         /* Give some information to our good friend Log. */
         logManager->message( "Set video mode as %dx%d pixels.", screenWidth, screenHeight );
         logManager->message( "Using OpenGL %s by %s on renderer %s.", glGetString(GL_VERSION), glGetString(GL_VENDOR), glGetString(GL_RENDERER) );
-
-        /* Register that we set it. */
-        videoModeSet = true;
 
         /* Reset colors and matrices. */
         this->reset();
