@@ -23,6 +23,7 @@
 #include "Surface.h"
 #include "Font.h"
 #include "LogManager.h"
+#include "MathManager.h"
 
 namespace Annchienta
 {
@@ -61,6 +62,8 @@ namespace Annchienta
 
     void VideoManager::setVideoMode( int w, int h, const char *title, bool _fullScreen, int _videoScale )
     {
+
+        MathManager *mathManager = getMathManager();
         LogManager *logManager = getLogManager();
 
         /* Register that we (will) set it. */
@@ -80,12 +83,15 @@ namespace Annchienta
         Uint32 bpp = SDL_GetVideoInfo()->vfmt->BitsPerPixel;
 
         /* Preferred video flags. */
-        Uint32 flags = SDL_HWSURFACE | SDL_OPENGL | SDL_HWACCEL;
+        Uint32 flags = SDL_HWSURFACE | SDL_OPENGL;
         if( fullScreen )
             flags |= SDL_FULLSCREEN;
 
         /* Set the video mode. */
         SDL_Surface *screen = SDL_SetVideoMode( w*videoScale, h*videoScale, bpp, flags );
+
+        /* We need a new random seed after this for some strange reason. */
+        mathManager->newRandomSeed();
 
         /* Make sure we have a screen now. */
         if( !screen )
