@@ -50,7 +50,7 @@ namespace Annchienta
              *  \param x X coordinate for the Vector.
              *  \param y Y coordinate for the Vector.
              */
-            Vector( float x, float y );
+            Vector( float x=0, float y=0 );
             
             /** Creates a new Vector based on another Vector,
              *  copy constructor.
@@ -112,6 +112,19 @@ namespace Annchienta
              *  \param maximum The maximum value of a coordinate.
              */
             void cap( const float &minimum, const float &maximum );
+
+            /** Set the X and Y coordinates from polar coordinates.
+             *  \param r The distance, radius to the polar coordinate.
+             *  \param theta The rotation, angle to the polar coordinate in radians.
+             */
+            void fromPolar( const float &r, const float &theta );
+
+            /** Get the angle for this Vector: this is the angle between
+             *  the (1,0) Vector and this vector, or, in other words, the
+             *  theta argument to fromPolar()
+             *  \return The requested angle.
+             */
+            float getAngle() const;
     };
 
 };

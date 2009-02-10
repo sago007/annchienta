@@ -124,6 +124,17 @@ namespace Annchienta
         if( y>maximum )
             y = maximum;
     }
+
+    void Vector::fromPolar( const float &r, const float &theta )
+    {
+        x = r * cos( theta );        
+        y = r * sin( theta );        
+    }
+
+    float Vector::getAngle() const
+    {
+        return atan2( y, x );
+    }
     
 };
 

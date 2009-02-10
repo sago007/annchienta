@@ -780,6 +780,8 @@ class Vector(_object):
     def distance(*args): return _annchienta.Vector_distance(*args)
     def normalize(*args): return _annchienta.Vector_normalize(*args)
     def cap(*args): return _annchienta.Vector_cap(*args)
+    def fromPolar(*args): return _annchienta.Vector_fromPolar(*args)
+    def getAngle(*args): return _annchienta.Vector_getAngle(*args)
 Vector_swigregister = _annchienta.Vector_swigregister
 Vector_swigregister(Vector)
 

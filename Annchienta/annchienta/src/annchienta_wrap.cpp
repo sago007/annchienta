@@ -19896,6 +19896,41 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_Vector__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
+  float arg1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Annchienta::Vector *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_Vector",&obj0)) SWIG_fail;
+  ecode1 = SWIG_AsVal_float(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Vector" "', argument " "1"" of type '" "float""'");
+  } 
+  arg1 = static_cast< float >(val1);
+  result = (Annchienta::Vector *)new Annchienta::Vector(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Vector__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_Vector")) SWIG_fail;
+  result = (Annchienta::Vector *)new Annchienta::Vector();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Annchienta__Vector, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Vector__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
   Annchienta::Vector *arg1 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -19929,10 +19964,23 @@ SWIGINTERN PyObject *_wrap_new_Vector(PyObject *self, PyObject *args) {
   for (ii = 0; (ii < argc) && (ii < 2); ii++) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
+  if (argc == 0) {
+    return _wrap_new_Vector__SWIG_2(self, args);
+  }
   if (argc == 1) {
     int _v;
     int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_Annchienta__Vector, 0);
     _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_Vector__SWIG_3(self, args);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      int res = SWIG_AsVal_float(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
     if (_v) {
       return _wrap_new_Vector__SWIG_1(self, args);
     }
@@ -19958,6 +20006,8 @@ fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number of arguments for overloaded function 'new_Vector'.\n"
     "  Possible C/C++ prototypes are:\n"
     "    Annchienta::Vector(float,float)\n"
+    "    Annchienta::Vector(float)\n"
+    "    Annchienta::Vector()\n"
     "    Annchienta::Vector(Annchienta::Vector const &)\n");
   return NULL;
 }
@@ -19994,7 +20044,7 @@ SWIGINTERN PyObject *_wrap_Vector___add__(PyObject *SWIGUNUSEDPARM(self), PyObje
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  SwigValueWrapper< Annchienta::Vector > result;
+  Annchienta::Vector result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Vector___add__",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
@@ -20028,7 +20078,7 @@ SWIGINTERN PyObject *_wrap_Vector___sub__(PyObject *SWIGUNUSEDPARM(self), PyObje
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  SwigValueWrapper< Annchienta::Vector > result;
+  Annchienta::Vector result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Vector___sub__",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
@@ -20063,7 +20113,7 @@ SWIGINTERN PyObject *_wrap_Vector___mul____SWIG_0(PyObject *SWIGUNUSEDPARM(self)
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  SwigValueWrapper< Annchienta::Vector > result;
+  Annchienta::Vector result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Vector___mul__",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
@@ -20096,7 +20146,7 @@ SWIGINTERN PyObject *_wrap_Vector___div__(PyObject *SWIGUNUSEDPARM(self), PyObje
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  SwigValueWrapper< Annchienta::Vector > result;
+  Annchienta::Vector result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Vector___div__",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
@@ -20479,6 +20529,71 @@ SWIGINTERN PyObject *_wrap_Vector_cap(PyObject *SWIGUNUSEDPARM(self), PyObject *
   arg3 = &temp3;
   (arg1)->cap((float const &)*arg2,(float const &)*arg3);
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector_fromPolar(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  float *arg2 = 0 ;
+  float *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  float temp3 ;
+  float val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Vector_fromPolar",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_fromPolar" "', argument " "1"" of type '" "Annchienta::Vector *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Vector_fromPolar" "', argument " "2"" of type '" "float""'");
+  } 
+  temp2 = static_cast< float >(val2);
+  arg2 = &temp2;
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Vector_fromPolar" "', argument " "3"" of type '" "float""'");
+  } 
+  temp3 = static_cast< float >(val3);
+  arg3 = &temp3;
+  (arg1)->fromPolar((float const &)*arg2,(float const &)*arg3);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Vector_getAngle(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Annchienta::Vector *arg1 = (Annchienta::Vector *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Vector_getAngle",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Annchienta__Vector, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Vector_getAngle" "', argument " "1"" of type '" "Annchienta::Vector const *""'"); 
+  }
+  arg1 = reinterpret_cast< Annchienta::Vector * >(argp1);
+  result = (float)((Annchienta::Vector const *)arg1)->getAngle();
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -21392,6 +21507,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Vector_distance", _wrap_Vector_distance, METH_VARARGS, NULL},
 	 { (char *)"Vector_normalize", _wrap_Vector_normalize, METH_VARARGS, NULL},
 	 { (char *)"Vector_cap", _wrap_Vector_cap, METH_VARARGS, NULL},
+	 { (char *)"Vector_fromPolar", _wrap_Vector_fromPolar, METH_VARARGS, NULL},
+	 { (char *)"Vector_getAngle", _wrap_Vector_getAngle, METH_VARARGS, NULL},
 	 { (char *)"Vector_swigregister", Vector_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_PersonControl", _wrap_new_PersonControl, METH_VARARGS, NULL},
 	 { (char *)"delete_PersonControl", _wrap_delete_PersonControl, METH_VARARGS, NULL},
