@@ -79,7 +79,7 @@ while running and inputManager.isRunning():
     menu = Menu.Menu( "Main Menu", "I love my girlfriend." )
     options = [ MenuItem.MenuItem("new", "Start a new game."),
                 MenuItem.MenuItem("load", "Continue from the last save point."),
-                MenuItem.MenuItem("video size", "Change the video size.\n(A larger size might slow down the game.)"),
+                MenuItem.MenuItem("video size", "Change the video size. (Experimental)\n(A larger size might slow down or crash the game.)"),
                 MenuItem.MenuItem("quit", "Leave this great game.")
               ]
     menu.setOptions( options )

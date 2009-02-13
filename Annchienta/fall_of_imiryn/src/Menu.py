@@ -238,8 +238,6 @@ class Menu( MenuItem.MenuItem ):
 
     def render( self ):
 
-        hover = None
-
         # Draw box for the menu
         self.sceneManager.drawBox( self.x, self.y, self.x+self.width, self.y+self.height )
         self.videoManager.push()
@@ -268,12 +266,12 @@ class Menu( MenuItem.MenuItem ):
         self.sceneManager.defaultColor()
 
         # Render tooltip
-        if hover is not None:
-            if hover.toolTip is not None:
+        if self.selectedOption is not None:
+            if self.selectedOption.toolTip is not None:
                 self.videoManager.push()
 
                 # Count the lines we have to draw
-                lines = hover.toolTip.split('\n')
+                lines = self.selectedOption.toolTip.split('\n')
 
                 # Calculate tooltip height
                 h = self.sceneManager.getMargin()*2+self.sceneManager.getDefaultFont().getLineHeight()*len(lines)
