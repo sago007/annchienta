@@ -79,8 +79,8 @@ class Game:
 
         # Update background
         self.backgroundY += ms*1.0
-        while( self.backgroundY > self.videoManager.getScreenHeight() ):
-            self.backgroundY -= self.videoManager.getScreenHeight()
+        #while( self.backgroundY > self.videoManager.getScreenHeight() ):
+        self.backgroundY %= self.videoManager.getScreenHeight()
 
         # Update player
         mouse = annchienta.Vector( self.inputManager.getMouseX(), self.inputManager.getMouseY() )
@@ -92,7 +92,7 @@ class Game:
         # Check if we should spawn enemies
         if self.engine.getTicks()<self.victoryTime:
             self.nextEnemySpawn -= ms
-            while self.nextEnemySpawn <= 0:
+            while self.nextEnemySpawn <= 0 and self.inputManager.isRunning():
                
                 # Spawn a new enemy
                 pos = annchienta.Vector( self.mathManager.randInt( 0, videoManager.getScreenWidth() ), videoManager.getScreenHeight() + self.enemySprite.getHeight() )
@@ -185,37 +185,43 @@ class Game:
 
         self.videoManager.flip()
 
+partyManager = PartyManager.getPartyManager()
 
 # Main function, kinda
-sceneManager = SceneManager.getSceneManager()
-partyManager = PartyManager.getPartyManager()
-videoManager = annchienta.getVideoManager()
-mapManager = annchienta.getMapManager()
+def runMiniGame():
+    sceneManager = SceneManager.getSceneManager()
+    videoManager = annchienta.getVideoManager()
+    mapManager = annchienta.getMapManager()
 
-sceneManager.initDialog( [] )
+    sceneManager.initDialog( [] )
 
-# Clear entire screen.
-videoManager.clear()
-videoManager.setColor(0,0,0)
-videoManager.drawRectangle( 0, 0, videoManager.getScreenWidth(), videoManager.getScreenHeight() )
-videoManager.flip()
+    # Clear entire screen.
+    videoManager.clear()
+    videoManager.setColor(0,0,0)
+    videoManager.drawRectangle( 0, 0, videoManager.getScreenWidth(), videoManager.getScreenHeight() )
+    videoManager.flip()
 
-# Some intro talk.
-sceneManager.text( "August:\nAnd so we took Banver's ship in attempt to reach the Jemor continent.", None )
-sceneManager.text( "August:\nBut soon we were noticed by these sky pirates Banver mentioned.", None )
-sceneManager.text( "August:\nAt first, it seemed like there weren't too many, so we tried to evade them.", None )
-sceneManager.text( "August:\nBut then...", None )
+    # Some intro talk.
+    sceneManager.text( "August:\nAnd so we took Banver's ship in attempt to reach the Jemor continent.", None )
+    sceneManager.text( "August:\nBut soon we were noticed by these sky pirates Banver mentioned.", None )
+    sceneManager.text( "August:\nAt first, it seemed like there weren't too many, so we tried to evade them.", None )
+    sceneManager.text( "August:\nBut then...", None )
 
-# Save first
-sceneManager.text( "Info: Your game was saved automatically.", None )
-partyManager.save( "save/save.xml" )
+    # Save first
+    sceneManager.text( "Info: Your game was saved automatically.", None )
+    partyManager.save( "save/save.xml" )
 
-game = Game()
-game.run()
+    game = Game()
+    game.run()
 
-sceneManager.quitDialog()
+    sceneManager.quitDialog()
 
-# If we made it...
-if mapManager.isRunning():
-    partyManager.addRecord("fleet_caught_by_captain")
-    partyManager.refreshMap()
+    # If we made it...
+    if mapManager.isRunning():
+        partyManager.addRecord("fleet_caught_by_captain")
+        partyManager.refreshMap()
+
+if not partyManager.hasRecord("fleet_caught_by_captain"):
+    runMiniGame()
+
+partyManager.refreshMap()
