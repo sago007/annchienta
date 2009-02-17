@@ -98,9 +98,9 @@ class MapWriter:
                 for x in range(layer.getWidth()):
                     tile = layer.getTile(x,y)
                     for i in range(4):
-                        data += (str(tile.getPointPointer(i).z)+" "+str(tile.getSurface(i))+" ")
-                    data += (str(tile.getSideSurfaceOffset())+" ")
-                    data += (str(tile.getSideSurface())+"    ")
+                        data += str(int(tile.getPointPointer(i).z))+" "+str(tile.getSurface(i))+" "
+                    data += str(int(tile.getSideSurfaceOffset()))+" "
+                    data += str(tile.getSideSurface())+"    "
                 data += "\n"
 
             # Now add the data as a child node.

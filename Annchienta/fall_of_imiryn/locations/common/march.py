@@ -25,9 +25,7 @@ if not partyManager.hasRecord("inaran_talked_to_march"):
     sceneManager.speak( august, "We were young and full of hope. We would join the Fifth Guard, the elite section of our army.", True )
     sceneManager.speak( august, "Being in that section had been my dream since my older brother died protecting it.", True )
 
-    lp = laustwan.getPosition().to( annchienta.IsometricPoint )
-    lp.x += 60
-    sceneManager.move( laustwan, lp )
+    sceneManager.move( laustwan, annchienta.Point( annchienta.TilePoint, 16, 18) )
     sceneManager.speak( laustwan, "Puko!" )
 
     sceneManager.speak( august, "Can we leave the Laustwan here?" )
@@ -38,8 +36,11 @@ if not partyManager.hasRecord("inaran_talked_to_march"):
 
     sceneManager.speak( laustwan, "Hog-hu." )
 
-    lp.x = 0
-    sceneManager.move( laustwan, lp )
+    # Back away.
+    sceneManager.move( laustwan, annchienta.Point( annchienta.TilePoint, 4, 18) )
+    sceneManager.move( laustwan, annchienta.Point( annchienta.TilePoint, 4, 18) )
+    sceneManager.move( laustwan, annchienta.Point( annchienta.TilePoint, 4, 8) )
+    sceneManager.move( laustwan, annchienta.Point( annchienta.TilePoint, 0, 8) )
 
     sceneManager.speak( august, "I never really understood these helpful human-like creatures.", True )
     sceneManager.speak( august, "Still, I was grateful to them that they were there, always helping humans out.", True )

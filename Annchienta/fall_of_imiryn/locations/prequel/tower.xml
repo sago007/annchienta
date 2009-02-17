@@ -34,6 +34,16 @@ partyManager = PartyManager.getPartyManager()
 partyManager.changeMap( &quot;locations/prequel/hall.xml&quot;, annchienta.Point( annchienta.TilePoint, 8, 8 ) )
 </area>
 
+<!-- Closed door. -->
+<area tilex1="14" tilex2="15" tiley1="8" tiley2="9">
+import annchienta, PartyManager, SceneManager
+partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
+sceneManager.initDialog( [partyManager.player] )
+sceneManager.speak( partyManager.player, &quot;I'll have to find another entrance.&quot; )
+sceneManager.move( partyManager.player, annchienta.Point( annchienta.TilePoint, 16, 10 ) )
+sceneManager.quitDialog()
+</area>
+
 <!-- Simple instructions. -->
 <if code="import PartyManager; partyManager = PartyManager.getPartyManager()" cond="not partyManager.hasRecord('prequel_start')">
     <area script="locations/prequel/start.py" />

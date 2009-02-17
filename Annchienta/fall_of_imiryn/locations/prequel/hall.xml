@@ -21,5 +21,14 @@
     <area script="locations/prequel/briefing.py" />
 </if>
 
+<area tilex1="1" tilex2="2" tiley1="4" tiley2="5">
+import annchienta, SceneManager, PartyManager
+sceneManager, partyManager = SceneManager.getSceneManager(), PartyManager.getPartyManager()
+sceneManager.initDialog([partyManager.player])
+sceneManager.speak( partyManager.player, &quot;I don't think entering the general's room is a good idea. I wonder who the other candidates are?&quot; )
+sceneManager.move( partyManager.player, annchienta.Point( annchienta.TilePoint, 4, 4 ) )
+sceneManager.quitDialog()
+</area>
+
 </layer>
 </map>
