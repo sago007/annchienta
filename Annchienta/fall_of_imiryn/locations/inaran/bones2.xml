@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<sprite image="sprites/bones1.png" mask="masks/bones1.png">
+<sprite image="sprites/bones2.png" mask="masks/bones2.png">
 
     <frame number="1" />
 
@@ -9,7 +9,7 @@
 import annchienta, SceneManager, PartyManager
 partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
 sceneManager.initDialog( [partyManager.player] )
-sceneManager.speak( partyManager.player, &quot;He doesn't look to healthy.&quot; )
+sceneManager.speak( partyManager.player, &quot;Spooky.&quot; )
 sceneManager.quitDialog()
 </oninteract>
 
