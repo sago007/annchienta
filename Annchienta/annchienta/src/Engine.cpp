@@ -135,8 +135,7 @@ namespace Annchienta
     
     void Engine::write( const char *text ) const
     {
-        printf( text );
-        printf( "\n" );
+        printf( "%s\n", text );
     }
 
     bool Engine::isValidFile( const char *filename ) const
