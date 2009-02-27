@@ -110,11 +110,6 @@ class Battle(object):
                             self.addLine( combatant.getName().capitalize()+" drops "+combatant.getDropItem()+"!" )
                             self.partyManager.getInventory().addItem( combatant.getDropItem() )
 
-                            # Rebuild menus, because we might have gotten
-                            # a new item we want to use.
-                            for ally in self.allies:
-                                ally.buildMenu()
-
                 # Die die die!!!!11!!!!1
                 self.actionLock = True
 

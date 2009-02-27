@@ -48,6 +48,12 @@ class SceneManager(object):
     def inactiveColor( self ):
         self.videoManager.setColor(170,170,170)
 
+    def disabledColor( self ):
+        self.videoManager.setColor(100,100,100)
+
+    def attentionColor( self ):
+        self.videoManager.setColor(255,0,0)
+
     def getMargin( self ):
         return self.margin
 

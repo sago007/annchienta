@@ -228,7 +228,8 @@ class Menu( MenuItem.MenuItem ):
                     idx = x*self.rows+y
                     if idx<len(self.options):
                         o = self.options[ idx ]
-                        if self.inputManager.hover( sx+x*(self.longest+self.sceneManager.getMargin()), sy+y*self.sceneManager.getDefaultFont().getLineHeight(), sx+(x+1)*(self.longest+self.sceneManager.getMargin()), sy+(y+1)*self.sceneManager.getDefaultFont().getLineHeight() ):
+                        # Do not select when not enabled, else, check for hover
+                        if o.isEnabled() and self.inputManager.hover( sx+x*(self.longest+self.sceneManager.getMargin()), sy+y*self.sceneManager.getDefaultFont().getLineHeight(), sx+(x+1)*(self.longest+self.sceneManager.getMargin()), sy+(y+1)*self.sceneManager.getDefaultFont().getLineHeight() ):
                             self.selectedOption = o
                             self.selectedOptionIndex = self.getOptionIndex( o )
  
@@ -256,9 +257,17 @@ class Menu( MenuItem.MenuItem ):
                 if idx<len(self.options):
                     o = self.options[ idx ]
                     if o is self.selectedOption:
-                        self.sceneManager.activeColor()
+                        if o.isEnabled():
+                            self.sceneManager.activeColor()
+                        else:
+                            # Item is selected but not enabled, draw in red
+                            # or something
+                            self.sceneManager.attentionColor()
                     else:
-                        self.sceneManager.inactiveColor()
+                        if o.isEnabled():
+                            self.sceneManager.inactiveColor()
+                        else:
+                            self.sceneManager.disabledColor()
                     self.videoManager.drawString( self.sceneManager.getDefaultFont(), o.name.capitalize(), x*(self.longest+self.sceneManager.getMargin()), y*self.sceneManager.getDefaultFont().getLineHeight() )
 
         self.videoManager.pop()

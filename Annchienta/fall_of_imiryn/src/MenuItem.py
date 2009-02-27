@@ -6,6 +6,7 @@ class MenuItem(object):
     
         self.name = name
         self.toolTip = toolTip
+        self.enabled = True
         
     # It's not a menu, it's purely a menu item
     def isMenu( self ):
@@ -16,3 +17,9 @@ class MenuItem(object):
 
     def getToolTip( self ):
         return self.toolTip
+
+    def setEnabled( self, enabled ):
+        self.enabled = enabled
+
+    def isEnabled( self ):
+        return self.enabled

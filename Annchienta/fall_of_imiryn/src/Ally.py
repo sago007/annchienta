@@ -45,8 +45,6 @@ class Ally( Combatant.Combatant ):
         for i in range( int(len(words)/2) ):
             self.learn[ int( words[i*2] ) ] = words[i*2+1]
 
-        self.buildMenu()
-
     def isAlly( self ):
         return True
     
@@ -129,6 +127,8 @@ class Ally( Combatant.Combatant ):
                 description += " ("+str(action.getCost())+"MP)"
 
             menuItem = MenuItem.MenuItem( action.getName(), description )
+            if action.getCost() > self.getMp():
+                menuItem.setEnabled( False )
             added = False
 
             for sub in subs:
@@ -165,6 +165,9 @@ class Ally( Combatant.Combatant ):
 
     ## Allies select an action from the menu. returns (action, target)
     def selectAction( self, battle ):
+
+        # Build a menu first
+        self.buildMenu()
 
         menuItem = self.menu.pop( battle )
         if menuItem is None:
@@ -395,7 +398,6 @@ class Ally( Combatant.Combatant ):
                 text += " Learned "+ability+"!"
 
                 self.addAction( ability )
-                self.buildMenu()
 
             if showDialog:
                 self.sceneManager.text( text, None )
