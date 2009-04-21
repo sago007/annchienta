@@ -31,7 +31,15 @@
 <staticobject name="plant" config="locations/kimen/plant.xml" tilex="12" tiley="12" />
 
 <!-- An irrigation system. -->
-<staticobject name="irrigation" config="locations/kimen/irrigation.xml" tilex="14" tiley="4" />
+<if code="import PartyManager; partyManager=PartyManager.getPartyManager()"
+    cond="partyManager.hasRecord('kimen_destroyed_irrigation_2')">
+    <staticobject config="locations/kimen/irrigation.xml" name="irrigation" tilex="14" tiley="4" animation="broken" />
+</if>
+<!-- An irrigation system. -->
+<if code="import PartyManager; partyManager=PartyManager.getPartyManager()"
+    cond="not partyManager.hasRecord('kimen_destroyed_irrigation_2')">
+    <staticobject config="locations/kimen/irrigation.xml" name="irrigation" tilex="14" tiley="4" />
+</if>
 
 <!-- Way to plantation1 -->
 <area tilex1="28" tilex2="30" tiley1="6" tiley2="10" visible="1" >

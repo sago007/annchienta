@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <sprite image="sprites/irrigation.png" mask="masks/irrigation.png">
-    <frame number="1" />
+    <frame number="1" x1="0" y1="0" x2="98" y2="78" />
+    <frame number="2" x1="98" y1="0" x2="196" y2="76" />
     <animation name="stand" frames="1" />
+    <animation name="broken" frames="2" />
     <oninteract script="locations/kimen/irrigation.py" />
 </sprite>

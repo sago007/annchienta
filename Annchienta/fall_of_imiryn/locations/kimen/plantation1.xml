@@ -49,7 +49,15 @@
 <staticobject config="locations/kimen/plant.xml" name="plant" tilex="12" tiley="21" />
 
 <!-- An irrigation system. -->
-<staticobject config="locations/kimen/irrigation.xml" name="irrigation" tilex="11" tiley="17" />
+<if code="import PartyManager; partyManager=PartyManager.getPartyManager()"
+    cond="partyManager.hasRecord('kimen_destroyed_irrigation_1')">
+    <staticobject config="locations/kimen/irrigation.xml" name="irrigation" tilex="11" tiley="17" animation="broken" />
+</if>
+<!-- An irrigation system. -->
+<if code="import PartyManager; partyManager=PartyManager.getPartyManager()"
+    cond="not partyManager.hasRecord('kimen_destroyed_irrigation_1')">
+    <staticobject config="locations/kimen/irrigation.xml" name="irrigation" tilex="11" tiley="17" />
+</if>
 
 <!-- a powerful weapon. -->
 <chest item="spellcaster" tilex="18" tiley="15" />

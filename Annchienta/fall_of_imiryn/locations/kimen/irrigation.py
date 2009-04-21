@@ -9,6 +9,7 @@ sceneManager = SceneManager.getSceneManager()
 currentMap = partyManager.getCurrentMap()
 
 august = partyManager.getPlayer()
+irrigation = annchienta.getPassiveObject()
 
 sceneManager.initDialog( [august] )
 
@@ -33,6 +34,7 @@ else:
         if numberOfSystemsDestroyed==1:
             sceneManager.speak( august, "This seems to be some sort of irrigation system. If we cut this wire..." )
             sceneManager.text( "You sabotaged the irrigation system!" )
+            irrigation.setAnimation( "broken" )
 
         elif numberOfSystemsDestroyed==2:
             sceneManager.speak( august, "That makes two of them." )
