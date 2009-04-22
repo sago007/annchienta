@@ -52,6 +52,7 @@ if won:
         sceneManager.text("August:\nWhere were we?", None, True )
 
         partyManager.changeMap( "locations/unknown/beach_start.xml", annchienta.Point( annchienta.TilePoint, 15, 15 ), 0, False )
+        battleManager.delayNextBattle()
 
 mapManager.resync()
 

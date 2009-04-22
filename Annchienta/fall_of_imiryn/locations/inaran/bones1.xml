@@ -5,13 +5,7 @@
 
     <animation name="stand" frames="1" speed="10" />
 
-<oninteract>
-import annchienta, SceneManager, PartyManager
-partyManager, sceneManager = PartyManager.getPartyManager(), SceneManager.getSceneManager()
-sceneManager.initDialog( [partyManager.player] )
-sceneManager.speak( partyManager.player, &quot;He doesn't look to healthy.&quot; )
-sceneManager.quitDialog()
-</oninteract>
+    <oninteract script="locations/inaran/bones.py" />
 
 </sprite>
 

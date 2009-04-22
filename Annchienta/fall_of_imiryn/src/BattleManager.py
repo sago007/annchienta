@@ -89,6 +89,10 @@ class BattleManager(object):
             self.videoManager.boxBlur( 0, 0, self.videoManager.getScreenWidth(), self.videoManager.getScreenHeight() )
             self.videoManager.flip()
 
+    # Delay the next battle for some time.
+    def delayNextBattle( self ):
+        self.randomBattleDelay = 1000
+
 def init():
     global globalBattleManagerInstance
     globalBattleManagerInstance = BattleManager()

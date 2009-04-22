@@ -87,7 +87,7 @@
         <power factor="0.2" hit="1.0" type="magical"/>
         <status effect="blinded" hit="0.7"/>
         <cost mp="4"/>
-		<animation type="sprite" sprite="images/animations/fog.png" sound="sounds/whoosh.ogg"/>
+        <animation type="sprite" sprite="images/animations/fog.png" sound="sounds/whoosh.ogg"/>
     </action>
     <action name="fire" category="black magic" target="1">
         <description>Use a flame attack on an enemy.</description>
