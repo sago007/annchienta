@@ -25,6 +25,8 @@ menu.top()
 ans = menu.pop()
 if ans is not None:
     if ans.name == "save":
+        sound = cacheManager.getSound('sounds/save.ogg')
+        audioManager.playSound( sound )
         partyManager.save( "save/save.xml" )
         sceneManager.text("The progress in your travels has been recorded.")
 
