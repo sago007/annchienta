@@ -1,6 +1,9 @@
 import annchienta
 import PartyManager, SceneManager
 
+# Prequel music
+annchienta.getAudioManager().playMusic("music/title_2.ogg")
+
 mapManager = annchienta.getMapManager()
 videoManager = annchienta.getVideoManager()
 partyManager = PartyManager.getPartyManager()
@@ -20,3 +23,4 @@ sceneManager.quitDialog()
 
 partyManager.addRecord('prequel_start')
 partyManager.refreshMap()
+
