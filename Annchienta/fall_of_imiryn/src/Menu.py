@@ -1,6 +1,15 @@
 import MenuItem
 import annchienta, SceneManager
 
+# Stuff for sounds
+cacheManager = annchienta.getCacheManager()
+audioManager = annchienta.getAudioManager()
+soundClickRev = cacheManager.getSound('sounds/click-reverse.ogg')
+soundClickNeg = cacheManager.getSound('sounds/click-negative.ogg')
+soundClickNeu = cacheManager.getSound('sounds/click-neutral.ogg')
+soundSave = cacheManager.getSound('sounds/save.ogg')
+
+
 ## \brief A simple Menu.
 #
 #  Uses video buffer 6.
@@ -177,6 +186,7 @@ class Menu( MenuItem.MenuItem ):
 
         # If canceled, return None
         if self.canceled:
+            audioManager.playSound( soundClickRev )
             return None
         else:
             # If the chosen item is a submenu, recursively call that submenu.
@@ -184,12 +194,16 @@ class Menu( MenuItem.MenuItem ):
                 sub = self.selectedOption.pop( backgroundProcess )
                 # If the submenu was canceled, we return to this menu
                 if sub is None:
+                    audioManager.playSound( soundClickRev )
                     return self.pop( backgroundProcess )
                 # Return the item chosen by the submenu
                 else:
                     return sub
             # Simply return the item.
             else:
+                # Saving sound
+                if self.selectedOption.name == "save":
+                    audioManager.playSound( soundSave )
                 return self.selectedOption
 
     def update( self ):
@@ -212,12 +226,16 @@ class Menu( MenuItem.MenuItem ):
 
         # Keyboard actions
         if self.inputManager.keyTicked( annchienta.SDLK_DOWN ):
+            audioManager.playSound( soundClickNeu )
             self.selectedOptionIndex += 1
         elif self.inputManager.keyTicked( annchienta.SDLK_UP ):
+            audioManager.playSound( soundClickNeu )
             self.selectedOptionIndex -= 1
         elif self.inputManager.keyTicked( annchienta.SDLK_LEFT ):
+            audioManager.playSound( soundClickNeu )
             self.selectedOptionIndex -= self.rows
         elif self.inputManager.keyTicked( annchienta.SDLK_RIGHT ):
+            audioManager.playSound( soundClickNeu )
             self.selectedOptionIndex += self.rows
 
         if self.inputManager.isMouseMoved():
