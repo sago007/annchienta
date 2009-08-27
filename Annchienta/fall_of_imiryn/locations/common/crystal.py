@@ -5,7 +5,6 @@ import SceneManager
 
 cacheManager = annchienta.getCacheManager()
 sound = cacheManager.getSound('sounds/crystal.ogg')
-sound2 = cacheManager.getSound('sounds/save.ogg')
 
 audioManager = annchienta.getAudioManager()
 audioManager.playSound( sound )
@@ -26,7 +25,6 @@ menu.top()
 ans = menu.pop()
 if ans is not None:
     if ans.name == "save":
-        #audioManager.playSound( sound2 )
         partyManager.save( "save/save.xml" )
         sceneManager.text("The progress in your travels has been recorded.")
 
