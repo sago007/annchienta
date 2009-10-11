@@ -202,9 +202,6 @@ class Menu( MenuItem.MenuItem ):
                     return sub
             # Simply return the item.
             else:
-                # Saving sound
-                if self.selectedOption.name == "save":
-                    audioManager.playSound( soundSave )
                 return self.selectedOption
 
     def update( self ):
@@ -220,6 +217,12 @@ class Menu( MenuItem.MenuItem ):
             self.canceled = True
 
         if self.inputManager.buttonTicked( 0 ) or self.inputManager.interactKeyTicked():
+            # Saving sound
+            if self.selectedOption.name == "save":
+                audioManager.playSound( soundSave )
+            # General menu activation sound
+            else:
+                audioManager.playSound( soundClickPos )
             self.done = True
 
         if not self.inputManager.isRunning():
