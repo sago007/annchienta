@@ -23,7 +23,7 @@
         <power factor="1.1" hit="0.8" type="physical"/>
         <status effect="none" hit="0"/>
         <cost mp="4"/>
-        <animation type="attack" sprite="images/animations/thunder.png" sound="sounds/sword.ogg"/>
+        <animation type="attack" sprite="images/animations/thunder.png" sound="sounds/sword-thunder2.ogg"/>
     </action>
     <action name="bite" category="melee" target="1">
         <description>Painful but misses a lot.</description>
