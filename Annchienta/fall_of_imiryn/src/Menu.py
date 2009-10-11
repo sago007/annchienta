@@ -220,6 +220,9 @@ class Menu( MenuItem.MenuItem ):
             # Saving sound
             if self.selectedOption.name == "save":
                 audioManager.playSound( soundSave )
+            # Confirmation sound (just the menu closing sound )
+            elif self.selectedOption.name == "confirm" or self.selectedOption.name == "quit" or self.selectedOption.name == "cancel":
+                audioManager.playSound( soundClickRev )
             # General menu activation sound
             else:
                 audioManager.playSound( soundClickPos )
