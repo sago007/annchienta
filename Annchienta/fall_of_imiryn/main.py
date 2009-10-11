@@ -56,14 +56,14 @@ BattleManager.init()
 import Menu
 import MenuItem
 
-# Display a splash image.
-splashImage = annchienta.Surface( "images/backgrounds/splash.png" )
+# Display a splash image. removed for quicker testing purposes
+#splashImage = annchienta.Surface( "images/backgrounds/splash.png" )
 start = engine.getTicks()
-while engine.getTicks() < start + 1000:
-    videoManager.clear()
-    videoManager.drawSurface( splashImage, 0, 0 )
-    videoManager.flip()
-sceneManager.fade( 255, 255, 255, 2000 )
+#while engine.getTicks() < start + 1000:
+#    videoManager.clear()
+#    videoManager.drawSurface( splashImage, 0, 0 )
+#    videoManager.flip()
+#sceneManager.fade( 255, 255, 255, 2000 )
 
 # Load a title background.
 titleBackground = annchienta.Surface( "images/storyline/title.png" )

@@ -6,6 +6,7 @@ cacheManager = annchienta.getCacheManager()
 audioManager = annchienta.getAudioManager()
 soundClickRev = cacheManager.getSound('sounds/click-reverse.ogg')
 soundClickNeg = cacheManager.getSound('sounds/click-negative.ogg')
+soundClickPos = cacheManager.getSound('sounds/click-positive.ogg')
 soundClickNeu = cacheManager.getSound('sounds/click-neutral.ogg')
 soundSave = cacheManager.getSound('sounds/save.ogg')
 
@@ -248,6 +249,10 @@ class Menu( MenuItem.MenuItem ):
                         o = self.options[ idx ]
                         # Do not select when not enabled, else, check for hover
                         if o.isEnabled() and self.inputManager.hover( sx+x*(self.longest+self.sceneManager.getMargin()), sy+y*self.sceneManager.getDefaultFont().getLineHeight(), sx+(x+1)*(self.longest+self.sceneManager.getMargin()), sy+(y+1)*self.sceneManager.getDefaultFont().getLineHeight() ):
+                            # Play sound when other option is selected by mouse movement
+                            if self.selectedOptionIndex != self.getOptionIndex( o ):
+                                audioManager.playSound( soundClickNeu )
+                            
                             self.selectedOption = o
                             self.selectedOptionIndex = self.getOptionIndex( o )
  

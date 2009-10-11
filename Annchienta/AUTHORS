@@ -32,6 +32,10 @@ The fonts used were taken from the DejaVu font project.
 The sound effects have the following authors and licences:
     battle.ogg - Iwan Gabovitch - cc0/pd
     chest.ogg - Iwan Gabovitch - cc0/pd
+    click-negative.ogg - Iwan Gabovitch - cc0/pd
+    click-neutral.ogg - Iwan Gabovitch - cc0/pd
+    click-positive.ogg - Iwan Gabovitch - cc0/pd
+    click-reverse.ogg - Iwan Gabovitch - cc0/pd
     collapse.ogg - Stephen M. Cameron, Iwan Gabovitch - ccbysa3 - http://wordwarvi.sf.net
     crystal.ogg - Bart Kelsey - ccbysa3/gpl2/gpl3 - http://opengameart.org/content/spell-2
     cura.ogg - Bart Kelsey - ccbysa3/gpl2/gpl3 - http://opengameart.org/content/spell-3
@@ -41,6 +45,7 @@ The sound effects have the following authors and licences:
     impact.ogg - jute - gpl - http://dungeonhack.uesp.net/forums/viewtopic.php?p=5116#5116
     save.ogg - Iwan Gabovitch - cc0/pd
     sword.ogg - jute - gpl - http://dungeonhack.uesp.net/forums/viewtopic.php?p=5116#5116
+    sword-thunder.ogg - jute - gpl - sword.ogg with pd-licensed thunder from pdsounds.org added http://dungeonhack.uesp.net/forums/viewtopic.php?p=5116#5116
     thunder.ogg - jute - gpl - http://dungeonhack.uesp.net/forums/viewtopic.php?p=5116#5116
     water.ogg - Iwan Gabovitch - cc0/pd
     whoosh.ogg - Bart Kelsey - ccbysa3/gpl2/gpl3 - http://opengameart.org/content/whoosh-2
