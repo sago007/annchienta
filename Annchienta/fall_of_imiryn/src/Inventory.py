@@ -11,6 +11,14 @@ class Inventory(object):
     # Loads items from xml element
     def __init__( self, xmlElement ):
 
+        # Stuff for sounds
+        self.cacheManager = annchienta.getCacheManager()
+        self.audioManager = annchienta.getAudioManager()
+        self.soundNeg =     self.cacheManager.getSound('sounds/click-negative.ogg')
+        self.soundHeal =    self.cacheManager.getSound('sounds/cure.ogg')
+        self.soundHealHi =  self.cacheManager.getSound('sounds/cura.ogg')
+        self.soundExplode = self.cacheManager.getSound('sounds/grenade.ogg')
+
         # Get some references
         self.logManager = annchienta.getLogManager()
 
@@ -100,30 +108,41 @@ class Inventory(object):
     def useItemOn( self, itemName, target ):
 
         if itemName=="potion":
+            self.audioManager.playSound( self.soundHeal )
             target.setHp( target.getHp() + 100 )
 
         elif itemName=="eyedrops":
             if "blinded" in target.statusEffects:
+                self.audioManager.playSound( self.soundHeal )
                 target.removeStatusEffect( "blinded" )
+            else:
+                self.audioManager.playSound( self.soundNeg )
 
         elif itemName=="tincture":
             target.setMp( target.getMp() + 30 )
+            self.audioManager.playSound( self.soundHeal )
 
         elif itemName=="feather":
             if "slowed" in target.statusEffects:
                 target.removeStatusEffect( "slowed" )
             if not "hasted" in target.statusEffects:
                 target.addStatusEffect( "hasted" )
+            self.audioManager.playSound( self.soundHeal )
 
         elif itemName=="grenade":
             target.setHp( target.getHp() - 120 )
+            self.audioManager.playSound( self.soundExplode )
         
         elif itemName=="oil":
             if "paralysed" in target.statusEffects:
                 target.removeStatusEffect( "paralysed" )
+                self.audioManager.playSound( self.soundHeal )
+            else:
+                self.audioManager.playSound( self.soundNeg )
 
         elif itemName=="hi-potion":
             target.setHp( target.getHp() + 350 )
+            self.audioManager.playSound( self.soundHealHi )
 
         self.removeItem( itemName )
 

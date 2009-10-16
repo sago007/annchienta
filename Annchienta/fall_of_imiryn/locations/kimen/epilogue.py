@@ -69,5 +69,3 @@ sceneManager.text( "And hope was born again.", None, True )
 
 sceneManager.fade()
 sceneManager.text( "The End. I sincerely hope you enjoyed this game. You can always tell me what you think at jaspervdj@gmail.com. Your most humble and obedient servant, Jasper.", None, True )
-
-mapManager.stop()

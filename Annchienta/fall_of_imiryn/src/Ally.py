@@ -5,7 +5,13 @@ import PartyManager
 class Ally( Combatant.Combatant ):
 
     def __init__( self, xmlElement ):
-        
+
+        # Stuff for sounds
+        self.cacheManager = annchienta.getCacheManager()
+        self.audioManager = annchienta.getAudioManager()
+        self.soundLevelup = self.cacheManager.getSound('sounds/levelup.ogg')
+        self.soundClickNeu = self.cacheManager.getSound('sounds/click-neutral.ogg')
+
         # Base constructor
         Combatant.Combatant.__init__( self, xmlElement )
         
@@ -284,19 +290,24 @@ class Ally( Combatant.Combatant ):
             # Update input
             self.inputManager.update()
             
+            # Keyboard actions
             if self.inputManager.keyTicked( annchienta.SDLK_DOWN ):
+                self.audioManager.playSound( self.soundClickNeu )
                 targetIndex += 1
                 mouseSelected = False
             elif self.inputManager.keyTicked( annchienta.SDLK_UP ):
+                self.audioManager.playSound( self.soundClickNeu )
                 targetIndex -= 1
                 mouseSelected = False
             elif self.inputManager.keyTicked( annchienta.SDLK_LEFT ) or self.inputManager.keyTicked( annchienta.SDLK_RIGHT ):
+                self.audioManager.playSound( self.soundClickNeu )
                 selectEnemies = not selectEnemies
                 mouseSelected = False
             elif self.inputManager.isMouseMoved():
                 # Find out hover target
                 # Just have it point to the closest combatant.
                 distance = 0
+                oldTarget = target
                 target = None
                 for i in range(len(battle.combatants)):
                     
@@ -311,6 +322,8 @@ class Ally( Combatant.Combatant ):
                         target = combatant
                         targetIndex = i
                         distance = d
+                if target != oldTarget:
+                    self.audioManager.playSound( self.soundClickNeu )
                 mouseSelected = True
 
             if not mouseSelected:
@@ -363,6 +376,7 @@ class Ally( Combatant.Combatant ):
             # Increase level
             self.level["lvl"] += 1
 
+            self.audioManager.playSound( self.soundLevelup )
             text = self.name.capitalize()+" gains a level!"
 
             for key in self.stats:

@@ -8,6 +8,15 @@ class PartyMenu( Menu.Menu ):
 
     def __init__( self, name="Equipment", description="Manage and view equipment.", combatantIndex = 0 ):
 
+        # Stuff for sounds
+        self.cacheManager = annchienta.getCacheManager()
+        self.audioManager = annchienta.getAudioManager()
+        self.soundClickRev = self.cacheManager.getSound('sounds/click-reverse.ogg')
+        self.soundClickNeg = self.cacheManager.getSound('sounds/click-negative.ogg')
+        self.soundClickPos = self.cacheManager.getSound('sounds/click-positive.ogg')
+        self.soundClickNeu = self.cacheManager.getSound('sounds/click-neutral.ogg')
+        self.soundSave =     self.cacheManager.getSound('sounds/save.ogg')
+
         # Call superclass constructor
         Menu.Menu.__init__( self, name, description )
 
@@ -77,6 +86,7 @@ class PartyMenu( Menu.Menu ):
 
         # Check if one of the party members on top is clicked.
         if self.inputManager.keyTicked( annchienta.SDLK_TAB ):
+            self.audioManager.playSound( self.soundClickNeu ) 
             self.combatantIndex += 1
 
         self.combatantIndex = self.combatantIndex % len( self.partyManager.team )

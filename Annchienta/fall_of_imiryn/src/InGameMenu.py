@@ -7,6 +7,15 @@ class InGameMenu(object):
     # Main Constructor
     def __init__( self ):
 
+        # Stuff for sounds
+        self.cacheManager = annchienta.getCacheManager()
+        self.audioManager = annchienta.getAudioManager()
+        self.soundClickRev = self.cacheManager.getSound('sounds/click-reverse.ogg')
+        self.soundClickNeg = self.cacheManager.getSound('sounds/click-negative.ogg')
+        self.soundClickPos = self.cacheManager.getSound('sounds/click-positive.ogg')
+        self.soundClickNeu = self.cacheManager.getSound('sounds/click-neutral.ogg')
+        self.soundSave =     self.cacheManager.getSound('sounds/save.ogg')
+
         # General references
         self.mapManager   = annchienta.getMapManager()
         self.inputManager = annchienta.getInputManager()
@@ -31,6 +40,8 @@ class InGameMenu(object):
     # Runs this in game menu
     def run( self ):
 
+        # Plays sound on menu creation
+        self.audioManager.playSound( self.soundClickPos )
         menuItem = self.menu.pop()
 
         if menuItem is not None:

@@ -3,6 +3,7 @@ import PartyManager, SceneManager, BattleManager
 
 mapManager = annchienta.getMapManager()
 videoManager = annchienta.getVideoManager()
+audioManager = annchienta.getAudioManager()
 partyManager = PartyManager.getPartyManager()
 sceneManager = SceneManager.getSceneManager()
 
@@ -33,13 +34,28 @@ else:
 
         if numberOfSystemsDestroyed==1:
             sceneManager.speak( august, "This seems to be some sort of irrigation system. If we cut this wire..." )
+
+            # Play break sound
+            sound = annchienta.Sound( "sounds/destroy-building.ogg" )
+            audioManager.playSound( sound )
+
             sceneManager.text( "You sabotaged the irrigation system!" )
             irrigation.setAnimation( "broken" )
 
         elif numberOfSystemsDestroyed==2:
+            
+            # Play break sound
+            sound = annchienta.Sound( "sounds/destroy-building.ogg" )
+            audioManager.playSound( sound )
+
             sceneManager.speak( august, "That makes two of them." )
 
         else:
+            
+            # Play break sound
+            sound = annchienta.Sound( "sounds/destroy-building.ogg" )
+            audioManager.playSound( sound )
+
             sceneManager.speak( august, "I guess that was the last one of them. Let's head back to the ship." )
 
 sceneManager.quitDialog()

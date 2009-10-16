@@ -47,7 +47,7 @@
         <power factor="1.5" hit="0.7" type="physical"/>
         <status effect="injured" hit="0.4"/>
         <cost mp="6"/>
-        <animation type="attack" sound="sounds/impact.ogg"/>
+        <animation type="attack" sound="sounds/sword-swosh.ogg"/>
     </action>
     <action name="flametongue" category="melee" target="1">
         <description>Strong fire-based melee attack.</description>
@@ -55,7 +55,7 @@
         <power factor="2.5" hit="0.7" type="physical"/>
         <status effect="none" hit="0"/>
         <cost mp="8"/>
-        <animation type="attack" sprite="images/animations/fire.png" sound="sounds/sword.ogg"/>
+        <animation type="attack" sprite="images/animations/fire.png" sound="sounds/sword-fire.ogg"/>
     </action>
 
 

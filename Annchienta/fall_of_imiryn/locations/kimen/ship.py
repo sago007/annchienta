@@ -67,3 +67,7 @@ else:
     currentMap.removeObject( march )
     currentMap.removeObject( avril )
 
+    # For some reason following line is required, otherwise the end fight and epilogue would happen twice before main menu would appear...
+    partyManager.refreshMap()
+
+    mapManager.stop()

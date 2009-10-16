@@ -1,22 +1,21 @@
 import MenuItem
 import annchienta, SceneManager
 
-# Stuff for sounds
-cacheManager = annchienta.getCacheManager()
-audioManager = annchienta.getAudioManager()
-soundClickRev = cacheManager.getSound('sounds/click-reverse.ogg')
-soundClickNeg = cacheManager.getSound('sounds/click-negative.ogg')
-soundClickPos = cacheManager.getSound('sounds/click-positive.ogg')
-soundClickNeu = cacheManager.getSound('sounds/click-neutral.ogg')
-soundSave = cacheManager.getSound('sounds/save.ogg')
-
-
 ## \brief A simple Menu.
 #
 #  Uses video buffer 6.
 class Menu( MenuItem.MenuItem ):
-
+    
     def __init__( self, name, toolTip=None ):
+        
+        # Stuff for sounds
+        self.cacheManager = annchienta.getCacheManager()
+        self.audioManager = annchienta.getAudioManager()
+        self.soundClickRev = self.cacheManager.getSound('sounds/click-reverse.ogg')
+        self.soundClickNeg = self.cacheManager.getSound('sounds/click-negative.ogg')
+        self.soundClickPos = self.cacheManager.getSound('sounds/click-positive.ogg')
+        self.soundClickNeu = self.cacheManager.getSound('sounds/click-neutral.ogg')
+        self.soundSave =     self.cacheManager.getSound('sounds/save.ogg')
     
         # Base constructor
         MenuItem.MenuItem.__init__( self, name, toolTip )
@@ -187,7 +186,7 @@ class Menu( MenuItem.MenuItem ):
 
         # If canceled, return None
         if self.canceled:
-            audioManager.playSound( soundClickRev )
+            self.audioManager.playSound( self.soundClickRev )
             return None
         else:
             # If the chosen item is a submenu, recursively call that submenu.
@@ -195,7 +194,7 @@ class Menu( MenuItem.MenuItem ):
                 sub = self.selectedOption.pop( backgroundProcess )
                 # If the submenu was canceled, we return to this menu
                 if sub is None:
-                    audioManager.playSound( soundClickRev )
+                    self.audioManager.playSound( self.soundClickRev )
                     return self.pop( backgroundProcess )
                 # Return the item chosen by the submenu
                 else:
@@ -219,13 +218,13 @@ class Menu( MenuItem.MenuItem ):
         if self.inputManager.buttonTicked( 0 ) or self.inputManager.interactKeyTicked():
             # Saving sound
             if self.selectedOption.name == "save":
-                audioManager.playSound( soundSave )
+                self.audioManager.playSound( self.soundSave )
             # Confirmation sound (just the menu closing sound )
-            elif self.selectedOption.name == "confirm" or self.selectedOption.name == "quit" or self.selectedOption.name == "cancel":
-                audioManager.playSound( soundClickRev )
+            elif self.selectedOption.name == "confirm" or self.selectedOption.name == "quit" or self.selectedOption.name == "cancel" or self.selectedOption.name == "continue":
+                self.audioManager.playSound( self.soundClickRev )
             # General menu activation sound
             else:
-                audioManager.playSound( soundClickPos )
+                self.audioManager.playSound( self.soundClickPos )
             self.done = True
 
         if not self.inputManager.isRunning():
@@ -233,16 +232,16 @@ class Menu( MenuItem.MenuItem ):
 
         # Keyboard actions
         if self.inputManager.keyTicked( annchienta.SDLK_DOWN ):
-            audioManager.playSound( soundClickNeu )
+            self.audioManager.playSound( self.soundClickNeu )
             self.selectedOptionIndex += 1
         elif self.inputManager.keyTicked( annchienta.SDLK_UP ):
-            audioManager.playSound( soundClickNeu )
+            self.audioManager.playSound( self.soundClickNeu )
             self.selectedOptionIndex -= 1
         elif self.inputManager.keyTicked( annchienta.SDLK_LEFT ):
-            audioManager.playSound( soundClickNeu )
+            self.audioManager.playSound( self.soundClickNeu )
             self.selectedOptionIndex -= self.rows
         elif self.inputManager.keyTicked( annchienta.SDLK_RIGHT ):
-            audioManager.playSound( soundClickNeu )
+            self.audioManager.playSound( self.soundClickNeu )
             self.selectedOptionIndex += self.rows
 
         if self.inputManager.isMouseMoved():
@@ -257,7 +256,7 @@ class Menu( MenuItem.MenuItem ):
                         if o.isEnabled() and self.inputManager.hover( sx+x*(self.longest+self.sceneManager.getMargin()), sy+y*self.sceneManager.getDefaultFont().getLineHeight(), sx+(x+1)*(self.longest+self.sceneManager.getMargin()), sy+(y+1)*self.sceneManager.getDefaultFont().getLineHeight() ):
                             # Play sound when other option is selected by mouse movement
                             if self.selectedOptionIndex != self.getOptionIndex( o ):
-                                audioManager.playSound( soundClickNeu )
+                                self.audioManager.playSound( self.soundClickNeu )
                             
                             self.selectedOption = o
                             self.selectedOptionIndex = self.getOptionIndex( o )
