@@ -51,6 +51,9 @@ class Ally( Combatant.Combatant ):
         for i in range( int(len(words)/2) ):
             self.learn[ int( words[i*2] ) ] = words[i*2+1]
 
+        # Build the menu.
+        self.buildMenu()
+
     def isAlly( self ):
         return True
     
