@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import sys
+import os
 
 # Add the source directory to the path so we can
 # import modules from it.
@@ -100,7 +101,8 @@ while running and inputManager.isRunning():
         else:
 
             loadFile = "save/new.xml"
-            if menuItem.getName() == "load" and engine.isValidFile("save/save.xml"):
+            previouslySavedFile = os.path.join(os.path.expanduser("~"), ".fall-of-imiryn.xml")
+            if menuItem.getName() == "load" and engine.isValidFile(previouslySavedFile):
                 loadFile = "save/save.xml"
 
             partyManager.load( loadFile )
