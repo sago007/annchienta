@@ -25,7 +25,7 @@ menu.top()
 ans = menu.pop()
 if ans is not None:
     if ans.name == "save":
-        path = os.path.join(os.path.expanduser("~"), ".fall-of-imiryn.xml")
+        path = os.path.join(os.path.expanduser("~"), ".fall-of-imiryn/save.xml")
         partyManager.save(path)
         sceneManager.text("The progress in your travels has been recorded.")
 

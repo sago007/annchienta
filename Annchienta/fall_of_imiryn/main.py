@@ -12,8 +12,13 @@ sys.path.append("lib")
 
 import annchienta
 
+try:
+    os.mkdir(os.path.join(os.path.expanduser("~"), ".fall-of-imiryn"))
+except:
+    pass
+
 # Fire up the engine.
-annchienta.init("save")
+annchienta.init(os.path.join(os.path.expanduser("~"), ".fall-of-imiryn"))
 
 engine = annchienta.getEngine()
 
@@ -101,9 +106,9 @@ while running and inputManager.isRunning():
         else:
 
             loadFile = "save/new.xml"
-            previouslySavedFile = os.path.join(os.path.expanduser("~"), ".fall-of-imiryn.xml")
+            previouslySavedFile = os.path.join(os.path.expanduser("~"), ".fall-of-imiryn/save.xml")
             if menuItem.getName() == "load" and engine.isValidFile(previouslySavedFile):
-                loadFile = "save/save.xml"
+                loadFile = previouslySavedFile
 
             partyManager.load( loadFile )
             mapManager.run()
