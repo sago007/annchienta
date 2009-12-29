@@ -19,6 +19,8 @@
 
 #include <cmath>
 
+using namespace std;
+
 namespace Annchienta
 {
     Vector::Vector( float _x, float _y ): x(_x), y(_y)

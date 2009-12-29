@@ -21,6 +21,8 @@
 #include <cstdio>
 #include <cstring>
 
+using namespace std;
+
 namespace Annchienta
 {
 

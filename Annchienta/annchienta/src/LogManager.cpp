@@ -20,6 +20,8 @@
 #include <cstdlib>
 #include <cstdarg>
 
+using namespace std;
+
 namespace Annchienta
 {
     LogManager *logManager;

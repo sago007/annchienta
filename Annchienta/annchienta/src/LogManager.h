@@ -19,6 +19,7 @@
 #define ANNCHIENTA_LOGMANAGER_H
 
 #include <cstdio>
+using namespace std;
 
 namespace Annchienta
 {
