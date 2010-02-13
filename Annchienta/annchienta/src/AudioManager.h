@@ -38,6 +38,8 @@ namespace Annchienta
              */
             bool initted;
 
+            Uint8 volume;
+
         public:
             #ifndef SWIG
                 AudioManager();
@@ -70,6 +72,11 @@ namespace Annchienta
             /** \return Filename of the music currently streaming.
              */
             const char *getPlayingMusic() const;
+
+            /** Sets the audo volume.
+             *  \param volume The new volume, in [0, 1].
+             */
+            void setVolume( float volume );
     };
 
     AudioManager *getAudioManager();

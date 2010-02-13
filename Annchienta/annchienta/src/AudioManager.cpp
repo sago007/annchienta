@@ -71,7 +71,7 @@ namespace Annchienta
     void AudioManager::playSound( Sound *sound ) const
     {
         if( initted )
-            sound->play();
+            sound->play( volume );
     }
 
     void AudioManager::playMusic( const char *filename )
@@ -110,6 +110,12 @@ namespace Annchienta
     const char *AudioManager::getPlayingMusic() const
     {
         return musicFileName;
+    }
+
+    void AudioManager::setVolume( float volume )
+    {
+        this->volume = (int)(volume * MIX_MAX_VOLUME);
+        Mix_VolumeMusic(this->volume);
     }
 
     AudioManager *getAudioManager()

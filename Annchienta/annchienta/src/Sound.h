@@ -47,10 +47,11 @@ namespace Annchienta
 
             #ifndef SWIG
                 /** Plays back the sound.
+                 *  \param volume Volume to play the sound at.
                  *  \note Not available in Python.
                  *  \note Use AudioManager::playSound().
                  */
-                void play() const;
+                void play(Uint8 volume) const;
             #endif
     };
 };

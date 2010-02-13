@@ -46,10 +46,11 @@ namespace Annchienta
         return SoundCacheable;
     }
 
-    void Sound::play() const
+    void Sound::play(Uint8 volume) const
     {
         /* Simply play once, automatically choose any
          * free channel to play it on. */
+        chunk->volume = volume;
         if( audioManager->inittedSuccesfully() )
             Mix_PlayChannel( -1, chunk, 0 );
     }
