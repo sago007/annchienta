@@ -135,7 +135,7 @@
         <power factor="1.0" hit="1.0" type="magical"/>
         <status effect="none" hit="0"/>
         <cost mp="12"/>
-        <animation type="sprite" sprite="images/animations/fira.png" sound="sounds/fire.ogg"/>
+        <animation type="sprite" sprite="images/animations/fira.png" sound="sounds/fira.ogg"/>
     </action>
     <action name="blizzara" category="black magic" target="1">
         <description>Use a powerul ice attack on an enemy.</description>

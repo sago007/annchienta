@@ -44,6 +44,7 @@ The sound effects have the following authors and licences:
     cure.ogg - Bart Kelsey - ccbysa3/gpl2/gpl3 - http://opengameart.org/content/spell-4
     destroy-building - independent nu ljudbank - cc0/pd - http://www.johannespinter.com/inu/ljudbank.htm
     fire.ogg - jute - gpl - http://dungeonhack.uesp.net/forums/viewtopic.php?p=5116#5116
+    fira.ogg - Iwan Gabovitch - gpl - based on fire.ogg
     grenade.ogg - Iwan Gabovitch - cc0/pd
     ice.ogg - Iwan Gabovitch - cc0/pd
     impact.ogg - jute - gpl - http://dungeonhack.uesp.net/forums/viewtopic.php?p=5116#5116
@@ -56,11 +57,12 @@ The sound effects have the following authors and licences:
     water.ogg - Iwan Gabovitch - cc0/pd
     whoosh.ogg - Bart Kelsey - ccbysa3/gpl2/gpl3 - http://opengameart.org/content/whoosh-2
 
-    pd = public domain - http://creativecommons.org/licenses/publicdomain/
+License information:
     cc0 = creative commons zero - http://creativecommons.org/publicdomain/zero/1.0/
-    gpl = gnu general public license - http://www.gnu.org/copyleft/gpl.html
     ccby3 = creative commons attribution license -  http://creativecommons.org/licenses/by/3.0/
     ccbysa3 = creative commons attribution share-alike license - http://creativecommons.org/licenses/by-sa/3.0/
+    gpl = gnu general public license - http://www.gnu.org/copyleft/gpl.html
+    pd = public domain - http://creativecommons.org/licenses/publicdomain/
 
 ####################
 # ELEGIAC CONVERGENCE
