@@ -25,7 +25,9 @@ by Jasper Van der Jeugt. It is released under the GPL.
 # FALL OF IMIRYN
 ####################
 
-Graphics were done by Jasper Van der Jeugt, released under GPL.
+Graphics were done by Jasper Van der Jeugt, released under GPL, with following exceptions:
+    images/animations/fira.png - Prinsu-Kun - ccby3 - http://opengameart.org/content/homemade-flame
+
 The music was made by Joseph Giliberti, Creative Commons Share-Alike licensed.
 The fonts used were taken from the DejaVu font project.
 
@@ -57,6 +59,7 @@ The sound effects have the following authors and licences:
     pd = public domain - http://creativecommons.org/licenses/publicdomain/
     cc0 = creative commons zero - http://creativecommons.org/publicdomain/zero/1.0/
     gpl = gnu general public license - http://www.gnu.org/copyleft/gpl.html
+    ccby3 = creative commons attribution license -  http://creativecommons.org/licenses/by/3.0/
     ccbysa3 = creative commons attribution share-alike license - http://creativecommons.org/licenses/by-sa/3.0/
 
 ####################
