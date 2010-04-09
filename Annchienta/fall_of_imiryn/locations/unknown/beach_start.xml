@@ -41,7 +41,14 @@
 <staticobject mask="masks/empty_raft.png" name="raft" sprite="sprites/empty_raft.png" tilex="13" tiley="12" />
 
 <!-- The campfire. -->
-<staticobject config="locations/unknown/campfire.xml" name="campfire" tilex="18" tiley="16" />
+<if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('unknown_found_wood')">
+    <staticobject config="locations/unknown/campfire.xml" name="campfire" tilex="18" tiley="16" />
+</if>
+
+<!-- The glowing remains of the campfire -->
+<if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="partyManager.hasRecord('unknown_found_flints')">
+    <staticobject config="locations/unknown/campfire_out.xml" name="campfire_out" tilex="18" tiley="16" />
+</if>
 
 <!-- A save crystal. -->
 <staticobject config="locations/common/crystal.xml" name="crystal" tilex="13" tiley="15" />

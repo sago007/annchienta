@@ -46,6 +46,11 @@ partyManager.changeMap( &quot;locations/unknown/beach_start.xml&quot;, annchient
     <staticobject name="rotten_tree" config="locations/unknown/rotten_tree.xml" tilex="26" tiley="26" />
 </if>
 
+<!-- Wood. (When taken) -->
+<if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="partyManager.hasRecord('unknown_found_wood')">
+    <staticobject name="rotten_tree_stump" config="locations/unknown/rotten_tree_stump.xml" tilex="26" tiley="26" />
+</if>
+
 <!-- Flint. (If not taken already) -->
 <if code="import PartyManager;partyManager=PartyManager.getPartyManager()" cond="not partyManager.hasRecord('unknown_found_flints')">
     <staticobject name="flints" config="locations/unknown/flints.xml" tilex="8" tiley="25" />
