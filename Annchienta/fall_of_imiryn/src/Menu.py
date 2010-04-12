@@ -215,7 +215,7 @@ class Menu( MenuItem.MenuItem ):
             self.done = True
             self.canceled = True
 
-        if self.inputManager.buttonTicked( 0 ) or self.inputManager.interactKeyTicked():
+        if (self.inputManager.buttonTicked( 0 ) or self.inputManager.interactKeyTicked()) and self.selectedOption:
             # Saving sound
             if self.selectedOption.name == "save":
                 self.audioManager.playSound( self.soundSave )
