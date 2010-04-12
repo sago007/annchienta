@@ -47,6 +47,9 @@ sceneManager.speak( banver, "Most of the attacks happened in the Inaran region- 
 sceneManager.speak( banver, "Your task is to exterminate it. Finding out it's exact location and obtaining weapons is part of your task." )
 sceneManager.speak( banver, "Good luck..." )
 
+audioManager = annchienta.getAudioManager()
+audioManager.playMusic("music/title_1b.ogg")
+
 sceneManager.fade( 255, 255, 255, 2000 )
 
 imiryn = annchienta.Surface("images/storyline/imiryn.png")
