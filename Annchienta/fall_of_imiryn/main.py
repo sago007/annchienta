@@ -30,7 +30,7 @@ videoManager.setClearColor(0,0,0)
 # Init AudioManager.
 audioManager = annchienta.getAudioManager()
 audioManager.setVolume( 0.33 )
-audioManager.playMusic("music/title_1.ogg")
+audioManager.playMusic("music/title_1a.ogg")
 
 # Init MapManager.
 mapManager = annchienta.getMapManager()
