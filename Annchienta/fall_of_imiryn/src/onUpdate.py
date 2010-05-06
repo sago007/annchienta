@@ -24,7 +24,7 @@ if inputManager.keyTicked( annchienta.SDLK_f ):
 if inputManager.keyTicked( annchienta.SDLK_s ):
     import PartyManager
     partyManager = PartyManager.getPartyManager()
-    partyManager.save( "save/save.xml" )
+    partyManager.save( "save/save.xml" ) # This probably should be updated
 
 if ( inputManager.buttonTicked(1) or inputManager.cancelKeyTicked() ) and inputManager.getInputMode() is annchienta.InteractiveMode:
 

@@ -209,7 +209,8 @@ def runMiniGame():
 
     # Save first
     sceneManager.text( "Info: Your game was saved automatically.", None )
-    partyManager.save( "save/save.xml" )
+    path = os.path.join(os.path.expanduser("~"), ".fall-of-imiryn/save.xml")
+    partyManager.save(path)
 
     game = Game()
     game.run()
