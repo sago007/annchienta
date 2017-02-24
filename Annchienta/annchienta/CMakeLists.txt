@@ -48,7 +48,7 @@ ENDIF(SDLMIXER_FOUND)
 #######################
 # Python
 #######################
-FIND_PACKAGE(PythonLibs)
+FIND_PACKAGE(PythonLibs 2.7 REQUIRED)
 IF(PYTHON_INCLUDE_PATH)
     MESSAGE( STATUS "Python has been found:" )
     MESSAGE( STATUS "\tCFLAGS : ${PYTHON_INCLUDE_PATH}" )
@@ -64,12 +64,12 @@ IF(WIN32)
     SET( PYTHON_SITE_PACKAGES "modules" )
 ELSE(WIN32)
     # On unices, install to site-packages
-    FIND_PACKAGE(PythonInterp)
+    FIND_PACKAGE(PythonInterp 2.7 REQUIRED)
     IF(PYTHONINTERP_FOUND)
-        # Find python 
+        # Find python
         EXEC_PROGRAM( ${PYTHON_EXECUTABLE}
-                      ARGS "-c \"import sys;vi = sys.version_info; print \\\"python%s.%s\\\" %(vi[0],vi[1])\""
-                      OUTPUT_VARIABLE PYTHON_VERSION_DIR	
+                      ARGS "-c \"import sys;vi = sys.version_info; print('python{}.{}'.format(vi[0],vi[1]))\""
+                      OUTPUT_VARIABLE PYTHON_VERSION_DIR
         )
         SET( PYTHON_SITE_PACKAGES "lib/${PYTHON_VERSION_DIR}/site-packages" )
         MESSAGE( STATUS	"\tVERSION: ${PYTHON_VERSION_DIR}" )
@@ -151,4 +151,3 @@ ADD_CUSTOM_TARGET(
     uninstall
     "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
 )
-
