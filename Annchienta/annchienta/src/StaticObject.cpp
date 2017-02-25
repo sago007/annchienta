@@ -244,9 +244,6 @@ namespace Annchienta
 
     float StaticObject::getZFromCollidingTiles()
     {
-        /* We need the MapManager. */
-        MapManager *mapManager = getMapManager();
-
         /* Now, we set out Z to the highest one of the colliding tiles. */
         bool first = true;
         int newZ = 0;

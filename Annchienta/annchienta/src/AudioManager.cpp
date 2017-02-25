@@ -84,7 +84,7 @@ namespace Annchienta
         /* Store the new filename and stop previous music
          * if needed.
          */
-        sprintf( musicFileName, filename );
+        snprintf( musicFileName, sizeof(musicFileName), "%s", filename );
 
         if( !initted )
             return;

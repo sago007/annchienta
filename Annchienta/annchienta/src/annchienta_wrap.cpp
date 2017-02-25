@@ -1071,7 +1071,7 @@ typedef struct swig_const_info {
  * Wrapper of PyInstanceMethod_New() used in Python 3
  * It is exported to the generated module, used for -fastproxy
  * ----------------------------------------------------------------------------- */
-SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *self, PyObject *func)
+SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *, PyObject *)
 {
 #if PY_VERSION_HEX >= 0x03000000
   return PyInstanceMethod_New(func);
@@ -1841,6 +1841,9 @@ _PySwigObject_type(void) {
 #if PY_VERSION_HEX >= 0x02030000
 	0,                                  /* tp_del */
 #endif
+#if PY_VERSION_HEX >= 0x02060000
+	0,                                  /* tp_version_tag */
+#endif
 #ifdef COUNT_ALLOCS
 	0,0,0,0                             /* tp_alloc -> tp_next */
 #endif
@@ -2015,6 +2018,9 @@ _PySwigPacked_type(void) {
 #endif
 #if PY_VERSION_HEX >= 0x02030000
 	0,                                  /* tp_del */
+#endif
+#if PY_VERSION_HEX >= 0x02060000
+	0,                                  /* tp_version_tag */
 #endif
 #ifdef COUNT_ALLOCS
 	0,0,0,0                             /* tp_alloc -> tp_next */
@@ -2651,7 +2657,7 @@ SWIG_Python_TypeError(const char *type, PyObject *obj)
 
 /* Convert a pointer value, signal an exception on a type mismatch */
 SWIGRUNTIME void *
-SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags) {
+SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum __attribute__((unused)), int flags) {
   void *result;
   if (SWIG_Python_ConvertPtr(obj, &result, ty, flags) == -1) {
     PyErr_Clear();
@@ -6802,7 +6808,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_LogManager_message__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs) {
+SWIGINTERN PyObject *_wrap_LogManager_message__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs __attribute__((unused))) {
   PyObject *resultobj = 0;
   Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -6850,7 +6856,7 @@ SWIGINTERN PyObject *_wrap_LogManager_message(PyObject *self, PyObject *args) {
 }
 
 
-SWIGINTERN PyObject *_wrap_LogManager_warning__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs) {
+SWIGINTERN PyObject *_wrap_LogManager_warning__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs __attribute__((unused))) {
   PyObject *resultobj = 0;
   Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -6898,7 +6904,7 @@ SWIGINTERN PyObject *_wrap_LogManager_warning(PyObject *self, PyObject *args) {
 }
 
 
-SWIGINTERN PyObject *_wrap_LogManager_error__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs) {
+SWIGINTERN PyObject *_wrap_LogManager_error__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs __attribute__((unused))) {
   PyObject *resultobj = 0;
   Annchienta::LogManager *arg1 = (Annchienta::LogManager *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -22343,6 +22349,9 @@ extern "C" {
 #endif
 #if PY_VERSION_HEX >= 0x02030000
         0,                                  /* tp_del */
+#endif
+#if PY_VERSION_HEX >= 0x02060000
+	0,                                  /* tp_version_tag */
 #endif
 #ifdef COUNT_ALLOCS
         0,0,0,0                             /* tp_alloc -> tp_next */
